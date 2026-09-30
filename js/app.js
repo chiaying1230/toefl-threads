@@ -254,7 +254,6 @@
     }
     S.save();
     renderGoalChip();
-    S.submitScore(C.weekKey(), C.weekPoints(d));
     checkBadges();
   }
 
@@ -285,15 +284,14 @@
     if (!v) return;
     sheetKey = key;
     sheetFrom = from;
-    $("#sheetWord").textContent = key;
+    $("#sheetWord").textContent = C.label(key);
     $("#sheetPos").textContent = v.pos;
     $("#sheetKK").textContent = kk(key);
     var lv = $("#sheetLevel");
     lv.className = "level-tag lv" + v.level;
     lv.textContent = C.LEVEL_NAMES[v.level];
     $("#sheetZh").textContent = v.zh;
-    var stem = key.length > 5 ? key.slice(0, key.length - 2) : key;
-    $("#sheetEx").innerHTML = esc(v.ex).replace(new RegExp("\\b(" + stem + "[a-z]*)", "i"), "<strong>$1</strong>");
+    $("#sheetEx").innerHTML = esc(v.ex).replace(C.wordPattern(key), "<strong>$&</strong>");
     $("#sheetExZh").textContent = v.exZh;
     updateSheetButton();
     $("#sheetOverlay").hidden = false;
@@ -345,6 +343,7 @@
     route = parseHash();
     if (!VIEW_OF[route.name]) route = { name: "home", param: "", q: "" };
     routeKey = route.name + "/" + route.param;
+    if (route.name !== "profile") profileSettings = false;
     var view = VIEW_OF[route.name];
     closeSheet();
     ["home", "search", "review", "profile", "person", "thread"].forEach(function (v) { $("#view-" + v).hidden = v !== view; });
@@ -575,7 +574,8 @@
     }
     var lower = q.toLowerCase();
     var words = Object.keys(VOCAB).filter(function (k) {
-      return k.indexOf(lower) === 0 || (lower.length > 2 && k.indexOf(lower) > 0) || VOCAB[k].zh.indexOf(q) >= 0;
+      var w = C.label(k);
+      return w.indexOf(lower) === 0 || (lower.length > 2 && w.indexOf(lower) > 0) || VOCAB[k].zh.indexOf(q) >= 0;
     }).sort(function (a, b) { return (a.indexOf(lower) === 0 ? 0 : 1) - (b.indexOf(lower) === 0 ? 0 : 1) || a.localeCompare(b); }).slice(0, 12);
     var people = Object.keys(CHARACTERS).filter(function (k) {
       var c = CHARACTERS[k];
@@ -588,7 +588,7 @@
 
     if (words.length) {
       html += '<div class="section-title">Words</div><div class="word-results">' + words.map(function (k) {
-        return '<button class="word-row" data-word="' + k + '"><span class="w">' + k + '</span><span class="z">' + kkHtml(k) + " " + esc(VOCAB[k].pos + " " + VOCAB[k].zh) + '</span><span class="level-tag lv' + VOCAB[k].level + '">' + C.LEVEL_NAMES[VOCAB[k].level] + "</span></button>";
+        return '<button class="word-row" data-word="' + k + '"><span class="w">' + esc(C.label(k)) + '</span><span class="z">' + kkHtml(k) + " " + esc(VOCAB[k].pos + " " + VOCAB[k].zh) + '</span><span class="level-tag lv' + VOCAB[k].level + '">' + C.LEVEL_NAMES[VOCAB[k].level] + "</span></button>";
       }).join("") + "</div>";
     }
     if (people.length) html += '<div class="section-title">People</div>' + people.map(personRow).join("");
@@ -760,7 +760,7 @@
       var from = w[k].from;
       var label = C.dueLabel(w[k]);
       html += '<div class="word-item"><button class="word-row" data-toggle-word="' + k + '">' +
-        '<span class="w">' + k + '</span><span class="z">' + esc(v.pos + " " + v.zh) + "</span>" +
+        '<span class="w">' + esc(C.label(k)) + '</span><span class="z">' + esc(v.pos + " " + v.zh) + "</span>" +
         '<span class="due' + (label === "Due" ? " now" : "") + '">' + label + "</span></button>";
       if (openWord === k) {
         html += '<div class="word-detail">' + kkHtml(k) + "<p>" + esc(v.ex) + '</p><p class="muted">' + esc(v.exZh) + '</p><div class="row-actions">' +
@@ -797,8 +797,8 @@
     }
     var k = deck[deckIndex], v = VOCAB[k];
     var card = flipped
-      ? '<div class="fw">' + k + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fzh">' + esc(v.zh) + '</div><div class="fex">' + esc(v.ex) + '</div><div class="fexzh">' + esc(v.exZh) + "</div>"
-      : '<div class="fw">' + k + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fhint">Tap to reveal the meaning</div>';
+      ? '<div class="fw">' + esc(C.label(k)) + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fzh">' + esc(v.zh) + '</div><div class="fex">' + esc(v.ex) + '</div><div class="fexzh">' + esc(v.exZh) + "</div>"
+      : '<div class="fw">' + esc(C.label(k)) + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fhint">Tap to reveal the meaning</div>';
     body.innerHTML = '<div class="flash-wrap"><div class="flash-progress">' + (practiceAll ? "Practice" : "Due today") + " · card " + (deckIndex + 1) + " of " + deck.length + " · " + knownCount + " known</div>" +
       '<button class="flashcard' + (flipped ? " flip" : "") + '" data-flip>' + card + "</button>" +
       '<div class="flash-buttons"><button class="btn-again" data-again>Still learning</button><button class="btn-got" data-got>Got it ✓</button></div></div>';
@@ -809,7 +809,7 @@
     if (w) st().words[key] = C.review(w, correct);
   }
 
-  // ---------- Badges & leaderboard ----------
+  // ---------- Badges ----------
   function myPostCount() {
     return communityPosts().filter(isMine).length;
   }
@@ -825,41 +825,10 @@
     }
   }
 
-  function leaderboardRows(people) {
-    var s = st(), week = C.weekKey();
-    var me = { id: "me", name: s.profile.name, avatar: s.profile.avatar, photo: s.profile.photo, points: C.weekPoints(s.daily), me: true };
-    var myUid = S.myUid();
-    var others = (people || []).filter(function (r) { return r.uid !== myUid; }).map(function (r) { return withProfile(r, r.uid); });
-    var rows = C.characterScores(week).concat(others).concat([me]);
-    rows.sort(function (a, b) { return b.points - a.points || (a.me ? -1 : b.me ? 1 : 0); });
-    return rows;
-  }
-
-  function renderLeaderboard(people) {
-    var box = $("#lbList");
-    if (!box) return;
-    var rows = leaderboardRows(people);
-    var myRank = 0;
-    rows.forEach(function (r, i) { if (r.me) myRank = i + 1; });
-    var show = rows.slice(0, lbExpanded ? 30 : 5);
-    var html = show.map(function (r, i) { return lbRow(r, i + 1); }).join("");
-    if (myRank > show.length) html += '<div class="lb-gap">⋯</div>' + lbRow(rows[myRank - 1], myRank);
-    html += '<button class="link lb-more" data-lb-more>' + (lbExpanded ? "Show less" : "Show top 30") + "</button>";
-    box.innerHTML = html;
-    $("#lbRank").textContent = "#" + myRank;
-  }
-
-  function lbRow(r, rank) {
-    var medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : rank;
-    return '<div class="lb-row' + (r.me ? " me" : "") + '"' + (r.me ? "" : ' data-person="' + esc(r.id) + '"') + ">" +
-      '<span class="lb-rank">' + medal + "</span>" + avatarHtml({ avatar: r.avatar, color: r.color, photo: r.photo }, "sm") +
-      '<span class="lb-name">' + esc(r.name) + (r.me && r.name !== "You" ? " (you)" : "") + "</span><b>" + r.points + "</b></div>";
-  }
-
   // ---------- Profile ----------
   var editingProfile = false;
   var profileTab = "threads";
-  var lbExpanded = false;
+  var profileSettings = false;
 
   function profileTabPosts() {
     var s = st();
@@ -872,19 +841,62 @@
   }
 
   function renderProfile() {
-    var s = st(), p = s.profile, d = s.daily;
-    var today = d.log[C.dayKey()] || 0;
-    var days = C.lastDays(d, 7);
-    var max = Math.max(d.goal, Math.max.apply(null, days.map(function (x) { return x.value; })));
+    var s = st(), p = s.profile;
     var bstats = C.badgeStats(s, myPostCount());
-    var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
 
     var html = '<div class="profile-head"><div><h2>' + esc(p.name) + '</h2><div class="handle">@' + esc(p.handle) + "</div></div>" +
       avatarHtml(p, "lg") + "</div>" +
       (p.bio ? '<p class="profile-bio">' + esc(p.bio) + "</p>" : "") +
       (p.target ? '<p class="profile-bio muted">🎯 TOEFL target: <b>' + p.target + "</b></p>" : "");
 
-    // Account
+    html += '<div class="profile-stats"><span><b>' + bstats.posts + "</b> threads</span><span><b>" +
+      Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
+
+    if (editingProfile) {
+      html += editFormHtml();
+    } else if (profileSettings) {
+      html += settingsHtml();
+    } else {
+      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-settings>⚙️ Settings</button></div>';
+      if (S.mode === "cloud" && !S.user) {
+        html += '<div class="card account"><span>Sign in to save your progress to your account and post threads everyone can see.</span><button class="primary-btn" data-signin>Sign in with Google</button></div>';
+      }
+      html += profileTabsHtml(bstats);
+    }
+    $("#profileBody").innerHTML = html;
+  }
+
+  // Threads / Liked / Saved / Badges tabs
+  function profileTabsHtml(bstats) {
+    var s = st();
+    var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
+    var counts = { threads: bstats.posts, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length, badges: unlocked };
+    var html = '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["liked", "Liked"], ["saved", "Saved"], ["badges", "Badges"]].map(function (t) {
+      return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span></button>";
+    }).join("") + "</div>";
+    if (profileTab === "badges") {
+      return html + '<div id="profileList"><div class="badges">' + C.BADGES.map(function (b) {
+        var on = !!s.badges[b.id];
+        return '<div class="badge-item' + (on ? " on" : "") + '"><span class="b-icon">' + (on ? b.icon : "🔒") + '</span><b>' + esc(b.name) + '</b><span class="muted">' + esc(b.desc) + "</span></div>";
+      }).join("") + "</div></div>";
+    }
+    var list = profileTabPosts();
+    var empty = {
+      threads: "You haven't posted yet.<br>Tap <b>＋</b> below and try the word challenge!",
+      liked: "Threads you like will show up here.<br>Tap ♡ on any thread.",
+      saved: "Threads you save will show up here.<br>Tap the bookmark on any thread."
+    }[profileTab];
+    return html + '<div id="profileList">' + (list.length ? list.map(function (x) { return renderPost(x); }).join("") : '<div class="empty">' + tofuSvg(64) + "<br>" + empty + "</div>") + "</div>";
+  }
+
+  // Everything that isn't the profile itself lives behind the Settings button.
+  function settingsHtml() {
+    var s = st(), d = s.daily;
+    var today = d.log[C.dayKey()] || 0;
+    var days = C.lastDays(d, 7);
+    var max = Math.max(d.goal, Math.max.apply(null, days.map(function (x) { return x.value; })));
+    var html = '<div class="settings-top"><button class="link" data-settings-close>‹ Back to profile</button><b>Settings</b></div>';
+
     if (S.mode === "cloud" && S.user) {
       html += '<div class="card account"><span>✅ Signed in as <b>' + esc(S.user.name) + '</b>. Your likes, words and threads are saved to your account.</span><button class="link" data-signout>Sign out</button></div>';
     } else if (S.mode === "cloud") {
@@ -893,16 +905,8 @@
       html += '<div class="card account muted small">📱 Saved on this device only.</div>';
     }
 
-    html += '<div class="profile-stats"><span><b>' + bstats.posts + "</b> threads</span><span><b>" + bstats.words +
-      "</b> words</span><span><b>" + Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
+    html += '<div class="card"><div class="goal-top"><b>Your feed</b></div><p class="muted small">Choose your level and the topics you want to see.</p><button class="outline-btn" data-edit-prefs>Feed preferences</button></div>';
 
-    if (editingProfile) {
-      html += editFormHtml();
-    } else {
-      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-edit-prefs>Feed preferences</button></div>';
-    }
-
-    // Daily goal
     html += '<div class="card goal-card" id="goalCard"><div class="goal-top"><b>Daily goal</b><span class="muted">' + today + " / " + d.goal + " today</span></div>" +
       '<div class="goal-bar"><i style="width:' + Math.min(100, Math.round(today / d.goal * 100)) + '%"></i></div>' +
       '<div class="bars">' + days.map(function (x) {
@@ -912,19 +916,6 @@
         return '<button class="chip' + (d.goal === g ? " active" : "") + '" data-goal="' + g + '">' + g + " / day</button>";
       }).join("") + '</div><p class="muted small">Each new saved word, correct quiz answer and "Got it" flashcard counts as 1.</p></div>';
 
-    // Weekly leaderboard
-    html += '<div class="card lb-card"><div class="goal-top"><b>🏆 This week\'s leaderboard</b><span class="muted">You: <b id="lbRank"></b></span></div>' +
-      '<div id="lbList"></div><p class="muted small">Points = practice this week (resets every Monday). ' +
-      (S.mode === "cloud" && !S.user ? "Sign in to compete with other learners." : S.mode === "local" ? "Characters are competing with you!" : "") + "</p></div>";
-
-    // Badges
-    html += '<div class="card"><div class="goal-top"><b>Tofu badges</b><span class="muted">' + unlocked + " / " + C.BADGES.length + '</span></div><div class="badges">' +
-      C.BADGES.map(function (b) {
-        var on = !!s.badges[b.id];
-        return '<div class="badge-item' + (on ? " on" : "") + '"><span class="b-icon">' + (on ? b.icon : "🔒") + '</span><b>' + esc(b.name) + '</b><span class="muted">' + esc(b.desc) + "</span></div>";
-      }).join("") + "</div></div>";
-
-    // Settings
     html += '<div class="card"><div class="goal-top"><b>Read-aloud speed</b></div><div class="goal-pick">' +
       [[1, "Normal"], [0.8, "Slow"], [0.6, "Very slow"]].map(function (r) {
         return '<button class="chip' + (s.settings.rate === r[0] ? " active" : "") + '" data-rate="' + r[0] + '">' + r[1] + "</button>";
@@ -939,25 +930,7 @@
       var info = c || userInfoCache[k.slice(4)] || { avatar: "🙂", name: "User" };
       return '<button class="mini-person" data-person="' + esc(k) + '">' + avatarHtml({ avatar: info.avatar, color: c && c.color }) + "<span>" + esc(info.name.split(" ")[0]) + "</span></button>";
     }).join("") + "</div>" : '<div class="empty small">Not following anyone yet.</div>';
-
-    // Threads / Liked / Saved tabs
-    var counts = { threads: bstats.posts, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length };
-    html += '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["liked", "Liked"], ["saved", "Saved"]].map(function (t) {
-      return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span></button>";
-    }).join("") + "</div>";
-    var list = profileTabPosts();
-    var empty = {
-      threads: "You haven't posted yet.<br>Tap <b>＋</b> below and try the word challenge!",
-      liked: "Threads you like will show up here.<br>Tap ♡ on any thread.",
-      saved: "Threads you save will show up here.<br>Tap the bookmark on any thread."
-    }[profileTab];
-    html += '<div id="profileList">' + (list.length ? list.map(function (x) { return renderPost(x); }).join("") : '<div class="empty">' + tofuSvg(64) + "<br>" + empty + "</div>") + "</div>";
-    $("#profileBody").innerHTML = html;
-
-    renderLeaderboard([]);
-    S.leaderboard(C.weekKey()).then(function (people) {
-      if (route.name === "profile") renderLeaderboard(people);
-    });
+    return html;
   }
 
   // ---------- Edit profile ----------
@@ -1045,9 +1018,9 @@
     } else if (status === "denied") {
       body = '<p class="muted small">Notifications are blocked for this site. Allow them in your browser or phone settings, then come back.</p>';
     } else if (!info.enabled) {
-      body = '<p class="muted small">Get a notification when someone replies to your thread, a daily summary of new likes, and your weekly leaderboard rank.</p><button class="primary-btn" data-push-on>🔔 Turn on notifications</button>';
+      body = '<p class="muted small">Get a notification when someone replies to your thread and a daily summary of new likes.</p><button class="primary-btn" data-push-on>🔔 Turn on notifications</button>';
     } else {
-      body = '<div class="toggle-list">' + [["replies", "Replies to my threads"], ["likes", "Daily summary of likes (8 pm)"], ["weekly", "Weekly leaderboard rank (Monday)"]].map(function (x) {
+      body = '<div class="toggle-list">' + [["replies", "Replies to my threads"], ["likes", "Daily summary of likes (8 pm)"]].map(function (x) {
         return '<label class="toggle"><span>' + x[1] + '</span><input type="checkbox" data-push-pref="' + x[0] + '"' + (info.prefs[x[0]] !== false ? " checked" : "") + "></label>";
       }).join("") + '</div><button class="link danger" data-push-off>Turn off notifications</button>';
     }
@@ -1237,7 +1210,7 @@
   function renderChallenge() {
     var used = C.detectWords($("#composerText").value);
     $("#challengeWords").innerHTML = challenge.map(function (k) {
-      return '<button class="challenge-word' + (used.indexOf(k) >= 0 ? " used" : "") + '" data-insert="' + k + '">' + k + "<small>" + esc(VOCAB[k].zh.split("；")[0]) + "</small></button>";
+      return '<button class="challenge-word' + (used.indexOf(k) >= 0 ? " used" : "") + '" data-insert="' + k + '">' + esc(C.label(k)) + "<small>" + esc(VOCAB[k].zh.split("；")[0]) + "</small></button>";
     }).join("");
   }
 
@@ -1386,12 +1359,12 @@
     else if (d.mode) { reviewMode = d.mode; practiceAll = false; if (reviewMode === "cards") startDeck(); renderReview(); window.scrollTo(0, 0); }
     else if (d.practiceAll !== undefined) { practiceAll = true; startDeck(); renderReview(); }
     else if (d.toggleWord) { openWord = openWord === d.toggleWord ? null : d.toggleWord; renderReview(); }
-    else if (d.speak) speak(d.speak);
+    else if (d.speak) speak(C.label(d.speak));
     else if (d.removeWord) {
       delete st().words[d.removeWord];
       S.save(); refreshWordMarks(); renderReview();
       toast("Removed from Review");
-    } else if (d.flip !== undefined) { flipped = !flipped; renderReview(); if (flipped) speak(deck[deckIndex]); }
+    } else if (d.flip !== undefined) { flipped = !flipped; renderReview(); if (flipped) speak(C.label(deck[deckIndex])); }
     else if (d.again !== undefined) {
       reviewWord(deck[deckIndex], false); S.save(); refreshWordMarks();
       deck.push(deck.splice(deckIndex, 1)[0]); flipped = false; renderReview();
@@ -1402,10 +1375,11 @@
     }
     else if (d.restart !== undefined) { startDeck(); renderReview(); }
     // Profile
-    else if (d.editProfile !== undefined) { editingProfile = true; draft = null; renderProfile(); var f = $(".edit-form"); if (f) window.scrollTo(0, f.offsetTop - 70); }
+    else if (d.editProfile !== undefined) { editingProfile = true; profileSettings = false; draft = null; renderProfile(); var f = $(".edit-form"); if (f) window.scrollTo(0, f.offsetTop - 70); }
     else if (d.editPrefs !== undefined) openOnboarding(true);
+    else if (d.settings !== undefined) { profileSettings = true; editingProfile = false; renderProfile(); window.scrollTo(0, 0); }
+    else if (d.settingsClose !== undefined) { profileSettings = false; renderProfile(); window.scrollTo(0, 0); }
     else if (d.ptab) { profileTab = d.ptab; renderProfile(); var tabs = $(".profile-tabs"); if (tabs) window.scrollTo(0, tabs.offsetTop - 60); }
-    else if (d.lbMore !== undefined) { lbExpanded = !lbExpanded; S.leaderboard(C.weekKey()).then(renderLeaderboard); }
     else if (d.rate) { st().settings.rate = parseFloat(d.rate); S.save(); renderProfile(); speak("This is how fast I will read."); }
     else if (d.avatar) { draft.avatar = d.avatar; draft.photo = ""; refreshDraftPreview(); }
     else if (d.saveProfile !== undefined) saveProfileForm();
@@ -1434,7 +1408,7 @@
       }).then(function () { refreshCounts(); loadReplies(); });
     }
     // Composer
-    else if (d.insert) insertWord(d.insert);
+    else if (d.insert) insertWord(C.label(d.insert));
     // Onboarding
     else if (d.obLevel) {
       var lv = parseInt(d.obLevel, 10), i = ob.levels.indexOf(lv);
@@ -1468,7 +1442,7 @@
 
   // Word sheet
   $("#sheetOverlay").addEventListener("click", function () { closeSheet(); closeInstallGuide(); });
-  $("#speakBtn").addEventListener("click", function () { if (sheetKey) speak(sheetKey); });
+  $("#speakBtn").addEventListener("click", function () { if (sheetKey) speak(C.label(sheetKey)); });
   $("#sheetSave").addEventListener("click", function () {
     if (!sheetKey) return;
     if (st().words[sheetKey]) { delete st().words[sheetKey]; toast("Removed from Review"); }

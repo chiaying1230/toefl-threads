@@ -2,7 +2,6 @@
 // (.github/workflows/notifications.yml) with a Firebase service-account key.
 //   • Replies:  someone replied to your thread (sent on the next run)
 //   • Likes:    daily summary of new likes on your threads, at 8 pm your time
-//   • Weekly:   last week's leaderboard rank, Monday from 9 am your time
 // Bookkeeping lives in Firestore `notifyState/*`, which app users cannot read or write.
 const path = require("path");
 const fs = require("fs");
@@ -75,18 +74,7 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
   }
   meta.lastRepliesAt = Timestamp.fromDate(latest);
 
-  // ---- Daily likes summary and weekly rank, in each person's own time zone ----
-  const weekScores = {};
-  async function rankFor(week) {
-    if (!weekScores[week]) {
-      const people = (await db.collection("weeks").doc(week).collection("scores").get()).docs.map((d) => ({ id: d.id, points: d.data().points || 0 }));
-      // Characters play too; a Sunday date gives their full-week score.
-      const chars = Core.characterScores(week, new Date(Date.UTC(2024, 0, 7))).map((c) => ({ id: "char:" + c.id, points: c.points }));
-      weekScores[week] = { people, all: people.concat(chars).sort((a, b) => b.points - a.points) };
-    }
-    return weekScores[week];
-  }
-
+  // ---- Daily likes summary, in each person's own time zone ----
   for (const [uid, u] of Object.entries(users)) {
     const stateRef = db.collection("notifyState").doc(uid);
     const state = (await stateRef.get()).data() || {};
@@ -112,21 +100,6 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
         state.lastLikesDay = localDay;
       }
       state.likes = current;
-      changed = true;
-    }
-
-    // Weekly rank: from Monday 9 am (local), once per week.
-    const lastWeek = Core.weekKey(new Date(local.getTime() - 7 * DAY));
-    const mondayReady = local.getUTCDay() !== 1 || hour >= 9;
-    if (state.lastWeekly !== lastWeek && mondayReady) {
-      const board = await rankFor(lastWeek);
-      const mine = board.people.find((p) => p.id === uid);
-      if (mine && mine.points > 0 && u.prefs.weekly !== false) {
-        const rank = board.all.findIndex((p) => p.id === uid) + 1;
-        const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "🏆";
-        outbox.push({ uid, kind: "weekly", title: `Last week you ranked #${rank} of ${board.all.length} ${medal}`, body: `You earned ${mine.points} points. A new week has started — go get it!`, link: "#/profile" });
-      }
-      state.lastWeekly = lastWeek;
       changed = true;
     }
 

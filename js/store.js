@@ -305,29 +305,6 @@
     return auth ? auth.signOut() : Promise.resolve();
   };
 
-  // ---------- Weekly leaderboard ----------
-  var scoreTimer = null;
-  Store.submitScore = function (week, points) {
-    if (!isCloud()) return;
-    clearTimeout(scoreTimer);
-    scoreTimer = setTimeout(function () {
-      var p = Store.state.profile;
-      db.collection("weeks").doc(week).collection("scores").doc(Store.user.uid)
-        .set({ name: p.name, avatar: p.avatar, points: points, updatedAt: firebase.firestore.FieldValue.serverTimestamp() })
-        .catch(function (e) { console.error(e); });
-    }, 1500);
-  };
-
-  // Top scores for a week (people only). Resolves [] when offline or not set up.
-  Store.leaderboard = function (week) {
-    if (Store.mode !== "cloud") return Promise.resolve([]);
-    return db.collection("weeks").doc(week).collection("scores").orderBy("points", "desc").limit(30).get()
-      .then(function (snap) {
-        return snap.docs.map(function (d) { var x = d.data(); return { id: "uid:" + d.id, uid: d.id, name: x.name, avatar: x.avatar, points: x.points || 0 }; });
-      })
-      .catch(function (e) { console.error(e); return []; });
-  };
-
   // Posting and replying need an account once the cloud is set up.
   Store.canWrite = function () { return Store.mode === "local" || !!Store.user; };
 
@@ -535,7 +512,7 @@
   var messaging = null;
 
   Store.pushInfo = function () {
-    return readJSON(PUSH_KEY) || { enabled: false, prefs: { replies: true, likes: true, weekly: true } };
+    return readJSON(PUSH_KEY) || { enabled: false, prefs: { replies: true, likes: true } };
   };
 
   // "unsupported" | "ios-needs-install" | "needs-setup" | "needs-signin" | "denied" | "ready"

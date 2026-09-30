@@ -5,9 +5,12 @@
 
   var VOCAB = window.VOCAB;
   var CHARACTERS = window.CHARACTERS;
-  var TAG = /\[\[([a-z]+)(?:\|([^\]]+))?\]\]/g;
+  var TAG = /\[\[([a-z_]+)(?:\|([^\]]+))?\]\]/g;
   var LEVEL_NAMES = { 1: "Easy", 2: "Medium", 3: "Hard" };
   var LANG_NAMES = { en: "English", mix: "Mixed" };
+
+  // Vocab keys use "_" for phrases: in_retrospect → "in retrospect".
+  function label(key) { return String(key).replace(/_/g, " "); }
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -112,7 +115,7 @@
   // Text written by us, with [[key|shown]] tags.
   function renderTagged(text, savedWords) {
     return escapeHtml(text).replace(TAG, function (_, key, shown) {
-      return VOCAB[key] ? vocabButton(key, shown || key, savedWords) : escapeHtml(shown || key);
+      return VOCAB[key] ? vocabButton(key, shown || label(key), savedWords) : escapeHtml(shown || label(key));
     });
   }
 
@@ -203,11 +206,17 @@
   }
 
   // ---------- Quiz ----------
+  // Matches the word (any inflection) or the exact phrase inside a sentence.
+  function wordPattern(key) {
+    if (key.indexOf("_") >= 0) return new RegExp(label(key).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+    var stem = key.length > 5 ? key.slice(0, key.length - 2) : key;
+    return new RegExp("\\b" + stem + "[a-z]*", "i");
+  }
+
   // Blank out the word (any inflection) inside its example sentence.
   function blankSentence(key) {
     var ex = VOCAB[key].ex;
-    var stem = key.length > 5 ? key.slice(0, key.length - 2) : key;
-    var re = new RegExp("\\b" + stem + "[a-z]*", "i");
+    var re = wordPattern(key);
     if (!re.test(ex)) return null;
     return ex.replace(re, "_____");
   }
@@ -221,9 +230,9 @@
     var blank = rand() < 0.5 ? blankSentence(key) : null;
     var options = shuffle([key].concat(distractors), rand);
     if (blank) {
-      return { key: key, type: "blank", prompt: blank, hint: v.exZh, options: options.map(function (k) { return { value: k, label: k }; }) };
+      return { key: key, type: "blank", prompt: blank, hint: v.exZh, options: options.map(function (k) { return { value: k, label: label(k) }; }) };
     }
-    return { key: key, type: "meaning", prompt: key, hint: v.pos, options: options.map(function (k) { return { value: k, label: VOCAB[k].zh }; }) };
+    return { key: key, type: "meaning", prompt: label(key), hint: v.pos, options: options.map(function (k) { return { value: k, label: VOCAB[k].zh }; }) };
   }
 
   // ---------- Daily goal ----------
@@ -285,7 +294,7 @@
     return days <= 1 ? "Tomorrow" : "In " + days + "d";
   }
 
-  // ---------- Weekly leaderboard ----------
+  // ---------- Weeks ----------
   function weekKey(d) {
     d = new Date(Date.UTC((d || new Date()).getFullYear(), (d || new Date()).getMonth(), (d || new Date()).getDate()));
     var day = d.getUTCDay() || 7;
@@ -293,28 +302,6 @@
     var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
     var week = Math.ceil(((d - yearStart) / DAY_MS + 1) / 7);
     return d.getUTCFullYear() + "-W" + (week < 10 ? "0" : "") + week;
-  }
-
-  // Characters compete too, with scores that grow through the week.
-  function characterScores(week, now) {
-    now = now || new Date();
-    var dayOfWeek = (now.getDay() + 6) % 7 + 1; // Mon=1 … Sun=7
-    return Object.keys(CHARACTERS).map(function (k) {
-      var perDay = 3 + hash(week + k) % 14;
-      return { id: k, character: true, name: CHARACTERS[k].name, avatar: CHARACTERS[k].avatar, color: CHARACTERS[k].color, points: perDay * dayOfWeek + hash(k + week + dayOfWeek) % 5 };
-    });
-  }
-
-  // Sum of the daily practice log for the current week.
-  function weekPoints(daily, now) {
-    now = now || new Date();
-    var wk = weekKey(now), sum = 0;
-    for (var i = 0; i < 7; i++) {
-      var d = addDays(now, -i);
-      if (weekKey(d) !== wk) break;
-      sum += (daily.log || {})[dayKey(d)] || 0;
-    }
-    return sum;
   }
 
   // ---------- Badges ----------
@@ -366,12 +353,12 @@
     review: review,
     dueLabel: dueLabel,
     weekKey: weekKey,
-    characterScores: characterScores,
-    weekPoints: weekPoints,
     BADGES: BADGES,
     badgeStats: badgeStats,
     speakable: speakable,
     TAG: TAG,
+    label: label,
+    wordPattern: wordPattern,
     LEVEL_NAMES: LEVEL_NAMES,
     LANG_NAMES: LANG_NAMES,
     BUILTIN: BUILTIN,

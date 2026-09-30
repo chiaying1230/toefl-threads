@@ -96,6 +96,12 @@ const variants = [];
 for (const w of Object.keys(VOCAB).sort()) {
   const o = OVERRIDE[w];
   if (o && o.startsWith("[")) { kk[w] = o; continue; }
+  if (w.includes("_")) {
+    const parts = w.split("_").map((x) => (OVERRIDE[x] && OVERRIDE[x].startsWith("[") ? OVERRIDE[x] : dictionary[x] ? toKK(dictionary[x]) : null));
+    if (parts.includes(null)) { missing.push(w); continue; }
+    kk[w] = "[" + parts.map((x) => x.slice(1, -1)).join(" ") + "]";
+    continue;
+  }
   const key = o || w;
   const pron = dictionary[key];
   if (!pron) { missing.push(w); continue; }

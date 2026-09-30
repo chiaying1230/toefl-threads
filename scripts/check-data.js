@@ -19,7 +19,7 @@ const used = new Set();
 function checkTags(text, where) {
   for (const m of text.matchAll(TAG)) {
     const key = m[1];
-    if (!/^[a-z]+$/.test(key)) errors.push(`${where}: key "${key}" must be lowercase letters`);
+    if (!/^[a-z_]+$/.test(key)) errors.push(`${where}: key "${key}" must be lowercase letters (use _ between words of a phrase)`);
     else if (!VOCAB[key]) errors.push(`${where}: unknown word "${key}"`);
     used.add(key);
   }

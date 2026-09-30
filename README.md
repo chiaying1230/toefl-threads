@@ -1,7 +1,7 @@
 # Toefl-Tofu 🧈📚
 
 手機優先、介面像 Threads 的托福單字學習 App，吉祥物是一塊豆腐。
-20 個虛擬角色（外星實習生、貓咪執行長、1885 年的時空旅人、會噴發的火山、圖書館幽靈……）發了 **200 則**好笑的串文，裡面自然融入 **404 個托福單字**（Easy / Medium / Hard 三級，涵蓋 18 個托福常考題材）。
+20 個虛擬角色（外星實習生、貓咪執行長、1885 年的時空旅人、會噴發的火山、圖書館幽靈……）發了 **468 則**好笑的串文，裡面自然融入 **1,300 個托福單字**（Easy / Medium / Hard 三級，涵蓋 18 個托福常考題材）。
 
 介面全英文（沉浸式學習），只有單字解釋與翻譯是中文。
 
@@ -9,7 +9,7 @@
 
 | | |
 |---|---|
-| **For you / Following** | For you 依你的程度、喜歡的題材、追蹤的角色排序；滑到底會自動載入，200 則看完會重新洗牌繼續 |
+| **For you / Following** | For you 依你的程度、喜歡的題材、追蹤的角色排序；滑到底會自動載入，全部看完會重新洗牌繼續 |
 | **首次設定偏好** | 第一次打開會問程度、題材、要追蹤哪些角色；之後可在 Profile → Feed preferences 修改 |
 | **點藍色單字** | 詞性、中文、例句與中譯、🔊 發音、「More threads with this word」 |
 | **Translate** | 展開整則貼文的中文翻譯 |
@@ -22,13 +22,12 @@
 | **New** | 自己發串文，附 Word challenge；發文裡的托福單字會自動變成可點的單字 |
 | **朗讀** | 每則貼文有 🔊 按鈕，用英文朗讀（自動略過中文），Profile 可調 Normal / Slow / Very slow |
 | **間隔複習 (SRS)** | 收藏的字依記憶曲線排程：答對的隔 1→3→7→14→30→60 天再出現，答錯隔天再考；Review 分頁的紅色數字＝今天該複習的字 |
-| **每週排行榜** | 依本週練習點數排名，每週一重置；角色們也會一起比賽，登入後可以和其他使用者比 |
-| **豆腐徽章** | 14 個成就（收藏字數、連續天數、答題、發文……），在 Profile 查看 |
-| **Liked / Saved 分頁** | Profile 下方分成 Threads、Liked（按讚過的串文）、Saved（收藏的串文） |
+| **乾淨的個人主頁** | 像社群媒體一樣只有頭像、自我介紹和串文；分頁有 Threads、Liked（按讚過的）、Saved（收藏的）、Badges（14 個豆腐徽章） |
+| **Settings** | 每日目標、朗讀速度、通知、加到主畫面、動態偏好、追蹤名單都收在主頁的 ⚙️ Settings 裡 |
 | **先登入再設定** | 已設定 Firebase 時，第一次打開會先請你用 Google 登入；帳號裡已有偏好就不用再選程度 |
 | **編輯個人資料** | 上傳照片（自動裁成正方形並壓縮）或選 emoji、暱稱、帳號、自我介紹、托福目標分數；改完後舊貼文與留言也會跟著更新 |
 | **PWA（加到主畫面）** | 可以離線開啟；Android 會出現「Install」按鈕，iPhone 會顯示一步步的「加入主畫面」教學 |
-| **推播通知** | 有人回覆你的串文、每天晚上 8 點的按讚摘要、每週一早上的排行榜名次（可以個別關掉） |
+| **推播通知** | 有人回覆你的串文、每天晚上 8 點的按讚摘要（可以個別關掉） |
 
 ## 資料存在哪裡？兩種模式
 
@@ -54,7 +53,7 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 
 完成後打開設定檢查頁，看到全部 ✅ 就可以了。
 
-> **更新規則：** 規則偶爾會因為新功能而更新（例如每週排行榜）。如果檢查頁顯示「⑤ 安全規則需要更新」，就用檢查頁上的按鈕複製新規則，貼到 Firestore → Rules → **Publish**。
+> **更新規則：** 規則偶爾會因為新功能而更新。如果檢查頁顯示「⑤ 安全規則需要更新」，就用檢查頁上的按鈕複製新規則，貼到 Firestore → Rules → **Publish**。
 
 ## 推播通知設定（一次性，約 5 分鐘）
 
@@ -84,7 +83,8 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 index.html                 頁面骨架
 css/style.css              樣式（自動跟隨深色／淺色模式）
 js/data/characters.js      20 個角色、題材清單、角色的留言回覆
-js/data/batch-1.js … 5.js  單字與貼文（每批約 40 則）
+js/data/batch-1.js … 13.js 單字與貼文（6–13 批來自 Advanced 500 / Intermediate 500 單字表，例句為原創）
+js/data/kk.js              KK 音標（scripts/make-kk.mjs 產生）
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
@@ -99,10 +99,10 @@ scripts/check-data.js      檢查內容有沒有打錯
 
 ## 新增更多串文或單字
 
-在 `js/data/` 新增 `batch-6.js`（複製 `batch-5.js` 的格式），並在 `index.html` 最下面的 `batch-5.js` 後加一行 `<script src="js/data/batch-6.js"></script>`。
+在 `js/data/` 新增 `batch-14.js`（複製 `batch-13.js` 的格式），並在 `index.html` 最下面的 `batch-13.js` 後加一行 `<script src="js/data/batch-14.js"></script>`（`sw.js` 的清單也要加）。片語的 key 用底線連接，例如 `in_retrospect`，畫面上會顯示成 in retrospect。
 
 - 單字：`resilient: { pos: "adj.", zh: "有韌性的", level: 2, ex: "英文例句", exZh: "中文翻譯" }`
-- 貼文：`{ id: "p201", author: "zorp", topic: "Astronomy", text: "…[[resilient]]…", zh: "中文翻譯" }`
+- 貼文：`{ id: "p469", author: "zorp", topic: "Astronomy", text: "…[[resilient]]…", zh: "中文翻譯" }`
   - 字形不同時寫 `[[resilient|resiliently]]`
   - `author` 要是 `characters.js` 裡的角色，`topic` 要是 `TOPICS` 裡的題材
   - 貼文難度會依單字的 `level` 自動計算

@@ -487,13 +487,6 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .due { font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; }
 .due.now { color: var(--like); }
 
-.lb-card #lbList { margin-top: 8px; }
-.lb-row { display: flex; align-items: center; gap: 10px; padding: 7px 4px; border-radius: 10px; cursor: pointer; }
-.lb-row.me { background: var(--tofu-soft); outline: 1px solid var(--tofu); cursor: default; }
-.lb-rank { width: 26px; text-align: center; font-weight: 700; color: var(--muted); }
-.lb-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.lb-gap { text-align: center; color: var(--muted); }
-.lb-more { display: block; margin: 6px auto 0; }
 
 .badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 10px; }
 .badge-item {
@@ -507,6 +500,8 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 
 .profile-tabs { margin-top: 8px; border-top: 1px solid var(--line); }
 .profile-tabs .muted { font-weight: 500; font-size: 13px; }
+#profileList > .badges { padding: 6px 16px 24px; }
+.settings-top { display: flex; align-items: center; justify-content: space-between; padding: 4px 16px 10px; border-top: 1px solid var(--line); padding-top: 12px; }
 .ring-fg { stroke: #E0A800; }
 .ob-nav-col { flex-direction: column; }
 .google-btn { display: flex; align-items: center; justify-content: center; gap: 10px; }
