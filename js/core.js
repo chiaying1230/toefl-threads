@@ -260,7 +260,117 @@
     return out;
   }
 
+  // ---------- Spaced repetition (Leitner boxes) ----------
+  var SRS_DAYS = [0, 1, 3, 7, 14, 30, 60];
+  var DAY_MS = 86400000;
+
+  function isDue(w, now) {
+    return !w.due || w.due <= (now || Date.now());
+  }
+
+  // Returns the updated word record after a review.
+  function review(w, correct, now) {
+    now = now || Date.now();
+    var box = correct ? Math.min((w.box || 0) + 1, SRS_DAYS.length - 1) : 0;
+    // "Due" means from the start of that day, so reviews line up with daily habits.
+    var d = new Date(now + (correct ? SRS_DAYS[box] : 1) * DAY_MS);
+    d.setHours(0, 0, 0, 0);
+    return { addedAt: w.addedAt, from: w.from || null, box: box, due: d.getTime() };
+  }
+
+  function dueLabel(w, now) {
+    now = now || Date.now();
+    if (isDue(w, now)) return "Due";
+    var days = Math.ceil((w.due - now) / DAY_MS);
+    return days <= 1 ? "Tomorrow" : "In " + days + "d";
+  }
+
+  // ---------- Weekly leaderboard ----------
+  function weekKey(d) {
+    d = new Date(Date.UTC((d || new Date()).getFullYear(), (d || new Date()).getMonth(), (d || new Date()).getDate()));
+    var day = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - day);
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    var week = Math.ceil(((d - yearStart) / DAY_MS + 1) / 7);
+    return d.getUTCFullYear() + "-W" + (week < 10 ? "0" : "") + week;
+  }
+
+  // Characters compete too, with scores that grow through the week.
+  function characterScores(week, now) {
+    now = now || new Date();
+    var dayOfWeek = (now.getDay() + 6) % 7 + 1; // Mon=1 … Sun=7
+    return Object.keys(CHARACTERS).map(function (k) {
+      var perDay = 3 + hash(week + k) % 14;
+      return { id: k, character: true, name: CHARACTERS[k].name, avatar: CHARACTERS[k].avatar, color: CHARACTERS[k].color, points: perDay * dayOfWeek + hash(k + week + dayOfWeek) % 5 };
+    });
+  }
+
+  // Sum of the daily practice log for the current week.
+  function weekPoints(daily, now) {
+    now = now || new Date();
+    var wk = weekKey(now), sum = 0;
+    for (var i = 0; i < 7; i++) {
+      var d = addDays(now, -i);
+      if (weekKey(d) !== wk) break;
+      sum += (daily.log || {})[dayKey(d)] || 0;
+    }
+    return sum;
+  }
+
+  // ---------- Badges ----------
+  var BADGES = [
+    { id: "first-word", icon: "🫘", name: "Soybean", desc: "Save your first word", test: function (x) { return x.words >= 1; } },
+    { id: "silken", icon: "🥛", name: "Silken Tofu", desc: "Save 10 words", test: function (x) { return x.words >= 10; } },
+    { id: "firm", icon: "🧈", name: "Firm Tofu", desc: "Save 50 words", test: function (x) { return x.words >= 50; } },
+    { id: "extra-firm", icon: "🧱", name: "Extra-Firm Tofu", desc: "Save 150 words", test: function (x) { return x.words >= 150; } },
+    { id: "streak3", icon: "🔥", name: "Hot Pot", desc: "3-day streak", test: function (x) { return x.streak >= 3; } },
+    { id: "streak7", icon: "🍲", name: "Stinky Tofu", desc: "7-day streak — strong and proud", test: function (x) { return x.streak >= 7; } },
+    { id: "streak30", icon: "🏮", name: "Night Market Legend", desc: "30-day streak", test: function (x) { return x.streak >= 30; } },
+    { id: "quiz10", icon: "🎯", name: "Sharp Chopsticks", desc: "Answer 10 quizzes correctly", test: function (x) { return x.quiz >= 10; } },
+    { id: "quiz100", icon: "🥢", name: "Tofu Master", desc: "Answer 100 quizzes correctly", test: function (x) { return x.quiz >= 100; } },
+    { id: "cards50", icon: "🃏", name: "Flashcard Flipper", desc: "50 flashcards marked \"Got it\"", test: function (x) { return x.cards >= 50; } },
+    { id: "mastered", icon: "🏆", name: "Well Pressed", desc: "Master 10 words in spaced repetition", test: function (x) { return x.mastered >= 10; } },
+    { id: "first-post", icon: "✍️", name: "Tofu Writer", desc: "Post your first thread", test: function (x) { return x.posts >= 1; } },
+    { id: "replies5", icon: "💬", name: "Chatty Tofu", desc: "Reply to 5 threads", test: function (x) { return x.replies >= 5; } },
+    { id: "likes20", icon: "❤️", name: "Tofu Fan", desc: "Like 20 threads", test: function (x) { return x.likes >= 20; } }
+  ];
+
+  function badgeStats(state, posts) {
+    var words = state.words || {};
+    return {
+      words: Object.keys(words).length,
+      mastered: Object.keys(words).filter(function (k) { return (words[k].box || 0) >= 4; }).length,
+      streak: streakOf(state.daily),
+      quiz: state.stats.quiz || 0,
+      cards: state.stats.cards || 0,
+      replies: state.stats.replies || 0,
+      likes: Object.keys(state.liked || {}).length,
+      posts: posts || 0
+    };
+  }
+
+  // ---------- Read aloud ----------
+  // English text a speech engine can read: tags → shown word, drop Chinese and emoji.
+  function speakable(text) {
+    return String(text)
+      .replace(TAG, function (_, key, shown) { return shown || key; })
+      .replace(/[　-〿㐀-鿿＀-￯]+/g, " ")
+      .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   window.Core = {
+    SRS_DAYS: SRS_DAYS,
+    isDue: isDue,
+    review: review,
+    dueLabel: dueLabel,
+    weekKey: weekKey,
+    characterScores: characterScores,
+    weekPoints: weekPoints,
+    BADGES: BADGES,
+    badgeStats: badgeStats,
+    speakable: speakable,
     TAG: TAG,
     LEVEL_NAMES: LEVEL_NAMES,
     LANG_NAMES: LANG_NAMES,

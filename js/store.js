@@ -9,18 +9,23 @@
   var OLD_KEY = "vocabThreads.v1";
   var SEEN_KEY = "toeflThreads.seen";
   var MERGED_KEY = "toeflThreads.mergedInto";
+  var LAST_UID_KEY = "toeflThreads.lastUid";
+  var CLOUD_CACHE = "toeflThreads.cloud.";   // + uid: last known copy of the account state
   var SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
-  var SYNCED_FIELDS = ["liked", "bookmarked", "words", "profile", "prefs", "following", "daily"];
+  var SYNCED_FIELDS = ["liked", "bookmarked", "words", "profile", "prefs", "following", "daily", "settings", "stats", "badges"];
 
   function freshState() {
     return {
       liked: {},
       bookmarked: {},
-      words: {},
+      words: {},       // key -> { addedAt, from, box, due }
       profile: { name: "You", handle: "toefl_learner", avatar: "🙂" },
       prefs: { levels: [1, 2, 3], topics: [], onboarded: false },
       following: {},
       daily: { goal: 10, log: {}, met: {} },
+      settings: { rate: 1 },
+      stats: { quiz: 0, cards: 0, replies: 0 },
+      badges: {},      // badge id -> unlocked timestamp
       myPosts: [],     // local mode only: { id, text, ts }
       myComments: []   // local mode only: { id, postId, text, ts }
     };
@@ -31,9 +36,10 @@
     Object.keys(base).forEach(function (k) {
       if (s && s[k] !== undefined && s[k] !== null) base[k] = s[k];
     });
-    base.daily.log = base.daily.log || {};
-    base.daily.met = base.daily.met || {};
-    base.daily.goal = base.daily.goal || 10;
+    var fresh = freshState();
+    ["daily", "settings", "stats", "prefs"].forEach(function (k) {
+      Object.keys(fresh[k]).forEach(function (f) { if (base[k][f] === undefined) base[k][f] = fresh[k][f]; });
+    });
     return base;
   }
 
@@ -42,6 +48,9 @@
   }
   function writeJSON(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage full or blocked */ }
+  }
+  function removeKey(key) {
+    try { localStorage.removeItem(key); } catch (e) { /* ignore */ }
   }
 
   function loadGuest() {
@@ -53,7 +62,6 @@
     if (old) {
       ["liked", "bookmarked", "words", "myPosts"].forEach(function (k) { if (old[k]) st[k] = old[k]; });
       if (old.profile) st.profile = old.profile;
-      st.prefs.onboarded = false;
     }
     return st;
   }
@@ -67,13 +75,18 @@
 
   function mergeInto(cloud, guest) {
     var s = withDefaults(cloud);
-    ["liked", "bookmarked", "words", "following"].forEach(function (k) { s[k] = unionMap(guest[k], s[k]); });
+    ["liked", "bookmarked", "words", "following", "badges"].forEach(function (k) { s[k] = unionMap(guest[k], s[k]); });
     Object.keys(guest.daily.log).forEach(function (d) {
       s.daily.log[d] = Math.max(s.daily.log[d] || 0, guest.daily.log[d]);
     });
     s.daily.met = unionMap(guest.daily.met, s.daily.met);
-    if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
+    ["quiz", "cards", "replies"].forEach(function (k) { s.stats[k] = Math.max(s.stats[k] || 0, guest.stats[k] || 0); });
     return s;
+  }
+
+  function handleFrom(u) {
+    var base = (u.email || "").split("@")[0] || u.displayName || "";
+    return base.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || "toefl_learner";
   }
 
   function millis(ts) {
@@ -115,13 +128,25 @@
 
   function isCloud() { return Store.mode === "cloud" && Store.user; }
 
+  // Ask the browser not to evict our data (helps on Android and some iOS versions).
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) { /* ignore */ }
+
   // ---------- Persistence ----------
   Store.save = function () {
+    var s = Store.state;
+    // Keep this device's copy of the feed preferences in sync, so a failed or slow
+    // cloud load never sends someone back through the "choose your level" screen.
+    if (s !== guest && s.prefs.onboarded) {
+      guest.prefs = s.prefs;
+      guest.daily.goal = s.daily.goal;
+      writeJSON(KEY, guest);
+    }
     if (isCloud()) {
+      writeJSON(CLOUD_CACHE + Store.user.uid, s);
       clearTimeout(saveTimer);
       saveTimer = setTimeout(pushUserDoc, 600);
     } else {
-      writeJSON(KEY, Store.state);
+      writeJSON(KEY, s);
     }
   };
 
@@ -135,12 +160,26 @@
     });
   }
 
+  // Save immediately when the app goes to the background, instead of waiting for the timer.
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && saveTimer) {
+      clearTimeout(saveTimer);
+      saveTimer = null;
+      pushUserDoc();
+    }
+  });
+
   var seenTimer = null;
   Store.markSeen = function (id) {
     if (Store.seen[id]) return;
     Store.seen[id] = 1;
     clearTimeout(seenTimer);
     seenTimer = setTimeout(function () { writeJSON(SEEN_KEY, Store.seen); }, 1000);
+  };
+
+  // True when this browser was signed in last time but no longer is.
+  Store.wasSignedOut = function () {
+    return Store.mode === "cloud" && !Store.user && !!readJSON(LAST_UID_KEY);
   };
 
   // ---------- Init ----------
@@ -159,7 +198,12 @@
         firebase.initializeApp(cfg);
         auth = firebase.auth();
         db = firebase.firestore();
+        // Offline cache: account data still loads when the network is slow at startup.
+        db.enablePersistence({ synchronizeTabs: true }).catch(function () { /* unsupported or another tab */ });
         Store.mode = "cloud";
+        return auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function () { /* keep default */ });
+      })
+      .then(function () {
         subscribeShared();
         return new Promise(function (resolve) {
           var first = true;
@@ -195,6 +239,13 @@
     }, function (e) { console.error(e); }));
   }
 
+  function getWithRetry(ref, tries) {
+    return ref.get().catch(function (e) {
+      if (tries <= 1) throw e;
+      return new Promise(function (r) { setTimeout(r, 1500); }).then(function () { return getWithRetry(ref, tries - 1); });
+    });
+  }
+
   function handleAuth(u) {
     if (!u) {
       Store.user = null;
@@ -202,38 +253,43 @@
       return Promise.resolve();
     }
     Store.user = { uid: u.uid, name: u.displayName || "TOEFL learner", photo: u.photoURL };
-    var ref = db.collection("users").doc(u.uid);
-    return ref.get().then(function (snap) {
+    writeJSON(LAST_UID_KEY, u.uid);
+    var cached = readJSON(CLOUD_CACHE + u.uid);
+    return getWithRetry(db.collection("users").doc(u.uid), 3).then(function (snap) {
       var alreadyMerged = readJSON(MERGED_KEY) === u.uid;
       var cloudState = snap.exists ? snap.data() : null;
       var s;
       if (!cloudState) {
-        s = withDefaults(guest);
-        s.profile = {
-          name: u.displayName || guest.profile.name,
-          handle: (u.displayName || "toefl_learner").toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || "toefl_learner",
-          avatar: guest.profile.avatar
-        };
+        s = withDefaults(cached || guest);
+        s.profile = cached ? s.profile : { name: u.displayName || guest.profile.name, handle: handleFrom(u), avatar: guest.profile.avatar };
       } else {
         s = alreadyMerged ? withDefaults(cloudState) : mergeInto(cloudState, guest);
       }
+      if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
       s.myPosts = [];
       s.myComments = [];
       Store.state = s;
       Store.pendingLocalPosts = alreadyMerged ? [] : guest.myPosts.slice();
       writeJSON(MERGED_KEY, u.uid);
+      writeJSON(CLOUD_CACHE + u.uid, s);
       if (!snap.exists || !alreadyMerged) pushUserDoc();
     }).catch(function (e) {
+      // Stay signed in. Use the last copy saved on this device and try the cloud again later.
       console.error(e);
-      Store.state = guest;
-      Store.user = null;
-      Store.emit("error:signin");
+      var s = withDefaults(cached || guest);
+      if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
+      s.myPosts = [];
+      s.myComments = [];
+      Store.state = s;
+      Store.pendingLocalPosts = [];
+      Store.emit("error:load");
     });
   }
 
   Store.signIn = function () {
     if (!auth) return Promise.reject(new Error("not configured"));
     var provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account" });
     return auth.signInWithPopup(provider).catch(function (e) {
       if (e && (e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment")) {
         return auth.signInWithRedirect(provider);
@@ -243,7 +299,32 @@
   };
 
   Store.signOut = function () {
+    removeKey(LAST_UID_KEY);
+    if (Store.user) removeKey(CLOUD_CACHE + Store.user.uid);
     return auth ? auth.signOut() : Promise.resolve();
+  };
+
+  // ---------- Weekly leaderboard ----------
+  var scoreTimer = null;
+  Store.submitScore = function (week, points) {
+    if (!isCloud()) return;
+    clearTimeout(scoreTimer);
+    scoreTimer = setTimeout(function () {
+      var p = Store.state.profile;
+      db.collection("weeks").doc(week).collection("scores").doc(Store.user.uid)
+        .set({ name: p.name, avatar: p.avatar, points: points, updatedAt: firebase.firestore.FieldValue.serverTimestamp() })
+        .catch(function (e) { console.error(e); });
+    }, 1500);
+  };
+
+  // Top scores for a week (people only). Resolves [] when offline or not set up.
+  Store.leaderboard = function (week) {
+    if (Store.mode !== "cloud") return Promise.resolve([]);
+    return db.collection("weeks").doc(week).collection("scores").orderBy("points", "desc").limit(30).get()
+      .then(function (snap) {
+        return snap.docs.map(function (d) { var x = d.data(); return { id: "uid:" + d.id, uid: d.id, name: x.name, avatar: x.avatar, points: x.points || 0 }; });
+      })
+      .catch(function (e) { console.error(e); return []; });
   };
 
   // Posting and replying need an account once the cloud is set up.

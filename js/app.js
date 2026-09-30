@@ -14,6 +14,19 @@
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   var esc = C.escapeHtml;
 
+  // The Toefl-Tofu mascot: a little block of tofu with a face.
+  function tofuSvg(size) {
+    return '<svg class="tofu" style="width:' + size + "px;height:" + size + 'px" viewBox="0 0 64 64" aria-hidden="true">' +
+      '<ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".08"/>' +
+      '<rect x="8" y="18" width="48" height="38" rx="12" fill="#E9D3A3"/>' +
+      '<rect x="8" y="12" width="48" height="38" rx="12" fill="#FFF6E0" stroke="#E7CF9C" stroke-width="1.5"/>' +
+      '<path d="M17 19h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/>' +
+      '<circle cx="23.5" cy="31" r="3" fill="#3B2F2F"/><circle cx="40.5" cy="31" r="3" fill="#3B2F2F"/>' +
+      '<circle cx="24.5" cy="30" r="1" fill="#fff"/><circle cx="41.5" cy="30" r="1" fill="#fff"/>' +
+      '<ellipse cx="17.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8" opacity=".8"/><ellipse cx="46.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8" opacity=".8"/>' +
+      '<path d="M28.5 37.5q3.5 3.5 7 0" stroke="#3B2F2F" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+  }
+
   function st() { return S.state; }
 
   // ---------- Toast & speech ----------
@@ -31,8 +44,28 @@
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(text);
     u.lang = "en-US";
-    u.rate = 0.9;
+    u.rate = (S.state.settings && S.state.settings.rate) || 1;
     window.speechSynthesis.speak(u);
+    return u;
+  }
+
+  var readingId = null;
+  function readPost(id) {
+    var post = findPost(id);
+    if (!post || !("speechSynthesis" in window)) { speak(""); return; }
+    $all(".act.reading").forEach(function (b) { b.classList.remove("reading"); });
+    if (readingId === id && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      readingId = null;
+      return;
+    }
+    readingId = id;
+    var u = speak(C.speakable(post.text));
+    $all('[data-read="' + id + '"]').forEach(function (b) { b.classList.add("reading"); });
+    u.onend = u.onerror = function () {
+      if (readingId === id) readingId = null;
+      $all('[data-read="' + id + '"]').forEach(function (b) { b.classList.remove("reading"); });
+    };
   }
 
   function requireAccount(why) {
@@ -42,6 +75,8 @@
   }
 
   function signIn() {
+    var app = inAppBrowser();
+    if (app) { alert("Google sign-in doesn't work inside the " + app + " app's browser. Tap ⋯ and choose \"Open in browser\" first."); return; }
     S.signIn().catch(function (e) {
       if (e && e.code === "auth/popup-closed-by-user") return;
       toast("Sign-in failed. Please try again.");
@@ -76,7 +111,8 @@
     repost: '<svg viewBox="0 0 24 24"><path d="M17 3l3 3-3 3"/><path d="M4 11V9a3 3 0 0 1 3-3h13"/><path d="M7 21l-3-3 3-3"/><path d="M20 13v2a3 3 0 0 1-3 3H4"/></svg>',
     bookmark: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>',
     trash: '<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>',
-    plus: '<svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg>'
+    plus: '<svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg>',
+    speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>'
   };
 
   function avatarHtml(author, size) {
@@ -131,7 +167,7 @@
         '<div class="actions">' +
           '<button class="act' + (liked ? " liked" : "") + '" data-like="' + post.id + '" aria-label="Like">' + ICON.heart + '<span class="act-count">' + (likes ? C.formatCount(likes) : "") + "</span></button>" +
           '<button class="act" data-open="' + post.id + '" data-reply-count="' + post.id + '" aria-label="Reply">' + ICON.reply + '<span class="act-count">' + (replies ? C.formatCount(replies) : "") + "</span></button>" +
-          '<button class="act" data-soon="Reposts" aria-label="Repost">' + ICON.repost + "</button>" +
+          '<button class="act" data-read="' + post.id + '" aria-label="Read aloud">' + ICON.speaker + "</button>" +
           last +
         "</div>" +
       "</div>" +
@@ -157,7 +193,7 @@
 
   function refreshWordMarks() {
     $all(".vocab").forEach(function (el) { el.classList.toggle("saved", !!st().words[el.dataset.key]); });
-    var n = Object.keys(st().words).length;
+    var n = dueKeys().length;
     var badge = $("#reviewBadge");
     badge.hidden = n === 0;
     badge.textContent = n > 99 ? "99+" : n;
@@ -184,6 +220,8 @@
     }
     S.save();
     renderGoalChip();
+    S.submitScore(C.weekKey(), C.weekPoints(d));
+    checkBadges();
   }
 
   function renderGoalChip() {
@@ -280,7 +318,7 @@
     $("#backBtn").hidden = !sub;
     document.body.classList.toggle("in-thread", route.name === "t");
     $("#brand").classList.toggle("compact", sub);
-    var title = { home: "TOEFL Threads", search: "Search", review: "Review", profile: "Profile", u: "Profile", t: "Thread" }[route.name];
+    var title = { home: "Toefl-Tofu", search: "Search", review: "Review", profile: "Profile", u: "Profile", t: "Thread" }[route.name];
     $("#topbarTitle").textContent = title;
 
     if (route.name === "home" && feedDirty) buildFeed();
@@ -428,8 +466,10 @@
     res.innerHTML = (right ? '<b class="ok">Correct! +1 today 🎉</b>' : '<b class="bad">Not quite.</b>') +
       '<div><button class="vocab" data-key="' + q.key + '">' + q.key + "</button> " + esc(v.pos + " " + v.zh) + "</div>" +
       (st().words[q.key] ? "" : '<button class="link" data-quiz-save="' + q.key + '">+ Add to Review</button>');
+    if (st().words[q.key]) { reviewWord(q.key, right); S.save(); refreshWordMarks(); }
     if (right) {
       card.classList.add("win");
+      st().stats.quiz = (st().stats.quiz || 0) + 1;
       addActivity(1);
     }
   }
@@ -529,11 +569,11 @@
       if (uid === S.myUid()) { go("#/profile"); return; }
       var info = userInfoCache[uid] || { name: "TOEFL learner", handle: "user", avatar: "🙂" };
       $("#topbarTitle").textContent = "@" + info.handle;
-      body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on TOEFL Threads", "") + '<div class="empty">Loading…</div>';
+      body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on Toefl-Tofu", "") + '<div class="empty">Loading…</div>';
       S.userPosts(uid).then(function (raws) {
         var posts = raws.map(function (r) { var p = C.userPost(r); userPostCache[p.id] = p; return p; });
         if (raws[0]) userInfoCache[uid] = { name: raws[0].name, handle: raws[0].handle, avatar: raws[0].avatar };
-        body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on TOEFL Threads", posts.length + " threads") +
+        body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on Toefl-Tofu", posts.length + " threads") +
           (posts.length ? posts.map(function (p) { return renderPost(p); }).join("") : '<div class="empty">No threads yet.</div>');
       }).catch(function () { body.querySelector(".empty").textContent = "Couldn't load threads."; });
       return;
@@ -575,8 +615,6 @@
     $("#replyAvatar").textContent = st().profile.avatar;
     $("#replyInput").placeholder = S.canWrite() ? "Reply to " + C.authorOf(post).name + "…" : "Sign in to reply";
     body.innerHTML = renderPost(post, { full: true }) + '<div class="section-title">Replies</div><div id="replies"><div class="empty small">Loading…</div></div>';
-    var tr = body.querySelector(".translation");
-    if (tr) { tr.hidden = false; body.querySelector("[data-translate]").textContent = "Hide translation"; }
     loadReplies();
   }
 
@@ -632,6 +670,9 @@
     S.addComment(post, text).then(function (id) {
       input.value = "";
       justReplied = id;
+      st().stats.replies = (st().stats.replies || 0) + 1;
+      S.save();
+      checkBadges();
       refreshCounts();
       loadReplies();
       var n = C.detectWords(text).length;
@@ -642,14 +683,19 @@
     }).then(function () { $("#replySend").disabled = !input.value.trim(); });
   }
 
-  // ---------- Review ----------
+  // ---------- Review (spaced repetition) ----------
   var reviewMode = "list";
   var openWord = null;
-  var deck = [], deckIndex = 0, flipped = false, knownCount = 0;
+  var deck = [], deckIndex = 0, flipped = false, knownCount = 0, practiceAll = false;
 
   function savedKeys() {
     var w = st().words;
     return Object.keys(w).sort(function (a, b) { return w[b].addedAt - w[a].addedAt; });
+  }
+
+  function dueKeys() {
+    var w = st().words, now = Date.now();
+    return Object.keys(w).filter(function (k) { return C.isDue(w[k], now); });
   }
 
   function renderReview() {
@@ -657,7 +703,7 @@
     var keys = savedKeys();
     var body = $("#reviewBody");
     if (!keys.length) {
-      body.innerHTML = '<div class="empty"><span class="big">📚</span>Your Review list is empty.<br>Tap a <b>blue word</b> in any thread and choose <b>Add to Review</b>,<br>or tap the bookmark on a thread to save all its words.</div>';
+      body.innerHTML = '<div class="empty">' + tofuSvg(64) + '<br>Your Review list is empty.<br>Tap a <b>blue word</b> in any thread and choose <b>Add to Review</b>,<br>or tap the bookmark on a thread to save all its words.</div>';
       return;
     }
     if (reviewMode === "list") renderWordList(keys, body);
@@ -665,17 +711,21 @@
   }
 
   function renderWordList(keys, body) {
-    var counts = { 1: 0, 2: 0, 3: 0 };
-    keys.forEach(function (k) { counts[VOCAB[k].level]++; });
-    var html = '<div class="review-summary">' + keys.length + " word" + (keys.length > 1 ? "s" : "") +
-      " · Easy " + counts[1] + " · Medium " + counts[2] + " · Hard " + counts[3] + "</div>";
+    var w = st().words, due = dueKeys().length;
+    var mastered = keys.filter(function (k) { return (w[k].box || 0) >= 4; }).length;
+    var html = '<div class="card srs-card"><div><b>' + (due ? due + " word" + (due > 1 ? "s" : "") + " due today" : "All caught up for today ✨") + "</b>" +
+      '<div class="muted small">' + keys.length + " saved · " + mastered + " mastered · words you know well come back less often</div></div>" +
+      (due ? '<button class="post-btn small" data-mode="cards">Review</button>' : "") + "</div>";
     keys.forEach(function (k) {
       var v = VOCAB[k];
-      var from = st().words[k].from;
+      var from = w[k].from;
+      var label = C.dueLabel(w[k]);
       html += '<div class="word-item"><button class="word-row" data-toggle-word="' + k + '">' +
-        '<span class="w">' + k + '</span><span class="z">' + esc(v.pos + " " + v.zh) + '</span><span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span></button>";
+        '<span class="w">' + k + '</span><span class="z">' + esc(v.pos + " " + v.zh) + "</span>" +
+        '<span class="due' + (label === "Due" ? " now" : "") + '">' + label + "</span></button>";
       if (openWord === k) {
         html += '<div class="word-detail"><p>' + esc(v.ex) + '</p><p class="muted">' + esc(v.exZh) + '</p><div class="row-actions">' +
+          '<span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span>" +
           '<button class="link" data-speak="' + k + '">🔊 Listen</button>' +
           (from && findPost(from) ? '<a class="link" href="#/t/' + esc(from) + '">See thread</a>' : "") +
           '<a class="link" href="#/search?q=' + encodeURIComponent(k) + '">More threads</a>' +
@@ -687,36 +737,107 @@
   }
 
   function startDeck() {
-    deck = C.shuffle(savedKeys());
+    deck = C.shuffle(practiceAll ? savedKeys() : dueKeys());
     deckIndex = 0; flipped = false; knownCount = 0;
   }
 
   function renderFlashcards(body) {
     deck = deck.filter(function (k) { return st().words[k]; });
     if (!deck.length && !knownCount) startDeck();
+    if (!deck.length) {
+      body.innerHTML = '<div class="flash-wrap"><div class="flashcard">' + tofuSvg(72) + '<div class="fzh">All caught up!</div>' +
+        '<div class="fex">No words are due today. Come back tomorrow — spaced repetition works best a little at a time.</div></div>' +
+        '<div class="flash-buttons"><button class="btn-again" data-practice-all>Practice all words anyway</button></div></div>';
+      return;
+    }
     if (deckIndex >= deck.length) {
       body.innerHTML = '<div class="flash-wrap"><div class="flashcard"><div class="fw">🎉</div><div class="fzh">Nice work!</div><div class="fex">You reviewed ' +
-        knownCount + " word" + (knownCount === 1 ? "" : "s") + '.</div></div><div class="flash-buttons"><button class="btn-got" data-restart>Start again</button></div></div>';
+        knownCount + " word" + (knownCount === 1 ? "" : "s") + ". Words you knew will come back in a few days.</div></div>" +
+        '<div class="flash-buttons"><button class="btn-got" data-restart>Review again</button></div></div>';
       return;
     }
     var k = deck[deckIndex], v = VOCAB[k];
     var card = flipped
       ? '<div class="fw">' + k + '</div><div class="fpos">' + v.pos + '</div><div class="fzh">' + esc(v.zh) + '</div><div class="fex">' + esc(v.ex) + '</div><div class="fexzh">' + esc(v.exZh) + "</div>"
       : '<div class="fw">' + k + '</div><div class="fpos">' + v.pos + '</div><div class="fhint">Tap to reveal the meaning</div>';
-    body.innerHTML = '<div class="flash-wrap"><div class="flash-progress">Card ' + (deckIndex + 1) + " of " + deck.length + " · " + knownCount + " known</div>" +
+    body.innerHTML = '<div class="flash-wrap"><div class="flash-progress">' + (practiceAll ? "Practice" : "Due today") + " · card " + (deckIndex + 1) + " of " + deck.length + " · " + knownCount + " known</div>" +
       '<button class="flashcard' + (flipped ? " flip" : "") + '" data-flip>' + card + "</button>" +
       '<div class="flash-buttons"><button class="btn-again" data-again>Still learning</button><button class="btn-got" data-got>Got it ✓</button></div></div>';
   }
 
+  function reviewWord(key, correct) {
+    var w = st().words[key];
+    if (w) st().words[key] = C.review(w, correct);
+  }
+
+  // ---------- Badges & leaderboard ----------
+  function myPostCount() {
+    return communityPosts().filter(isMine).length;
+  }
+
+  function checkBadges() {
+    var s = st(), x = C.badgeStats(s, myPostCount()), fresh = [];
+    C.BADGES.forEach(function (b) {
+      if (!s.badges[b.id] && b.test(x)) { s.badges[b.id] = Date.now(); fresh.push(b); }
+    });
+    if (fresh.length) {
+      S.save();
+      setTimeout(function () { toast(fresh[0].icon + " New badge: " + fresh[0].name + "!", 3000); }, 900);
+    }
+  }
+
+  function leaderboardRows(people) {
+    var s = st(), week = C.weekKey();
+    var me = { id: "me", name: s.profile.name, avatar: s.profile.avatar, points: C.weekPoints(s.daily), me: true };
+    var myUid = S.myUid();
+    var rows = C.characterScores(week).concat((people || []).filter(function (r) { return r.uid !== myUid; })).concat([me]);
+    rows.sort(function (a, b) { return b.points - a.points || (a.me ? -1 : b.me ? 1 : 0); });
+    return rows;
+  }
+
+  function renderLeaderboard(people) {
+    var box = $("#lbList");
+    if (!box) return;
+    var rows = leaderboardRows(people);
+    var myRank = 0;
+    rows.forEach(function (r, i) { if (r.me) myRank = i + 1; });
+    var show = rows.slice(0, lbExpanded ? 30 : 5);
+    var html = show.map(function (r, i) { return lbRow(r, i + 1); }).join("");
+    if (myRank > show.length) html += '<div class="lb-gap">⋯</div>' + lbRow(rows[myRank - 1], myRank);
+    html += '<button class="link lb-more" data-lb-more>' + (lbExpanded ? "Show less" : "Show top 30") + "</button>";
+    box.innerHTML = html;
+    $("#lbRank").textContent = "#" + myRank;
+  }
+
+  function lbRow(r, rank) {
+    var medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : rank;
+    return '<div class="lb-row' + (r.me ? " me" : "") + '"' + (r.me ? "" : ' data-person="' + esc(r.id) + '"') + ">" +
+      '<span class="lb-rank">' + medal + "</span>" + avatarHtml({ avatar: r.avatar, color: r.color }, "sm") +
+      '<span class="lb-name">' + esc(r.name) + (r.me && r.name !== "You" ? " (you)" : "") + "</span><b>" + r.points + "</b></div>";
+  }
+
   // ---------- Profile ----------
   var editingProfile = false;
+  var profileTab = "threads";
+  var lbExpanded = false;
+
+  function profileTabPosts() {
+    var s = st();
+    if (profileTab === "threads") return communityPosts().filter(isMine);
+    var ids = Object.keys(profileTab === "liked" ? s.liked : s.bookmarked);
+    communityPosts();
+    return ids.map(findPost).filter(Boolean).sort(function (a, b) {
+      return (a.kind === "user" ? -a.ts : a.order) - (b.kind === "user" ? -b.ts : b.order);
+    });
+  }
 
   function renderProfile() {
     var s = st(), p = s.profile, d = s.daily;
-    var mine = communityPosts().filter(isMine);
     var today = d.log[C.dayKey()] || 0;
     var days = C.lastDays(d, 7);
     var max = Math.max(d.goal, Math.max.apply(null, days.map(function (x) { return x.value; })));
+    var bstats = C.badgeStats(s, myPostCount());
+    var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
 
     var html = '<div class="profile-head"><div><h2>' + esc(p.name) + '</h2><div class="handle">@' + esc(p.handle) + "</div></div>" +
       '<div class="avatar lg">' + esc(p.avatar) + "</div></div>";
@@ -730,8 +851,8 @@
       html += '<div class="card account muted small">📱 Saved on this device only.</div>';
     }
 
-    html += '<div class="profile-stats"><span><b>' + mine.length + "</b> threads</span><span><b>" + Object.keys(s.words).length +
-      "</b> words</span><span><b>" + Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + C.streakOf(d) + "</b> day streak</span></div>";
+    html += '<div class="profile-stats"><span><b>' + bstats.posts + "</b> threads</span><span><b>" + bstats.words +
+      "</b> words</span><span><b>" + Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
 
     if (editingProfile) {
       html += '<div class="edit-form"><label>Name<input id="editName" maxlength="30" value="' + esc(p.name) + '"></label>' +
@@ -753,6 +874,24 @@
         return '<button class="chip' + (d.goal === g ? " active" : "") + '" data-goal="' + g + '">' + g + " / day</button>";
       }).join("") + '</div><p class="muted small">Each new saved word, correct quiz answer and "Got it" flashcard counts as 1.</p></div>';
 
+    // Weekly leaderboard
+    html += '<div class="card lb-card"><div class="goal-top"><b>🏆 This week\'s leaderboard</b><span class="muted">You: <b id="lbRank"></b></span></div>' +
+      '<div id="lbList"></div><p class="muted small">Points = practice this week (resets every Monday). ' +
+      (S.mode === "cloud" && !S.user ? "Sign in to compete with other learners." : S.mode === "local" ? "Characters are competing with you!" : "") + "</p></div>";
+
+    // Badges
+    html += '<div class="card"><div class="goal-top"><b>Tofu badges</b><span class="muted">' + unlocked + " / " + C.BADGES.length + '</span></div><div class="badges">' +
+      C.BADGES.map(function (b) {
+        var on = !!s.badges[b.id];
+        return '<div class="badge-item' + (on ? " on" : "") + '"><span class="b-icon">' + (on ? b.icon : "🔒") + '</span><b>' + esc(b.name) + '</b><span class="muted">' + esc(b.desc) + "</span></div>";
+      }).join("") + "</div></div>";
+
+    // Settings
+    html += '<div class="card"><div class="goal-top"><b>Read-aloud speed</b></div><div class="goal-pick">' +
+      [[1, "Normal"], [0.8, "Slow"], [0.6, "Very slow"]].map(function (r) {
+        return '<button class="chip' + (s.settings.rate === r[0] ? " active" : "") + '" data-rate="' + r[0] + '">' + r[1] + "</button>";
+      }).join("") + "</div></div>";
+
     var followKeys = Object.keys(s.following);
     html += '<div class="section-title">Following · ' + followKeys.length + "</div>";
     html += followKeys.length ? '<div class="following-strip">' + followKeys.map(function (k) {
@@ -761,10 +900,24 @@
       return '<button class="mini-person" data-person="' + esc(k) + '">' + avatarHtml({ avatar: info.avatar, color: c && c.color }) + "<span>" + esc(info.name.split(" ")[0]) + "</span></button>";
     }).join("") + "</div>" : '<div class="empty small">Not following anyone yet.</div>';
 
-    html += '<div class="section-title">Your threads</div>';
-    html += mine.length ? mine.map(function (x) { return renderPost(x); }).join("")
-      : '<div class="empty"><span class="big">✍️</span>You haven\'t posted yet.<br>Tap <b>＋</b> below and try the word challenge!</div>';
+    // Threads / Liked / Saved tabs
+    var counts = { threads: bstats.posts, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length };
+    html += '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["liked", "Liked"], ["saved", "Saved"]].map(function (t) {
+      return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span></button>";
+    }).join("") + "</div>";
+    var list = profileTabPosts();
+    var empty = {
+      threads: "You haven't posted yet.<br>Tap <b>＋</b> below and try the word challenge!",
+      liked: "Threads you like will show up here.<br>Tap ♡ on any thread.",
+      saved: "Threads you save will show up here.<br>Tap the bookmark on any thread."
+    }[profileTab];
+    html += '<div id="profileList">' + (list.length ? list.map(function (x) { return renderPost(x); }).join("") : '<div class="empty">' + tofuSvg(64) + "<br>" + empty + "</div>") + "</div>";
     $("#profileBody").innerHTML = html;
+
+    renderLeaderboard([]);
+    S.leaderboard(C.weekKey()).then(function (people) {
+      if (route.name === "profile") renderLeaderboard(people);
+    });
   }
 
   // ---------- Onboarding / preferences ----------
@@ -775,6 +928,8 @@
     ob = { step: 0, editing: editing, levels: (p.levels || [2]).slice(), topics: (p.topics || []).slice(), follow: {} };
     Object.keys(st().following).forEach(function (k) { ob.follow[k] = true; });
     if (!editing) ob.levels = [2];
+    ob.login = !editing && S.mode === "cloud" && !S.user;
+    if (ob.login) ob.step = -1;
     $("#onboard").hidden = false;
     document.body.style.overflow = "hidden";
     renderOnboarding();
@@ -782,10 +937,22 @@
 
   function renderOnboarding() {
     var body = $("#onboardBody");
-    var dots = '<div class="ob-dots">' + [0, 1, 2].map(function (i) { return "<i" + (i === ob.step ? ' class="on"' : "") + "></i>"; }).join("") + "</div>";
+    var steps = ob.login ? [-1, 0, 1, 2] : [0, 1, 2];
+    var dots = '<div class="ob-dots">' + steps.map(function (i) { return "<i" + (i === ob.step ? ' class="on"' : "") + "></i>"; }).join("") + "</div>";
     var html = "";
+    if (ob.step === -1) {
+      var app = inAppBrowser();
+      body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>Welcome to Toefl-Tofu</h2>" +
+        '<p class="muted">Learn TOEFL words from funny threads. Sign in first so your level, likes, saved words and streak are kept in your account — on every phone, every time you open the app.</p>' +
+        (app ? '<div class="notice"><div class="notice-text"><b>You\'re in the ' + app + ' app\'s browser.</b> Google sign-in doesn\'t work here. Tap <b>⋯</b> and choose <b>Open in browser</b>（在瀏覽器開啟）.</div></div>' : "") +
+        '</div><div class="ob-nav ob-nav-col"><button class="primary-btn google-btn" data-ob-signin>' +
+        '<svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>' +
+        '<span>Sign in with Google</span></button><button class="text-btn small muted-link" data-ob-skip-signin>Continue without an account</button></div>';
+      body.scrollTop = 0;
+      return;
+    }
     if (ob.step === 0) {
-      html = '<div class="ob-hero">@</div><h2>' + (ob.editing ? "Your level" : "Welcome to TOEFL Threads") + "</h2>" +
+      html = '<div class="ob-hero">' + tofuSvg(120) + '</div><h2>' + (ob.editing ? "Your level" : "Welcome to Toefl-Tofu") + "</h2>" +
         '<p class="muted">Funny characters post every day — using real TOEFL words. What level do you want to see?</p>' +
         '<div class="ob-options">' + [[1, "Easy", "Common academic words · ~TOEFL 60–80"], [2, "Medium", "Core TOEFL words · ~TOEFL 80–100"], [3, "Hard", "Advanced words · ~TOEFL 100+"]].map(function (x) {
           var on = ob.levels.indexOf(x[0]) >= 0;
@@ -804,7 +971,7 @@
     }
     var next = ob.step < 2 ? "Next" : ob.editing ? "Save" : "Start scrolling";
     body.innerHTML = dots + '<div class="ob-content">' + html + "</div>" +
-      '<div class="ob-nav">' + (ob.step > 0 ? '<button class="outline-btn" data-ob-back>Back</button>' : ob.editing ? '<button class="outline-btn" data-ob-close>Cancel</button>' : "<span></span>") +
+      '<div class="ob-nav">' + (ob.step > 0 || (ob.step === 0 && ob.login && !S.user) ? '<button class="outline-btn" data-ob-back>Back</button>' : ob.editing ? '<button class="outline-btn" data-ob-close>Cancel</button>' : "<span></span>") +
       '<button class="primary-btn" data-ob-next' + (ob.step === 0 && !ob.levels.length ? " disabled" : "") + ">" + next + "</button></div>";
     body.scrollTop = 0;
   }
@@ -901,6 +1068,7 @@
       window.scrollTo(0, 0);
       var n = C.detectWords(text).length;
       toast(n ? "Posted! You used " + n + " TOEFL word" + (n > 1 ? "s" : "") + " 🎉" : "Posted!");
+      setTimeout(checkBadges, 1500);
     }).catch(function (e) {
       console.error(e);
       toast("Couldn't post. Please try again.");
@@ -916,6 +1084,7 @@
     var liked = !st().liked[id];
     S.setLiked(post, liked);
     refreshCounts();
+    if (liked) checkBadges();
     if (liked) {
       $all('[data-like="' + id + '"]').forEach(function (b) { b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
     }
@@ -950,7 +1119,7 @@
   }
 
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("button, a[href], [data-open], [data-action]");
+    var t = e.target.closest("button, a[href], [data-open], [data-action], [data-person]");
     if (!t) return;
     var d = t.dataset;
     if (t.tagName === "A") return; // normal hash links
@@ -965,6 +1134,8 @@
       tr.hidden = !tr.hidden;
       t.textContent = tr.hidden ? "Translate" : "Hide translation";
     } else if (d.soon) toast(d.soon + " are coming in the next version");
+    else if (d.read) readPost(d.read);
+    else if (d.noticeClose !== undefined) hideNotice();
     else if (d.delete) deletePost(d.delete);
     else if (d.open) { if (route.name !== "t" || route.param !== d.open) go("#/t/" + d.open); }
     else if (d.person) go("#/u/" + encodeURIComponent(d.person));
@@ -985,7 +1156,8 @@
       refreshWordMarks();
     }
     // Review
-    else if (d.mode) { reviewMode = d.mode; if (reviewMode === "cards") startDeck(); renderReview(); }
+    else if (d.mode) { reviewMode = d.mode; practiceAll = false; if (reviewMode === "cards") startDeck(); renderReview(); window.scrollTo(0, 0); }
+    else if (d.practiceAll !== undefined) { practiceAll = true; startDeck(); renderReview(); }
     else if (d.toggleWord) { openWord = openWord === d.toggleWord ? null : d.toggleWord; renderReview(); }
     else if (d.speak) speak(d.speak);
     else if (d.removeWord) {
@@ -993,12 +1165,21 @@
       S.save(); refreshWordMarks(); renderReview();
       toast("Removed from Review");
     } else if (d.flip !== undefined) { flipped = !flipped; renderReview(); if (flipped) speak(deck[deckIndex]); }
-    else if (d.again !== undefined) { deck.push(deck.splice(deckIndex, 1)[0]); flipped = false; renderReview(); }
-    else if (d.got !== undefined) { knownCount++; deckIndex++; flipped = false; addActivity(1); renderReview(); }
+    else if (d.again !== undefined) {
+      reviewWord(deck[deckIndex], false); S.save(); refreshWordMarks();
+      deck.push(deck.splice(deckIndex, 1)[0]); flipped = false; renderReview();
+    } else if (d.got !== undefined) {
+      reviewWord(deck[deckIndex], true);
+      st().stats.cards = (st().stats.cards || 0) + 1;
+      knownCount++; deckIndex++; flipped = false; addActivity(1); refreshWordMarks(); renderReview();
+    }
     else if (d.restart !== undefined) { startDeck(); renderReview(); }
     // Profile
     else if (d.editProfile !== undefined) { editingProfile = true; renderProfile(); }
     else if (d.editPrefs !== undefined) openOnboarding(true);
+    else if (d.ptab) { profileTab = d.ptab; renderProfile(); var tabs = $(".profile-tabs"); if (tabs) window.scrollTo(0, tabs.offsetTop - 60); }
+    else if (d.lbMore !== undefined) { lbExpanded = !lbExpanded; S.leaderboard(C.weekKey()).then(renderLeaderboard); }
+    else if (d.rate) { st().settings.rate = parseFloat(d.rate); S.save(); renderProfile(); speak("This is how fast I will read."); }
     else if (d.avatar) $all(".emoji-pick").forEach(function (b) { b.classList.toggle("active", b === t); });
     else if (d.saveProfile !== undefined) {
       var name = $("#editName").value.trim() || "You";
@@ -1038,6 +1219,8 @@
     } else if (d.obFollow) { ob.follow[d.obFollow] = !ob.follow[d.obFollow]; renderOnboarding(); }
     else if (d.obNext !== undefined) { if (ob.step < 2) { ob.step++; renderOnboarding(); } else finishOnboarding(); }
     else if (d.obBack !== undefined) { ob.step--; renderOnboarding(); }
+    else if (d.obSignin !== undefined) signIn();
+    else if (d.obSkipSignin !== undefined) { ob.step = 0; renderOnboarding(); }
     else if (d.obClose !== undefined) closeOnboarding();
   });
 
@@ -1139,20 +1322,70 @@
       toast("Couldn't reach the cloud — using this device only");
     } else if (kind === "error:save") {
       toast("Couldn't save to your account");
+    } else if (kind === "error:load") {
+      toast("Couldn't reach your account — showing the copy saved on this phone");
     } else if (kind === "error:signin") {
       toast("Sign-in problem — using this device only");
     }
   });
 
+  // ---------- Notices (in-app browsers, signed out) ----------
+  function inAppBrowser() {
+    var ua = navigator.userAgent || "";
+    if (/\bLine\//i.test(ua)) return "LINE";
+    if (/FBAN|FBAV|FB_IAB|FBIOS/.test(ua)) return "Facebook";
+    if (/Instagram/i.test(ua)) return "Instagram";
+    if (/MicroMessenger/i.test(ua)) return "WeChat";
+    if (/KAKAOTALK/i.test(ua)) return "KakaoTalk";
+    if (/Barcelona/i.test(ua)) return "Threads";
+    return null;
+  }
+
+  function showNotice(html, kind) {
+    var n = $("#notice");
+    if (!n) {
+      $("main").insertAdjacentHTML("afterbegin", '<div class="notice" id="notice"></div>');
+      n = $("#notice");
+    }
+    n.dataset.kind = kind;
+    n.innerHTML = '<div class="notice-text">' + html + '</div><button class="notice-x" data-notice-close aria-label="Close">✕</button>';
+    n.hidden = false;
+  }
+
+  function hideNotice() {
+    var n = $("#notice");
+    if (n) n.hidden = true;
+  }
+
+  function updateNotices() {
+    var app = inAppBrowser();
+    if (app) {
+      showNotice("<b>You're in the " + app + " app's browser.</b> Sign-in and your progress may not be saved here. Tap <b>⋯</b> or the share icon and choose <b>Open in browser</b>（在瀏覽器開啟）.", "inapp");
+    } else if (S.wasSignedOut()) {
+      showNotice("You've been signed out on this browser. <button class=\"link\" data-signin>Sign in again</button>", "signedout");
+    } else {
+      hideNotice();
+    }
+  }
+
   function renderAll() {
+    updateNotices();
     renderGoalChip();
     refreshWordMarks();
     buildFeed();
     handleRoute();
-    if (!st().prefs.onboarded) openOnboarding(false);
+    if (!st().prefs.onboarded) {
+      if (!ob || !ob.editing) openOnboarding(false);
+    } else if (ob && !ob.editing) {
+      closeOnboarding();
+    }
   }
 
   // ---------- Init ----------
+  // LINE supports ?openExternalBrowser=1 to jump straight to the phone's real browser.
+  if (inAppBrowser() === "LINE" && !/openExternalBrowser=1/.test(location.search)) {
+    location.replace(location.origin + location.pathname + (location.search ? location.search + "&" : "?") + "openExternalBrowser=1" + location.hash);
+  }
   setupInfiniteScroll();
   S.init().then(renderAll);
 })();
