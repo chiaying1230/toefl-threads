@@ -26,33 +26,30 @@
 1. **本機模式（預設，免設定）**：所有資料存在該手機的瀏覽器裡。每個人各自使用、互相看不到。
 2. **雲端模式（設定 Firebase 後）**：用 Google 帳號登入，按讚、收藏、偏好、連續天數都存在帳號裡（換手機也在），而且**所有使用者看得到彼此的發文、留言與真實讚數**。沒登入的訪客仍可瀏覽與收藏單字（存在自己手機），要按讚、發文、留言時會請他登入。
 
-## 設定帳號與共用（Firebase，免費，約 10 分鐘）
+## 設定帳號與共用（Firebase）
 
-1. 打開 <https://console.firebase.google.com> → **Create a project**（名稱例如 `toefl-threads`，Google Analytics 可關掉）。
-2. 專案首頁點 **</>（Web）** 新增網頁 App → 取名 → **Register app**。畫面會出現一段 `firebaseConfig = { apiKey: ..., ... }`。
-3. 在 GitHub 打開本 repo 的 `js/firebase-config.js` → 右上角鉛筆 ✏️ 編輯，把最後一行改成：
-   ```js
-   window.FIREBASE_CONFIG = {
-     apiKey: "…",
-     authDomain: "…",
-     projectId: "…",
-     storageBucket: "…",
-     messagingSenderId: "…",
-     appId: "…"
-   };
-   ```
-   （貼上你自己那段的內容）→ **Commit changes**。這些值本來就是公開的，放在網頁裡沒關係；安全性由第 5 步的規則控管。
-4. Firebase 左側 **Build → Authentication → Get started → Sign-in method → Google → Enable → Save**。
-   然後到 **Authentication → Settings → Authorized domains → Add domain**，加入 `chiaying1230.github.io`。
-5. 左側 **Build → Firestore Database → Create database**（位置選 `asia-east1` 台灣）→ 選 **production mode**。
-   建立後到 **Rules** 分頁，把本 repo 的 `firestore.rules` 全部內容貼上 → **Publish**。
-6. 等 GitHub Pages 更新（1～2 分鐘），打開網站 → Profile → **Sign in with Google**。
+Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/firebase-config.js`。還剩 2 件事要在 Firebase 網站上點：
 
-免費的 Spark 方案不用信用卡，小型使用（每天幾萬次讀寫）綽綽有餘。
+**設定檢查頁：** <https://chiaying1230.github.io/toefl-threads/setup.html>
+這頁會用 ✅／❌ 告訴你哪一步還沒完成，也附有直接前往 Firebase 對應頁面的連結。
 
-**上線後自己測一次：** 用兩支手機（或一般＋無痕視窗）登入不同帳號 → A 發文、按讚、留言 → B 應該看得到。
+1. **開啟 Google 登入**
+   - 打開 <https://console.firebase.google.com/project/toefl-threads/authentication/providers>
+   - 按 `Get started` → 選 `Google` → 打開 `Enable` → 選你的 Email → `Save`
+   - 再到 `Settings` 分頁 → `Authorized domains` → `Add domain` → 輸入 `chiaying1230.github.io` → `Add`
+2. **建立資料庫並貼上規則**
+   - 打開 <https://console.firebase.google.com/project/toefl-threads/firestore>
+   - 按 `Create database` → 位置選 `asia-east1 (Taiwan)` → 選 `Start in production mode` → `Create`
+   - 建好後到 `Rules` 分頁，全部刪掉，貼上規則 → 按 `Publish`
+   - 規則可以從設定檢查頁的「複製 Firestore 規則」按鈕取得（內容就是本 repo 的 `firestore.rules`）
 
-> 限制：目前沒有檢舉／審核功能，每個人只能刪除自己的內容。如果要公開給很多陌生人使用，建議之後再加上管理功能。
+完成後打開設定檢查頁，看到全部 ✅ 就可以了。
+
+**最後用兩支手機測一次：** 兩支手機分別用不同的 Google 帳號登入（或用一般視窗＋無痕視窗）。A 發文、按讚、留言，B 重新整理後應該看得到。
+
+免費的 Spark 方案不用信用卡，小型使用綽綽有餘。這些設定值本來就是公開的，安全性由 `firestore.rules` 控管。
+
+> 限制：目前沒有檢舉／審核功能，每個人只能刪除自己的內容。
 
 ## 檔案結構
 
@@ -64,7 +61,8 @@ js/data/batch-1.js … 5.js  單字與貼文（每批約 40 則）
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
-js/firebase-config.js      Firebase 設定（預設為 null ＝ 本機模式）
+js/firebase-config.js      Firebase 設定（改成 null 就回到本機模式）
+setup.html                 Firebase 設定檢查頁
 firestore.rules            Firestore 安全規則
 scripts/check-data.js      檢查內容有沒有打錯
 ```

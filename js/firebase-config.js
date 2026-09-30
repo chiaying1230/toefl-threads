@@ -1,15 +1,12 @@
-// Paste your Firebase web app config here to turn on accounts and shared posts.
-// Leave it as null to keep everything saved only on each phone (no setup needed).
-// See README.md → "Accounts & sharing (Firebase)".
-//
-// Example:
-// window.FIREBASE_CONFIG = {
-//   apiKey: "AIza...",
-//   authDomain: "your-project.firebaseapp.com",
-//   projectId: "your-project",
-//   storageBucket: "your-project.appspot.com",
-//   messagingSenderId: "1234567890",
-//   appId: "1:1234567890:web:abc123"
-// };
-
-window.FIREBASE_CONFIG = null;
+// Firebase web app config for TOEFL Threads (project: toefl-threads).
+// These values are public by design; access is controlled by firestore.rules.
+// Set this to null to go back to "saved on this device only" mode.
+window.FIREBASE_CONFIG = {
+  apiKey: "AIzaSyArWsxTrNrByzk1vLk5bbHk86bZd_KYjAs",
+  authDomain: "toefl-threads.firebaseapp.com",
+  projectId: "toefl-threads",
+  storageBucket: "toefl-threads.firebasestorage.app",
+  messagingSenderId: "2509579521",
+  appId: "1:2509579521:web:637cdea53ff21b045de700",
+  measurementId: "G-HCED9G88HN"
+};

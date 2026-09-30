@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TOEFL Threads 設定檢查</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { padding: 0 0 40px; }
+    .wrap { max-width: 620px; margin: 0 auto; padding: calc(16px + env(safe-area-inset-top)) 16px 0; }
+    h1 { font-size: 24px; margin: 8px 0 4px; }
+    .check { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .icon { font-size: 22px; width: 28px; flex: none; text-align: center; }
+    .check b { display: block; }
+    .fix { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
+    .fix code { background: var(--bg-soft); padding: 1px 6px; border-radius: 6px; color: var(--text); }
+    .btns { display: grid; gap: 10px; margin: 18px 0; }
+    .ok-all { background: var(--ok-bg); color: var(--saved); padding: 14px; border-radius: 14px; font-weight: 700; margin-top: 16px; }
+    ol { padding-left: 20px; } li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="link" href="./">← Back to TOEFL Threads</a>
+    <h1>設定檢查</h1>
+    <p class="muted">這頁會檢查 Firebase 有沒有設定好。每做完一步，回來按「重新檢查」。</p>
+    <div id="checks"></div>
+    <div class="btns">
+      <button class="primary-btn" id="recheck">重新檢查</button>
+      <button class="outline-btn" id="copyRules">複製 Firestore 規則（第 3 步要貼上的內容）</button>
+      <button class="outline-btn" id="signinTest">測試 Google 登入</button>
+    </div>
+    <div id="signinResult"></div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var cfg = window.FIREBASE_CONFIG;
+    var host = location.hostname;
+    var checksEl = document.getElementById("checks");
+    var CONSOLE = cfg ? "https://console.firebase.google.com/project/" + cfg.projectId : "https://console.firebase.google.com";
+
+    function row(state, title, fix) {
+      var icon = { ok: "✅", bad: "❌", warn: "⚠️", wait: "⏳" }[state];
+      return '<div class="check"><div class="icon">' + icon + "</div><div><b>" + title + "</b>" +
+        (fix ? '<p class="fix">' + fix + "</p>" : "") + "</div></div>";
+    }
+
+    function getJSON(url) {
+      return fetch(url).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (body) { return { status: r.status, body: body }; });
+      });
+    }
+
+    function errText(res) {
+      var e = res.body && res.body.error;
+      return e ? (e.status || "") + " " + (e.message || "") : "";
+    }
+
+    function checkConfig() {
+      if (cfg && cfg.apiKey && cfg.projectId) return Promise.resolve({ ok: true, html: row("ok", "① 設定值已填入（專案：" + cfg.projectId + "）") });
+      return Promise.resolve({ ok: false, html: row("bad", "① 還沒填入 Firebase 設定值", "把 Firebase 的 firebaseConfig 貼給 Claude，或填進 <code>js/firebase-config.js</code>。") });
+    }
+
+    function checkAuth() {
+      return getJSON("https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig?key=" + cfg.apiKey).then(function (res) {
+        var out = [];
+        if (res.status !== 200) {
+          out.push(row("bad", "② Google 登入還沒啟用",
+            '到 <a class="link" target="_blank" href="' + CONSOLE + '/authentication/providers">Authentication → Sign-in method</a>，按 <code>Get started</code>，選 <code>Google</code> → 打開 <code>Enable</code> → 選你的 Email 當支援信箱 → <code>Save</code>。'));
+          out.push(row("wait", "③ 授權網域（要先完成 ②）"));
+          return { ok: false, html: out.join("") };
+        }
+        var idps = res.body.idpConfig;
+        var google = idps && idps.filter(function (p) { return p.provider === "google.com"; })[0];
+        if (idps && !(google && google.enabled)) {
+          out.push(row("bad", "② Google 登入還沒打開",
+            '到 <a class="link" target="_blank" href="' + CONSOLE + '/authentication/providers">Sign-in method</a> → <code>Add new provider</code> → <code>Google</code> → 打開 <code>Enable</code> → <code>Save</code>。'));
+        } else {
+          out.push(row(idps ? "ok" : "warn", "② Authentication 已啟用", idps ? "" : "如果下面的「測試 Google 登入」成功，就代表 Google 登入也開好了。"));
+        }
+        var domains = res.body.authorizedDomains || [];
+        var needed = "chiaying1230.github.io";
+        if (domains.indexOf(needed) >= 0) out.push(row("ok", "③ 已授權網域 " + needed));
+        else out.push(row("bad", "③ 還沒加入授權網域 " + needed,
+          '到 <a class="link" target="_blank" href="' + CONSOLE + '/authentication/settings">Authentication → Settings → Authorized domains</a>，按 <code>Add domain</code>，輸入 <code>' + needed + "</code>。"));
+        return { ok: out.join("").indexOf("❌") < 0, html: out.join("") };
+      });
+    }
+
+    function checkFirestore() {
+      var base = "https://firestore.googleapis.com/v1/projects/" + cfg.projectId + "/databases/(default)/documents/";
+      return getJSON(base + "posts?pageSize=1&key=" + cfg.apiKey).then(function (res) {
+        var t = errText(res);
+        var createFix = '到 <a class="link" target="_blank" href="' + CONSOLE + '/firestore">Firestore Database</a>，按 <code>Create database</code> → 位置選 <code>asia-east1 (Taiwan)</code> → 選 <code>Start in production mode</code> → <code>Create</code>。建立後等 1～2 分鐘再重新檢查。';
+        var rulesFix = '到 <a class="link" target="_blank" href="' + CONSOLE + '/firestore/databases/-default-/rules">Firestore → Rules</a> 分頁，把裡面全部刪掉，貼上用下方「複製 Firestore 規則」按鈕複製的內容，按 <code>Publish</code>。';
+        if (res.status === 403 && /SERVICE_DISABLED|has not been used/.test(t) || res.status === 404) {
+          return { ok: false, html: row("bad", "④ 還沒建立 Firestore 資料庫", createFix) + row("wait", "⑤ 安全規則（要先完成 ④）") };
+        }
+        if (res.status === 403) {
+          return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 還沒貼上 TOEFL Threads 的安全規則", rulesFix) };
+        }
+        if (res.status !== 200) {
+          return { ok: false, html: row("warn", "④ Firestore 回應異常：" + res.status, t) };
+        }
+        // Posts are public; other people's private user docs must NOT be readable.
+        return getJSON(base + "users/__setup_check__?key=" + cfg.apiKey).then(function (r2) {
+          if (r2.status === 403) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確") };
+          return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 規則太寬鬆（可能是 test mode），別人可以讀取所有資料", rulesFix) };
+        });
+      });
+    }
+
+    function checkPages() {
+      if (/github\.io$/.test(host)) return row("ok", "⑥ 網站已在 GitHub Pages 上線");
+      return row("warn", "⑥ 你現在不是在 GitHub Pages 上開這頁", "Google 登入只能在已授權的網域使用。請用 <code>https://chiaying1230.github.io/toefl-threads/setup.html</code> 打開。");
+    }
+
+    function run() {
+      checksEl.innerHTML = row("wait", "檢查中…");
+      checkConfig().then(function (c) {
+        if (!c.ok) { checksEl.innerHTML = c.html; return; }
+        return Promise.all([checkAuth(), checkFirestore()]).then(function (r) {
+          var allOk = r[0].ok && r[1].ok;
+          checksEl.innerHTML = c.html + r[0].html + r[1].html + checkPages() +
+            (allOk ? '<div class="ok-all">🎉 全部設定完成！按「測試 Google 登入」確認一次，然後回到 App 的 Profile 登入即可。</div>' : "");
+        });
+      }).catch(function (e) {
+        checksEl.innerHTML = row("bad", "無法連線到 Google 檢查", String(e));
+      });
+    }
+
+    document.getElementById("recheck").addEventListener("click", run);
+
+    document.getElementById("copyRules").addEventListener("click", function () {
+      var btn = this;
+      fetch("firestore.rules").then(function (r) { return r.text(); }).then(function (text) {
+        return navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "✓ 已複製！到 Firestore → Rules 貼上並按 Publish";
+        }, function () {
+          var ta = document.createElement("textarea");
+          ta.value = text; ta.style.width = "100%"; ta.rows = 12;
+          btn.insertAdjacentElement("afterend", ta);
+          ta.select();
+          btn.textContent = "請長按下方文字全選並複製";
+        });
+      });
+    });
+
+    document.getElementById("signinTest").addEventListener("click", function () {
+      var out = document.getElementById("signinResult");
+      if (!cfg) return;
+      out.innerHTML = row("wait", "登入中…");
+      var SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+      function load(src) {
+        return new Promise(function (ok, fail) { var s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+      }
+      (window.firebase ? Promise.resolve() : load(SDK + "firebase-app-compat.js").then(function () { return load(SDK + "firebase-auth-compat.js"); }))
+        .then(function () {
+          if (!firebase.apps.length) firebase.initializeApp(cfg);
+          return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        })
+        .then(function (res) {
+          out.innerHTML = row("ok", "Google 登入成功：" + (res.user.displayName || res.user.email), "回到 App → Profile 就能登入使用了。");
+        })
+        .catch(function (e) {
+          var code = (e && e.code) || "";
+          var fix = {
+            "auth/unauthorized-domain": "網域還沒授權：請完成上面的第 ③ 步。",
+            "auth/operation-not-allowed": "Google 登入還沒打開：請完成上面的第 ② 步。",
+            "auth/configuration-not-found": "Authentication 還沒啟用：請完成上面的第 ② 步。",
+            "auth/popup-blocked": "瀏覽器擋住了登入視窗，請允許彈出視窗後再試一次。",
+            "auth/popup-closed-by-user": "登入視窗被關掉了，再試一次即可。"
+          }[code] || (code + " " + (e && e.message));
+          out.innerHTML = row("bad", "Google 登入失敗", fix);
+        });
+    });
+
+    run();
+  })();
+  </script>
+</body>
+</html>
