@@ -9,6 +9,7 @@ fs.readdirSync(dataDir)
   .filter((f) => /^batch-\d+\.js$/.test(f))
   .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]))
   .forEach((f) => require(path.join(dataDir, f)));
+require(path.join(dataDir, "kk.js"));
 
 const { VOCAB, POSTS, CHARACTERS, TOPICS } = window;
 const TAG = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
@@ -27,6 +28,7 @@ function checkTags(text, where) {
 for (const [key, v] of Object.entries(VOCAB)) {
   for (const field of ["pos", "zh", "ex", "exZh"]) if (!v[field]) errors.push(`word ${key}: missing ${field}`);
   if (![1, 2, 3].includes(v.level)) errors.push(`word ${key}: bad level`);
+  if (!/^\[.+\]$/.test(window.KK[key] || "")) errors.push(`word ${key}: missing KK phonetics (run scripts/make-kk.mjs)`);
 }
 
 const ids = new Set();

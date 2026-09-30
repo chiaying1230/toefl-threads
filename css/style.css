@@ -544,3 +544,10 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .steps li { line-height: 1.5; }
 .share-ico { width: 20px; height: 20px; vertical-align: -4px; color: var(--accent); }
 #installGuide h2 { margin: 0 0 6px; }
+
+/* ---------- KK phonetics ---------- */
+.kk { font-family: "Lucida Sans Unicode", "Arial Unicode MS", "Noto Sans", "Segoe UI", sans-serif; color: var(--muted); letter-spacing: 0.02em; }
+.sheet-head .kk { font-size: 17px; margin: 2px 0 2px; color: var(--text); opacity: 0.75; }
+.flashcard .kk { font-size: 18px; margin-top: 4px; }
+.word-detail .kk { display: block; font-size: 15px; margin-bottom: 4px; }
+.word-row .z .kk { font-size: 13px; }

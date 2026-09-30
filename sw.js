@@ -1,9 +1,9 @@
 // Toefl-Tofu service worker: offline cache (network first) + push notifications.
 /* global importScripts, firebase */
-var CACHE = "toefl-tofu-v1";
+var CACHE = "toefl-tofu-v2";
 var SHELL = [
   "./", "index.html", "css/style.css", "js/core.js", "js/store.js", "js/app.js", "js/firebase-config.js",
-  "js/data/characters.js", "js/data/batch-1.js", "js/data/batch-2.js", "js/data/batch-3.js", "js/data/batch-4.js", "js/data/batch-5.js",
+  "js/data/characters.js", "js/data/batch-1.js", "js/data/batch-2.js", "js/data/batch-3.js", "js/data/batch-4.js", "js/data/batch-5.js", "js/data/kk.js",
   "icon.svg", "icon-192.png", "icon-512.png", "apple-touch-icon.png", "manifest.json"
 ];
 

@@ -30,6 +30,10 @@
 
   function st() { return S.state; }
 
+  // KK phonetic symbols, e.g. "[juˋbɪkwɪtəs]".
+  function kk(key) { return (window.KK && window.KK[key]) || ""; }
+  function kkHtml(key) { var k = kk(key); return k ? '<span class="kk">' + esc(k) + "</span>" : ""; }
+
   // ---------- Toast & speech ----------
   var toastTimer = null;
   function toast(msg, ms) {
@@ -283,6 +287,7 @@
     sheetFrom = from;
     $("#sheetWord").textContent = key;
     $("#sheetPos").textContent = v.pos;
+    $("#sheetKK").textContent = kk(key);
     var lv = $("#sheetLevel");
     lv.className = "level-tag lv" + v.level;
     lv.textContent = C.LEVEL_NAMES[v.level];
@@ -583,7 +588,7 @@
 
     if (words.length) {
       html += '<div class="section-title">Words</div><div class="word-results">' + words.map(function (k) {
-        return '<button class="word-row" data-word="' + k + '"><span class="w">' + k + '</span><span class="z">' + esc(VOCAB[k].pos + " " + VOCAB[k].zh) + '</span><span class="level-tag lv' + VOCAB[k].level + '">' + C.LEVEL_NAMES[VOCAB[k].level] + "</span></button>";
+        return '<button class="word-row" data-word="' + k + '"><span class="w">' + k + '</span><span class="z">' + kkHtml(k) + " " + esc(VOCAB[k].pos + " " + VOCAB[k].zh) + '</span><span class="level-tag lv' + VOCAB[k].level + '">' + C.LEVEL_NAMES[VOCAB[k].level] + "</span></button>";
       }).join("") + "</div>";
     }
     if (people.length) html += '<div class="section-title">People</div>' + people.map(personRow).join("");
@@ -758,7 +763,7 @@
         '<span class="w">' + k + '</span><span class="z">' + esc(v.pos + " " + v.zh) + "</span>" +
         '<span class="due' + (label === "Due" ? " now" : "") + '">' + label + "</span></button>";
       if (openWord === k) {
-        html += '<div class="word-detail"><p>' + esc(v.ex) + '</p><p class="muted">' + esc(v.exZh) + '</p><div class="row-actions">' +
+        html += '<div class="word-detail">' + kkHtml(k) + "<p>" + esc(v.ex) + '</p><p class="muted">' + esc(v.exZh) + '</p><div class="row-actions">' +
           '<span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span>" +
           '<button class="link" data-speak="' + k + '">🔊 Listen</button>' +
           (from && findPost(from) ? '<a class="link" href="#/t/' + esc(from) + '">See thread</a>' : "") +
@@ -792,8 +797,8 @@
     }
     var k = deck[deckIndex], v = VOCAB[k];
     var card = flipped
-      ? '<div class="fw">' + k + '</div><div class="fpos">' + v.pos + '</div><div class="fzh">' + esc(v.zh) + '</div><div class="fex">' + esc(v.ex) + '</div><div class="fexzh">' + esc(v.exZh) + "</div>"
-      : '<div class="fw">' + k + '</div><div class="fpos">' + v.pos + '</div><div class="fhint">Tap to reveal the meaning</div>';
+      ? '<div class="fw">' + k + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fzh">' + esc(v.zh) + '</div><div class="fex">' + esc(v.ex) + '</div><div class="fexzh">' + esc(v.exZh) + "</div>"
+      : '<div class="fw">' + k + "</div>" + kkHtml(k) + '<div class="fpos">' + v.pos + '</div><div class="fhint">Tap to reveal the meaning</div>';
     body.innerHTML = '<div class="flash-wrap"><div class="flash-progress">' + (practiceAll ? "Practice" : "Due today") + " · card " + (deckIndex + 1) + " of " + deck.length + " · " + knownCount + " known</div>" +
       '<button class="flashcard' + (flipped ? " flip" : "") + '" data-flip>' + card + "</button>" +
       '<div class="flash-buttons"><button class="btn-again" data-again>Still learning</button><button class="btn-got" data-got>Got it ✓</button></div></div>';
