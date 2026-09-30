@@ -1,24 +1,7 @@
-// All fake content for the app. Words inside posts are marked as [[key]] or
-// [[key|shown form]]; every key must exist in VOCAB.
-// level: 1 = Easy, 2 = Medium, 3 = Hard.
+// Batch 1: the original 30 threads and 65 words.
+// Words inside posts are marked as [[key]] or [[key|shown form]]; level: 1 Easy, 2 Medium, 3 Hard.
 
-window.CHARACTERS = {
-  zorp: { name: "Zorp", handle: "alien_intern", avatar: "👽", color: "#7ee081", lang: "en", bio: "Intern from Kepler-442b. Studying humans. Please do not dissect me." },
-  whiskers: { name: "Mr. Whiskers", handle: "cat_ceo", avatar: "🐱", color: "#f6b26b", lang: "en", bio: "CEO of Box Inc. I knock things off tables professionally." },
-  captain: { name: "Captain Procrastinate", handle: "captain_later", avatar: "⛵", color: "#6fa8dc", lang: "mix", bio: "大學生 / professional deadline surfer 🏄" },
-  grandma: { name: "Grandma Wi-Fi", handle: "grandma_wifi", avatar: "👵", color: "#e691b8", lang: "mix", bio: "72 歲 learning the internet. Grandson says I use too many emojis 🙏🌸" },
-  fern: { name: "Fern the Fern", handle: "fern_feelings", avatar: "🌿", color: "#57bb8a", lang: "en", bio: "A houseplant with opinions. Photosynthesis enthusiast." },
-  pigeon: { name: "Plato the Pigeon", handle: "philosopher_pigeon", avatar: "🐦", color: "#a4a4c1", lang: "en", bio: "Thinker. Statue sitter. Accepts payment in bread." },
-  socrates: { name: "Gym Socrates", handle: "gym_socrates", avatar: "💪", color: "#e06666", lang: "en", bio: "The unexamined workout is not worth lifting." },
-  reginald: { name: "Sir Reginald", handle: "time_traveler_1885", avatar: "🎩", color: "#b4a7d6", lang: "en", bio: "Gentleman from 1885. Accidentally arrived in your century." },
-  fizz: { name: "Dr. Fizz", handle: "mad_scientist", avatar: "🧪", color: "#76d7ea", lang: "en", bio: "Chemist. 14 explosions this year (a personal record)." },
-  pablo: { name: "Pablo the Penguin", handle: "penguin_problems", avatar: "🐧", color: "#9fc5e8", lang: "en", bio: "Antarctica. My iceberg is shrinking. Ask me why." },
-  chefbot: { name: "ChefBot 3000", handle: "angry_chef_bot", avatar: "👨‍🍳", color: "#ffd966", lang: "en", bio: "Culinary robot. Zero tolerance for bad pizza." },
-  llama: { name: "Drama Llama", handle: "drama_llama", avatar: "🦙", color: "#d5a6bd", lang: "mix", bio: "藝術系 / everything is a tragedy 💅" },
-  ann: { name: "Ann in Boston", handle: "ann_studyabroad", avatar: "🎓", color: "#93c47d", lang: "mix", bio: "台灣留學生 in Boston 🇹🇼➡️🇺🇸 surviving one culture shock at a time" }
-};
-
-window.VOCAB = {
+Object.assign(window.VOCAB, {
   indispensable: { pos: "adj.", zh: "不可或缺的", level: 2, ex: "A good dictionary is indispensable for learning a new language.", exZh: "好的字典對學習新語言來說是不可或缺的。" },
   ubiquitous: { pos: "adj.", zh: "無所不在的", level: 3, ex: "Smartphones have become ubiquitous in modern life.", exZh: "智慧型手機在現代生活中已經無所不在。" },
   deteriorate: { pos: "v.", zh: "惡化；變差", level: 2, ex: "His health began to deteriorate after he stopped exercising.", exZh: "他停止運動後，健康開始惡化。" },
@@ -84,9 +67,9 @@ window.VOCAB = {
   nostalgia: { pos: "n.", zh: "懷舊；思鄉之情", level: 2, ex: "Old songs fill my grandparents with nostalgia.", exZh: "老歌讓我的祖父母充滿懷舊之情。" },
   persistent: { pos: "adj.", zh: "堅持不懈的；持續的", level: 1, ex: "Persistent practice is the key to a high TOEFL score.", exZh: "持續不懈的練習是托福高分的關鍵。" },
   accumulate: { pos: "v.", zh: "累積；積聚", level: 1, ex: "Dust accumulates quickly if you don't clean your room.", exZh: "如果你不打掃房間，灰塵會很快累積。" }
-};
+});
 
-window.POSTS = [
+window.POSTS.push(
   { id: "p1", author: "zorp", time: "2m", topic: "Astronomy", likes: 842, replies: 57,
     text: "Day 12 on Earth. Your planet orbits ONE medium-sized star and you act like it's special. On my planet we have three suns, so sunscreen is [[indispensable]].\n\nAlso, coffee is [[ubiquitous]] here. Without it, humans [[deteriorate]] rapidly after 3 p.m. Fascinating species. 👽☕",
     zh: "來地球第 12 天。你們的星球只繞著「一顆」中等大小的恆星轉，還覺得它很特別。我的星球有三個太陽，所以防曬乳是不可或缺的。\n\n另外，咖啡在這裡無所不在。沒有咖啡，人類下午三點後就會迅速變差。真是迷人的物種。👽☕" },
@@ -123,7 +106,7 @@ window.POSTS = [
   { id: "p12", author: "llama", time: "3h", topic: "Art", likes: 2201, replies: 310,
     text: "我的 hairdresser cut 1 cm more than I asked. My life has been [[irreversible|irreversibly]] changed.\n\nPlease respect my privacy during this [[turbulent]] time 💅 我要去閉關了",
     zh: "我的髮型師比我要求的多剪了 1 公分。我的人生已經被不可逆地改變了。\n\n在這段動盪的時期，請尊重我的隱私 💅 我要去閉關了。" },
-  { id: "p13", author: "zorp", time: "4h", topic: "Work", likes: 1876, replies: 142,
+  { id: "p13", author: "zorp", time: "4h", topic: "Business", likes: 1876, replies: 142,
     text: "My manager said my report was too [[verbose]]. It was 400 pages about the office stapler.\n\nI thought it was [[meticulous]]. On my planet, this is considered a short story.",
     zh: "我的主管說我的報告太冗長。那是一份關於辦公室釘書機的 400 頁報告。\n\n我以為那叫做一絲不苟。在我的星球，這算是一篇短篇小說。" },
   { id: "p14", author: "whiskers", time: "5h", topic: "Economics", likes: 1502, replies: 111,
@@ -144,7 +127,7 @@ window.POSTS = [
   { id: "p19", author: "captain", time: "9h", topic: "Campus Life", likes: 3320, replies: 298,
     text: "Today's achievements: cleaned my room, sorted my socks by color, and learned to juggle 🤹\n\nAnything to [[evade]] the essay. 老實說 my dedication to avoiding work is kind of [[admirable]].",
     zh: "今日成就：打掃房間、把襪子按顏色分類，還學會了雜耍 🤹\n\n只要能逃避寫論文，什麼都好。老實說，我逃避工作的決心還蠻令人佩服的。" },
-  { id: "p20", author: "fizz", time: "10h", topic: "Science", likes: 876, replies: 70,
+  { id: "p20", author: "fizz", time: "10h", topic: "Chemistry", likes: 876, replies: 70,
     text: "Breakthrough! I have created a [[symbiosis]] between my houseplant and my Wi-Fi router. The plant grows toward the signal. The router disconnects whenever the plant is thirsty.\n\nNobody asked for this. But science is [[relentless]]. 🌱📶",
     zh: "重大突破！我讓我的盆栽和 Wi-Fi 路由器產生了共生關係。植物會朝著訊號生長，而植物口渴時路由器就會斷線。\n\n沒人要求這個。但科學是永不停歇的。🌱📶" },
   { id: "p21", author: "grandma", time: "11h", topic: "Tech", likes: 4580, replies: 501,
@@ -177,4 +160,4 @@ window.POSTS = [
   { id: "p30", author: "pigeon", time: "1d", topic: "Psychology", likes: 5210, replies: 388,
     text: "Final thought for today: every time you learn a new word, your brain builds a new path.\n\nBe [[persistent]]. Tiny steps [[accumulate]]. Now, if you learned something, you owe me bread. 🍞",
     zh: "今日最後的想法：每當你學會一個新單字，你的大腦就會建立一條新的路徑。\n\n堅持下去。小小的步伐會累積。那麼，如果你學到了什麼，你欠我一塊麵包。🍞" }
-];
+);
