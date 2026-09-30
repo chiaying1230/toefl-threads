@@ -546,3 +546,11 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .flashcard .kk { font-size: 18px; margin-top: 4px; }
 .word-detail .kk { display: block; font-size: 15px; margin-bottom: 4px; }
 .word-row .z .kk { font-size: 13px; }
+
+/* Sharing */
+.profile-edit .icon-only { flex: 0 0 auto; padding-left: 14px; padding-right: 14px; }
+.join-card { display: flex; align-items: center; gap: 12px; margin: 12px 16px 4px; background: var(--tofu-soft); box-shadow: inset 0 0 0 1px var(--tofu); }
+.join-card .install-text { display: flex; flex-direction: column; gap: 2px; }
+.vocab-demo { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+.join-bar .primary-btn { flex: 1; margin: 0; padding: 11px; }
+.join-bar .outline-btn { flex: none; }

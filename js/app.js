@@ -117,6 +117,7 @@
     bookmark: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>',
     trash: '<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>',
     plus: '<svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg>',
+    share: '<svg viewBox="0 0 24 24"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></svg>',
     speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>'
   };
 
@@ -189,6 +190,7 @@
           '<button class="act' + (liked ? " liked" : "") + '" data-like="' + post.id + '" aria-label="Like">' + ICON.heart + '<span class="act-count">' + (likes ? C.formatCount(likes) : "") + "</span></button>" +
           '<button class="act" data-open="' + post.id + '" data-reply-count="' + post.id + '" aria-label="Reply">' + ICON.reply + '<span class="act-count">' + (replies ? C.formatCount(replies) : "") + "</span></button>" +
           '<button class="act" data-read="' + post.id + '" aria-label="Read aloud">' + ICON.speaker + "</button>" +
+          '<button class="act" data-share="' + post.id + '" aria-label="Share">' + ICON.share + "</button>" +
           last +
         "</div>" +
       "</div>" +
@@ -362,6 +364,7 @@
     if (route.name === "u") renderPerson(route.param);
     if (route.name === "t") renderThread(route.param);
     window.scrollTo(0, scrollMemory[routeKey] || 0);
+    if (booted && !st().prefs.onboarded && route.name !== "t" && !ob) openOnboarding(false);
   }
 
   // ---------- Feed ----------
@@ -649,11 +652,74 @@
       $("#replyBar").hidden = true;
       return;
     }
-    $("#replyBar").hidden = false;
+    var visitor = !st().prefs.onboarded;
+    $("#replyBar").hidden = visitor;
+    $("#joinBar").hidden = !visitor;
+    if (visitor) $("#joinBar").innerHTML = joinBarHtml();
     $("#replyAvatar").textContent = st().profile.avatar;
     $("#replyInput").placeholder = S.canWrite() ? "Reply to " + authorFor(post).name + "…" : "Sign in to reply";
-    body.innerHTML = renderPost(post, { full: true }) + '<div class="section-title">Replies</div><div id="replies"><div class="empty small">Loading…</div></div>';
+    body.innerHTML = (visitor ? joinCardHtml(post) : "") + renderPost(post, { full: true }) + '<div class="section-title">Replies</div><div id="replies"><div class="empty small">Loading…</div></div>';
     loadReplies();
+  }
+
+  // ---------- Sharing ----------
+  function appUrl(hash) {
+    return location.origin + location.pathname + (hash || "");
+  }
+
+  function plainText(post) {
+    return post.text.replace(/\[\[([a-z_]+)(?:\|([^\]]+))?\]\]/g, function (m, k, shown) { return shown || C.label(k); })
+      .replace(/\s+/g, " ").trim();
+  }
+
+  function sharePost(id) {
+    var post = findPost(id);
+    if (!post) return;
+    var a = authorFor(post), text = plainText(post);
+    if (text.length > 110) text = text.slice(0, 107).replace(/\s+\S*$/, "") + "…";
+    shareLink({ title: a.name + " on Toefl-Tofu", text: "“" + text + "” — " + a.name + " on Toefl-Tofu 🧈", url: appUrl("#/t/" + id) });
+  }
+
+  function shareApp() {
+    shareLink({ title: "Toefl-Tofu", text: "I'm learning TOEFL words by scrolling funny threads on Toefl-Tofu. Join me! 🧈", url: appUrl("") });
+  }
+
+  // Phone share sheet (LINE, Messages, Instagram…) when available, otherwise copy the link.
+  function shareLink(data) {
+    if (navigator.share) {
+      navigator.share(data).catch(function (e) { if (e && e.name !== "AbortError") copyLink(data.url); });
+    } else {
+      copyLink(data.url);
+    }
+  }
+
+  function copyLink(url) {
+    var done = function () { toast("Link copied — paste it anywhere to share 🔗"); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url) ? done() : window.prompt("Copy this link:", url); });
+    } else if (fallbackCopy(url)) done();
+    else window.prompt("Copy this link:", url);
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  // Someone opened a shared thread before setting up the app: show the thread first, then invite them in.
+  function joinCardHtml(post) {
+    return '<div class="card join-card">' + tofuSvg(48) + '<div class="install-text"><b>A friend shared this thread 👋</b>' +
+      '<span class="muted small">Toefl-Tofu is a free app where funny characters post with TOEFL words. Tap any <span class="vocab-demo">underlined word</span> to learn it.</span></div></div>';
+  }
+
+  function joinBarHtml() {
+    return '<button class="primary-btn" data-join>Join Toefl-Tofu — it\'s free</button>' +
+      (canInstall() ? '<button class="outline-btn small" data-install>Get the app</button>' : "");
   }
 
   function loadReplies() {
@@ -857,7 +923,7 @@
     } else if (profileSettings) {
       html += settingsHtml();
     } else {
-      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-settings>⚙️ Settings</button></div>';
+      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-share-app>Invite friends</button><button class="outline-btn icon-only" data-settings aria-label="Settings">⚙️</button></div>';
       if (S.mode === "cloud" && !S.user) {
         html += '<div class="card account"><span>Sign in to save your progress to your account and post threads everyone can see.</span><button class="primary-btn" data-signin>Sign in with Google</button></div>';
       }
@@ -1121,6 +1187,8 @@
 
   // ---------- Onboarding / preferences ----------
   var ob = null;
+  var booted = false;          // first render done
+  var joinedFromShare = false; // started from a shared thread's Join button
 
   function openOnboarding(editing) {
     var p = st().prefs;
@@ -1186,7 +1254,11 @@
     renderInstallSlot();
     window.scrollTo(0, 0);
     if (route.name === "profile") renderProfile();
+    if (route.name === "t") renderThread(route.param);
     toast("Your feed is ready ✨");
+    // Came from a friend's link: next, show how to keep Toefl-Tofu on the Home Screen.
+    if (joinedFromShare && canInstall() && isIOS()) setTimeout(openInstallGuide, 900);
+    joinedFromShare = false;
   }
 
   function closeOnboarding() {
@@ -1335,6 +1407,9 @@
       t.textContent = tr.hidden ? "Translate" : "Hide translation";
     } else if (d.soon) toast(d.soon + " are coming in the next version");
     else if (d.read) readPost(d.read);
+    else if (d.share) sharePost(d.share);
+    else if (d.shareApp !== undefined) shareApp();
+    else if (d.join !== undefined) { joinedFromShare = true; openOnboarding(false); }
     else if (d.noticeClose !== undefined) hideNotice();
     else if (d.delete) deletePost(d.delete);
     else if (d.open) { if (route.name !== "t" || route.param !== d.open) go("#/t/" + d.open); }
@@ -1597,8 +1672,10 @@
     refreshWordMarks();
     buildFeed();
     handleRoute();
+    booted = true;
     if (!st().prefs.onboarded) {
-      if (!ob || !ob.editing) openOnboarding(false);
+      // A shared thread opens straight away; the welcome screens wait until they tap Join or leave the thread.
+      if (route.name !== "t" && (!ob || !ob.editing)) openOnboarding(false);
     } else if (ob && !ob.editing) {
       closeOnboarding();
     }
