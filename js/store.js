@@ -19,7 +19,7 @@
       liked: {},
       bookmarked: {},
       words: {},       // key -> { addedAt, from, box, due }
-      profile: { name: "You", handle: "toefl_learner", avatar: "🙂" },
+      profile: { name: "You", handle: "toefl_learner", avatar: "🙂", photo: "", bio: "", target: 0 },
       prefs: { levels: [1, 2, 3], topics: [], onboarded: false },
       following: {},
       daily: { goal: 10, log: {}, met: {} },
@@ -37,7 +37,7 @@
       if (s && s[k] !== undefined && s[k] !== null) base[k] = s[k];
     });
     var fresh = freshState();
-    ["daily", "settings", "stats", "prefs"].forEach(function (k) {
+    ["daily", "settings", "stats", "prefs", "profile"].forEach(function (k) {
       Object.keys(fresh[k]).forEach(function (f) { if (base[k][f] === undefined) base[k][f] = fresh[k][f]; });
     });
     return base;
@@ -272,6 +272,7 @@
       Store.pendingLocalPosts = alreadyMerged ? [] : guest.myPosts.slice();
       writeJSON(MERGED_KEY, u.uid);
       writeJSON(CLOUD_CACHE + u.uid, s);
+      ensurePublicProfile(u.uid);
       if (!snap.exists || !alreadyMerged) pushUserDoc();
     }).catch(function (e) {
       // Stay signed in. Use the last copy saved on this device and try the cloud again later.
@@ -470,6 +471,158 @@
       return Promise.resolve();
     }
     return db.collection("comments").doc(comment.id).delete().then(function () { return bump(post, "replies", -1); });
+  };
+
+  // ---------- Public profiles ----------
+  // profiles/{uid} holds what other people see: name, handle, bio, avatar or photo.
+  // Posts and comments keep a copy of the name/avatar from when they were written;
+  // the app shows the latest profile instead whenever it has one.
+  var profiles = {};
+  var profileRequests = {};
+  var profileTimer = null;
+
+  function publicProfile(p) {
+    return {
+      name: String(p.name || "").slice(0, 40),
+      handle: String(p.handle || "").slice(0, 24),
+      avatar: String(p.avatar || "🙂").slice(0, 16),
+      photo: p.photo || "",
+      bio: String(p.bio || "").slice(0, 160),
+      target: p.target || 0
+    };
+  }
+
+  function ensurePublicProfile(uid) {
+    db.collection("profiles").doc(uid).get().then(function (snap) {
+      if (!snap.exists) return writePublicProfile();
+      profiles[uid] = snap.data();
+    }).catch(function (e) { console.error(e); });
+  }
+
+  function writePublicProfile() {
+    if (!isCloud()) return Promise.resolve();
+    var data = publicProfile(Store.state.profile);
+    data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+    profiles[Store.user.uid] = data;
+    return db.collection("profiles").doc(Store.user.uid).set(data);
+  }
+
+  // Latest known profile for a user id, or null (and it starts loading it).
+  Store.profileOf = function (uid) {
+    if (!uid) return null;
+    if (uid === Store.myUid()) return Store.state.profile;
+    if (profiles[uid]) return profiles[uid];
+    if (Store.mode === "cloud" && db && !profileRequests[uid]) {
+      profileRequests[uid] = true;
+      db.collection("profiles").doc(uid).get().then(function (snap) {
+        if (!snap.exists) return;
+        profiles[uid] = snap.data();
+        clearTimeout(profileTimer);
+        profileTimer = setTimeout(function () { Store.emit("profiles"); }, 80);
+      }).catch(function () { /* keep the copy stored on the post */ });
+    }
+    return null;
+  };
+
+  Store.saveProfile = function (p) {
+    Store.state.profile = Object.assign({}, Store.state.profile, p);
+    Store.save();
+    return writePublicProfile();
+  };
+
+  // ---------- Push notifications (Firebase Cloud Messaging) ----------
+  var PUSH_KEY = "toeflThreads.push";
+  var messaging = null;
+
+  Store.pushInfo = function () {
+    return readJSON(PUSH_KEY) || { enabled: false, prefs: { replies: true, likes: true, weekly: true } };
+  };
+
+  // "unsupported" | "ios-needs-install" | "needs-setup" | "needs-signin" | "denied" | "ready"
+  Store.pushStatus = function () {
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var standalone = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+    if (ios && !standalone) return "ios-needs-install";
+    if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return "unsupported";
+    if (Store.mode !== "cloud" || !window.FIREBASE_VAPID_KEY) return "needs-setup";
+    if (!Store.user) return "needs-signin";
+    if (Notification.permission === "denied") return "denied";
+    return "ready";
+  };
+
+  function getMessaging() {
+    if (messaging) return Promise.resolve(messaging);
+    var load = firebase.messaging ? Promise.resolve() : loadScript(SDK + "firebase-messaging-compat.js");
+    return load.then(function () {
+      messaging = firebase.messaging();
+      messaging.onMessage(function (payload) {
+        var n = payload.notification || {};
+        Store.emit({ type: "push", title: n.title, body: n.body, link: (payload.fcmOptions || {}).link });
+      });
+      return messaging;
+    });
+  }
+
+  function currentToken() {
+    return Promise.all([getMessaging(), navigator.serviceWorker.ready]).then(function (r) {
+      return r[0].getToken({ vapidKey: window.FIREBASE_VAPID_KEY, serviceWorkerRegistration: r[1] });
+    });
+  }
+
+  function writeTokenDoc(token, prefs) {
+    var FV = firebase.firestore.FieldValue;
+    return db.collection("pushTokens").doc(Store.user.uid).set({
+      tokens: FV.arrayUnion(token),
+      prefs: prefs,
+      tz: -new Date().getTimezoneOffset(),
+      updatedAt: FV.serverTimestamp()
+    }, { merge: true });
+  }
+
+  Store.enablePush = function (prefs) {
+    if (Store.pushStatus() !== "ready") return Promise.reject(new Error(Store.pushStatus()));
+    return Notification.requestPermission().then(function (perm) {
+      if (perm !== "granted") throw new Error("denied");
+      return currentToken();
+    }).then(function (token) {
+      if (!token) throw new Error("no-token");
+      writeJSON(PUSH_KEY, { enabled: true, token: token, prefs: prefs, uid: Store.user.uid });
+      return writeTokenDoc(token, prefs);
+    });
+  };
+
+  Store.updatePushPrefs = function (prefs) {
+    var info = Store.pushInfo();
+    info.prefs = prefs;
+    writeJSON(PUSH_KEY, info);
+    if (!info.enabled || !isCloud()) return Promise.resolve();
+    return db.collection("pushTokens").doc(Store.user.uid).set({ prefs: prefs, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+  };
+
+  Store.disablePush = function () {
+    var info = Store.pushInfo();
+    writeJSON(PUSH_KEY, { enabled: false, prefs: info.prefs });
+    if (!isCloud() || !info.token) return Promise.resolve();
+    return db.collection("pushTokens").doc(Store.user.uid).set({ tokens: firebase.firestore.FieldValue.arrayRemove(info.token) }, { merge: true })
+      .then(function () { return getMessaging(); })
+      .then(function (m) { return m.deleteToken(); })
+      .catch(function (e) { console.error(e); });
+  };
+
+  // Tokens can change; refresh it quietly on start when notifications are on.
+  Store.refreshPush = function () {
+    var info = Store.pushInfo();
+    if (!info.enabled || Store.pushStatus() !== "ready" || Notification.permission !== "granted") return;
+    currentToken().then(function (token) {
+      if (!token) return;
+      if (token !== info.token || info.uid !== Store.user.uid) {
+        info.token = token;
+        info.uid = Store.user.uid;
+        writeJSON(PUSH_KEY, info);
+      }
+      return writeTokenDoc(token, info.prefs);
+    }).catch(function (e) { console.error(e); });
   };
 
   window.Store = Store;

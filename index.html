@@ -38,6 +38,7 @@
         <button class="feed-tab active" data-feed="foryou" role="tab">For you</button>
         <button class="feed-tab" data-feed="following" role="tab">Following</button>
       </div>
+      <div id="installSlot"></div>
       <div class="composer-prompt" id="composerPrompt" data-action="compose">
         <div class="avatar sm" id="promptAvatar"></div>
         <span>Start a thread… try using a new word!</span>
@@ -128,6 +129,9 @@
       <button class="outline-btn" id="sheetMore">More threads with this word</button>
     </div>
   </div>
+
+  <!-- "Add to Home Screen" guide -->
+  <div class="sheet" id="installGuide" role="dialog" aria-modal="true" aria-label="Add to Home Screen" hidden></div>
 
   <!-- Composer -->
   <div class="composer" id="composer" role="dialog" aria-modal="true" aria-label="New thread" hidden>

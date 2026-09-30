@@ -6,7 +6,8 @@
   var VOCAB = window.VOCAB;
   var CHARACTERS = window.CHARACTERS;
   var TOPICS = window.TOPICS;
-  var AVATARS = ["🙂", "😎", "🦊", "🐼", "🐯", "🐸", "🦄", "🐙", "🌸", "🍀", "🔥", "📚"];
+  var AVATARS = ["🙂", "😎", "🤓", "🥳", "😺", "🦊", "🐼", "🐯", "🐸", "🐨", "🐧", "🦄", "🐙", "🦖", "🐝", "🌸", "🌻", "🍀", "🔥", "⭐", "🌈", "📚", "✏️", "🎧", "🎨", "⚽", "🏀", "🎮", "🍜", "🧋", "🍣", "🍩", "☕", "🧈", "🚀", "🌏"];
+  var TARGETS = [0, 80, 90, 100, 105, 110, 115];
   var CHUNK = 15;
   var QUIZ_EVERY = 7;
 
@@ -117,14 +118,30 @@
 
   function avatarHtml(author, size) {
     var style = author.color ? ' style="background:' + author.color + '"' : "";
-    return '<div class="avatar' + (size ? " " + size : "") + '"' + style + ">" + esc(author.avatar) + "</div>";
+    var inner = author.photo ? '<img src="' + esc(author.photo) + '" alt="">' : esc(author.avatar || "🙂");
+    return '<div class="avatar' + (size ? " " + size : "") + (author.photo ? " has-photo" : "") + '"' + style + ">" + inner + "</div>";
+  }
+
+  // Overlay the latest public profile (name, avatar, photo…) of a real user.
+  function withProfile(info, uid) {
+    var pr = S.profileOf(uid);
+    if (!pr) return info;
+    return Object.assign({}, info, {
+      name: pr.name || info.name, handle: pr.handle || info.handle, avatar: pr.avatar || info.avatar,
+      photo: pr.photo || "", bio: pr.bio || "", target: pr.target || 0
+    });
+  }
+
+  function authorFor(post) {
+    var a = C.authorOf(post);
+    return post.kind === "user" ? withProfile(a, post.uid) : a;
   }
 
   function likeCount(post) { return post.baseLikes + S.extraLikes(post); }
 
   function renderPost(post, opts) {
     opts = opts || {};
-    var a = C.authorOf(post);
+    var a = authorFor(post);
     var mine = isMine(post);
     var saved = st().words;
     var liked = !!st().liked[post.id];
@@ -153,12 +170,12 @@
 
     return '<article class="post' + (opts.full ? " full" : "") + '" data-id="' + post.id + '">' +
       '<div class="post-left">' +
-        '<button class="avatar-btn" data-person="' + esc(a.key) + '" aria-label="' + esc(a.name) + '">' + avatarHtml(a) + "</button>" +
+        '<button class="avatar-btn" data-person="' + esc(a.key) + '" aria-label="' + esc(a.name) + '"' + (post.uid ? ' data-avatar-uid="' + esc(post.uid) + '"' : "") + ">" + avatarHtml(a) + "</button>" +
         (followable ? '<button class="follow-plus" data-follow="' + esc(a.key) + '" aria-label="Follow ' + esc(a.name) + '">' + ICON.plus + "</button>" : "") +
         '<div class="thread-line"></div>' +
       "</div>" +
       '<div class="post-main">' +
-        '<div class="post-head"><button class="post-name" data-person="' + esc(a.key) + '">' + esc(a.name) + "</button>" +
+        '<div class="post-head"><button class="post-name" data-person="' + esc(a.key) + '"' + (post.uid ? ' data-name-uid="' + esc(post.uid) + '"' : "") + ">" + esc(a.name) + "</button>" +
           '<span class="post-handle">@' + esc(a.handle) + "</span>" +
           '<span class="post-time">· ' + (post.kind === "char" ? C.formatAge(post.ageMinutes) : C.timeAgo(post.ts)) + "</span></div>" +
         '<div class="post-tags">' + tags + "</div>" +
@@ -205,6 +222,19 @@
       var on = !!st().following[b.dataset.follow];
       b.classList.toggle("on", on);
       b.textContent = on ? "Following" : "Follow";
+    });
+  }
+
+  function refreshProfiles() {
+    $all("[data-avatar-uid]").forEach(function (el) {
+      var pr = S.profileOf(el.dataset.avatarUid);
+      if (!pr) return;
+      var small = el.querySelector(".avatar.sm") ? "sm" : "";
+      el.innerHTML = avatarHtml({ avatar: pr.avatar, photo: pr.photo }, small);
+    });
+    $all("[data-name-uid]").forEach(function (el) {
+      var pr = S.profileOf(el.dataset.nameUid);
+      if (pr && pr.name) el.textContent = pr.name;
     });
   }
 
@@ -567,13 +597,16 @@
     if (key.indexOf("uid:") === 0) {
       var uid = key.slice(4);
       if (uid === S.myUid()) { go("#/profile"); return; }
-      var info = userInfoCache[uid] || { name: "TOEFL learner", handle: "user", avatar: "🙂" };
+      var info = withProfile(userInfoCache[uid] || { name: "TOEFL learner", handle: "user", avatar: "🙂" }, uid);
+      var bio = info.bio || "Learning English on Toefl-Tofu";
+      var target = info.target ? "🎯 TOEFL target: " + info.target + " · " : "";
       $("#topbarTitle").textContent = "@" + info.handle;
-      body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on Toefl-Tofu", "") + '<div class="empty">Loading…</div>';
+      body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, bio, target, "", info.photo) + '<div class="empty">Loading…</div>';
       S.userPosts(uid).then(function (raws) {
         var posts = raws.map(function (r) { var p = C.userPost(r); userPostCache[p.id] = p; return p; });
         if (raws[0]) userInfoCache[uid] = { name: raws[0].name, handle: raws[0].handle, avatar: raws[0].avatar };
-        body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, "Learning English on Toefl-Tofu", posts.length + " threads") +
+        info = withProfile(userInfoCache[uid] || info, uid);
+        body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, info.bio || bio, target + posts.length + " threads", "", info.photo) +
           (posts.length ? posts.map(function (p) { return renderPost(p); }).join("") : '<div class="empty">No threads yet.</div>');
       }).catch(function () { body.querySelector(".empty").textContent = "Couldn't load threads."; });
       return;
@@ -588,10 +621,10 @@
     body.innerHTML = personHeader(key, c.name, c.handle, c.avatar, c.color, c.bio, meta, c.followers) + posts.map(function (p) { return renderPost(p); }).join("");
   }
 
-  function personHeader(key, name, handle, avatar, color, bio, meta, followers) {
+  function personHeader(key, name, handle, avatar, color, bio, meta, followers, photo) {
     var on = !!st().following[key];
     return '<div class="profile-head"><div><h2>' + esc(name) + '</h2><div class="handle">@' + esc(handle) + "</div></div>" +
-      '<div class="avatar lg"' + (color ? ' style="background:' + color + '"' : "") + ">" + esc(avatar) + "</div></div>" +
+      avatarHtml({ avatar: avatar, color: color, photo: photo }, "lg") + "</div>" +
       '<p class="profile-bio">' + esc(bio) + "</p>" +
       '<div class="profile-stats">' + (followers ? "<span><b>" + esc(followers) + "</b> followers</span>" : "") + '<span class="muted">' + esc(meta) + "</span></div>" +
       '<div class="profile-edit"><button class="follow-btn wide' + (on ? " on" : "") + '" data-follow="' + esc(key) + '">' + (on ? "Following" : "Follow") + "</button></div>" +
@@ -613,7 +646,7 @@
     }
     $("#replyBar").hidden = false;
     $("#replyAvatar").textContent = st().profile.avatar;
-    $("#replyInput").placeholder = S.canWrite() ? "Reply to " + C.authorOf(post).name + "…" : "Sign in to reply";
+    $("#replyInput").placeholder = S.canWrite() ? "Reply to " + authorFor(post).name + "…" : "Sign in to reply";
     body.innerHTML = renderPost(post, { full: true }) + '<div class="section-title">Replies</div><div id="replies"><div class="empty small">Loading…</div></div>';
     loadReplies();
   }
@@ -625,7 +658,7 @@
       if (threadPost !== post) return;
       var box = $("#replies");
       if (!list.length) {
-        box.innerHTML = '<div class="empty small">No replies yet. Be the first — ' + (post.kind === "char" ? esc(C.authorOf(post).name) + " will answer you!" : "say something nice!") + "</div>";
+        box.innerHTML = '<div class="empty small">No replies yet. Be the first — ' + (post.kind === "char" ? esc(authorFor(post).name) + " will answer you!" : "say something nice!") + "</div>";
         return;
       }
       box.innerHTML = list.map(function (c) { return renderComment(post, c); }).join("");
@@ -643,13 +676,14 @@
   function renderComment(post, c) {
     var mine = c.uid === S.myUid();
     userInfoCache[c.uid] = userInfoCache[c.uid] || { name: c.name, handle: c.handle, avatar: c.avatar };
+    var who = withProfile({ name: c.name, handle: c.handle, avatar: c.avatar }, c.uid);
     var html = '<div class="comment">' +
-      '<button class="avatar-btn" data-person="uid:' + esc(c.uid) + '">' + avatarHtml({ avatar: c.avatar }, "sm") + "</button>" +
-      '<div class="comment-main"><div class="post-head"><button class="post-name" data-person="uid:' + esc(c.uid) + '">' + esc(c.name) + '</button><span class="post-time">· ' + C.timeAgo(c.createdAt) + "</span>" +
+      '<button class="avatar-btn" data-person="uid:' + esc(c.uid) + '" data-avatar-uid="' + esc(c.uid) + '">' + avatarHtml(who, "sm") + "</button>" +
+      '<div class="comment-main"><div class="post-head"><button class="post-name" data-person="uid:' + esc(c.uid) + '" data-name-uid="' + esc(c.uid) + '">' + esc(who.name) + '</button><span class="post-time">· ' + C.timeAgo(c.createdAt) + "</span>" +
       (mine ? '<button class="link danger small push" data-del-comment="' + esc(c.id) + '">Delete</button>' : "") + "</div>" +
       '<div class="post-text">' + C.renderFree(c.text, st().words) + "</div></div></div>";
     if (post.kind === "char") {
-      var a = C.authorOf(post);
+      var a = authorFor(post);
       var typing = justReplied === c.id;
       html += '<div class="comment char-reply' + (typing ? " typing" : "") + '"' + (typing ? ' data-typing="' + esc(c.id) + '"' : "") + ">" +
         '<button class="avatar-btn" data-person="' + a.key + '">' + avatarHtml(a, "sm") + "</button>" +
@@ -788,9 +822,10 @@
 
   function leaderboardRows(people) {
     var s = st(), week = C.weekKey();
-    var me = { id: "me", name: s.profile.name, avatar: s.profile.avatar, points: C.weekPoints(s.daily), me: true };
+    var me = { id: "me", name: s.profile.name, avatar: s.profile.avatar, photo: s.profile.photo, points: C.weekPoints(s.daily), me: true };
     var myUid = S.myUid();
-    var rows = C.characterScores(week).concat((people || []).filter(function (r) { return r.uid !== myUid; })).concat([me]);
+    var others = (people || []).filter(function (r) { return r.uid !== myUid; }).map(function (r) { return withProfile(r, r.uid); });
+    var rows = C.characterScores(week).concat(others).concat([me]);
     rows.sort(function (a, b) { return b.points - a.points || (a.me ? -1 : b.me ? 1 : 0); });
     return rows;
   }
@@ -812,7 +847,7 @@
   function lbRow(r, rank) {
     var medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : rank;
     return '<div class="lb-row' + (r.me ? " me" : "") + '"' + (r.me ? "" : ' data-person="' + esc(r.id) + '"') + ">" +
-      '<span class="lb-rank">' + medal + "</span>" + avatarHtml({ avatar: r.avatar, color: r.color }, "sm") +
+      '<span class="lb-rank">' + medal + "</span>" + avatarHtml({ avatar: r.avatar, color: r.color, photo: r.photo }, "sm") +
       '<span class="lb-name">' + esc(r.name) + (r.me && r.name !== "You" ? " (you)" : "") + "</span><b>" + r.points + "</b></div>";
   }
 
@@ -840,7 +875,9 @@
     var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
 
     var html = '<div class="profile-head"><div><h2>' + esc(p.name) + '</h2><div class="handle">@' + esc(p.handle) + "</div></div>" +
-      '<div class="avatar lg">' + esc(p.avatar) + "</div></div>";
+      avatarHtml(p, "lg") + "</div>" +
+      (p.bio ? '<p class="profile-bio">' + esc(p.bio) + "</p>" : "") +
+      (p.target ? '<p class="profile-bio muted">🎯 TOEFL target: <b>' + p.target + "</b></p>" : "");
 
     // Account
     if (S.mode === "cloud" && S.user) {
@@ -855,11 +892,7 @@
       "</b> words</span><span><b>" + Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
 
     if (editingProfile) {
-      html += '<div class="edit-form"><label>Name<input id="editName" maxlength="30" value="' + esc(p.name) + '"></label>' +
-        '<label>Username<input id="editHandle" maxlength="24" value="' + esc(p.handle) + '"></label>' +
-        '<label>Avatar<div class="emoji-picks">' + AVATARS.map(function (a) {
-          return '<button class="emoji-pick' + (a === p.avatar ? " active" : "") + '" data-avatar="' + a + '">' + a + "</button>";
-        }).join("") + '</div></label><button class="primary-btn" data-save-profile>Save profile</button></div>';
+      html += editFormHtml();
     } else {
       html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-edit-prefs>Feed preferences</button></div>';
     }
@@ -892,6 +925,8 @@
         return '<button class="chip' + (s.settings.rate === r[0] ? " active" : "") + '" data-rate="' + r[0] + '">' + r[1] + "</button>";
       }).join("") + "</div></div>";
 
+    html += notificationsCardHtml() + installCardHtml(false);
+
     var followKeys = Object.keys(s.following);
     html += '<div class="section-title">Following · ' + followKeys.length + "</div>";
     html += followKeys.length ? '<div class="following-strip">' + followKeys.map(function (k) {
@@ -919,6 +954,192 @@
       if (route.name === "profile") renderLeaderboard(people);
     });
   }
+
+  // ---------- Edit profile ----------
+  var draft = null;   // photo/avatar being edited
+
+  function editFormHtml() {
+    var p = st().profile;
+    draft = draft || { photo: p.photo || "", avatar: p.avatar };
+    return '<div class="edit-form">' +
+      '<div class="photo-row"><div id="editPreview">' + avatarHtml(draft, "lg") + "</div>" +
+        '<div class="photo-actions"><label class="outline-btn file-btn">📷 Upload photo<input type="file" accept="image/*" id="photoInput" hidden></label>' +
+        (draft.photo ? '<button class="link danger" data-remove-photo>Remove photo</button>' : '<span class="muted small">Or pick an emoji below</span>') + "</div></div>" +
+      '<label>Name<input id="editName" maxlength="40" value="' + esc(p.name) + '"></label>' +
+      '<label>Username<input id="editHandle" maxlength="24" autocapitalize="off" value="' + esc(p.handle) + '"></label>' +
+      '<label>Bio <span class="muted" id="bioCount">' + (p.bio || "").length + '/160</span><textarea id="editBio" maxlength="160" rows="3" placeholder="e.g. Aiming for 100+ this summer! Loves cats and boba.">' + esc(p.bio || "") + "</textarea></label>" +
+      '<label>TOEFL target score<select id="editTarget">' + TARGETS.map(function (t) {
+        return '<option value="' + t + '"' + ((p.target || 0) === t ? " selected" : "") + ">" + (t ? t + "+" : "Not set") + "</option>";
+      }).join("") + "</select></label>" +
+      '<label>Emoji avatar<div class="emoji-picks">' + AVATARS.map(function (a) {
+        return '<button class="emoji-pick' + (!draft.photo && a === draft.avatar ? " active" : "") + '" data-avatar="' + a + '">' + a + "</button>";
+      }).join("") + "</div></label>" +
+      '<div class="profile-edit flush"><button class="outline-btn" data-cancel-edit>Cancel</button><button class="primary-btn" data-save-profile>Save profile</button></div></div>';
+  }
+
+  function refreshDraftPreview() {
+    var box = $("#editPreview");
+    if (box) box.innerHTML = avatarHtml(draft, "lg");
+    $all(".emoji-pick").forEach(function (b) { b.classList.toggle("active", !draft.photo && b.dataset.avatar === draft.avatar); });
+    var actions = $(".photo-actions");
+    if (actions) actions.lastElementChild.outerHTML = draft.photo ? '<button class="link danger" data-remove-photo>Remove photo</button>' : '<span class="muted small">Or pick an emoji below</span>';
+  }
+
+  // Crop to a square and shrink so it fits comfortably in the database (< 55 KB).
+  function processPhoto(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var size = 192, c = document.createElement("canvas");
+        c.width = c.height = size;
+        var side = Math.min(img.naturalWidth, img.naturalHeight);
+        c.getContext("2d").drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, size, size);
+        var q = 0.82, data = c.toDataURL("image/jpeg", q);
+        while (data.length > 55000 && q > 0.3) { q -= 0.12; data = c.toDataURL("image/jpeg", q); }
+        URL.revokeObjectURL(url);
+        resolve(data);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error("bad image")); };
+      img.src = url;
+    });
+  }
+
+  function saveProfileForm() {
+    var old = st().profile;
+    var next = {
+      name: $("#editName").value.trim().slice(0, 40) || "You",
+      handle: $("#editHandle").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || old.handle || "toefl_learner",
+      bio: $("#editBio").value.trim().slice(0, 160),
+      target: parseInt($("#editTarget").value, 10) || 0,
+      avatar: draft.avatar || "🙂",
+      photo: draft.photo || ""
+    };
+    editingProfile = false;
+    draft = null;
+    S.saveProfile(next).then(function () { toast("Profile updated ✨"); }, function (e) {
+      console.error(e);
+      toast("Saved on this phone — couldn't update your public profile");
+    });
+    renderProfile();
+    buildFeed();
+  }
+
+  // ---------- Notifications ----------
+  function notificationsCardHtml() {
+    var status = S.pushStatus(), info = S.pushInfo();
+    var body = "";
+    if (status === "ios-needs-install") {
+      body = '<p class="muted small">On iPhone, notifications work after you add Toefl-Tofu to your Home Screen and open it from there.</p><button class="outline-btn" data-install-guide>Show me how</button>';
+    } else if (status === "unsupported") {
+      body = '<p class="muted small">This browser doesn\'t support notifications. Try Chrome or Safari.</p>';
+    } else if (status === "needs-setup") {
+      body = '<p class="muted small">Notifications are coming soon.</p>';
+    } else if (status === "needs-signin") {
+      body = '<p class="muted small">Sign in to get notified when people reply to or like your threads.</p><button class="outline-btn" data-signin>Sign in with Google</button>';
+    } else if (status === "denied") {
+      body = '<p class="muted small">Notifications are blocked for this site. Allow them in your browser or phone settings, then come back.</p>';
+    } else if (!info.enabled) {
+      body = '<p class="muted small">Get a notification when someone replies to your thread, a daily summary of new likes, and your weekly leaderboard rank.</p><button class="primary-btn" data-push-on>🔔 Turn on notifications</button>';
+    } else {
+      body = '<div class="toggle-list">' + [["replies", "Replies to my threads"], ["likes", "Daily summary of likes (8 pm)"], ["weekly", "Weekly leaderboard rank (Monday)"]].map(function (x) {
+        return '<label class="toggle"><span>' + x[1] + '</span><input type="checkbox" data-push-pref="' + x[0] + '"' + (info.prefs[x[0]] !== false ? " checked" : "") + "></label>";
+      }).join("") + '</div><button class="link danger" data-push-off>Turn off notifications</button>';
+    }
+    return '<div class="card" id="notifCard"><div class="goal-top"><b>🔔 Notifications</b>' + (info.enabled && status === "ready" ? '<span class="muted small">On</span>' : "") + "</div>" + body + "</div>";
+  }
+
+  function turnOnPush() {
+    var info = S.pushInfo();
+    var btn = $("[data-push-on]");
+    if (btn) { btn.disabled = true; btn.textContent = "Turning on…"; }
+    S.enablePush(info.prefs).then(function () {
+      toast("Notifications on 🔔");
+    }, function (e) {
+      console.error(e);
+      toast(e && e.message === "denied" ? "Notifications were not allowed" : "Couldn't turn on notifications");
+    }).then(function () { if (route.name === "profile") renderProfile(); });
+  }
+
+  // ---------- Install (PWA) ----------
+  var installPrompt = null;
+  var INSTALL_DISMISS_KEY = "toeflThreads.installDismissed";
+
+  function isStandalone() {
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+  }
+  function isIOS() {
+    var ua = navigator.userAgent || "";
+    return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  }
+  function canInstall() {
+    if (isStandalone() || inAppBrowser()) return false;
+    return !!installPrompt || isIOS();
+  }
+
+  function installCardHtml(dismissible) {
+    if (!canInstall()) return "";
+    return '<div class="card install-card">' + tofuSvg(44) +
+      '<div class="install-text"><b>Get the Toefl-Tofu app</b><span class="muted small">Add it to your Home Screen: opens full-screen, stays signed in' + (isIOS() ? ", and can send notifications" : "") + ".</span></div>" +
+      '<button class="post-btn small" data-install>' + (installPrompt ? "Install" : "How?") + "</button>" +
+      (dismissible ? '<button class="notice-x" data-install-dismiss aria-label="Not now">✕</button>' : "") + "</div>";
+  }
+
+  function renderInstallSlot() {
+    var slot = $("#installSlot");
+    if (!slot) return;
+    var dismissed = 0;
+    try { dismissed = parseInt(localStorage.getItem(INSTALL_DISMISS_KEY), 10) || 0; } catch (e) { /* ignore */ }
+    var show = st().prefs.onboarded && Date.now() - dismissed > 7 * 86400000;
+    slot.innerHTML = show ? installCardHtml(true) : "";
+  }
+
+  function startInstall() {
+    if (installPrompt) {
+      installPrompt.prompt();
+      installPrompt.userChoice.then(function (choice) {
+        if (choice.outcome === "accepted") toast("Installing Toefl-Tofu 🧈");
+        installPrompt = null;
+        renderInstallSlot();
+        if (route.name === "profile") renderProfile();
+      });
+    } else {
+      openInstallGuide();
+    }
+  }
+
+  function openInstallGuide() {
+    var chrome = /CriOS/.test(navigator.userAgent);
+    var shareIcon = '<svg class="share-ico" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+    $("#installGuide").innerHTML = '<div class="sheet-handle"></div><h2>Add to Home Screen</h2>' +
+      '<p class="muted">Toefl-Tofu works like an app: full-screen, stays signed in, and on iPhone it can send notifications.</p>' +
+      '<ol class="steps">' +
+        "<li>Tap the <b>Share</b> button " + shareIcon + (chrome ? " at the top right, next to the address bar." : " at the bottom of Safari.") + ' <span class="muted">（分享）</span></li>' +
+        '<li>Scroll down and tap <b>Add to Home Screen</b> <span class="muted">（加入主畫面）</span></li>' +
+        '<li>Tap <b>Add</b> <span class="muted">（新增）</span>, then open Toefl-Tofu from the tofu icon on your Home Screen.</li>' +
+      "</ol>" +
+      '<p class="muted small">You may need to sign in once more inside the Home Screen app.</p>' +
+      '<button class="primary-btn" data-close-guide>Got it</button>';
+    $("#sheetOverlay").hidden = false;
+    $("#installGuide").hidden = false;
+  }
+
+  function closeInstallGuide() {
+    $("#installGuide").hidden = true;
+    if ($("#wordSheet").hidden) $("#sheetOverlay").hidden = true;
+  }
+
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    installPrompt = e;
+    renderInstallSlot();
+    if (route.name === "profile") renderProfile();
+  });
+  window.addEventListener("appinstalled", function () {
+    installPrompt = null;
+    renderInstallSlot();
+    toast("Toefl-Tofu installed 🎉");
+  });
 
   // ---------- Onboarding / preferences ----------
   var ob = null;
@@ -984,6 +1205,7 @@
     S.save();
     closeOnboarding();
     buildFeed();
+    renderInstallSlot();
     window.scrollTo(0, 0);
     if (route.name === "profile") renderProfile();
     toast("Your feed is ready ✨");
@@ -1175,22 +1397,23 @@
     }
     else if (d.restart !== undefined) { startDeck(); renderReview(); }
     // Profile
-    else if (d.editProfile !== undefined) { editingProfile = true; renderProfile(); }
+    else if (d.editProfile !== undefined) { editingProfile = true; draft = null; renderProfile(); var f = $(".edit-form"); if (f) window.scrollTo(0, f.offsetTop - 70); }
     else if (d.editPrefs !== undefined) openOnboarding(true);
     else if (d.ptab) { profileTab = d.ptab; renderProfile(); var tabs = $(".profile-tabs"); if (tabs) window.scrollTo(0, tabs.offsetTop - 60); }
     else if (d.lbMore !== undefined) { lbExpanded = !lbExpanded; S.leaderboard(C.weekKey()).then(renderLeaderboard); }
     else if (d.rate) { st().settings.rate = parseFloat(d.rate); S.save(); renderProfile(); speak("This is how fast I will read."); }
-    else if (d.avatar) $all(".emoji-pick").forEach(function (b) { b.classList.toggle("active", b === t); });
-    else if (d.saveProfile !== undefined) {
-      var name = $("#editName").value.trim() || "You";
-      var handle = $("#editHandle").value.trim().replace(/[^A-Za-z0-9_.]/g, "") || "toefl_learner";
-      var picked = $(".emoji-pick.active");
-      st().profile = { name: name, handle: handle, avatar: picked ? picked.dataset.avatar : st().profile.avatar };
-      editingProfile = false;
-      S.save();
-      renderProfile();
-      buildFeed();
-      toast("Profile updated");
+    else if (d.avatar) { draft.avatar = d.avatar; draft.photo = ""; refreshDraftPreview(); }
+    else if (d.saveProfile !== undefined) saveProfileForm();
+    else if (d.cancelEdit !== undefined) { editingProfile = false; draft = null; renderProfile(); }
+    else if (d.removePhoto !== undefined) { draft.photo = ""; refreshDraftPreview(); }
+    else if (d.pushOn !== undefined) turnOnPush();
+    else if (d.pushOff !== undefined) { S.disablePush().then(function () { toast("Notifications off"); renderProfile(); }); }
+    else if (d.install !== undefined) startInstall();
+    else if (d.installGuide !== undefined) openInstallGuide();
+    else if (d.closeGuide !== undefined) closeInstallGuide();
+    else if (d.installDismiss !== undefined) {
+      try { localStorage.setItem(INSTALL_DISMISS_KEY, String(Date.now())); } catch (e2) { /* ignore */ }
+      renderInstallSlot();
     } else if (d.goal) {
       st().daily.goal = parseInt(d.goal, 10);
       var today = C.dayKey();
@@ -1224,8 +1447,22 @@
     else if (d.obClose !== undefined) closeOnboarding();
   });
 
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t.id === "photoInput" && t.files && t.files[0]) {
+      processPhoto(t.files[0]).then(function (data) { draft.photo = data; refreshDraftPreview(); }, function () { toast("Couldn't read that photo"); });
+    } else if (t.dataset && t.dataset.pushPref) {
+      var info = S.pushInfo();
+      info.prefs[t.dataset.pushPref] = t.checked;
+      S.updatePushPrefs(info.prefs);
+    }
+  });
+  document.addEventListener("input", function (e) {
+    if (e.target.id === "editBio") $("#bioCount").textContent = e.target.value.length + "/160";
+  });
+
   // Word sheet
-  $("#sheetOverlay").addEventListener("click", closeSheet);
+  $("#sheetOverlay").addEventListener("click", function () { closeSheet(); closeInstallGuide(); });
   $("#speakBtn").addEventListener("click", function () { if (sheetKey) speak(sheetKey); });
   $("#sheetSave").addEventListener("click", function () {
     if (!sheetKey) return;
@@ -1305,6 +1542,11 @@
       if (route.name === "home" && window.scrollY < 300) buildFeed(); else feedDirty = true;
       if (route.name === "profile") renderProfile();
       refreshCounts();
+    } else if (kind && kind.type === "push") {
+      toast("🔔 " + (kind.title || "") + (kind.body ? " — " + kind.body : ""), 4000);
+    } else if (kind === "profiles") {
+      refreshProfiles();
+      if (route.name === "u") renderPerson(route.param);
     } else if (kind === "stats") {
       refreshCounts();
     } else if (kind === "auth") {
@@ -1370,6 +1612,8 @@
 
   function renderAll() {
     updateNotices();
+    renderInstallSlot();
+    S.refreshPush();
     renderGoalChip();
     refreshWordMarks();
     buildFeed();
@@ -1387,5 +1631,8 @@
     location.replace(location.origin + location.pathname + (location.search ? location.search + "&" : "?") + "openExternalBrowser=1" + location.hash);
   }
   setupInfiniteScroll();
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("Service worker not registered", e); });
+  }
   S.init().then(renderAll);
 })();

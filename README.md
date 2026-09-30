@@ -26,6 +26,9 @@
 | **豆腐徽章** | 14 個成就（收藏字數、連續天數、答題、發文……），在 Profile 查看 |
 | **Liked / Saved 分頁** | Profile 下方分成 Threads、Liked（按讚過的串文）、Saved（收藏的串文） |
 | **先登入再設定** | 已設定 Firebase 時，第一次打開會先請你用 Google 登入；帳號裡已有偏好就不用再選程度 |
+| **編輯個人資料** | 上傳照片（自動裁成正方形並壓縮）或選 emoji、暱稱、帳號、自我介紹、托福目標分數；改完後舊貼文與留言也會跟著更新 |
+| **PWA（加到主畫面）** | 可以離線開啟；Android 會出現「Install」按鈕，iPhone 會顯示一步步的「加入主畫面」教學 |
+| **推播通知** | 有人回覆你的串文、每天晚上 8 點的按讚摘要、每週一早上的排行榜名次（可以個別關掉） |
 
 ## 資料存在哪裡？兩種模式
 
@@ -53,6 +56,20 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 
 > **更新規則：** 規則偶爾會因為新功能而更新（例如每週排行榜）。如果檢查頁顯示「⑤ 安全規則需要更新」，就用檢查頁上的按鈕複製新規則，貼到 Firestore → Rules → **Publish**。
 
+## 推播通知設定（一次性，約 5 分鐘）
+
+推播由 GitHub Actions 每 30 分鐘執行一次 `scripts/notify/send.js` 來發送，免費、不用架伺服器。
+
+1. **推播金鑰（VAPID）**：Firebase → ⚙️ Project settings → **Cloud Messaging** 分頁 → 最下面 **Web Push certificates** → **Generate key pair** → 把出現的一長串金鑰貼給 Claude（或自己填進 `js/firebase-config.js` 的 `FIREBASE_VAPID_KEY`）。這把金鑰本來就是公開的。
+2. **服務帳戶金鑰（這把是秘密，不要貼到聊天室或程式碼裡）**：
+   - Firebase → ⚙️ Project settings → **Service accounts** → **Generate new private key** → 會下載一個 `.json` 檔。
+   - GitHub repo → **Settings → Secrets and variables → Actions → New repository secret**
+   - Name 填 `FIREBASE_SERVICE_ACCOUNT`，Secret 貼上整個 `.json` 檔的內容 → **Add secret**。
+3. 到 repo 的 **Actions** 分頁 → 左邊 **Push notifications** → **Run workflow**，跑一次確認是綠色 ✅。
+4. 手機打開 App → Profile → **🔔 Turn on notifications**。iPhone 需要 iOS 16.4 以上，而且要先「加入主畫面」，再從主畫面的豆腐圖示打開。
+
+> 注意：GitHub 會在 repo 連續 60 天沒有任何更新時暫停排程，到 Actions 分頁按一下啟用即可。
+
 **為什麼有人每次都要重新登入？** 最常見的原因是從 LINE、Instagram、Facebook 裡直接點開連結。這些 App 內建的瀏覽器常常不保存登入狀態。App 現在會自動偵測：LINE 會自動跳到手機的瀏覽器，其他 App 會顯示提示，請改用 Safari／Chrome 開啟。無痕模式也不會保存登入。
 
 **最後用兩支手機測一次：** 兩支手機分別用不同的 Google 帳號登入（或用一般視窗＋無痕視窗）。A 發文、按讚、留言，B 重新整理後應該看得到。
@@ -73,6 +90,9 @@ js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
 js/firebase-config.js      Firebase 設定（改成 null 就回到本機模式）
 setup.html                 Firebase 設定檢查頁
+sw.js                      Service worker（離線、安裝、背景推播）
+scripts/notify/            推播發送程式（GitHub Actions 執行）
+.github/workflows/         每 30 分鐘發送推播的排程
 firestore.rules            Firestore 安全規則
 scripts/check-data.js      檢查內容有沒有打錯
 ```

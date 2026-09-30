@@ -1,0 +1,31 @@
+name: Push notifications
+
+# Sends reply / daily-likes / weekly-rank notifications for Toefl-Tofu.
+# Needs the repository secret FIREBASE_SERVICE_ACCOUNT (see README).
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: notifications
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: scripts/notify/package-lock.json
+      - run: npm ci --prefix scripts/notify --no-audit --no-fund
+      - run: node scripts/notify/send.js
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

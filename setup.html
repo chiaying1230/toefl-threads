@@ -107,17 +107,27 @@
           return { ok: false, html: row("warn", "④ Firestore 回應異常：" + res.status, t) };
         }
         // Posts are public; other people's private user docs must NOT be readable.
-        return getJSON(base + "users/__setup_check__?key=" + cfg.apiKey).then(function (r2) {
+        return getJSON(base + "users/setup-check?key=" + cfg.apiKey).then(function (r2) {
           if (r2.status === 403) {
             // The leaderboard needs the newer rules; older rules deny reading it.
             return getJSON(base + "weeks/2000-W01/scores?pageSize=1&key=" + cfg.apiKey).then(function (r3) {
-              if (r3.status === 200) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
-              return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了排行榜）", rulesFix) };
+              if (r3.status !== 200) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了排行榜）", rulesFix) };
+              // Public profiles (photos, bio) arrived with the next rules update.
+              return getJSON(base + "profiles/setup-check?key=" + cfg.apiKey).then(function (r4) {
+                if (r4.status === 403) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了個人資料照片與推播）", rulesFix) };
+                return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
+              });
             });
           }
           return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 規則太寬鬆（可能是 test mode），別人可以讀取所有資料", rulesFix) };
         });
       });
+    }
+
+    function checkPush() {
+      if (window.FIREBASE_VAPID_KEY) return row("ok", "⑦ 推播金鑰已設定");
+      return row("warn", "⑦ 推播通知：還沒設定推播金鑰（可選）",
+        '到 <a class="link" target="_blank" href="' + CONSOLE + '/settings/cloudmessaging">Project settings → Cloud Messaging</a>，最下面 <code>Web Push certificates</code> 按 <code>Generate key pair</code>，把產生的金鑰貼給 Claude。另外還要在 GitHub 設定 <code>FIREBASE_SERVICE_ACCOUNT</code>（見 README）。');
     }
 
     function checkPages() {
@@ -131,7 +141,7 @@
         if (!c.ok) { checksEl.innerHTML = c.html; return; }
         return Promise.all([checkAuth(), checkFirestore()]).then(function (r) {
           var allOk = r[0].ok && r[1].ok;
-          checksEl.innerHTML = c.html + r[0].html + r[1].html + checkPages() +
+          checksEl.innerHTML = c.html + r[0].html + r[1].html + checkPages() + checkPush() +
             (allOk ? '<div class="ok-all">🎉 全部設定完成！按「測試 Google 登入」確認一次，然後回到 App 的 Profile 登入即可。</div>' : "");
         });
       }).catch(function (e) {

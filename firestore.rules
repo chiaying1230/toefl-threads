@@ -66,6 +66,40 @@ service cloud.firestore {
       allow delete: if signedIn() && request.auth.uid == uid;
     }
 
+    // Public profile: name, username, bio, avatar emoji or a small photo. Everyone can read.
+    match /profiles/{uid} {
+      allow read: if true;
+      allow create, update: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'handle', 'avatar', 'photo', 'bio', 'target', 'updatedAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.handle is string && request.resource.data.handle.size() <= 24
+        && request.resource.data.avatar is string && request.resource.data.avatar.size() <= 16
+        && request.resource.data.bio is string && request.resource.data.bio.size() <= 160
+        && request.resource.data.photo is string && request.resource.data.photo.size() <= 60000
+        && (request.resource.data.photo == '' || request.resource.data.photo.matches('^data:image/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$'))
+        && request.resource.data.target is int && request.resource.data.target >= 0 && request.resource.data.target <= 120
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if signedIn() && request.auth.uid == uid;
+    }
+
+    // Where to send someone's push notifications, and which kinds they want. Private.
+    match /pushTokens/{uid} {
+      allow read, delete: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['tokens', 'prefs', 'tz', 'updatedAt'])
+        && request.resource.data.tokens is list && request.resource.data.tokens.size() <= 10
+        && request.resource.data.prefs is map
+        && request.resource.data.tz is int;
+    }
+
+    // Bookkeeping for the notification sender (GitHub Actions uses an admin key).
+    // No app user can read or write it.
+    match /notifyState/{doc} {
+      allow read, write: if false;
+    }
+
     // Replies. Everyone can read; only the author can create or delete.
     match /comments/{commentId} {
       allow read: if true;

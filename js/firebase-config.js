@@ -10,3 +10,7 @@ window.FIREBASE_CONFIG = {
   appId: "1:2509579521:web:637cdea53ff21b045de700",
   measurementId: "G-HCED9G88HN"
 };
+
+// Web Push certificate (VAPID key) for notifications.
+// Firebase console → Project settings → Cloud Messaging → Web Push certificates → Generate key pair.
+window.FIREBASE_VAPID_KEY = null;
