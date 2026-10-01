@@ -1233,6 +1233,21 @@
   }
 
   // ---------- Notifications ----------
+  // What to do when turning notifications on fails, by step.
+  var PUSH_HELP = {
+    permission: '<p class="muted small">Allow notifications for this site: tap the 🔒 or ⓘ icon next to the address → <b>Permissions</b> (網站設定) → <b>Notifications</b> → Allow. On an app added to your Home Screen: Android Settings → Apps → toEfu → Notifications → On.</p>',
+    sw: '<p class="muted small">The app\'s background helper isn\'t ready yet. Reload the page once and try again.</p>',
+    token: '<p class="muted small">Your phone couldn\'t register with the notification service. Check your connection, reload the page and try again. If you use a battery saver or a privacy browser, try Chrome.</p>',
+    save: '<p class="muted small">Notifications were allowed, but we couldn\'t save them to your account. Reload the page and try again.</p>'
+  };
+
+  function pushErrorHtml(err) {
+    var stage = PUSH_HELP[err.stage] ? err.stage : "token";
+    var title = { permission: "Notifications aren't allowed", sw: "Couldn't start notifications", token: "Couldn't register this phone", save: "Couldn't save to your account" }[stage];
+    return '<div class="push-error"><b>⚠️ ' + title + "</b>" + PUSH_HELP[stage] +
+      (err.detail ? '<code class="push-code">' + esc(stage + " · " + String(err.detail).slice(0, 160)) + "</code>" : "") + "</div>";
+  }
+
   function notificationsCardHtml() {
     var status = S.pushStatus(), info = S.pushInfo();
     var body = "";
@@ -1245,13 +1260,15 @@
     } else if (status === "needs-signin") {
       body = '<p class="muted small">Sign in to get notified when people reply to or like your threads.</p><button class="outline-btn" data-signin>Sign in with Google</button>';
     } else if (status === "denied") {
-      body = '<p class="muted small">Notifications are blocked for this site. Allow them in your browser or phone settings, then come back.</p>';
+      body = '<p class="muted small">Notifications are blocked for this site.</p>' + PUSH_HELP.permission;
     } else if (!info.enabled) {
-      body = '<p class="muted small">Get a notification when someone replies to your thread and a daily summary of new likes.</p><button class="primary-btn" data-push-on>🔔 Turn on notifications</button>';
+      body = '<p class="muted small">Get a notification when someone replies to your thread and a daily summary of new likes.</p>' +
+        (info.error ? pushErrorHtml(info.error) : "") +
+        '<button class="primary-btn" data-push-on>🔔 ' + (info.error ? "Try again" : "Turn on notifications") + "</button>";
     } else {
       body = '<div class="toggle-list">' + [["replies", "Replies to my threads"], ["likes", "Daily summary of likes (8 pm)"]].map(function (x) {
         return '<label class="toggle"><span>' + x[1] + '</span><input type="checkbox" data-push-pref="' + x[0] + '"' + (info.prefs[x[0]] !== false ? " checked" : "") + "></label>";
-      }).join("") + '</div><button class="link danger" data-push-off>Turn off notifications</button>';
+      }).join("") + '</div><div class="push-actions"><button class="outline-btn small" data-push-test>Send a test notification</button><button class="link danger" data-push-off>Turn off notifications</button></div>';
     }
     return '<div class="card" id="notifCard"><div class="goal-top"><b>🔔 Notifications</b>' + (info.enabled && status === "ready" ? '<span class="muted small">On</span>' : "") + "</div>" + body + "</div>";
   }
@@ -1262,9 +1279,10 @@
     if (btn) { btn.disabled = true; btn.textContent = "Turning on…"; }
     S.enablePush(info.prefs).then(function () {
       toast("Notifications on 🔔");
+      S.testNotification().catch(function (e) { console.error(e); });
     }, function (e) {
       console.error(e);
-      toast(e && e.message === "denied" ? "Notifications were not allowed" : "Couldn't turn on notifications");
+      toast(e && e.stage === "permission" ? "Notifications were not allowed" : "Couldn't turn on notifications — see the details below");
     }).then(function () { if (route.name === "profile") renderProfile(); });
   }
 
@@ -1641,6 +1659,7 @@
     else if (d.cancelEdit !== undefined) { editingProfile = false; draft = null; renderProfile(); }
     else if (d.removePhoto !== undefined) { draft.photo = ""; refreshDraftPreview(); }
     else if (d.pushOn !== undefined) turnOnPush();
+    else if (d.pushTest !== undefined) S.testNotification().then(function () { toast("Test notification sent 🔔"); }, function (e) { console.error(e); toast("Couldn't show a notification on this device"); });
     else if (d.pushOff !== undefined) { S.disablePush().then(function () { toast("Notifications off"); renderProfile(); }); }
     else if (d.install !== undefined) startInstall();
     else if (d.installGuide !== undefined) openInstallGuide();

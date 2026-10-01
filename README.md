@@ -74,6 +74,10 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 4. 手機打開 App → Profile → ⚙️ Settings → **🔔 Turn on notifications**。iPhone 需要 iOS 16.4 以上，而且要先「加入主畫面」，再從主畫面的豆腐圖示打開。
 
 > 注意：GitHub 會在 repo 連續 60 天沒有任何更新時暫停排程，到 Actions 分頁按一下啟用即可。
+>
+> GitHub 的排程雖然設成每 30 分鐘，忙碌時常常延遲，實際上可能幾小時才跑一次，所以回覆通知會晚一點到。想立刻測試：Actions → **Push notifications** → **Run workflow**，紀錄最後一行的 `people with notifications on` 就是目前開啟通知的人數。
+>
+> **開不了通知？** Settings 的通知卡片會顯示失敗原因和錯誤碼（例如沒允許通知、手機註冊失敗、存不進帳號），截圖給 Claude 即可。開啟成功時手機會馬上跳出一則測試通知，卡片上也有「Send a test notification」可以再測。
 
 **為什麼有人每次都要重新登入？** 最常見的原因是從 LINE、Instagram、Facebook 裡直接點開連結。這些 App 內建的瀏覽器常常不保存登入狀態。App 現在會自動偵測：LINE 會自動跳到手機的瀏覽器，其他 App 會顯示提示，請改用 Safari／Chrome 開啟。無痕模式也不會保存登入。
 

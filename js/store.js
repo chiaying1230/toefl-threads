@@ -725,10 +725,36 @@
     });
   }
 
-  function currentToken() {
-    return Promise.all([getMessaging(), navigator.serviceWorker.ready]).then(function (r) {
-      return r[0].getToken({ vapidKey: window.FIREBASE_VAPID_KEY, serviceWorkerRegistration: r[1] });
+  // An error that says which step failed: permission / sw / token / save.
+  function pushError(stage, e) {
+    var err = new Error(stage);
+    err.stage = stage;
+    err.detail = e ? String(e.code || e.name || "") + (e.message ? ": " + e.message : "") : "";
+    return err;
+  }
+
+  function swReady() {
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () { reject(new Error("Service worker not ready (timed out)")); }, 10000);
+      navigator.serviceWorker.ready.then(function (reg) { clearTimeout(timer); resolve(reg); }, reject);
     });
+  }
+
+  function currentToken() {
+    var reg;
+    return swReady().catch(function (e) { throw pushError("sw", e); })
+      .then(function (r) { reg = r; return getMessaging(); })
+      .then(function (m) {
+        var get = function () { return m.getToken({ vapidKey: window.FIREBASE_VAPID_KEY, serviceWorkerRegistration: reg }); };
+        return get().catch(function () {
+          // Chrome keeps an old push subscription after a domain or key change, and FCM then
+          // fails with "push service error". Drop the old subscription and try once more.
+          return reg.pushManager.getSubscription()
+            .then(function (sub) { return sub && sub.unsubscribe(); })
+            .then(get);
+        });
+      })
+      .catch(function (e) { throw e && e.stage ? e : pushError("token", e); });
   }
 
   function writeTokenDoc(token, prefs) {
@@ -741,15 +767,34 @@
     }, { merge: true });
   }
 
+  // Turns notifications on. Only marks them "on" here once the token is saved to the account.
+  // Rejects with err.stage = "permission" | "sw" | "token" | "save" and err.detail.
   Store.enablePush = function (prefs) {
-    if (Store.pushStatus() !== "ready") return Promise.reject(new Error(Store.pushStatus()));
-    return Notification.requestPermission().then(function (perm) {
-      if (perm !== "granted") throw new Error("denied");
+    if (Store.pushStatus() !== "ready") return Promise.reject(pushError(Store.pushStatus()));
+    var token;
+    return Promise.resolve(Notification.requestPermission()).then(function (perm) {
+      if (perm !== "granted") throw pushError("permission", { message: "Notification permission: " + perm });
       return currentToken();
-    }).then(function (token) {
-      if (!token) throw new Error("no-token");
-      writeJSON(PUSH_KEY, { enabled: true, token: token, prefs: prefs, uid: Store.user.uid });
-      return writeTokenDoc(token, prefs);
+    }).then(function (t) {
+      if (!t) throw pushError("token", { message: "No token returned" });
+      token = t;
+      return writeTokenDoc(token, prefs).catch(function (e) { throw pushError("save", e); });
+    }).then(function () {
+      writeJSON(PUSH_KEY, { enabled: true, token: token, prefs: prefs, uid: Store.user.uid, error: null });
+    }, function (e) {
+      var info = Store.pushInfo();
+      writeJSON(PUSH_KEY, { enabled: false, prefs: info.prefs || prefs, error: { stage: e.stage || "token", detail: e.detail || String(e.message || e), at: Date.now() } });
+      throw e;
+    });
+  };
+
+  // Shows a notification on this device right away (no server involved).
+  Store.testNotification = function () {
+    return swReady().then(function (reg) {
+      return reg.showNotification("Notifications are on 🎉", {
+        body: "You'll hear from toEfu when someone replies to your thread.",
+        icon: "icon-192.png", badge: "icon-192.png", tag: "toefu-test", data: { link: "./" }
+      });
     });
   };
 
