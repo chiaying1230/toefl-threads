@@ -122,6 +122,38 @@
     speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>'
   };
 
+  // ---------- Interface language: "en" (English) or "bi" (English + 中文 小字) ----------
+  var TOPIC_ZH = { Art: "藝術", Astronomy: "天文", Biology: "生物", Business: "商業", "Campus Life": "校園生活", Chemistry: "化學", Culture: "文化",
+    Economics: "經濟", Environment: "環境", Food: "美食", Geology: "地質", Health: "健康", History: "歷史", Literature: "文學",
+    Philosophy: "哲學", Psychology: "心理", Tech: "科技", Travel: "旅行" };
+  function bilingual() { return st().settings.lang === "bi"; }
+  function zhSub(zh) { return ' <span class="zh-sub">' + zh + "</span>"; }
+  function T(en, zh) { return bilingual() ? en + zhSub(zh) : en; }   // main interface
+  function B(en, zh) { return en + zhSub(zh); }                       // first-run screens: always both
+  function TP(en, zh) { return bilingual() ? en + " · " + zh : en; }  // placeholders (plain text)
+
+  // Static labels in index.html carry data-zh / data-zh-ph.
+  function applyLang() {
+    $all("[data-zh]").forEach(function (el) {
+      if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+      el.innerHTML = bilingual() ? el.dataset.en + zhSub(el.dataset.zh) : el.dataset.en;
+    });
+    $all("[data-zh-ph]").forEach(function (el) {
+      if (el.dataset.enPh === undefined) el.dataset.enPh = el.placeholder;
+      el.placeholder = TP(el.dataset.enPh, el.dataset.zhPh);
+    });
+  }
+
+  function setLang(lang) {
+    st().settings.lang = lang === "bi" ? "bi" : "en";
+    S.save();
+    applyLang();
+    buildFeed();
+    if (route.name === "profile") renderProfile();
+    if (route.name === "review") renderReview();
+    if (ob) renderOnboarding();
+  }
+
   function avatarHtml(author, size) {
     var style = author.color ? ' style="background:' + author.color + '"' : "";
     var inner = author.photo ? '<img src="' + esc(author.photo) + '" alt="">' : esc(author.avatar || "🙂");
@@ -153,7 +185,7 @@
     var liked = !!st().liked[post.id];
     var bookmarked = !!st().bookmarked[post.id];
     var likes = likeCount(post);
-    var replies = S.replyCount(post);
+    var replies = replyTotal(post);
     var reposted = !!st().reposted[post.id];
     var reposts = S.repostCount(post);
     var followable = !mine && !st().following[a.key];
@@ -166,7 +198,7 @@
 
     var extra = "";
     if (post.zh) {
-      extra = '<button class="translate-btn" data-translate>Translate</button><div class="translation" hidden>' + esc(post.zh) + "</div>";
+      extra = '<button class="translate-btn" data-translate>' + T("Translate", "翻譯") + '</button><div class="translation" hidden>' + esc(post.zh) + "</div>";
     }
     if (post.quoteOf) extra += quoteCardHtml(findPost(post.quoteOf), post.quoteOf);
     if (post.kind === "user" && post.words.length) {
@@ -200,6 +232,7 @@
           '<button class="act" data-share="' + post.id + '" aria-label="Share">' + ICON.share + "</button>" +
           last +
         "</div>" +
+        (opts.full ? "" : convoPeekHtml(post)) +
       "</div>" +
     "</article>";
   }
@@ -223,7 +256,7 @@
     $all("[data-reply-count]").forEach(function (b) {
       var post = findPost(b.dataset.replyCount);
       if (!post) return;
-      var n = S.replyCount(post);
+      var n = replyTotal(post);
       b.querySelector(".act-count").textContent = n ? C.formatCount(n) : "";
     });
   }
@@ -317,7 +350,7 @@
   function updateSheetButton() {
     var btn = $("#sheetSave");
     var saved = !!st().words[sheetKey];
-    btn.textContent = saved ? "✓ In your Review list (tap to remove)" : "+ Add to Review";
+    btn.innerHTML = saved ? T("✓ In your Review list (tap to remove)", "已在複習清單（點一下移除）") : T("+ Add to Review", "加入複習清單");
     btn.classList.toggle("done", saved);
   }
 
@@ -392,8 +425,38 @@
   var followingEndShown = false;
   var quizzes = {};
 
+  // ---------- Word of the day ----------
+  var WOTD_KEY = "toefu.wotdHidden";
+
+  function renderWordOfDay() {
+    var slot = $("#wotdSlot");
+    if (!slot) return;
+    var today = C.dayKey(), hidden = null;
+    try { hidden = localStorage.getItem(WOTD_KEY); } catch (e) { /* ignore */ }
+    if (feedMode !== "foryou" || !st().prefs.onboarded) { slot.innerHTML = ""; return; }
+    var key = C.wordOfDay(today, st().prefs.levels);
+    var v = VOCAB[key];
+    if (!v) { slot.innerHTML = ""; return; }
+    if (hidden === today) {
+      slot.innerHTML = '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
+      return;
+    }
+    var saved = !!st().words[key];
+    slot.innerHTML = '<div class="card wotd">' +
+      '<div class="wotd-top"><span class="muted small">📅 ' + T("Word of the day", "每日一字") + '</span><button class="notice-x" data-wotd-hide aria-label="Hide">✕</button></div>' +
+      '<div class="wotd-word"><b>' + esc(C.label(key)) + '</b><button class="icon-btn plain" data-speak="' + key + '" aria-label="Pronounce">🔊</button></div>' +
+      '<div class="wotd-meta"><span class="kk">' + esc(kk(key)) + "</span> · " + esc(v.pos) + ' · <span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span></div>" +
+      '<div class="wotd-zh">' + esc(v.zh) + "</div>" +
+      '<div class="wotd-ex">' + esc(v.ex).replace(C.wordPattern(key), "<strong>$&</strong>") + '<div class="muted small">' + esc(v.exZh) + "</div></div>" +
+      '<div class="wotd-actions">' + (saved
+        ? '<span class="saved-note">✓ ' + T("In your Review list", "已在複習清單") + "</span>"
+        : '<button class="primary-btn small" data-wotd-save="' + key + '">' + T("+ Add to Review", "加入複習") + "</button>") +
+      '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>";
+  }
+
   function buildFeed() {
     feedDirty = false;
+    renderWordOfDay();
     cycle = 0;
     feedIndex = 0;
     postsShown = 0;
@@ -526,7 +589,7 @@
     res.hidden = false;
     res.innerHTML = (right ? '<b class="ok">Correct! +1 today 🎉</b>' : '<b class="bad">Not quite.</b>') +
       '<div><button class="vocab" data-key="' + q.key + '">' + q.key + "</button> " + esc(v.pos + " " + v.zh) + "</div>" +
-      (st().words[q.key] ? "" : '<button class="link" data-quiz-save="' + q.key + '">+ Add to Review</button>');
+      (st().words[q.key] ? "" : '<button class="link" data-quiz-save="' + q.key + '">' + T("+ Add to Review", "加入複習") + "</button>");
     if (st().words[q.key]) { reviewWord(q.key, right); S.save(); refreshWordMarks(); }
     if (right) {
       card.classList.add("win");
@@ -561,7 +624,7 @@
     var keys = Object.keys(CHARACTERS).filter(function (k) { return !st().following[k]; });
     var topics = st().prefs.topics || [];
     keys.sort(function (a, b) { return topicScore(b, topics) - topicScore(a, topics); });
-    return '<div class="section-title">Suggested for you</div>' + keys.slice(0, limit).map(personRow).join("");
+    return '<div class="section-title">' + T("Suggested for you", "推薦追蹤") + '</div>' + keys.slice(0, limit).map(personRow).join("");
   }
 
   function topicScore(charKey, topics) {
@@ -586,9 +649,9 @@
     var body = $("#searchBody");
     q = (q || "").trim();
     if (!q) {
-      body.innerHTML = '<div class="section-title">Browse topics</div><div class="topic-grid">' +
+      body.innerHTML = '<div class="section-title">' + T("Browse topics", "瀏覽題材") + '</div><div class="topic-grid">' +
         TOPICS.map(function (t) { return '<button class="chip" data-topic="' + esc(t) + '">#' + esc(t) + "</button>"; }).join("") +
-        "</div>" + '<div class="section-title">Characters</div>' + Object.keys(CHARACTERS).map(personRow).join("");
+        "</div>" + '<div class="section-title">' + T("Characters", "角色") + '</div>' + Object.keys(CHARACTERS).map(personRow).join("");
       return;
     }
     var html = "";
@@ -614,11 +677,11 @@
     }).concat(communityPosts().filter(function (p) { return p.text.toLowerCase().indexOf(lower) >= 0; }));
 
     if (words.length) {
-      html += '<div class="section-title">Words</div><div class="word-results">' + words.map(function (k) {
+      html += '<div class="section-title">' + T("Words", "單字") + '</div><div class="word-results">' + words.map(function (k) {
         return '<button class="word-row" data-word="' + k + '"><span class="w">' + esc(C.label(k)) + '</span><span class="z">' + kkHtml(k) + " " + esc(VOCAB[k].pos + " " + VOCAB[k].zh) + '</span><span class="level-tag lv' + VOCAB[k].level + '">' + C.LEVEL_NAMES[VOCAB[k].level] + "</span></button>";
       }).join("") + "</div>";
     }
-    if (people.length) html += '<div class="section-title">People</div>' + people.map(personRow).join("");
+    if (people.length) html += '<div class="section-title">' + T("People", "人物") + '</div>' + people.map(personRow).join("");
     if (threads.length) html += '<div class="section-title">Threads · ' + threads.length + "</div>" + threads.slice(0, 40).map(function (p) { return renderPost(p); }).join("");
     body.innerHTML = html || '<div class="empty"><span class="big">🔍</span>No results for “' + esc(q) + "”.</div>";
   }
@@ -682,8 +745,8 @@
     $("#joinBar").hidden = !visitor;
     if (visitor) $("#joinBar").innerHTML = joinBarHtml();
     $("#replyAvatar").textContent = st().profile.avatar;
-    $("#replyInput").placeholder = S.canWrite() ? "Reply to " + authorFor(post).name + "…" : "Sign in to reply";
-    body.innerHTML = (visitor ? joinCardHtml(post) : "") + renderPost(post, { full: true }) + '<div class="section-title">Replies</div><div id="replies"><div class="empty small">Loading…</div></div>';
+    $("#replyInput").placeholder = S.canWrite() ? TP("Reply to " + authorFor(post).name + "…", "留言回覆") : TP("Sign in to reply", "登入後留言");
+    body.innerHTML = (visitor ? joinCardHtml(post) : "") + renderPost(post, { full: true }) + '<div class="section-title">' + T("Replies", "回覆") + '</div><div id="replies"><div class="empty small">Loading…</div></div>';
     loadReplies();
   }
 
@@ -875,13 +938,14 @@
     S.comments(post.id).then(function (list) {
       if (threadPost !== post) return;
       var box = $("#replies");
+      var convo = convoHtml(post);
       if (!list.length) {
-        box.innerHTML = '<div class="empty small">No replies yet. Be the first — ' + (post.kind === "char" ? esc(authorFor(post).name) + " will answer you!" : "say something nice!") + "</div>";
+        box.innerHTML = convo + (convo ? "" : '<div class="empty small">No replies yet. Be the first — ' + (post.kind === "char" ? esc(authorFor(post).name) + " will answer you!" : "say something nice!") + "</div>");
         return;
       }
       threadComments = {};
       list.forEach(function (c) { threadComments[c.id] = c; });
-      box.innerHTML = list.map(function (c) { return renderComment(post, c); }).join("");
+      box.innerHTML = convo + list.map(function (c) { return renderComment(post, c); }).join("");
       if (justReplied) {
         var typing = box.querySelector('[data-typing="' + justReplied + '"]');
         justReplied = null;
@@ -891,6 +955,38 @@
       console.error(e);
       $("#replies").innerHTML = '<div class="empty small">Couldn\'t load replies.</div>';
     });
+  }
+
+  // ---------- Character conversations (js/data/convos.js) ----------
+  function convoOf(post) {
+    return post && post.kind === "char" && window.CONVOS && window.CONVOS[post.id] || [];
+  }
+
+  function replyTotal(post) {
+    return S.replyCount(post) + convoOf(post).length;
+  }
+
+  function convoHtml(post) {
+    return convoOf(post).map(function (r) {
+      var c = CHARACTERS[r.a];
+      if (!c) return "";
+      return '<div class="comment char-convo">' +
+        '<button class="avatar-btn" data-person="' + r.a + '">' + avatarHtml(c, "sm") + "</button>" +
+        '<div class="comment-main"><div class="post-head"><button class="post-name" data-person="' + r.a + '">' + esc(c.name) + '</button><span class="post-handle">@' + esc(c.handle) + "</span></div>" +
+        '<div class="post-text">' + C.renderTagged(r.t, st().words) + "</div>" +
+        '<button class="translate-btn small" data-translate>' + T("Translate", "翻譯") + '</button><div class="translation" hidden>' + esc(r.zh) + "</div></div></div>";
+    }).join("");
+  }
+
+  // Under a thread in the feed: little avatars of the characters chatting in the replies.
+  function convoPeekHtml(post) {
+    var list = convoOf(post);
+    if (!list.length) return "";
+    var who = [];
+    list.forEach(function (r) { if (who.indexOf(r.a) < 0 && CHARACTERS[r.a]) who.push(r.a); });
+    return '<button class="convo-peek" data-open="' + post.id + '">' +
+      '<span class="peek-avatars">' + who.slice(0, 3).map(function (k) { return avatarHtml(CHARACTERS[k], "xs"); }).join("") + "</span>" +
+      "<span>" + esc(CHARACTERS[who[0]].name.split(" ")[0]) + (who.length > 1 ? " and " + (who.length - 1) + " other" + (who.length > 2 ? "s" : "") : "") + " replied</span></button>";
   }
 
   function renderComment(post, c) {
@@ -958,7 +1054,7 @@
     var keys = savedKeys();
     var body = $("#reviewBody");
     if (!keys.length) {
-      body.innerHTML = '<div class="empty">' + tofuSvg(64) + '<br>Your Review list is empty.<br>Tap a <b>blue word</b> in any thread and choose <b>Add to Review</b>,<br>or tap the bookmark on a thread to save all its words.</div>';
+      body.innerHTML = '<div class="empty">' + tofuSvg(64) + '<br>Your Review list is empty.<br>Tap a <b>blue word</b> in any thread and choose <b>Add to Review</b>,<br>or tap the bookmark on a thread to save all its words.' + (bilingual() ? '<br><span class="zh-sub">複習清單是空的。點串文裡的藍色單字並加入複習，或收藏整則串文。</span>' : "") + "</div>";
       return;
     }
     if (reviewMode === "list") renderWordList(keys, body);
@@ -968,7 +1064,7 @@
   function renderWordList(keys, body) {
     var w = st().words, due = dueKeys().length;
     var mastered = keys.filter(function (k) { return (w[k].box || 0) >= 4; }).length;
-    var html = '<div class="card srs-card"><div><b>' + (due ? due + " word" + (due > 1 ? "s" : "") + " due today" : "All caught up for today ✨") + "</b>" +
+    var html = '<div class="card srs-card"><div><b>' + (due ? T(due + " word" + (due > 1 ? "s" : "") + " due today", "今天有 " + due + " 個字要複習") : T("All caught up for today ✨", "今天都複習完了")) + "</b>" +
       '<div class="muted small">' + keys.length + " saved · " + mastered + " mastered · words you know well come back less often</div></div>" +
       (due ? '<button class="post-btn small" data-mode="cards">Review</button>' : "") + "</div>";
     keys.forEach(function (k) {
@@ -1077,7 +1173,7 @@
     } else if (profileSettings) {
       html += settingsHtml();
     } else {
-      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>Edit profile</button><button class="outline-btn" data-share-app>Invite friends</button><button class="outline-btn icon-only" data-settings aria-label="Settings">⚙️</button></div>';
+      html += '<div class="profile-edit"><button class="outline-btn" data-edit-profile>' + T("Edit profile", "編輯") + '</button><button class="outline-btn" data-share-app>' + T("Invite friends", "邀請朋友") + '</button><button class="outline-btn icon-only" data-settings aria-label="Settings">⚙️</button></div>';
       if (S.mode === "cloud" && !S.user) {
         html += '<div class="card account"><span>Sign in to save your progress to your account and post threads everyone can see.</span><button class="primary-btn" data-signin>Sign in with Google</button></div>';
       }
@@ -1091,8 +1187,8 @@
     var s = st();
     var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
     var counts = { threads: bstats.posts, replies: myReplies ? myReplies.length : "", reposts: Object.keys(s.reposted).length, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length, badges: unlocked };
-    var html = '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["replies", "Replies"], ["reposts", "Reposts"], ["liked", "Liked"], ["saved", "Saved"], ["badges", "Badges"]].map(function (t) {
-      return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span></button>";
+    var html = '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads", "串文"], ["replies", "Replies", "回覆"], ["reposts", "Reposts", "轉發"], ["liked", "Liked", "按讚"], ["saved", "Saved", "收藏"], ["badges", "Badges", "徽章"]].map(function (t) {
+      return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span>" + (bilingual() ? zhSub(t[2]) : "") + "</button>";
     }).join("") + "</div>";
     if (profileTab === "badges") {
       return html + '<div id="profileList"><div class="badges">' + C.BADGES.map(function (b) {
@@ -1120,7 +1216,7 @@
     var today = d.log[C.dayKey()] || 0;
     var days = C.lastDays(d, 7);
     var max = Math.max(d.goal, Math.max.apply(null, days.map(function (x) { return x.value; })));
-    var html = '<div class="settings-top"><button class="link" data-settings-close>‹ Back to profile</button><b>Settings</b></div>';
+    var html = '<div class="settings-top"><button class="link" data-settings-close>‹ ' + T("Back to profile", "返回") + "</button><b>" + T("Settings", "設定") + "</b></div>";
 
     if (S.mode === "cloud" && S.user) {
       html += '<div class="card account"><span>✅ Signed in as <b>' + esc(S.user.name) + '</b>. Your likes, words and threads are saved to your account.</span><button class="link" data-signout>Sign out</button></div>';
@@ -1130,9 +1226,13 @@
       html += '<div class="card account muted small">📱 Saved on this device only.</div>';
     }
 
-    html += '<div class="card"><div class="goal-top"><b>Your feed</b></div><p class="muted small">Choose your level and the topics you want to see.</p><button class="outline-btn" data-edit-prefs>Feed preferences</button></div>';
+    html += '<div class="card"><div class="goal-top"><b>' + T("Your feed", "動態牆") + '</b></div><p class="muted small">Choose your level and the topics you want to see.</p><button class="outline-btn" data-edit-prefs>' + T("Feed preferences", "偏好設定") + "</button></div>";
+    html += '<div class="card" id="langCard"><div class="goal-top"><b>' + T("Interface language", "介面語言") + '</b></div><div class="goal-pick">' +
+      [["en", "English"], ["bi", "English + 中文"]].map(function (l) {
+        return '<button class="chip' + ((s.settings.lang || "en") === l[0] ? " active" : "") + '" data-lang="' + l[0] + '">' + l[1] + "</button>";
+      }).join("") + '</div><p class="muted small">Threads stay in English either way. 串文內容一律維持英文。</p></div>';
 
-    html += '<div class="card goal-card" id="goalCard"><div class="goal-top"><b>Daily goal</b><span class="muted">' + today + " / " + d.goal + " today</span></div>" +
+    html += '<div class="card goal-card" id="goalCard"><div class="goal-top"><b>' + T("Daily goal", "每日目標") + '</b><span class="muted">' + today + " / " + d.goal + " today</span></div>" +
       '<div class="goal-bar"><i style="width:' + Math.min(100, Math.round(today / d.goal * 100)) + '%"></i></div>' +
       '<div class="bars">' + days.map(function (x) {
         return '<div class="bar-col"><div class="bar' + (d.met[x.key] ? " met" : "") + '" style="height:' + Math.max(4, Math.round(x.value / max * 60)) + 'px" title="' + x.value + '"></div><span>' + x.label + "</span></div>";
@@ -1141,19 +1241,19 @@
         return '<button class="chip' + (d.goal === g ? " active" : "") + '" data-goal="' + g + '">' + g + " / day</button>";
       }).join("") + '</div><p class="muted small">Each new saved word, correct quiz answer and "Got it" flashcard counts as 1.</p></div>';
 
-    html += '<div class="card"><div class="goal-top"><b>Read-aloud speed</b></div><div class="goal-pick">' +
+    html += '<div class="card"><div class="goal-top"><b>' + T("Read-aloud speed", "朗讀速度") + '</b></div><div class="goal-pick">' +
       [[1, "Normal"], [0.8, "Slow"], [0.6, "Very slow"]].map(function (r) {
         return '<button class="chip' + (s.settings.rate === r[0] ? " active" : "") + '" data-rate="' + r[0] + '">' + r[1] + "</button>";
       }).join("") + "</div></div>";
 
     html += notificationsCardHtml() + installCardHtml(false);
 
-    html += '<div class="card"><div class="goal-top"><b>About toEfu</b></div>' +
+    html += '<div class="card"><div class="goal-top"><b>' + T("About toEfu", "關於") + '</b></div>' +
       '<p class="muted small"><a class="link" href="privacy.html">Privacy policy</a> · <a class="link" href="terms.html">Terms &amp; community rules</a></p>' +
       '<button class="link danger" data-delete-account>' + (S.mode === "cloud" && S.user ? "Delete my account" : "Delete data on this device") + "</button></div>";
 
     var followKeys = Object.keys(s.following);
-    html += '<div class="section-title">Following · ' + followKeys.length + "</div>";
+    html += '<div class="section-title">' + T("Following", "追蹤中") + " · " + followKeys.length + "</div>";
     html += followKeys.length ? '<div class="following-strip">' + followKeys.map(function (k) {
       var c = CHARACTERS[k];
       var info = c || userInfoCache[k.slice(4)] || { avatar: "🙂", name: "User" };
@@ -1262,15 +1362,15 @@
     } else if (status === "denied") {
       body = '<p class="muted small">Notifications are blocked for this site.</p>' + PUSH_HELP.permission;
     } else if (!info.enabled) {
-      body = '<p class="muted small">Get a notification when someone replies to your thread and a daily summary of new likes.</p>' +
+      body = '<p class="muted small">Get a notification when someone replies to your thread, a daily summary of new likes, and a reminder when words are due for review.</p>' +
         (info.error ? pushErrorHtml(info.error) : "") +
         '<button class="primary-btn" data-push-on>🔔 ' + (info.error ? "Try again" : "Turn on notifications") + "</button>";
     } else {
-      body = '<div class="toggle-list">' + [["replies", "Replies to my threads"], ["likes", "Daily summary of likes (8 pm)"]].map(function (x) {
+      body = '<div class="toggle-list">' + [["replies", T("Replies to my threads", "有人回覆我的串文")], ["likes", T("Daily summary of likes (8 pm)", "每晚 8 點按讚摘要")], ["review", T("Daily review reminder (9 am)", "每天早上 9 點複習提醒")]].map(function (x) {
         return '<label class="toggle"><span>' + x[1] + '</span><input type="checkbox" data-push-pref="' + x[0] + '"' + (info.prefs[x[0]] !== false ? " checked" : "") + "></label>";
       }).join("") + '</div><div class="push-actions"><button class="outline-btn small" data-push-test>Send a test notification</button><button class="link danger" data-push-off>Turn off notifications</button></div>';
     }
-    return '<div class="card" id="notifCard"><div class="goal-top"><b>🔔 Notifications</b>' + (info.enabled && status === "ready" ? '<span class="muted small">On</span>' : "") + "</div>" + body + "</div>";
+    return '<div class="card" id="notifCard"><div class="goal-top"><b>🔔 ' + T("Notifications", "通知") + '</b>' + (info.enabled && status === "ready" ? '<span class="muted small">On</span>' : "") + "</div>" + body + "</div>";
   }
 
   function turnOnPush() {
@@ -1390,37 +1490,44 @@
     var html = "";
     if (ob.step === -1) {
       var app = inAppBrowser();
-      body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>Welcome to toEfu</h2>" +
+      body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>" + B("Welcome to toEfu", "歡迎來到 toEfu") + "</h2>" +
         '<p class="muted">Learn TOEFL words from funny threads. Sign in first so your level, likes, saved words and streak are kept in your account — on every phone, every time you open the app.</p>' +
+        '<p class="muted small">從好笑的串文學托福單字。先登入，你的程度、按讚、收藏單字和連續天數都會存在帳號裡，換手機也不會不見。</p>' +
         (app ? '<div class="notice"><div class="notice-text"><b>You\'re in the ' + app + ' app\'s browser.</b> Google sign-in doesn\'t work here. Tap <b>⋯</b> and choose <b>Open in browser</b>（在瀏覽器開啟）.</div></div>' : "") +
         '</div><div class="ob-nav ob-nav-col"><button class="primary-btn google-btn" data-ob-signin>' +
         '<svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>' +
-        '<span>Sign in with Google</span></button><button class="text-btn small muted-link" data-ob-skip-signin>Continue without an account</button>' +
+        '<span>Sign in with Google · 用 Google 登入</span></button><button class="text-btn small muted-link" data-ob-skip-signin>Continue without an account · 先不登入</button>' +
         '<p class="muted small ob-legal">By continuing you agree to the <a class="link" href="terms.html">Terms</a> and <a class="link" href="privacy.html">Privacy policy</a>.</p></div>';
       body.scrollTop = 0;
       return;
     }
     if (ob.step === 0) {
-      html = '<div class="ob-hero">' + tofuSvg(120) + '</div><h2>' + (ob.editing ? "Your level" : "Welcome to toEfu") + "</h2>" +
+      var lang = st().settings.lang || "en";
+      html = '<div class="ob-hero">' + tofuSvg(120) + '</div><h2>' + (ob.editing ? B("Your level", "你的程度") : B("Welcome to toEfu", "歡迎來到 toEfu")) + "</h2>" +
+        (ob.editing ? "" : '<div class="ob-lang"><span class="muted small">Interface · 介面語言</span><div class="goal-pick">' +
+          [["en", "English"], ["bi", "English + 中文"]].map(function (l) {
+            return '<button class="chip' + (lang === l[0] ? " active" : "") + '" data-lang="' + l[0] + '">' + l[1] + "</button>";
+          }).join("") + "</div></div>") +
         '<p class="muted">Funny characters post every day — using real TOEFL words. What level do you want to see?</p>' +
-        '<div class="ob-options">' + [[1, "Easy", "Common academic words · ~TOEFL 60–80"], [2, "Medium", "Core TOEFL words · ~TOEFL 80–100"], [3, "Hard", "Advanced words · ~TOEFL 100+"]].map(function (x) {
+        '<p class="muted small">角色們每天用真正的托福單字發文。你想看哪個程度？</p>' +
+        '<div class="ob-options">' + [[1, "Easy · 簡單", "Common academic words · 常見學術字 · ~TOEFL 60–80"], [2, "Medium · 中等", "Core TOEFL words · 托福核心字 · ~TOEFL 80–100"], [3, "Hard · 困難", "Advanced words · 進階字 · ~TOEFL 100+"]].map(function (x) {
           var on = ob.levels.indexOf(x[0]) >= 0;
           return '<button class="ob-opt' + (on ? " on" : "") + '" data-ob-level="' + x[0] + '"><b>' + x[1] + "</b><span>" + x[2] + "</span></button>";
-        }).join("") + '</div><p class="muted small">Pick one or more.</p>';
+        }).join("") + '</div><p class="muted small">Pick one or more. · 可以複選。</p>';
     } else if (ob.step === 1) {
-      html = "<h2>What do you like?</h2><p class=\"muted\">We'll show these topics more often. You'll still see a mix.</p><div class=\"topic-grid\">" +
-        TOPICS.map(function (t) { return '<button class="chip' + (ob.topics.indexOf(t) >= 0 ? " active" : "") + '" data-ob-topic="' + esc(t) + '">#' + esc(t) + "</button>"; }).join("") + "</div>";
+      html = "<h2>" + B("What do you like?", "你喜歡什麼題材？") + "</h2><p class=\"muted\">We'll show these topics more often. You'll still see a mix.</p><p class=\"muted small\">這些題材會比較常出現，但你還是會看到各種內容。</p><div class=\"topic-grid\">" +
+        TOPICS.map(function (t) { return '<button class="chip' + (ob.topics.indexOf(t) >= 0 ? " active" : "") + '" data-ob-topic="' + esc(t) + '">#' + esc(t) + (TOPIC_ZH[t] ? ' <span class="zh-sub">' + TOPIC_ZH[t] + "</span>" : "") + "</button>"; }).join("") + "</div>";
     } else {
       var keys = Object.keys(CHARACTERS).sort(function (a, b) { return topicScore(b, ob.topics) - topicScore(a, ob.topics); });
       if (!ob.editing && !Object.keys(ob.follow).length) keys.slice(0, 3).forEach(function (k) { ob.follow[k] = true; });
-      html = "<h2>Follow some characters</h2><p class=\"muted\">Their threads show up in your <b>Following</b> tab.</p><div class=\"ob-people\">" + keys.map(function (k) {
+      html = "<h2>" + B("Follow some characters", "追蹤幾個角色") + "</h2><p class=\"muted\">Their threads show up in your <b>Following</b> tab. You'll still see everyone in <b>For you</b>.</p><p class=\"muted small\">他們的串文會出現在 Following 分頁；For you 仍然會看到所有人。</p><div class=\"ob-people\">" + keys.map(function (k) {
         var c = CHARACTERS[k], on = !!ob.follow[k];
         return '<button class="ob-person' + (on ? " on" : "") + '" data-ob-follow="' + k + '">' + avatarHtml(c) + '<span class="person-info"><b>' + esc(c.name) + '</b><span class="bio">' + esc(c.bio) + '</span></span><span class="ob-check">' + (on ? "✓" : "+") + "</span></button>";
       }).join("") + "</div>";
     }
-    var next = ob.step < 2 ? "Next" : ob.editing ? "Save" : "Start scrolling";
+    var next = ob.step < 2 ? B("Next", "下一步") : ob.editing ? B("Save", "儲存") : B("Start scrolling", "開始滑");
     body.innerHTML = dots + '<div class="ob-content">' + html + "</div>" +
-      '<div class="ob-nav">' + (ob.step > 0 || (ob.step === 0 && ob.login && !S.user) ? '<button class="outline-btn" data-ob-back>Back</button>' : ob.editing ? '<button class="outline-btn" data-ob-close>Cancel</button>' : "<span></span>") +
+      '<div class="ob-nav">' + (ob.step > 0 || (ob.step === 0 && ob.login && !S.user) ? '<button class="outline-btn" data-ob-back>' + B("Back", "上一步") + "</button>" : ob.editing ? '<button class="outline-btn" data-ob-close>' + B("Cancel", "取消") + '</button>' : "<span></span>") +
       '<button class="primary-btn" data-ob-next' + (ob.step === 0 && !ob.levels.length ? " disabled" : "") + ">" + next + "</button></div>";
     body.scrollTop = 0;
   }
@@ -1483,7 +1590,7 @@
     if (!requireAccount("post a thread")) return;
     composerQuote = typeof quoteId === "string" ? findPost(quoteId) : null;
     $("#composerQuote").innerHTML = composerQuote ? quoteCardHtml(composerQuote, composerQuote.id) : "";
-    $("#composerTitle").textContent = composerQuote ? "Quote" : "New thread";
+    $("#composerTitle").innerHTML = composerQuote ? T("Quote", "引用") : T("New thread", "新串文");
     closeSheet();
     $("#composerAvatar").textContent = st().profile.avatar;
     $("#composerName").textContent = st().profile.name;
@@ -1594,7 +1701,7 @@
     else if (d.translate !== undefined) {
       var tr = t.nextElementSibling;
       tr.hidden = !tr.hidden;
-      t.textContent = tr.hidden ? "Translate" : "Hide translation";
+      t.innerHTML = tr.hidden ? T("Translate", "翻譯") : T("Hide translation", "隱藏翻譯");
     } else if (d.soon) toast(d.soon + " are coming in the next version");
     else if (d.read) readPost(d.read);
     else if (d.share) sharePost(d.share);
@@ -1658,6 +1765,10 @@
     else if (d.saveProfile !== undefined) saveProfileForm();
     else if (d.cancelEdit !== undefined) { editingProfile = false; draft = null; renderProfile(); }
     else if (d.removePhoto !== undefined) { draft.photo = ""; refreshDraftPreview(); }
+    else if (d.lang) setLang(d.lang);
+    else if (d.wotdHide !== undefined) { try { localStorage.setItem(WOTD_KEY, C.dayKey()); } catch (e) { /* ignore */ } renderWordOfDay(); }
+    else if (d.wotdShow !== undefined) { try { localStorage.removeItem(WOTD_KEY); } catch (e) { /* ignore */ } renderWordOfDay(); }
+    else if (d.wotdSave) { addWord(d.wotdSave, null); S.save(); refreshWordMarks(); renderWordOfDay(); toast("Added to Review 📚"); }
     else if (d.pushOn !== undefined) turnOnPush();
     else if (d.pushTest !== undefined) S.testNotification().then(function () { toast("Test notification sent 🔔"); }, function (e) { console.error(e); toast("Couldn't show a notification on this device"); });
     else if (d.pushOff !== undefined) { S.disablePush().then(function () { toast("Notifications off"); renderProfile(); }); }
@@ -1868,6 +1979,7 @@
   }
 
   function renderAll() {
+    applyLang();
     updateNotices();
     renderInstallSlot();
     S.refreshPush();

@@ -23,7 +23,6 @@ async function main() {
   await db.doc("posts/pA").set({ uid: "alice", name: "Alice", text: "My first thread", likes: 0, replies: 0, createdAt: T("2026-10-04T00:00:00Z") });
   await db.doc("posts/pB").set({ uid: "bob", name: "Bob", text: "Bob's thread", likes: 0, replies: 0, createdAt: T("2026-10-04T00:00:00Z") });
   await db.doc("notifyState/_meta").set({ lastRepliesAt: T("2026-10-04T10:00:00Z") });
-  await db.doc("weeks/2026-W40/scores/alice").set({ name: "Alice", avatar: "🙂", points: 40 });
 
   // Run 1 — Sunday 2026-10-04 19:05 Taipei. Replies only; likes baseline is recorded silently.
   await db.doc("comments/c1").set({ postId: "pA", uid: "bob", name: "Bob", text: "Great use of 'ubiquitous'!", createdAt: T("2026-10-04T11:00:00Z") });
@@ -55,19 +54,26 @@ async function main() {
   assert.strictEqual(sent.length, 0, "likes summary only once a day");
   console.log("PASS likes summary is sent at most once a day");
 
-  // Run 4 — Monday 08:30 Taipei: too early for the weekly message.
+  // Review reminders. Alice has 2 words due (and 1 not yet); Bob has due words but turned reminders off.
+  const due = at("2026-10-04T00:00:00Z").getTime(), later = at("2026-10-20T00:00:00Z").getTime();
+  await db.doc("users/alice").set({ words: { ubiquitous: { box: 1, due }, arduous: { box: 0 }, verbose: { box: 3, due: later } } });
+  await db.doc("users/bob").set({ words: { candid: { box: 1, due } } });
+  await db.doc("pushTokens/bob").set({ prefs: { replies: false, likes: true, review: false } }, { merge: true });
+  // Run 4 — Monday 08:30 Taipei: too early.
+  sent.length = 0;
   r = await run({ db, send, Timestamp, FieldValue, now: at("2026-10-05T00:30:00Z"), log: quiet });
-  assert.ok(!r.outbox.some((n) => n.kind === "weekly"), "not before 9 am Monday");
-  // Run 5 — Monday 09:05 Taipei: weekly rank for Alice (Bob had no points last week).
+  assert.ok(!r.outbox.some((n) => n.kind === "review"), "no review reminder before 9 am");
+  // Run 5 — Monday 09:05 Taipei: Alice gets "2 words to review today"; Bob doesn't (turned off).
   r = await run({ db, send, Timestamp, FieldValue, now: at("2026-10-05T01:05:00Z"), log: quiet });
-  assert.deepStrictEqual(r.outbox.filter((n) => n.kind === "weekly").map((n) => n.uid), ["alice"]);
-  const weekly = sent.find((m) => /ranked/.test(m.notification.title));
-  assert.ok(weekly, "weekly message sent");
-  console.log("PASS weekly rank on Monday morning: " + weekly.notification.title + " — " + weekly.notification.body);
+  assert.deepStrictEqual(r.outbox.filter((n) => n.kind === "review").map((n) => n.uid), ["alice"]);
+  const review = sent.find((m) => /to review today/.test(m.notification.title));
+  assert.ok(review && /2 words/.test(review.notification.title), "review count");
+  assert.match(review.webpush.fcmOptions.link, /#\/review$/);
+  console.log("PASS review reminder from 9 am: " + review.notification.title);
   sent.length = 0;
   r = await run({ db, send, Timestamp, FieldValue, now: at("2026-10-05T03:00:00Z"), log: quiet });
-  assert.ok(!sent.some((m) => /ranked/.test(m.notification.title)), "weekly only once");
-  console.log("PASS weekly rank is sent once per week");
+  assert.ok(!sent.some((m) => /to review today/.test(m.notification.title)), "review reminder only once a day");
+  console.log("PASS review reminder is sent at most once a day");
   console.log("ALL SENDER TESTS PASSED");
 }
 main().then(() => process.exit(0)).catch((e) => { console.error("FAIL", e.message); process.exit(1); });

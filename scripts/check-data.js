@@ -10,6 +10,7 @@ fs.readdirSync(dataDir)
   .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]))
   .forEach((f) => require(path.join(dataDir, f)));
 require(path.join(dataDir, "kk.js"));
+require(path.join(dataDir, "convos.js"));
 
 const { VOCAB, POSTS, CHARACTERS, TOPICS } = window;
 const TAG = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
@@ -57,6 +58,23 @@ for (const [id, c] of Object.entries(CHARACTERS)) {
   if (!c.replies || c.replies.length < 4) errors.push(`character ${id}: needs at least 4 replies`);
   (c.replies || []).forEach((r, i) => checkTags(r, `${id}.replies[${i}]`));
 }
+
+// Character conversations under threads
+const postIds = new Set(POSTS.map((p) => p.id));
+let convoCount = 0;
+for (const [pid, list] of Object.entries(window.CONVOS || {})) {
+  if (!postIds.has(pid)) errors.push(`convos.${pid}: no such thread`);
+  if (!Array.isArray(list) || list.length < 1) errors.push(`convos.${pid}: empty`);
+  (list || []).forEach((r, i) => {
+    const where = `convos.${pid}[${i}]`;
+    if (!CHARACTERS[r.a]) errors.push(`${where}: unknown character ${r.a}`);
+    if (!r.t) errors.push(`${where}: missing text`);
+    if (!r.zh) errors.push(`${where}: missing zh`);
+    checkTags(r.t || "", where);
+    convoCount++;
+  });
+}
+console.log(`Conversations: ${Object.keys(window.CONVOS || {}).length} threads, ${convoCount} character replies`);
 
 const unused = Object.keys(VOCAB).filter((k) => !used.has(k));
 

@@ -23,7 +23,7 @@
       prefs: { levels: [1, 2, 3], topics: [], onboarded: false },
       following: {},
       daily: { goal: 10, log: {}, met: {} },
-      settings: { rate: 1 },
+      settings: { rate: 1, lang: "en" },   // lang: "en" English only, "bi" English + 中文
       stats: { quiz: 0, cards: 0, replies: 0 },
       badges: {},      // badge id -> unlocked timestamp
       reposted: {},    // postId -> when I reposted it
@@ -696,7 +696,10 @@
   var messaging = null;
 
   Store.pushInfo = function () {
-    return readJSON(PUSH_KEY) || { enabled: false, prefs: { replies: true, likes: true } };
+    var info = readJSON(PUSH_KEY) || { enabled: false, prefs: { replies: true, likes: true, review: true } };
+    info.prefs = info.prefs || {};
+    if (info.prefs.review === undefined) info.prefs.review = true;
+    return info;
   };
 
   // "unsupported" | "ios-needs-install" | "needs-setup" | "needs-signin" | "denied" | "ready"

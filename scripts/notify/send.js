@@ -2,6 +2,7 @@
 // (.github/workflows/notifications.yml) with a Firebase service-account key.
 //   • Replies:  someone replied to your thread (sent on the next run)
 //   • Likes:    daily summary of new likes on your threads, at 8 pm your time
+//   • Review:   how many saved words are due for review, from 9 am your time
 // Bookkeeping lives in Firestore `notifyState/*`, which app users cannot read or write.
 const path = require("path");
 const fs = require("fs");
@@ -100,6 +101,18 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
         state.lastLikesDay = localDay;
       }
       state.likes = current;
+      changed = true;
+    }
+
+    // Review reminder: from 9 am (local), once a day, when saved words are due.
+    if (hour >= 9 && state.lastReviewDay !== localDay && u.prefs.review !== false) {
+      const userDoc = (await db.collection("users").doc(uid).get()).data() || {};
+      const words = userDoc.words || {};
+      const dueCount = Object.values(words).filter((w) => w && Core.isDue(w, now.getTime())).length;
+      if (dueCount > 0) {
+        outbox.push({ uid, kind: "review", title: `📚 ${dueCount} word${dueCount > 1 ? "s" : ""} to review today`, body: "A few minutes of flashcards keeps them in your memory.", link: "#/review" });
+      }
+      state.lastReviewDay = localDay;
       changed = true;
     }
 

@@ -49,14 +49,15 @@
     <!-- Home -->
     <section class="view" id="view-home">
       <div class="feed-tabs" role="tablist">
-        <button class="feed-tab active" data-feed="foryou" role="tab">For you</button>
-        <button class="feed-tab" data-feed="following" role="tab">Following</button>
+        <button class="feed-tab active" data-feed="foryou" role="tab" data-zh="為你推薦">For you</button>
+        <button class="feed-tab" data-feed="following" role="tab" data-zh="追蹤中">Following</button>
       </div>
       <div id="installSlot"></div>
       <div class="composer-prompt" id="composerPrompt" data-action="compose">
         <div class="avatar sm" id="promptAvatar"></div>
-        <span>Start a thread… try using a new word!</span>
+        <span data-zh="發一則串文，試著用新單字！">Start a thread… try using a new word!</span>
       </div>
+      <div id="wotdSlot"></div>
       <div id="feed" class="feed"></div>
       <div id="feedSentinel" class="sentinel"></div>
     </section>
@@ -65,7 +66,7 @@
     <section class="view" id="view-search" hidden>
       <div class="search-bar">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-        <input id="searchInput" type="search" placeholder="Search words, people, #topics" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <input id="searchInput" type="search" placeholder="Search words, people, #topics" data-zh-ph="搜尋單字、角色、#題材" autocomplete="off" autocapitalize="off" spellcheck="false">
       </div>
       <div id="searchBody"></div>
     </section>
@@ -73,8 +74,8 @@
     <!-- Review -->
     <section class="view" id="view-review" hidden>
       <div class="segmented" role="tablist">
-        <button class="seg active" data-mode="list" role="tab">Word list</button>
-        <button class="seg" data-mode="cards" role="tab">Flashcards</button>
+        <button class="seg active" data-mode="list" role="tab" data-zh="單字列表">Word list</button>
+        <button class="seg" data-mode="cards" role="tab" data-zh="閃卡">Flashcards</button>
       </div>
       <div id="reviewBody"></div>
     </section>
@@ -136,13 +137,13 @@
     </div>
     <p class="sheet-zh" id="sheetZh"></p>
     <div class="sheet-example">
-      <div class="label">Example</div>
+      <div class="label" data-zh="例句">Example</div>
       <p id="sheetEx"></p>
       <p class="muted" id="sheetExZh"></p>
     </div>
     <div class="sheet-actions">
       <button class="primary-btn" id="sheetSave"></button>
-      <button class="outline-btn" id="sheetMore">More threads with this word</button>
+      <button class="outline-btn" id="sheetMore" data-zh="更多含這個字的串文">More threads with this word</button>
     </div>
   </div>
 
@@ -153,13 +154,13 @@
   <!-- Composer -->
   <div class="composer" id="composer" role="dialog" aria-modal="true" aria-label="New thread" hidden>
     <div class="composer-top">
-      <button class="text-btn" id="composerCancel">Cancel</button>
+      <button class="text-btn" id="composerCancel" data-zh="取消">Cancel</button>
       <strong id="composerTitle">New thread</strong>
       <span class="spacer"></span>
     </div>
     <div class="challenge">
       <div class="challenge-head">
-        <span>🎯 Word challenge — tap to insert</span>
+        <span data-zh="單字挑戰：點一下插入">🎯 Word challenge — tap to insert</span>
         <button class="text-btn small" id="challengeShuffle">Shuffle</button>
       </div>
       <div class="challenge-words" id="challengeWords"></div>
@@ -168,7 +169,7 @@
       <div class="avatar" id="composerAvatar"></div>
       <div class="composer-main">
         <div class="name" id="composerName"></div>
-        <textarea id="composerText" maxlength="500" rows="5" placeholder="What's new? Use a TOEFL word or two…"></textarea>
+        <textarea id="composerText" maxlength="500" rows="5" placeholder="What's new? Use a TOEFL word or two…" data-zh-ph="有什麼新鮮事？用一兩個托福單字吧"></textarea>
         <div class="composer-detect" id="composerDetect"></div>
         <div id="composerQuote"></div>
       </div>
@@ -200,6 +201,7 @@
   <script src="js/data/batch-11.js"></script>
   <script src="js/data/batch-12.js"></script>
   <script src="js/data/batch-13.js"></script>
+  <script src="js/data/convos.js"></script>
   <script src="js/data/kk.js"></script>
   <script src="js/firebase-config.js"></script>
   <script src="js/core.js"></script>

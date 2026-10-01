@@ -589,3 +589,30 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .push-error { background: var(--bg-soft); border-radius: 12px; padding: 10px 12px; margin: 8px 0 10px; }
 .push-error .muted { margin: 4px 0 0; }
 .push-code { display: block; margin-top: 6px; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+
+/* Character conversations */
+.char-convo { border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.char-convo .translate-btn { margin-top: 2px; }
+.convo-peek { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 0 -2px; color: var(--muted); font-size: 13px; }
+.peek-avatars { display: inline-flex; }
+.peek-avatars .avatar { border: 2px solid var(--bg); margin-left: -6px; }
+.peek-avatars .avatar:first-child { margin-left: 0; }
+
+/* Bilingual labels */
+.zh-sub { font-size: 0.78em; font-weight: 500; color: var(--muted); margin-left: 2px; }
+.ob-lang { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.ob-opt b .zh-sub, .chip .zh-sub { margin-left: 0; }
+.profile-tabs .zh-sub { display: block; font-size: 11px; margin: 0; }
+
+/* Word of the day */
+.wotd { margin: 10px 16px 6px; }
+.wotd-top { display: flex; justify-content: space-between; align-items: center; }
+.wotd-word { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+.wotd-word b { font-size: 26px; }
+.wotd-meta { color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.wotd-zh { font-size: 18px; font-weight: 700; margin: 8px 0 6px; }
+.wotd-ex { background: var(--bg); border-radius: 12px; padding: 10px 12px; font-size: 15px; line-height: 1.5; }
+.wotd-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; }
+.wotd-actions .primary-btn { width: auto; padding: 10px 16px; }
+.wotd-mini { display: block; margin: 8px 16px 0; color: var(--muted); font-size: 14px; }
+.saved-note { color: var(--saved); font-weight: 700; }

@@ -9,7 +9,10 @@
 
 | | |
 |---|---|
-| **For you / Following** | For you 依你的程度、喜歡的題材、追蹤的角色排序；滑到底會自動載入，全部看完會重新洗牌繼續 |
+| **For you / Following** | For you 每 10 則約 3 則來自追蹤的角色、3 則來自喜歡的題材、4 則來自其他人，同一個角色不會連續出現；偏好的程度優先。滑到底自動載入，全部看完重新洗牌 |
+| **角色互相留言** | 78 則串文底下有其他角色的留言（共 183 則，`js/data/convos.js`），可翻譯、單字可點；動態牆上會顯示「XX and 2 others replied」 |
+| **每日一字** | For you 最上方的 Word of the day 卡片（KK、發音、例句、一鍵加入複習），可收合 |
+| **介面語言** | 新手設定一律中英雙語；Settings → Interface language 可切換 English／English + 中文（串文內容維持英文） |
 | **首次設定偏好** | 第一次打開會問程度、題材、要追蹤哪些角色；之後可在 Profile → Feed preferences 修改 |
 | **點藍色單字** | 詞性、中文、例句與中譯、🔊 發音、「More threads with this word」 |
 | **Translate** | 展開整則貼文的中文翻譯 |
@@ -33,7 +36,7 @@
 | **先登入再設定** | 已設定 Firebase 時，第一次打開會先請你用 Google 登入；帳號裡已有偏好就不用再選程度 |
 | **編輯個人資料** | 上傳照片（自動裁成正方形並壓縮）或選 emoji、暱稱、帳號、自我介紹、托福目標分數；改完後舊貼文與留言也會跟著更新 |
 | **PWA（加到主畫面）** | 可以離線開啟；Android 會出現「Install」按鈕，iPhone 會顯示一步步的「加入主畫面」教學 |
-| **推播通知** | 有人回覆你的串文、每天晚上 8 點的按讚摘要（可以個別關掉） |
+| **推播通知** | 有人回覆你的串文、每天晚上 8 點的按讚摘要、早上 9 點的複習提醒（有字到期才發，可以個別關掉） |
 
 ## 資料存在哪裡？兩種模式
 
@@ -124,6 +127,7 @@ css/style.css              樣式（自動跟隨深色／淺色模式）
 js/data/characters.js      20 個角色、題材清單、角色的留言回覆
 js/data/batch-1.js … 13.js 單字與貼文（例句與串文都是為本 App 撰寫）
 js/data/kk.js              KK 音標（scripts/make-kk.mjs 產生）
+js/data/convos.js          角色在串文底下的互相留言
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動

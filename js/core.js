@@ -180,20 +180,48 @@
   }
 
   // ---------- Feed ranking ----------
+  // For you: a balanced mix instead of "highest score first", so following a few characters
+  // or picking topics never crowds everyone else out. Every 10 threads ≈ 3 from people you
+  // follow, 3 from your topics, 4 from everything else; no character twice within 3 threads.
+  var FEED_PATTERN = ["O", "F", "T", "O", "T", "F", "O", "O", "T", "F"];
+
   function rankForYou(state, seen, seed) {
     var rand = mulberry(seed);
     var prefs = state.prefs || {};
     var topics = prefs.topics || [];
     var levels = prefs.levels || [1, 2, 3];
     var following = state.following || {};
-    return BUILTIN.map(function (p) {
-      var s = rand() * 1.3;
-      if (topics.indexOf(p.topic) >= 0) s += 1.2;
-      s += levels.indexOf(p.level) >= 0 ? 1 : -0.6;
-      if (following[p.authorKey]) s += 0.8;
-      if (seen[p.id]) s -= 1.5;
-      return { p: p, s: s };
-    }).sort(function (a, b) { return b.s - a.s; }).map(function (x) { return x.p; });
+    var groups = { F: [], T: [], O: [] };
+    BUILTIN.forEach(function (p) {
+      // Unseen first, then your level, then random.
+      var key = (seen[p.id] ? 2 : 0) + (levels.indexOf(p.level) >= 0 ? 0 : 1) + rand();
+      var g = following[p.authorKey] ? "F" : topics.indexOf(p.topic) >= 0 ? "T" : "O";
+      groups[g].push({ p: p, k: key });
+    });
+    Object.keys(groups).forEach(function (g) {
+      groups[g].sort(function (a, b) { return a.k - b.k; });
+      groups[g] = groups[g].map(function (x) { return x.p; });
+    });
+    var order = { F: ["F", "T", "O"], T: ["T", "O", "F"], O: ["O", "T", "F"] };
+    var out = [], recent = [];
+    function take(g) {
+      var list = groups[g];
+      if (!list.length) return null;
+      // First thread whose author wasn't in the last 3; otherwise just the first one.
+      for (var i = 0; i < Math.min(list.length, 12); i++) {
+        if (recent.indexOf(list[i].authorKey) < 0) return list.splice(i, 1)[0];
+      }
+      return list.shift();
+    }
+    for (var n = 0; out.length < BUILTIN.length; n++) {
+      var want = FEED_PATTERN[n % FEED_PATTERN.length], p = null;
+      for (var j = 0; j < 3 && !p; j++) p = take(order[want][j]);
+      if (!p) break;
+      out.push(p);
+      recent.push(p.authorKey);
+      if (recent.length > 3) recent.shift();
+    }
+    return out;
   }
 
   function mulberry(seed) {
@@ -241,6 +269,14 @@
     d = d || new Date();
     var m = d.getMonth() + 1, day = d.getDate();
     return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (day < 10 ? "0" : "") + day;
+  }
+
+  // Word of the day: same word for everyone on a given day (within the chosen levels).
+  function wordOfDay(day, levels) {
+    levels = levels && levels.length ? levels : [1, 2, 3];
+    var keys = Object.keys(VOCAB).filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; }).sort();
+    if (!keys.length) keys = Object.keys(VOCAB).sort();
+    return keys[hash("wotd:" + day) % keys.length];
   }
 
   function addDays(d, n) {
@@ -381,6 +417,7 @@
     makeQuiz: makeQuiz,
     blankSentence: blankSentence,
     dayKey: dayKey,
+    wordOfDay: wordOfDay,
     streakOf: streakOf,
     lastDays: lastDays
   };
