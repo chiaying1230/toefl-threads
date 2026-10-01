@@ -158,6 +158,7 @@
       uid: raw.uid,
       author: { name: raw.name, handle: raw.handle, avatar: raw.avatar },
       text: raw.text,
+      quoteOf: raw.quoteOf || null,
       words: words,
       level: levelOf(words),
       baseLikes: 0,

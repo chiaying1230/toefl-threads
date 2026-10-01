@@ -22,7 +22,9 @@
 | **New** | 自己發串文，附 Word challenge；發文裡的托福單字會自動變成可點的單字 |
 | **朗讀** | 每則貼文有 🔊 按鈕，用英文朗讀（自動略過中文），Profile 可調 Normal / Slow / Very slow |
 | **間隔複習 (SRS)** | 收藏的字依記憶曲線排程：答對的隔 1→3→7→14→30→60 天再出現，答錯隔天再考；Review 分頁的紅色數字＝今天該複習的字 |
-| **乾淨的個人主頁** | 像社群媒體一樣只有頭像、自我介紹和串文；分頁有 Threads、Liked（按讚過的）、Saved（收藏的）、Badges（14 個豆腐徽章） |
+| **乾淨的個人主頁** | 像社群媒體一樣只有頭像、自我介紹和串文；分頁有 Threads、Replies、Reposts、Liked、Saved、Badges（14 個豆腐徽章） |
+| **轉發／引用** | 每則串文的 🔁：**Repost** 直接轉發、**Quote** 加上自己的話引用（原文以小卡片顯示）。轉發會出現在你主頁的 Reposts 分頁，以及追蹤你的人的 Following 動態（「XX reposted」） |
+| **Replies 分頁** | 主頁分頁：Threads / Replies / Reposts / Liked / Saved / Badges。Replies 列出你留過的每則言，上面附原串文 |
 | **分享** | 每則串文都有分享鍵（紙飛機），手機會跳出 LINE／IG／訊息等分享選單，電腦則複製連結；Profile 的 **Invite friends** 分享整個網站。朋友點開分享的串文會先直接看到那一則，底下有「Join Toefl-Tofu」和「Get the app」，加入後 iPhone 會接著教他加到主畫面 |
 | **Settings** | 每日目標、朗讀速度、通知、加到主畫面、動態偏好、追蹤名單都收在主頁的 ⚙️ Settings 裡 |
 | **先登入再設定** | 已設定 Firebase 時，第一次打開會先請你用 Google 登入；帳號裡已有偏好就不用再選程度 |

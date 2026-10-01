@@ -554,3 +554,27 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .vocab-demo { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
 .join-bar .primary-btn { flex: 1; margin: 0; padding: 11px; }
 .join-bar .outline-btn { flex: none; }
+
+/* Reposts, quotes, replies tab */
+.act.reposted { color: var(--saved); }
+.repost-line { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; font-weight: 600; margin: 0 0 6px 30px; flex-basis: 100%; }
+.repost-line svg { width: 14px; height: 14px; }
+.post.has-repost { flex-wrap: wrap; }
+.avatar.xs { width: 20px; height: 20px; font-size: 11px; }
+.quote-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; margin: 8px 0 4px; cursor: pointer; }
+.quote-card.missing { cursor: default; }
+.quote-head { display: flex; align-items: center; gap: 6px; font-size: 14px; margin-bottom: 4px; }
+.quote-head .post-handle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quote-text { font-size: 14px; line-height: 1.45; color: var(--text); overflow-wrap: anywhere; }
+#composerQuote .quote-card { cursor: default; margin-top: 10px; }
+.reply-item { padding: 12px 16px 6px; border-bottom: 1px solid var(--line); }
+.reply-item .quote-card { margin: 0 0 4px; }
+.reply-item .comment { padding: 6px 0 4px; cursor: pointer; }
+.profile-tabs { overflow-x: auto; scrollbar-width: none; }
+.profile-tabs::-webkit-scrollbar { display: none; }
+.profile-tabs .feed-tab { flex: none; padding-left: 14px; padding-right: 14px; white-space: nowrap; }
+.repost-sheet { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+.sheet-option { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 6px; font-size: 17px; font-weight: 600; border-bottom: 1px solid var(--line); text-align: left; }
+.sheet-option svg { width: 22px; height: 22px; }
+.sheet-option.danger { color: var(--like); }
+.sheet-cancel { width: 100%; margin-top: 14px; }

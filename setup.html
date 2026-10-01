@@ -115,7 +115,11 @@
               // Public profiles (photos, bio) arrived with the next rules update.
               return getJSON(base + "profiles/setup-check?key=" + cfg.apiKey).then(function (r4) {
                 if (r4.status === 403) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了個人資料照片與推播）", rulesFix) };
-                return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
+                // Reposts arrived with the next rules update.
+                return getJSON(base + "reposts?pageSize=1&key=" + cfg.apiKey).then(function (r5) {
+                  if (r5.status !== 200) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了轉發）", rulesFix) };
+                  return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
+                });
               });
             });
           }

@@ -12,7 +12,7 @@
   var LAST_UID_KEY = "toeflThreads.lastUid";
   var CLOUD_CACHE = "toeflThreads.cloud.";   // + uid: last known copy of the account state
   var SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
-  var SYNCED_FIELDS = ["liked", "bookmarked", "words", "profile", "prefs", "following", "daily", "settings", "stats", "badges"];
+  var SYNCED_FIELDS = ["liked", "bookmarked", "words", "profile", "prefs", "following", "daily", "settings", "stats", "badges", "reposted"];
 
   function freshState() {
     return {
@@ -26,7 +26,8 @@
       settings: { rate: 1 },
       stats: { quiz: 0, cards: 0, replies: 0 },
       badges: {},      // badge id -> unlocked timestamp
-      myPosts: [],     // local mode only: { id, text, ts }
+      reposted: {},    // postId -> when I reposted it
+      myPosts: [],     // local mode only: { id, text, ts, quoteOf? }
       myComments: []   // local mode only: { id, postId, text, ts }
     };
   }
@@ -112,7 +113,8 @@
   var auth = null;
   var saveTimer = null;
   var community = [];     // cloud posts by users, newest first
-  var stats = {};         // postId -> { likes, replies } (cloud extras for built-in posts)
+  var stats = {};         // postId -> { likes, replies, reposts } (cloud extras for built-in posts)
+  var reposts = [];       // cloud reposts by everyone, newest first: { uid, postId, name, handle, avatar, createdAt }
   var unsubscribers = [];
 
   var Store = {
@@ -224,13 +226,24 @@
       });
   };
 
+  function rawPost(id, x) {
+    return { id: id, uid: x.uid, name: x.name, handle: x.handle, avatar: x.avatar, text: x.text, quoteOf: x.quoteOf || null, createdAt: millis(x.createdAt), likes: x.likes || 0, replies: x.replies || 0, reposts: x.reposts || 0 };
+  }
+
   function subscribeShared() {
     unsubscribers.push(db.collection("posts").orderBy("createdAt", "desc").limit(300).onSnapshot(function (snap) {
       community = snap.docs.map(function (d) {
         var x = d.data();
-        return { id: d.id, uid: x.uid, name: x.name, handle: x.handle, avatar: x.avatar, text: x.text, createdAt: millis(x.createdAt), likes: x.likes || 0, replies: x.replies || 0 };
+        return rawPost(d.id, x);
       });
       Store.emit("community");
+    }, function (e) { console.error(e); }));
+    unsubscribers.push(db.collection("reposts").orderBy("createdAt", "desc").limit(300).onSnapshot(function (snap) {
+      reposts = snap.docs.map(function (d) {
+        var x = d.data();
+        return { uid: x.uid, postId: x.postId, name: x.name, handle: x.handle, avatar: x.avatar, createdAt: millis(x.createdAt) };
+      });
+      Store.emit("reposts");
     }, function (e) { console.error(e); }));
     unsubscribers.push(db.collection("postStats").onSnapshot(function (snap) {
       stats = {};
@@ -313,7 +326,7 @@
     if (Store.mode === "cloud") return community.slice();
     var p = Store.state.profile;
     return Store.state.myPosts.map(function (m) {
-      return { id: m.id, uid: "me", name: p.name, handle: p.handle, avatar: p.avatar, text: m.text, createdAt: m.ts, likes: 0, replies: 0 };
+      return { id: m.id, uid: "me", name: p.name, handle: p.handle, avatar: p.avatar, text: m.text, quoteOf: m.quoteOf || null, createdAt: m.ts, likes: 0, replies: 0, reposts: 0 };
     });
   };
 
@@ -322,17 +335,25 @@
     return Store.user ? Store.user.uid : null;
   };
 
-  Store.createPost = function (text) {
+  // quoted: the post being quoted (optional). A quote counts as a repost of it.
+  Store.createPost = function (text, quoted) {
     var p = Store.state.profile;
     if (!isCloud()) {
-      Store.state.myPosts.unshift({ id: "me" + Date.now(), text: text, ts: Date.now() });
+      var m = { id: "me" + Date.now(), text: text, ts: Date.now() };
+      if (quoted) m.quoteOf = quoted.id;
+      Store.state.myPosts.unshift(m);
       Store.save();
       Store.emit("community");
       return Promise.resolve();
     }
-    return db.collection("posts").add({
+    var doc = {
       uid: Store.user.uid, name: p.name, handle: p.handle, avatar: p.avatar, text: text,
       likes: 0, replies: 0, createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    if (quoted) doc.quoteOf = quoted.id;
+    return db.collection("posts").add(doc).then(function (ref) {
+      if (quoted) bump(quoted, "reposts", 1).catch(function (e) { console.error(e); });
+      return ref;
     });
   };
 
@@ -355,7 +376,7 @@
     return db.collection("posts").where("uid", "==", uid).get().then(function (snap) {
       return snap.docs.map(function (d) {
         var x = d.data();
-        return { id: d.id, uid: x.uid, name: x.name, handle: x.handle, avatar: x.avatar, text: x.text, createdAt: millis(x.createdAt), likes: x.likes || 0, replies: x.replies || 0 };
+        return rawPost(d.id, x);
       }).sort(function (a, b) { return b.createdAt - a.createdAt; });
     });
   };
@@ -382,6 +403,18 @@
     return Math.max(0, (stats[post.id] && stats[post.id].replies) || 0);
   };
 
+  Store.repostCount = function (post) {
+    if (Store.mode === "local") {
+      return (Store.state.reposted[post.id] ? 1 : 0) +
+        Store.state.myPosts.filter(function (m) { return m.quoteOf === post.id; }).length;
+    }
+    if (post.kind === "user") {
+      var c = find(community, post.id);
+      return c ? Math.max(0, c.reposts || 0) : 0;
+    }
+    return Math.max(0, (stats[post.id] && stats[post.id].reposts) || 0);
+  };
+
   function find(list, id) {
     for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
     return null;
@@ -395,7 +428,7 @@
       upd[field] = firebase.firestore.FieldValue.increment(delta);
       return db.collection("posts").doc(post.id).update(upd);
     }
-    stats[post.id] = stats[post.id] || { likes: 0, replies: 0 };
+    stats[post.id] = stats[post.id] || { likes: 0, replies: 0, reposts: 0 };
     stats[post.id][field] = (stats[post.id][field] || 0) + delta;
     var data = {};
     data[field] = firebase.firestore.FieldValue.increment(delta);
@@ -409,7 +442,47 @@
     if (isCloud()) bump(post, "likes", liked ? 1 : -1).catch(function (e) { console.error(e); });
   };
 
+  // ---------- Reposts ----------
+  Store.setReposted = function (post, on) {
+    if (on) Store.state.reposted[post.id] = Date.now();
+    else delete Store.state.reposted[post.id];
+    Store.save();
+    if (!isCloud()) { Store.emit("reposts"); return Promise.resolve(); }
+    var uid = Store.user.uid, p = Store.state.profile;
+    var ref = db.collection("reposts").doc(uid + "_" + post.id);
+    var write = on
+      ? ref.set({ uid: uid, postId: post.id, name: p.name, handle: p.handle, avatar: p.avatar, createdAt: firebase.firestore.FieldValue.serverTimestamp() })
+      : ref.delete();
+    return write.then(function () { return bump(post, "reposts", on ? 1 : -1); }).catch(function (e) { console.error(e); });
+  };
+
+  // Everyone's recent reposts (cloud), or just mine (this device).
+  Store.repostsFeed = function () {
+    if (Store.mode === "cloud") return reposts.slice();
+    var p = Store.state.profile;
+    return Object.keys(Store.state.reposted).map(function (id) {
+      return { uid: "me", postId: id, name: p.name, handle: p.handle, avatar: p.avatar, createdAt: Store.state.reposted[id] };
+    }).sort(function (a, b) { return b.createdAt - a.createdAt; });
+  };
+
   // ---------- Comments ----------
+  // Everything I've replied, newest first.
+  Store.myComments = function () {
+    var p = Store.state.profile;
+    if (Store.mode === "local") {
+      return Promise.resolve(Store.state.myComments.map(function (c) {
+        return { id: c.id, postId: c.postId, uid: "me", name: p.name, handle: p.handle, avatar: p.avatar, text: c.text, createdAt: c.ts };
+      }).sort(function (a, b) { return b.createdAt - a.createdAt; }));
+    }
+    if (!Store.user) return Promise.resolve([]);
+    return db.collection("comments").where("uid", "==", Store.user.uid).get().then(function (snap) {
+      return snap.docs.map(function (d) {
+        var x = d.data();
+        return { id: d.id, postId: x.postId, uid: x.uid, name: x.name, handle: x.handle, avatar: x.avatar, text: x.text, createdAt: millis(x.createdAt) };
+      }).sort(function (a, b) { return b.createdAt - a.createdAt; });
+    });
+  };
+
   Store.comments = function (postId) {
     if (Store.mode === "local") {
       var p = Store.state.profile;

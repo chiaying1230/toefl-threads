@@ -117,6 +117,7 @@
     bookmark: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>',
     trash: '<svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></svg>',
     plus: '<svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg>',
+    quote: '<svg viewBox="0 0 24 24"><path d="M5 5h14v10H9l-4 4z"/><path d="M9 9h6M9 12h4"/></svg>',
     share: '<svg viewBox="0 0 24 24"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></svg>',
     speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>'
   };
@@ -153,6 +154,8 @@
     var bookmarked = !!st().bookmarked[post.id];
     var likes = likeCount(post);
     var replies = S.replyCount(post);
+    var reposted = !!st().reposted[post.id];
+    var reposts = S.repostCount(post);
     var followable = !mine && !st().following[a.key];
 
     var tags = "";
@@ -165,15 +168,17 @@
     if (post.zh) {
       extra = '<button class="translate-btn" data-translate>Translate</button><div class="translation" hidden>' + esc(post.zh) + "</div>";
     }
+    if (post.quoteOf) extra += quoteCardHtml(findPost(post.quoteOf), post.quoteOf);
     if (post.kind === "user" && post.words.length) {
-      extra = '<div class="used-words">' + (mine ? "You used " : "Used ") + post.words.length + " TOEFL word" + (post.words.length > 1 ? "s" : "") + " 🎉</div>";
+      extra += '<div class="used-words">' + (mine ? "You used " : "Used ") + post.words.length + " TOEFL word" + (post.words.length > 1 ? "s" : "") + " 🎉</div>";
     }
 
     var last = mine
       ? '<button class="act" data-delete="' + post.id + '" aria-label="Delete">' + ICON.trash + "</button>"
       : '<button class="act' + (bookmarked ? " bookmarked" : "") + '" data-bookmark="' + post.id + '" aria-label="Save">' + ICON.bookmark + "</button>";
 
-    return '<article class="post' + (opts.full ? " full" : "") + '" data-id="' + post.id + '">' +
+    var repostLine = opts.repostedBy ? '<div class="repost-line">' + ICON.repost + "<span>" + esc(opts.repostedBy) + " reposted</span></div>" : "";
+    return '<article class="post' + (opts.full ? " full" : "") + (repostLine ? " has-repost" : "") + '" data-id="' + post.id + '">' + repostLine +
       '<div class="post-left">' +
         '<button class="avatar-btn" data-person="' + esc(a.key) + '" aria-label="' + esc(a.name) + '"' + (post.uid ? ' data-avatar-uid="' + esc(post.uid) + '"' : "") + ">" + avatarHtml(a) + "</button>" +
         (followable ? '<button class="follow-plus" data-follow="' + esc(a.key) + '" aria-label="Follow ' + esc(a.name) + '">' + ICON.plus + "</button>" : "") +
@@ -189,6 +194,7 @@
         '<div class="actions">' +
           '<button class="act' + (liked ? " liked" : "") + '" data-like="' + post.id + '" aria-label="Like">' + ICON.heart + '<span class="act-count">' + (likes ? C.formatCount(likes) : "") + "</span></button>" +
           '<button class="act" data-open="' + post.id + '" data-reply-count="' + post.id + '" aria-label="Reply">' + ICON.reply + '<span class="act-count">' + (replies ? C.formatCount(replies) : "") + "</span></button>" +
+          '<button class="act' + (reposted ? " reposted" : "") + '" data-repost="' + post.id + '" aria-label="Repost">' + ICON.repost + '<span class="act-count">' + (reposts ? C.formatCount(reposts) : "") + "</span></button>" +
           '<button class="act" data-read="' + post.id + '" aria-label="Read aloud">' + ICON.speaker + "</button>" +
           '<button class="act" data-share="' + post.id + '" aria-label="Share">' + ICON.share + "</button>" +
           last +
@@ -204,6 +210,13 @@
       if (!post) return;
       var n = likeCount(post);
       b.classList.toggle("liked", !!st().liked[post.id]);
+      b.querySelector(".act-count").textContent = n ? C.formatCount(n) : "";
+    });
+    $all("[data-repost]").forEach(function (b) {
+      var post = findPost(b.dataset.repost);
+      if (!post) return;
+      var n = S.repostCount(post);
+      b.classList.toggle("reposted", !!st().reposted[post.id]);
       b.querySelector(".act-count").textContent = n ? C.formatCount(n) : "";
     });
     $all("[data-reply-count]").forEach(function (b) {
@@ -310,6 +323,7 @@
   function closeSheet() {
     $("#sheetOverlay").hidden = true;
     $("#wordSheet").hidden = true;
+    $("#repostSheet").hidden = true;
     sheetKey = null;
   }
 
@@ -396,8 +410,16 @@
     } else {
       var f = st().following;
       var me = S.myUid();
-      feedItems = community.filter(function (p) { return f[p.authorKey] || p.uid === me; })
-        .concat(C.BUILTIN.filter(function (p) { return f[p.authorKey]; }));
+      // Reposts by people I follow (and me) come first, newest first; each thread shows once.
+      var shown = {};
+      var reposted = S.repostsFeed().filter(function (r) { return r.uid === me || f["uid:" + r.uid]; }).map(function (r) {
+        var p = findPost(r.postId);
+        if (!p || shown[p.id]) return null;
+        shown[p.id] = true;
+        return { repost: true, post: p, by: r.uid === me ? "You" : withProfile({ name: r.name }, r.uid).name };
+      }).filter(Boolean);
+      feedItems = reposted.concat(community.filter(function (p) { return !shown[p.id] && (f[p.authorKey] || p.uid === me); }))
+        .concat(C.BUILTIN.filter(function (p) { return !shown[p.id] && f[p.authorKey]; }));
     }
     $all(".feed-tab").forEach(function (t) { t.classList.toggle("active", t.dataset.feed === feedMode); });
     $("#promptAvatar").textContent = st().profile.avatar;
@@ -430,7 +452,8 @@
     var html = "";
     var end = Math.min(feedItems.length, feedIndex + CHUNK);
     for (; feedIndex < end; feedIndex++) {
-      html += renderPost(feedItems[feedIndex]);
+      var item = feedItems[feedIndex];
+      html += item.repost ? renderPost(item.post, { repostedBy: item.by }) : renderPost(item);
       postsShown++;
       if (postsShown % QUIZ_EVERY === 0) html += renderQuizCard();
     }
@@ -662,6 +685,82 @@
     loadReplies();
   }
 
+  // ---------- Reposts & quotes ----------
+  function quoteCardHtml(p, id) {
+    if (!p) return '<div class="quote-card missing muted small">This thread is no longer available.</div>';
+    var a = authorFor(p), text = plainText(p);
+    if (text.length > 160) text = text.slice(0, 157).replace(/\s+\S*$/, "") + "…";
+    return '<div class="quote-card" data-open="' + esc(p.id) + '"><div class="quote-head">' + avatarHtml(a, "xs") +
+      "<b>" + esc(a.name) + '</b><span class="post-handle">@' + esc(a.handle) + '</span></div><div class="quote-text">' + esc(text) + "</div></div>";
+  }
+
+  var repostTarget = null;
+
+  function openRepostSheet(id) {
+    var post = findPost(id);
+    if (!post || !requireAccount("repost")) return;
+    repostTarget = post;
+    var on = !!st().reposted[id];
+    $("#repostSheet").innerHTML = '<div class="sheet-handle"></div>' +
+      '<button class="sheet-option' + (on ? " danger" : "") + '" data-repost-do>' + ICON.repost + "<span>" + (on ? "Remove repost" : "Repost") + "</span></button>" +
+      '<button class="sheet-option" data-quote>' + ICON.quote + "<span>Quote</span></button>" +
+      '<button class="outline-btn sheet-cancel" data-repost-cancel>Cancel</button>';
+    $("#sheetOverlay").hidden = false;
+    $("#repostSheet").hidden = false;
+  }
+
+  function closeRepostSheet() {
+    $("#repostSheet").hidden = true;
+    if ($("#wordSheet").hidden && $("#installGuide").hidden) $("#sheetOverlay").hidden = true;
+  }
+
+  function toggleRepost() {
+    var post = repostTarget;
+    closeRepostSheet();
+    if (!post) return;
+    var on = !st().reposted[post.id];
+    S.setReposted(post, on);
+    refreshCounts();
+    feedDirty = true;
+    toast(on ? "Reposted 🔁" : "Repost removed");
+    if (route.name === "profile") renderProfile();
+  }
+
+  function startQuote() {
+    var post = repostTarget;
+    closeRepostSheet();
+    if (post) openComposer(post.id);
+  }
+
+  // Profile → Replies: each of my replies under a small card of the thread it answers.
+  var myReplies = null;
+
+  function repliesListHtml(list) {
+    if (!list.length) return '<div class="empty">' + tofuSvg(64) + "<br>Your replies will show up here.<br>Open any thread and say something!</div>";
+    var p = st().profile;
+    return list.map(function (c) {
+      return '<div class="reply-item">' + quoteCardHtml(findPost(c.postId), c.postId) +
+        '<div class="comment" data-open="' + esc(c.postId) + '">' + avatarHtml(p, "sm") +
+        '<div class="comment-main"><div class="post-head"><b class="post-name">' + esc(p.name) + '</b><span class="post-time">· ' + C.timeAgo(c.createdAt) + "</span></div>" +
+        '<div class="post-text">' + C.renderFree(c.text, st().words) + "</div></div></div></div>";
+    }).join("");
+  }
+
+  function loadMyReplies() {
+    S.myComments().then(function (list) {
+      myReplies = list;
+      if (route.name !== "profile" || profileTab !== "replies") return;
+      var box = $("#profileList");
+      if (box) box.innerHTML = repliesListHtml(list);
+      var count = $('[data-ptab="replies"] .muted');
+      if (count) count.textContent = list.length;
+    }).catch(function (e) {
+      console.error(e);
+      var box = $("#profileList");
+      if (box && !myReplies) box.innerHTML = '<div class="empty small">Couldn\'t load your replies.</div>';
+    });
+  }
+
   // ---------- Sharing ----------
   function appUrl(hash) {
     return location.origin + location.pathname + (hash || "");
@@ -775,6 +874,7 @@
     S.addComment(post, text).then(function (id) {
       input.value = "";
       justReplied = id;
+      myReplies = null;
       st().stats.replies = (st().stats.replies || 0) + 1;
       S.save();
       checkBadges();
@@ -899,6 +999,10 @@
   function profileTabPosts() {
     var s = st();
     if (profileTab === "threads") return communityPosts().filter(isMine);
+    if (profileTab === "reposts") {
+      communityPosts();
+      return Object.keys(s.reposted).sort(function (a, b) { return s.reposted[b] - s.reposted[a]; }).map(findPost).filter(Boolean);
+    }
     var ids = Object.keys(profileTab === "liked" ? s.liked : s.bookmarked);
     communityPosts();
     return ids.map(findPost).filter(Boolean).sort(function (a, b) {
@@ -936,8 +1040,8 @@
   function profileTabsHtml(bstats) {
     var s = st();
     var unlocked = C.BADGES.filter(function (b) { return s.badges[b.id]; }).length;
-    var counts = { threads: bstats.posts, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length, badges: unlocked };
-    var html = '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["liked", "Liked"], ["saved", "Saved"], ["badges", "Badges"]].map(function (t) {
+    var counts = { threads: bstats.posts, replies: myReplies ? myReplies.length : "", reposts: Object.keys(s.reposted).length, liked: Object.keys(s.liked).length, saved: Object.keys(s.bookmarked).length, badges: unlocked };
+    var html = '<div class="feed-tabs profile-tabs" role="tablist">' + [["threads", "Threads"], ["replies", "Replies"], ["reposts", "Reposts"], ["liked", "Liked"], ["saved", "Saved"], ["badges", "Badges"]].map(function (t) {
       return '<button class="feed-tab' + (profileTab === t[0] ? " active" : "") + '" data-ptab="' + t[0] + '" role="tab">' + t[1] + ' <span class="muted">' + counts[t[0]] + "</span></button>";
     }).join("") + "</div>";
     if (profileTab === "badges") {
@@ -946,13 +1050,18 @@
         return '<div class="badge-item' + (on ? " on" : "") + '"><span class="b-icon">' + (on ? b.icon : "🔒") + '</span><b>' + esc(b.name) + '</b><span class="muted">' + esc(b.desc) + "</span></div>";
       }).join("") + "</div></div>";
     }
+    if (profileTab === "replies") {
+      setTimeout(loadMyReplies, 0);
+      return html + '<div id="profileList">' + (myReplies ? repliesListHtml(myReplies) : '<div class="empty small">Loading…</div>') + "</div>";
+    }
     var list = profileTabPosts();
     var empty = {
       threads: "You haven't posted yet.<br>Tap <b>＋</b> below and try the word challenge!",
+      reposts: "Threads you repost will show up here.<br>Tap 🔁 on any thread.",
       liked: "Threads you like will show up here.<br>Tap ♡ on any thread.",
       saved: "Threads you save will show up here.<br>Tap the bookmark on any thread."
     }[profileTab];
-    return html + '<div id="profileList">' + (list.length ? list.map(function (x) { return renderPost(x); }).join("") : '<div class="empty">' + tofuSvg(64) + "<br>" + empty + "</div>") + "</div>";
+    return html + '<div id="profileList">' + (list.length ? list.map(function (x) { return renderPost(x, profileTab === "reposts" ? { repostedBy: "You" } : null); }).join("") : '<div class="empty">' + tofuSvg(64) + "<br>" + empty + "</div>") + "</div>";
   }
 
   // Everything that isn't the profile itself lives behind the Settings button.
@@ -1295,8 +1404,13 @@
     renderChallenge();
   }
 
-  function openComposer() {
+  var composerQuote = null;
+
+  function openComposer(quoteId) {
     if (!requireAccount("post a thread")) return;
+    composerQuote = typeof quoteId === "string" ? findPost(quoteId) : null;
+    $("#composerQuote").innerHTML = composerQuote ? quoteCardHtml(composerQuote, composerQuote.id) : "";
+    $("#composerTitle").textContent = composerQuote ? "Quote" : "New thread";
     closeSheet();
     $("#composerAvatar").textContent = st().profile.avatar;
     $("#composerName").textContent = st().profile.name;
@@ -1330,8 +1444,10 @@
     var text = $("#composerText").value.trim();
     if (!text) return;
     $("#composerPost").disabled = true;
-    S.createPost(text).then(function () {
+    var quoted = composerQuote;
+    S.createPost(text, quoted).then(function () {
       $("#composerText").value = "";
+      composerQuote = null;
       closeComposer();
       feedMode = "foryou";
       scrollMemory["home/"] = 0;
@@ -1339,6 +1455,7 @@
       go("#/home");
       window.scrollTo(0, 0);
       var n = C.detectWords(text).length;
+      if (quoted) refreshCounts();
       toast(n ? "Posted! You used " + n + " TOEFL word" + (n > 1 ? "s" : "") + " 🎉" : "Posted!");
       setTimeout(checkBadges, 1500);
     }).catch(function (e) {
@@ -1408,6 +1525,10 @@
     } else if (d.soon) toast(d.soon + " are coming in the next version");
     else if (d.read) readPost(d.read);
     else if (d.share) sharePost(d.share);
+    else if (d.repost) openRepostSheet(d.repost);
+    else if (d.repostDo !== undefined) toggleRepost();
+    else if (d.quote !== undefined) startQuote();
+    else if (d.repostCancel !== undefined) closeRepostSheet();
     else if (d.shareApp !== undefined) shareApp();
     else if (d.join !== undefined) { joinedFromShare = true; openOnboarding(false); }
     else if (d.noticeClose !== undefined) hideNotice();
@@ -1480,7 +1601,7 @@
       S.comments(threadPost.id).then(function (list) {
         var c = list.filter(function (x) { return x.id === d.delComment; })[0];
         return c && S.deleteComment(threadPost, c);
-      }).then(function () { refreshCounts(); loadReplies(); });
+      }).then(function () { myReplies = null; refreshCounts(); loadReplies(); });
     }
     // Composer
     else if (d.insert) insertWord(C.label(d.insert));
@@ -1516,7 +1637,7 @@
   });
 
   // Word sheet
-  $("#sheetOverlay").addEventListener("click", function () { closeSheet(); closeInstallGuide(); });
+  $("#sheetOverlay").addEventListener("click", function () { closeSheet(); closeInstallGuide(); closeRepostSheet(); });
   $("#speakBtn").addEventListener("click", function () { if (sheetKey) speak(C.label(sheetKey)); });
   $("#sheetSave").addEventListener("click", function () {
     if (!sheetKey) return;
@@ -1603,8 +1724,12 @@
       if (route.name === "u") renderPerson(route.param);
     } else if (kind === "stats") {
       refreshCounts();
+    } else if (kind === "reposts") {
+      refreshCounts();
+      if (feedMode === "following") { if (route.name === "home" && window.scrollY < 300) buildFeed(); else feedDirty = true; }
     } else if (kind === "auth") {
       editingProfile = false;
+      myReplies = null;
       renderAll();
       if (S.user) {
         toast("Signed in as " + S.user.name);

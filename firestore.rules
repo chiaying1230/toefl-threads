@@ -14,7 +14,8 @@ service cloud.firestore {
       let changed = request.resource.data.diff(resource.data).affectedKeys();
       return changed.hasOnly(fields)
         && (!('likes' in fields) || (request.resource.data.get('likes', 0) - resource.data.get('likes', 0)) in [-1, 0, 1])
-        && (!('replies' in fields) || (request.resource.data.get('replies', 0) - resource.data.get('replies', 0)) in [-1, 0, 1]);
+        && (!('replies' in fields) || (request.resource.data.get('replies', 0) - resource.data.get('replies', 0)) in [-1, 0, 1])
+        && (!('reposts' in fields) || (request.resource.data.get('reposts', 0) - resource.data.get('reposts', 0)) in [-1, 0, 1]);
     }
 
     // Each person's likes, saved words, preferences and streak. Private.
@@ -32,8 +33,10 @@ service cloud.firestore {
         && request.resource.data.text.size() <= 500
         && request.resource.data.likes == 0
         && request.resource.data.replies == 0
+        && request.resource.data.get('reposts', 0) == 0
+        && (!('quoteOf' in request.resource.data) || (request.resource.data.quoteOf is string && request.resource.data.quoteOf.size() <= 40))
         && request.resource.data.createdAt == request.time;
-      allow update: if signedIn() && counterStep(['likes', 'replies']);
+      allow update: if signedIn() && counterStep(['likes', 'replies', 'reposts']);
       allow delete: if signedIn() && resource.data.uid == request.auth.uid;
     }
 
@@ -41,10 +44,28 @@ service cloud.firestore {
     match /postStats/{postId} {
       allow read: if true;
       allow create: if signedIn()
-        && request.resource.data.keys().hasOnly(['likes', 'replies'])
+        && request.resource.data.keys().hasOnly(['likes', 'replies', 'reposts'])
         && request.resource.data.get('likes', 0) in [0, 1]
-        && request.resource.data.get('replies', 0) in [0, 1];
-      allow update: if signedIn() && counterStep(['likes', 'replies']);
+        && request.resource.data.get('replies', 0) in [0, 1]
+        && request.resource.data.get('reposts', 0) in [0, 1];
+      allow update: if signedIn() && counterStep(['likes', 'replies', 'reposts']);
+    }
+
+    // Reposts: one document per person per thread, id "<uid>_<postId>". Everyone can read
+    // (people who follow you see your reposts); only you can add or remove your own.
+    match /reposts/{repostId} {
+      allow read: if true;
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.postId is string
+        && request.resource.data.postId.size() <= 40
+        && repostId == request.auth.uid + '_' + request.resource.data.postId
+        && request.resource.data.keys().hasOnly(['uid', 'postId', 'name', 'handle', 'avatar', 'createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.handle is string && request.resource.data.handle.size() <= 24
+        && request.resource.data.avatar is string && request.resource.data.avatar.size() <= 16
+        && request.resource.data.createdAt == request.time;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
     }
 
     // Weekly leaderboard: one score per person per week. Everyone can read;

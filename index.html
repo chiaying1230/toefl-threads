@@ -147,13 +147,14 @@
   </div>
 
   <!-- "Add to Home Screen" guide -->
+  <div class="sheet repost-sheet" id="repostSheet" role="dialog" aria-modal="true" aria-label="Repost" hidden></div>
   <div class="sheet" id="installGuide" role="dialog" aria-modal="true" aria-label="Add to Home Screen" hidden></div>
 
   <!-- Composer -->
   <div class="composer" id="composer" role="dialog" aria-modal="true" aria-label="New thread" hidden>
     <div class="composer-top">
       <button class="text-btn" id="composerCancel">Cancel</button>
-      <strong>New thread</strong>
+      <strong id="composerTitle">New thread</strong>
       <span class="spacer"></span>
     </div>
     <div class="challenge">
@@ -169,6 +170,7 @@
         <div class="name" id="composerName"></div>
         <textarea id="composerText" maxlength="500" rows="5" placeholder="What's new? Use a TOEFL word or two…"></textarea>
         <div class="composer-detect" id="composerDetect"></div>
+        <div id="composerQuote"></div>
       </div>
     </div>
     <div class="composer-bottom">
