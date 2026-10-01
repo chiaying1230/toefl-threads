@@ -53,7 +53,7 @@ def js(s):
     return json.dumps(s, ensure_ascii=False)
 
 out = [f"// Batch {batch_no}: threads {posts[0]['id']}–{posts[-1]['id']} and their words",
-       "// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).", "",
+       "",
        "Object.assign(window.VOCAB, {"]
 out.append(",\n".join(f"  {k}: {{ pos: {js(v['pos'])}, zh: {js(v['zh'])}, level: {v['level']}, ex: {js(v['ex'])}, exZh: {js(v['exZh'])} }}" for k, v in vocab.items()))
 out += ["});", "", "window.POSTS.push("]

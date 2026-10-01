@@ -1,5 +1,4 @@
 // Batch 13: threads p438–p468 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   apathy: { pos: "n.", zh: "漠不關心", level: 3, ex: "Voter apathy is a problem when fewer than half the people vote.", exZh: "當不到一半的人去投票時，選民冷漠就是個問題。" },

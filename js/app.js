@@ -15,7 +15,7 @@
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   var esc = C.escapeHtml;
 
-  // The Toefl-Tofu mascot: a little block of tofu with a face.
+  // The toEfu mascot: a little block of tofu with a face.
   function tofuSvg(size) {
     return '<svg class="tofu" style="width:' + size + "px;height:" + size + 'px" viewBox="0 0 64 64" aria-hidden="true">' +
       '<ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".08"/>' +
@@ -187,7 +187,8 @@
       '<div class="post-main">' +
         '<div class="post-head"><button class="post-name" data-person="' + esc(a.key) + '"' + (post.uid ? ' data-name-uid="' + esc(post.uid) + '"' : "") + ">" + esc(a.name) + "</button>" +
           '<span class="post-handle">@' + esc(a.handle) + "</span>" +
-          '<span class="post-time">· ' + (post.kind === "char" ? C.formatAge(post.ageMinutes) : C.timeAgo(post.ts)) + "</span></div>" +
+          '<span class="post-time">· ' + (post.kind === "char" ? C.formatAge(post.ageMinutes) : C.timeAgo(post.ts)) + "</span>" +
+          (post.kind === "user" && !mine ? '<button class="more-btn" data-report-post="' + post.id + '" aria-label="More">⋯</button>' : "") + "</div>" +
         '<div class="post-tags">' + tags + "</div>" +
         '<div class="post-text" data-open="' + post.id + '">' + (post.kind === "char" ? C.renderTagged(post.text, saved) : C.renderFree(post.text, saved)) + "</div>" +
         extra +
@@ -368,7 +369,7 @@
     $("#backBtn").hidden = !sub;
     document.body.classList.toggle("in-thread", route.name === "t");
     $("#brand").classList.toggle("compact", sub);
-    var title = { home: "Toefl-Tofu", search: "Search", review: "Review", profile: "Profile", u: "Profile", t: "Thread" }[route.name];
+    var title = { home: "toEfu", search: "Search", review: "Review", profile: "Profile", u: "Profile", t: "Thread" }[route.name];
     $("#topbarTitle").textContent = title;
 
     if (route.name === "home" && feedDirty) buildFeed();
@@ -629,7 +630,7 @@
       var uid = key.slice(4);
       if (uid === S.myUid()) { go("#/profile"); return; }
       var info = withProfile(userInfoCache[uid] || { name: "TOEFL learner", handle: "user", avatar: "🙂" }, uid);
-      var bio = info.bio || "Learning English on Toefl-Tofu";
+      var bio = info.bio || "Learning English on toEfu";
       var target = info.target ? "🎯 TOEFL target: " + info.target + " · " : "";
       $("#topbarTitle").textContent = "@" + info.handle;
       body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, bio, target, "", info.photo) + '<div class="empty">Loading…</div>';
@@ -664,6 +665,7 @@
 
   // ---------- Thread (post + replies) ----------
   var threadPost = null;
+  var threadComments = {};
   var justReplied = null;
 
   function renderThread(id) {
@@ -761,6 +763,52 @@
     });
   }
 
+  // ---------- Reporting ----------
+  var reportTarget = null;
+
+  function openReportSheet(kind, target, postId) {
+    if (!target || !requireAccount("report")) return;
+    reportTarget = { kind: kind, target: target, postId: postId };
+    $("#repostSheet").innerHTML = '<div class="sheet-handle"></div><h3 class="sheet-title">Report this ' + (kind === "post" ? "thread" : "reply") + "?</h3>" +
+      '<p class="muted small">Reports are private. The author won\'t see who reported it.</p>' +
+      [["spam", "Spam or scam"], ["harassment", "Harassment or hate"], ["inappropriate", "Inappropriate or sexual content"], ["other", "Something else"]].map(function (r) {
+        return '<button class="sheet-option" data-report-reason="' + r[0] + '"><span>' + r[1] + "</span></button>";
+      }).join("") +
+      '<button class="outline-btn sheet-cancel" data-repost-cancel>Cancel</button>';
+    $("#sheetOverlay").hidden = false;
+    $("#repostSheet").hidden = false;
+  }
+
+  function sendReport(reason) {
+    var r = reportTarget;
+    closeRepostSheet();
+    if (!r) return;
+    S.report(r.kind, r.target, r.postId, reason).then(function () {
+      toast("Thanks — we'll take a look 🙏");
+    }, function (e) {
+      console.error(e);
+      toast("Couldn't send the report. Wait a few seconds and try again.");
+    });
+  }
+
+  // ---------- Delete account ----------
+  function deleteAccount() {
+    var cloud = S.mode === "cloud" && S.user;
+    var msg = cloud
+      ? "Delete your toEfu account?\n\nThis permanently removes your threads, replies, likes, reposts, saved words, profile and sign-in. It can't be undone."
+      : "Delete all toEfu data saved on this device? This can't be undone.";
+    if (!confirm(msg)) return;
+    if (cloud && !confirm("Are you sure? Everything will be gone for good.")) return;
+    toast(cloud ? "Deleting your account…" : "Deleting…", 10000);
+    S.deleteAccount(function (m) { toast(m, 10000); }).then(function () {
+      toast("Your account was deleted. Bye for now 👋", 4000);
+      setTimeout(function () { location.hash = ""; location.reload(); }, 1800);
+    }, function (e) {
+      console.error(e);
+      toast("Couldn't finish deleting. Please sign in again and retry.", 5000);
+    });
+  }
+
   // ---------- Sharing ----------
   function appUrl(hash) {
     return location.origin + location.pathname + (hash || "");
@@ -776,11 +824,11 @@
     if (!post) return;
     var a = authorFor(post), text = plainText(post);
     if (text.length > 110) text = text.slice(0, 107).replace(/\s+\S*$/, "") + "…";
-    shareLink({ title: a.name + " on Toefl-Tofu", text: "“" + text + "” — " + a.name + " on Toefl-Tofu 🧈", url: appUrl("#/t/" + id) });
+    shareLink({ title: a.name + " on toEfu", text: "“" + text + "” — " + a.name + " on toEfu 🧈", url: appUrl("#/t/" + id) });
   }
 
   function shareApp() {
-    shareLink({ title: "Toefl-Tofu", text: "I'm learning TOEFL words by scrolling funny threads on Toefl-Tofu. Join me! 🧈", url: appUrl("") });
+    shareLink({ title: "toEfu", text: "I'm learning TOEFL words by scrolling funny threads on toEfu. Join me! 🧈", url: appUrl("") });
   }
 
   // Phone share sheet (LINE, Messages, Instagram…) when available, otherwise copy the link.
@@ -813,11 +861,11 @@
   // Someone opened a shared thread before setting up the app: show the thread first, then invite them in.
   function joinCardHtml(post) {
     return '<div class="card join-card">' + tofuSvg(48) + '<div class="install-text"><b>A friend shared this thread 👋</b>' +
-      '<span class="muted small">Toefl-Tofu is a free app where funny characters post with TOEFL words. Tap any <span class="vocab-demo">underlined word</span> to learn it.</span></div></div>';
+      '<span class="muted small">toEfu is a free app where funny characters post with TOEFL words. Tap any <span class="vocab-demo">underlined word</span> to learn it.</span></div></div>';
   }
 
   function joinBarHtml() {
-    return '<button class="primary-btn" data-join>Join Toefl-Tofu — it\'s free</button>' +
+    return '<button class="primary-btn" data-join>Join toEfu — it\'s free</button>' +
       (canInstall() ? '<button class="outline-btn small" data-install>Get the app</button>' : "");
   }
 
@@ -831,6 +879,8 @@
         box.innerHTML = '<div class="empty small">No replies yet. Be the first — ' + (post.kind === "char" ? esc(authorFor(post).name) + " will answer you!" : "say something nice!") + "</div>";
         return;
       }
+      threadComments = {};
+      list.forEach(function (c) { threadComments[c.id] = c; });
       box.innerHTML = list.map(function (c) { return renderComment(post, c); }).join("");
       if (justReplied) {
         var typing = box.querySelector('[data-typing="' + justReplied + '"]');
@@ -850,7 +900,7 @@
     var html = '<div class="comment">' +
       '<button class="avatar-btn" data-person="uid:' + esc(c.uid) + '" data-avatar-uid="' + esc(c.uid) + '">' + avatarHtml(who, "sm") + "</button>" +
       '<div class="comment-main"><div class="post-head"><button class="post-name" data-person="uid:' + esc(c.uid) + '" data-name-uid="' + esc(c.uid) + '">' + esc(who.name) + '</button><span class="post-time">· ' + C.timeAgo(c.createdAt) + "</span>" +
-      (mine ? '<button class="link danger small push" data-del-comment="' + esc(c.id) + '">Delete</button>' : "") + "</div>" +
+      (mine ? '<button class="link danger small push" data-del-comment="' + esc(c.id) + '">Delete</button>' : '<button class="link muted small push" data-report-comment="' + esc(c.id) + '">Report</button>') + "</div>" +
       '<div class="post-text">' + C.renderFree(c.text, st().words) + "</div></div></div>";
     if (post.kind === "char") {
       var a = authorFor(post);
@@ -884,7 +934,7 @@
       if (n) toast("Nice! You used " + n + " TOEFL word" + (n > 1 ? "s" : "") + " 🎉");
     }).catch(function (e) {
       console.error(e);
-      toast("Couldn't post your reply");
+      toast("Couldn't post your reply — wait a few seconds between replies and try again.");
     }).then(function () { $("#replySend").disabled = !input.value.trim(); });
   }
 
@@ -1098,6 +1148,10 @@
 
     html += notificationsCardHtml() + installCardHtml(false);
 
+    html += '<div class="card"><div class="goal-top"><b>About toEfu</b></div>' +
+      '<p class="muted small"><a class="link" href="privacy.html">Privacy policy</a> · <a class="link" href="terms.html">Terms &amp; community rules</a></p>' +
+      '<button class="link danger" data-delete-account>' + (S.mode === "cloud" && S.user ? "Delete my account" : "Delete data on this device") + "</button></div>";
+
     var followKeys = Object.keys(s.following);
     html += '<div class="section-title">Following · ' + followKeys.length + "</div>";
     html += followKeys.length ? '<div class="following-strip">' + followKeys.map(function (k) {
@@ -1183,7 +1237,7 @@
     var status = S.pushStatus(), info = S.pushInfo();
     var body = "";
     if (status === "ios-needs-install") {
-      body = '<p class="muted small">On iPhone, notifications work after you add Toefl-Tofu to your Home Screen and open it from there.</p><button class="outline-btn" data-install-guide>Show me how</button>';
+      body = '<p class="muted small">On iPhone, notifications work after you add toEfu to your Home Screen and open it from there.</p><button class="outline-btn" data-install-guide>Show me how</button>';
     } else if (status === "unsupported") {
       body = '<p class="muted small">This browser doesn\'t support notifications. Try Chrome or Safari.</p>';
     } else if (status === "needs-setup") {
@@ -1233,7 +1287,7 @@
   function installCardHtml(dismissible) {
     if (!canInstall()) return "";
     return '<div class="card install-card">' + tofuSvg(44) +
-      '<div class="install-text"><b>Get the Toefl-Tofu app</b><span class="muted small">Add it to your Home Screen: opens full-screen, stays signed in' + (isIOS() ? ", and can send notifications" : "") + ".</span></div>" +
+      '<div class="install-text"><b>Get the toEfu app</b><span class="muted small">Add it to your Home Screen: opens full-screen, stays signed in' + (isIOS() ? ", and can send notifications" : "") + ".</span></div>" +
       '<button class="post-btn small" data-install>' + (installPrompt ? "Install" : "How?") + "</button>" +
       (dismissible ? '<button class="notice-x" data-install-dismiss aria-label="Not now">✕</button>' : "") + "</div>";
   }
@@ -1251,7 +1305,7 @@
     if (installPrompt) {
       installPrompt.prompt();
       installPrompt.userChoice.then(function (choice) {
-        if (choice.outcome === "accepted") toast("Installing Toefl-Tofu 🧈");
+        if (choice.outcome === "accepted") toast("Installing toEfu 🧈");
         installPrompt = null;
         renderInstallSlot();
         if (route.name === "profile") renderProfile();
@@ -1265,11 +1319,11 @@
     var chrome = /CriOS/.test(navigator.userAgent);
     var shareIcon = '<svg class="share-ico" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
     $("#installGuide").innerHTML = '<div class="sheet-handle"></div><h2>Add to Home Screen</h2>' +
-      '<p class="muted">Toefl-Tofu works like an app: full-screen, stays signed in, and on iPhone it can send notifications.</p>' +
+      '<p class="muted">toEfu works like an app: full-screen, stays signed in, and on iPhone it can send notifications.</p>' +
       '<ol class="steps">' +
         "<li>Tap the <b>Share</b> button " + shareIcon + (chrome ? " at the top right, next to the address bar." : " at the bottom of Safari.") + ' <span class="muted">（分享）</span></li>' +
         '<li>Scroll down and tap <b>Add to Home Screen</b> <span class="muted">（加入主畫面）</span></li>' +
-        '<li>Tap <b>Add</b> <span class="muted">（新增）</span>, then open Toefl-Tofu from the tofu icon on your Home Screen.</li>' +
+        '<li>Tap <b>Add</b> <span class="muted">（新增）</span>, then open toEfu from the tofu icon on your Home Screen.</li>' +
       "</ol>" +
       '<p class="muted small">You may need to sign in once more inside the Home Screen app.</p>' +
       '<button class="primary-btn" data-close-guide>Got it</button>';
@@ -1291,7 +1345,7 @@
   window.addEventListener("appinstalled", function () {
     installPrompt = null;
     renderInstallSlot();
-    toast("Toefl-Tofu installed 🎉");
+    toast("toEfu installed 🎉");
   });
 
   // ---------- Onboarding / preferences ----------
@@ -1318,17 +1372,18 @@
     var html = "";
     if (ob.step === -1) {
       var app = inAppBrowser();
-      body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>Welcome to Toefl-Tofu</h2>" +
+      body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>Welcome to toEfu</h2>" +
         '<p class="muted">Learn TOEFL words from funny threads. Sign in first so your level, likes, saved words and streak are kept in your account — on every phone, every time you open the app.</p>' +
         (app ? '<div class="notice"><div class="notice-text"><b>You\'re in the ' + app + ' app\'s browser.</b> Google sign-in doesn\'t work here. Tap <b>⋯</b> and choose <b>Open in browser</b>（在瀏覽器開啟）.</div></div>' : "") +
         '</div><div class="ob-nav ob-nav-col"><button class="primary-btn google-btn" data-ob-signin>' +
         '<svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>' +
-        '<span>Sign in with Google</span></button><button class="text-btn small muted-link" data-ob-skip-signin>Continue without an account</button></div>';
+        '<span>Sign in with Google</span></button><button class="text-btn small muted-link" data-ob-skip-signin>Continue without an account</button>' +
+        '<p class="muted small ob-legal">By continuing you agree to the <a class="link" href="terms.html">Terms</a> and <a class="link" href="privacy.html">Privacy policy</a>.</p></div>';
       body.scrollTop = 0;
       return;
     }
     if (ob.step === 0) {
-      html = '<div class="ob-hero">' + tofuSvg(120) + '</div><h2>' + (ob.editing ? "Your level" : "Welcome to Toefl-Tofu") + "</h2>" +
+      html = '<div class="ob-hero">' + tofuSvg(120) + '</div><h2>' + (ob.editing ? "Your level" : "Welcome to toEfu") + "</h2>" +
         '<p class="muted">Funny characters post every day — using real TOEFL words. What level do you want to see?</p>' +
         '<div class="ob-options">' + [[1, "Easy", "Common academic words · ~TOEFL 60–80"], [2, "Medium", "Core TOEFL words · ~TOEFL 80–100"], [3, "Hard", "Advanced words · ~TOEFL 100+"]].map(function (x) {
           var on = ob.levels.indexOf(x[0]) >= 0;
@@ -1365,7 +1420,7 @@
     if (route.name === "profile") renderProfile();
     if (route.name === "t") renderThread(route.param);
     toast("Your feed is ready ✨");
-    // Came from a friend's link: next, show how to keep Toefl-Tofu on the Home Screen.
+    // Came from a friend's link: next, show how to keep toEfu on the Home Screen.
     if (joinedFromShare && canInstall() && isIOS()) setTimeout(openInstallGuide, 900);
     joinedFromShare = false;
   }
@@ -1460,7 +1515,7 @@
       setTimeout(checkBadges, 1500);
     }).catch(function (e) {
       console.error(e);
-      toast("Couldn't post. Please try again.");
+      toast("Couldn't post — you can post one thread every 30 seconds. Try again in a moment.");
       $("#composerPost").disabled = false;
     });
   }
@@ -1529,6 +1584,10 @@
     else if (d.repostDo !== undefined) toggleRepost();
     else if (d.quote !== undefined) startQuote();
     else if (d.repostCancel !== undefined) closeRepostSheet();
+    else if (d.reportPost) openReportSheet("post", findPost(d.reportPost), d.reportPost);
+    else if (d.reportComment) openReportSheet("comment", threadComments[d.reportComment], threadPost && threadPost.id);
+    else if (d.reportReason) sendReport(d.reportReason);
+    else if (d.deleteAccount !== undefined) deleteAccount();
     else if (d.shareApp !== undefined) shareApp();
     else if (d.join !== undefined) { joinedFromShare = true; openOnboarding(false); }
     else if (d.noticeClose !== undefined) hideNotice();

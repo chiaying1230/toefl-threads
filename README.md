@@ -1,6 +1,6 @@
-# Toefl-Tofu 🧈📚
+# toEfu 🧈📚
 
-手機優先、介面像 Threads 的托福單字學習 App，吉祥物是一塊豆腐。
+手機優先、社群動態牆形式的英文單字學習 App（以托福常考字為主），吉祥物是一塊豆腐。
 20 個虛擬角色（外星實習生、貓咪執行長、1885 年的時空旅人、會噴發的火山、圖書館幽靈……）發了 **468 則**好笑的串文，裡面自然融入 **1,300 個托福單字**（Easy / Medium / Hard 三級，涵蓋 18 個托福常考題材）。
 
 介面全英文（沉浸式學習），只有單字解釋與翻譯是中文。
@@ -25,7 +25,10 @@
 | **乾淨的個人主頁** | 像社群媒體一樣只有頭像、自我介紹和串文；分頁有 Threads、Replies、Reposts、Liked、Saved、Badges（14 個豆腐徽章） |
 | **轉發／引用** | 每則串文的 🔁：**Repost** 直接轉發、**Quote** 加上自己的話引用（原文以小卡片顯示）。轉發會出現在你主頁的 Reposts 分頁，以及追蹤你的人的 Following 動態（「XX reposted」） |
 | **Replies 分頁** | 主頁分頁：Threads / Replies / Reposts / Liked / Saved / Badges。Replies 列出你留過的每則言，上面附原串文 |
-| **分享** | 每則串文都有分享鍵（紙飛機），手機會跳出 LINE／IG／訊息等分享選單，電腦則複製連結；Profile 的 **Invite friends** 分享整個網站。朋友點開分享的串文會先直接看到那一則，底下有「Join Toefl-Tofu」和「Get the app」，加入後 iPhone 會接著教他加到主畫面 |
+| **分享** | 每則串文都有分享鍵（紙飛機），手機會跳出 LINE／IG／訊息等分享選單，電腦則複製連結；Profile 的 **Invite friends** 分享整個網站。朋友點開分享的串文會先直接看到那一則，底下有「Join toEfu」和「Get the app」，加入後 iPhone 會接著教他加到主畫面 |
+| **檢舉** | 別人的串文右上角 **⋯**、別人的留言旁 **Report** → 選原因。檢舉存在 Firestore `reports`，只有你在 Firebase 主控台看得到 |
+| **刪除帳號** | Settings → **Delete my account**：刪除自己的串文、留言、按讚、轉發、收藏、個人資料和 Google 登入（沒登入時是清除這台裝置的資料） |
+| **隱私權／條款** | `privacy.html`、`terms.html`；Settings 和登入畫面都有連結 |
 | **Settings** | 每日目標、朗讀速度、通知、加到主畫面、動態偏好、追蹤名單都收在主頁的 ⚙️ Settings 裡 |
 | **先登入再設定** | 已設定 Firebase 時，第一次打開會先請你用 Google 登入；帳號裡已有偏好就不用再選程度 |
 | **編輯個人資料** | 上傳照片（自動裁成正方形並壓縮）或選 emoji、暱稱、帳號、自我介紹、托福目標分數；改完後舊貼文與留言也會跟著更新 |
@@ -64,11 +67,11 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 
 1. **推播金鑰（VAPID）**：Firebase → ⚙️ Project settings → **Cloud Messaging** 分頁 → 最下面 **Web Push certificates** → **Generate key pair** → 把出現的一長串金鑰貼給 Claude（或自己填進 `js/firebase-config.js` 的 `FIREBASE_VAPID_KEY`）。這把金鑰本來就是公開的。
 2. **服務帳戶金鑰（這把是秘密，不要貼到聊天室或程式碼裡）**：
-   - Firebase → ⚙️ Project settings → **Service accounts** → **Generate new private key** → 會下載一個 `.json` 檔。
+   - Firebase → ⚙️ Project settings → **Service accounts** → **Generate new private key** → 會下載一個 `.json` 檔。**不要把這個檔案放進專案資料夾**（`.gitignore` 已經擋下常見的金鑰檔名，但還是放在別處最安全），貼進 GitHub Secret 後就可以刪掉。
    - GitHub repo → **Settings → Secrets and variables → Actions → New repository secret**
    - Name 填 `FIREBASE_SERVICE_ACCOUNT`，Secret 貼上整個 `.json` 檔的內容 → **Add secret**。
 3. 到 repo 的 **Actions** 分頁 → 左邊 **Push notifications** → **Run workflow**，跑一次確認是綠色 ✅。
-4. 手機打開 App → Profile → **🔔 Turn on notifications**。iPhone 需要 iOS 16.4 以上，而且要先「加入主畫面」，再從主畫面的豆腐圖示打開。
+4. 手機打開 App → Profile → ⚙️ Settings → **🔔 Turn on notifications**。iPhone 需要 iOS 16.4 以上，而且要先「加入主畫面」，再從主畫面的豆腐圖示打開。
 
 > 注意：GitHub 會在 repo 連續 60 天沒有任何更新時暫停排程，到 Actions 分頁按一下啟用即可。
 
@@ -76,9 +79,36 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 
 **最後用兩支手機測一次：** 兩支手機分別用不同的 Google 帳號登入（或用一般視窗＋無痕視窗）。A 發文、按讚、留言，B 重新整理後應該看得到。
 
-免費的 Spark 方案不用信用卡，小型使用綽綽有餘。這些設定值本來就是公開的，安全性由 `firestore.rules` 控管。
+免費的 Spark 方案不用信用卡，小型使用綽綽有餘。這些設定值本來就是公開的，安全性由 `firestore.rules` 控管（見下方「安全性」）。
 
-> 限制：目前沒有檢舉／審核功能，每個人只能刪除自己的內容。
+## 安全性
+
+### 規則已經做的事（`firestore.rules`）
+
+- **欄位白名單與長度上限**：串文、留言、轉發、檢舉都只能有固定的欄位，名稱 ≤ 40 字、帳號 ≤ 24 字、串文 ≤ 500 字、留言 ≤ 300 字。推播通知裡出現的名字和內容因此也有上限。
+- **防刷讚／刷轉發**：每人每則只能有一筆 `likes/{uid}_{串文}`、`reposts/{uid}_{串文}` 紀錄，計數器只能跟著紀錄的新增／刪除一起 ±1。
+- **頻率限制**：每人每 30 秒最多發一則串文、每 10 秒最多一則留言、每 10 秒最多一次檢舉（記錄在 `limits/{uid}`）。
+- 私人資料（`users`、`likes`、`pushTokens`）只有本人讀得到；`reports` 只有你在主控台看得到。
+
+### 要在後台做的設定（建議依序完成）
+
+1. **限制 API 金鑰只能從你的網站使用**
+   - 打開 <https://console.cloud.google.com/apis/credentials?project=toefl-threads>
+   - 點 **API keys** 底下的 **Browser key (auto created by Firebase)**（就是 `js/firebase-config.js` 裡那把）
+   - **Application restrictions** 選 **Websites**，加入：
+     - `https://chiaying1230.github.io/*`
+     - `https://toefl-threads.firebaseapp.com/*`（Google 登入視窗需要）
+     - `http://localhost:*/*`（本機預覽用，不需要可省略）
+   - **API restrictions** 選 **Restrict key**，勾選：Identity Toolkit API、Token Service API、Cloud Firestore API、Firebase Installations API、Firebase Cloud Messaging API、Firebase App Check API → **Save**
+   - 等 5 分鐘後打開網站，確認登入、發文、按讚都正常。
+2. **啟用 App Check（擋掉不是從你網站發出的請求）**
+   - 打開 <https://console.firebase.google.com/project/toefl-threads/appcheck> → **Apps** → 你的網頁 App → **reCAPTCHA v3**
+   - 依連結到 reCAPTCHA 後台建立 v3 金鑰，網域填 `chiaying1230.github.io`
+   - 把 **Secret key** 貼回 Firebase，把 **Site key** 貼給 Claude（或填進 `js/firebase-config.js` 的 `FIREBASE_APPCHECK_KEY`）——Site key 是公開的
+   - 上線後先在 App Check → **APIs** 看 1～2 天的流量，確認幾乎都是「Verified requests」，再對 **Cloud Firestore** 按 **Enforce**。太早 Enforce 會讓還開著舊版網頁的人暫時無法使用。
+3. **開啟 GitHub 秘密掃描**：repo → **Settings → Code security** → 開啟 **Secret scanning** 和 **Push protection**（公開 repo 免費）。之後如果不小心要推送金鑰，GitHub 會直接擋下。
+4. **縮小推播用服務帳戶的權限（可選）**：Google Cloud → **IAM & Admin → Service accounts** → 建立新的服務帳戶，只給 **Cloud Datastore User** 和 **Firebase Cloud Messaging API Admin** 兩個角色 → 產生金鑰，取代 GitHub Secret `FIREBASE_SERVICE_ACCOUNT` 的內容 → 刪除原本 `firebase-adminsdk` 帳戶的舊金鑰。
+5. **處理檢舉**：Firebase → Firestore → `reports` 集合。看到違規內容，可以直接在主控台刪除那則 `posts` 或 `comments` 文件。
 
 ## 檔案結構
 
@@ -86,13 +116,14 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
 index.html                 頁面骨架
 css/style.css              樣式（自動跟隨深色／淺色模式）
 js/data/characters.js      20 個角色、題材清單、角色的留言回覆
-js/data/batch-1.js … 13.js 單字與貼文（6–13 批來自 Advanced 500 / Intermediate 500 單字表，例句為原創）
+js/data/batch-1.js … 13.js 單字與貼文（例句與串文都是為本 App 撰寫）
 js/data/kk.js              KK 音標（scripts/make-kk.mjs 產生）
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
 js/firebase-config.js      Firebase 設定（改成 null 就回到本機模式）
 setup.html                 Firebase 設定檢查頁
+privacy.html, terms.html   隱私權政策、服務條款與社群規則
 sw.js                      Service worker（離線、安裝、背景推播）
 scripts/notify/            推播發送程式（GitHub Actions 執行）
 .github/workflows/         每 30 分鐘發送推播的排程
@@ -115,7 +146,7 @@ scripts/check-data.js      檢查內容有沒有打錯
 ## 用 GitHub Pages 免費發佈
 
 1. repo → **Settings → Pages → Build and deployment**
-2. Source 選 **Deploy from a branch**，Branch 選要發佈的分支（例如 `main`）、資料夾 `/ (root)` → **Save**
+2. Source 選 **Deploy from a branch**，Branch 選要發佈的分支、資料夾 `/ (root)` → **Save**。目前這個 repo 只有 `claude/magical-davinci-o7fmqc` 一個分支，網站就是從它發佈的。如果之後想改用 `main`，要先建立 `main` 分支，再回到這裡把 Branch 換成 `main`。
 3. 1～2 分鐘後網址是 `https://chiaying1230.github.io/toefl-threads/`
 4. 手機加入主畫面：iPhone Safari 分享 →「加入主畫面」；Android Chrome ⋮ →「加到主畫面」
 
@@ -127,3 +158,7 @@ scripts/check-data.js      檢查內容有沒有打錯
 python3 -m http.server 8000
 ```
 然後打開 http://localhost:8000
+
+## 商標
+
+TOEFL® 是 ETS 的註冊商標，Threads 是 Meta 的商標；toEfu 與 ETS、Meta 沒有任何關係，也未獲其認可。

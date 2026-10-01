@@ -152,8 +152,10 @@
     }
   };
 
+  var deleting = false;   // set while deleting the account: never write the account back
+
   function pushUserDoc() {
-    if (!isCloud()) return;
+    if (!isCloud() || deleting) return;
     var doc = { updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
     SYNCED_FIELDS.forEach(function (k) { doc[k] = Store.state[k]; });
     db.collection("users").doc(Store.user.uid).set(doc).catch(function (e) {
@@ -194,10 +196,19 @@
     }
     return loadScript(SDK + "firebase-app-compat.js")
       .then(function () {
-        return Promise.all([loadScript(SDK + "firebase-auth-compat.js"), loadScript(SDK + "firebase-firestore-compat.js")]);
+        var parts = [loadScript(SDK + "firebase-auth-compat.js"), loadScript(SDK + "firebase-firestore-compat.js")];
+        // App Check (optional): proves requests come from this site, not from scripts.
+        if (window.FIREBASE_APPCHECK_KEY) parts.push(loadScript(SDK + "firebase-app-check-compat.js").catch(function (e) { console.error(e); }));
+        return Promise.all(parts);
       })
       .then(function () {
         firebase.initializeApp(cfg);
+        if (window.FIREBASE_APPCHECK_KEY && firebase.appCheck) {
+          try {
+            var provider = firebase.appCheck.ReCaptchaV3Provider ? new firebase.appCheck.ReCaptchaV3Provider(window.FIREBASE_APPCHECK_KEY) : window.FIREBASE_APPCHECK_KEY;
+            firebase.appCheck().activate(provider, true);
+          } catch (e) { console.error(e); }
+        }
         auth = firebase.auth();
         db = firebase.firestore();
         // Offline cache: account data still loads when the network is slow at startup.
@@ -351,10 +362,12 @@
       likes: 0, replies: 0, createdAt: firebase.firestore.FieldValue.serverTimestamp()
     };
     if (quoted) doc.quoteOf = quoted.id;
-    return db.collection("posts").add(doc).then(function (ref) {
-      if (quoted) bump(quoted, "reposts", 1).catch(function (e) { console.error(e); });
-      return ref;
-    });
+    // At most one thread every 30 seconds (enforced by the security rules).
+    var b = db.batch();
+    var ref = db.collection("posts").doc();
+    b.set(limitsRef(), { post: now() }, { merge: true });
+    b.set(ref, doc);
+    return b.commit().then(function () { return ref; });
   };
 
   Store.deletePost = function (id) {
@@ -405,8 +418,7 @@
 
   Store.repostCount = function (post) {
     if (Store.mode === "local") {
-      return (Store.state.reposted[post.id] ? 1 : 0) +
-        Store.state.myPosts.filter(function (m) { return m.quoteOf === post.id; }).length;
+      return Store.state.reposted[post.id] ? 1 : 0;
     }
     if (post.kind === "user") {
       var c = find(community, post.id);
@@ -420,26 +432,42 @@
     return null;
   }
 
-  function bump(post, field, delta) {
-    if (post.kind === "user") {
-      var c = find(community, post.id);
-      if (c) c[field] = (c[field] || 0) + delta;
-      var upd = {};
-      upd[field] = firebase.firestore.FieldValue.increment(delta);
-      return db.collection("posts").doc(post.id).update(upd);
-    }
-    stats[post.id] = stats[post.id] || { likes: 0, replies: 0, reposts: 0 };
-    stats[post.id][field] = (stats[post.id][field] || 0) + delta;
+  // Counters live on posts/{id} (people's threads) or postStats/{id} (character threads).
+  function collOf(post) { return post.kind === "user" ? "posts" : "postStats"; }
+  function now() { return firebase.firestore.FieldValue.serverTimestamp(); }
+  function limitsRef() { return db.collection("limits").doc(Store.user.uid); }
+
+  // Adds a ±1 counter change to a batch and updates the numbers shown right away.
+  // Returns a function that undoes the local change if the batch fails.
+  function bumpIn(batch, post, field, delta) {
     var data = {};
     data[field] = firebase.firestore.FieldValue.increment(delta);
-    return db.collection("postStats").doc(post.id).set(data, { merge: true });
+    var local;
+    if (post.kind === "user") {
+      local = find(community, post.id);
+      batch.update(db.collection("posts").doc(post.id), data);
+    } else {
+      stats[post.id] = stats[post.id] || { likes: 0, replies: 0, reposts: 0 };
+      local = stats[post.id];
+      batch.set(db.collection("postStats").doc(post.id), data, { merge: true });
+    }
+    if (local) local[field] = (local[field] || 0) + delta;
+    return function () { if (local) local[field] = (local[field] || 0) - delta; Store.emit("stats"); };
   }
 
+  // One likes/{uid}_{postId} record per person per thread; the counter moves with it.
   Store.setLiked = function (post, liked) {
     if (liked) Store.state.liked[post.id] = true;
     else delete Store.state.liked[post.id];
     Store.save();
-    if (isCloud()) bump(post, "likes", liked ? 1 : -1).catch(function (e) { console.error(e); });
+    if (!isCloud()) return;
+    var b = db.batch();
+    var rec = db.collection("likes").doc(Store.user.uid + "_" + post.id);
+    if (liked) b.set(rec, { uid: Store.user.uid, postId: post.id, coll: collOf(post), createdAt: now() });
+    else b.delete(rec);
+    var undo = bumpIn(b, post, "likes", liked ? 1 : -1);
+    // Fails harmlessly for likes made before like records existed (nothing to remove).
+    b.commit().catch(function (e) { console.error(e); undo(); });
   };
 
   // ---------- Reposts ----------
@@ -449,11 +477,12 @@
     Store.save();
     if (!isCloud()) { Store.emit("reposts"); return Promise.resolve(); }
     var uid = Store.user.uid, p = Store.state.profile;
+    var b = db.batch();
     var ref = db.collection("reposts").doc(uid + "_" + post.id);
-    var write = on
-      ? ref.set({ uid: uid, postId: post.id, name: p.name, handle: p.handle, avatar: p.avatar, createdAt: firebase.firestore.FieldValue.serverTimestamp() })
-      : ref.delete();
-    return write.then(function () { return bump(post, "reposts", on ? 1 : -1); }).catch(function (e) { console.error(e); });
+    if (on) b.set(ref, { uid: uid, postId: post.id, coll: collOf(post), name: p.name, handle: p.handle, avatar: p.avatar, createdAt: now() });
+    else b.delete(ref);
+    var undo = bumpIn(b, post, "reposts", on ? 1 : -1);
+    return b.commit().catch(function (e) { console.error(e); undo(); });
   };
 
   // Everyone's recent reposts (cloud), or just mine (this device).
@@ -506,12 +535,16 @@
       Store.save();
       return Promise.resolve(c.id);
     }
-    return db.collection("comments").add({
-      postId: post.id, uid: Store.user.uid, name: p.name, handle: p.handle, avatar: p.avatar, text: text,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function (ref) {
-      return bump(post, "replies", 1).then(function () { return ref.id; });
+    // At most one reply every 10 seconds; the reply counter moves in the same batch.
+    var b = db.batch();
+    var ref = db.collection("comments").doc();
+    b.set(limitsRef(), { comment: now() }, { merge: true });
+    b.set(ref, {
+      postId: post.id, coll: collOf(post), uid: Store.user.uid, name: p.name, handle: p.handle, avatar: p.avatar, text: text,
+      createdAt: now()
     });
+    var undo = bumpIn(b, post, "replies", 1);
+    return b.commit().then(function () { return ref.id; }, function (e) { undo(); throw e; });
   };
 
   Store.deleteComment = function (post, comment) {
@@ -520,7 +553,81 @@
       Store.save();
       return Promise.resolve();
     }
-    return db.collection("comments").doc(comment.id).delete().then(function () { return bump(post, "replies", -1); });
+    var b = db.batch();
+    b.delete(db.collection("comments").doc(comment.id));
+    b.set(limitsRef(), { uncomment: now() }, { merge: true });
+    var undo = bumpIn(b, post, "replies", -1);
+    return b.commit().catch(function (e) { undo(); throw e; });
+  };
+
+  // ---------- Reports ----------
+  // kind: "post" or "comment". At most one report every 10 seconds.
+  Store.report = function (kind, target, postId, reason) {
+    if (!isCloud()) return Promise.resolve();
+    var b = db.batch();
+    b.set(limitsRef(), { report: now() }, { merge: true });
+    b.set(db.collection("reports").doc(), {
+      uid: Store.user.uid, kind: kind, targetId: target.id, postId: postId, authorUid: String(target.uid || ""),
+      reason: reason, text: String(target.text || "").slice(0, 500), createdAt: now()
+    });
+    return b.commit();
+  };
+
+  // ---------- Delete account ----------
+  // Removes everything this person wrote or saved, then the sign-in account itself.
+  // progress(message) is called as it goes.
+  Store.deleteAccount = function (progress) {
+    progress = progress || function () {};
+    if (!isCloud()) {
+      [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, MERGED_KEY].forEach(removeKey);
+      return Promise.resolve();
+    }
+    var uid = Store.user.uid;
+    deleting = true;
+    var mine = function (coll) { return db.collection(coll).where("uid", "==", uid).get().then(function (s) { return s.docs; }); };
+    var one = function (docs, fn) { return docs.reduce(function (p, d) { return p.then(function () { return fn(d).catch(function (e) { console.error(e); }); }); }, Promise.resolve()); };
+    // Likes and reposts: remove each record together with its counter.
+    var undoRecord = function (field) {
+      return function (d) {
+        var x = d.data(), b = db.batch();
+        b.delete(d.ref);
+        var data = {};
+        data[field] = firebase.firestore.FieldValue.increment(-1);
+        if (x.coll === "posts") b.update(db.collection("posts").doc(x.postId), data);
+        else b.set(db.collection("postStats").doc(x.postId), data, { merge: true });
+        return b.commit().catch(function () { return d.ref.delete(); });
+      };
+    };
+    clearTimeout(saveTimer);
+    return Store.disablePush()
+      .then(function () { progress("Removing your threads…"); return mine("posts"); })
+      .then(function (docs) { return one(docs, function (d) { return d.ref.delete(); }); })
+      .then(function () { progress("Removing your replies…"); return mine("comments"); })
+      .then(function (docs) { return one(docs, function (d) { return d.ref.delete(); }); })
+      .then(function () { progress("Removing your likes…"); return mine("likes"); })
+      .then(function (docs) { return one(docs, undoRecord("likes")); })
+      .then(function () { progress("Removing your reposts…"); return mine("reposts"); })
+      .then(function (docs) { return one(docs, undoRecord("reposts")); })
+      .then(function () {
+        progress("Removing your profile…");
+        return Promise.all(["profiles", "pushTokens", "limits", "users"].map(function (c) {
+          return db.collection(c).doc(uid).delete().catch(function (e) { console.error(e); });
+        }));
+      })
+      .then(function () {
+        progress("Deleting your sign-in…");
+        var u = auth.currentUser;
+        return u.delete().catch(function (e) {
+          if (e && e.code === "auth/requires-recent-login") {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            return u.reauthenticateWithPopup(provider).then(function () { return u.delete(); });
+          }
+          throw e;
+        });
+      })
+      .then(function () {
+        [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, MERGED_KEY, CLOUD_CACHE + uid].forEach(removeKey);
+      }, function (e) { deleting = false; throw e; });
   };
 
   // ---------- Public profiles ----------
@@ -550,7 +657,7 @@
   }
 
   function writePublicProfile() {
-    if (!isCloud()) return Promise.resolve();
+    if (!isCloud() || deleting) return Promise.resolve();
     var data = publicProfile(Store.state.profile);
     data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
     profiles[Store.user.uid] = data;

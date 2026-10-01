@@ -1,6 +1,6 @@
 name: Push notifications
 
-# Sends reply / daily-likes / weekly-rank notifications for Toefl-Tofu.
+# Sends reply / daily-likes notifications for toEfu.
 # Needs the repository secret FIREBASE_SERVICE_ACCOUNT (see README).
 on:
   schedule:

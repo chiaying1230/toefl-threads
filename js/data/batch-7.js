@@ -1,5 +1,4 @@
 // Batch 7: threads p238–p274 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   consternation: { pos: "n.", zh: "驚愕失色", level: 3, ex: "To our consternation, the museum was closed on the only day we could visit.", exZh: "讓我們驚愕的是，博物館在我們唯一能去的那天休館。" },

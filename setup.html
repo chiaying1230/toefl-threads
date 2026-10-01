@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Toefl-Tofu 設定檢查</title>
+  <title>toEfu 設定檢查</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -22,7 +22,7 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="link" href="./">← Back to Toefl-Tofu</a>
+    <a class="link" href="./">← Back to toEfu</a>
     <h1>設定檢查</h1>
     <p class="muted">這頁會檢查 Firebase 有沒有設定好。每做完一步，回來按「重新檢查」。</p>
     <div id="checks"></div>
@@ -100,8 +100,11 @@
         if (res.status === 403 && /SERVICE_DISABLED|has not been used/.test(t) || res.status === 404) {
           return { ok: false, html: row("bad", "④ 還沒建立 Firestore 資料庫", createFix) + row("wait", "⑤ 安全規則（要先完成 ④）") };
         }
+        if (res.status === 401) {
+          return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("warn", "⑤ App Check 已強制啟用，這頁無法從外部檢查規則", "網站本身會正常運作。若要確認規則，可暫時在 App Check 關閉強制。") };
+        }
         if (res.status === 403) {
-          return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 還沒貼上 Toefl-Tofu 的安全規則", rulesFix) };
+          return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 還沒貼上 toEfu 的安全規則", rulesFix) };
         }
         if (res.status !== 200) {
           return { ok: false, html: row("warn", "④ Firestore 回應異常：" + res.status, t) };
@@ -109,23 +112,23 @@
         // Posts are public; other people's private user docs must NOT be readable.
         return getJSON(base + "users/setup-check?key=" + cfg.apiKey).then(function (r2) {
           if (r2.status === 403) {
-            // The leaderboard needs the newer rules; older rules deny reading it.
-            return getJSON(base + "weeks/2000-W01/scores?pageSize=1&key=" + cfg.apiKey).then(function (r3) {
-              if (r3.status !== 200) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了排行榜）", rulesFix) };
-              // Public profiles (photos, bio) arrived with the next rules update.
-              return getJSON(base + "profiles/setup-check?key=" + cfg.apiKey).then(function (r4) {
-                if (r4.status === 403) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了個人資料照片與推播）", rulesFix) };
-                // Reposts arrived with the next rules update.
-                return getJSON(base + "reposts?pageSize=1&key=" + cfg.apiKey).then(function (r5) {
-                  if (r5.status !== 200) return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了轉發）", rulesFix) };
-                  return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
-                });
-              });
+            // Each rules version opens one probe document: meta/rules-v7 reads as 404 (allowed, empty)
+            // with the latest rules and 403 (denied) with older ones.
+            return getJSON(base + "meta/rules-v7?key=" + cfg.apiKey).then(function (r3) {
+              if (r3.status === 404 || r3.status === 200) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
+              if (r3.status === 401 || /app.?check/i.test(errText(r3))) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("warn", "⑤ App Check 已強制啟用，這頁無法檢查規則版本", "如果剛更新過規則，請確認已按 Publish。") };
+              return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了防刷讚、發文頻率限制、檢舉與刪除帳號）", rulesFix) };
             });
           }
           return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 規則太寬鬆（可能是 test mode），別人可以讀取所有資料", rulesFix) };
         });
       });
+    }
+
+    function checkAppCheck() {
+      if (window.FIREBASE_APPCHECK_KEY) return row("ok", "⑧ App Check 已設定（記得在 Firebase → App Check 監看一陣子後按 Enforce）");
+      return row("warn", "⑧ App Check：還沒設定（建議）",
+        '到 <a class="link" target="_blank" href="' + CONSOLE + '/appcheck">Firebase → App Check</a> → Apps → 你的網頁 App → 選 <code>reCAPTCHA v3</code>，依指示到 reCAPTCHA 後台建立網站金鑰（網域填 <code>chiaying1230.github.io</code>），把 Secret key 貼回 Firebase、把 Site key 貼給 Claude。');
     }
 
     function checkPush() {
@@ -145,7 +148,7 @@
         if (!c.ok) { checksEl.innerHTML = c.html; return; }
         return Promise.all([checkAuth(), checkFirestore()]).then(function (r) {
           var allOk = r[0].ok && r[1].ok;
-          checksEl.innerHTML = c.html + r[0].html + r[1].html + checkPages() + checkPush() +
+          checksEl.innerHTML = c.html + r[0].html + r[1].html + checkPages() + checkPush() + checkAppCheck() +
             (allOk ? '<div class="ok-all">🎉 全部設定完成！按「測試 Google 登入」確認一次，然後回到 App 的 Profile 登入即可。</div>' : "");
         });
       }).catch(function (e) {

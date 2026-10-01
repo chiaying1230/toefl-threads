@@ -1,5 +1,4 @@
 // Batch 6: threads p201–p237 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   aberration: { pos: "n.", zh: "偏離常軌；異常；偏差", level: 3, ex: "A single cold day in July is an aberration, not a new climate trend.", exZh: "七月出現一天寒冷的日子只是異常現象，不是新的氣候趨勢。" },

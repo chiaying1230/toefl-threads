@@ -1,1 +1,17 @@
 node_modules/
+
+# Secrets — never commit these (the Firebase service-account key lives in GitHub → Settings → Secrets)
+.env
+.env.*
+*serviceAccount*.json
+*service-account*.json
+*-firebase-adminsdk-*.json
+*.pem
+*.p12
+*.key
+
+# Local tools
+.firebase/
+firebase-debug.log
+firestore-debug.log
+.DS_Store

@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// Security rules for TOEFL Threads.
+// Security rules for toEfu.
 // Firebase console → Firestore Database → Rules → paste this file → Publish.
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -9,13 +9,79 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    // The write changes only these fields, each by exactly -1, 0 or +1.
-    function counterStep(fields) {
-      let changed = request.resource.data.diff(resource.data).affectedKeys();
-      return changed.hasOnly(fields)
-        && (!('likes' in fields) || (request.resource.data.get('likes', 0) - resource.data.get('likes', 0)) in [-1, 0, 1])
-        && (!('replies' in fields) || (request.resource.data.get('replies', 0) - resource.data.get('replies', 0)) in [-1, 0, 1])
-        && (!('reposts' in fields) || (request.resource.data.get('reposts', 0) - resource.data.get('reposts', 0)) in [-1, 0, 1]);
+    function threadDoc(coll, postId) {
+      return /databases/$(database)/documents/$(coll)/$(postId);
+    }
+
+    function limitsDoc() {
+      return /databases/$(database)/documents/limits/$(request.auth.uid);
+    }
+
+    // Text field of a sane length.
+    function str(v, max) {
+      return v is string && v.size() <= max;
+    }
+
+    // The public name/handle/avatar copied onto posts, replies and reposts.
+    function authorFields(d) {
+      return str(d.name, 40) && str(d.handle, 24) && str(d.avatar, 16);
+    }
+
+    // ---------- Counters (likes / replies / reposts) ----------
+    // Each change is exactly -1, 0 or +1 and must come with its proof in the same batch:
+    //   likes ±1   → your likes/{uid}_{postId} record is created / deleted
+    //   reposts ±1 → your reposts/{uid}_{postId} record is created / deleted
+    //   replies +1 → you just wrote a reply (limits.comment set to now, at most one every 10 s)
+    //   replies −1 → you just deleted one (limits.uncomment set to now, at most one every 2 s)
+    function delta(old, f) {
+      return request.resource.data.get(f, 0) - old.get(f, 0);
+    }
+
+    function recordToggled(coll, postId, d) {
+      let rec = /databases/$(database)/documents/$(coll)/$(request.auth.uid + '_' + postId);
+      return (d != 1 || (!exists(rec) && existsAfter(rec)))
+        && (d != -1 || (exists(rec) && !existsAfter(rec)));
+    }
+
+    function counterChange(old, postId) {
+      let d = request.resource.data;
+      let dl = delta(old, 'likes');
+      let dr = delta(old, 'replies');
+      let dp = delta(old, 'reposts');
+      return signedIn()
+        && dl in [-1, 0, 1] && dr in [-1, 0, 1] && dp in [-1, 0, 1]
+        && d.get('likes', 0) >= 0 && d.get('replies', 0) >= 0 && d.get('reposts', 0) >= 0
+        && recordToggled('likes', postId, dl)
+        && recordToggled('reposts', postId, dp)
+        && (dr != 1 || getAfter(limitsDoc()).data.get('comment', null) == request.time)
+        && (dr != -1 || getAfter(limitsDoc()).data.get('uncomment', null) == request.time);
+    }
+
+    // Counter value of a thread before / after this write (posts/{id} or postStats/{id}).
+    function countBefore(coll, postId, f) {
+      return exists(threadDoc(coll, postId)) ? get(threadDoc(coll, postId)).data.get(f, 0) : 0;
+    }
+    function countAfter(coll, postId, f) {
+      return existsAfter(threadDoc(coll, postId)) ? getAfter(threadDoc(coll, postId)).data.get(f, 0) : 0;
+    }
+
+    // ---------- Rate limits ----------
+    // limits/{uid} holds when you last posted, replied, deleted a reply or reported.
+    // Each field can only be set to "now", and only after a pause.
+    function throttled(f, secs) {
+      return !(f in request.resource.data.diff(resource.data).affectedKeys())
+        || (request.resource.data[f] == request.time
+            && (!(f in resource.data) || request.time > resource.data[f] + duration.value(secs, 's')));
+    }
+
+    match /limits/{uid} {
+      allow read, delete: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['post', 'comment', 'uncomment', 'report'])
+        && request.resource.data.values().hasOnly([request.time]);
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['post', 'comment', 'uncomment', 'report'])
+        && throttled('post', 30) && throttled('comment', 10) && throttled('uncomment', 2) && throttled('report', 10);
     }
 
     // Each person's likes, saved words, preferences and streak. Private.
@@ -27,64 +93,103 @@ service cloud.firestore {
     match /posts/{postId} {
       allow read: if true;
       allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'handle', 'avatar', 'text', 'quoteOf', 'likes', 'replies', 'reposts', 'createdAt'])
         && request.resource.data.uid == request.auth.uid
+        && authorFields(request.resource.data)
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 500
         && request.resource.data.likes == 0
         && request.resource.data.replies == 0
         && request.resource.data.get('reposts', 0) == 0
-        && (!('quoteOf' in request.resource.data) || (request.resource.data.quoteOf is string && request.resource.data.quoteOf.size() <= 40))
-        && request.resource.data.createdAt == request.time;
-      allow update: if signedIn() && counterStep(['likes', 'replies', 'reposts']);
+        && (!('quoteOf' in request.resource.data) || str(request.resource.data.quoteOf, 40))
+        && request.resource.data.createdAt == request.time
+        && getAfter(limitsDoc()).data.get('post', null) == request.time;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'replies', 'reposts'])
+        && counterChange(resource.data, postId);
       allow delete: if signedIn() && resource.data.uid == request.auth.uid;
     }
 
-    // Shared like/reply counters for the built-in character threads.
+    // Shared like/reply/repost counters for the built-in character threads.
     match /postStats/{postId} {
       allow read: if true;
-      allow create: if signedIn()
-        && request.resource.data.keys().hasOnly(['likes', 'replies', 'reposts'])
-        && request.resource.data.get('likes', 0) in [0, 1]
-        && request.resource.data.get('replies', 0) in [0, 1]
-        && request.resource.data.get('reposts', 0) in [0, 1];
-      allow update: if signedIn() && counterStep(['likes', 'replies', 'reposts']);
+      allow create: if request.resource.data.keys().hasOnly(['likes', 'replies', 'reposts'])
+        && counterChange({}, postId);
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'replies', 'reposts'])
+        && counterChange(resource.data, postId);
     }
 
-    // Reposts: one document per person per thread, id "<uid>_<postId>". Everyone can read
-    // (people who follow you see your reposts); only you can add or remove your own.
+    // One record per person per liked thread, id "<uid>_<postId>". Private.
+    // Adding or removing one must move the thread's like counter in the same batch.
+    match /likes/{likeId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'postId', 'coll', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && str(request.resource.data.postId, 40)
+        && request.resource.data.coll in ['posts', 'postStats']
+        && likeId == request.auth.uid + '_' + request.resource.data.postId
+        && request.resource.data.createdAt == request.time
+        && countAfter(request.resource.data.coll, request.resource.data.postId, 'likes') == countBefore(request.resource.data.coll, request.resource.data.postId, 'likes') + 1;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid
+        && (countAfter(resource.data.coll, resource.data.postId, 'likes') == countBefore(resource.data.coll, resource.data.postId, 'likes') - 1
+            || !existsAfter(threadDoc(resource.data.coll, resource.data.postId)));
+    }
+
+    // Reposts: one record per person per thread, id "<uid>_<postId>". Everyone can read
+    // (people who follow you see your reposts); only you can add or remove your own,
+    // and the thread's repost counter moves with it.
     match /reposts/{repostId} {
       allow read: if true;
       allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'postId', 'coll', 'name', 'handle', 'avatar', 'createdAt'])
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.postId is string
-        && request.resource.data.postId.size() <= 40
+        && str(request.resource.data.postId, 40)
+        && request.resource.data.coll in ['posts', 'postStats']
         && repostId == request.auth.uid + '_' + request.resource.data.postId
-        && request.resource.data.keys().hasOnly(['uid', 'postId', 'name', 'handle', 'avatar', 'createdAt'])
-        && request.resource.data.name is string && request.resource.data.name.size() <= 40
-        && request.resource.data.handle is string && request.resource.data.handle.size() <= 24
-        && request.resource.data.avatar is string && request.resource.data.avatar.size() <= 16
-        && request.resource.data.createdAt == request.time;
+        && authorFields(request.resource.data)
+        && request.resource.data.createdAt == request.time
+        && countAfter(request.resource.data.coll, request.resource.data.postId, 'reposts') == countBefore(request.resource.data.coll, request.resource.data.postId, 'reposts') + 1;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid
+        && (!('coll' in resource.data)
+            || countAfter(resource.data.coll, resource.data.postId, 'reposts') == countBefore(resource.data.coll, resource.data.postId, 'reposts') - 1
+            || !existsAfter(threadDoc(resource.data.coll, resource.data.postId)));
+    }
+
+    // Replies. Everyone can read; only the author can create or delete.
+    // At most one reply every 10 seconds, and the thread's reply counter moves with it.
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['postId', 'coll', 'uid', 'name', 'handle', 'avatar', 'text', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && str(request.resource.data.postId, 40)
+        && request.resource.data.coll in ['posts', 'postStats']
+        && authorFields(request.resource.data)
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 300
+        && request.resource.data.createdAt == request.time
+        && getAfter(limitsDoc()).data.get('comment', null) == request.time
+        && countAfter(request.resource.data.coll, request.resource.data.postId, 'replies') == countBefore(request.resource.data.coll, request.resource.data.postId, 'replies') + 1;
       allow delete: if signedIn() && resource.data.uid == request.auth.uid;
     }
 
-    // Weekly leaderboard: one score per person per week. Everyone can read;
-    // people can only write their own score, within sane limits.
-    match /weeks/{week}/scores/{uid} {
-      allow read: if true;
-      allow create, update: if signedIn()
-        && request.auth.uid == uid
-        && week.matches('^[0-9]{4}-W[0-9]{2}$')
-        && request.resource.data.keys().hasOnly(['name', 'avatar', 'points', 'updatedAt'])
-        && request.resource.data.name is string
-        && request.resource.data.name.size() <= 40
-        && request.resource.data.avatar is string
-        && request.resource.data.avatar.size() <= 16
-        && request.resource.data.points is int
-        && request.resource.data.points >= 0
-        && request.resource.data.points <= 1000
-        && request.resource.data.updatedAt == request.time;
-      allow delete: if signedIn() && request.auth.uid == uid;
+    // Reports of threads or replies. Anyone signed in can file one (one every 10 seconds);
+    // nobody can read them in the app — review them in the Firebase console.
+    match /reports/{reportId} {
+      allow read, update, delete: if false;
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['uid', 'kind', 'targetId', 'postId', 'authorUid', 'reason', 'text', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.kind in ['post', 'comment']
+        && str(request.resource.data.targetId, 40)
+        && str(request.resource.data.postId, 40)
+        && str(request.resource.data.authorUid, 128)
+        && request.resource.data.reason in ['spam', 'harassment', 'inappropriate', 'other']
+        && str(request.resource.data.text, 500)
+        && request.resource.data.createdAt == request.time
+        && getAfter(limitsDoc()).data.get('report', null) == request.time;
     }
 
     // Public profile: name, username, bio, avatar emoji or a small photo. Everyone can read.
@@ -117,21 +222,14 @@ service cloud.firestore {
 
     // Bookkeeping for the notification sender (GitHub Actions uses an admin key).
     // No app user can read or write it.
-    match /notifyState/{doc} {
+    match /notifyState/{docId} {
       allow read, write: if false;
     }
 
-    // Replies. Everyone can read; only the author can create or delete.
-    match /comments/{commentId} {
-      allow read: if true;
-      allow create: if signedIn()
-        && request.resource.data.uid == request.auth.uid
-        && request.resource.data.postId is string
-        && request.resource.data.text is string
-        && request.resource.data.text.size() > 0
-        && request.resource.data.text.size() <= 300
-        && request.resource.data.createdAt == request.time;
-      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+    // Lets setup.html tell which version of these rules is published:
+    // reading meta/rules-v7 is allowed (404 "not found") only with this version.
+    match /meta/{name} {
+      allow read: if name == 'rules-v7';
     }
   }
 }

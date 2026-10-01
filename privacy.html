@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy policy · toEfu</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { padding: 0 0 48px; }
+    .wrap { max-width: 680px; margin: 0 auto; padding: calc(16px + env(safe-area-inset-top)) 16px 0; line-height: 1.6; }
+    h1 { font-size: 26px; margin: 10px 0 2px; }
+    h2 { font-size: 18px; margin: 26px 0 6px; }
+    .zh { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    ul { padding-left: 20px; } li { margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="link" href="./">← Back to toEfu</a>
+    <h1>Privacy policy</h1>
+    <p class="muted">Last updated: October 1, 2026</p>
+    <p>toEfu is a free, non-commercial English-learning website run by one person as a personal project. This page explains what we store, who can see it, and how to delete it.</p>
+    <p class="zh">toEfu 是個人經營、免費、非商業的英文學習網站。本頁說明我們儲存哪些資料、誰看得到，以及如何刪除。</p>
+
+    <h2>What we store</h2>
+    <table>
+      <tr><th>Data</th><th>Where</th><th>Who can see it</th></tr>
+      <tr><td>Without an account: saved words, likes, preferences, streak, threads and replies you write</td><td>Only in your browser (this device)</td><td>Only you</td></tr>
+      <tr><td>Google sign-in: your Google account name, email address and user ID</td><td>Firebase Authentication (Google)</td><td>Only the site owner, in the Firebase console</td></tr>
+      <tr><td>Saved words, likes, bookmarks, reposts list, preferences, streak, badges</td><td>Firestore <code>users</code> (private)</td><td>Only you (and the site owner)</td></tr>
+      <tr><td>Public profile: display name, username, bio, TOEFL target, emoji or photo</td><td>Firestore <code>profiles</code></td><td><b>Everyone</b></td></tr>
+      <tr><td>Threads, replies and reposts you publish (with your name and avatar)</td><td>Firestore <code>posts</code>, <code>comments</code>, <code>reposts</code></td><td><b>Everyone</b></td></tr>
+      <tr><td>Like records (which threads you liked)</td><td>Firestore <code>likes</code> (private)</td><td>Only you (and the site owner)</td></tr>
+      <tr><td>Notification settings, device push token and time zone (only if you turn notifications on)</td><td>Firestore <code>pushTokens</code> (private)</td><td>Only you (and the site owner)</td></tr>
+      <tr><td>Reports you send about a thread or reply</td><td>Firestore <code>reports</code></td><td>Only the site owner</td></tr>
+    </table>
+    <p class="zh">沒有帳號時，資料只存在你的瀏覽器。用 Google 登入後，個人資料（暱稱、帳號、自介、頭像）和你發的串文、留言、轉發是<b>公開</b>的；收藏的單字、按讚、偏好、推播設定是私人的，只有你（和網站管理者）看得到。</p>
+
+    <h2>What we don't do</h2>
+    <ul>
+      <li>We don't sell or share your data with advertisers. There are no ads and no analytics trackers.</li>
+      <li>Your email address is never shown to other users.</li>
+    </ul>
+    <p class="zh">我們不販售資料、沒有廣告、不追蹤分析。你的 Email 不會顯示給其他使用者。</p>
+
+    <h2>Services we use</h2>
+    <ul>
+      <li><b>Google Firebase</b> (Authentication, Firestore, Cloud Messaging, App Check) — stores the data above. See Google's privacy policy.</li>
+      <li><b>Google reCAPTCHA</b> (through App Check, if turned on) — checks that requests come from this website, not from bots.</li>
+      <li><b>GitHub Pages</b> — hosts the website files. GitHub may keep standard server logs (such as IP addresses).</li>
+    </ul>
+
+    <h2>How long we keep it</h2>
+    <p>We keep your data until you delete it or delete your account. Notification tokens that stop working are removed automatically.</p>
+
+    <h2>Delete your data</h2>
+    <ul>
+      <li><b>Delete your account:</b> Profile → ⚙️ Settings → <b>Delete my account</b>. This removes your threads, replies, likes, reposts, saved words, profile, notification settings and your sign-in. It can't be undone.</li>
+      <li><b>Delete a single thread or reply:</b> use the trash / Delete button on it.</li>
+      <li><b>Without an account:</b> Settings → <b>Delete data on this device</b>, or clear this site's data in your browser.</li>
+    </ul>
+    <p class="zh">刪除帳號：個人主頁 → ⚙️ Settings → Delete my account，會刪除你的串文、留言、按讚、轉發、收藏、個人資料和登入帳號，無法復原。</p>
+
+    <h2>Children</h2>
+    <p>toEfu is meant for people aged 13 and over. If you are under 13, please don't create an account.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or requests: open an issue at <a class="link" href="https://github.com/chiaying1230/toefl-threads/issues">github.com/chiaying1230/toefl-threads/issues</a> (please don't post personal information there).</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, we'll update the date at the top of this page.</p>
+  </div>
+</body>
+</html>

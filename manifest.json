@@ -1,6 +1,6 @@
 {
-  "name": "Toefl-Tofu",
-  "short_name": "Toefl-Tofu",
+  "name": "toEfu",
+  "short_name": "toEfu",
   "description": "Learn TOEFL words from funny threads.",
   "start_url": "./",
   "scope": "./",

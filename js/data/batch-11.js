@@ -1,5 +1,4 @@
 // Batch 11: threads p377–p407 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   potential: { pos: "adj./n.", zh: "潛在的；潛力可能性", level: 2, ex: "The young player has the potential to become a star.", exZh: "那位年輕球員有成為明星的潛力。" },

@@ -1,5 +1,4 @@
 // Batch 9: threads p311–p345 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   precipitate: { pos: "v.", zh: "加速促成；引發", level: 3, ex: "The sudden price rise precipitated a wave of protests.", exZh: "價格突然上漲引發了一波抗議。" },

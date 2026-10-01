@@ -1,5 +1,4 @@
 // Batch 12: threads p408–p437 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   imbibe: { pos: "v.", zh: "飲用(酒)；吸收領會", level: 3, ex: "Plants imbibe water through their roots.", exZh: "植物透過根部吸收水分。" },

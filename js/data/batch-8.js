@@ -1,5 +1,4 @@
 // Batch 8: threads p275–p310 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   elapse: { pos: "v.", zh: "(時間) 過去；流逝", level: 3, ex: "Three hours elapsed before anyone noticed the cat was missing.", exZh: "過了三個小時才有人發現貓不見了。" },

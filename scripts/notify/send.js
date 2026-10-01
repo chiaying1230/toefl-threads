@@ -1,4 +1,4 @@
-// Sends Toefl-Tofu push notifications. GitHub Actions runs this every 30 minutes
+// Sends toEfu push notifications. GitHub Actions runs this every 30 minutes
 // (.github/workflows/notifications.yml) with a Firebase service-account key.
 //   • Replies:  someone replied to your thread (sent on the next run)
 //   • Likes:    daily summary of new likes on your threads, at 8 pm your time
@@ -134,7 +134,7 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
     }
   }
   await metaRef.set(meta);
-  log(`Toefl-Tofu notifications: ${JSON.stringify(result)} (people with notifications on: ${Object.keys(users).length})`);
+  log(`toEfu notifications: ${JSON.stringify(result)} (people with notifications on: ${Object.keys(users).length})`);
   return { outbox, result };
 }
 

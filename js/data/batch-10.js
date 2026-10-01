@@ -1,5 +1,4 @@
 // Batch 10: threads p346–p376 and their words
-// (word list: TOEFL Advanced 500 / Intermediate 500; example sentences written for this app).
 
 Object.assign(window.VOCAB, {
   sumptuous: { pos: "adj.", zh: "奢華昂貴的", level: 3, ex: "We enjoyed a sumptuous dinner at the hotel for our anniversary.", exZh: "我們在飯店享用了一頓奢華的週年紀念晚餐。" },

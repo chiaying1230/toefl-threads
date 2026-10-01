@@ -1,7 +1,7 @@
 {
   "name": "toefl-tofu-notify",
   "private": true,
-  "description": "Push notification sender for Toefl-Tofu (runs on GitHub Actions)",
+  "description": "Push notification sender for toEfu (runs on GitHub Actions)",
   "dependencies": {
     "firebase-admin": "^12.7.0"
   }
