@@ -44,13 +44,13 @@
 
 Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/firebase-config.js`。還剩 2 件事要在 Firebase 網站上點：
 
-**設定檢查頁：** <https://chiaying1230.github.io/toefl-threads/setup.html>
+**設定檢查頁：** <https://toefu.app/setup.html>
 這頁會用 ✅／❌ 告訴你哪一步還沒完成，也附有直接前往 Firebase 對應頁面的連結。
 
 1. **開啟 Google 登入**
    - 打開 <https://console.firebase.google.com/project/toefl-threads/authentication/providers>
    - 按 `Get started` → 選 `Google` → 打開 `Enable` → 選你的 Email → `Save`
-   - 再到 `Settings` 分頁 → `Authorized domains` → `Add domain` → 輸入 `chiaying1230.github.io` → `Add`
+   - 再到 `Settings` 分頁 → `Authorized domains` → `Add domain` → 輸入 `toefu.app` → `Add`，再加一次 `www.toefu.app`
 2. **建立資料庫並貼上規則**
    - 打開 <https://console.firebase.google.com/project/toefl-threads/firestore>
    - 按 `Create database` → 位置選 `asia-east1 (Taiwan)` → 選 `Start in production mode` → `Create`
@@ -96,14 +96,15 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
    - 打開 <https://console.cloud.google.com/apis/credentials?project=toefl-threads>
    - 點 **API keys** 底下的 **Browser key (auto created by Firebase)**（就是 `js/firebase-config.js` 裡那把）
    - **Application restrictions** 選 **Websites**，加入：
-     - `https://chiaying1230.github.io/*`
+     - `https://toefu.app/*`
+     - `https://www.toefu.app/*`
      - `https://toefl-threads.firebaseapp.com/*`（Google 登入視窗需要）
      - `http://localhost:*/*`（本機預覽用，不需要可省略）
    - **API restrictions** 選 **Restrict key**，勾選：Identity Toolkit API、Token Service API、Cloud Firestore API、Firebase Installations API、Firebase Cloud Messaging API、Firebase App Check API → **Save**
    - 等 5 分鐘後打開網站，確認登入、發文、按讚都正常。
 2. **啟用 App Check（擋掉不是從你網站發出的請求）**
    - 打開 <https://console.firebase.google.com/project/toefl-threads/appcheck> → **Apps** → 你的網頁 App → **reCAPTCHA v3**
-   - 依連結到 reCAPTCHA 後台建立 v3 金鑰，網域填 `chiaying1230.github.io`
+   - 依連結到 reCAPTCHA 後台建立 v3 金鑰，網域填 `toefu.app`
    - 把 **Secret key** 貼回 Firebase，把 **Site key** 貼給 Claude（或填進 `js/firebase-config.js` 的 `FIREBASE_APPCHECK_KEY`）——Site key 是公開的
    - 上線後先在 App Check → **APIs** 看 1～2 天的流量，確認幾乎都是「Verified requests」，再對 **Cloud Firestore** 按 **Enforce**。太早 Enforce 會讓還開著舊版網頁的人暫時無法使用。
 3. **開啟 GitHub 秘密掃描**：repo → **Settings → Code security** → 開啟 **Secret scanning** 和 **Push protection**（公開 repo 免費）。之後如果不小心要推送金鑰，GitHub 會直接擋下。
@@ -147,10 +148,40 @@ scripts/check-data.js      檢查內容有沒有打錯
 
 1. repo → **Settings → Pages → Build and deployment**
 2. Source 選 **Deploy from a branch**，Branch 選要發佈的分支、資料夾 `/ (root)` → **Save**。目前這個 repo 只有 `claude/magical-davinci-o7fmqc` 一個分支，網站就是從它發佈的。如果之後想改用 `main`，要先建立 `main` 分支，再回到這裡把 Branch 換成 `main`。
-3. 1～2 分鐘後網址是 `https://chiaying1230.github.io/toefl-threads/`
+3. 1～2 分鐘後網址是 **<https://toefu.app/>**（自訂網域，見下一節）。舊網址 `chiaying1230.github.io/toefl-threads/` 會自動轉到新網址。
 4. 手機加入主畫面：iPhone Safari 分享 →「加入主畫面」；Android Chrome ⋮ →「加到主畫面」
 
 > 免費的 GitHub Pages 需要 repo 是 **Public**。
+
+## 自訂網域 toefu.app（Cloudflare）
+
+網站檔案還是放在 GitHub Pages，Cloudflare 只負責 DNS。repo 根目錄的 `CNAME` 檔（內容是 `toefu.app`）告訴 GitHub 要用這個網域。
+
+1. **Cloudflare → toefu.app → DNS → Records**，新增下面 9 筆。**Proxy status 全部關成 DNS only（灰色雲朵）**，否則 GitHub 發不出 HTTPS 憑證。
+
+   | Type | Name | Content |
+   |---|---|---|
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | AAAA | `@` | `2606:50c0:8000::153` |
+   | AAAA | `@` | `2606:50c0:8001::153` |
+   | AAAA | `@` | `2606:50c0:8002::153` |
+   | AAAA | `@` | `2606:50c0:8003::153` |
+   | CNAME | `www` | `chiaying1230.github.io` |
+
+   Cloudflare 新網域預設可能有其他紀錄（例如停放頁），名稱是 `@` 或 `www` 的舊 A／AAAA／CNAME 要先刪掉。
+2. **驗證網域（防止被別人搶用）**：GitHub 右上角頭像 → **Settings → Pages → Add a domain** → `toefu.app` → 依畫面在 Cloudflare 加一筆 TXT 紀錄 → **Verify**。
+3. **GitHub repo → Settings → Pages → Custom domain** 會顯示 `toefu.app`。等 DNS check 變綠勾、憑證發好（通常幾分鐘，最久 24 小時）後，勾選 **Enforce HTTPS**。`.app` 網域只能用 HTTPS，憑證發好之前網址會打不開，屬正常現象。
+4. **Firebase → Authentication → Settings → Authorized domains**：加入 `toefu.app` 和 `www.toefu.app`，Google 登入才能用。
+5. 如果限制了 API 金鑰或設了 App Check，網域清單也要加上 `toefu.app`（見「安全性」）。
+
+**換網域對使用者的影響**：瀏覽器把資料依網址分開存，所以新網址是「新的網站」。
+- 有登入的人：雲端資料都在，在新網址重新登入一次即可。
+- 沒登入的訪客：存在舊網址的收藏不會跟過來。
+- 加到主畫面的人：刪掉舊圖示，從新網址重新加入。
+- 推播通知：要在新網址重新開啟一次。
 
 ## 本機預覽
 

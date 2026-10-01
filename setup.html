@@ -83,10 +83,10 @@
           out.push(row(idps ? "ok" : "warn", "② Authentication 已啟用", idps ? "" : "如果下面的「測試 Google 登入」成功，就代表 Google 登入也開好了。"));
         }
         var domains = res.body.authorizedDomains || [];
-        var needed = "chiaying1230.github.io";
-        if (domains.indexOf(needed) >= 0) out.push(row("ok", "③ 已授權網域 " + needed));
-        else out.push(row("bad", "③ 還沒加入授權網域 " + needed,
-          '到 <a class="link" target="_blank" href="' + CONSOLE + '/authentication/settings">Authentication → Settings → Authorized domains</a>，按 <code>Add domain</code>，輸入 <code>' + needed + "</code>。"));
+        var needed = ["toefu.app", "www.toefu.app"].filter(function (d) { return domains.indexOf(d) < 0; });
+        if (!needed.length) out.push(row("ok", "③ 已授權網域 toefu.app"));
+        else out.push(row("bad", "③ 還沒加入授權網域 " + needed.join("、"),
+          '到 <a class="link" target="_blank" href="' + CONSOLE + '/authentication/settings">Authentication → Settings → Authorized domains</a>，按 <code>Add domain</code>，分別輸入 <code>' + needed.join("</code> 和 <code>") + "</code>。（舊的 <code>chiaying1230.github.io</code> 可以留著。）"));
         return { ok: out.join("").indexOf("❌") < 0, html: out.join("") };
       });
     }
@@ -128,7 +128,7 @@
     function checkAppCheck() {
       if (window.FIREBASE_APPCHECK_KEY) return row("ok", "⑧ App Check 已設定（記得在 Firebase → App Check 監看一陣子後按 Enforce）");
       return row("warn", "⑧ App Check：還沒設定（建議）",
-        '到 <a class="link" target="_blank" href="' + CONSOLE + '/appcheck">Firebase → App Check</a> → Apps → 你的網頁 App → 選 <code>reCAPTCHA v3</code>，依指示到 reCAPTCHA 後台建立網站金鑰（網域填 <code>chiaying1230.github.io</code>），把 Secret key 貼回 Firebase、把 Site key 貼給 Claude。');
+        '到 <a class="link" target="_blank" href="' + CONSOLE + '/appcheck">Firebase → App Check</a> → Apps → 你的網頁 App → 選 <code>reCAPTCHA v3</code>，依指示到 reCAPTCHA 後台建立網站金鑰（網域填 <code>toefu.app</code>），把 Secret key 貼回 Firebase、把 Site key 貼給 Claude。');
     }
 
     function checkPush() {
@@ -138,8 +138,9 @@
     }
 
     function checkPages() {
-      if (/github\.io$/.test(host)) return row("ok", "⑥ 網站已在 GitHub Pages 上線");
-      return row("warn", "⑥ 你現在不是在 GitHub Pages 上開這頁", "Google 登入只能在已授權的網域使用。請用 <code>https://chiaying1230.github.io/toefl-threads/setup.html</code> 打開。");
+      if (/(^|\.)toefu\.app$/.test(host)) return row("ok", "⑥ 網站已在 toefu.app 上線");
+      if (/github\.io$/.test(host)) return row("warn", "⑥ 網站還在 GitHub 的網址上", "設好自訂網域後，請改用 <code>https://toefu.app/setup.html</code> 打開這頁。");
+      return row("warn", "⑥ 你現在不是在正式網址上開這頁", "Google 登入只能在已授權的網域使用。請用 <code>https://toefu.app/setup.html</code> 打開。");
     }
 
     function run() {

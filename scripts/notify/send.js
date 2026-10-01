@@ -6,7 +6,7 @@
 const path = require("path");
 const fs = require("fs");
 
-const APP_URL = process.env.APP_URL || "https://chiaying1230.github.io/toefl-threads/";
+const APP_URL = process.env.APP_URL || "https://toefu.app/";
 const DAY = 86400000;
 
 function loadCore() {
