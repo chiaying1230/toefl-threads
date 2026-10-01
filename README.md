@@ -103,9 +103,10 @@ Firebase 專案 `toefl-threads` 已經建好，設定值也已經填進 `js/fire
    - **API restrictions** 選 **Restrict key**，勾選：Identity Toolkit API、Token Service API、Cloud Firestore API、Firebase Installations API、Firebase Cloud Messaging API、Firebase App Check API → **Save**
    - 等 5 分鐘後打開網站，確認登入、發文、按讚都正常。
 2. **啟用 App Check（擋掉不是從你網站發出的請求）**
-   - 打開 <https://console.firebase.google.com/project/toefl-threads/appcheck> → **Apps** → 你的網頁 App → **reCAPTCHA v3**
-   - 依連結到 reCAPTCHA 後台建立 v3 金鑰，網域填 `toefu.app`
-   - 把 **Secret key** 貼回 Firebase，把 **Site key** 貼給 Claude（或填進 `js/firebase-config.js` 的 `FIREBASE_APPCHECK_KEY`）——Site key 是公開的
+   - 打開 <https://console.firebase.google.com/project/toefl-threads/appcheck> → **Apps** → 你的網頁 App，選 **reCAPTCHA Enterprise**（目前使用）或 **reCAPTCHA v3**
+   - 金鑰的網域清單要有 `toefu.app` 和 `www.toefu.app`（本機測試再加 `localhost`）
+   - 把 **Site key** 填進 `js/firebase-config.js` 的 `FIREBASE_APPCHECK_KEY`（公開的，可以放進程式），`FIREBASE_APPCHECK_PROVIDER` 填 `"enterprise"` 或 `"v3"`。v3 還要把 **Secret key** 貼回 Firebase（不要放進程式）
+   - reCAPTCHA Enterprise 每月有免費額度，小網站通常用不完；Google Cloud 可能要求綁定帳單帳戶
    - 上線後先在 App Check → **APIs** 看 1～2 天的流量，確認幾乎都是「Verified requests」，再對 **Cloud Firestore** 按 **Enforce**。太早 Enforce 會讓還開著舊版網頁的人暫時無法使用。
 3. **開啟 GitHub 秘密掃描**：repo → **Settings → Code security** → 開啟 **Secret scanning** 和 **Push protection**（公開 repo 免費）。之後如果不小心要推送金鑰，GitHub 會直接擋下。
 4. **縮小推播用服務帳戶的權限（可選）**：Google Cloud → **IAM & Admin → Service accounts** → 建立新的服務帳戶，只給 **Cloud Datastore User** 和 **Firebase Cloud Messaging API Admin** 兩個角色 → 產生金鑰，取代 GitHub Secret `FIREBASE_SERVICE_ACCOUNT` 的內容 → 刪除原本 `firebase-adminsdk` 帳戶的舊金鑰。

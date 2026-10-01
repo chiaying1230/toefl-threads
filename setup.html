@@ -126,7 +126,8 @@
     }
 
     function checkAppCheck() {
-      if (window.FIREBASE_APPCHECK_KEY) return row("ok", "⑧ App Check 已設定（記得在 Firebase → App Check 監看一陣子後按 Enforce）");
+      if (window.FIREBASE_APPCHECK_KEY) return row("ok", "⑧ App Check 已設定（" + (window.FIREBASE_APPCHECK_PROVIDER === "enterprise" ? "reCAPTCHA Enterprise" : "reCAPTCHA v3") + "）",
+        "到 Firebase → App Check → APIs 觀察 1～2 天，Verified requests 幾乎是 100% 後，再對 Cloud Firestore 和 Authentication 按 Enforce。");
       return row("warn", "⑧ App Check：還沒設定（建議）",
         '到 <a class="link" target="_blank" href="' + CONSOLE + '/appcheck">Firebase → App Check</a> → Apps → 你的網頁 App → 選 <code>reCAPTCHA v3</code>，依指示到 reCAPTCHA 後台建立網站金鑰（網域填 <code>toefu.app</code>），把 Secret key 貼回 Firebase、把 Site key 貼給 Claude。');
     }

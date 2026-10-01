@@ -15,7 +15,9 @@ window.FIREBASE_CONFIG = {
 // Firebase console → Project settings → Cloud Messaging → Web Push certificates → Generate key pair.
 window.FIREBASE_VAPID_KEY = "BDopcUnlgiD1VPJ1MrdLZ3uFEbe9JkHwMkhIlw99_INl679dLrtigkbfZLmqJy-PCCWGsnzRNLBcfO8RHrq_E6Y";
 
-// App Check (reCAPTCHA v3 site key). Blocks requests that don't come from this website.
-// Firebase console → App Check → Apps → register the web app with reCAPTCHA v3 → paste the SITE key here.
-// Leave as null until then.
-window.FIREBASE_APPCHECK_KEY = null;
+// App Check: blocks requests that don't come from this website.
+// Firebase console → App Check → Apps → the web app's reCAPTCHA SITE key (public, safe to publish).
+// Set to null to turn App Check off.
+window.FIREBASE_APPCHECK_KEY = "6LeCx9gtAAAAAJEKFcMypneWKN6qChyBtER4bviy";
+// Which reCAPTCHA the key belongs to: "enterprise" (reCAPTCHA Enterprise) or "v3" (classic reCAPTCHA v3).
+window.FIREBASE_APPCHECK_PROVIDER = "enterprise";

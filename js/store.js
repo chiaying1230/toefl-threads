@@ -205,7 +205,11 @@
         firebase.initializeApp(cfg);
         if (window.FIREBASE_APPCHECK_KEY && firebase.appCheck) {
           try {
-            var provider = firebase.appCheck.ReCaptchaV3Provider ? new firebase.appCheck.ReCaptchaV3Provider(window.FIREBASE_APPCHECK_KEY) : window.FIREBASE_APPCHECK_KEY;
+            var key = window.FIREBASE_APPCHECK_KEY;
+            var Provider = window.FIREBASE_APPCHECK_PROVIDER === "enterprise"
+              ? firebase.appCheck.ReCaptchaEnterpriseProvider
+              : firebase.appCheck.ReCaptchaV3Provider;
+            var provider = Provider ? new Provider(key) : key;
             firebase.appCheck().activate(provider, true);
           } catch (e) { console.error(e); }
         }
