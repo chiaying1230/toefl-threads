@@ -1,0 +1,10 @@
+{
+  "name": "toefu-gen-posts",
+  "private": true,
+  "type": "module",
+  "description": "Batch-generate toEfu threads with the Claude API (offline tool, not part of the site)",
+  "scripts": { "test": "node --test" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
+  }
+}
