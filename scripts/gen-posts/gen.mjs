@@ -31,6 +31,8 @@ const { values: o } = parseArgs({
     "price-in": { type: "string" }, // override $/MTok if the model is not in the price table
     "price-out": { type: "string" },
     fresh: { type: "boolean", default: false }, // discard previous progress
+    redo: { type: "string" }, // comma-separated ids to regenerate, e.g. p469,p473 (keeps the rest)
+    review: { type: "boolean", default: false }, // second pass: model self-checks each batch and rewrites weak threads
     "dry-run": { type: "boolean", default: false },
     mock: { type: "boolean", default: false },
     help: { type: "boolean", default: false },
@@ -82,6 +84,12 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 let accepted = {}; // id -> {text, zh}
 let spent = { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, cost: 0, calls: 0 };
 if (o.fresh) fs.rmSync(progFile, { force: true });
+if (o.redo && fs.existsSync(progFile)) {
+  const ids = new Set(o.redo.split(",").map((x) => x.trim()));
+  const keep = fs.readFileSync(progFile, "utf8").split("\n").filter(Boolean).filter((l) => { const r = JSON.parse(l); return !((r.type === "post" || r.type === "fail") && ids.has(r.id)); });
+  fs.writeFileSync(progFile, keep.join("\n") + "\n");
+  log(`Redo: dropped ${[...ids].join(", ")} from saved progress`);
+}
 if (fs.existsSync(progFile)) {
   const lines = fs.readFileSync(progFile, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
   if (lines[0].sig !== sig) die(`${path.relative(here, progFile)} was made from a different word list/seed/ids. Use --fresh to start over.`);
@@ -102,6 +110,50 @@ else {
   client = new Anthropic({ maxRetries: 4 }); // SDK retries 429/5xx/network with backoff
 }
 
+// one API call -> parsed threads (or null after a retryable error); tracks usage/cost
+async function call(content, attempt = 1) {
+  let msg;
+  try {
+    msg = await client.messages.create({
+      model,
+      max_tokens: Number(o["max-tokens"]),
+      system,
+      output_config: { effort: o.effort },
+      messages: [{ role: "user", content }],
+    });
+  } catch (e) {
+    log(`  API error: ${e.status || ""} ${e.message}`);
+    if (e.status && e.status < 500 && e.status !== 429 && e.status !== 408) die(`non-retryable API error (${e.status}); check model name / key`);
+    await sleep(2000 * 2 ** (attempt - 1));
+    return null;
+  }
+  const u = L.usageOf(msg.usage);
+  const cost = L.costOf(u, prices);
+  for (const k of Object.keys(u)) spent[k] += u[k];
+  spent.cost += cost; spent.calls++;
+  append({ type: "usage", ...u, cost, cacheHit: u.cacheRead > 0 });
+  log(`  tokens in ${u.input} / cache-write ${u.cacheWrite} / cache-read ${u.cacheRead} / out ${u.output}  $${cost.toFixed(4)}`);
+  if (msg.stop_reason === "refusal" || msg.stop_reason === "max_tokens") log(`  stop_reason ${msg.stop_reason} — partial output will be validated`);
+  return L.parseResponse(msg.content.filter((c) => c.type === "text").map((c) => c.text).join(""));
+}
+
+// --review: editor pass over a batch; a rewrite replaces the draft only if it still validates
+async function reviewBatch(tasks) {
+  if (spent.cost >= maxCost) return;
+  log(`  Review pass: ${tasks.map((t) => t.id).join(" ")}`);
+  const drafts = Object.fromEntries(tasks.map((t) => [t.id, accepted[t.id]]));
+  const parsed = await call(L.buildReview(tasks, drafts));
+  if (!parsed) return;
+  for (const t of tasks) {
+    const r = parsed[t.id];
+    if (!r || (r.text.trim() === "OK" && !r.zh)) { log(`  ✓ ${t.id} ok`); continue; }
+    const errs = L.validatePost(t, r);
+    if (errs.length) { log(`  ↺ ${t.id} rewrite rejected (${errs.join("; ")}) — keeping draft`); continue; }
+    accepted[t.id] = r; append({ type: "post", id: t.id, ...r, reviewed: true });
+    log(`  ✎ ${t.id} rewritten by review`);
+  }
+}
+
 // ---------- run ----------
 const failed = {};
 const pending = plan.filter((t) => !accepted[t.id]);
@@ -109,41 +161,22 @@ let stopped = false;
 for (let b = 0; b < pending.length && !stopped; b += batchSize) {
   let todo = pending.slice(b, b + batchSize);
   let feedback = {};
+  const fresh = []; // threads accepted in this batch (for --review)
   for (let attempt = 1; attempt <= retries && todo.length; attempt++) {
     if (spent.cost >= maxCost) { log(`Cost cap $${maxCost} reached — stopping. Re-run with a higher --max-cost to continue.`); stopped = true; break; }
     log(`Batch ${b / batchSize + 1}: ${todo.map((t) => t.id).join(" ")} (attempt ${attempt}/${retries})`);
-    let msg;
-    try {
-      msg = await client.messages.create({
-        model,
-        max_tokens: Number(o["max-tokens"]),
-        system,
-        output_config: { effort: o.effort },
-        messages: [{ role: "user", content: L.buildUser(todo, feedback) }],
-      });
-    } catch (e) {
-      log(`  API error: ${e.status || ""} ${e.message}`);
-      if (e.status && e.status < 500 && e.status !== 429 && e.status !== 408) die(`non-retryable API error (${e.status}); check model name / key`);
-      await sleep(2000 * 2 ** (attempt - 1));
-      continue;
-    }
-    const u = L.usageOf(msg.usage);
-    const cost = L.costOf(u, prices);
-    for (const k of Object.keys(u)) spent[k] += u[k];
-    spent.cost += cost; spent.calls++;
-    append({ type: "usage", ...u, cost, cacheHit: u.cacheRead > 0 });
-    log(`  tokens in ${u.input} / cache-write ${u.cacheWrite} / cache-read ${u.cacheRead} / out ${u.output}  $${cost.toFixed(4)}`);
-    if (msg.stop_reason === "refusal" || msg.stop_reason === "max_tokens") log(`  stop_reason ${msg.stop_reason} — partial output will be validated`);
-    const parsed = L.parseResponse(msg.content.filter((c) => c.type === "text").map((c) => c.text).join(""));
+    const parsed = await call(L.buildUser(todo, feedback), attempt);
+    if (!parsed) continue;
     const next = [];
     feedback = {};
     for (const t of todo) {
       const errs = parsed[t.id] ? L.validatePost(t, parsed[t.id]) : ["missing from response"];
       if (errs.length) { feedback[t.id] = errs; next.push(t); log(`  ✗ ${t.id}: ${errs.join("; ")}`); }
-      else { accepted[t.id] = parsed[t.id]; append({ type: "post", id: t.id, ...parsed[t.id] }); }
+      else { accepted[t.id] = parsed[t.id]; append({ type: "post", id: t.id, ...parsed[t.id] }); fresh.push(t); }
     }
     todo = next;
   }
+  if (o.review && fresh.length && !stopped) await reviewBatch(fresh);
   for (const t of todo) { failed[t.id] = feedback[t.id] || ["no valid response"]; append({ type: "fail", id: t.id, errors: failed[t.id] }); }
 }
 
@@ -183,6 +216,10 @@ function mockClient() {
     messages: {
       create: async ({ messages }) => {
         const user = messages[0].content;
+        if (user.startsWith("Review these")) {
+          const ids = [...user.matchAll(/^### (p\d+)/gm)].map((m) => m[1]);
+          return { stop_reason: "end_turn", content: [{ type: "text", text: ids.map((id) => `### ${id}\nOK`).join("\n\n") }], usage: { input_tokens: 200, output_tokens: 10, cache_read_input_tokens: 4000 } };
+        }
         const blocks = user.split(/^### /m).slice(1).map((b) => {
           const id = b.match(/^(p\d+)/)[1];
           const keys = [...b.matchAll(/^ {2}- ([a-z_]+)/gm)].map((m) => m[1]);

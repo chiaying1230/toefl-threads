@@ -30,3 +30,14 @@ test("plan covers every word once, 2-3 per post, deterministic", () => {
   assert.ok(a.filter((t) => CHARACTERS[t.author].lang === "mix").length >= 7);
 });
 test("cost", () => assert.equal(L.costOf({ input: 1e6, output: 1e6, cacheWrite: 0, cacheRead: 1e6 }, [2, 10]), 12.2));
+
+test("form identical to headword is rejected", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text.replace("[[alleviate|alleviated]]", "[[alleviate|alleviate]]") }).some((e) => /repeats the word/.test(e))));
+test("review prompt lists drafts and the OK protocol", () => {
+  const p = L.buildReview([task], { p1: ok });
+  assert.ok(p.includes("### p1") && p.includes("OK") && p.includes("[[subtle]]"));
+});
+test("system prompt carries the naturalness / facts rules", () => {
+  const { CHARACTERS } = L.loadSite();
+  const sys = L.buildSystem({ characters: CHARACTERS, examples: {}, authors: ["ann"] })[0].text;
+  assert.ok(/non sequiturs/.test(sys) && /Soviet Union/.test(sys) && /sentence where its meaning can be inferred/.test(sys));
+});

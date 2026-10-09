@@ -13,7 +13,9 @@ export const EASY_BAND = 4;
 const EN_EVERY = 5; // every 5th post of an easy batch uses an English-only character
 
 // ---------- data ----------
+let siteCache;
 export function loadSite() {
+  if (siteCache) return siteCache;
   const require = createRequire(import.meta.url);
   globalThis.window = {};
   const dir = path.join(REPO, "js", "data");
@@ -24,7 +26,7 @@ export function loadSite() {
     .forEach((f) => require(path.join(dir, f)));
   const { CHARACTERS, TOPICS, POSTS } = window;
   delete globalThis.window;
-  return { CHARACTERS, TOPICS, POSTS };
+  return (siteCache = { CHARACTERS, TOPICS, POSTS });
 }
 
 export function parseCsv(text) {
@@ -159,7 +161,11 @@ RULES
 5. Level control. Band 1–4 words: every paragraph is at most ${MAX_PARA} characters, sentences are short and grammar is simple (no stacked clauses), all non-target vocabulary is common. Band 5+ words: each paragraph under 300 characters, normal TOEFL-level prose.
 6. Facts must be true and match the topic. Be funny but not mean; no real people, brands used as jokes, politics or religion.
 7. The Chinese translation after the --- line translates the whole thread text naturally (Traditional Chinese, Taiwan usage), keeps paragraph breaks and emoji, and contains no [[ ]] markers.
-8. Write each thread fresh; do not copy the examples. If a "previous attempt" note lists problems, fix exactly those.`;
+8. Write each thread fresh; do not copy the examples. If a "previous attempt" note lists problems, fix exactly those.
+9. Natural use: each target word must be used in a sentence where its meaning can be inferred from context and where it fits the word's real meaning — never forced in. Check each word: would a native speaker use it this way? If a word does not fit the character's story naturally, change the story, not the word.
+10. Logic: the sentences must connect (cause and effect, contrast, a clear joke). No non sequiturs; every sentence should follow from the one before it.
+11. Facts: do not write statistics, dates or "firsts" unless you are certain they are exactly right; prefer a safe, general, true statement or an obviously fictional character anecdote. Use correct names (e.g. the Soviet Union in 1957, not "Russia"). Never invent numbers.
+12. Never write a form identical to the headword as [[word|word]]; just write [[word]].`;
 
   const chars = authors
     .map((a) => {
@@ -185,6 +191,20 @@ export function buildUser(tasks, feedback = {}) {
     return `### ${t.id}\ncharacter: ${t.author}\ntopic: ${t.topic}\ntarget words (the Chinese is for your understanding only — never write it in the thread):\n${w}${fb}`;
   });
   return `Write ${tasks.length} thread${tasks.length > 1 ? "s" : ""}:\n\n${lines.join("\n\n")}`;
+}
+
+export function buildReview(tasks, drafts) {
+  const items = tasks.map((t) => {
+    const w = t.words.map((x) => `${x.key}${x.pos ? ` (${x.pos})` : ""} = ${x.zh}`).join("; ");
+    return `### ${t.id}  [character: ${t.author}; topic: ${t.topic}; target words: ${w}]\n${drafts[t.id].text}\n---\n${drafts[t.id].zh}`;
+  });
+  return `Review these drafted threads as a strict editor. For each one check: (a) every target word is used naturally, with its real meaning, in a way a learner could infer; (b) the sentences are logical and connected, with no non sequiturs; (c) every fact, date and number is certainly correct (names too — if unsure, remove it); (d) the voice fits the character; (e) all the format rules (markers, level, length, no Chinese gloss of target words).
+If a thread passes all checks, output only:
+### <id>
+OK
+If it fails any check, output the full corrected thread in the normal output format (### <id>, text, ---, translation), fixing the problem while keeping the same character, topic and target words.
+
+${items.join("\n\n")}`;
 }
 
 // ---------- parsing & validation ----------
@@ -219,6 +239,7 @@ export function validatePost(task, { text, zh }) {
     if (!want.has(key)) errs.push(`marked "${key}" which is not an assigned word`);
     else found.add(key);
     if (m[2] !== undefined && !m[2].trim()) errs.push(`empty form in [[${key}|]]`);
+    if (m[2] !== undefined && m[2].trim().toLowerCase() === key.replace(/_/g, " ")) errs.push(`[[${key}|${m[2]}]] repeats the word — write [[${key}]]`);
   }
   for (const k of want) if (!found.has(k)) errs.push(`target word "${k}" is not marked as [[${k}]] in the text`);
   if (/\[\[|\]\]/.test(text.replace(TAG, ""))) errs.push("malformed [[ ]] marker");
