@@ -9,13 +9,19 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 export const REPO = path.resolve(here, "..", "..");
 export const TAG = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 export const MAX_PARA = 175; // chars per paragraph for band 1–4
-export const EASY_BAND = 4;
+// Levels 1–10. easy: 1..easyMax, medium: ..mediumMax, advanced: the rest. Change with configureLevels / --easy-max / --medium-max.
+export const LEVELS = { easyMax: 3, mediumMax: 6 };
+export const configureLevels = ({ easyMax, mediumMax }) => {
+  if (!(easyMax >= 1 && mediumMax >= easyMax)) throw new Error("need 1 <= easy-max <= medium-max");
+  LEVELS.easyMax = easyMax; LEVELS.mediumMax = mediumMax;
+};
+export const isSimple = (band) => band <= LEVELS.mediumMax; // easy or medium: short paragraphs, mix-character preference
 export const PROFILES = { // whole-thread level control, chosen from the highest band among the target words
   easy: { maxWords: 12 }, // band 1–2
   medium: { maxWords: 16 }, // band 3–4
   advanced: { maxWords: Infinity }, // band 5+
 };
-export const profileOf = (band) => (band <= 2 ? "easy" : band <= EASY_BAND ? "medium" : "advanced");
+export const profileOf = (band) => (band <= LEVELS.easyMax ? "easy" : band <= LEVELS.mediumMax ? "medium" : "advanced");
 
 // ---------- data ----------
 let siteCache;
@@ -92,6 +98,9 @@ function shuffle(arr, r) {
   return a;
 }
 
+const SETTINGS = ["on the bus", "at the night market", "in the school canteen", "at the gym", "in a long queue", "at the laundromat", "on a rainy day", "at a birthday party", "in the library", "at the bank", "on a train trip", "in a convenience store", "at the hair salon", "during an exam week", "on moving day", "at the bus stop", "in the elevator", "at a wedding", "at the dentist", "in a group chat", "at the airport", "at the supermarket", "on a hiking trail", "at a concert", "in the dorm", "at the post office", "on a video call", "at the pharmacy", "in a taxi", "at the beach", "at a coffee shop", "in the park", "at a food stall", "in the garden", "during a power cut", "at a school sports day", "at the cinema", "on a first day at work", "at a family dinner", "in the classroom"];
+const ANGLES = ["a small mishap", "a tiny victory", "a funny misunderstanding", "an unwritten rule", "a bad plan that almost works", "a comparison between two things", "a confession", "a quick tip with a twist", "something that did not go as expected", "a surprising little fact", "a complaint that turns into a joke", "a promise that is probably not kept", "an unexpected helper", "a lesson learned the hard way", "a daydream"];
+
 export function makePlan({ words, characters, topics, startId, seed = 1, mixShare = 0.5 }) {
   if (words.length < 2) throw new Error("Need at least 2 words");
   const r = rng(seed);
@@ -121,12 +130,12 @@ export function makePlan({ words, characters, topics, startId, seed = 1, mixShar
   return groups.map((g, idx) => {
     const band = Math.max(...g.map((w) => w.band));
     const useMix = Math.floor((idx + 1) * mixShare) > Math.floor(idx * mixShare); // spreads mix posts evenly
-    const pool = band <= EASY_BAND ? (useMix ? mix : en) : all;
+    const pool = isSimple(band) ? (useMix ? mix : en) : all;
     const author = least(pool, used);
     used[author]++;
     const topic = least(topics, topicUsed);
     topicUsed[topic]++;
-    return { id: `p${startId + idx}`, author, topic, band, words: g };
+    return { id: `p${startId + idx}`, author, topic, band, scene: `${SETTINGS[(idx * 7 + Math.floor(r() * SETTINGS.length)) % SETTINGS.length]}; angle: ${ANGLES[Math.floor(r() * ANGLES.length)]}`, words: g };
   });
 }
 
@@ -165,9 +174,9 @@ RULES
 3. Every assigned target word must appear in the thread text, marked as [[word]] using the exact lowercase headword, or [[word|form]] when it is inflected or changes form, e.g. [[procrastinate|procrastinated]], [[nuclear]]. Mark only the assigned words — never mark any other word. Use each assigned word in the given part of speech and sense.
 4. The context must let a learner infer the meaning, but you must NEVER write the Chinese meaning of a target word (or a Chinese gloss/translation of it) anywhere in the thread text, not even in parentheses. Chinese in a "mix" thread is the character's ordinary speech, not a definition.
 5. Level profiles. Each assignment names a level profile; the whole thread (not just the target words) must match it, without sounding childish or preachy — it should still read like a real, funny post.
-   - easy: only very common everyday English besides the target words (roughly the 1,500 most common words); each sentence at most ${PROFILES.easy.maxWords} English words and one idea; concrete everyday scenes (food, weather, friends, school, home, pets, shopping); no idioms, no phrasal verbs, no long clauses; every paragraph at most ${MAX_PARA} characters.
-   - medium: common vocabulary besides the target words; each sentence at most ${PROFILES.medium.maxWords} English words; at most one simple subordinate clause per sentence; short cause-and-effect and contrast are fine; every paragraph at most ${MAX_PARA} characters.
-   - advanced: normal TOEFL-level prose; each paragraph under 300 characters.
+   - easy (levels 1–${LEVELS.easyMax}): only very common everyday English besides the target words (roughly the 1,500 most common words); each sentence at most ${PROFILES.easy.maxWords} English words and one idea; concrete everyday scenes (food, weather, friends, school, home, pets, shopping); no idioms, no phrasal verbs, no long clauses; every paragraph at most ${MAX_PARA} characters.
+   - medium (levels ${LEVELS.easyMax + 1}–${LEVELS.mediumMax}): common vocabulary besides the target words; each sentence at most ${PROFILES.medium.maxWords} English words; at most one simple subordinate clause per sentence; short cause-and-effect and contrast are fine; every paragraph at most ${MAX_PARA} characters.
+   - advanced (levels ${LEVELS.mediumMax + 1}+): normal TOEFL-level prose; each paragraph under 300 characters.
 6. Facts must be true and match the topic. Be funny but not mean; no real people, brands used as jokes, politics or religion.
 7. The Chinese translation after the --- line translates the whole thread text naturally (Traditional Chinese, Taiwan usage), keeps paragraph breaks and emoji, and contains no [[ ]] markers.
 8. Write each thread fresh; do not copy the examples. If a "previous attempt" note lists problems, fix exactly those.
@@ -199,7 +208,7 @@ export function buildUser(tasks, feedback = {}) {
   const lines = tasks.map((t) => {
     const w = t.words.map((x) => `  - ${x.key}${x.pos ? ` (${x.pos})` : ""} = ${x.zh}  [band ${x.band}]`).join("\n");
     const fb = feedback[t.id] ? `\n  previous attempt problems: ${feedback[t.id].join("; ")}` : "";
-    return `### ${t.id}\ncharacter: ${t.author}\ntopic: ${t.topic}\nlevel profile: ${profileOf(t.band)}\ntarget words (the Chinese is for your understanding only — never write it in the thread):\n${w}${fb}`;
+    return `### ${t.id}\ncharacter: ${t.author}\ntopic: ${t.topic}\nlevel: ${t.band} (profile ${profileOf(t.band)})${t.scene ? `\nscene idea (optional — use it only if it fits the character and the words, otherwise ignore): ${t.scene}` : ""}\ntarget words (the Chinese is for your understanding only — never write it in the thread):\n${w}${fb}`;
   });
   return `Write ${tasks.length} thread${tasks.length > 1 ? "s" : ""}:\n\n${lines.join("\n\n")}`;
 }
@@ -257,7 +266,7 @@ export function validatePost(task, { text, zh }) {
   if (/^---\s*$/m.test(text)) errs.push("stray --- inside the text");
   for (const w of task.words)
     for (const seg of zhSegments(w.zh)) if (text.replace(TAG, "$1").includes(seg)) errs.push(`text contains the Chinese meaning "${seg}" of "${w.key}"`);
-  if (task.band <= EASY_BAND)
+  if (isSimple(task.band))
     for (const p of paras(text)) if (len(p) > MAX_PARA) errs.push(`paragraph is ${len(p)} chars (max ${MAX_PARA}): "${p.slice(0, 30)}…"`);
   const cap = PROFILES[profileOf(task.band)].maxWords + 2; // prompt asks for the limit; the checker allows 2 words of slack
   if (cap < Infinity)
@@ -278,9 +287,44 @@ export const PRICES = { // USD per million tokens (input / output)
   "claude-haiku-5-5": [0.1, 0.5],
   "claude-fable-5-1": [10, 50],
 };
-export function costOf(u, [pin, pout]) {
+export function costOf(u, [pin, pout], discount = 1, writeMult = 1.25) {
   const M = 1e6;
-  return (u.input * pin + u.cacheWrite * pin * 1.25 + u.cacheRead * pin * 0.1 + u.output * pout) / M;
+  return (discount * (u.input * pin + u.cacheWrite * pin * writeMult + u.cacheRead * pin * 0.1 + u.output * pout)) / M;
+}
+// rough pre-flight estimate for one request, used only to keep a round under --max-cost
+export function estimateCost({ posts = 0, words = 0, prefixTokens, prices, discount = 1, kind = "gen" }) {
+  const [pin, pout] = prices;
+  const inTok = kind === "gen" ? 250 + 140 * posts : kind === "review" ? 300 + 420 * posts : 150 + 25 * words;
+  const outTok = kind === "gen" ? 400 + 330 * posts : kind === "review" ? 2500 + 120 * posts : 100 + 55 * words;
+  return (discount * (inTok * pin + prefixTokens * pin * 0.1 + outTok * pout)) / 1e6;
+}
+// ---------- near-duplicate detection (word 4-gram Jaccard) ----------
+const grams = (text) => {
+  const w = text.replace(TAG, (_, k, f) => f || k).toLowerCase().match(/[a-z']+/g) || [];
+  const g = new Set();
+  for (let i = 0; i + 4 <= w.length; i++) g.add(w.slice(i, i + 4).join(" "));
+  return g;
+};
+export function makeSimIndex() {
+  const index = new Map(), sizes = [], ids = [];
+  return {
+    add(id, text) {
+      const g = grams(text), n = sizes.length;
+      sizes.push(g.size); ids.push(id);
+      for (const x of g) (index.get(x) || index.set(x, []).get(x)).push(n);
+    },
+    // best match among indexed texts: { id, sim }
+    nearest(text) {
+      const g = grams(text), hits = new Map();
+      for (const x of g) for (const n of index.get(x) || []) hits.set(n, (hits.get(n) || 0) + 1);
+      let best = { id: null, sim: 0 };
+      for (const [n, c] of hits) {
+        const sim = c / (g.size + sizes[n] - c);
+        if (sim > best.sim) best = { id: ids[n], sim };
+      }
+      return best;
+    },
+  };
 }
 export function usageOf(usage = {}) {
   return {
@@ -292,18 +336,18 @@ export function usageOf(usage = {}) {
 }
 
 // ---------- vocab levels (the site has levels 1–3; the word list has bands 1–4) ----------
-export const DEFAULT_LEVEL_MAP = { 1: 1, 2: 2, 3: 2, 4: 3 };
+export const DEFAULT_LEVEL_MAP = Object.fromEntries(Array.from({ length: 10 }, (_, i) => [i + 1, i + 1])); // site level = word-list level
 export function parseLevelMap(str) {
   if (!str) return DEFAULT_LEVEL_MAP;
   const m = {};
   for (const pair of str.split(",")) {
     const [b, l] = pair.split("=").map(Number);
-    if (![1, 2, 3].includes(l) || !Number.isFinite(b)) throw new Error(`bad --level-map entry "${pair}" (use band=level with level 1–3, e.g. 1=1,2=2,3=2,4=3)`);
+    if (!Number.isFinite(b) || !Number.isFinite(l) || l < 1) throw new Error(`bad --level-map entry "${pair}" (use level=siteLevel, e.g. 1=1,2=1,3=2)`);
     m[b] = l;
   }
   return m;
 }
-export const levelOf = (band, map) => map[band] ?? (band > 4 ? 3 : 1);
+export const levelOf = (band, map) => map[band] ?? Math.min(10, Math.max(1, band));
 export function normPos(pos) {
   const p = (pos || "").trim();
   return p && !p.endsWith(".") ? p + "." : p;
@@ -321,12 +365,12 @@ ZH: <Traditional Chinese translation>
 RULES
 1. The sentence must use the headword in the given part of speech and sense, in any natural inflected form (e.g. "arrived" for arrive). Do not put markers like [[ ]] around it.
 2. The sentence's context must make the meaning clear on its own. Do not write the Chinese meaning in the English sentence.
-3. Level: band 1–2 words — a very short, everyday sentence (5–10 English words) using only common words. Band 3–4 words — one clear, simple sentence of 7–12 words, no subordinate clause unless it is very short, common vocabulary besides the headword. Band 5+ — up to 16 words. Keep it as simple as a dictionary example for beginners.
+3. Level: each word has a level (1–10) and a profile. easy — a very short, everyday sentence (5–10 English words) using only common words. medium — one clear, simple sentence of 7–12 words, no subordinate clause unless it is very short, common vocabulary besides the headword. advanced — up to 16 words, natural but still clear. Keep it as simple as a good learner-dictionary example.
 4. One idea per sentence; natural, concrete and a little vivid (a real situation, not "This is a ___"). No proper nouns unless needed, no statistics, no controversial topics.
 5. ZH is a natural Taiwan-style Traditional Chinese translation of the whole sentence, ending with proper punctuation. Use ONE natural rendering of the word; never stack synonyms (not \"進步改善\") and avoid stiff phrasing (say \"我覺得 / 依我看\", not \"依我的意見\").` }];
 }
 export function buildVocabUser(items) {
-  return `Write example sentences for ${items.length} word${items.length > 1 ? "s" : ""}:\n\n` + items.map((w) => `- ${w.key.replace(/_/g, " ")} (${w.pos || "?"}) = ${w.zh}  [band ${w.band}]`).join("\n");
+  return `Write example sentences for ${items.length} word${items.length > 1 ? "s" : ""}:\n\n` + items.map((w) => `- ${w.key.replace(/_/g, " ")} (${w.pos || "?"}) = ${w.zh}  [level ${w.band}: ${profileOf(w.band)}]`).join("\n");
 }
 export function parseVocab(text) {
   const out = {};
@@ -347,7 +391,7 @@ export function validateVocab(w, { ex, exZh }) {
   const stem = w.key.replace(/_/g, " ").slice(0, Math.max(3, w.key.length - 3));
   if (!ex.toLowerCase().includes(stem)) errs.push(`sentence does not use "${w.key}"`);
   const n = (ex.match(/[A-Za-z][A-Za-z'’-]*/g) || []).length;
-  const max = w.band <= 2 ? 12 : w.band <= EASY_BAND ? 14 : 18; // prompt asks for 10 / 12 / 16; 2 words of slack
+  const max = { easy: 12, medium: 14, advanced: 18 }[profileOf(w.band)]; // prompt asks for 10 / 12 / 16; 2 words of slack
   if (n < 4 || n > max) errs.push(`sentence has ${n} words (allowed 4–${max})`);
   for (const seg of zhSegments(w.zh)) if (ex.includes(seg)) errs.push(`EN contains the Chinese meaning "${seg}"`);
   return errs;

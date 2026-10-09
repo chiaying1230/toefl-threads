@@ -12,7 +12,7 @@ test("missing word", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text
 test("unassigned word", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text + " [[bold]]" }).some((e) => /not an assigned/.test(e))));
 test("chinese meaning leak", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text.replace("這個湯超好喝", "這個很微妙") }).some((e) => /微妙/.test(e))));
 test("paragraph too long for band<=4", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text + "\n\n" + "a".repeat(176) }).some((e) => /max 175/.test(e))));
-test("long paragraph ok for band 5", () => assert.deepEqual(L.validatePost({ ...task, band: 5 }, { ...ok, text: ok.text + "\n\n" + "a".repeat(200) }), []));
+test("long paragraph ok for advanced levels", () => assert.deepEqual(L.validatePost({ ...task, band: 8 }, { ...ok, text: ok.text + "\n\n" + "a".repeat(200) }), []));
 test("malformed marker", () => assert.ok(L.validatePost(task, { ...ok, text: ok.text + " [[oops" }).length));
 test("zh with markers", () => assert.ok(L.validatePost(task, { ...ok, zh: "[[subtle]]" }).length));
 test("parse", () => {
@@ -47,12 +47,13 @@ test("easy profile rejects very long sentences, allows normal ones", () => {
   const longS = "Yesterday I went to the big new shop near my house because my mother asked me to buy some bread for dinner tonight.";
   assert.ok(L.validatePost(easy, { ...ok, text: ok.text + "\n\n" + longS }).some((e) => /English words/.test(e)));
   assert.deepEqual(L.validatePost(easy, ok), []);
-  assert.equal(L.profileOf(2), "easy"); assert.equal(L.profileOf(4), "medium"); assert.equal(L.profileOf(6), "advanced");
+  assert.equal(L.profileOf(3), "easy"); assert.equal(L.profileOf(4), "medium"); assert.equal(L.profileOf(6), "medium"); assert.equal(L.profileOf(7), "advanced");
 });
 test("level map", () => {
-  assert.equal(L.levelOf(3, L.parseLevelMap()), 2);
+  assert.equal(L.levelOf(7, L.parseLevelMap()), 7); // identity by default (10 levels)
   assert.equal(L.levelOf(4, L.parseLevelMap("1=1,2=1,3=2,4=3")), 3);
-  assert.throws(() => L.parseLevelMap("1=9"));
+  assert.equal(L.levelOf(11, L.parseLevelMap()), 10);
+  assert.throws(() => L.parseLevelMap("1=x"));
   assert.equal(L.normPos("adj"), "adj."); assert.equal(L.normPos("n."), "n.");
 });
 
@@ -72,4 +73,20 @@ test("pool: roughly half mix, many distinct characters", () => {
   const mix = a.filter((t) => CHARACTERS[t.author].lang === "mix").length;
   assert.ok(Math.abs(mix - a.length / 2) <= 1);
   assert.ok(new Set(a.map((t) => t.author)).size >= 15);
+});
+
+test("near-duplicate index", () => {
+  const ix = L.makeSimIndex();
+  ix.add("a", "I left my umbrella at the bus stop today and it rained a lot all day long.");
+  assert.ok(ix.nearest("I left my umbrella at the bus stop today and it rained all day.").sim > 0.3);
+  assert.ok(ix.nearest("Dragons prefer spicy noodles when the moon is full tonight.").sim < 0.1);
+});
+test("scene seed is attached to tasks", () => {
+  const { CHARACTERS, TOPICS } = L.loadSite();
+  const words = Array.from({ length: 6 }, (_, i) => ({ key: "x" + "abcdef"[i], pos: "n.", zh: "字", band: 2 }));
+  assert.ok(L.makePlan({ words, characters: CHARACTERS, topics: TOPICS, startId: 1 }).every((t) => /angle:/.test(t.scene)));
+});
+test("estimate and batch discount", () => {
+  assert.equal(L.costOf({ input: 1e6, output: 0, cacheWrite: 0, cacheRead: 0 }, [2, 10], 0.5), 1);
+  assert.ok(L.estimateCost({ posts: 5, prefixTokens: 5000, prices: [2, 10], discount: 0.5 }) < 0.02);
 });
