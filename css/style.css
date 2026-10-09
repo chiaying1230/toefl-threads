@@ -616,3 +616,4 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .wotd-actions .primary-btn { width: auto; padding: 10px 16px; }
 .wotd-mini { display: block; margin: 8px 16px 0; color: var(--muted); font-size: 14px; }
 .saved-note { color: var(--saved); font-weight: 700; }
+.notice .primary-btn { margin-top: 8px; }
