@@ -99,6 +99,12 @@ if (fs.existsSync(progFile)) {
   }
   log(`Resuming: ${Object.keys(accepted).length}/${plan.length} threads done, $${spent.cost.toFixed(4)} spent so far`);
 } else fs.writeFileSync(progFile, JSON.stringify({ type: "header", sig, model, at: new Date().toISOString() }) + "\n");
+// saved threads that no longer pass the current validator are re-queued instead of kept
+for (const t of plan) {
+  if (!accepted[t.id]) continue;
+  const errs = L.validatePost(t, accepted[t.id]);
+  if (errs.length) { log(`Re-queued ${t.id} (saved draft fails current checks: ${errs.join("; ")})`); delete accepted[t.id]; }
+}
 const append = (rec) => fs.appendFileSync(progFile, JSON.stringify(rec) + "\n");
 
 // ---------- client ----------
