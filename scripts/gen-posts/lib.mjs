@@ -16,7 +16,6 @@ export const PROFILES = { // whole-thread level control, chosen from the highest
   advanced: { maxWords: Infinity }, // band 5+
 };
 export const profileOf = (band) => (band <= 2 ? "easy" : band <= EASY_BAND ? "medium" : "advanced");
-const EN_EVERY = 5; // every 5th post of an easy batch uses an English-only character
 
 // ---------- data ----------
 let siteCache;
@@ -93,7 +92,7 @@ function shuffle(arr, r) {
   return a;
 }
 
-export function makePlan({ words, characters, topics, startId, seed = 1 }) {
+export function makePlan({ words, characters, topics, startId, seed = 1, mixShare = 0.5 }) {
   if (words.length < 2) throw new Error("Need at least 2 words");
   const r = rng(seed);
   const n = words.length;
@@ -121,7 +120,8 @@ export function makePlan({ words, characters, topics, startId, seed = 1 }) {
   };
   return groups.map((g, idx) => {
     const band = Math.max(...g.map((w) => w.band));
-    const pool = band <= EASY_BAND ? (idx % EN_EVERY === EN_EVERY - 1 ? en : mix) : all;
+    const useMix = Math.floor((idx + 1) * mixShare) > Math.floor(idx * mixShare); // spreads mix posts evenly
+    const pool = band <= EASY_BAND ? (useMix ? mix : en) : all;
     const author = least(pool, used);
     used[author]++;
     const topic = least(topics, topicUsed);
@@ -174,7 +174,9 @@ RULES
 9. Natural use: each target word must be used in a sentence where its meaning can be inferred from context and where it fits the word's real meaning — never forced in. Check each word: would a native speaker use it this way? If a word does not fit the character's story naturally, change the story, not the word.
 10. Logic: the sentences must connect (cause and effect, contrast, a clear joke). No non sequiturs; every sentence should follow from the one before it.
 11. Facts: do not write statistics, dates or "firsts" unless you are certain they are exactly right; prefer a safe, general, true statement or an obviously fictional character anecdote. Use correct names (e.g. the Soviet Union in 1957, not "Russia"). Never invent numbers.
-12. Never write a form identical to the headword as [[word|word]]; just write [[word]].`;
+12. Never write a form identical to the headword as [[word|word]]; just write [[word]].
+13. Stay in character: what the thread describes must fit the character's bio and age (e.g. a 72-year-old grandmother is not a student or club member; a ghost cannot ride a bus). Show a small, believable moment from that character's life.
+14. No moralizing or summary endings ("Technology is how we grow", "That is why we should…"). End on a joke, a surprise or a concrete detail from the scene.`;
 
   const chars = authors
     .map((a) => {
@@ -207,7 +209,7 @@ export function buildReview(tasks, drafts) {
     const w = t.words.map((x) => `${x.key}${x.pos ? ` (${x.pos})` : ""} = ${x.zh}`).join("; ");
     return `### ${t.id}  [character: ${t.author}; topic: ${t.topic}; level profile: ${profileOf(t.band)}; target words: ${w}]\n${drafts[t.id].text}\n---\n${drafts[t.id].zh}`;
   });
-  return `Review these drafted threads as a strict editor. For each one check: (a) every target word is used naturally, with its real meaning, in a way a learner could infer; (b) the sentences are logical and connected, with no non sequiturs; (c) every fact, date and number is certainly correct (names too — if unsure, remove it); (d) the voice fits the character; (e) all the format rules (markers, length, no Chinese gloss of target words); (f) the level profile: every non-target word is simple enough for the thread's profile, sentences are short and single-idea, and the content is everyday and easy to follow without sounding childish.
+  return `Review these drafted threads as a strict editor. For each one check: (a) for EACH target word ask: if a learner saw only this thread, would they correctly guess the word's real meaning, and is it what a native speaker would say here? A word merely attached to the story is a failure (e.g. \"generous\" for someone who is only eco-friendly) — rewrite the story so the word truly fits; (b) the sentences are logical and connected, with no non sequiturs; (c) every fact, date and number is certainly correct (names too — if unsure, remove it); (d) the voice and the situation fit the character's bio and age, and the thread does not end on a moral or summary line; (e) all the format rules (markers, length, no Chinese gloss of target words); (f) the level profile: every non-target word is simple enough for the thread's profile, sentences are short and single-idea, and the content is everyday and easy to follow without sounding childish.
 If a thread passes all checks, output only:
 ### <id>
 OK
@@ -319,9 +321,9 @@ ZH: <Traditional Chinese translation>
 RULES
 1. The sentence must use the headword in the given part of speech and sense, in any natural inflected form (e.g. "arrived" for arrive). Do not put markers like [[ ]] around it.
 2. The sentence's context must make the meaning clear on its own. Do not write the Chinese meaning in the English sentence.
-3. Level: band 1–2 words — a very short, everyday sentence (6–10 English words) using only common words. Band 3–4 words — one clear sentence of 8–14 words with common vocabulary besides the headword. Band 5+ — up to 18 words.
+3. Level: band 1–2 words — a very short, everyday sentence (5–10 English words) using only common words. Band 3–4 words — one clear, simple sentence of 7–12 words, no subordinate clause unless it is very short, common vocabulary besides the headword. Band 5+ — up to 16 words. Keep it as simple as a dictionary example for beginners.
 4. One idea per sentence; natural, concrete and a little vivid (a real situation, not "This is a ___"). No proper nouns unless needed, no statistics, no controversial topics.
-5. ZH is a natural Taiwan-style Traditional Chinese translation of the whole sentence, ending with proper punctuation, and it must express the word's meaning naturally.` }];
+5. ZH is a natural Taiwan-style Traditional Chinese translation of the whole sentence, ending with proper punctuation. Use ONE natural rendering of the word; never stack synonyms (not \"進步改善\") and avoid stiff phrasing (say \"我覺得 / 依我看\", not \"依我的意見\").` }];
 }
 export function buildVocabUser(items) {
   return `Write example sentences for ${items.length} word${items.length > 1 ? "s" : ""}:\n\n` + items.map((w) => `- ${w.key.replace(/_/g, " ")} (${w.pos || "?"}) = ${w.zh}  [band ${w.band}]`).join("\n");
@@ -345,7 +347,7 @@ export function validateVocab(w, { ex, exZh }) {
   const stem = w.key.replace(/_/g, " ").slice(0, Math.max(3, w.key.length - 3));
   if (!ex.toLowerCase().includes(stem)) errs.push(`sentence does not use "${w.key}"`);
   const n = (ex.match(/[A-Za-z][A-Za-z'’-]*/g) || []).length;
-  const max = w.band <= 2 ? 12 : w.band <= EASY_BAND ? 16 : 20;
+  const max = w.band <= 2 ? 12 : w.band <= EASY_BAND ? 14 : 18; // prompt asks for 10 / 12 / 16; 2 words of slack
   if (n < 4 || n > max) errs.push(`sentence has ${n} words (allowed 4–${max})`);
   for (const seg of zhSegments(w.zh)) if (ex.includes(seg)) errs.push(`EN contains the Chinese meaning "${seg}"`);
   return errs;

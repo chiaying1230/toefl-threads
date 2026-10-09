@@ -32,6 +32,8 @@ const { values: o } = parseArgs({
     "price-out": { type: "string" },
     fresh: { type: "boolean", default: false }, // discard previous progress
     redo: { type: "string" }, // comma-separated ids to regenerate, e.g. p469,p473 (keeps the rest)
+    "review-effort": { type: "string", default: "high" }, // thinking effort for the --review pass
+    "mix-share": { type: "string", default: "0.5" }, // share of band 1–4 threads written by mix-language characters
     review: { type: "boolean", default: false }, // second pass: model self-checks each batch and rewrites weak threads
     "dry-run": { type: "boolean", default: false },
     mock: { type: "boolean", default: false },
@@ -60,7 +62,7 @@ const site = L.loadSite();
 const words = L.loadWords(path.resolve(o.words));
 const maxId = Math.max(...site.POSTS.map((p) => Number(p.id.slice(1))));
 const startId = o["start-id"] ? Number(o["start-id"]) : maxId + 1;
-const plan = L.makePlan({ words, characters: site.CHARACTERS, topics: site.TOPICS, startId, seed: Number(o.seed) });
+const plan = L.makePlan({ words, characters: site.CHARACTERS, topics: site.TOPICS, startId, seed: Number(o.seed), mixShare: Number(o["mix-share"]) });
 const sig = L.planSignature(plan);
 const authors = [...new Set(plan.map((t) => t.author))];
 const system = L.buildSystem({
@@ -117,14 +119,14 @@ else {
 }
 
 // one API call -> parsed threads (or null after a retryable error); tracks usage/cost
-async function call(content, attempt = 1) {
+async function call(content, attempt = 1, effort = o.effort) {
   let msg;
   try {
     msg = await client.messages.create({
       model,
       max_tokens: Number(o["max-tokens"]),
       system,
-      output_config: { effort: o.effort },
+      output_config: { effort },
       messages: [{ role: "user", content }],
     });
   } catch (e) {
@@ -148,7 +150,7 @@ async function reviewBatch(tasks) {
   if (spent.cost >= maxCost) return;
   log(`  Review pass: ${tasks.map((t) => t.id).join(" ")}`);
   const drafts = Object.fromEntries(tasks.map((t) => [t.id, accepted[t.id]]));
-  const parsed = await call(L.buildReview(tasks, drafts));
+  const parsed = await call(L.buildReview(tasks, drafts), 1, o["review-effort"]);
   if (!parsed) return;
   for (const t of tasks) {
     const r = parsed[t.id];
@@ -231,7 +233,7 @@ function mockClient() {
           const keys = [...b.matchAll(/^ {2}- ([a-z_]+)/gm)].map((m) => m[1]);
           return { id, keys };
         });
-        const text = blocks.map(({ id, keys }) => `### ${id}\nThis is a mock thread for the offline pipeline test, about ${keys.map((k) => `[[${k}]]`).join(" and ")}. 😀\n---\n模擬串文。`).join("\n\n");
+        const text = blocks.map(({ id, keys }) => `### ${id}\nMock thread about ${keys.map((k) => `[[${k}]]`).join(" and ")}. 😀\n---\n模擬串文。`).join("\n\n");
         return { stop_reason: "end_turn", content: [{ type: "text", text }], usage: { input_tokens: 300, output_tokens: 80 * blocks.length, cache_creation_input_tokens: 0, cache_read_input_tokens: 4000 } };
       },
     },

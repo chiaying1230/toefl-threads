@@ -27,7 +27,7 @@ test("plan covers every word once, 2-3 per post, deterministic", () => {
   assert.ok(a.every((t) => t.words.length >= 2 && t.words.length <= 3));
   assert.deepEqual(a.flatMap((t) => t.words.map((w) => w.key)).sort(), words.map((w) => w.key).sort());
   assert.deepEqual(a, L.makePlan({ words, characters: CHARACTERS, topics: TOPICS, startId: 500 }));
-  assert.ok(a.filter((t) => CHARACTERS[t.author].lang === "mix").length >= 7);
+  assert.equal(a.filter((t) => CHARACTERS[t.author].lang === "mix").length, 5); // band 1–4 words → mixShare 0.5
 });
 test("cost", () => assert.equal(L.costOf({ input: 1e6, output: 1e6, cacheWrite: 0, cacheRead: 1e6 }, [2, 10]), 12.2));
 
@@ -63,4 +63,13 @@ test("vocab validation", () => {
   assert.ok(L.validateVocab(w, { ex: "We arrive 抵達 soon at home today now.", exZh: "好" }).length);
   const p = L.parseVocab("### arrive\nEN: I arrive at six.\nZH: 我六點到。\n\n### the end\nEN: x\nZH: y");
   assert.equal(p.arrive.ex, "I arrive at six."); assert.equal(p.the_end.exZh, "y");
+});
+
+test("pool: roughly half mix, many distinct characters", () => {
+  const { CHARACTERS, TOPICS } = L.loadSite();
+  const words = Array.from({ length: 80 }, (_, i) => ({ key: "w" + i.toString(36).replace(/\d/g, (d) => "abcdefghij"[d]), pos: "n.", zh: "字", band: 1 + (i % 4) }));
+  const a = L.makePlan({ words, characters: CHARACTERS, topics: TOPICS, startId: 1 });
+  const mix = a.filter((t) => CHARACTERS[t.author].lang === "mix").length;
+  assert.ok(Math.abs(mix - a.length / 2) <= 1);
+  assert.ok(new Set(a.map((t) => t.author)).size >= 15);
 });
