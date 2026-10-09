@@ -41,3 +41,26 @@ test("system prompt carries the naturalness / facts rules", () => {
   const sys = L.buildSystem({ characters: CHARACTERS, examples: {}, authors: ["ann"] })[0].text;
   assert.ok(/non sequiturs/.test(sys) && /Soviet Union/.test(sys) && /sentence where its meaning can be inferred/.test(sys));
 });
+
+test("easy profile rejects very long sentences, allows normal ones", () => {
+  const easy = { ...task, band: 1 };
+  const longS = "Yesterday I went to the big new shop near my house because my mother asked me to buy some bread for dinner tonight.";
+  assert.ok(L.validatePost(easy, { ...ok, text: ok.text + "\n\n" + longS }).some((e) => /English words/.test(e)));
+  assert.deepEqual(L.validatePost(easy, ok), []);
+  assert.equal(L.profileOf(2), "easy"); assert.equal(L.profileOf(4), "medium"); assert.equal(L.profileOf(6), "advanced");
+});
+test("level map", () => {
+  assert.equal(L.levelOf(3, L.parseLevelMap()), 2);
+  assert.equal(L.levelOf(4, L.parseLevelMap("1=1,2=1,3=2,4=3")), 3);
+  assert.throws(() => L.parseLevelMap("1=9"));
+  assert.equal(L.normPos("adj"), "adj."); assert.equal(L.normPos("n."), "n.");
+});
+
+test("vocab validation", () => {
+  const w = { key: "arrive", pos: "v", zh: "抵達", band: 2 };
+  assert.deepEqual(L.validateVocab(w, { ex: "The bus will arrive at six o'clock.", exZh: "公車六點會到。" }), []);
+  assert.ok(L.validateVocab(w, { ex: "The bus came at six.", exZh: "公車六點到。" }).some((e) => /does not use/.test(e)));
+  assert.ok(L.validateVocab(w, { ex: "We arrive 抵達 soon at home today now.", exZh: "好" }).length);
+  const p = L.parseVocab("### arrive\nEN: I arrive at six.\nZH: 我六點到。\n\n### the end\nEN: x\nZH: y");
+  assert.equal(p.arrive.ex, "I arrive at six."); assert.equal(p.the_end.exZh, "y");
+});
