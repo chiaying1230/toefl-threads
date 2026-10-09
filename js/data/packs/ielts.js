@@ -4501,6 +4501,89 @@
   Object.keys(W).forEach(function (k) { if (!window.VOCAB[k]) window.VOCAB[k] = W[k]; });
   window.PACKS = window.PACKS || {};
   window.PACKS["ielts"] = { own: Object.keys(W), base: ["aberration", "abrogate", "absorb", "abstemious", "absurd", "abundant", "access", "accessible", "acclaim", "accomplice", "accost", "accumulate", "accurate", "accuse", "acknowledge", "acquisition", "acute", "adamant", "adherent", "adverse", "advocate", "affect", "affiliate", "allay", "alleviate", "aloof", "ambiguous", "ambitious", "amicable", "analogous", "analogy", "analyze", "anathema", "anemic", "apathy", "appellation", "appropriate", "arbiter", "arbitrary", "archaic", "ardent", "aroma", "arrogant", "ascent", "ascetic", "asperity", "aspire", "assimilate", "astute", "atrocious", "audacious", "authentic", "autonomous", "autonomy", "avarice", "badger", "bedlam", "beneficial", "benefit", "benevolent", "bore", "brevity", "bulwark", "cacophony", "cadaverous", "candor", "captivate", "carnivorous", "casual", "casualty", "catastrophe", "cessation", "chagrin", "charlatan", "clumsy", "coerce", "cogent", "collide", "collision", "commemorate", "commodity", "compensate", "competitor", "complacent", "complicity", "compliment", "composure", "compress", "concurrent", "condense", "condescend", "conflagration", "confront", "congenial", "conjecture", "connoisseur", "connubial", "conquer", "conscience", "consistency", "consolidate", "conspicuous", "consternation", "constrict", "contagious", "contemplate", "contemptuous", "continuous", "contribution", "copious", "corroborate", "cosmopolitan", "covert", "culpable", "cupidity", "cursory", "curtail", "cynical", "decent", "deficiency", "deficient", "definite", "degradation", "degrade", "deleterious", "delude", "demonstrate", "denominator", "denote", "deplete", "deplorable", "derivative", "derive", "descendant", "desist", "destitute", "desultory", "deter", "deteriorate", "detriment", "dexterity", "diatribe", "dilemma", "dilettante", "diligence", "disciple", "discreet", "disparage", "dissent", "distinction", "doleful", "domicile", "dormant", "drudgery", "dubious", "eccentric", "ecstatic", "edible", "effectual", "efficacy", "efficiency", "efficient", "elapse", "element", "embellish", "embezzle", "emerge", "eminent", "emit", "emulate", "evade", "evolve", "exonerate", "exorbitant", "exotic", "expand", "expansion", "expatriate", "expedite", "explicit", "extant", "extensive", "extinct", "extortion", "extraneous", "extraordinary", "extravagant", "fabricate", "facetious", "factious", "feasible", "ferocious", "fickle", "flamboyant", "fledgling", "foresight", "forfeit", "formidable", "forte", "fragile", "fresco", "fretful", "frigid", "frugal", "fruition", "fulsome", "fundamental", "fuse", "futile", "galore", "galvanize", "gamut", "garrulous", "gigantic", "gratuitous", "gregarious", "grievance", "gusto", "havoc", "hazard", "heedless", "herbivorous", "heresy", "heritage", "hesitant", "hesitation", "heterogeneous", "hideous", "hoard", "hypothesis", "illiterate", "imbibe", "imminent", "immoral", "impair", "impartial", "impeccable", "impede", "imperative", "impetuous", "implicit", "importune", "improper", "imprudent", "impulsive", "in_retrospect", "inactive", "inadequate", "inadvertent", "inanimate", "incandescence", "incandescent", "incapacitate", "incapacity", "incentive", "inchoate", "incident", "incipient", "incomplete", "inconceivable", "inconsequential", "inconsistent", "incontrovertible", "indefinitely", "indict", "indigenous", "indiscriminate", "indispensable", "indolent", "inert", "inevitable", "infallible", "infamous", "infinite", "inherent", "inhuman", "initiate", "inkling", "innocuous", "insatiable", "insignificant", "interminable", "intervene", "intimidate", "intrinsic", "intuition", "inundate", "invalidate", "invective", "inveigh", "inveterate", "inviolable", "irascible", "irony", "irrational", "irresistible", "irreversible", "irritable", "irritate", "jeopardize", "jocose", "juxtapose", "laudable", "lax", "legitimate", "lenient", "levity", "literacy", "lithe", "loath", "logic", "longevity", "lucrative", "luminosity", "luminous", "lurid", "maintain", "malady", "malign", "malleable", "mandate", "mandatory", "marine", "massacre", "masterpiece", "maudlin", "mausoleum", "meager", "mediocre", "memorable", "mendacious", "metamorphosis", "metaphor", "meticulous", "migrate", "migratory", "minute", "mitigate", "modify", "moribund", "mundane", "munificent", "nefarious", "negligence", "negligent", "negligible", "nettle", "nihilist", "nimble", "nominal", "nondescript", "norm", "notorious", "nurture", "obese", "obesity", "obliterate", "obsequious", "obsolete", "obviate", "occult", "olfactory", "ominous", "omission", "omnipotent", "omnivorous", "operate", "opulence", "opulent", "originate", "orthodox", "ostentation", "ostracism", "ostracize", "outrageous", "oversee", "overweight", "pacify", "palliate", "panacea", "paradox", "paragon", "parsimonious", "participate", "passive", "patriarch", "pecuniary", "pedagogue", "penance", "penchant", "penny_pincher", "perceive", "perception", "peremptory", "perfunctory", "permeate", "perpetuate", "perseverance", "persevere", "perspective", "perspicacious", "pertinent", "perverse", "phenomenon", "phlegmatic", "pinnacle", "pioneer", "pique", "platitude", "plausible", "pleasant", "poetic", "ponder", "positive", "potential", "precarious", "precedent", "precipitate", "precise", "precision", "preclude", "precocious", "prelude", "premise", "premonition", "preparation", "prerogative", "prevaricate", "primitive", "procrastinate", "prodigious", "prodigy", "productive", "proficiency", "proficient", "profligate", "profuse", "prohibition", "prolific", "propagate", "propitious", "prototype", "pugnacious", "puissant", "punctual", "pungent", "quibble", "rabid", "recant", "recede", "reciprocal", "recognize", "recoil", "redolent", "regimen", "rejuvenate", "relegate", "reluctant", "remuneration", "replete", "repress", "repudiate", "repulse", "resent", "resilient", "resistant", "respite", "reticent", "retrieve", "revelation", "revere", "revile", "rife", "robust", "rudimentary", "rue", "rustic", "sagacious", "salient", "sanguine", "savage", "scarcity", "sedate", "sedentary", "sediment", "selective", "senile", "significance", "significant", "simultaneous", "sinecure", "skeptic", "somber", "sophistry", "spurious", "stagnate", "stagnation", "stingy", "subjugate", "subterranean", "subtle", "succinct", "succumb", "sumptuous", "superficial", "supine", "supplementary", "surfeit", "surmise", "surreptitious", "susceptible", "suspicious", "systematic", "tangible", "technique", "tenacious", "terse", "timorous", "tolerate", "transient", "tremulous", "trenchant", "trepidation", "trivial", "tyro", "ubiquitous", "ultimate", "unbiased", "underwrite", "undulate", "ungainly", "usurp", "vacuous", "valid", "venerable", "venom", "verbose", "verity", "versatile", "vicissitude", "vie", "virile", "virtuoso", "vogue", "volatile", "voracious", "vulnerable", "wane", "zenith"] };
+  window.PACK_POSTS = window.PACK_POSTS || {};
+  window.PACK_POSTS["ielts"] = [
+    {
+      "id": "ielts-01",
+      "author": "zorp",
+      "topic": "Culture",
+      "text": "Earth's [[annual]] [[census]] counts every human but ignores the [[species]] in your fridge.\n\nI counted: one cat, one plant, one alien (me). Please update the form. 👽",
+      "zh": "地球一年一度的人口普查會計算每個人，卻忽略你冰箱裡的物種。\n\n我數了一下：一隻貓、一株植物、一個外星人（我）。請更新表格。👽",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-02",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "I changed one [[variable]] at a time. The [[thermal]] result was [[decisive]].\n\nThe beaker is now on the ceiling. Science works. 🔬",
+      "zh": "我一次只改變一個變數。熱的結果具有決定性。\n\n燒杯現在在天花板上。科學有效。🔬",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-03",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "My knee shows a [[tendency]] to complain. Maybe [[inflammation]].\n\nReal [[endurance]] is knowing when to rest. Ice, then wisdom. 🧊",
+      "zh": "我的膝蓋有愛抱怨的傾向。可能是發炎。\n\n真正的耐力是知道什麼時候該休息。先冰敷，再領悟。🧊",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-04",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "A [[drought]] in the south. A [[fluctuation]] in sea ice.\n\nMy family's [[heritage]] is ice. Now it's puddles. Please recycle. 🐧",
+      "zh": "南方發生乾旱。海冰出現波動。\n\n我家族的傳承是冰。現在變成水坑。請多回收。🐧",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-05",
+      "author": "boba",
+      "topic": "Economics",
+      "text": "連鎖 [[corporate]] 品牌的 [[option]] 很多，但我的 [[profession]] 是做一杯對的珍奶 🧋\n\nSmall shop, big heart. 這才是真正的 economics。",
+      "zh": "連鎖企業品牌的選擇很多，但我的職業是做出一杯對味的珍珠奶茶 🧋\n\n小店，大心意。這才是真正的經濟學。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-06",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "Someone left a [[pamphlet]] in the poetry section with a missing [[caption]], and a [[leaflet]] about ghosts.\n\nRude. I've been here since 1923. 👻",
+      "zh": "有人在詩集區留了一本缺了說明文字的小冊子，還有一張關於鬼的傳單。\n\n真沒禮貌。我從1923年就在這裡了。👻",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-07",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "Grandson is my [[interpreter]] for emojis. My [[literacy]] in internet language is 30%. 😅\n\nAt least my fridge [[magnet]] has 100% signal. 🙏🌸",
+      "zh": "孫子是我的表情符號口譯員。我的網路語言識字能力只有百分之三十。😅\n\n至少我冰箱上的磁鐵訊號是百分之百。🙏🌸",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-08",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "The [[seismograph]] says I'm \"restless.\" I prefer \"thoughtful.\"\n\nThe [[mechanics]] of an eruption are simple: pressure from great [[depth]]. Be kind to me. 🌋",
+      "zh": "地震儀說我「躁動不安」。我比較喜歡「深思熟慮」。\n\n噴發的原理很簡單：來自深處的壓力。對我好一點。🌋",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-09",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "Three hearts is [[hereditary]] in my [[species]]. My blood is blue. My [[immune]] system is a legend.\n\nPlease stop dropping nets. 🐙",
+      "zh": "三顆心臟是我們這個物種的遺傳。我的血是藍的。我的免疫系統是個傳奇。\n\n請不要再放漁網了。🐙",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-10",
+      "author": "whiskers",
+      "topic": "Psychology",
+      "text": "Kevin is an [[introvert]]. At the dog park he stood like a [[referee]], afraid to play.\n\nBut he is a [[magnet]] for wet noses. Extroverts, learn from him. 🐱",
+      "zh": "凱文是個內向的人。在狗公園裡他像裁判一樣站著，不敢玩。\n\n但他是濕鼻子的磁鐵。外向的人，向他學習吧。🐱",
+      "pack": "ielts"
+    }
+  ];
 })();
 // KK
 Object.assign(window.KK = window.KK || {}, {

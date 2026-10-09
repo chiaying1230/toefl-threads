@@ -1,0 +1,89 @@
+elem-01 | grandma | Food
+早餐 [[breakfast]]: I made fried eggs this morning 🍳 They were [[delicious]]!
+
+Ten minutes later my grandson says he is [[hungry]] again. 年輕人胃口真好 🙏🌸
+---
+早餐：我今天早上煎了荷包蛋 🍳 超級好吃！
+
+十分鐘後孫子又說他餓了。年輕人胃口真好 🙏🌸
+===
+elem-02 | captain | Campus Life
+Sunday night. [[homework]] due tomorrow. I am [[sleepy]]. The [[weekend]] is gone. Where did it go??
+
+週末你們都去哪了 😭
+---
+星期天晚上。作業明天要交。我好睏。週末消失了。它去哪了？？
+
+週末你們都去哪了 😭
+===
+elem-03 | zorp | Travel
+On Earth I rode a [[bicycle]] to the [[airport]]. Humans need a [[ticket]] to leave. On Kepler we just wave goodbye.
+
+Also, cutting the line here is [[dangerous]]. Noted. 👽
+---
+在地球上，我騎腳踏車去機場。人類離開需要一張機票。在克卜勒星，我們只要揮手說再見。
+
+還有，在這裡插隊很危險。已記下。👽
+===
+elem-04 | pigeon | Culture
+The city is [[noisy]]. The [[library]] is [[quiet]].
+
+I sit on the library window and think about bread. Silence is a good place for hunger. 🐦📚
+---
+城市很吵。圖書館很安靜。
+
+我坐在圖書館的窗台上想著麵包。安靜是思考飢餓的好地方。🐦📚
+===
+elem-05 | chefbot | Food
+My [[kitchen]] smells like the neighbor's [[bakery]]. This is unacceptable.
+
+Their bread is my [[favorite]]. Please send the recipe. Beep. 🤖🥖
+---
+我的廚房聞起來像鄰居的麵包店。這不能接受。
+
+他們的麵包是我的最愛。請把食譜寄來。嗶。🤖🥖
+===
+elem-06 | rex | Culture
+Today is my [[birthday]]. 66 million years old! I got a [[balloon]].
+
+I cannot hold it with my tiny arms. I am not [[lonely]]. The balloon is just far away. 🦖🎈
+---
+今天是我的生日。六千六百萬歲！我收到一顆氣球。
+
+我的小手臂拿不住它。我不孤單。氣球只是離我有點遠。🦖🎈
+===
+elem-07 | whiskers | Environment
+It is [[rainy]]. Kevin wants to [[borrow]] my [[umbrella]].
+
+No. I am a cat. I do not do rain. Kevin may do rain. 🐱☔
+---
+下雨了。凱文想借我的雨傘。
+
+不行。我是貓。我不碰雨。凱文可以去碰雨。🐱☔
+===
+elem-08 | mochi | Psychology
+My human is [[lazy]] today. I [[remember]] the walk time exactly: 5 p.m.
+
+He will [[forget]] it. I will bark. We will both be happy. 🐕
+---
+我的主人今天很懶。我清楚記得散步時間：下午五點。
+
+他會忘記。我會汪汪叫。我們都會很開心。🐕
+===
+elem-09 | ann | Travel
+Boston [[subway]] = old but [[cheap]]. 台北捷運 = 乾淨又準時，我好想念。
+
+Also the [[traffic]] here makes me miss home. 但我還是要加油 💪
+---
+波士頓的地鐵：老舊但便宜。台北捷運：乾淨又準時，我好想念。
+
+還有，這裡的交通狀況讓我想家。但我還是要加油 💪
+===
+elem-10 | fern | Biology
+I am [[shy]] but [[clever]]. Every day I turn toward the window.
+
+A [[lovely]] trick called photosynthesis. You are welcome. 🌿
+---
+我很害羞，但很聰明。每天我都朝向窗戶轉動。
+
+一個可愛的把戲，叫做光合作用。不客氣。🌿

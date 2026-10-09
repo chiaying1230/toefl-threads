@@ -80,7 +80,7 @@ console.log(`Conversations: ${Object.keys(window.CONVOS || {}).length} threads, 
 // Word packs (js/data/packs/*.js)
 const baseKeys = new Set(Object.keys(VOCAB));
 const packDir = path.join(dataDir, "packs");
-let packWords = 0;
+let packWords = 0, packPosts = 0;
 if (fs.existsSync(packDir)) {
   require(path.join(packDir, "index.js"));
   for (const m of window.PACK_META) {
@@ -98,6 +98,15 @@ if (fs.existsSync(packDir)) {
       if (window.KK[k] && !/^\[.+\]$/.test(window.KK[k])) errors.push(`pack ${m.id} word ${k}: bad KK`);
       packWords++;
     }
+    for (const p of (window.PACK_POSTS && window.PACK_POSTS[m.id]) || []) {
+      if (ids.has(p.id)) errors.push(`duplicate id ${p.id}`);
+      ids.add(p.id);
+      if (!CHARACTERS[p.author]) errors.push(`${p.id}: unknown author ${p.author}`);
+      if (!TOPICS.includes(p.topic)) errors.push(`${p.id}: unknown topic ${p.topic}`);
+      if (!p.zh) errors.push(`${p.id}: missing zh translation`);
+      checkTags(p.text, p.id);
+      packPosts++;
+    }
     const n = pack.own.length + new Set(pack.base).size;
     if (n !== m.count) errors.push(`pack ${m.id}: index.js says ${m.count} words, file has ${n}`);
   }
@@ -105,7 +114,7 @@ if (fs.existsSync(packDir)) {
 
 const unused = [...baseKeys].filter((k) => !used.has(k));
 
-console.log(`Pack words: ${packWords} (own entries across the extra packs)`);
+console.log(`Pack words: ${packWords} (own entries across the extra packs), pack threads: ${packPosts}`);
 console.log(`Posts: ${POSTS.length}   Words: ${baseKeys.size}   Characters: ${Object.keys(CHARACTERS).length}`);
 console.log(`Post levels  Soy Milk ${levels[1]} / Tofu ${levels[2]} / Natto ${levels[3]}`);
 console.log(`Voices       ${Object.entries(langs).map(([k, n]) => `${k} ${n}`).join(" / ")}`);

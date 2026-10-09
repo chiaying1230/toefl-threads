@@ -209,7 +209,7 @@ TOEFL® 是 ETS 的註冊商標，Threads 是 Meta 的商標；toEfu 與 ETS、M
 |---|---|
 | 難度標籤 | Soy Milk（豆漿）/ Tofu（豆腐）/ Natto（納豆），全站同一把尺：`js/data/levels.js` 把 1,300 個托福字重新分級，門檻在 `scripts/scorelib.py`（分數 ≤40 / ≤65） |
 | 單字包 | 國小國中 2,029、高中 4,126、多益 822、雅思 5,045、托福 1,300（托福就是 `batch-*.js` 的基本字庫）。`js/data/packs/<id>.js` 在使用者選了之後才載入，已選的包會被 service worker 快取 |
-| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。串文目前仍只有托福字（之後每個入口再各做 100–150 則） |
+| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。動態牆有 468 則托福串文，加上每個入口各 10 則（`data-src/threads/<包>.txt`，重建時一起寫進 `js/data/packs/<包>.js`，選了該單字表才出現） |
 | 資料來源 | `data-src/full_scores.csv`（Codex 的模型初評，**不是實測難度**）＋ `data-src/review-fixes/`（我逐筆檢查過 Codex 標為 review_required 的 1,118 筆，補上例句、修正詞義或剔除） |
 
 重建流程（不會動到 `batch-*.js`）：

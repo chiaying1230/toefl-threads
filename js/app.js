@@ -444,7 +444,7 @@
     renderWordOfDay();
     C.loadPacks(on, function (ok) {
       if (!ok) toast("Couldn't load that word list. Check your connection.");
-      renderWordOfDay();
+      buildFeed();
       refreshWordMarks();
     });
   }
@@ -1563,7 +1563,7 @@
     Object.keys(ob.follow).forEach(function (k) { if (ob.follow[k]) s.following[k] = true; });
     S.save();
     closeOnboarding();
-    C.loadPacks(s.prefs.packs, function () { refreshWordMarks(); if (route.name !== "t") handleRoute(); });
+    C.loadPacks(s.prefs.packs, function () { buildFeed(); refreshWordMarks(); if (route.name !== "t") handleRoute(); });
     buildFeed();
     renderInstallSlot();
     window.scrollTo(0, 0);
@@ -2039,6 +2039,6 @@
     renderAll();
     // Packs the reader picked earlier load in the background, then the word cards refresh.
     var wanted = (st().prefs.packs || []).filter(function (id) { return id !== "toefl"; });
-    if (wanted.length) C.loadPacks(wanted, function () { refreshWordMarks(); handleRoute(); });
+    if (wanted.length) C.loadPacks(wanted, function () { buildFeed(); refreshWordMarks(); handleRoute(); });
   });
 })();

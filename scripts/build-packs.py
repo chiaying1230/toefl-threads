@@ -132,6 +132,23 @@ def keep_split_keys():
     return set(l.split("#")[0].strip() for l in open(path, encoding="utf-8")) - {""} if os.path.exists(path) else set()
 
 
+TAG = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
+
+
+def parse_threads(pid):
+    """data-src/threads/<pack>.txt:  id | author | Topic / English text / --- / 中文 / ===  ->  list of posts."""
+    path = f"data-src/threads/{pid}.txt"
+    if not os.path.exists(path):
+        return []
+    posts = []
+    for block in [b for b in open(path, encoding="utf-8").read().split("\n===\n") if b.strip()]:
+        head, rest = block.strip().split("\n", 1)
+        pid_, author, topic = [x.strip() for x in head.split("|")]
+        text, zh = [x.strip() for x in rest.split("\n---\n")]
+        posts.append({"id": pid_, "author": author, "topic": topic, "text": text, "zh": zh, "pack": pid})
+    return posts
+
+
 def main():
     rows = load_rows()
     keep_split = keep_split_keys()
@@ -248,8 +265,17 @@ def main():
             for k, e in sorted(own.items())))
         lines += ["  };", "  Object.keys(W).forEach(function (k) { if (!window.VOCAB[k]) window.VOCAB[k] = W[k]; });",
                   "  window.PACKS = window.PACKS || {};",
-                  f"  window.PACKS[{js(pid)}] = {{ own: Object.keys(W), base: {js(sorted(set(packs[pid]['base'])))} }};",
-                  "})();", "// KK", ""]
+                  f"  window.PACKS[{js(pid)}] = {{ own: Object.keys(W), base: {js(sorted(set(packs[pid]['base'])))} }};"]
+        posts = parse_threads(pid)
+        known = set(own) | set(packs[pid]["base"])
+        for p in posts:
+            for m in TAG.finditer(p["text"]):
+                if m.group(1) not in known:
+                    problems[f"thread {p['id']}: [[{m.group(1)}]] is not in the {pid} pack"] += 1
+        if posts:
+            lines.append("  window.PACK_POSTS = window.PACK_POSTS || {};")
+            lines.append(f"  window.PACK_POSTS[{js(pid)}] = " + json.dumps(posts, ensure_ascii=False, indent=2).replace("\n", "\n  ") + ";")
+        lines += ["})();", "// KK", ""]
         open(f"js/data/packs/{pid}.js", "w", encoding="utf-8").write("\n".join(lines))
         total_own.update(own)
 

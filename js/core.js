@@ -49,7 +49,7 @@
     packWaiting[id] = [done];
     var s = document.createElement("script");
     function finish(ok) { var cbs = packWaiting[id]; delete packWaiting[id]; cbs.forEach(function (cb) { cb(ok); }); }
-    s.onload = function () { finish(true); };
+    s.onload = function () { addPosts(window.PACK_POSTS && window.PACK_POSTS[id]); finish(true); };
     s.onerror = function () { finish(false); };
     s.src = "js/data/packs/" + id + ".js";
     document.head.appendChild(s);
@@ -177,12 +177,13 @@
   }
 
   // ---------- Posts ----------
-  var BUILTIN = window.POSTS.map(function (p, i) {
+  function makeBuiltin(p, i) {
     var words = tagsIn(p.text);
     var h = hash(p.id);
     return {
       id: p.id,
       kind: "char",
+      pack: p.pack || "toefl",
       authorKey: p.author,
       text: p.text,
       zh: p.zh,
@@ -193,9 +194,20 @@
       order: i,
       ageMinutes: Math.round(2 + 25 * Math.pow(i, 1.3))
     };
-  });
+  }
+  var BUILTIN = window.POSTS.map(makeBuiltin);
   var BUILTIN_BY_ID = {};
   BUILTIN.forEach(function (p) { BUILTIN_BY_ID[p.id] = p; });
+
+  // Threads that ship inside a word pack are added when the pack loads.
+  function addPosts(list) {
+    (list || []).forEach(function (p, i) {
+      if (BUILTIN_BY_ID[p.id]) return;
+      var b = makeBuiltin(p, i);
+      BUILTIN.push(b);
+      BUILTIN_BY_ID[b.id] = b;
+    });
+  }
 
   // A post written by a real user (local or from the cloud).
   function userPost(raw) {
@@ -239,11 +251,13 @@
     var prefs = state.prefs || {};
     var topics = prefs.topics || [];
     var levels = prefs.levels || [1, 2, 3];
+    var packs = prefs.packs && prefs.packs.length ? prefs.packs : ["toefl"];
     var following = state.following || {};
     var groups = { F: [], T: [], O: [] };
     BUILTIN.forEach(function (p) {
       // Unseen first, then your level, then random.
-      var key = (seen[p.id] ? 2 : 0) + (levels.indexOf(p.level) >= 0 ? 0 : 1) + rand();
+      // Unseen first, then threads from your word lists, then your level, then random.
+      var key = (seen[p.id] ? 2 : 0) + (packs.indexOf(p.pack) >= 0 ? 0 : 4) + (levels.indexOf(p.level) >= 0 ? 0 : 1) + rand();
       var g = following[p.authorKey] ? "F" : topics.indexOf(p.topic) >= 0 ? "T" : "O";
       groups[g].push({ p: p, k: key });
     });
@@ -451,6 +465,7 @@
     packKeys: packKeys,
     activePool: activePool,
     loadPacks: loadPacks,
+    addPosts: addPosts,
     LANG_NAMES: LANG_NAMES,
     BUILTIN: BUILTIN,
     BUILTIN_BY_ID: BUILTIN_BY_ID,

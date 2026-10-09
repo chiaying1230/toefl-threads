@@ -756,6 +756,89 @@
   Object.keys(W).forEach(function (k) { if (!window.VOCAB[k]) window.VOCAB[k] = W[k]; });
   window.PACKS = window.PACKS || {};
   window.PACKS["toeic"] = { own: Object.keys(W), base: ["accomplishment", "accurate", "achieve", "adapt", "affiliate", "ambitious", "analyze", "ancestor", "apply", "appropriate", "brutal", "communicate", "competitor", "concept", "consult", "contract", "contribution", "criticism", "cuisine", "cultivate", "define", "diligence", "disaster", "disconnected", "dispute", "domestic", "dynamic", "eager", "edible", "element", "emerge", "essential", "evident", "expansion", "extend", "extraordinary", "fundamental", "gap", "genuine", "gigantic", "global", "gossip", "govern", "impact", "impartial", "initial", "junk", "loss", "maintain", "memorable", "messy", "negotiate", "participate", "patience", "pioneer", "preparation", "productive", "recognition", "release", "remarkable", "reputation", "scarce", "shortage", "stale", "starvation", "suspicious", "technique", "transform", "triumph", "urban", "vital"] };
+  window.PACK_POSTS = window.PACK_POSTS || {};
+  window.PACK_POSTS["toeic"] = [
+    {
+      "id": "toeic-01",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Kevin submitted the [[document]] after the [[deadline]]. I said nothing.\n\nThe [[manager]] (me) is merciful. Mostly. 🐱📄",
+      "zh": "凱文在截止日期之後才交文件。我什麼都沒說。\n\n經理（我）很寬容。大部分時候是。🐱📄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-02",
+      "author": "captain",
+      "topic": "Business",
+      "text": "我昨天幫 team dinner 訂了 [[reservation]]，結果自己忘了 [[deadline]] 🏄\n\nMoral of the story: 先把行事曆打開。",
+      "zh": "我昨天幫團隊聚餐訂了位，結果自己忘了截止日期 🏄\n\n這個故事的教訓：先把行事曆打開。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-03",
+      "author": "zorp",
+      "topic": "Travel",
+      "text": "Humans put their whole lives into a [[luggage]] and call it \"light packing.\"\n\nEvery [[passenger]] pays a different [[fare]] for the same sky. Fascinating. 👽🧳",
+      "zh": "人類把整個人生塞進行李箱，然後稱之為「輕裝簡行」。\n\n每位乘客為同一片天空付不同的票價。真迷人。👽🧳",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-04",
+      "author": "pigeon",
+      "topic": "Travel",
+      "text": "I live near the airport. The loudest [[announcement]] today was about a [[delay]].\n\nEveryone looked sad. I looked at the crumbs. 🐦✈️",
+      "zh": "我住在機場附近。今天最大聲的廣播是關於班機延誤。\n\n每個人都看起來很難過。我看著地上的麵包屑。🐦✈️",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-05",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "The hotel [[buffet]] served [[bacon]] that was not [[crisp]]. I filed a [[complaint]].\n\nThe bacon has been informed. 🤖🥓",
+      "zh": "飯店的自助餐供應的培根不酥脆。我提出了客訴。\n\n培根已被告知。🤖🥓",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-06",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "Grandson told me to [[download]] the app and [[install]] it. 我照做了 🙏\n\nIt was very [[convenient]]! Now I can order tomatoes AND get scolded by the app. 🍅📱",
+      "zh": "孫子叫我下載這個應用程式然後安裝。我照做了 🙏\n\n真的很方便！現在我可以訂番茄，還會被應用程式唸。🍅📱",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-07",
+      "author": "fizz",
+      "topic": "Business",
+      "text": "Our lab's new [[strategy]]: stop exploding things.\n\n[[profit]] is up 3%. Morale is down 40%. Also my eyebrows are gone. 🔬",
+      "zh": "我們實驗室的新策略：不要再炸東西。\n\n利潤上升了百分之三。士氣下降了百分之四十。我的眉毛也不見了。🔬",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-08",
+      "author": "beatrice",
+      "topic": "Business",
+      "text": "The annual [[conference]] for flowers is next week. Our top [[candidate]] for \"Best Supplier\" is me.\n\nPlease vote. The [[manager]] of the garden is watching. 🐝🌼",
+      "zh": "下週是花朵們的年度會議。「最佳供應者」的最佳人選是我。\n\n請投票。花園的經理正在看。🐝🌼",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-09",
+      "author": "mochi",
+      "topic": "Travel",
+      "text": "We went on a trip. I am a [[tourist]] at the dog park.\n\nMy human is the [[traveler]]. I am the one who found the best smell. 🐕🧳",
+      "zh": "我們去旅行了。我是狗狗公園的觀光客。\n\n我的主人是旅人。我是找到最香氣味的那一個。🐕🧳",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-10",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "大學畢業了。一個 [[graduate]] looking for the first [[career]] step 😅\n\nThe [[atmosphere]] at interviews is so tense. 但我還是要微笑 💪",
+      "zh": "大學畢業了。一個畢業生在找職涯的第一步 😅\n\n面試的氣氛好緊張。但我還是要微笑 💪",
+      "pack": "toeic"
+    }
+  ];
 })();
 // KK
 Object.assign(window.KK = window.KK || {}, {

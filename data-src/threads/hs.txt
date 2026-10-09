@@ -1,0 +1,89 @@
+hs-01 | socrates | Psychology
+I am [[stubborn]] about leg day. My trainer says I'm [[reluctant]] to rest.
+
+A man's [[temper]] is a muscle too. Train it, and then sleep. 🏋️
+---
+我對腿日非常固執。教練說我不願意休息。
+
+一個人的脾氣也是一塊肌肉。鍛鍊它，然後去睡覺。🏋️
+===
+hs-02 | whiskers | Psychology
+Kevin has big [[ambition]]: he wants to [[compete]] with me for the sunniest spot.
+
+Do not [[exaggerate]] your chances, Kevin. The sun already signed with me. 🐱☀️
+---
+凱文有很大的野心：他想跟我爭最曬得到太陽的位置。
+
+別誇大你的勝算，凱文。太陽已經跟我簽約了。🐱☀️
+===
+hs-03 | llama | Literature
+第一幕：一個 [[rumor]] about my ex 🎭 I feel so [[anxious]]!
+
+Please send [[sympathy]] and snacks. 悲劇需要觀眾 💅
+---
+第一幕：一個關於我前任的謠言 🎭 我好焦慮！
+
+請送上同情和零食。悲劇需要觀眾 💅
+===
+hs-04 | agatha | Literature
+The library is [[gloomy]] after midnight. I [[whisper]] to the books.
+
+I looked for my [[shadow]] but I forgot: I'm a ghost. Return your books. 👻📚
+---
+午夜過後的圖書館很陰暗。我對書本輕聲細語。
+
+我找了我的影子，才想起：我是鬼。請準時還書。👻📚
+===
+hs-05 | vulcan | Geology
+Tourists [[wander]] near my crater and take a [[glimpse]] inside.
+
+I am [[innocent]]. I only let off a little steam. Mostly. 🌋
+---
+遊客在我的火山口附近閒逛，往裡面瞥一眼。
+
+我是無辜的。我只是放了一點蒸氣。大部分時候。🌋
+===
+hs-06 | beatrice | Economics
+In my hive, workers are [[loyal]] and [[skilled]]. The only [[bonus]] is more honey.
+
+Nobody has complained. Ever. 🐝
+---
+在我的蜂巢裡，工蜂忠誠又熟練。唯一的獎金就是更多蜂蜜。
+
+從來沒有人抱怨過。從來沒有。🐝
+===
+hs-07 | ann | Campus Life
+My professor asked for a [[summary]] of the [[seminar]]. 我寫了三頁，只講到五分鐘。
+
+Group [[cooperation]] is hard when everyone is on a different time zone. 😵
+---
+教授要我們交研討會的摘要。我寫了三頁，卻只講到五分鐘的內容。
+
+大家都在不同時區，團隊合作真的很難。😵
+===
+hs-08 | reginald | History
+In 1885 a gentleman has no [[privacy]]. In 2025 a gentleman has no [[privacy]] either, but there is Wi-Fi.
+
+Being [[wealthy]] was easier. Having a [[privilege]] was easier. Having a phone is not. 🎩
+---
+在1885年，紳士沒有隱私。在2025年，紳士也沒有隱私，但至少有Wi-Fi。
+
+有錢比較容易。擁有特權比較容易。擁有手機就不容易。🎩
+===
+hs-09 | boba | Business
+Customers say "zero sugar." I can't [[tolerate]] that. It is a [[sensible]] request for the body, but not for the soul.
+
+My [[persuasion]] is simple: just try the brown sugar. 🧋
+---
+客人說「無糖」。我無法容忍。對身體來說這是明智的要求，對靈魂來說卻不是。
+
+我的說服方式很簡單：先喝喝看黑糖口味。🧋
+===
+hs-10 | pablo | Environment
+My iceberg is on the [[brink]] of disappearing. Is it [[ethical]] to ignore that?
+
+Don't [[escape]] the question. Turn the lights off. 🐧
+---
+我的冰山瀕臨消失的邊緣。無視這件事合乎倫理嗎？
+
+不要逃避這個問題。把燈關掉。🐧

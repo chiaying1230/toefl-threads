@@ -3682,6 +3682,89 @@
   Object.keys(W).forEach(function (k) { if (!window.VOCAB[k]) window.VOCAB[k] = W[k]; });
   window.PACKS = window.PACKS || {};
   window.PACKS["hs"] = { own: Object.keys(W), base: ["abandon", "absorb", "abstract", "absurd", "abundant", "access", "accessible", "acclaim", "accomplishment", "accumulate", "accurate", "accuse", "achieve", "acknowledge", "acquisition", "acute", "adapt", "adjust", "admirable", "adverse", "advocate", "aesthetic", "affection", "affiliate", "afford", "agreeable", "alert", "allocate", "ambiguity", "ambiguous", "ambitious", "ample", "analogy", "analyze", "ancestor", "anticipate", "anticipation", "anxiety", "applause", "apply", "appreciation", "appropriate", "approve", "array", "arrogant", "articulate", "ascend", "aspire", "asset", "assure", "attain", "authentic", "autonomy", "awesome", "awkward", "balance", "barren", "belongings", "beneficial", "benefit", "betray", "bias", "bizarre", "bleach", "blunt", "boom", "bore", "bruise", "brutal", "bully", "calculate", "casual", "casualty", "catastrophe", "cease", "civil", "clumsy", "commit", "commodity", "commonplace", "communicate", "compatible", "compel", "compensate", "compensation", "competitor", "compliment", "compound", "comprehend", "compromise", "concept", "concise", "conclude", "condense", "conduct", "conform", "confront", "conquer", "conscience", "consistent", "constant", "consult", "consume", "contagious", "contemplate", "contentment", "continual", "continuous", "contribute", "contribution", "controversial", "controversy", "convention", "conventional", "convert", "convey", "convict", "conviction", "cope", "correspondence", "courteous", "criminal", "crisis", "criticism", "criticize", "cuisine", "cultivate", "cumulative", "cunning", "currency", "curriculum", "customary", "cynical", "debris", "decent", "decline", "deficit", "define", "definite", "delegate", "deliberate", "delicate", "demonstrate", "dense", "depict", "deplete", "deprive", "derive", "deter", "dilemma", "diligence", "diminish", "disaster", "disciple", "discount", "discreet", "dismiss", "dispose", "dispute", "dissent", "distinct", "distinction", "disturb", "diversify", "domestic", "dramatic", "dubious", "dull", "durable", "dwarf", "dynamic", "eager", "eccentric", "economics", "edible", "efficiency", "efficient", "elaborate", "element", "elevate", "emerge", "endorse", "endure", "enhance", "envious", "equivalent", "essential", "esteem", "evacuate", "evident", "evolve", "excessive", "exotic", "expand", "expansion", "explicit", "exploit", "extend", "extensive", "extinct", "extraordinary", "falter", "fascinate", "feasible", "feeble", "fertile", "flaw", "flexibility", "flourish", "formidable", "fossil", "fragile", "fundamental", "fuse", "gap", "genuine", "gigantic", "global", "gossip", "govern", "gradual", "guilty", "habitat", "halt", "hazard", "hence", "heritage", "heroic", "hierarchy", "homesick", "hostile", "hypothesis", "identify", "imminent", "impact", "imperative", "implement", "implicit", "incentive", "incident", "indifference", "indifferent", "indigenous", "indispensable", "inevitable", "infinite", "inflation", "inherent", "initial", "initiate", "initiative", "injustice", "intact", "intense", "intervene", "intimidate", "intuition", "invest", "ironic", "irony", "irritable", "irritate", "junk", "lavish", "legitimate", "lethal", "literacy", "literate", "logic", "longevity", "loss", "lucrative", "lush", "luxurious", "mandate", "marginal", "marine", "masterpiece", "melancholy", "memorable", "merchandise", "messy", "metaphor", "migration", "moderate", "modify", "monitor", "mortality", "mortgage", "multiply", "mutual", "naive", "neglect", "negotiate", "negotiation", "norm", "notify", "notion", "notorious", "nurture", "obedient", "oblige", "obscure", "observation", "obsess", "occupy", "offense", "optimistic", "optional", "organic", "organism", "originate", "orthodox", "outlet", "outrageous", "oversee", "paradox", "partial", "passive", "pathetic", "patience", "peer", "perceive", "perception", "permit", "persevere", "persistent", "perspective", "phenomenon", "pioneer", "poetic", "ponder", "potential", "precedent", "precise", "precision", "predator", "premise", "preparation", "preserve", "prevent", "primitive", "productive", "proficiency", "profound", "prohibition", "prone", "prosper", "prosperity", "protest", "prototype", "provoke", "punctual", "rash", "rate", "rational", "realistic", "recession", "recognition", "recognize", "recycle", "reflect", "refund", "release", "relentless", "reluctant", "remarkable", "reputation", "resent", "reserve", "resistant", "respond", "resume", "retain", "retrieve", "revelation", "revenue", "rigid", "ritual", "robust", "royalty", "savage", "scarce", "scenic", "scrutiny", "secure", "selective", "shortage", "shortsighted", "significance", "significant", "simultaneous", "singular", "skeptical", "slump", "solitary", "sophisticated", "stale", "starvation", "steep", "strategic", "striking", "stubborn", "substantial", "substitute", "subtle", "superficial", "supplement", "surge", "suspect", "suspicious", "swift", "systematic", "tame", "technique", "temper", "thrive", "timid", "tolerate", "toxic", "transform", "trigger", "triumph", "trivial", "ultimate", "underestimate", "universal", "unprecedented", "upright", "urban", "utensil", "vague", "valid", "vanish", "verdict", "versatile", "viable", "vice", "vicious", "visible", "vital", "vivid", "voyage", "vulnerable", "wary", "wither", "witness", "woe", "yield"] };
+  window.PACK_POSTS = window.PACK_POSTS || {};
+  window.PACK_POSTS["hs"] = [
+    {
+      "id": "hs-01",
+      "author": "socrates",
+      "topic": "Psychology",
+      "text": "I am [[stubborn]] about leg day. My trainer says I'm [[reluctant]] to rest.\n\nA man's [[temper]] is a muscle too. Train it, and then sleep. 🏋️",
+      "zh": "我對腿日非常固執。教練說我不願意休息。\n\n一個人的脾氣也是一塊肌肉。鍛鍊它，然後去睡覺。🏋️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-02",
+      "author": "whiskers",
+      "topic": "Psychology",
+      "text": "Kevin has big [[ambition]]: he wants to [[compete]] with me for the sunniest spot.\n\nDo not [[exaggerate]] your chances, Kevin. The sun already signed with me. 🐱☀️",
+      "zh": "凱文有很大的野心：他想跟我爭最曬得到太陽的位置。\n\n別誇大你的勝算，凱文。太陽已經跟我簽約了。🐱☀️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-03",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "第一幕：一個 [[rumor]] about my ex 🎭 I feel so [[anxious]]!\n\nPlease send [[sympathy]] and snacks. 悲劇需要觀眾 💅",
+      "zh": "第一幕：一個關於我前任的謠言 🎭 我好焦慮！\n\n請送上同情和零食。悲劇需要觀眾 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-04",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "The library is [[gloomy]] after midnight. I [[whisper]] to the books.\n\nI looked for my [[shadow]] but I forgot: I'm a ghost. Return your books. 👻📚",
+      "zh": "午夜過後的圖書館很陰暗。我對書本輕聲細語。\n\n我找了我的影子，才想起：我是鬼。請準時還書。👻📚",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-05",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "Tourists [[wander]] near my crater and take a [[glimpse]] inside.\n\nI am [[innocent]]. I only let off a little steam. Mostly. 🌋",
+      "zh": "遊客在我的火山口附近閒逛，往裡面瞥一眼。\n\n我是無辜的。我只是放了一點蒸氣。大部分時候。🌋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-06",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "In my hive, workers are [[loyal]] and [[skilled]]. The only [[bonus]] is more honey.\n\nNobody has complained. Ever. 🐝",
+      "zh": "在我的蜂巢裡，工蜂忠誠又熟練。唯一的獎金就是更多蜂蜜。\n\n從來沒有人抱怨過。從來沒有。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-07",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "My professor asked for a [[summary]] of the [[seminar]]. 我寫了三頁，只講到五分鐘。\n\nGroup [[cooperation]] is hard when everyone is on a different time zone. 😵",
+      "zh": "教授要我們交研討會的摘要。我寫了三頁，卻只講到五分鐘的內容。\n\n大家都在不同時區，團隊合作真的很難。😵",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-08",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In 1885 a gentleman has no [[privacy]]. In 2025 a gentleman has no [[privacy]] either, but there is Wi-Fi.\n\nBeing [[wealthy]] was easier. Having a [[privilege]] was easier. Having a phone is not. 🎩",
+      "zh": "在1885年，紳士沒有隱私。在2025年，紳士也沒有隱私，但至少有Wi-Fi。\n\n有錢比較容易。擁有特權比較容易。擁有手機就不容易。🎩",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-09",
+      "author": "boba",
+      "topic": "Business",
+      "text": "Customers say \"zero sugar.\" I can't [[tolerate]] that. It is a [[sensible]] request for the body, but not for the soul.\n\nMy [[persuasion]] is simple: just try the brown sugar. 🧋",
+      "zh": "客人說「無糖」。我無法容忍。對身體來說這是明智的要求，對靈魂來說卻不是。\n\n我的說服方式很簡單：先喝喝看黑糖口味。🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-10",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "My iceberg is on the [[brink]] of disappearing. Is it [[ethical]] to ignore that?\n\nDon't [[escape]] the question. Turn the lights off. 🐧",
+      "zh": "我的冰山瀕臨消失的邊緣。無視這件事合乎倫理嗎？\n\n不要逃避這個問題。把燈關掉。🐧",
+      "pack": "hs"
+    }
+  ];
 })();
 // KK
 Object.assign(window.KK = window.KK || {}, {

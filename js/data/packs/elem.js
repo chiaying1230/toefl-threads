@@ -2012,6 +2012,89 @@
   Object.keys(W).forEach(function (k) { if (!window.VOCAB[k]) window.VOCAB[k] = W[k]; });
   window.PACKS = window.PACKS || {};
   window.PACKS["elem"] = { own: Object.keys(W), base: ["affect", "appreciate", "celebrate", "cheer", "classic", "contract", "detect", "humble", "insist", "maintain", "operate", "pleasant", "positive", "recycle", "reject", "settle", "sincere", "stingy", "system", "tradition", "valuable", "vocabulary"] };
+  window.PACK_POSTS = window.PACK_POSTS || {};
+  window.PACK_POSTS["elem"] = [
+    {
+      "id": "elem-01",
+      "author": "grandma",
+      "topic": "Food",
+      "text": "早餐 [[breakfast]]: I made fried eggs this morning 🍳 They were [[delicious]]!\n\nTen minutes later my grandson says he is [[hungry]] again. 年輕人胃口真好 🙏🌸",
+      "zh": "早餐：我今天早上煎了荷包蛋 🍳 超級好吃！\n\n十分鐘後孫子又說他餓了。年輕人胃口真好 🙏🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-02",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Sunday night. [[homework]] due tomorrow. I am [[sleepy]]. The [[weekend]] is gone. Where did it go??\n\n週末你們都去哪了 😭",
+      "zh": "星期天晚上。作業明天要交。我好睏。週末消失了。它去哪了？？\n\n週末你們都去哪了 😭",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-03",
+      "author": "zorp",
+      "topic": "Travel",
+      "text": "On Earth I rode a [[bicycle]] to the [[airport]]. Humans need a [[ticket]] to leave. On Kepler we just wave goodbye.\n\nAlso, cutting the line here is [[dangerous]]. Noted. 👽",
+      "zh": "在地球上，我騎腳踏車去機場。人類離開需要一張機票。在克卜勒星，我們只要揮手說再見。\n\n還有，在這裡插隊很危險。已記下。👽",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-04",
+      "author": "pigeon",
+      "topic": "Culture",
+      "text": "The city is [[noisy]]. The [[library]] is [[quiet]].\n\nI sit on the library window and think about bread. Silence is a good place for hunger. 🐦📚",
+      "zh": "城市很吵。圖書館很安靜。\n\n我坐在圖書館的窗台上想著麵包。安靜是思考飢餓的好地方。🐦📚",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-05",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "My [[kitchen]] smells like the neighbor's [[bakery]]. This is unacceptable.\n\nTheir bread is my [[favorite]]. Please send the recipe. Beep. 🤖🥖",
+      "zh": "我的廚房聞起來像鄰居的麵包店。這不能接受。\n\n他們的麵包是我的最愛。請把食譜寄來。嗶。🤖🥖",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-06",
+      "author": "rex",
+      "topic": "Culture",
+      "text": "Today is my [[birthday]]. 66 million years old! I got a [[balloon]].\n\nI cannot hold it with my tiny arms. I am not [[lonely]]. The balloon is just far away. 🦖🎈",
+      "zh": "今天是我的生日。六千六百萬歲！我收到一顆氣球。\n\n我的小手臂拿不住它。我不孤單。氣球只是離我有點遠。🦖🎈",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-07",
+      "author": "whiskers",
+      "topic": "Environment",
+      "text": "It is [[rainy]]. Kevin wants to [[borrow]] my [[umbrella]].\n\nNo. I am a cat. I do not do rain. Kevin may do rain. 🐱☔",
+      "zh": "下雨了。凱文想借我的雨傘。\n\n不行。我是貓。我不碰雨。凱文可以去碰雨。🐱☔",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-08",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "My human is [[lazy]] today. I [[remember]] the walk time exactly: 5 p.m.\n\nHe will [[forget]] it. I will bark. We will both be happy. 🐕",
+      "zh": "我的主人今天很懶。我清楚記得散步時間：下午五點。\n\n他會忘記。我會汪汪叫。我們都會很開心。🐕",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-09",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "Boston [[subway]] = old but [[cheap]]. 台北捷運 = 乾淨又準時，我好想念。\n\nAlso the [[traffic]] here makes me miss home. 但我還是要加油 💪",
+      "zh": "波士頓的地鐵：老舊但便宜。台北捷運：乾淨又準時，我好想念。\n\n還有，這裡的交通狀況讓我想家。但我還是要加油 💪",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-10",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "I am [[shy]] but [[clever]]. Every day I turn toward the window.\n\nA [[lovely]] trick called photosynthesis. You are welcome. 🌿",
+      "zh": "我很害羞，但很聰明。每天我都朝向窗戶轉動。\n\n一個可愛的把戲，叫做光合作用。不客氣。🌿",
+      "pack": "elem"
+    }
+  ];
 })();
 // KK
 Object.assign(window.KK = window.KK || {}, {

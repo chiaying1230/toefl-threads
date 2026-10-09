@@ -1,0 +1,89 @@
+toeic-01 | whiskers | Business
+Kevin submitted the [[document]] after the [[deadline]]. I said nothing.
+
+The [[manager]] (me) is merciful. Mostly. 🐱📄
+---
+凱文在截止日期之後才交文件。我什麼都沒說。
+
+經理（我）很寬容。大部分時候是。🐱📄
+===
+toeic-02 | captain | Business
+我昨天幫 team dinner 訂了 [[reservation]]，結果自己忘了 [[deadline]] 🏄
+
+Moral of the story: 先把行事曆打開。
+---
+我昨天幫團隊聚餐訂了位，結果自己忘了截止日期 🏄
+
+這個故事的教訓：先把行事曆打開。
+===
+toeic-03 | zorp | Travel
+Humans put their whole lives into a [[luggage]] and call it "light packing."
+
+Every [[passenger]] pays a different [[fare]] for the same sky. Fascinating. 👽🧳
+---
+人類把整個人生塞進行李箱，然後稱之為「輕裝簡行」。
+
+每位乘客為同一片天空付不同的票價。真迷人。👽🧳
+===
+toeic-04 | pigeon | Travel
+I live near the airport. The loudest [[announcement]] today was about a [[delay]].
+
+Everyone looked sad. I looked at the crumbs. 🐦✈️
+---
+我住在機場附近。今天最大聲的廣播是關於班機延誤。
+
+每個人都看起來很難過。我看著地上的麵包屑。🐦✈️
+===
+toeic-05 | chefbot | Food
+The hotel [[buffet]] served [[bacon]] that was not [[crisp]]. I filed a [[complaint]].
+
+The bacon has been informed. 🤖🥓
+---
+飯店的自助餐供應的培根不酥脆。我提出了客訴。
+
+培根已被告知。🤖🥓
+===
+toeic-06 | grandma | Tech
+Grandson told me to [[download]] the app and [[install]] it. 我照做了 🙏
+
+It was very [[convenient]]! Now I can order tomatoes AND get scolded by the app. 🍅📱
+---
+孫子叫我下載這個應用程式然後安裝。我照做了 🙏
+
+真的很方便！現在我可以訂番茄，還會被應用程式唸。🍅📱
+===
+toeic-07 | fizz | Business
+Our lab's new [[strategy]]: stop exploding things.
+
+[[profit]] is up 3%. Morale is down 40%. Also my eyebrows are gone. 🔬
+---
+我們實驗室的新策略：不要再炸東西。
+
+利潤上升了百分之三。士氣下降了百分之四十。我的眉毛也不見了。🔬
+===
+toeic-08 | beatrice | Business
+The annual [[conference]] for flowers is next week. Our top [[candidate]] for "Best Supplier" is me.
+
+Please vote. The [[manager]] of the garden is watching. 🐝🌼
+---
+下週是花朵們的年度會議。「最佳供應者」的最佳人選是我。
+
+請投票。花園的經理正在看。🐝🌼
+===
+toeic-09 | mochi | Travel
+We went on a trip. I am a [[tourist]] at the dog park.
+
+My human is the [[traveler]]. I am the one who found the best smell. 🐕🧳
+---
+我們去旅行了。我是狗狗公園的觀光客。
+
+我的主人是旅人。我是找到最香氣味的那一個。🐕🧳
+===
+toeic-10 | ann | Campus Life
+大學畢業了。一個 [[graduate]] looking for the first [[career]] step 😅
+
+The [[atmosphere]] at interviews is so tense. 但我還是要微笑 💪
+---
+大學畢業了。一個畢業生在找職涯的第一步 😅
+
+面試的氣氛好緊張。但我還是要微笑 💪
