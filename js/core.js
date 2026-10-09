@@ -6,7 +6,7 @@
   var VOCAB = window.VOCAB;
   var CHARACTERS = window.CHARACTERS;
   var TAG = /\[\[([a-z_]+)(?:\|([^\]]+))?\]\]/g;
-  var LEVEL_NAMES = { 1: "Easy", 2: "Medium", 3: "Hard" };
+  var LEVEL_NAMES = { 1: "Soy Milk", 2: "Tofu", 3: "Natto" };
   var LANG_NAMES = { en: "English", mix: "Mixed" };
 
   // Vocab keys use "_" for phrases: in_retrospect → "in retrospect".
@@ -56,7 +56,7 @@
     return formatAge((Date.now() - ts) / 60000);
   }
 
-  // Easy if the average word level <= 1.5, Hard if >= 2.5, otherwise Medium.
+  // Soy Milk if the average word level <= 1.5, Natto if >= 2.5, otherwise Tofu.
   function levelOf(keys) {
     if (!keys.length) return 0;
     var sum = keys.reduce(function (acc, k) { return acc + VOCAB[k].level; }, 0);

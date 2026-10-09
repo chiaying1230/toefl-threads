@@ -9,6 +9,7 @@ fs.readdirSync(dataDir)
   .filter((f) => /^batch-\d+\.js$/.test(f))
   .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]))
   .forEach((f) => require(path.join(dataDir, f)));
+require(path.join(dataDir, "levels.js"));
 require(path.join(dataDir, "kk.js"));
 require(path.join(dataDir, "convos.js"));
 
@@ -79,7 +80,7 @@ console.log(`Conversations: ${Object.keys(window.CONVOS || {}).length} threads, 
 const unused = Object.keys(VOCAB).filter((k) => !used.has(k));
 
 console.log(`Posts: ${POSTS.length}   Words: ${Object.keys(VOCAB).length}   Characters: ${Object.keys(CHARACTERS).length}`);
-console.log(`Post levels  Easy ${levels[1]} / Medium ${levels[2]} / Hard ${levels[3]}`);
+console.log(`Post levels  Soy Milk ${levels[1]} / Tofu ${levels[2]} / Natto ${levels[3]}`);
 console.log(`Voices       ${Object.entries(langs).map(([k, n]) => `${k} ${n}`).join(" / ")}`);
 console.log(`Topics       ${Object.entries(topics).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(", ")}`);
 if (unused.length) console.log(`Unused words (${unused.length}): ${unused.join(", ")}`);

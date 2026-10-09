@@ -9,9 +9,10 @@
   --saved: #16a34a;
   --like: #ff3040;
   --overlay: rgba(0, 0, 0, 0.35);
-  --lv1: #16a34a;
-  --lv2: #d97706;
-  --lv3: #dc2626;
+  --lv1: #a16207;
+  --lv2: #15803d;
+  --lv3: #7c4a1e;
+  --amber: #d97706;
   --ok-bg: #dcfce7;
   --bad-bg: #fee2e2;
   --tabbar-h: 60px;
@@ -29,9 +30,10 @@
     --accent: #60a5fa;
     --saved: #4ade80;
     --overlay: rgba(0, 0, 0, 0.6);
-    --lv1: #4ade80;
-    --lv2: #fbbf24;
-    --lv3: #f87171;
+    --lv1: #facc15;
+    --lv2: #4ade80;
+    --lv3: #d4a373;
+    --amber: #fbbf24;
     --ok-bg: #14532d;
     --bad-bg: #7f1d1d;
   }
@@ -83,7 +85,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 }
 .ring { width: 24px; height: 24px; transform: rotate(-90deg); }
 .ring-bg { stroke: var(--line); stroke-width: 3; }
-.ring-fg { stroke: var(--lv2); stroke-width: 3; transition: stroke-dashoffset 0.5s ease; }
+.ring-fg { stroke: var(--amber); stroke-width: 3; transition: stroke-dashoffset 0.5s ease; }
 .ring-fg.done { stroke: var(--saved); }
 
 main { max-width: var(--maxw); margin: 0 auto; }
@@ -180,7 +182,7 @@ button.tag:active { color: var(--text); }
 }
 .quiz.win { border-color: var(--saved); animation: win 0.5s ease; }
 @keyframes win { 30% { transform: scale(1.02); } 100% { transform: scale(1); } }
-.quiz-head { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lv2); }
+.quiz-head { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--amber); }
 .quiz-q { font-weight: 700; margin-top: 6px; }
 .quiz-word { font-size: 24px; font-weight: 800; margin: 6px 0 10px; }
 .quiz-word .muted { font-size: 14px; font-weight: 400; }

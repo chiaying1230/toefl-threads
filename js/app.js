@@ -1510,7 +1510,7 @@
           }).join("") + "</div></div>") +
         '<p class="muted">Funny characters post every day — using real TOEFL words. What level do you want to see?</p>' +
         '<p class="muted small">角色們每天用真正的托福單字發文。你想看哪個程度？</p>' +
-        '<div class="ob-options">' + [[1, "Easy · 簡單", "Common academic words · 常見學術字 · ~TOEFL 60–80"], [2, "Medium · 中等", "Core TOEFL words · 托福核心字 · ~TOEFL 80–100"], [3, "Hard · 困難", "Advanced words · 進階字 · ~TOEFL 100+"]].map(function (x) {
+        '<div class="ob-options">' + [[1, "Soy Milk · 豆漿", "Everyday words · 常見好入口的字"], [2, "Tofu · 豆腐", "Core words · 核心字"], [3, "Natto · 納豆", "Advanced words · 進階字，要多嚼幾次"]].map(function (x) {
           var on = ob.levels.indexOf(x[0]) >= 0;
           return '<button class="ob-opt' + (on ? " on" : "") + '" data-ob-level="' + x[0] + '"><b>' + x[1] + "</b><span>" + x[2] + "</span></button>";
         }).join("") + '</div><p class="muted small">Pick one or more. · 可以複選。</p>';
