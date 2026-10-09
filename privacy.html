@@ -31,7 +31,7 @@
       <tr><td>Without an account: saved words, likes, preferences, streak, threads and replies you write</td><td>Only in your browser (this device)</td><td>Only you</td></tr>
       <tr><td>Google sign-in: your Google account name, email address and user ID</td><td>Firebase Authentication (Google)</td><td>Only the site owner, in the Firebase console</td></tr>
       <tr><td>Saved words, likes, bookmarks, reposts list, preferences, streak, badges</td><td>Firestore <code>users</code> (private)</td><td>Only you (and the site owner)</td></tr>
-      <tr><td>Public profile: display name, username, bio, TOEFL target, emoji or photo</td><td>Firestore <code>profiles</code></td><td><b>Everyone</b></td></tr>
+      <tr><td>Public profile: display name, username, bio, target score (optional), emoji or photo</td><td>Firestore <code>profiles</code></td><td><b>Everyone</b></td></tr>
       <tr><td>Threads, replies and reposts you publish (with your name and avatar)</td><td>Firestore <code>posts</code>, <code>comments</code>, <code>reposts</code></td><td><b>Everyone</b></td></tr>
       <tr><td>Like records (which threads you liked)</td><td>Firestore <code>likes</code> (private)</td><td>Only you (and the site owner)</td></tr>
       <tr><td>Notification settings, device push token and time zone (only if you turn notifications on)</td><td>Firestore <code>pushTokens</code> (private)</td><td>Only you (and the site owner)</td></tr>

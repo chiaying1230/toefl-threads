@@ -202,7 +202,7 @@
     }
     if (post.quoteOf) extra += quoteCardHtml(findPost(post.quoteOf), post.quoteOf);
     if (post.kind === "user" && post.words.length) {
-      extra += '<div class="used-words">' + (mine ? "You used " : "Used ") + post.words.length + " TOEFL word" + (post.words.length > 1 ? "s" : "") + " 🎉</div>";
+      extra += '<div class="used-words">' + (mine ? "You used " : "Used ") + post.words.length + " word" + (post.words.length > 1 ? "s" : "") + " 🎉</div>";
     }
 
     var last = mine
@@ -428,6 +428,27 @@
   // ---------- Word of the day ----------
   var WOTD_KEY = "toefu.wotdHidden";
 
+  // Entry points: one chip per word list. Tapping toggles it for the Word of the Day, quizzes and flashcards.
+  function packStripHtml() {
+    var on = st().prefs.packs && st().prefs.packs.length ? st().prefs.packs : ["toefl"];
+    return '<div class="pack-strip"><span class="muted small">' + T("Word lists", "單字表") + "</span>" + C.PACK_META.map(function (m) {
+      return '<button class="chip' + (on.indexOf(m.id) >= 0 ? " active" : "") + '" data-pack-toggle="' + m.id + '">' + esc(m.name) + "</button>";
+    }).join("") + "</div>";
+  }
+
+  function togglePack(id) {
+    var s = st(), on = (s.prefs.packs && s.prefs.packs.length ? s.prefs.packs : ["toefl"]).slice(), i = on.indexOf(id);
+    if (i >= 0) { if (on.length === 1) { toast("Keep at least one word list"); return; } on.splice(i, 1); } else on.push(id);
+    s.prefs.packs = on;
+    S.save();
+    renderWordOfDay();
+    C.loadPacks(on, function (ok) {
+      if (!ok) toast("Couldn't load that word list. Check your connection.");
+      renderWordOfDay();
+      refreshWordMarks();
+    });
+  }
+
   function renderWordOfDay() {
     var slot = $("#wotdSlot");
     if (!slot) return;
@@ -436,13 +457,13 @@
     if (feedMode !== "foryou" || !st().prefs.onboarded) { slot.innerHTML = ""; return; }
     var key = C.wordOfDay(today, st().prefs.levels, C.activePool(st().prefs));
     var v = VOCAB[key];
-    if (!v) { slot.innerHTML = ""; return; }
+    if (!v) { slot.innerHTML = packStripHtml(); return; }
     if (hidden === today) {
-      slot.innerHTML = '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
+      slot.innerHTML = packStripHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
       return;
     }
     var saved = !!st().words[key];
-    slot.innerHTML = '<div class="card wotd">' +
+    slot.innerHTML = packStripHtml() + '<div class="card wotd">' +
       '<div class="wotd-top"><span class="muted small">📅 ' + T("Word of the day", "每日一字") + '</span><button class="notice-x" data-wotd-hide aria-label="Hide">✕</button></div>' +
       '<div class="wotd-word"><b>' + esc(C.label(key)) + '</b><button class="icon-btn plain" data-speak="' + key + '" aria-label="Pronounce">🔊</button></div>' +
       '<div class="wotd-meta"><span class="kk">' + esc(kk(key)) + "</span> · " + esc(v.pos) + ' · <span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span></div>" +
@@ -691,9 +712,9 @@
     if (key.indexOf("uid:") === 0) {
       var uid = key.slice(4);
       if (uid === S.myUid()) { go("#/profile"); return; }
-      var info = withProfile(userInfoCache[uid] || { name: "TOEFL learner", handle: "user", avatar: "🙂" }, uid);
+      var info = withProfile(userInfoCache[uid] || { name: "English learner", handle: "user", avatar: "🙂" }, uid);
       var bio = info.bio || "Learning English on toEfu";
-      var target = info.target ? "🎯 TOEFL target: " + info.target + " · " : "";
+      var target = info.target ? "🎯 Target: " + info.target + " · " : "";
       $("#topbarTitle").textContent = "@" + info.handle;
       body.innerHTML = personHeader(key, info.name, info.handle, info.avatar, null, bio, target, "", info.photo) + '<div class="empty">Loading…</div>';
       S.userPosts(uid).then(function (raws) {
@@ -890,7 +911,7 @@
   }
 
   function shareApp() {
-    shareLink({ title: "toEfu", text: "I'm learning TOEFL words by scrolling funny threads on toEfu. Join me! 🧈", url: appUrl("") });
+    shareLink({ title: "toEfu", text: "I'm learning English words by scrolling funny threads on toEfu. Join me! 🧈", url: appUrl("") });
   }
 
   // Phone share sheet (LINE, Messages, Instagram…) when available, otherwise copy the link.
@@ -923,7 +944,7 @@
   // Someone opened a shared thread before setting up the app: show the thread first, then invite them in.
   function joinCardHtml(post) {
     return '<div class="card join-card">' + tofuSvg(48) + '<div class="install-text"><b>A friend shared this thread 👋</b>' +
-      '<span class="muted small">toEfu is a free app where funny characters post with TOEFL words. Tap any <span class="vocab-demo">underlined word</span> to learn it.</span></div></div>';
+      '<span class="muted small">toEfu is a free app where funny characters post with real English vocabulary. Tap any <span class="vocab-demo">underlined word</span> to learn it.</span></div></div>';
   }
 
   function joinBarHtml() {
@@ -1026,7 +1047,7 @@
       refreshCounts();
       loadReplies();
       var n = C.detectWords(text).length;
-      if (n) toast("Nice! You used " + n + " TOEFL word" + (n > 1 ? "s" : "") + " 🎉");
+      if (n) toast("Nice! You used " + n + " word" + (n > 1 ? "s" : "") + " 🎉");
     }).catch(function (e) {
       console.error(e);
       toast("Couldn't post your reply — wait a few seconds between replies and try again.");
@@ -1162,7 +1183,7 @@
     var html = '<div class="profile-head"><div><h2>' + esc(p.name) + '</h2><div class="handle">@' + esc(p.handle) + "</div></div>" +
       avatarHtml(p, "lg") + "</div>" +
       (p.bio ? '<p class="profile-bio">' + esc(p.bio) + "</p>" : "") +
-      (p.target ? '<p class="profile-bio muted">🎯 TOEFL target: <b>' + p.target + "</b></p>" : "");
+      (p.target ? '<p class="profile-bio muted">🎯 Target: <b>' + p.target + "</b></p>" : "");
 
     html += '<div class="profile-stats"><span><b>' + bstats.posts + "</b> threads</span><span><b>" +
       Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
@@ -1274,9 +1295,9 @@
       '<label>Name<input id="editName" maxlength="40" value="' + esc(p.name) + '"></label>' +
       '<label>Username<input id="editHandle" maxlength="24" autocapitalize="off" value="' + esc(p.handle) + '"></label>' +
       '<label>Bio <span class="muted" id="bioCount">' + (p.bio || "").length + '/160</span><textarea id="editBio" maxlength="160" rows="3" placeholder="e.g. Aiming for 100+ this summer! Loves cats and boba.">' + esc(p.bio || "") + "</textarea></label>" +
-      '<label>TOEFL target score<select id="editTarget">' + TARGETS.map(function (t) {
+      ((st().prefs.packs || ["toefl"]).indexOf("toefl") < 0 && !p.target ? "" : '<label>TOEFL target score (optional)<select id="editTarget">' + TARGETS.map(function (t) {
         return '<option value="' + t + '"' + ((p.target || 0) === t ? " selected" : "") + ">" + (t ? t + "+" : "Not set") + "</option>";
-      }).join("") + "</select></label>" +
+      }).join("") + "</select></label>") +
       '<label>Emoji avatar<div class="emoji-picks">' + AVATARS.map(function (a) {
         return '<button class="emoji-pick' + (!draft.photo && a === draft.avatar ? " active" : "") + '" data-avatar="' + a + '">' + a + "</button>";
       }).join("") + "</div></label>" +
@@ -1315,9 +1336,9 @@
     var old = st().profile;
     var next = {
       name: $("#editName").value.trim().slice(0, 40) || "You",
-      handle: $("#editHandle").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || old.handle || "toefl_learner",
+      handle: $("#editHandle").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || old.handle || "toefu_learner",
       bio: $("#editBio").value.trim().slice(0, 160),
-      target: parseInt($("#editTarget").value, 10) || 0,
+      target: $("#editTarget") ? parseInt($("#editTarget").value, 10) || 0 : old.target || 0,
       avatar: draft.avatar || "🙂",
       photo: draft.photo || ""
     };
@@ -1490,8 +1511,8 @@
     if (ob.step === -1) {
       var app = inAppBrowser();
       body.innerHTML = dots + '<div class="ob-content"><div class="ob-hero">' + tofuSvg(120) + "</div><h2>" + B("Welcome to toEfu", "歡迎來到 toEfu") + "</h2>" +
-        '<p class="muted">Learn TOEFL words from funny threads. Sign in first so your level, likes, saved words and streak are kept in your account — on every phone, every time you open the app.</p>' +
-        '<p class="muted small">從好笑的串文學托福單字。先登入，你的程度、按讚、收藏單字和連續天數都會存在帳號裡，換手機也不會不見。</p>' +
+        '<p class="muted">Learn English words from funny threads. Sign in first so your level, likes, saved words and streak are kept in your account — on every phone, every time you open the app.</p>' +
+        '<p class="muted small">從好笑的串文學英文單字。先登入，你的程度、按讚、收藏單字和連續天數都會存在帳號裡，換手機也不會不見。</p>' +
         (app ? '<div class="notice"><div class="notice-text"><b>You\'re in the ' + app + ' app\'s browser.</b> Google sign-in doesn\'t work here. Tap <b>⋯</b> and choose <b>Open in browser</b>（在瀏覽器開啟）.</div></div>' : "") +
         '</div><div class="ob-nav ob-nav-col"><button class="primary-btn google-btn" data-ob-signin>' +
         '<svg viewBox="0 0 48 48" width="20" height="20"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>' +
@@ -1583,7 +1604,7 @@
     $("#composerCount").textContent = text.length + " / 500";
     $("#composerPost").disabled = !text.trim();
     var used = C.detectWords(text);
-    $("#composerDetect").textContent = used.length ? "TOEFL words found: " + used.join(", ") : "";
+    $("#composerDetect").textContent = used.length ? "Words found: " + used.join(", ") : "";
     renderChallenge();
   }
 
@@ -1639,7 +1660,7 @@
       window.scrollTo(0, 0);
       var n = C.detectWords(text).length;
       if (quoted) refreshCounts();
-      toast(n ? "Posted! You used " + n + " TOEFL word" + (n > 1 ? "s" : "") + " 🎉" : "Posted!");
+      toast(n ? "Posted! You used " + n + " word" + (n > 1 ? "s" : "") + " 🎉" : "Posted!");
       setTimeout(checkBadges, 1500);
     }).catch(function (e) {
       console.error(e);
@@ -1802,6 +1823,8 @@
       var lv = parseInt(d.obLevel, 10), i = ob.levels.indexOf(lv);
       if (i >= 0) ob.levels.splice(i, 1); else ob.levels.push(lv);
       renderOnboarding();
+    } else if (d.packToggle) {
+      togglePack(d.packToggle);
     } else if (d.obPack) {
       var pi = ob.packs.indexOf(d.obPack);
       if (pi >= 0) { if (ob.packs.length > 1) ob.packs.splice(pi, 1); } else ob.packs.push(d.obPack);

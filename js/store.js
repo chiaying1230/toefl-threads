@@ -19,7 +19,7 @@
       liked: {},
       bookmarked: {},
       words: {},       // key -> { addedAt, from, box, due }
-      profile: { name: "You", handle: "toefl_learner", avatar: "🙂", photo: "", bio: "", target: 0 },
+      profile: { name: "You", handle: "toefu_learner", avatar: "🙂", photo: "", bio: "", target: 0 },
       prefs: { levels: [1, 2, 3], topics: [], onboarded: false },
       following: {},
       daily: { goal: 10, log: {}, met: {} },
@@ -87,7 +87,7 @@
 
   function handleFrom(u) {
     var base = (u.email || "").split("@")[0] || u.displayName || "";
-    return base.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || "toefl_learner";
+    return base.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || "toefu_learner";
   }
 
   function millis(ts) {
@@ -280,7 +280,7 @@
       Store.state = guest;
       return Promise.resolve();
     }
-    Store.user = { uid: u.uid, name: u.displayName || "TOEFL learner", photo: u.photoURL };
+    Store.user = { uid: u.uid, name: u.displayName || "English learner", photo: u.photoURL };
     writeJSON(LAST_UID_KEY, u.uid);
     var cached = readJSON(CLOUD_CACHE + u.uid);
     return getWithRetry(db.collection("users").doc(u.uid), 3).then(function (snap) {

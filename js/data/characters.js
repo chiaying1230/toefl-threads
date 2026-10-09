@@ -162,7 +162,7 @@ window.CHARACTERS = {
     bio: "台灣留學生 in Boston 🇹🇼➡️🇺🇸 surviving one culture shock at a time",
     replies: [
       "{name} 謝謝你！Studying abroad is hard but comments like this help 🥹",
-      "哈哈 {name} same!! 你也在準備托福嗎？加油 💪",
+      "哈哈 {name} same!! 你也在學英文嗎？加油 💪",
       "{name} I will tell my roommate. She'll say 'y'all are sweet' 😂",
       "Thanks {name}! 想念台灣的珍奶 🧋",
       "{name} 真的！Culture shock is [[inevitable]]，but it's fun too",

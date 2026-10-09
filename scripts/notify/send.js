@@ -96,7 +96,7 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
           if (g > 0) { gained += g; if (g > bestGain) { bestGain = g; best = id; } }
         }
         if (gained > 0 && u.prefs.likes !== false) {
-          outbox.push({ uid, kind: "likes", title: `Your threads got ${gained} new like${gained > 1 ? "s" : ""} today ❤️`, body: "Keep posting with TOEFL words!", link: best ? `#/t/${best}` : "#/profile" });
+          outbox.push({ uid, kind: "likes", title: `Your threads got ${gained} new like${gained > 1 ? "s" : ""} today ❤️`, body: "Keep posting with new words!", link: best ? `#/t/${best}` : "#/profile" });
         }
         state.lastLikesDay = localDay;
       }
