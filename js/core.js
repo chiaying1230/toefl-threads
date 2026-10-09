@@ -10,7 +10,56 @@
   var LANG_NAMES = { en: "English", mix: "Mixed" };
 
   // Vocab keys use "_" for phrases: in_retrospect → "in retrospect".
-  function label(key) { return String(key).replace(/_/g, " "); }
+  function label(key) {
+    var v = VOCAB[key];
+    return (v && v.w) || String(key).replace(/_/g, " ");
+  }
+
+  // ---------- Word packs ----------
+  // The TOEFL list is always loaded (batch-*.js). The other packs (js/data/packs/<id>.js) load on demand.
+  var PACK_META = window.PACK_META || [];
+
+  function packKeys(prefs) {
+    var ids = prefs && prefs.packs && prefs.packs.length ? prefs.packs : ["toefl"];
+    var seen = {}, out = [];
+    ids.forEach(function (id) {
+      var p = window.PACKS && window.PACKS[id];
+      if (!p) return;
+      p.own.concat(p.base || []).forEach(function (k) { if (VOCAB[k] && !seen[k]) { seen[k] = true; out.push(k); } });
+    });
+    return out;
+  }
+
+  // Words to quiz / feature: the chosen packs, narrowed to the chosen levels. The level filter is
+  // skipped when it would leave a tiny pool (levels are one scale for every pack, so a pack of easy words has few "Tofu" words).
+  function activePool(prefs) {
+    var keys = packKeys(prefs);
+    if (!keys.length) keys = Object.keys(VOCAB);
+    var levels = (prefs && prefs.levels) || [1, 2, 3];
+    var byLevel = keys.filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; });
+    return byLevel.length >= 150 ? byLevel : keys;
+  }
+
+  var packWaiting = {};
+  function loadPack(id, done) {
+    done = done || function () {};
+    if (window.PACKS && window.PACKS[id]) return done(true);
+    if (!PACK_META.some(function (p) { return p.id === id; })) return done(false);
+    if (packWaiting[id]) { packWaiting[id].push(done); return; }
+    packWaiting[id] = [done];
+    var s = document.createElement("script");
+    function finish(ok) { var cbs = packWaiting[id]; delete packWaiting[id]; cbs.forEach(function (cb) { cb(ok); }); }
+    s.onload = function () { finish(true); };
+    s.onerror = function () { finish(false); };
+    s.src = "js/data/packs/" + id + ".js";
+    document.head.appendChild(s);
+  }
+
+  function loadPacks(ids, done) {
+    var left = ids.length, ok = true;
+    if (!left) return done(true);
+    ids.forEach(function (id) { loadPack(id, function (r) { ok = ok && r; if (--left === 0) done(ok); }); });
+  }
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -272,9 +321,10 @@
   }
 
   // Word of the day: same word for everyone on a given day (within the chosen levels).
-  function wordOfDay(day, levels) {
+  // `pool` (optional) is a ready-made list of keys, e.g. activePool(prefs).
+  function wordOfDay(day, levels, pool) {
     levels = levels && levels.length ? levels : [1, 2, 3];
-    var keys = Object.keys(VOCAB).filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; }).sort();
+    var keys = pool && pool.length ? pool.slice().sort() : Object.keys(VOCAB).filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; }).sort();
     if (!keys.length) keys = Object.keys(VOCAB).sort();
     return keys[hash("wotd:" + day) % keys.length];
   }
@@ -397,6 +447,10 @@
     label: label,
     wordPattern: wordPattern,
     LEVEL_NAMES: LEVEL_NAMES,
+    PACK_META: PACK_META,
+    packKeys: packKeys,
+    activePool: activePool,
+    loadPacks: loadPacks,
     LANG_NAMES: LANG_NAMES,
     BUILTIN: BUILTIN,
     BUILTIN_BY_ID: BUILTIN_BY_ID,

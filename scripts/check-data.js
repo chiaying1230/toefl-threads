@@ -77,9 +77,36 @@ for (const [pid, list] of Object.entries(window.CONVOS || {})) {
 }
 console.log(`Conversations: ${Object.keys(window.CONVOS || {}).length} threads, ${convoCount} character replies`);
 
-const unused = Object.keys(VOCAB).filter((k) => !used.has(k));
+// Word packs (js/data/packs/*.js)
+const baseKeys = new Set(Object.keys(VOCAB));
+const packDir = path.join(dataDir, "packs");
+let packWords = 0;
+if (fs.existsSync(packDir)) {
+  require(path.join(packDir, "index.js"));
+  for (const m of window.PACK_META) {
+    if (m.id === "toefl") continue;
+    window.PACKS[m.id] = undefined;
+    require(path.join(packDir, m.id + ".js"));
+    const pack = window.PACKS[m.id];
+    for (const k of pack.base) if (!baseKeys.has(k)) errors.push(`pack ${m.id}: base key ${k} is not a TOEFL word`);
+    for (const k of pack.own) {
+      const v = VOCAB[k];
+      if (!/^[a-z_]+$/.test(k)) errors.push(`pack ${m.id}: key "${k}" must be lowercase letters and _`);
+      if (baseKeys.has(k)) errors.push(`pack ${m.id}: ${k} collides with a TOEFL word`);
+      for (const field of ["zh", "ex", "exZh"]) if (!v[field]) errors.push(`pack ${m.id} word ${k}: missing ${field}`);
+      if (![1, 2, 3].includes(v.level)) errors.push(`pack ${m.id} word ${k}: bad level`);
+      if (window.KK[k] && !/^\[.+\]$/.test(window.KK[k])) errors.push(`pack ${m.id} word ${k}: bad KK`);
+      packWords++;
+    }
+    const n = pack.own.length + new Set(pack.base).size;
+    if (n !== m.count) errors.push(`pack ${m.id}: index.js says ${m.count} words, file has ${n}`);
+  }
+}
 
-console.log(`Posts: ${POSTS.length}   Words: ${Object.keys(VOCAB).length}   Characters: ${Object.keys(CHARACTERS).length}`);
+const unused = [...baseKeys].filter((k) => !used.has(k));
+
+console.log(`Pack words: ${packWords} (own entries across the extra packs)`);
+console.log(`Posts: ${POSTS.length}   Words: ${baseKeys.size}   Characters: ${Object.keys(CHARACTERS).length}`);
 console.log(`Post levels  Soy Milk ${levels[1]} / Tofu ${levels[2]} / Natto ${levels[3]}`);
 console.log(`Voices       ${Object.entries(langs).map(([k, n]) => `${k} ${n}`).join(" / ")}`);
 console.log(`Topics       ${Object.entries(topics).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(", ")}`);

@@ -1,0 +1,121 @@
+0|The total cost of the trip was higher than we expected.|這趟旅行的總費用比我們預期的高。|zh=成本；費用
+1|The car rolled backward down the hill.|車子沿著山坡向後滑去。|word=backward
+2|Good will defeat evil in the end.|最後善良會戰勝邪惡。|zh=邪惡;score=40
+3|Please move forward and make room for others.|請往前走,讓出空間給其他人。|word=forward
+4|The school principle is to treat every student fairly.|這所學校的原則是公平對待每位學生。|word=principle;zh=原則;pos=noun;score=40
+5|I need to revise my essay before I hand it in.|我交作業前需要修改我的文章。|zh=修改；修訂
+6|The two countries settled their dispute peacefully.|兩國和平地解決了爭端。|zh=解決（問題、爭端）
+7|The clinic is affiliated with the local hospital.|這間診所隸屬於當地的醫院。|zh=使隸屬於；加入
+8|Alcohol is not allowed in the school building.|校舍內不准飲酒。|word=alcohol;zh=酒精;pos=noun;score=30
+9|She was consumed with guilt after the accident.|意外發生後,她被罪惡感吞噬。|word=be consumed with;zh=被…吞噬；為…所苦
+10|The actor brought the old character to life on stage.|這位演員在舞台上讓老角色栩栩如生。|zh=使…更生動
+11|Some chemical products can be harmful to the skin.|有些化學產品可能對皮膚有害。|zh=化學的；化學物質;pos=adjective/noun;score=45
+12|He chipped a tooth on a hard candy.|他咬硬糖時崩了一小塊牙。|zh=削下小片；碰出缺口
+13|I wouldn't dare tell him the truth.|我不敢告訴他真相。|zh=敢；膽敢;pos=verb;score=40
+14|The electrician fixed the broken light in an hour.|電工一小時就修好了壞掉的燈。|zh=電工;score=35
+15|Call this number in case of emergency.|緊急情況時請撥這個號碼。|word=emergency;zh=緊急情況;pos=noun;score=30
+16|We had an enjoyable evening with old friends.|我們和老朋友度過了愉快的夜晚。|zh=愉快的；有趣的;score=30
+17|The market is a feast for the eyes.|這個市集令人大飽眼福。|word=feast;zh=盛宴；大餐;pos=noun
+18|I love the flavor of fresh strawberries.|我喜歡新鮮草莓的味道。|zh=味道；風味;pos=noun;score=30
+19|She gave away her old clothes to charity.|她把舊衣服捐給了慈善機構。|zh=贈送；洩漏
+20|DROP
+21|The free samples hooked customers in right away.|免費試用品一下子就把顧客吸引進來。|zh=吸引…加入
+22|We stayed at a small inn near the lake.|我們住在湖邊的一間小旅店。|zh=旅店；小旅館;score=35
+23|Let me in on the secret.|讓我也知道這個祕密吧。|zh=讓…知道（祕密）
+24|She studies English literary works from the 1800s.|她研究十九世紀的英國文學作品。|zh=文學的;score=45
+25|She manages a small team of five people.|她管理一個五人的小團隊。|zh=管理
+26|He has a musical talent that surprised his teachers.|他的音樂才華讓老師們很驚訝。|zh=音樂的；音樂劇;pos=adjective/noun;score=35
+27|Don't poke fun at his accent.|不要取笑他的口音。|word=poke fun at;zh=嘲笑
+28|The mayor put the plan into motion last week.|市長上週啟動了這項計畫。|zh=啟動…
+29|The price seems reasonable for such a big room.|這麼大的房間,價格看起來很合理。|word=reasonable;zh=合理的;pos=adjective;score=35
+30|She sprinkled sugar on the cake.|她在蛋糕上撒了些糖。|zh=灑；撒
+31|The priest prayed for the departed.|神父為逝者祈禱。|zh=逝者；死者;pos=noun
+32|The tide is low, so we can walk on the beach.|現在退潮了,所以我們可以在沙灘上散步。|zh=潮汐；潮水;score=40
+33|Tune in tonight for the final episode.|今晚請收看最後一集。|zh=收聽；收看
+43|The manager was abusive to his staff.|那位經理對員工惡語相向。|word=abusive;zh=辱罵的；虐待的
+44|Her garden abuts the river.|她的花園緊鄰河流。|
+45|The company refused to accede to their demands.|公司拒絕答應他們的要求。|word=accede;zh=同意；應允
+46|She accepted the invitation with a smile.|她微笑著接受了邀請。|zh=接受；同意
+47|Pressing the button will actuate the machine.|按下按鈕就會啟動機器。|zh=啟動；驅動
+48|The lawyer adduced new evidence in court.|律師在法庭上提出了新證據。|zh=引證；舉出（理由、證據）
+49|The judge adjudged him guilty of fraud.|法官判定他犯了詐欺罪。|zh=判決；宣判
+50|The teacher admonished the class for being noisy.|老師告誡全班不要吵鬧。|zh=告誡；警告；責備
+51|The fans looked at the singer with adoration.|粉絲們以愛慕的眼光看著那位歌手。|word=adoration;zh=愛慕；崇拜
+52|Some sellers adulterate milk with water.|有些商家在牛奶裡摻水。|word=adulterate;zh=摻雜；摻假
+53|The report adumbrates the plans for next year.|這份報告概述了明年的計畫。|zh=概述；勾勒輪廓
+54|He alluded to a past mistake without saying more.|他影射了過去的一個錯誤,卻沒有多說。|word=allude;zh=暗指；間接提到
+55|The patient looked pale and anemic.|病人看起來臉色蒼白又貧血。|word=anemic;zh=貧血的
+56|There was deep animosity between the two families.|這兩個家族之間有很深的敵意。|word=animosity;zh=仇恨；敵意
+57|The antagonism between the two groups grew worse.|兩個團體之間的對立越來越嚴重。|word=antagonism;zh=對抗；敵意
+58|She reached the apex of her career at forty.|她在四十歲時達到事業的巔峰。|word=apex;zh=頂點；巔峰
+59|We were appalled at the news of the accident.|聽到這起意外的消息,我們都嚇壞了。|word=appall;zh=使驚駭；使震驚
+60|These rules appertain to all new members.|這些規定適用於所有新成員。|word=appertain;zh=屬於；有關
+61|The idea was too abstract to be apprehensible to young children.|這個概念太抽象,小孩子無法理解。|zh=可理解的；可領會的;score=80
+62|Wear clothes appropriate for the weather.|請穿適合當天天氣的衣服。|word=appropriate;zh=適當的；合適的
+63|He carried an armful of books to the library.|他抱著一大堆書走向圖書館。|word=armful;zh=一抱（之量）
+64|The soldiers kept their weapons in the armory.|士兵們把武器存放在軍械庫裡。|word=armory;zh=軍械庫；武器庫
+65|She ascribed her success to hard work.|她把成功歸因於努力工作。|word=ascribe;zh=把…歸因於
+66|He aspires to become a doctor.|他立志成為醫生。|word=aspire;zh=追求；渴望；有志於
+67|He tried to atone for his mistake by working harder.|他努力工作想彌補自己的過錯。|word=atone;zh=贖罪；彌補過錯
+68|He avowed that he had never seen the man before.|他聲明自己從未見過那個人。|zh=聲明；宣稱；承認
+69|I don't begrudge her the prize; she worked hard for it.|我不嫉妒她得獎,她付出了很多努力。|zh=嫉妒；吝惜
+70|The farmer picked a cotton boll from the plant.|農夫從棉株上摘下一顆棉鈴。|zh=棉鈴
+71|The long speech bored the audience silly.|冗長的演講讓聽眾無聊透頂。|word=bore sb silly;zh=使…覺得無聊透頂
+72|The new student became the butt of his classmates' jokes.|那位新生成了同學們取笑的對象。|word=be the butt of sb's jokes;zh=成為…的笑柄
+73|A small cabal of officials planned to take control.|一小撮官員密謀奪權。|word=cabal;zh=陰謀小集團
+74|DROP
+75|The army was forced to capitulate after a long siege.|軍隊在長期圍困後被迫投降。|word=capitulate;zh=投降；屈服
+76|The town celebrated the centenary of its founding.|小鎮慶祝建鎮一百週年。|word=centenary;zh=一百週年紀念
+77|The coach chastised the players for their lazy play.|教練嚴厲斥責球員們鬆散的表現。|zh=嚴厲斥責；責罰
+78|Please check your answers before you hand in the test.|交卷前請檢查你的答案。|zh=檢查；核對;pos=verb/noun
+79|He cited a famous study as evidence.|他引用一項著名的研究作為證據。|word=cite;zh=引用；引述
+80|Books in the library are classified by subject.|圖書館的書籍依主題分類。|word=classify;zh=將…分類
+81|The sales rise was coincident with the new ad campaign.|銷量上升與新的廣告活動同時發生。|word=coincident;zh=同時發生的
+82|The two cars collided at the corner.|兩輛車在轉角處相撞。|word=collide;zh=相撞；碰撞
+83|The collision caused a long traffic jam.|這起碰撞造成嚴重塞車。|word=collision;zh=碰撞；衝突
+84|She made a commitment to finish the project on time.|她承諾會準時完成這個專案。|word=commitment;zh=承諾；投入
+85|The company will compensate you for the delay.|公司會為延誤補償你。|word=compensate;zh=補償；賠償
+86|He is competent at solving difficult problems.|他有能力解決難題。|word=competent;zh=有能力的；稱職的
+87|He denied any complicity in the crime.|他否認參與這起犯罪。|word=complicity;zh=同謀；共犯
+88|The committee comprises ten members.|委員會由十位成員組成。|word=comprise;zh=包含；由…組成
+89|I can't conceive of living without music.|我無法想像沒有音樂的生活。|word=conceive;zh=想像；構想
+90|The famous actor condescended to talk with the fans.|那位名演員屈尊和粉絲們說話。|word=condescend;zh=屈尊；俯就
+91|She confided her fears to her best friend.|她向最好的朋友吐露了心中的恐懼。|zh=吐露；傾訴（祕密）
+92|He was confronted by an angry crowd.|他被憤怒的人群團團包圍。|word=confront;zh=面對；面臨
+93|Scientists conjecture that the star is very old.|科學家推測這顆星星非常古老。|word=conjecture;zh=推測；猜測;pos=verb/noun
+94|The two rivers conjoin near the city.|這兩條河在城市附近匯合。|word=conjoin;zh=結合；連接
+95|He is a connoisseur of fine wine.|他是品酒的行家。|word=connoisseur;zh=鑑賞家；行家
+96|She was conscious of everyone staring at her.|她意識到大家都在盯著她看。|word=conscious;zh=意識到的；察覺到的
+97|He is contemplating a career change.|他正在考慮換工作。|word=contemplate;zh=沉思；考慮
+98|She gave the rude man a contemptuous look.|她輕蔑地看了那個無禮的男人一眼。|word=contemptuous;zh=輕蔑的；鄙視的
+99|The two farms are contiguous with each other.|這兩座農場彼此相鄰。|word=contiguous;zh=相鄰的；毗鄰的
+100|His face contorted with pain.|他的臉因疼痛而扭曲。|word=contort;zh=扭曲；變形
+101|Thank you for your contribution to the team.|謝謝你對團隊的貢獻。|word=contribution;zh=貢獻；捐款
+102|She contrived a clever way to escape.|她想出了一個巧妙的逃脫辦法。|zh=巧妙策劃；設計出
+103|The audience was convulsed with laughter.|觀眾笑得前仰後合。|word=convulse;zh=使劇烈抖動；使抽搐
+104|The market offers a cornucopia of fresh fruit.|這個市場有各式各樣的新鮮水果。|word=cornucopia;zh=豐盛；大量
+105|Higher prices are a corollary of rising costs.|價格上漲是成本上升的必然結果。|word=corollary;zh=必然結果
+106|She had a craving for chocolate.|她好想吃巧克力。|word=craving;zh=渴望；難以抑制的渴求
+107|The rumor gained credence among the villagers.|這個謠言在村民之間越來越有人信。|word=credence;zh=相信；信任
+108|There is a dearth of good teachers in the area.|這個地區缺乏好老師。|word=dearth;zh=缺乏；不足
+109|Don't deceive yourself; the task is not easy.|別自欺欺人了,這個任務並不容易。|word=deceive oneself;zh=欺騙自己
+110|The storm decimated the corn crop.|暴風雨幾乎毀掉了所有的玉米作物。|zh=大量毀滅；大幅削減
+111|From the clues, the detective deduced the truth.|偵探根據線索推斷出真相。|word=deduce;zh=推斷；推論
+112|A deficiency in vitamin C can cause illness.|缺乏維生素C可能導致疾病。|word=deficiency;zh=不足；缺乏
+113|The man defrauded many people of their savings.|那個男人騙走了許多人的積蓄。|word=defraud;zh=詐騙
+114|The king would not deign to speak to common people.|國王不屑與平民說話。|word=deign;zh=屈尊
+115|The report delineates the plan in detail.|報告詳細描述了這項計畫。|zh=描述；勾畫
+116|He deluded himself into thinking he would win.|他自己騙自己,以為會贏。|word=delude;zh=欺騙；蒙騙
+117|The demise of the old company surprised everyone.|這家老公司的倒閉讓大家很驚訝。|word=demise;zh=倒閉；終結
+118|The zoo is home to many denizens of the rainforest.|這間動物園裡住著許多雨林的居民。|word=denizen;zh=居民；棲息者
+119|The loan is denominated in US dollars.|這筆貸款以美元計價。|word=denominate;zh=以…幣別計價
+120|The village has churches of several denominations.|這個村莊有好幾個教派的教堂。|word=denomination;zh=教派；面值
+121|The leaders denounced the attack.|領袖們公開譴責這起攻擊。|zh=公開譴責；檢舉
+122|Long trips deplete my energy.|長途旅行耗盡了我的精力。|word=deplete;zh=消耗；耗盡
+123|The government decided to deport the illegal workers.|政府決定把非法勞工遣送出境。|word=deport;zh=驅逐出境
+124|Many teachers deprecate the use of phones in class.|許多老師不贊成在課堂上使用手機。|zh=反對；不贊成
+125|A new car depreciates quickly in its first year.|新車在第一年貶值得很快。|word=depreciate;zh=貶值
+126|The divers measured the depth of the lake.|潛水員測量了湖的深度。|word=depth;zh=深度；深處
+127|She was in the depths of despair after losing her job.|她失業後陷入了絕望的深淵。|word=in the depths of;zh=處於…的深淵（極度低落時）
+128|Critics derided the movie as boring.|評論家嘲笑這部電影很無聊。|word=deride;zh=嘲笑；譏笑
+129|Many English words derive from Latin.|許多英文單字源自拉丁文。|word=derive from;zh=源自；從…得到

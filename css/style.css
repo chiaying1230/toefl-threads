@@ -443,6 +443,7 @@ button.tag:active { color: var(--text); }
 .ob-options { display: grid; gap: 10px; margin-top: 18px; }
 .ob-opt { display: grid; gap: 2px; padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--line); }
 .ob-opt span { color: var(--muted); font-size: 13px; }
+.ob-sub { margin: 22px 0 8px; font-size: 15px; }
 .ob-opt.on { border-color: var(--text); background: var(--bg-soft); }
 .ob-people { display: grid; gap: 4px; margin-top: 12px; }
 .ob-person { display: flex; align-items: center; gap: 12px; padding: 10px 4px; border-bottom: 1px solid var(--line); }

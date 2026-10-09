@@ -1,0 +1,160 @@
+130|He is a descendant of a famous scientist.|他是一位著名科學家的後代。|word=descendant;zh=子孫；後代
+131|The path took a descendent route through the woods.|小徑沿著林間一條向下的路線延伸。|word=descendent;zh=下降的；祖傳的;score=75
+132|The police told the crowd to desist from shouting.|警方要求群眾停止叫囂。|word=desist;zh=停止；中止
+133|Her messy room is the despair of her mother.|她凌亂的房間讓媽媽很頭痛。|word=be the despair of sb;zh=成為…的心病；讓…頭痛
+134|She laughed despite herself.|她忍不住笑了出來。|word=despite oneself;zh=不由自主地；忍不住
+135|He felt despondent about losing the match.|他因為輸掉比賽而感到沮喪。|word=despondent;zh=沮喪的；消沉的
+136|High prices deter many people from buying a house.|高房價使許多人不敢買房。|word=deter;zh=阻止；使不敢
+137|DROP
+138|The children's devilry made the teacher laugh.|孩子們的惡作劇讓老師笑了出來。|word=devilry;zh=惡作劇；頑皮
+139|They devised a plan to save the old library.|他們想出一個計畫來拯救那座老圖書館。|zh=設計；想出；發明
+140|The doctor diagnosed her illness as the flu.|醫生診斷她的病是流感。|word=diagnose;zh=診斷（病症）
+141|The early diagnosis saved his life.|及早的診斷救了他一命。|word=diagnosis;zh=診斷
+142|He gave a long diatribe against the new rule.|他針對新規定發表了一長串怒斥。|word=diatribe;zh=抨擊；怒斥
+143|A kind word can make a big difference.|一句好話可以帶來很大的改變。|word=make a difference;zh=有影響；有改善
+144|The two friends had a difference of opinion about the trip.|兩位朋友對這趟旅行有意見分歧。|word=have a difference of opinion;zh=意見不一致；有分歧
+145|The diffusion of news is much faster today.|今天新聞的傳播速度快多了。|word=diffusion;zh=擴散；傳播
+146|Many dignitaries attended the opening ceremony.|許多政要出席了開幕典禮。|zh=要人；顯要人物
+147|Sorry, I digressed from the main topic.|抱歉,我離題了。|word=digress;zh=離題；跑題
+148|The judge disallowed the evidence.|法官不採納這項證據。|zh=不准；駁回
+149|The police disarmed the man and arrested him.|警方解除了那名男子的武裝並逮捕了他。|zh=解除武裝
+150|The fund will disburse money to local schools.|這筆基金會撥款給當地學校。|zh=撥款；支付
+151|Please discard the empty bottles.|請把空瓶子丟掉。|zh=拋棄；丟掉
+152|He was a devoted disciple of the great teacher.|他是那位大師忠實的門徒。|word=disciple;zh=門徒；追隨者
+153|The company disclaims any responsibility for lost items.|公司對遺失物品概不負責。|zh=否認；聲明不負責
+154|The discontinuation of the product disappointed many fans.|這項產品停產讓許多粉絲失望。|word=discontinuation;zh=停止；中止
+155|The old teacher discountenanced cheating of any kind.|那位老師不贊成任何形式的作弊。|zh=不贊成;score=85
+156|Scientists discovered a new species of frog.|科學家發現了一種新的青蛙。|zh=發現
+157|The pilot disengaged the autopilot.|飛行員關掉了自動駕駛。|zh=使脫離；鬆開
+158|Many people disfavor the new tax.|許多人不贊成這項新稅。|zh=不贊成；不喜歡
+159|The rider dismounted and led the horse.|騎士下了馬,牽著牠走。|zh=下馬；下車
+160|His family disowned him after the argument.|爭吵之後,他的家人與他斷絕關係。|zh=與…斷絕關係
+161|Critics disparaged the movie as dull.|評論家貶低這部電影很無趣。|word=disparage;zh=貶低；輕視
+162|The flood displaced thousands of families.|洪水讓數千個家庭流離失所。|zh=迫使離開原處
+163|He was disqualified from the race for cheating.|他因作弊被取消比賽資格。|word=disqualify;zh=取消資格
+164|Don't disregard the safety rules.|不要忽視安全規定。|zh=忽視；不理會
+165|The actor disrobed behind the curtain.|演員在布幕後面脫下外袍。|zh=脫衣；脫掉外袍
+166|The group works to disseminate health information.|這個團體努力傳播健康資訊。|zh=傳播；散布
+167|She wrote her dissertation on climate change.|她的學位論文寫的是氣候變遷。|word=dissertation;zh=學位論文；專題論文
+168|Lying to your friends does them a disservice.|對朋友說謊是在害他們。|word=disservice;zh=損害；有害的行為
+169|The twin brothers are dissimilar in character.|這對雙胞胎兄弟的個性不同。|word=dissimilar;zh=不同的；不相似的
+170|Sugar dissolves in hot water.|糖會溶於熱水。|word=dissolve;zh=溶解
+171|The police diverted traffic to another road.|警方把車流引導到另一條路。|zh=使轉向；轉移
+172|One tall player dominated the game.|一位高大的球員主宰了比賽。|zh=支配；控制；占優勢
+173|The movie dramatizes a true story.|這部電影把一個真實故事戲劇化。|zh=使戲劇化；改編成劇本
+174|His duplicity was finally discovered.|他的兩面手法終於被發現了。|word=duplicity;zh=欺騙；兩面手法
+175|Our savings dwindled to almost nothing.|我們的積蓄減少到幾乎沒有。|word=dwindle;zh=逐漸減少
+176|I am in earnest about learning to swim.|我是認真想學游泳的。|word=be in earnest;zh=認真的；誠摯的
+177|The moon eclipsed the sun for a few minutes.|月亮遮住太陽好幾分鐘。|zh=遮蔽；使黯然失色;pos=verb/noun
+178|We must economize on fuel this winter.|今年冬天我們得節省燃料。|word=economize;zh=節約；節省
+179|Time had effaced the words on the stone.|歲月已經磨去了石頭上的字。|zh=抹去；消除
+180|She tried to efface herself in the crowd.|她試著在人群中不引人注目。|word=efface oneself;zh=保持低調；不引人注意
+181|The hot spring effuses steam all day.|這處溫泉整天冒出蒸氣。|zh=湧出；流出
+182|The crowd greeted him with an effusion of joy.|群眾以滿溢的喜悅迎接他。|word=effusion;zh=（感情的）迸發
+183|His egoism makes it hard to work with him.|他的自我中心使人很難和他共事。|word=egoism;zh=自我主義；自負
+184|The egoist cared only about his own success.|那個自我中心的人只在乎自己的成功。|word=egoist;zh=自我主義者；自大的人
+185|The guard ejected the noisy fans from the stadium.|警衛把吵鬧的球迷趕出體育場。|zh=驅逐；逐出
+186|The answer to the puzzle eluded me.|我怎麼也想不出這道謎題的答案。|zh=使不能理解；逃避
+187|A sense of calm emanated from the old monk.|那位老僧身上散發出一股平靜。|zh=散發；發出;score=70
+188|The story was embellished with funny details.|這個故事被添加了好笑的細節。|word=embellish;zh=裝飾；潤飾
+189|The clerk embezzled money from the company.|那名職員侵吞了公司的錢。|word=embezzle;zh=侵吞；盜用
+190|The team's flag was emblazoned with a red star.|球隊的旗子上醒目地印著一顆紅星。|word=emblazon;zh=醒目地裝飾；炫示
+191|The eagle is the emblem of the country.|老鷹是這個國家的象徵。|word=emblem;zh=象徵；標誌；徽章
+192|The sun emerged from behind the clouds.|太陽從雲後面露了出來。|zh=出現；浮現
+193|Many families emigrated from the country to find work.|許多家庭為了找工作而離開這個國家移居國外。|word=emigrate;zh=移居外國
+194|The teacher emphasized the importance of sleep.|老師強調睡眠的重要。|zh=強調；使突出
+195|The new law empowers citizens to challenge bad decisions.|新法讓公民有權質疑不當決定。|word=empower;zh=授權；使有權
+196|The tourists were enamored of the quiet village.|遊客們對這個寧靜的村莊十分著迷。|zh=使傾心；使迷戀
+197|The course encompasses history, art and music.|這門課涵蓋歷史、藝術和音樂。|zh=包含；涵蓋
+198|Parents should encourage children to read.|父母應該鼓勵孩子閱讀。|zh=鼓勵；促進
+199|Her kindness endeared her to everyone.|她的善良讓大家都喜歡她。|zh=使受喜愛
+200|The argument estranged him from his brother.|那場爭吵使他與哥哥疏遠了。|zh=使疏遠；離間
+201|The newspaper eulogized the old mayor.|報紙盛讚這位老市長。|word=eulogize;zh=歌頌；讚美
+202|His son delivered a moving eulogy at the funeral.|他兒子在葬禮上發表了感人的悼詞。|word=eulogy;zh=悼詞；頌詞
+203|"Passed away" is a euphemism for "died".|「過世」是「死亡」的委婉說法。|word=euphemism;zh=委婉語；委婉說法
+204|The minister evaded the question.|部長迴避了這個問題。|word=evade the question;zh=迴避問題
+205|The doctor everted the eyelid to look for dust.|醫生把眼瞼翻出來檢查有沒有灰塵。|zh=外翻；翻轉
+206|The landlord evicted them from the apartment.|房東把他們趕出了公寓。|word=evict;zh=驅逐；趕走
+207|She excels in math and science.|她擅長數學和科學。|word=excel;zh=擅長；突出
+208|The team excelled themselves in the final game.|球隊在決賽中發揮出超水準的表現。|word=excel oneself;zh=超水準演出
+209|His Excellency the ambassador will give a short speech.|大使閣下將致一段簡短的演說。|zh=閣下
+210|She read an excerpt from her new novel.|她朗讀了新小說的一段節選。|word=excerpt;zh=摘錄；節選
+211|Children under six are excluded from the event.|六歲以下的兒童不得參加這場活動。|word=exclude;zh=排除；把…排斥在外
+212|This building is an exemplar of modern design.|這棟建築是現代設計的典範。|word=exemplar;zh=典範；範本
+213|Her kindness exemplifies the spirit of the club.|她的善良體現了社團的精神。|zh=作為…的典範；體現
+214|Students with a doctor's note are exempt from the test.|有醫生證明的學生免考。|word=exempt;zh=被免除的
+215|He exerted himself to finish the work on time.|他努力要準時完成工作。|word=exert oneself;zh=盡力；努力
+216|The long hike exhausted all of us.|漫長的健行讓我們都筋疲力盡。|zh=使筋疲力竭；耗盡;pos=verb/noun
+217|The tests exonerated him from any blame.|檢驗結果證明他沒有任何過失。|word=exonerate;zh=證明無罪；免除責任
+218|A vast expanse of desert lay before us.|一大片沙漠在我們眼前展開。|word=expanse;zh=廣闊的區域
+219|Many expatriates live in this part of the city.|許多僑民住在市內這個地區。|zh=僑民；旅居國外的人;pos=noun
+220|My sister is expecting a baby in May.|我姊姊五月要生寶寶。|word=be expecting;zh=懷孕；有孕在身
+221|He expended a lot of energy on the project.|他在這個專案上花了很多精力。|zh=花費；耗費
+222|The professor explicated the poem line by line.|教授逐行詳細解析這首詩。|zh=詳細解釋；分析
+223|The factory exploded late at night.|工廠在深夜爆炸了。|zh=爆炸
+224|The man expostulated with the guard about the long wait.|那名男子就久候一事向警衛提出抗議。|zh=抗議；勸誡
+225|We asked for an extension of the deadline.|我們要求延長截止日期。|word=extension;zh=延長；延伸
+226|Firefighters quickly extinguished the fire.|消防員很快撲滅了大火。|zh=熄滅；撲滅
+227|The gang extorted money from local shop owners.|那個幫派向當地店家勒索錢財。|word=extort;zh=勒索；敲詐
+228|The country agreed to extradite the suspect.|這個國家同意引渡嫌犯。|word=extradite;zh=引渡
+229|The court approved the extradition of the suspect.|法院批准引渡這名嫌犯。|word=extradition;zh=引渡
+230|The rescuers extricated the boy from the mud.|救難人員把男孩從泥巴裡救了出來。|word=extricate;zh=使擺脫；解救
+231|He fabricated a story to avoid trouble.|他編了一個故事來避免麻煩。|zh=捏造；虛構
+232|The boxer feinted left and then hit with his right.|拳擊手先佯攻左邊,再用右拳出擊。|word=feint;zh=佯攻；虛晃一招
+233|The class felicitated her on winning the prize.|全班恭喜她得獎。|zh=祝賀；道賀
+234|He is a fervent supporter of the team.|他是這支球隊的狂熱支持者。|word=fervent;zh=熱情的；熱忱的
+235|The singer performed with great fervor.|歌手熱情洋溢地演出。|word=fervor;zh=熱情；熱誠
+236|The lord ruled the fief for forty years.|領主統治這塊封地四十年。|word=fief;zh=封地；領地
+237|The senator tried to filibuster the bill.|那位參議員試圖以冗長發言阻撓這項法案。|zh=（拖延議事的）冗長發言
+238|I bought some roses at the florist's.|我在花店買了幾朵玫瑰。|word=florist;zh=花店；花商
+239|She is fluent in three languages.|她能流利地說三種語言。|word=fluent;zh=流利的
+240|DROP
+241|They tried to foist their old computer on us.|他們想把舊電腦硬塞給我們。|word=foist;zh=硬塞給；強加於
+242|The girl fondled the puppy gently.|女孩輕輕地撫摸小狗。|zh=撫摸；愛撫
+243|DROP
+244|He decided to forgo dessert and drink water instead.|他決定不吃甜點,改喝水。|word=forgo;zh=放棄；戒除
+245|The tree stands in the foreground of the photo.|那棵樹位於照片的前景。|zh=前景;pos=noun
+246|He forswore alcohol after the accident.|意外發生後,他發誓戒酒。|zh=發誓戒除；決心放棄
+247|The town was fortified against attack.|這座城鎮築起防禦工事以抵禦攻擊。|zh=加強防禦；強化
+248|The coach fulminated against the referee's decision.|教練猛烈抨擊裁判的判決。|zh=猛烈抨擊；譴責
+249|The horses ran a furlong in about thirteen seconds.|馬匹在大約十三秒內跑完一弗隆。|zh=弗隆（長度單位）
+250|These ideas can take our research further.|這些想法可以讓我們的研究更進一步。|word=take sth further;zh=促進；推進
+251|The speech galvanized people into action.|這場演講激勵人們採取行動。|zh=激起；使振奮
+252|Her career ran the gamut of jobs from waitress to manager.|她的職涯從服務生到經理,各種工作都經歷過。|word=run the gamut of;zh=經歷全部範圍
+253|He traced the genealogy of his family back to 1700.|他把家族的家譜追溯到1700年。|word=genealogy;zh=家譜；家系
+254|It's unfair to generalize about all teenagers.|對所有青少年一概而論是不公平的。|word=generalize;zh=概括；歸納
+255|Please keep your comments germane to the topic.|請讓你的意見與主題密切相關。|word=germane;zh=密切相關的
+256|She made a kind gesture to help the new student.|她做了一個善意的舉動來幫助新同學。|word=gesture;zh=手勢；姿態;pos=noun/verb
+257|The crowd's gibes made him angry.|群眾的嘲弄讓他很生氣。|word=gibe;zh=嘲諷；嘲弄
+258|Glutinous rice is often used in Asian desserts.|糯米常用來做亞洲甜點。|word=glutinous;zh=黏的；糯的
+259|Visitors admired the grandeur of the palace.|遊客讚嘆宮殿的壯麗。|word=grandeur;zh=宏偉；壯麗
+260|Add a few granules of salt to the water.|在水裡加幾顆鹽粒。|zh=顆粒；微粒
+261|The plan came to grief when the rain started.|雨一開始下,這個計畫就泡湯了。|word=come to grief;zh=遭遇失敗
+262|She grimaced when she tasted the bitter medicine.|她嚐到苦藥時皺起了臉。|word=grimace;zh=扮鬼臉；做苦相
+263|The story is grounded in real events.|這個故事以真實事件為基礎。|word=be grounded in;zh=以…為基礎
+264|Who will win the election is anyone's guess.|誰會贏得選舉,沒有人說得準。|word=be anyone's guess;zh=誰也說不準
+265|The thief entered the house under the guise of a repairman.|小偷偽裝成維修人員進入屋內。|word=guise;zh=偽裝；外表
+266|He guzzled a whole bottle of juice.|他一口氣灌下整瓶果汁。|zh=狂飲；狼吞虎嚥
+267|DROP
+268|My grandfather is still hale and hearty at eighty.|我爺爺八十歲了身體還很硬朗。|word=hale;zh=硬朗的；健壯的
+269|The speaker harangued the crowd for an hour.|演講者對群眾長篇大論了一個小時。|zh=長篇大論地訓話
+270|Broken glass is a hazard for children.|碎玻璃對孩子來說是危險物。|zh=危險物；危害;pos=noun/verb
+271|The injury caused a severe hemorrhage.|這個傷造成嚴重的大出血。|word=hemorrhage;zh=大出血
+272|He had hemorrhoids and needed surgery.|他有痔瘡,需要動手術。|word=hemorrhoids;zh=痔瘡
+273|"Their" and "there" are homophones.|「their」和「there」是同音詞。|zh=同音詞
+274|A horde of fans rushed to the stage.|一大群粉絲衝向舞台。|word=horde;zh=一大群人
+275|The crowd hustled the thief out of the shop.|人群推擠著把小偷趕出店外。|zh=推擠；硬擠
+276|One of his idiosyncrasies is wearing two watches.|他的一個怪癖是同時戴兩支手錶。|zh=怪癖；特質
+277|It is illegal to park here.|在這裡停車是違法的。|zh=非法的；違法的;pos=adjective
+278|The hope of a quick win proved illusive.|很快獲勝的希望終究是虛幻的。|word=illusive;zh=虛幻的；不實際的
+279|He imbibed the tea slowly.|他慢慢地喝下那杯茶。|zh=喝；飲
+280|DROP
+281|The students were immersed in the water up to their knees.|學生們泡在水裡,水深及膝。|zh=使浸入；使沉浸
+282|He immersed himself in his studies.|他埋頭於課業之中。|word=immerse oneself in;zh=埋頭於；沉浸於
+283|Many people immigrate to this country each year.|每年有許多人移民到這個國家。|zh=移入;pos=verb
+284|The imminence of the storm worried the sailors.|暴風雨迫在眉睫,水手們很擔心。|word=imminence;zh=迫近；急迫
+285|Oil is immiscible with water.|油和水不相溶。|word=immiscible;zh=不能混合的；不互溶的
+286|The poem immortalized the hero.|這首詩讓英雄名垂千古。|zh=使不朽；使名垂千古
+287|He can impersonate the president very well.|他能把總統模仿得維妙維肖。|zh=模仿；扮演
+288|His silence implied that he disagreed.|他的沉默暗示他不同意。|zh=暗示；暗指
+289|As the name implies, this is a very small town.|如同名稱所暗示的,這是個很小的城鎮。|word=as sth implies;zh=正如…所暗示的

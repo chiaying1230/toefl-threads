@@ -1,0 +1,160 @@
+290|Beggars importuned the tourists outside the station.|乞丐在車站外對遊客糾纏不休。|zh=糾纏；沒完沒了地強求
+291|The cloth was impregnated with oil to make it waterproof.|這塊布浸透了油以達到防水。|zh=使吸收；浸透
+292|The report imputed the failure to poor planning.|報告把失敗歸咎於計畫不周。|word=impute;zh=歸咎於；歸因於
+293|Don't impute bad motives to others without proof.|沒有證據就不要把壞動機硬套在別人身上。|word=impute;zh=歸咎於；歸因於
+294|The island is inaccessible to ordinary boats.|這座島普通船隻到不了。|word=inaccessible;zh=難以到達的
+295|It is inadvisable to swim after a big meal.|吃飽後游泳是不明智的。|word=inadvisable;zh=不明智的；不可取的
+296|A broken leg incapacitated him for two months.|腿骨折讓他兩個月無法正常行動。|zh=使喪失能力
+297|His plans are incompatible with the company's goals.|他的計畫與公司的目標互不相容。|word=incompatible;zh=不相容的
+298|Kangaroos are indigenous to Australia.|袋鼠是澳洲原生的動物。|word=indigenous;zh=本土的；原生的
+299|It was indiscreet of him to talk about the secret.|他談論那個祕密是很不謹慎的。|word=indiscreet;zh=輕率的；不慎重的
+300|The old machine is inefficient at saving energy.|這台舊機器在節能方面效率很低。|word=inefficient;zh=低效率的
+301|The street is infamous for its heavy traffic.|這條街因塞車而惡名昭彰。|word=infamous;zh=臭名昭著的
+302|In the story, the knights fought the infidels.|故事中騎士們與異教徒作戰。|zh=異教徒
+303|The city saw a sudden influx of tourists.|這座城市突然湧入大批遊客。|word=influx;zh=湧入；大量湧進
+304|The infrequency of buses makes the trip hard.|公車班次稀少讓出行不容易。|word=infrequency;zh=罕見；稀少
+305|Copying the song may infringe the law.|複製這首歌可能違反法律。|zh=違反；侵犯
+306|The gardener ingrafted a new branch onto the tree.|園丁把新枝嫁接到那棵樹上。|word=ingraft;zh=嫁接；移植
+307|He tried to ingratiate himself with the boss.|他想討好老闆。|word=ingratiate;zh=討好；奉承
+308|Loud noise is inimical to sleep.|吵雜的聲音不利於睡眠。|word=inimical;zh=有害的；不利的
+309|The nurse injected the medicine into his arm.|護士把藥物注射進他的手臂。|zh=注射
+310|He is insensible to the cold.|他對寒冷毫無感覺。|word=be insensible to;zh=對…無感覺；無動於衷
+311|Are you insinuating that I lied?|你是在暗示我說謊嗎?|zh=暗示；含沙射影
+312|His insistence on a refund surprised the staff.|他堅持要退款,讓店員很驚訝。|word=insistence;zh=堅持；堅決要求
+313|The rumor instigated a fight between the two teams.|這個謠言引發了兩隊之間的鬥毆。|zh=煽動；促使發生
+314|Thick walls insulate the house from noise.|厚牆讓房子隔絕噪音。|zh=使隔熱；使隔音；使絕緣
+315|A good doctor must have professional integrity.|好醫生必須有職業操守。|word=integrity;zh=正直；操守;pos=noun
+316|The intension of the storm surprised the weather experts.|風暴增強的程度讓氣象專家很驚訝。|word=intension;zh=增強；強度
+317|The teacher interceded for the student who was late.|老師為遲到的學生求情。|zh=求情；說情
+318|The goalkeeper intercepted the ball.|守門員攔截了球。|zh=攔截
+319|The police interrogated the suspect for hours.|警方審問嫌犯好幾個小時。|zh=審問；盤問
+320|The teacher intervened to stop the fight.|老師出面制止了打架。|zh=干預；調停
+321|The music and the lights intoxicated the young crowd.|音樂與燈光讓年輕人群如痴如醉。|zh=使陶醉；使喝醉
+322|The intricacy of the clock amazed the visitors.|時鐘的精密複雜讓訪客驚嘆。|word=intricacy;zh=錯綜複雜
+323|The nurse intromitted the tube gently.|護士輕輕地把管子插入。|zh=使進入；插入
+324|The office was inundated with emails after the news.|新聞出來後,辦公室收到的電子郵件多得應接不暇。|zh=使應接不暇；淹沒
+325|Years of war had inured them to danger.|多年戰爭讓他們習慣了危險。|word=inure;zh=使習慣於（不愉快的事）
+326|The invasion of the country lasted a year.|這個國家遭入侵持續了一年。|word=invasion;zh=入侵；侵略
+327|The columnist inveighed against the new tax.|專欄作家猛烈抨擊新稅制。|word=inveigh;zh=猛烈抨擊
+328|The columnist inveighed against the new tax.|專欄作家猛烈抨擊新稅制。|word=inveigh;zh=猛烈抨擊
+329|A cold shower invigorated him.|冷水澡讓他精神一振。|zh=使精力充沛
+330|The lawyer invoked an old law to defend his client.|律師援引一條舊法律替當事人辯護。|zh=援引；求助於
+331|The bus joggled us as it moved over the rough road.|公車在崎嶇的路上顛簸地搖晃著我們。|zh=輕搖；顛簸
+332|The clerk journalized the day's sales.|店員把當天的銷售記入流水帳。|zh=記入流水帳
+333|In my judgment, the plan is too risky.|依我的判斷,這個計畫太冒險了。|word=in sb's judgment;zh=依…的判斷
+334|Knights jousted for the king's favor.|騎士們為了贏得國王的青睞而比武。|word=joust;zh=馬上長槍比武
+335|The exhibit juxtaposes old photos with modern ones.|展覽把老照片與現代照片並置對照。|word=juxtapose;zh=並置；並列
+336|The shelf was full of cheap knickknacks.|架子上擺滿了廉價的小飾品。|zh=小飾品；小擺設
+337|Please hand in the form no later than Friday.|請最晚在星期五之前交表格。|word=no later than;zh=不遲於；最晚在
+338|The river laves the foot of the old wall.|河水沖洗著古老城牆的底部。|zh=沖洗；沐浴
+339|A little humor leavened the long meeting.|一點幽默讓冗長的會議變得輕鬆。|zh=使發酵；使有趣
+340|DROP
+341|He gave her flowers in lieu of money.|他送她花代替錢。|word=in lieu of;zh=代替；取代
+342|I have a liking for old movies.|我喜歡老電影。|word=liking;zh=喜愛；喜歡
+343|She was loath to leave the party early.|她不願意提早離開派對。|word=loath;zh=不願意的
+344|He was loath to admit his mistake.|他不願意承認自己的錯誤。|word=loath;zh=不願意的
+345|The party was full of luminaries from the film world.|派對上有許多電影界的名人。|word=luminary;zh=名人；權威
+346|She luxuriated in a hot bath after the long trip.|長途旅行後她盡情享受熱水澡。|word=luxuriate in;zh=盡情享受
+347|I can't remember the lyrics of that song.|我記不得那首歌的歌詞。|word=lyrics;zh=歌詞
+348|The driver maneuvered the truck into a narrow space.|司機把卡車操控著開進狹小的空間。|word=maneuver;zh=操縱；調度
+349|The family photos stood on the mantel.|家人的照片擺在壁爐台上。|word=mantel;zh=壁爐架；壁爐台
+350|She wore a maroon sweater to school.|她穿了一件栗色毛衣去上學。|zh=栗色的;pos=adjective;score=45
+351|The old church is built of stone masonry.|這座老教堂是用石材砌成的。|zh=石造建築；砌石工程;pos=noun;score=65
+352|The team massacred their rivals 10 to 0.|球隊以十比零慘勝對手。|zh=大屠殺；徹底擊潰;pos=noun/verb
+353|Her mastery of the piano is clear to everyone.|大家都看得出她鋼琴彈得爐火純青。|word=mastery;zh=精通；掌握
+354|The rain they hoped for never materialized.|他們期待的雨始終沒有出現。|zh=實現；突然出現
+355|He lived on a meager income.|他靠微薄的收入過活。|word=meager;zh=微薄的；不足的
+356|The river meanders through the valley.|河流蜿蜒穿過山谷。|zh=蜿蜒；漫步
+357|The teacher mediated between the two angry students.|老師在兩個生氣的學生之間調解。|word=mediate;zh=調解；斡旋
+358|She kept the shell as a memento of the trip.|她留下那個貝殼作為旅行的紀念品。|word=memento;zh=紀念品
+359|The judge meted out a heavy fine.|法官判處了一筆重罰金。|word=mete out;zh=施以（懲罰）
+360|Poor weather militated against a big turnout.|惡劣的天氣不利於大批人潮出席。|word=militate against;zh=妨礙；對…不利
+361|Only a small minority voted against the plan.|只有少數人投票反對這項計畫。|word=minority;zh=少數
+362|Let's not worry about the minutiae of the plan.|我們別去擔心計畫中的瑣碎細節。|word=minutia;zh=細節；瑣事
+363|He was punished for his misdemeanor.|他因輕罪受到處罰。|zh=輕罪；不當行為
+364|The mayor mismanaged the city's money.|市長對市府的資金管理不善。|zh=管理不善
+365|The newspaper misrepresented what she said.|報紙曲解了她所說的話。|zh=曲解；不如實陳述
+366|He wore a pair of leather moccasins at home.|他在家穿一雙皮製的莫卡辛軟鞋。|zh=莫卡辛軟皮鞋
+367|We modified the recipe to make it less sweet.|我們修改了食譜,讓它沒那麼甜。|zh=修改；更改
+368|The bird molts its feathers every summer.|這種鳥每年夏天都會換羽。|word=molt;zh=換毛；蛻皮
+369|He wrote a monograph on desert plants.|他寫了一本關於沙漠植物的專著。|word=monograph;zh=專著；專題論文
+370|The company has a monopoly on the local bus service.|這家公司壟斷了當地的公車服務。|word=monopoly;zh=壟斷；專賣
+371|The city declared a moratorium on new buildings.|市政府宣布暫停興建新大樓。|word=moratorium;zh=暫停；延緩
+372|The report shows a multiplicity of causes.|報告指出原因多種多樣。|word=multiplicity;zh=多樣性；眾多
+373|The statue was badly mutilated by vandals.|雕像被破壞者毀損得很嚴重。|zh=毀壞；使殘缺
+374|A myriad of stars filled the night sky.|無數的星星布滿夜空。|word=myriad;zh=無數；極大數量
+375|An actor narrated the whole documentary.|一位演員為整部紀錄片旁白。|zh=敘述；旁白
+376|Singing comes naturally to her.|唱歌對她來說很自然。|word=come naturally;zh=天生就會
+377|He was neglectful of his duties.|他疏忽了自己的職責。|word=neglectful;zh=疏忽的
+378|She wore a silk negligee in the morning.|她早上穿著一件絲質的輕薄晨袍。|word=negligee;zh=輕薄女式晨袍
+379|DROP
+380|The cat nestled into the soft blanket.|貓咪依偎進柔軟的毯子裡。|zh=依偎；舒適地安臥
+381|The company built a network of small shops.|公司建立了一個小店舖網絡。|zh=網絡；網狀系統
+382|DROP
+383|The class nominated her as team leader.|全班提名她擔任組長。|zh=提名；任命
+384|The street is notorious for its heavy traffic.|這條街因塞車而惡名昭彰。|word=notorious;zh=臭名昭著的
+385|She noticed a nuance in his tone.|她注意到他語氣中有微妙的差別。|word=nuance;zh=細微差別
+386|The nucleus of the plan is simple and clear.|這個計畫的核心簡單明確。|word=nucleus;zh=核心
+387|Don't make a nuisance of yourself at the party.|別在派對上讓自己變成討人厭的人。|word=make a nuisance of oneself;zh=造成麻煩；惹人討厭
+388|The old man was obdurate on this point.|老人在這一點上固執己見。|word=obdurate;zh=頑固的；固執的
+389|The contract obligates us to finish by June.|這份合約責成我們六月前完成。|word=obligate;zh=責成；迫使
+390|The storm obliterated the village.|暴風雨把村莊徹底摧毀。|zh=徹底毀掉；抹去
+391|The man was obnoxious to everyone at the party.|那個男人在派對上讓每個人都討厭。|word=obnoxious;zh=可憎的；討人厭的
+392|Planned obsolescence makes phones old in two years.|計畫性淘汰讓手機兩年就過時。|zh=過時；淘汰;score=70
+393|The loud music obtruded upon our quiet dinner.|大音量的音樂擾亂了我們安靜的晚餐。|word=obtrude;zh=打擾；強加於
+394|DROP
+395|The poet wrote an ode to the autumn.|詩人寫了一首秋天的頌詩。|word=ode;zh=頌詩；頌歌
+396|A priest officiated at the wedding.|一位神父主持了婚禮。|word=officiate;zh=主持（儀式）
+397|The company is an offshoot of a larger group.|這家公司是一個大集團的分支。|word=offshoot;zh=分支
+398|He held out an olive branch to his old rival.|他向昔日的對手伸出橄欖枝。|word=hold out an olive branch;zh=伸出橄欖枝；表示和解
+399|Many people fall ill at the onset of winter.|許多人在冬天一開始時就生病。|word=onset;zh=開始；發作
+400|The machine doesn't operate without power.|沒有電,這台機器就無法運作。|zh=運作；操作
+401|It was an opportune moment to ask for help.|那是請求幫忙的恰當時機。|word=opportune;zh=恰當的；適時的
+402|She played opposite a famous actor.|她與一位著名的演員演對手戲。|word=play opposite;zh=與…演對手戲
+403|We have no option but to wait.|我們別無選擇,只能等待。|word=have no option but to;zh=別無選擇只能
+404|The tradition originated in ancient Greece.|這項傳統起源於古希臘。|zh=起源；發源
+405|You ought to see a doctor.|你應該去看醫生。|word=ought to;zh=應該
+406|The members voted to oust the leader.|成員們投票罷免了領袖。|word=oust;zh=罷免；趕下台
+407|There was an outbreak of flu at the school.|學校爆發了流感。|word=outbreak;zh=爆發
+408|His outburst of anger shocked everyone.|他突然發怒讓大家都嚇了一跳。|word=outburst;zh=爆發；迸發
+409|These boots will outlast any other pair.|這雙靴子比其他鞋都耐穿。|zh=比…持久
+410|DROP
+411|Demand has outstripped supply.|需求已經超過供給。|zh=超過；勝過
+412|He took an overdose of sleeping pills.|他服用了過量的安眠藥。|zh=過量用藥;pos=noun/verb
+413|The guards overpowered the thief.|警衛制服了小偷。|zh=制服；壓倒
+414|The company overreached by opening ten shops at once.|公司同時開十家店,做得太過頭了。|zh=做得過頭；超出能力範圍
+415|He overreached himself by taking on too many tasks.|他攬下太多工作,自不量力。|word=overreach oneself;zh=自不量力
+416|The manager oversees the whole project.|經理監督整個專案。|zh=監督；監管
+417|The older sister's success overshadowed her brother's.|姊姊的成功讓弟弟相形失色。|zh=使黯然失色
+418|DROP
+419|He pamphleteered against the war in his youth.|他年輕時寫小冊子反對戰爭。|zh=寫小冊子;pos=verb/noun
+420|The museum shows a panoply of ancient weapons.|博物館展出琳瑯滿目的古代武器。|word=panoply;zh=琳瑯滿目；大量
+421|She joined the pantheon of great scientists.|她躋身偉大科學家的行列。|word=pantheon;zh=名人堂；（某領域的）名流
+422|He is a paragon of honesty.|他是誠實的典範。|word=paragon;zh=典範；完人
+423|The sudden news paralyzed the whole town.|這突如其來的消息讓全鎮陷入癱瘓。|word=paralyze;zh=使麻痺；使癱瘓
+424|The workers demanded pay parity with men.|女工要求與男性同工同酬。|word=parity;zh=同等；平等
+425|He fell into a paroxysm of laughter.|他突然爆出一陣大笑。|word=paroxysm;zh=（感情的）突發；發作
+426|The software can parse a sentence into parts.|這個軟體能把句子分解成各個成分。|zh=作語法分析
+427|All students must participate in the discussion.|所有學生都必須參與討論。|word=participate;zh=參與；參加
+428|Don't patronize me; I understand the problem.|別用高人一等的態度對我,我懂這個問題。|zh=以屈尊的態度對待
+429|Rain pattered on the roof all night.|雨整夜劈啪地打在屋頂上。|zh=發出輕快的拍打聲
+430|There is a paucity of fresh water on the island.|這座島缺少淡水。|word=paucity;zh=少量；缺乏
+431|The old man died a pauper.|老人死時一貧如洗。|zh=窮人；貧民
+432|Street vendors peddle cheap toys near the park.|街頭小販在公園附近兜售廉價玩具。|zh=叫賣；兜售
+433|He has a penchant for old maps.|他偏愛古老的地圖。|word=penchant;zh=偏好；嗜好
+434|They perambulated slowly around the garden.|他們慢慢地在花園裡漫步。|zh=漫步；閒逛
+435|Many people perceive the plan as unfair.|許多人認為這個計畫不公平。|zh=認為；察覺
+436|He perjured himself in court.|他在法庭上作偽證。|word=perjure oneself;zh=作偽證
+437|The smell of smoke permeated the house.|煙味瀰漫了整間屋子。|word=permeate;zh=滲透；瀰漫
+438|There are six permutations of the letters A, B and C.|A、B、C三個字母有六種排列方式。|word=permutation;zh=排列；置換
+439|Her persistence finally paid off.|她的堅持終於有了回報。|word=persistence;zh=堅持不懈
+440|The famous personage arrived by helicopter.|那位名人搭直升機抵達。|zh=大人物；名人
+441|It helps to keep your problems in perspective.|客觀看待你的問題會有幫助。|word=keep in perspective;zh=客觀看待
+442|Seeing the sea put his small worries into perspective.|看到大海讓他明白自己的煩惱很渺小。|word=put in perspective;zh=客觀看待
+443|I persuaded him to see a doctor.|我說服他去看醫生。|zh=說服；勸服
+444|Please include only information pertinent to the case.|請只列出與本案相關的資訊。|word=pertinent;zh=有關的；相關的
+445|The loud scream petrified the children.|那聲尖叫把孩子們嚇呆了。|zh=嚇呆；使驚呆
+446|He likes to philosophize about life.|他喜歡高談闊論人生。|word=philosophize;zh=高談闊論；賣弄道理
+447|She is studying the philosophy of science.|她在研究科學哲學。|word=philosophy;zh=哲學；基本原理
+448|Soldiers pillaged the village during the war.|戰爭期間士兵洗劫了村莊。|word=pillage;zh=掠奪；洗劫;pos=verb;score=70
+449|The mayor was pilloried in the press.|市長在媒體上遭到嚴厲抨擊。|zh=嚴厲抨擊;pos=verb

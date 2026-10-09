@@ -1,0 +1,170 @@
+770|She was chosen as a delegate to the conference.|她被選為出席會議的代表。|zh=代表；委派;pos=noun/verb
+771|The painting depicts a quiet village.|這幅畫描繪了一個寧靜的村莊。|zh=描繪；描寫
+772|The plane began to descend slowly.|飛機開始緩緩下降。|zh=下降；走下
+773|The doctor diagnosed the problem quickly.|醫生很快就診斷出問題。|word=diagnose;zh=診斷
+774|She changed the baby's diaper.|她幫寶寶換尿布。|zh=尿布
+775|Please disconnect the power before you clean it.|清理前請先切斷電源。|zh=切斷；中斷連接
+776|The law prohibits discrimination at work.|法律禁止職場歧視。|zh=歧視；差別待遇
+777|Heavy snow disrupted traffic across the city.|大雪擾亂了全市的交通。|zh=擾亂；中斷
+778|The noise distracted the students from the test.|噪音讓學生在考試時分心。|zh=使分心；分散注意力
+779|The old building has a large dome.|這棟老建築有一個大圓頂。|zh=圓頂;pos=noun
+780|They embraced each other at the airport.|他們在機場互相擁抱。|zh=擁抱；欣然接受;pos=verb/noun
+781|She envisions a future without waste.|她設想一個沒有浪費的未來。|zh=設想；展望
+782|The law aims to promote equity in education.|這項法律旨在促進教育的公平。|zh=公平；公正
+783|Languages evolve over time.|語言會隨時間演變。|zh=演變；進化
+784|The cost exceeded our budget.|費用超出了我們的預算。|zh=超過；超越
+785|"What a surprise!" she exclaimed.|「真是個驚喜!」她驚呼道。|zh=驚呼；大叫
+786|Children under five are excluded from the tour.|五歲以下的孩子不能參加導覽。|word=exclude;zh=排除；不包括
+787|The execution of the plan took three months.|這項計畫的執行花了三個月。|zh=執行；實施
+788|He flipped the pancake in the pan.|他把鍋裡的鬆餅翻面。|zh=翻轉；翻動;pos=verb/noun
+789|They forged a strong friendship over the years.|多年來他們建立了深厚的友誼。|zh=鍛造；偽造
+790|The family fostered three dogs.|這個家庭寄養了三隻狗。|zh=養育；寄養;pos=verb/adjective
+791|The government granted her a scholarship.|政府頒給她一份獎學金。|zh=准許；補助;pos=verb/noun
+792|He grilled fish on the barbecue grill.|他在烤肉架上烤魚。|zh=烤架；燒烤;pos=noun/verb
+793|He gripped the rope tightly.|他緊緊抓住繩子。|zh=緊握；掌控;pos=verb/noun
+794|I had a gut feeling that something was wrong.|我直覺感到有些不對勁。|zh=直覺；腸道;pos=noun/verb
+795|The report highlights the main problems.|這份報告強調了主要問題。|zh=強調；使突出;pos=verb/noun
+796|The wolves howled at the moon.|狼群對著月亮嚎叫。|zh=嚎叫；呼嘯;pos=verb/noun
+797|This change has serious implications for schools.|這項改變對學校有嚴重的影響。|zh=影響；含意
+798|The company incorporated new ideas into the design.|公司把新的想法納入設計中。|zh=合併；納入
+799|On holidays she indulges in sweets.|假日時她放縱自己吃甜食。|zh=沉溺；縱容
+800|The mayor initiated a plan to clean the river.|市長發起了整治河川的計畫。|zh=發起；創始;pos=verb/noun
+801|He pitched well in the seventh inning.|他在第七局投得很好。|zh=（棒球）局;pos=noun
+802|The school integrates art into every subject.|這所學校把藝術融入每一門科目。|zh=整合；融入
+803|He manipulated the facts to win the argument.|他操弄事實想贏得爭論。|zh=操縱；操弄
+804|A short massage relaxed her tired shoulders.|短短的按摩讓她疲累的肩膀放鬆了。|zh=按摩;pos=noun/verb
+805|I chewed a mint to freshen my breath.|我嚼了一顆薄荷糖讓口氣清新。|zh=薄荷；薄荷糖;pos=noun
+806|The other kids mocked his accent.|其他孩子嘲笑他的口音。|zh=嘲弄；嘲笑;pos=verb
+807|The monkey mounted the fence.|猴子爬上了圍欄。|zh=登上；爬上;pos=verb/noun
+808|He mumbled something and left the room.|他咕噥了幾句就離開了房間。|zh=含糊地說；咕噥;pos=verb/noun
+809|The club nominated him for president.|社團提名他為會長。|word=nominate;zh=提名
+810|She opted for the cheaper room.|她選了比較便宜的房間。|zh=選擇
+811|He bought a new outfit for the party.|他為派對買了一套新衣服。|zh=全套服裝；裝備;pos=noun/verb
+812|A red car overtook us on the bridge.|一輛紅車在橋上超越了我們。|zh=超越；超車
+813|The strong wind overturned the boat.|強風把船打翻了。|zh=翻覆；推翻;pos=verb/noun
+814|The scenery overwhelmed the visitors.|美景讓遊客們目不暇給。|zh=使應接不暇；壓倒
+815|She sewed a patch on her old jeans.|她在舊牛仔褲上縫了一塊補丁。|zh=補丁；補綴;pos=noun/verb
+816|I perceived a change in his voice.|我察覺到他聲音有了變化。|word=perceive;zh=察覺；感知
+817|If the pain persists, see a doctor.|如果疼痛持續,就去看醫生。|zh=持續；堅持
+818|He drives a red pickup to work.|他開一輛紅色皮卡上班。|zh=皮卡貨車;pos=noun
+819|The prisoner pleaded for mercy.|囚犯懇求寬恕。|zh=懇求；辯護
+820|The temperature plunged below zero overnight.|氣溫一夜之間驟降到零度以下。|zh=驟降；跳入;pos=verb/noun
+821|The cat poked its head out of the box.|貓從盒子裡探出頭。|zh=戳；探出;pos=verb/noun
+822|The doctor prescribed some medicine for her cough.|醫生給她開了咳嗽藥。|zh=開處方；規定
+823|I presume you are tired after the trip.|我想你旅途勞頓後一定累了。|zh=假定；推測
+824|The king proclaimed a day of rest.|國王宣布了一天休息日。|zh=宣告；宣布
+825|The law prohibits smoking in public places.|法律禁止在公共場所吸菸。|zh=禁止
+826|The prospects for the economy look good.|經濟前景看起來不錯。|zh=前景；展望;pos=noun/verb
+827|The nurse reassured the scared boy.|護士安撫了受驚的男孩。|word=reassure;zh=使安心
+828|The students recited a poem in class.|學生們在課堂上朗誦了一首詩。|zh=背誦；朗誦
+829|The company is recruiting new workers.|公司正在招募新員工。|zh=招募;pos=verb/noun
+830|The heavy rain rendered the road unsafe.|大雨使得道路不安全。|zh=使成為；給予
+831|We stayed at a seaside resort.|我們住在海邊的度假勝地。|zh=度假勝地;pos=noun/verb
+832|The game will resume after a short break.|比賽短暫休息後會恢復進行。|zh=重新開始；恢復;pos=verb/noun
+833|The hunter carried a rifle on his shoulder.|獵人肩上扛著一把步槍。|zh=步槍;pos=noun/verb
+834|She works in a beauty salon.|她在一家美容院工作。|zh=沙龍；美容院
+835|He lost one sandal on the beach.|他在沙灘上弄丟了一隻涼鞋。|zh=涼鞋
+836|In the worst-case scenario, we will cancel the trip.|在最糟的情況下,我們會取消旅行。|zh=情境；劇本
+837|The server was down for an hour.|伺服器停擺了一個小時。|zh=伺服器；服務生
+838|The story's setting is a small island.|故事的背景是一座小島。|zh=背景；場景
+839|The glass shattered when it hit the floor.|玻璃一落地就碎了。|zh=粉碎；打碎
+840|It was sheer luck that we found the key.|我們找到鑰匙純粹是運氣。|zh=純粹的；完全的;pos=adjective/adverb
+841|He shrugged and walked away.|他聳聳肩就走開了。|zh=聳肩;pos=verb/noun
+842|A free shuttle takes guests to the airport.|有免費接駁車載客人到機場。|zh=接駁車；往返穿梭;pos=noun/verb
+843|She slapped the table and stood up.|她拍了一下桌子站起來。|zh=摑；拍打;pos=verb/noun
+844|A bird snatched the bread from my hand.|一隻鳥從我手裡搶走了麵包。|zh=搶奪；奪取;pos=verb/noun
+845|The eagle soared above the mountains.|老鷹在山巒上方翱翔。|zh=翱翔；急升
+846|He hurt his spine in the fall.|他在跌倒時傷到了脊椎。|zh=脊椎
+847|She wiped the table with a damp sponge.|她用濕海綿擦桌子。|zh=海綿;pos=noun/verb
+848|He steered the boat toward the shore.|他駕船駛向岸邊。|zh=駕駛；引導;pos=verb/noun
+849|Mom made a beef stew for dinner.|媽媽晚餐煮了燉牛肉。|zh=燉菜；燉煮;pos=noun/verb
+850|The shop keeps a large stock of toys.|這家店備有大量玩具存貨。|zh=庫存；股票;pos=noun/verb
+851|The storm left many travelers stranded at the airport.|暴風雨讓許多旅客受困在機場。|zh=使擱淺；使受困;pos=verb/noun
+852|He fastened the strap of his bag.|他扣好背包的帶子。|zh=帶子；背帶;pos=noun/verb
+853|She stumbled on the stairs.|她在樓梯上絆了一跤。|zh=絆倒；跌跌撞撞;pos=verb/noun
+854|They booked a suite with a view of the sea.|他們訂了一間可看海景的套房。|zh=套房
+855|The school suspended the student for a week.|學校讓那名學生停學一週。|zh=暫停；使停職
+856|Strong beams sustain the weight of the roof.|堅固的梁柱支撐著屋頂的重量。|zh=維持；支撐
+857|The coach changed the team's tactics.|教練改變了球隊的戰術。|word=tactics;zh=戰術；策略
+858|The smell of fresh bread tempted me.|剛出爐麵包的香味誘惑了我。|word=tempt;zh=引誘；誘惑
+859|It is only a theoretical idea for now.|這目前只是個理論上的想法。|zh=理論上的
+860|The transmission of the virus is very fast.|病毒的傳播非常快。|zh=傳播；傳染
+861|The police uncovered a secret plan.|警方揭發了一項祕密計畫。|zh=揭露；揭開
+862|He underwent surgery last week.|他上週接受了手術。|zh=經歷；接受
+863|She undertook the task of organizing the event.|她承擔了籌辦活動的任務。|zh=承擔；從事
+864|The story slowly unfolded in front of us.|故事在我們面前慢慢展開。|zh=展開；呈現
+865|He unlocked the door with a key.|他用鑰匙開了門。|zh=開鎖；解開
+866|I need to upgrade my phone.|我需要升級我的手機。|zh=升級;pos=verb/noun
+867|The farm utilizes solar power.|這座農場使用太陽能。|zh=利用；運用
+868|They ventured into the dark cave.|他們冒險走進黑暗的洞穴。|zh=冒險;pos=noun/verb
+869|She vowed to work harder next year.|她發誓明年要更努力。|zh=發誓;pos=verb/noun
+870|I attended a workshop on writing.|我參加了一場寫作工作坊。|zh=研習會；工作坊
+871|The farm yields a lot of corn each year.|這座農場每年出產很多玉米。|zh=出產；帶來;pos=verb/noun
+872|The lake abounds with fish.|這座湖裡魚很多。|zh=充滿；富於
+873|He soon accustomed himself to the cold weather.|他很快就習慣了寒冷的天氣。|zh=使習慣於
+874|The nurse administered the medicine to the patient.|護士給病人服藥。|word=administer;zh=管理；給予（藥物）
+875|Please align the pictures in a straight line.|請把圖片排成一直線。|zh=使成一直線；使一致
+876|Police allege that he stole the money.|警方指稱他偷了這筆錢。|zh=聲稱；指控
+877|She stood calm amid the noise.|她在喧鬧中保持冷靜。|word=amid;zh=在…之中
+878|The speaker amplifies the sound of the music.|這個喇叭放大了音樂的聲音。|zh=放大；增強
+879|The artist animated the old drawing with a computer.|藝術家用電腦讓舊畫作動起來。|word=animate;zh=賦予生命；使有生氣
+880|The audience applauded for five minutes.|觀眾鼓掌了五分鐘。|zh=鼓掌；讚許
+881|The approximate cost is ten dollars.|大約的費用是十美元。|word=approximate;zh=大約的；近似的;pos=adjective
+882|She aspires to be a pilot.|她渴望成為飛行員。|word=aspire;zh=渴望；立志
+883|The letter went astray in the mail.|這封信在郵寄途中遺失了。|word=astray;zh=迷路地；入歧途
+884|The attainment of the goal took ten years.|達成這個目標花了十年。|word=attain;zh=達到；獲得
+885|The cake batter was smooth and thick.|蛋糕麵糊又滑又濃稠。|zh=麵糊;pos=noun;score=45
+886|She has long blond hair.|她有一頭金色的長髮。|word=blond;zh=金髮的
+887|A blot of ink ruined the page.|一滴墨漬毀了那一頁。|word=blot;zh=污漬；弄髒
+888|He is blunt and always says what he thinks.|他說話直率,總是直言不諱。|word=blunt;zh=鈍的；直率的
+889|The athlete suffered bodily harm in the fall.|運動員在跌倒中受了身體上的傷害。|word=bodily;zh=身體的；肉體的
+890|She bought a new bra at the mall.|她在購物中心買了一件新胸罩。|word=bra;zh=胸罩
+891|He broiled the steak for ten minutes.|他把牛排烤了十分鐘。|zh=烤；炙
+892|We took a bypass to avoid the traffic.|我們繞道避開了車流。|zh=繞道；旁路;pos=noun/verb
+893|There were no casualties in the fire.|這場火災沒有傷亡人員。|zh=傷亡人員
+894|The school certifies that she finished the course.|學校證明她修畢了這門課。|zh=證明；頒發證書
+895|The chairperson opened the meeting at nine.|主席九點宣布開會。|word=chairperson;zh=主席；會長
+896|He clasped her hand tightly.|他緊緊握住她的手。|word=clasp;zh=緊抱；扣住
+897|Turn the knob clockwise to open the box.|順時針轉動旋鈕來打開盒子。|word=clockwise;zh=順時針的
+898|She compiled a list of useful websites.|她整理了一份實用網站的清單。|zh=編纂；匯編
+899|Red wine complements the taste of beef.|紅酒讓牛肉的味道更加相得益彰。|word=complement;zh=補充；相配
+900|We must conserve water during the dry season.|乾旱季節我們必須節約用水。|word=conserve;zh=保存；節約
+901|The two reports contradict each other.|這兩份報告互相矛盾。|zh=反駁；與…矛盾
+902|He crammed all night for the test.|他為了考試通宵死記硬背。|zh=死記硬背；塞滿
+903|The fireworks dazzled the children.|煙火讓孩子們眼花繚亂。|word=dazzle;zh=使目眩；使驚豔
+904|The judge deemed the evidence unreliable.|法官認為這項證據不可靠。|zh=認為；視為
+905|The storm deprived the town of electricity.|暴風雨使小鎮失去了電力。|zh=剝奪；使喪失
+906|She despises people who lie.|她鄙視說謊的人。|zh=鄙視；輕視
+907|The police detained the man for questioning.|警方拘留了那名男子以便偵訊。|zh=拘留；扣留
+908|The hungry boy devoured his dinner.|飢餓的男孩狼吞虎嚥地吃完晚餐。|zh=狼吞虎嚥；吞食
+909|The teacher dictated a short story to the class.|老師向全班口述了一則短篇故事。|zh=口述；指示
+910|Please discard the old magazines.|請把舊雜誌丟掉。|word=discard;zh=丟棄；拋棄
+911|She looked at the broken vase in dismay.|她驚慌地看著破掉的花瓶。|zh=沮喪；驚慌;pos=noun/verb
+912|The machine dispenses hot coffee.|這台機器供應熱咖啡。|zh=分發；配藥
+913|The mayor tried to divert attention from the problem.|市長試圖把注意力從問題上轉移開。|zh=轉移；使改道
+914|The path leads downward to the river.|這條小路向下通往河邊。|word=downward;zh=向下地
+915|Grandpa dozed in his chair.|爺爺在椅子上打盹。|word=doze;zh=打瞌睡
+916|The skyscraper dwarfs the small houses nearby.|摩天大樓讓附近的小房子顯得矮小。|zh=使顯得矮小;pos=verb/noun
+917|The company elevated her to manager.|公司把她提升為經理。|zh=提升；提高
+918|Vitamins can enhance your health.|維生素能增進你的健康。|word=enhance;zh=提高；增強
+919|Travel can enlighten young people.|旅行能啟發年輕人。|word=enlighten;zh=啟發；開導
+920|Reading enriches your vocabulary.|閱讀能豐富你的字彙。|word=enrich;zh=使豐富；充實
+921|He enrolled in a cooking class.|他報名參加了烹飪課。|word=enroll;zh=註冊；入學
+922|The guard escorted the visitors to the exit.|警衛護送訪客到出口。|zh=護送;pos=verb/noun
+923|The villagers were evacuated before the flood.|村民們在洪水來臨前被疏散。|zh=疏散；撤離
+924|She excels at math.|她擅長數學。|word=excel;zh=擅長
+925|Charity groups are exempt from tax.|慈善團體免稅。|word=exempt;zh=免除的;pos=adjective/verb
+926|Her long eyelashes made her eyes look bigger.|她濃密的長睫毛讓眼睛看起來更大。|word=eyelash;zh=睫毛
+927|She showed her fiance a photo of the house.|她給未婚夫看了房子的照片。|word=fiance;zh=未婚夫
+928|Small businesses flourished in the town.|小鎮上的小生意蓬勃發展。|word=flourish;zh=繁榮；興盛
+929|He flunked the math test.|他數學考試被當了。|word=flunk;zh=不及格；當掉
+930|The team formulated a new plan.|團隊擬定了一個新計畫。|zh=制定；構想
+931|He fumed at the long delay.|他為了長時間的延誤而氣得冒煙。|word=fume;zh=發怒；冒煙
+932|The swan glided across the lake.|天鵝滑過湖面。|word=glide;zh=滑行；滑動
+933|He groaned when he saw the pile of homework.|他一看到那堆作業就哀嚎起來。|zh=呻吟；抱怨;pos=verb/noun
+934|The students grumbled about the heavy homework.|學生們抱怨功課太多。|word=grumble;zh=抱怨；發牢騷
+935|Hail fell on the roof all afternoon.|整個下午冰雹打在屋頂上。|zh=冰雹；歡呼;pos=noun/verb
+936|Heavy rain hampered the rescue work.|大雨妨礙了救援工作。|zh=妨礙；阻礙
+937|The shop sells local handicrafts.|這家店賣當地的手工藝品。|zh=手工藝品
+938|The company will not tolerate harassment at work.|公司不容許職場騷擾。|word=harass;zh=騷擾
+939|The cold air hardened the mud.|冷空氣讓泥巴變硬了。|zh=使變硬

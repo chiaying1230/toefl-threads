@@ -1,0 +1,14 @@
+cut-offs: level1 <= 40, level3 > 65
+input rows 13363, kept 13345, dropped 18
+entries 10931 (split-off extra senses 41)
+base TOEFL keys not found among TOEFL rows: []
+problems: {"no part of speech": 47, "example may not contain the word": 53}
+pack elem: 2029 words
+pack hs: 4126 words
+pack toeic: 822 words
+pack ielts: 5045 words
+pack toefl: 1300 words
+  elem levels {1: 1946, 2: 60, 3: 1}
+  hs levels {1: 1452, 2: 2156, 3: 69}
+  toeic levels {1: 492, 2: 255, 3: 4}
+  ielts levels {1: 288, 2: 1779, 3: 2429}

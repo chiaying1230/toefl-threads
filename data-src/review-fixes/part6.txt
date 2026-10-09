@@ -1,0 +1,178 @@
+940|Her old school still haunts her dreams.|她的母校仍在夢裡縈繞著她。|word=haunt;zh=鬧鬼；縈繞心頭
+941|He wore headphones on the bus.|他在公車上戴著耳機。|word=headphone;zh=頭戴式耳機
+942|The farmer planted a hedge around the garden.|農夫在花園四周種了一排樹籬。|zh=樹籬；防範
+943|Two men tried to hijack the plane.|兩名男子企圖劫持飛機。|word=hijack;zh=劫持
+944|A bee hovered over the flower.|一隻蜜蜂在花上盤旋。|word=hover;zh=盤旋；徘徊
+945|The teacher never humiliates a student in public.|老師從不當眾羞辱學生。|zh=羞辱；使丟臉
+946|She jumped over the last hurdle.|她跳過最後一個欄架。|zh=跨欄；障礙;pos=noun/verb
+947|Candles illuminated the dark room.|燭光照亮了黑暗的房間。|zh=照亮；闡明
+948|He was sentenced to ten years of imprisonment.|他被判處十年徒刑。|word=imprisonment;zh=監禁；關押
+949|She inclines to trust people easily.|她傾向於輕易相信別人。|word=incline;zh=傾向；傾斜
+950|Careless driving may incur a heavy fine.|粗心駕駛可能招來重罰。|zh=招致；蒙受
+951|The storm inflicted great damage on the town.|暴風雨給小鎮造成了重大損害。|zh=施加；使遭受
+952|The village lies a long way inland.|這個村子位在很深的內陸。|word=inland;zh=內陸的；向內陸
+953|The teacher intervened to stop the argument.|老師出面制止了爭吵。|zh=介入；干預
+954|Everyone was jolly at the party.|每個人在派對上都很開心。|word=jolly;zh=歡樂的；快活的
+955|He kindled a fire with dry wood.|他用乾木頭生起一堆火。|zh=點燃；激起
+956|The old dog walked with a limp.|那隻老狗一跛一跛地走路。|word=limp;zh=跛行；軟弱無力的
+957|The smell of soup lingered in the kitchen.|湯的香味還留在廚房裡。|zh=逗留；徘徊
+958|"Can I help you, madam?" asked the clerk.|店員問:「女士,需要幫忙嗎?」|word=madam;zh=女士；夫人
+959|A microscope magnifies small objects.|顯微鏡能放大微小的物體。|zh=放大；誇大
+960|She meditates for ten minutes every morning.|她每天早上冥想十分鐘。|zh=冥想；沉思
+961|The parrot can mimic human voices.|這隻鸚鵡會模仿人的聲音。|word=mimic;zh=模仿
+962|Guests mingled in the garden before dinner.|賓客們在晚餐前於花園裡交際閒聊。|zh=混合；交際應酬
+963|The town mobilized volunteers to clean the beach.|小鎮動員志工清理海灘。|zh=動員；調動
+964|He was mute from birth.|他天生不會說話。|word=mute;zh=啞的；靜音的
+965|My mother nags me to clean my room.|媽媽老是嘮叨我整理房間。|word=nag;zh=嘮叨
+966|Milk nourishes growing children.|牛奶滋養成長中的孩子。|word=nourish;zh=滋養；養育
+967|Parents nurture their children with love.|父母用愛培育孩子。|word=nurture;zh=培育；養育
+968|The ruler oppressed the poor for years.|統治者壓迫窮人多年。|zh=壓迫；壓制
+969|The festival originated in China.|這個節日起源於中國。|zh=起源於
+970|Girls outnumber boys in our class.|我們班上女生人數比男生多。|zh=在數量上超過
+971|He was an outright liar.|他是個徹頭徹尾的騙子。|word=outright;zh=徹底的；直接的
+972|The crowd moved outward from the stage.|人群從舞台向外散開。|word=outward;zh=向外地
+973|I overheard them talking about the surprise.|我無意中聽到他們在談那個驚喜。|zh=無意中聽到
+974|Fear paralyzed him for a moment.|恐懼讓他一時動彈不得。|zh=使麻痺；使癱瘓
+975|Many plants perished in the cold.|許多植物在寒冷中死去。|zh=毀滅；死亡
+976|The priest preached to a large crowd.|神父向一大群人佈道。|zh=佈道；說教
+977|The engine propels the ship through the water.|引擎推動船隻前行。|zh=推進；驅使
+978|They publicized the concert on social media.|他們在社群媒體上宣傳這場演唱會。|zh=宣傳；公佈
+979|The filter purifies the water.|這個濾水器淨化水質。|zh=淨化；使純淨
+980|The old bridge quaked as the truck passed.|卡車駛過時,舊橋顫動起來。|word=quake;zh=顫抖；地震
+981|The sun radiates warmth to the earth.|太陽向地球散發熱能。|zh=輻射；散發
+982|Farmers reap the corn in autumn.|農夫在秋天收割玉米。|zh=收割；獲得
+983|It is hard to reconcile work with family life.|要兼顧工作與家庭生活很難。|zh=調和；使和解
+984|The factory refines sugar from sugar cane.|工廠從甘蔗提煉糖。|word=refine;zh=精煉；提純
+985|A cool drink refreshed the tired hikers.|一杯冷飲讓疲累的健行者精神一振。|word=refresh;zh=使精神振作
+986|The whole country rejoiced at the news.|全國都為這個消息歡欣。|zh=歡欣；欣喜
+987|Frogs reproduce by laying eggs.|青蛙靠產卵繁殖。|zh=繁殖；複製
+988|He resented being treated like a child.|他怨恨被當成小孩對待。|word=resent;zh=怨恨；憤慨
+989|Many students reside in the dorm.|許多學生住在宿舍。|zh=居住；定居
+990|Cows roam freely on the hills.|牛群在山丘上自由漫遊。|word=roam;zh=漫遊；遊蕩
+991|Divers tried to salvage the sunken ship.|潛水員試圖打撈沉船。|word=salvage;zh=打撈；搶救;pos=verb/noun
+992|The dog turned savage when it was scared.|那隻狗受到驚嚇時變得凶猛。|word=savage;zh=野蠻殘暴的；兇猛的
+993|She looked at him with scorn.|她輕蔑地看著他。|zh=輕蔑；鄙視;pos=noun/verb
+994|She scraped the mud off her shoes.|她把鞋子上的泥巴刮掉。|word=scrape;zh=刮擦；擦傷
+995|A seagull stole my french fries.|一隻海鷗偷了我的薯條。|word=seagull;zh=海鷗
+996|The smell of food seduced him into the shop.|食物的香味引誘他走進店裡。|zh=引誘；誘惑
+997|One serving of rice is enough for me.|一人份的飯對我來說就夠了。|zh=一人份
+998|She tore the letter into shreds.|她把信撕成碎片。|zh=碎片；撕碎;pos=noun/verb
+999|He shuffled the cards before the game.|比賽前他先洗牌。|zh=洗牌；拖著腳走
+1000|I skimmed the article before class.|我在上課前略讀了那篇文章。|word=skim;zh=略讀；掠過
+1001|He slashed the rope with a knife.|他用刀子砍斷繩子。|word=slash;zh=砍；大幅削減
+1002|My dad snores loudly at night.|我爸爸晚上鼾聲很大。|word=snore;zh=打鼾
+1003|The spacecraft landed on the moon.|太空船降落在月球上。|word=spacecraft;zh=太空船
+1004|The bridge spans the river.|這座橋橫跨河川。|zh=跨度；橫跨;pos=noun/verb
+1005|The path spirals up the hill.|小徑呈螺旋狀通往山頂。|word=spiral;zh=螺旋形的；螺旋式上升
+1006|A spokesperson for the company answered the questions.|公司的一位發言人回答了問題。|word=spokesperson;zh=發言人
+1007|The coach's words spurred the team to work harder.|教練的話激勵球隊更加努力。|word=spur;zh=激勵；鞭策
+1008|He staggered home after the long hike.|長途健行後他搖搖晃晃地走回家。|word=stagger;zh=搖晃；蹣跚
+1009|A stray dog followed me home.|一隻流浪狗跟著我回家。|word=stray;zh=走失的；流浪的
+1010|The runner took long strides.|跑者邁著大步。|zh=大步；進展;pos=noun/verb
+1011|A captain is subordinate to a general.|上尉的職階在將軍之下。|word=subordinate;zh=下級的；次要的
+1012|I subscribe to a monthly magazine.|我訂閱了一本月刊。|zh=訂閱；定期捐款
+1013|The king summoned his advisers to the palace.|國王召集顧問們進宮。|zh=傳喚；召集
+1014|The police suppressed the riot quickly.|警方很快鎮壓了暴動。|word=suppress;zh=鎮壓；抑制
+1015|The boat sank in the swamp.|船沉入了沼澤裡。|zh=沼澤;pos=noun/verb
+1016|The white dove symbolizes peace.|白鴿象徵和平。|zh=象徵；代表
+1017|She got a nice tan on her holiday.|她在假期裡曬出了漂亮的古銅色。|word=tan;zh=曬黑；古銅色
+1018|Bananas grow in the tropics.|香蕉生長在熱帶地區。|word=tropic;zh=熱帶；回歸線
+1019|She tucked the letter into her bag.|她把信塞進包包裡。|word=tuck;zh=塞入；摺起
+1020|Don't underestimate how hard the test is.|不要低估這次考試有多難。|word=underestimate;zh=低估
+1021|The cat slept underneath the table.|貓睡在桌子下面。|word=underneath;zh=在…下面;pos=preposition
+1022|He sat upright in his chair.|他在椅子上坐得很挺。|word=upright;zh=挺直的；正直的
+1023|The balloon drifted upward.|氣球向上飄去。|word=upward;zh=向上地
+1024|The guide ushered us into the hall.|導遊領著我們進入大廳。|word=usher;zh=引導；引座員
+1025|She keeps the kitchen utensils in a drawer.|她把廚房用具收在抽屜裡。|zh=器皿；用具
+1026|He felt utter joy when he won.|他獲勝時感到無比的喜悅。|word=utter;zh=完全的；徹底的
+1027|The vet checked the sick cat.|獸醫檢查了那隻生病的貓。|word=veterinarian;zh=獸醫
+1028|The dog wagged its tail happily.|狗開心地搖著尾巴。|word=wag;zh=搖擺；搖動
+1029|The nurse walked through the ward at night.|護士夜裡巡視病房。|zh=病房；被監護人;pos=noun/verb
+1030|He wore a waterproof jacket in the rain.|下雨時他穿著防水外套。|word=waterproof;zh=防水的
+1031|After the long trip, they were weary.|長途旅行後,他們都很疲憊。|word=weary;zh=疲憊的
+1032|He poured a glass of whiskey.|他倒了一杯威士忌。|word=whiskey;zh=威士忌
+1033|The shop sells goods at wholesale prices.|這家店以批發價賣貨。|word=wholesale;zh=批發的；大規模的
+1034|The two boys wrestled on the grass.|兩個男孩在草地上摔角。|word=wrestle;zh=摔角；角力
+1035|The camera can zoom in on faraway objects.|這台相機能把遠處的物體拉近。|word=zoom;zh=變焦；急速移動
+1036|Paper towels absorb water quickly.|紙巾很快就吸水。|zh=吸收
+1037|She accompanied her grandmother to the doctor.|她陪奶奶去看醫生。|zh=陪伴；伴隨
+1038|They accused him of stealing the bike.|他們指控他偷了腳踏車。|zh=控告；指責
+1039|He acquired a new language in a year.|他一年內學會了一種新語言。|zh=取得；學會
+1040|Our ancestors lived in this valley.|我們的祖先住在這個山谷。|zh=祖先
+1041|The company appointed her as manager.|公司任命她為經理。|zh=任命；指定
+1042|He boasted about his new car.|他吹噓自己的新車。|zh=自誇；吹噓;pos=verb/noun
+1043|The bridegroom waited for the bride at the altar.|新郎在祭壇前等著新娘。|word=bridegroom;zh=新郎
+1044|A candy bar has many calories.|一條巧克力棒含有許多卡路里。|word=calorie;zh=卡路里
+1045|He carved a bird out of wood.|他用木頭雕了一隻鳥。|zh=雕刻
+1046|She cherishes the letters from her grandmother.|她珍惜外婆寄來的信。|zh=珍惜；珍愛
+1047|He chewed the bread slowly.|他慢慢咀嚼麵包。|zh=咀嚼;pos=verb/noun
+1048|Many civilians left the city before the battle.|許多平民在戰鬥前離開了這座城市。|zh=平民;pos=noun/adjective
+1049|Can you clarify what you mean?|你能說明一下你的意思嗎?|zh=澄清；闡明
+1050|The new rule only complicated the problem.|新規定只是讓問題更複雜。|zh=使複雜
+1051|Bad weather had serious consequences for the crops.|壞天氣對農作物造成嚴重後果。|zh=結果；後果
+1052|The team consists of five members.|這個團隊由五位成員組成。|zh=由…組成
+1053|You should consult a doctor about that pain.|你該就那個疼痛去請教醫生。|zh=請教；諮詢
+1054|The two men conversed in a low voice.|兩個男人低聲交談。|zh=交談
+1055|Her smile conveyed her thanks.|她的微笑傳達了她的謝意。|zh=傳達；表達
+1056|He convinced me that the plan was safe.|他說服我這個計畫是安全的。|zh=說服；使確信
+1057|Don't criticize others without knowing the facts.|在不了解事實前不要批評別人。|zh=批評；指責
+1058|The old man cursed the bad weather.|老人咒罵惡劣的天氣。|zh=詛咒；咒罵;pos=verb/noun
+1059|Our team defeated the champions.|我們的隊伍擊敗了冠軍隊。|zh=擊敗；戰勝;pos=verb/noun
+1060|The goalkeeper defended the goal well.|守門員把球門守得很好。|zh=防守；辯護
+1061|The children shouted with delight.|孩子們歡喜地大叫。|zh=欣喜；樂趣;pos=noun/verb
+1062|You deserve a rest after all that work.|做了這麼多事,你值得好好休息。|zh=應得；值得
+1063|She devised a simple way to save water.|她想出一個簡單的省水辦法。|word=devise;zh=設計；想出
+1064|Drops of dew shone on the grass.|露珠在草地上閃閃發亮。|zh=露水
+1065|Bad grades discouraged him from trying again.|差勁的成績讓他不想再試一次。|zh=使沮喪；勸阻
+1066|The company dismissed him for being late too often.|公司因他常遲到而解僱了他。|zh=解僱；解散
+1067|One huge tree dominates the garden.|一棵巨大的樹主宰了整座花園。|word=dominate;zh=支配；主導
+1068|The singer entertained the crowd with funny songs.|歌手用好笑的歌曲娛樂群眾。|zh=款待；娛樂
+1069|Don't expose the film to sunlight.|不要讓底片暴露在陽光下。|zh=暴露；揭露
+1070|The road extends for ten miles.|這條路延伸十英里。|zh=延伸；擴大
+1071|The wedding was a feast for all the guests.|婚禮對所有賓客來說是一場盛宴。|word=feast;zh=盛宴；宴會;pos=noun/verb
+1072|He flattered his boss to get a promotion.|他為了升遷而奉承老闆。|zh=奉承；諂媚
+1073|The picture is in a wooden frame.|那幅畫裝在木框裡。|zh=框架;pos=noun/verb
+1074|She frowned at the bad news.|她對壞消息皺起了眉頭。|zh=皺眉;pos=verb/noun
+1075|The terrible news horrified everyone.|可怕的消息讓每個人都嚇壞了。|zh=使恐懼；使震驚
+1076|Can you identify the man in this photo?|你能認出這張照片裡的男人嗎?|zh=認出；識別
+1077|He injured his knee while playing soccer.|他踢足球時傷到了膝蓋。|zh=傷害；使受傷
+1078|The workers installed a new heater.|工人們裝了一台新暖氣。|zh=安裝
+1079|The guide interpreted for the tourists.|導遊為遊客做口譯。|word=interpret;zh=詮釋；口譯
+1080|The ill patient was isolated from the others.|生病的病人被隔離開來。|word=isolate;zh=隔離；孤立
+1081|I memorized the poem in one night.|我一個晚上就背熟了這首詩。|zh=背誦；熟記
+1082|Milk is rich in minerals.|牛奶富含礦物質。|zh=礦物；礦物質
+1083|Sorry, I misunderstood your question.|抱歉,我誤解了你的問題。|zh=誤會；誤解
+1084|A good teacher motivates students to learn.|好老師會激勵學生學習。|zh=激勵；激發
+1085|He neglected his duties at work.|他忽視了工作上的職責。|zh=疏忽；忽視;pos=verb/noun
+1086|She obtained a copy of the report.|她取得了一份報告副本。|zh=獲得；取得
+1087|The students occupied the whole front row.|學生們占滿了整個前排。|zh=占用；占據
+1088|The moon orbits the earth.|月球繞著地球運行。|zh=軌道;pos=noun/verb
+1089|I overlooked a small mistake in the report.|我漏看了報告裡的一個小錯誤。|zh=忽視；漏看
+1090|The soldiers jumped out with parachutes.|士兵們帶著降落傘跳了出去。|zh=降落傘;pos=noun/verb
+1091|Teenagers are often influenced by their peers.|青少年常受同儕影響。|word=peer;zh=同儕；凝視;pos=noun/verb
+1092|She bought a bottle of perfume for her mother.|她為媽媽買了一瓶香水。|zh=香水;pos=noun/verb
+1093|He polished his shoes before the interview.|面試前他把鞋子擦亮。|zh=擦亮；潤飾;pos=verb/noun
+1094|Students protested against the new rule.|學生們抗議這項新規定。|zh=抗議;pos=verb/noun
+1095|She pursued her dream of becoming a singer.|她追求成為歌手的夢想。|zh=追求；追逐
+1096|The mirror reflected the morning light.|鏡子反射著晨光。|zh=反射；反映
+1097|The government regulates the price of gas.|政府管制汽油價格。|zh=管制；調節
+1098|He remarked that the soup was too salty.|他說這湯太鹹了。|zh=談論；評論;pos=verb/noun
+1099|The old building retains its original charm.|這棟老建築保留了原有的魅力。|zh=保留；保持
+1100|I need to revise my notes before the exam.|考試前我得複習筆記。|word=revise;zh=複習；修改
+1101|The mother scolded her son for lying.|媽媽責罵兒子說謊。|zh=責罵；訓斥;pos=verb/noun
+1102|The early settlers built houses along the river.|早期的拓荒者沿著河邊蓋房子。|zh=拓荒者；移居者
+1103|A spark from the fire burned a hole in the rug.|營火的一點火星在地毯上燒出了洞。|zh=火花；引發;pos=noun/verb
+1104|He stabbed the apple with a fork.|他用叉子戳進蘋果。|zh=刺；戳;pos=verb/noun
+1105|The statistics show that more people use buses.|統計數據顯示搭公車的人變多了。|word=statistics;zh=統計數據；統計學;score=55
+1106|The zebra has black and white stripes.|斑馬有黑白相間的條紋。|zh=條紋
+1107|He suffered a stroke last year.|他去年中風了。|zh=中風；撫摸;pos=noun/verb
+1108|The feather tickled my nose.|羽毛搔得我鼻子癢癢的。|zh=搔癢;pos=verb/noun
+1109|She transferred to a new school.|她轉到了一所新學校。|zh=轉學；轉移;pos=verb/noun
+1110|Can you translate this sentence into English?|你能把這個句子翻成英文嗎?|word=translate;zh=翻譯
+1111|The child tumbled down the hill.|孩子從山坡上滾了下去。|zh=跌倒；翻滾;pos=verb/noun
+1112|She felt an urge to laugh.|她突然有股想笑的衝動。|zh=衝動;pos=noun/verb
+1113|Drivers who violate traffic rules must pay a fine.|違反交通規則的駕駛人必須繳罰款。|zh=違反；侵犯
+1114|The witch in the story lives in a dark forest.|故事裡的女巫住在黑暗的森林裡。|word=witch;zh=女巫;pos=noun;score=30
+1115|You can withdraw money from the ATM.|你可以在提款機領錢。|zh=提取；撤退
+1116|A witness saw the car leave the scene.|一名目擊者看到那輛車離開現場。|zh=目擊者；作證;pos=noun/verb
+1117|The ship became a wreck after the storm.|暴風雨過後,那艘船成了殘骸。|zh=殘骸;pos=noun/verb

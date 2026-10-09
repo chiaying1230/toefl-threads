@@ -434,7 +434,7 @@
     var today = C.dayKey(), hidden = null;
     try { hidden = localStorage.getItem(WOTD_KEY); } catch (e) { /* ignore */ }
     if (feedMode !== "foryou" || !st().prefs.onboarded) { slot.innerHTML = ""; return; }
-    var key = C.wordOfDay(today, st().prefs.levels);
+    var key = C.wordOfDay(today, st().prefs.levels, C.activePool(st().prefs));
     var v = VOCAB[key];
     if (!v) { slot.innerHTML = ""; return; }
     if (hidden === today) {
@@ -554,8 +554,7 @@
       if (p) p.words.forEach(function (k) { if (fromSeen.indexOf(k) < 0) fromSeen.push(k); });
     });
     if (fromSeen.length >= 4) return fromSeen;
-    var levels = st().prefs.levels || [1, 2, 3];
-    return Object.keys(VOCAB).filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; });
+    return C.activePool(st().prefs);
   }
 
   function renderQuizCard() {
@@ -1226,7 +1225,7 @@
       html += '<div class="card account muted small">📱 Saved on this device only.</div>';
     }
 
-    html += '<div class="card"><div class="goal-top"><b>' + T("Your feed", "動態牆") + '</b></div><p class="muted small">Choose your level and the topics you want to see.</p><button class="outline-btn" data-edit-prefs>' + T("Feed preferences", "偏好設定") + "</button></div>";
+    html += '<div class="card"><div class="goal-top"><b>' + T("Your feed", "動態牆") + '</b></div><p class="muted small">Choose your level, word lists and the topics you want to see.</p><button class="outline-btn" data-edit-prefs>' + T("Feed preferences", "偏好設定") + "</button></div>";
     html += '<div class="card" id="langCard"><div class="goal-top"><b>' + T("Interface language", "介面語言") + '</b></div><div class="goal-pick">' +
       [["en", "English"], ["bi", "English + 中文"]].map(function (l) {
         return '<button class="chip' + ((s.settings.lang || "en") === l[0] ? " active" : "") + '" data-lang="' + l[0] + '">' + l[1] + "</button>";
@@ -1473,7 +1472,7 @@
 
   function openOnboarding(editing) {
     var p = st().prefs;
-    ob = { step: 0, editing: editing, levels: (p.levels || [2]).slice(), topics: (p.topics || []).slice(), follow: {} };
+    ob = { step: 0, editing: editing, levels: (p.levels || [2]).slice(), packs: (p.packs && p.packs.length ? p.packs : ["toefl"]).slice(), topics: (p.topics || []).slice(), follow: {} };
     Object.keys(st().following).forEach(function (k) { ob.follow[k] = true; });
     if (!editing) ob.levels = [2];
     ob.login = !editing && S.mode === "cloud" && !S.user;
@@ -1508,12 +1507,16 @@
           [["en", "English"], ["bi", "English + 中文"]].map(function (l) {
             return '<button class="chip' + (lang === l[0] ? " active" : "") + '" data-lang="' + l[0] + '">' + l[1] + "</button>";
           }).join("") + "</div></div>") +
-        '<p class="muted">Funny characters post every day — using real TOEFL words. What level do you want to see?</p>' +
-        '<p class="muted small">角色們每天用真正的托福單字發文。你想看哪個程度？</p>' +
+        '<p class="muted">Funny characters post every day — packed with real English vocabulary. What level do you want to see?</p>' +
+        '<p class="muted small">角色們每天用真正的英文單字發文。你想看哪個程度？</p>' +
         '<div class="ob-options">' + [[1, "Soy Milk · 豆漿", "Everyday words · 常見好入口的字"], [2, "Tofu · 豆腐", "Core words · 核心字"], [3, "Natto · 納豆", "Advanced words · 進階字，要多嚼幾次"]].map(function (x) {
           var on = ob.levels.indexOf(x[0]) >= 0;
           return '<button class="ob-opt' + (on ? " on" : "") + '" data-ob-level="' + x[0] + '"><b>' + x[1] + "</b><span>" + x[2] + "</span></button>";
-        }).join("") + '</div><p class="muted small">Pick one or more. · 可以複選。</p>';
+        }).join("") + '</div><p class="muted small">Pick one or more. · 可以複選。</p>' +
+        '<h3 class="ob-sub">' + B("What are you studying for?", "你想學哪一類單字？") + '</h3><div class="topic-grid">' +
+        C.PACK_META.map(function (m) {
+          return '<button class="chip' + (ob.packs.indexOf(m.id) >= 0 ? " active" : "") + '" data-ob-pack="' + m.id + '">' + esc(m.name) + ' <span class="zh-sub">' + esc(m.zh) + " · " + m.count.toLocaleString() + "</span></button>";
+        }).join("") + '</div><p class="muted small">Word lists feed the Word of the Day, quizzes and flashcards. 單字表會用在每日一字、測驗和閃卡。</p>';
     } else if (ob.step === 1) {
       html = "<h2>" + B("What do you like?", "你喜歡什麼題材？") + "</h2><p class=\"muted\">We'll show these topics more often. You'll still see a mix.</p><p class=\"muted small\">這些題材會比較常出現，但你還是會看到各種內容。</p><div class=\"topic-grid\">" +
         TOPICS.map(function (t) { return '<button class="chip' + (ob.topics.indexOf(t) >= 0 ? " active" : "") + '" data-ob-topic="' + esc(t) + '">#' + esc(t) + (TOPIC_ZH[t] ? ' <span class="zh-sub">' + TOPIC_ZH[t] + "</span>" : "") + "</button>"; }).join("") + "</div>";
@@ -1534,11 +1537,12 @@
 
   function finishOnboarding() {
     var s = st();
-    s.prefs = { levels: ob.levels.sort(), topics: ob.topics, onboarded: true };
+    s.prefs = { levels: ob.levels.sort(), packs: ob.packs.slice(), topics: ob.topics, onboarded: true };
     s.following = {};
     Object.keys(ob.follow).forEach(function (k) { if (ob.follow[k]) s.following[k] = true; });
     S.save();
     closeOnboarding();
+    C.loadPacks(s.prefs.packs, function () { refreshWordMarks(); if (route.name !== "t") handleRoute(); });
     buildFeed();
     renderInstallSlot();
     window.scrollTo(0, 0);
@@ -1562,8 +1566,7 @@
   function pickChallenge() {
     var pool = Object.keys(st().words);
     if (pool.length < 3) {
-      var levels = st().prefs.levels || [1, 2, 3];
-      pool = Object.keys(VOCAB).filter(function (k) { return levels.indexOf(VOCAB[k].level) >= 0; });
+      pool = C.activePool(st().prefs);
     }
     challenge = C.shuffle(pool).slice(0, 3);
   }
@@ -1799,6 +1802,10 @@
       var lv = parseInt(d.obLevel, 10), i = ob.levels.indexOf(lv);
       if (i >= 0) ob.levels.splice(i, 1); else ob.levels.push(lv);
       renderOnboarding();
+    } else if (d.obPack) {
+      var pi = ob.packs.indexOf(d.obPack);
+      if (pi >= 0) { if (ob.packs.length > 1) ob.packs.splice(pi, 1); } else ob.packs.push(d.obPack);
+      renderOnboarding();
     } else if (d.obTopic) {
       var j = ob.topics.indexOf(d.obTopic);
       if (j >= 0) ob.topics.splice(j, 1); else ob.topics.push(d.obTopic);
@@ -2005,5 +2012,10 @@
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("Service worker not registered", e); });
   }
-  S.init().then(renderAll);
+  S.init().then(function () {
+    renderAll();
+    // Packs the reader picked earlier load in the background, then the word cards refresh.
+    var wanted = (st().prefs.packs || []).filter(function (id) { return id !== "toefl"; });
+    if (wanted.length) C.loadPacks(wanted, function () { refreshWordMarks(); handleRoute(); });
+  });
 })();

@@ -1,0 +1,160 @@
+450|The singer reached the pinnacle of her career at thirty.|這位歌手在三十歲時達到事業的巔峰。|word=pinnacle;zh=頂峰；極點
+451|He was a pioneer of modern medicine.|他是現代醫學的先驅。|word=pioneer;zh=先驅；開拓者
+452|Her rude comment piqued his curiosity and his pride.|她無禮的評論激起了他的好奇心,也刺傷了他的自尊。|zh=激怒；激起
+453|The weather was pleasant, so we ate outside.|天氣很宜人,所以我們在外面吃飯。|word=pleasant;zh=令人愉快的
+454|The candidate won a plurality of the votes.|這位候選人獲得相對多數的選票。|word=plurality;zh=相對多數
+455|A cube is a polyhedron with six faces.|立方體是有六個面的多面體。|word=polyhedron;zh=多面體
+456|The pomposity of the speaker annoyed the audience.|講者的自負讓觀眾很不耐煩。|word=pomposity;zh=自大；妄自尊大
+457|Dark clouds are a portent of rain.|烏雲是下雨的徵兆。|word=portent;zh=徵兆；預兆
+458|The scientist posited that the planet had water.|科學家假設這顆行星上有水。|zh=假設；設想
+459|I am not in a position to promise anything.|我目前沒辦法承諾什麼。|word=be in a position to;zh=有能力做…；處於能…的地位
+460|The army took possession of the town.|軍隊占領了這座城鎮。|word=take possession of;zh=占有；擁有
+461|She is the proud possessor of a rare stamp.|她是一枚珍稀郵票的驕傲持有者。|word=possessor;zh=持有人；所有人
+462|Please reply as soon as possible.|請盡快回覆。|word=as ... as possible;zh=盡可能…
+463|The new law postdates the old contract.|這項新法律的日期晚於舊合約。|zh=在…之後發生；日期晚於
+464|The plan is not practicable with so little money.|錢這麼少,這個計畫行不通。|word=practicable;zh=可行的；能實行的
+465|The news precipitated a crisis in the company.|這個消息引發了公司的危機。|zh=促成；引發
+466|His injury precluded him from playing in the final.|他的傷讓他無法參加決賽。|word=preclude;zh=排除；阻止
+467|The telegraph was a precursor of the telephone.|電報是電話的前身。|word=precursor;zh=先驅；前兆
+468|The plan is predicated on a steady supply of water.|這項計畫是以穩定的供水為前提。|word=be predicated on;zh=以…為基礎；取決於
+469|There is a predominance of women in the nursing field.|護理領域以女性占多數。|word=predominance;zh=優勢；占多數
+470|DROP
+471|The quiet scene was a preface to the storm.|平靜的場景是暴風雨的序幕。|word=preface;zh=序言；前奏
+472|Tea is preferable to coffee at night.|晚上喝茶比喝咖啡好。|word=preferable;zh=更好的；更可取的
+473|He chose the train in preference to the bus.|他選擇搭火車而不搭公車。|word=in preference to;zh=優先於；而不是
+474|The offer is made without prejudice to your rights.|這項提議不損及你的權利。|word=without prejudice to;zh=無損於
+475|Some people believe our lives are preordained.|有些人相信我們的人生是命中注定的。|zh=預先注定
+476|Small shops still preponderate in this old district.|在這個老街區,小商店仍然占大多數。|zh=占優勢
+477|The dark sky presaged a storm.|陰暗的天空預示著暴風雨。|zh=預示；預兆
+478|You must be eighteen to qualify for the license.|你必須年滿十八歲才有資格領執照。|zh=使有資格；取得資格
+479|He was in a quandary about which job to take.|他不知道該選哪份工作,陷入兩難。|word=quandary;zh=困境；猶豫不決
+480|A large quantity of rice was stored in the barn.|穀倉裡存放了大量的米。|word=quantity;zh=數量
+481|The meeting starts at a quarter to two.|會議在差十五分兩點時開始。|word=a quarter to;zh=差十五分（一刻鐘）
+482|Please keep quiet about the surprise party.|請對驚喜派對保密。|word=keep quiet;zh=保持安靜；保密
+483|She is the quintessence of kindness.|她是善良的典型。|word=quintessence;zh=典型；精髓
+484|That was quite a game!|那真是一場精采的比賽!|word=quite a;zh=相當…的；了不起的
+485|This is quite the best pizza I've ever had.|這絕對是我吃過最好吃的披薩。|word=quite the best;zh=絕對最好的
+486|The stove radiates heat across the room.|爐子的熱度向整間屋子散發。|zh=輻射；散發
+487|The storm ravaged the coast.|暴風雨嚴重破壞了海岸。|zh=嚴重破壞；蹂躪
+488|The doctor reassured the worried parents.|醫生讓擔心的父母安心。|zh=使安心；打消疑慮
+489|His offer met with a sharp rebuff.|他的提議遭到嚴詞拒絕。|zh=斷然拒絕;pos=verb/noun
+490|After the fire, they rebuilt the school.|火災後,他們重建了學校。|zh=重建
+491|The teacher recapitulated the main points of the lesson.|老師扼要重述了課程的重點。|zh=扼要重述
+492|The army recaptured the town from the enemy.|軍隊從敵人手中奪回了城鎮。|word=recapture;zh=奪回；收復
+493|The sound receded as the train moved away.|火車駛離時,聲音逐漸遠去。|zh=逐漸遠離；退去
+494|She smiled to reciprocate his kindness.|她微笑回報他的善意。|zh=回報；報答
+495|They reclaimed their luggage at the airport.|他們在機場領回了行李。|zh=取回；收回
+496|She reclined in the chair and closed her eyes.|她斜倚在椅子上,閉上眼睛。|zh=斜倚；斜躺
+497|She recoiled at the sight of the snake.|她一看到蛇就嚇得往後縮。|zh=退縮；畏縮;pos=verb/noun
+498|The scouts reconnoitered the area before the march.|偵察兵在行軍前偵察了這一帶。|word=reconnoiter;zh=偵察
+499|The police reconstructed the crime from the clues.|警方根據線索重現了犯案經過。|zh=重建；重現
+500|DROP
+501|The problem is reducible to a simple question.|這個問題可歸結為一個簡單的疑問。|word=reducible;zh=可簡化的；可歸結的
+502|The report refers to a new study.|報告提到一項新的研究。|zh=提到；參考;pos=verb;score=40
+503|His rude behavior is a poor reflection on his parents.|他無禮的行為讓父母蒙羞。|word=a reflection on;zh=（對…的）不良影響
+504|DROP
+505|The scientist refuted the claim with new data.|科學家用新數據駁斥了那項說法。|zh=駁斥；反駁
+506|The old sailor regaled us with funny stories.|老水手用好笑的故事款待我們。|zh=款待；使愉快
+507|After the illness, he seemed to regress to a child.|病後,他似乎退化得像個孩子。|word=regress;zh=退步；倒退
+508|The king reigned for forty years.|國王統治了四十年。|zh=統治；君臨;pos=verb/noun
+509|The city suffered a reign of terror under the dictator.|這座城市在獨裁者統治下飽受恐怖統治之苦。|word=reign of terror;zh=恐怖統治
+510|The company will reimburse you for travel costs.|公司會補償你的旅費。|word=reimburse;zh=償還；補償
+511|He rejoined his friends at the café.|他在咖啡館與朋友重新會合。|zh=重返；再會合
+512|He relapsed after a week of feeling better.|他好了一星期後又復發了。|zh=復發；故態復萌
+513|The teacher finally relented and gave them more time.|老師終於心軟,多給他們一些時間。|zh=變得寬容；心軟
+514|His reliance on his phone worries his parents.|他對手機的依賴讓父母擔心。|word=reliance;zh=依賴；依靠
+515|Small children are reliant on their parents.|年幼的孩子要依賴父母。|word=reliant;zh=依賴的
+516|She relishes a good challenge.|她很享受好的挑戰。|zh=享受；喜愛;pos=verb/noun
+517|He was reluctant to speak in public.|他不太願意在眾人面前說話。|word=reluctant;zh=不情願的
+518|The smell is reminiscent of my grandmother's kitchen.|這個味道讓我想起外婆的廚房。|word=reminiscent;zh=使人想起…的
+519|The guard was remiss in his duties.|那名警衛疏忽了自己的職責。|word=remiss;zh=疏忽的；懈怠的
+520|They remodeled the kitchen last summer.|他們去年夏天改建了廚房。|zh=改建；改造
+521|He remonstrated with the driver about the noise.|他就噪音問題向司機提出抗議。|zh=抗議；規勸
+522|The company remunerates its workers well.|這家公司給員工的酬勞很不錯。|word=remunerate;zh=給予報酬
+523|The job offers good remuneration.|這份工作的報酬不錯。|word=remuneration;zh=報酬；酬勞
+524|The prince's renunciation of the throne shocked the nation.|王子放棄王位讓全國震驚。|word=renunciation;zh=放棄；棄絕
+525|The company reorganized its sales department.|公司重新整頓了業務部門。|zh=重新組織；改組
+526|We need to replenish our supply of water.|我們需要補充水的存量。|word=replenish;zh=補充；重新備足
+527|The museum displays a replica of the ancient ship.|博物館展出那艘古船的複製品。|word=replica;zh=複製品；仿製品
+528|The principal reprehended the students for littering.|校長斥責學生亂丟垃圾。|zh=譴責；斥責
+529|The officer was reprimanded for being late.|那位警官因遲到而受到申誡。|word=reprimand;zh=訓斥；申誡
+530|The machine can reproduce old photos clearly.|這台機器能清晰地複製老照片。|zh=複製；繁殖
+531|She looked at him with a gentle reproof.|她帶著溫和的責備看著他。|word=reproof;zh=責備；斥責
+532|The minister repudiated the newspaper's report.|部長否認了報紙的報導。|zh=否認；拒絕接受
+533|She felt repugnance at the sight of the dirty kitchen.|看到骯髒的廚房,她感到強烈的厭惡。|word=repugnance;zh=厭惡；強烈反感
+534|The soldiers repulsed the attack.|士兵們擊退了這次攻擊。|zh=擊退；拒絕
+535|The council rescinded the unpopular rule.|議會撤銷了不受歡迎的規定。|zh=撤銷；廢除
+536|Please reseat yourself after the break.|休息後請各位回座。|zh=使再坐下
+537|Some bacteria are resistive to this medicine.|有些細菌對這種藥有抗藥性。|zh=有抵抗力的
+538|Her story resonated with many young readers.|她的故事引起了許多年輕讀者的共鳴。|zh=引起共鳴；發出回響
+539|Water is a valuable natural resource.|水是珍貴的天然資源。|zh=資源
+540|"That's not true!" he retorted angrily.|「那不是真的!」他憤怒地反駁。|zh=反駁；回嘴
+541|The artist retouched the photo before printing.|藝術家在印刷前修飾了照片。|zh=潤色；修飾
+542|The twins were reunited with their parents.|雙胞胎和父母重新團聚。|word=reunite;zh=使重聚；使重新結合
+543|Visiting the village was a revelation to me.|造訪那個村莊讓我大開眼界。|word=be a revelation;zh=令人大開眼界
+544|Many students revere their old teacher.|許多學生尊敬他們的老師。|word=revere;zh=尊敬；崇敬
+545|After a while, the water reverted to its normal level.|過了一陣子,水位恢復到正常。|zh=回復；恢復原狀
+546|The newspaper reviled him as a traitor.|報紙痛罵他是叛徒。|word=revile;zh=辱罵；痛斥
+547|The revocation of his license ended his career.|吊銷執照結束了他的職業生涯。|word=revocation;zh=撤銷；廢除
+548|The court revoked his driver's license.|法院吊銷了他的駕照。|zh=撤銷；廢除
+549|Good riddance! I'm glad he's gone.|終於擺脫他了!我很高興他走了。|word=good riddance;zh=總算擺脫了
+550|The city is rife with rumors about the mayor.|城裡到處是關於市長的謠言。|word=rife;zh=充斥的；盛行的
+551|She ruminated over her decision for days.|她為這個決定思索了好幾天。|zh=沉思；反覆思考
+552|Parents often make sacrifices for their children.|父母常為孩子做出犧牲。|zh=犧牲;pos=noun/verb
+553|Workers salvaged the cargo from the sunken ship.|工人們從沉船上搶救出貨物。|zh=搶救；救援;pos=verb/noun
+554|The law protects the sanctity of human life.|法律保護人類生命的神聖性。|word=sanctity;zh=神聖；神聖不可侵犯
+555|She is sanguine about her chances of winning.|她對自己獲勝的機會很樂觀。|word=sanguine;zh=樂觀的
+556|The show satirizes modern politics.|這個節目諷刺現代政治。|word=satirize;zh=諷刺；譏諷
+557|He savored every bite of the cake.|他細細品味蛋糕的每一口。|zh=細品；享受
+558|There was not a scintilla of proof against him.|沒有絲毫證據不利於他。|word=scintilla;zh=極少量；一丁點
+559|She read the script of the new movie.|她讀了這部新電影的劇本。|zh=劇本；腳本;pos=noun/verb
+560|He did not scruple to lie to his friends.|他毫不猶豫地對朋友說謊。|word=not scruple to;zh=毫不顧忌地做…
+561|Mice scuttled across the kitchen floor.|老鼠在廚房地板上快步竄過。|zh=碎步疾跑；急奔
+562|The monk secluded himself in the mountains.|僧人把自己隔絕在山中。|zh=使隔離；使隱退
+563|He is very secretive about his plans.|他對自己的計畫守口如瓶。|zh=守口如瓶的；神祕的;score=55
+564|The cat seized the mouse in an instant.|貓一下子就抓住了老鼠。|zh=抓住；奪取
+565|The hotel offers a fast room service.|飯店提供迅速的客房服務。|zh=服務;pos=noun/verb
+566|The software simulates real flying conditions.|這個軟體模擬真實的飛行狀況。|zh=模擬；假裝
+567|The flame singed the edge of the paper.|火焰燒焦了紙張的邊緣。|zh=燒焦；烤焦
+568|She plans to specialize in children's medicine.|她打算專攻兒童醫學。|word=specialize;zh=專攻；專門從事
+569|The museum has a specimen of a rare butterfly.|博物館收藏了一件稀有蝴蝶的標本。|word=specimen;zh=標本；樣本
+570|People speculate about what caused the fire.|大家在猜測起火的原因。|zh=推測；思索
+571|His acting was stagy and not natural.|他的演技太做作,不自然。|word=stagy;zh=做作的；戲劇化的
+572|There is still a stigma attached to mental illness.|精神疾病仍然帶有污名。|word=stigma;zh=污名；恥辱
+573|He used a clever stratagem to win the game.|他用一個巧妙的計謀贏了比賽。|word=stratagem;zh=計謀；策略
+574|The diver submerged slowly into the sea.|潛水員慢慢潛入海中。|zh=潛入水中；淹沒
+575|The patient was treated after submersion in cold water.|病人在浸入冷水後接受治療。|word=submersion;zh=浸沒；潛入水中
+576|Subsequent events proved him right.|後來發生的事證明他是對的。|word=subsequent;zh=隨後的；接著的
+577|The servant's subservience annoyed the other staff.|那名僕人的卑躬屈膝讓其他員工很反感。|word=subservience;zh=屈從；恭順
+578|The villagers subsist on rice and fish.|村民靠米飯和魚維生。|word=subsist;zh=維生；勉強生存
+579|The arc subtends an angle of sixty degrees at the center.|這段弧在圓心對應出六十度的角。|zh=對向（角或邊）
+580|The prince is the successor to the throne.|王子是王位的繼承人。|word=successor;zh=繼任者；繼承人
+581|After a long fight, he succumbed to the illness.|經過長期對抗,他終究屈服於病魔。|word=succumb;zh=屈服；不敵
+582|The room was suffused with golden light.|房間充滿了金色的光線。|word=suffuse;zh=布滿；充滿
+583|The island has a superabundance of fresh fish.|這座島上有大量新鮮的魚。|word=superabundance;zh=過剩；大量
+584|The villagers supplicated the king for food.|村民們懇求國王給他們食物。|zh=懇求；祈求
+585|He stood surety for his friend's loan.|他替朋友的貸款作保。|word=surety;zh=擔保人；擔保
+586|They were surfeited with sweets during the holidays.|假期裡他們被甜食塞到膩。|zh=使過量；使厭膩
+587|The king was surrounded by sycophants.|國王身旁盡是馬屁精。|zh=馬屁精；阿諛奉承的人
+588|The word "banana" has three syllables.|「banana」這個字有三個音節。|zh=音節;pos=noun
+589|DROP
+590|The smell of fresh bread tantalized the hungry children.|剛出爐麵包的香味吊足了飢餓孩子們的胃口。|zh=吊胃口；逗弄
+591|Her silence was tantamount to agreement.|她的沉默等同於同意。|word=tantamount;zh=等同於
+592|Rain will tarnish the silver if you leave it outside.|銀器放在外面被雨淋會失去光澤。|zh=使失去光澤;pos=verb/noun
+593|DROP
+594|The beach was teeming with tourists.|海灘上擠滿了遊客。|word=teem;zh=充滿；大量湧現;score=70
+595|We looked at the moon through a telescope.|我們用望遠鏡看月亮。|zh=望遠鏡;pos=noun;score=35
+596|The mayor temporized to avoid a decision.|市長拖延時間以避免做決定。|zh=拖延；敷衍
+597|The smell of cake tempted me to take a bite.|蛋糕的香味引誘我咬一口。|zh=引誘；誘惑
+598|He has a tendency to talk too fast.|他有說話太快的傾向。|word=tendency;zh=傾向；趨勢
+599|Scientists theorize that the climate is changing.|科學家推論氣候正在改變。|zh=建立理論；推論
+600|She added a tincture of iodine to the water.|她在水裡加了一點碘酊。|zh=酊劑；淡淡的色彩;pos=noun/verb
+601|The bank transacts business from nine to five.|銀行在九點到五點辦理業務。|zh=辦理；處理；交易
+602|The bank transacts business from nine to five.|銀行在九點到五點辦理業務。|word=transact;zh=辦理；處理；交易
+603|Her talent transcends national borders.|她的才華超越國界。|zh=超越
+604|Love transfigured the old man's face.|愛讓老人的臉煥然一新。|zh=使改觀；使變形
+605|Doctors transfused blood into the injured man.|醫生為受傷的男子輸血。|zh=輸（血）；注入
+606|Can you translate this letter into English?|你能把這封信翻成英文嗎?|zh=翻譯
+607|The antenna transmits signals to the satellite.|天線把訊號傳送到衛星。|zh=傳送；傳達
+608|It later transpired that he had lied.|後來才發現原來他說了謊。|zh=被人知道；發生
+609|Her style typifies modern fashion.|她的風格是現代時尚的典型。|zh=是…的典型

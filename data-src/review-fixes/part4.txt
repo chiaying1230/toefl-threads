@@ -1,0 +1,160 @@
+610|The country received an ultimatum from its neighbor.|這個國家收到了鄰國的最後通牒。|zh=最後通牒
+611|A delay was unavoidable because of the storm.|因為暴風雨,延誤是無法避免的。|zh=不可避免的
+612|Such rude behavior is unbecoming to a teacher.|這種無禮的行為對老師來說不得體。|word=unbecoming;zh=不適當的；不得體的
+613|The shop undercharged us by mistake.|店家不小心少收了我們的錢。|zh=少收費；要價過低
+614|A simple idea underlies the whole design.|一個簡單的想法是整個設計的基礎。|zh=構成…的基礎；位於…之下
+615|It would be an understatement to say he was happy.|說他很高興都還算說得輕了。|zh=輕描淡寫；低報
+616|The flag undulated in the soft wind.|旗子在微風中波動。|zh=起伏；波動
+617|The loud noise at night unsettled the baby.|夜裡的巨響讓嬰兒心神不寧。|zh=使心神不寧；使動搖
+618|The upkeep of an old house costs a lot of money.|維護一棟老房子要花很多錢。|word=upkeep;zh=維修費；保養
+619|The noisy party kept me up all night.|吵鬧的派對讓我整晚沒睡。|word=keep up;zh=使不睡覺
+620|The coach upbraided the players for their careless mistakes.|教練責罵球員們粗心的失誤。|zh=責罵；訓斥
+621|The earthquake upheaved the road.|地震使路面隆起。|zh=隆起；舉起
+622|All the children were vaccinated against measles.|所有孩子都接種了麻疹疫苗。|word=vaccinate;zh=接種疫苗
+623|He vacillated between the two job offers.|他在兩個工作機會之間猶豫不決。|word=vacillate;zh=猶豫；搖擺不定
+624|Their ideas are at variance with each other.|他們的想法彼此有分歧。|word=be at variance;zh=與…有分歧
+625|The ruins are the last vestige of an ancient city.|這些廢墟是一座古城僅存的遺跡。|word=vestige;zh=殘餘；遺跡
+626|The priest put on his vestments before the service.|神父在禮拜前穿上法衣。|zh=法衣；禮服
+627|The family survived the vicissitudes of war.|這個家庭熬過了戰爭的種種變遷。|zh=變化無常；盛衰興替
+628|Constant vigilance is needed to keep the camp safe.|要時時保持警戒,營地才安全。|word=vigilance;zh=警覺；警戒
+629|The writer gave a short vignette of village life.|作者簡短地描寫了一幕村莊生活。|word=vignette;zh=簡短的描寫；小品文
+630|She plays the viola in the school orchestra.|她在學校管弦樂團拉中提琴。|zh=中提琴;pos=noun
+631|The teacher used visual aids in class.|老師在課堂上使用視覺教具。|zh=視覺的;pos=adjective/noun
+632|Try to visualize the scene as I describe it.|請在我描述時試著想像那個畫面。|word=visualize;zh=想像；使形象化
+633|The smell of cooking whetted my appetite.|煮菜的香味讓我胃口大開。|zh=磨快；刺激（食慾）
+634|The brothers wrangled over who should drive.|兄弟倆為了誰要開車而爭吵。|word=wrangle;zh=爭吵；爭論
+635|The snake writhed on the ground.|蛇在地上扭動。|zh=扭動；蠕動
+636|The job involves a lot of travel.|這份工作包括大量的出差。|zh=包含；涉及
+637|The solar panel measures irradiance from the sun.|太陽能板測量來自太陽的輻照度。|zh=輻照度；光照強度;score=85
+638|Your age is irrelevant to this job.|你的年齡與這份工作無關。|word=irrelevant;zh=不相關的
+639|The loud noise irritated the baby.|大聲響惹惱了嬰兒。|zh=激怒；使惱火
+640|The sick children were isolated from the others.|生病的孩子被隔離開來。|word=isolate;zh=隔離；孤立
+641|Colds are prevalent among young children in winter.|感冒在冬天的幼兒之間很盛行。|word=prevalent;zh=盛行的；普遍的
+642|The reporter probed the mayor with tough questions.|記者用尖銳的問題追問市長。|zh=追問；探究
+643|He proffered a hand to the old man.|他向老人伸出一隻手。|zh=提出；奉上
+644|Her proficiency in Spanish helped her get the job.|她的西班牙語能力幫她得到了工作。|word=proficiency;zh=熟練；精通
+645|He is proficient in three languages.|他精通三種語言。|word=proficient;zh=熟練的；精通的
+646|Bad weather prolonged our trip by two days.|壞天氣使我們的旅程延長了兩天。|zh=延長
+647|The group promulgates its ideas through social media.|這個團體透過社群媒體傳播理念。|zh=傳播；頒布
+648|The wind propelled the boat across the lake.|風推著船穿過湖面。|zh=推進；推動
+649|The punishment should be proportionate to the crime.|刑罰應與罪行相稱。|word=proportionate;zh=成比例的
+650|The young artist was the protege of a famous painter.|這位年輕藝術家是一位名畫家提攜的後進。|word=protege;zh=受提攜的後進
+651|A nail protruded from the board.|一根釘子從木板上突出來。|word=protrude;zh=突出；伸出
+652|Her prudery made the class laugh.|她的假正經讓全班都笑了。|word=prudery;zh=假正經；過度拘謹
+653|The letter purports to be from the mayor.|這封信聲稱是市長寫的。|zh=聲稱；大意;pos=verb/noun
+654|Dictionaries help us define the meaning of words.|字典幫助我們界定字詞的意思。|zh=下定義；界定
+655|Please file the papers in the red folder.|請把文件歸檔到紅色資料夾裡。|zh=檔案；歸檔;pos=noun/verb
+656|The shop sells bars of soap.|這家店賣條狀的肥皂。|zh=條狀物；酒吧;pos=noun/verb
+657|We met at a small cafe near the station.|我們在車站附近的一間小咖啡館碰面。|word=cafe;zh=咖啡館
+658|The new job is a big challenge for her.|這份新工作對她來說是個大挑戰。|zh=挑戰；質疑
+659|Combine the flour and eggs in a bowl.|把麵粉和蛋在碗裡混合。|zh=結合；混合
+660|The judge concluded that he was not guilty.|法官斷定他無罪。|zh=下結論；結束
+661|The patient is in good condition.|病人的狀況良好。|zh=狀況；條件
+662|The doctor examined the boy carefully.|醫生仔細檢查了那個男孩。|zh=檢查；審查
+663|The hotel features a large swimming pool.|這間飯店以一座大泳池為特色。|zh=特色；以…為特色;pos=noun/verb
+664|She stepped forward to receive the prize.|她走上前去領獎。|word=forward;zh=向前；前方的;pos=adverb/adjective
+665|The king governed the country for many years.|國王統治這個國家很多年。|zh=統治；管理
+666|Our host welcomed us at the door.|主人在門口迎接我們。|word=host;zh=主人；主持人
+667|Use good judgment when you make a decision.|做決定時要運用良好的判斷力。|word=judgment;zh=判斷力；評判
+668|The truck is carrying a heavy load of sand.|卡車運載著一大堆沙子。|zh=負載；裝載;pos=noun/verb
+669|He didn't mention the problem to anyone.|他沒有向任何人提起這個問題。|zh=提及；談起
+670|Many professionals network at conferences.|許多專業人士在研討會上拓展人脈。|zh=建立人脈；網絡;pos=verb/noun
+671|The accident occurred at midnight.|意外發生在午夜。|zh=發生；出現
+672|I received a letter from my uncle.|我收到了叔叔寄來的信。|zh=收到；接受
+673|Please record the temperature every hour.|請每小時記錄一次溫度。|zh=記錄；紀錄;pos=verb/noun
+674|The teacher scheduled the exam for Monday.|老師把考試排在星期一。|zh=安排時間；行程表;pos=verb/noun
+675|The road was smooth and easy to drive on.|這條路很平順,好開。|zh=平滑的；順利的
+676|She stretched her arms above her head.|她把雙臂向頭上伸展。|zh=伸展；延伸;pos=verb/noun
+677|I saw an advertisement for a new phone.|我看到一則新手機的廣告。|word=advertisement;zh=廣告
+678|My adviser helped me choose my classes.|我的指導老師幫我選課。|word=adviser;zh=顧問；指導老師
+679|We can't afford a new car this year.|我們今年買不起新車。|zh=負擔得起
+680|We watched a movie and went home afterward.|我們看了電影,之後就回家了。|word=afterward;zh=後來；之後
+681|My parents approve of my plan.|我父母贊成我的計畫。|zh=贊成；批准
+682|The police arrested the thief.|警方逮捕了小偷。|zh=逮捕；拘留;pos=verb/noun
+683|The automobile industry employs millions of people.|汽車工業僱用了數百萬人。|word=automobile;zh=汽車
+684|Exercise has many benefits for your health.|運動對健康有許多好處。|zh=好處；利益;pos=noun/verb
+685|The bears sleep in a cave in winter.|熊在冬天睡在洞穴裡。|zh=洞穴;pos=noun/verb
+686|She chopped the onions finely.|她把洋蔥切得細細的。|zh=砍；剁;pos=verb/noun
+687|The baby slept in the cradle.|嬰兒睡在搖籃裡。|zh=搖籃；發源地;pos=noun/verb
+688|A crane lifted the heavy box onto the truck.|起重機把沉重的箱子吊到卡車上。|zh=起重機；鶴;pos=noun/verb
+689|The plane crashed into the sea.|飛機墜入海中。|zh=墜毀；碰撞;pos=verb/noun
+690|The baby crawled across the floor.|嬰兒在地板上爬行。|zh=爬行;pos=verb/noun
+691|He dashed to the bus stop.|他衝向公車站。|zh=猛衝；短跑;pos=verb/noun
+692|Dip the bread in the soup.|把麵包蘸一下湯。|zh=浸泡；蘸;pos=verb/noun
+693|The car slid into a ditch.|車子滑進了水溝。|zh=水溝；壕溝;pos=noun/verb
+694|The little boy almost drowned in the pool.|小男孩差點在游泳池裡溺水。|zh=淹死；溺斃
+695|There was dust on the old books.|舊書上積滿了灰塵。|zh=灰塵;pos=noun/verb
+696|She edited the video before posting it.|她在上傳影片前先剪輯了一下。|zh=編輯；剪輯
+697|Schools educate children for the future.|學校為了未來而教育孩子。|zh=教育；培養
+698|Please erase the board before class ends.|下課前請擦黑板。|zh=擦掉；抹去
+699|The bomb exploded in the empty building.|炸彈在空無一人的大樓裡爆炸。|zh=爆炸；爆發
+700|They explored the old forest by bike.|他們騎腳踏車探索那座古老的森林。|zh=探索；探險
+701|The candle flame danced in the wind.|燭火在風中搖曳。|zh=火焰;pos=noun/verb
+702|The car ran out of gasoline.|汽車沒油了。|word=gasoline;zh=汽油
+703|He grabbed his coat and ran out.|他抓起外套就跑了出去。|zh=抓取；奪取;pos=verb/noun
+704|The boy grasped the rope with both hands.|男孩雙手緊抓住繩子。|zh=緊抓；理解;pos=verb/noun
+705|Don't hesitate to ask me for help.|別猶豫,儘管找我幫忙。|zh=猶豫；躊躇
+706|The country imports most of its oil.|這個國家的石油大多仰賴進口。|zh=進口;pos=verb/noun
+707|The singer impressed everyone with her voice.|這位歌手的歌聲讓每個人印象深刻。|zh=給…深刻印象
+708|We play badminton in the indoor court.|我們在室內球場打羽毛球。|zh=室內的
+709|He felt inferior to his older brother.|他覺得自己比哥哥差。|zh=低劣的；較差的;pos=adjective/noun
+710|Please inform me if the plan changes.|如果計畫有變,請通知我。|zh=通知；告知
+711|The teacher inspected our homework.|老師檢查了我們的作業。|zh=檢查；視察
+712|He tied the lace of his left shoe.|他綁好了左腳的鞋帶。|zh=鞋帶；蕾絲;pos=noun/verb
+713|The invention changed the lives of all mankind.|這項發明改變了全人類的生活。|word=mankind;zh=人類
+714|My mother mended my torn jacket.|媽媽幫我縫補破掉的夾克。|zh=修補；修復
+715|The singer stood in front of the microphone.|歌手站在麥克風前面。|word=microphone;zh=麥克風
+716|He drew an outline of the plan on the board.|他在黑板上畫出計畫的大綱。|zh=大綱；輪廓;pos=noun/verb
+717|The band will perform on stage tonight.|樂團今晚將上台表演。|zh=表演；執行
+718|My friends persuaded me to join the club.|朋友們說服我加入社團。|zh=說服；勸服
+719|The pilot landed the plane safely.|飛行員讓飛機安全降落。|zh=飛行員;pos=noun/verb
+720|The children pretended to be pirates.|孩子們假裝是海盜。|zh=假裝；裝作
+721|Her rank in the army is captain.|她在軍中的軍階是上尉。|zh=等級；軍階;pos=noun/verb
+722|How did he react to the news?|他對這個消息有什麼反應?|zh=反應；起作用
+723|I recognized her voice right away.|我立刻認出了她的聲音。|zh=認出；承認
+724|The red line on the map represents a river.|地圖上的紅線代表一條河。|zh=代表；象徵
+725|I reserved a table for four at the restaurant.|我在餐廳訂了四人的位子。|zh=預訂；保留;pos=verb/noun
+726|The magician revealed the secret of the trick.|魔術師揭露了這個把戲的祕密。|zh=透露；揭露
+727|The butcher weighed the meat on the scale.|肉販在磅秤上秤肉。|word=scale;zh=磅秤；規模；刻度
+728|The crowd scattered when the rain started.|雨一下,人群就散開了。|zh=散開；撒播;pos=verb/noun
+729|A tall tree cast a long shadow on the grass.|一棵高大的樹在草地上投下長長的影子。|zh=陰影；影子;pos=noun/verb
+730|He took a small sip of the hot tea.|他啜了一小口熱茶。|zh=啜飲;pos=verb/noun
+731|She squeezed a lemon into the water.|她把檸檬擠進水裡。|zh=擠壓；榨;pos=verb/noun
+732|I swear I will never tell anyone.|我發誓我絕不會告訴任何人。|zh=發誓；宣誓
+733|Many cities improved their public transport.|許多城市改善了大眾運輸。|zh=運輸；交通工具;pos=noun/verb
+734|The twin sisters look exactly alike.|這對雙胞胎姊妹長得一模一樣。|zh=雙胞胎之一；成雙的;pos=noun/adjective
+735|The magician made the coin vanish.|魔術師讓硬幣消失不見。|zh=消失
+736|The victim called the police for help.|受害者打電話向警方求助。|zh=受害者
+737|The kids wandered through the park all afternoon.|孩子們整個下午在公園裡閒逛。|zh=漫遊；閒逛;pos=verb/noun
+738|The sign warns drivers of the sharp curve.|標誌警告駕駛人前方有急轉彎。|zh=警告；告誡
+739|The long illness weakened him.|長期的病讓他變得虛弱。|zh=削弱；使衰弱
+740|He pulled the weeds from the garden.|他拔除花園裡的雜草。|zh=雜草;pos=noun/verb
+741|Please wipe the table with a cloth.|請用抹布擦桌子。|zh=擦拭;pos=verb/noun
+742|She wrapped the gift in blue paper.|她用藍色包裝紙把禮物包起來。|zh=包裝；裹;pos=verb/noun
+743|The youngsters played soccer in the street.|年輕人們在街上踢足球。|zh=年輕人；少年
+744|The two countries signed a peace accord.|兩國簽署了和平協議。|zh=協議;pos=noun/verb
+745|The school allocated more money to the library.|學校撥了更多經費給圖書館。|zh=分配；撥出
+746|The strange noise aroused our curiosity.|奇怪的聲音引起了我們的好奇心。|zh=引起；激起
+747|The soldiers launched an assault on the fort.|士兵們對堡壘發動攻擊。|zh=攻擊；襲擊;pos=noun/verb
+748|He asserted that he was innocent.|他斷言自己是無辜的。|zh=斷言；主張
+749|She attributed her success to hard work.|她把成功歸因於努力。|zh=歸因於;pos=verb/noun
+750|He betrayed his friend by telling the secret.|他說出祕密,背叛了朋友。|zh=背叛；出賣
+751|The deer bounded across the field.|鹿跳躍著穿過田野。|zh=跳躍；界限;pos=verb/noun
+752|Drive with caution on wet roads.|在濕滑的路上要小心駕駛。|zh=謹慎；警告;pos=noun/verb
+753|The poem is characterized by short lines.|這首詩的特點是句子很短。|zh=描繪…的特性；以…為特徵
+754|The teacher cited a poem as an example.|老師引用一首詩當作例子。|word=cite;zh=引用；引證
+755|The company pays him a commission on every sale.|公司每賣出一件就付他一筆佣金。|zh=佣金；委員會;pos=noun/verb
+756|She commutes to work by train.|她搭火車通勤上班。|zh=通勤
+757|The company will compensate you for the loss.|公司會就這項損失補償你。|word=compensate;zh=補償；賠償
+758|The team comprises eleven players.|球隊由十一名球員組成。|word=comprise;zh=包含；由…組成
+759|After a long argument, he conceded the point.|經過長時間爭論,他承認了這一點。|zh=承認；讓步
+760|She conceived a plan to help the poor.|她構想了一個幫助窮人的計畫。|word=conceive;zh=構想；想出
+761|Leaders around the world condemned the attack.|世界各國領袖譴責這起攻擊。|zh=譴責；指責
+762|He sat quietly and contemplated the lake.|他安靜地坐著凝視著湖面。|word=contemplate;zh=沉思；凝視
+763|Several teams contended for the title.|好幾支隊伍爭奪冠軍。|zh=爭奪；主張
+764|They converted the barn into a house.|他們把穀倉改建成住宅。|zh=轉換；改變
+765|The jury convicted him of the crime.|陪審團判他犯了這項罪。|zh=判…有罪;pos=verb/noun
+766|The book is protected by copyright.|這本書受版權保護。|zh=版權；著作權;pos=noun/verb
+767|Honesty is one criterion for the job.|誠實是這份工作的一項標準。|word=criterion;zh=標準；準則
+768|She dedicated her life to helping animals.|她畢生致力於幫助動物。|zh=奉獻；致力於
+769|The boy defied his parents and went out.|男孩不顧父母反對跑了出去。|zh=違抗；公然反抗

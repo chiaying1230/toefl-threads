@@ -202,3 +202,22 @@ python3 -m http.server 8000
 ## 商標
 
 TOEFL® 是 ETS 的註冊商標，Threads 是 Meta 的商標；toEfu 與 ETS、Meta 沒有任何關係，也未獲其認可。
+
+## 單字包與難度評分
+
+| | |
+|---|---|
+| 難度標籤 | Soy Milk（豆漿）/ Tofu（豆腐）/ Natto（納豆），全站同一把尺：`js/data/levels.js` 把 1,300 個托福字重新分級，門檻在 `scripts/scorelib.py`（分數 ≤40 / ≤65） |
+| 單字包 | 國小國中 2,029、高中 4,126、多益 822、雅思 5,045、托福 1,300（托福就是 `batch-*.js` 的基本字庫）。`js/data/packs/<id>.js` 在使用者選了之後才載入，已選的包會被 service worker 快取 |
+| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。串文目前仍只有托福字（之後每個入口再各做 100–150 則） |
+| 資料來源 | `data-src/full_scores.csv`（Codex 的模型初評，**不是實測難度**）＋ `data-src/review-fixes/`（我逐筆檢查過 Codex 標為 review_required 的 1,118 筆，補上例句、修正詞義或剔除） |
+
+重建流程（不會動到 `batch-*.js`）：
+
+```bash
+python3 scripts/import-scores.py     # 重新計算托福字的等級 → js/data/levels.js
+python3 scripts/build-packs.py       # 產生 js/data/packs/*.js，報告在 data-src/packs-report.txt
+cd /tmp && npm i cmu-pronouncing-dictionary
+node scripts/make-kk.mjs /tmp/node_modules   # 補上 KK 音標（kk.js 與各單字包）
+node scripts/check-data.js
+```
