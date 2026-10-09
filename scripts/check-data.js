@@ -14,6 +14,8 @@ require(path.join(dataDir, "convos.js"));
 
 const { VOCAB, POSTS, CHARACTERS, TOPICS } = window;
 const TAG = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+// Word levels run 1–10. NOTE: the app UI (js/core.js, js/app.js, css) still only knows levels 1–3; see the warning printed below.
+const MAX_LEVEL = 10;
 const errors = [];
 const used = new Set();
 
@@ -28,12 +30,12 @@ function checkTags(text, where) {
 
 for (const [key, v] of Object.entries(VOCAB)) {
   for (const field of ["pos", "zh", "ex", "exZh"]) if (!v[field]) errors.push(`word ${key}: missing ${field}`);
-  if (![1, 2, 3].includes(v.level)) errors.push(`word ${key}: bad level`);
+  if (!Number.isInteger(v.level) || v.level < 1 || v.level > MAX_LEVEL) errors.push(`word ${key}: bad level (must be a whole number 1–${MAX_LEVEL})`);
   if (!/^\[.+\]$/.test(window.KK[key] || "")) errors.push(`word ${key}: missing KK phonetics (run scripts/make-kk.mjs)`);
 }
 
 const ids = new Set();
-const levels = { 1: 0, 2: 0, 3: 0 };
+const levels = Object.fromEntries(Array.from({ length: MAX_LEVEL }, (_, i) => [i + 1, 0]));
 const langs = {};
 const topics = {};
 for (const p of POSTS) {
@@ -47,7 +49,7 @@ for (const p of POSTS) {
   if (!keys.length) errors.push(`${p.id}: no vocab words`);
   else {
     const avg = keys.reduce((a, k) => a + VOCAB[k].level, 0) / keys.length;
-    levels[avg <= 1.5 ? 1 : avg >= 2.5 ? 3 : 2]++;
+    levels[Math.min(MAX_LEVEL, Math.max(1, Math.round(avg)))]++;
   }
   const lang = CHARACTERS[p.author] && CHARACTERS[p.author].lang;
   langs[lang] = (langs[lang] || 0) + 1;
@@ -79,7 +81,9 @@ console.log(`Conversations: ${Object.keys(window.CONVOS || {}).length} threads, 
 const unused = Object.keys(VOCAB).filter((k) => !used.has(k));
 
 console.log(`Posts: ${POSTS.length}   Words: ${Object.keys(VOCAB).length}   Characters: ${Object.keys(CHARACTERS).length}`);
-console.log(`Post levels  Easy ${levels[1]} / Medium ${levels[2]} / Hard ${levels[3]}`);
+console.log(`Post levels  (average word level, rounded) ${Object.entries(levels).filter(([, n]) => n).map(([k, n]) => `L${k}×${n}`).join(" ")}`);
+const aboveUi = Object.entries(VOCAB).filter(([, v]) => v.level > 3).length;
+if (aboveUi) console.warn(`WARNING: ${aboveUi} word(s) have level above 3. The app UI only handles levels 1–3 (LEVEL_NAMES, lv1–lv3 styles, level preferences) — update js/core.js and js/app.js before shipping them.`);
 console.log(`Voices       ${Object.entries(langs).map(([k, n]) => `${k} ${n}`).join(" / ")}`);
 console.log(`Topics       ${Object.entries(topics).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(", ")}`);
 if (unused.length) console.log(`Unused words (${unused.length}): ${unused.join(", ")}`);
