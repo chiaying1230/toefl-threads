@@ -61,3 +61,23 @@ kitchen,n,廚房,1
 - `check-data.js` 目前只接受單字 `level` 1–3，需放寬到 1–10。
 - 單字資料不含 KK 音標，合併後要跑 `scripts/make-kk.mjs`。
 - 一萬字約 4,000 則串文，網站目前一次載入全部 `batch-*.js`，量大時要改成分批載入。
+
+## 接到單字包（elem / hs / toeic / ielts）
+
+網站的單字包在 `js/data/packs/`。每個入口的串文放在 `data-src/threads/<包>.txt`，`scripts/build-packs.py` 會把它們寫進該單字包。
+
+```powershell
+cd scripts\gen-posts
+node pack-words.mjs hs --out out/words-hs.csv --limit 150 --skip-used        # 從單字包挑 150 個字（難度 band = 分數/10）
+node gen.mjs --words out/words-hs.csv --out out/hs.js --review --max-cost 3  # 先試跑看 out/hs.report.json
+node to-threads.mjs out/hs.js hs --print                                     # 先看會加什麼
+node to-threads.mjs out/hs.js hs                                             # 寫進 data-src/threads/hs.txt
+cd ..\..
+python3 scripts/build-packs.py
+node scripts/make-kk.mjs <node_modules 路徑>
+node scripts/check-data.js
+```
+
+- `pack-words.mjs` 會略過虛詞（a、the、will…）；串文裡只會標單字包裡的字，所以選了該單字表的人看得到、點得開。
+- 字詞等級在這個單字包用 1–3 三級，`gen.mjs` 的 easy / medium / advanced 只影響寫作難度。
+- 串文 id 會改成 `<包>-NNN`，不會和托福串文 `pNNN` 撞號。
