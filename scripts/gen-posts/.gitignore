@@ -1,0 +1,3 @@
+# progress / logs are local run state; the finished out/*.js files can be reviewed and committed
+out/*.progress.jsonl
+out/*.log
