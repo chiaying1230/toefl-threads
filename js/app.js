@@ -414,6 +414,7 @@
     if (route.name === "t") renderThread(route.param);
     window.scrollTo(0, scrollMemory[routeKey] || 0);
     if (booted && !st().prefs.onboarded && route.name !== "t" && !ob) openOnboarding(false);
+    if (booted && route.name === "home" && !tour) setTimeout(maybeAutoTour, 400);   // e.g. back home from a shared thread
   }
 
   // ---------- Feed ----------
@@ -1504,6 +1505,14 @@
         return '<button class="chip' + (s.settings.rate === r[0] ? " active" : "") + '" data-rate="' + r[0] + '">' + r[1] + "</button>";
       }).join("") + "</div></div>";
 
+    html += '<div class="card" id="textSizeCard"><div class="goal-top"><b>' + T("Text size", "字體大小") + '</b></div><div class="goal-pick">' +
+      [["", "Standard 標準"], ["l", "Large 大"], ["xl", "Extra large 特大"]].map(function (x) {
+        return '<button class="chip' + ((s.settings.textSize || "") === x[0] ? " active" : "") + '" data-text-size="' + (x[0] || "std") + '">' + x[1] + "</button>";
+      }).join("") + '</div><p class="muted small">Also used on the vocabulary test. 單字量測驗也會套用。</p></div>';
+
+    html += '<div class="card" id="tourCard"><div class="goal-top"><b>' + T("How to use toEfu", "使用導覽") + '</b></div>' +
+      '<p class="muted small">A quick tour of the main features. 快速認識主要功能。</p><button class="outline-btn" data-tour-start>' + T("Start the tour", "開始導覽") + "</button></div>";
+
     html += notificationsCardHtml() + installCardHtml(false);
 
     html += '<div class="card"><div class="goal-top"><b>' + T("About toEfu", "關於") + '</b></div>' +
@@ -1796,7 +1805,7 @@
 
   function finishOnboarding() {
     var s = st();
-    s.prefs = { levels: ob.levels.sort(), packs: ob.packs.slice(), topics: ob.topics, onboarded: true };
+    s.prefs = { levels: ob.levels.sort(), packs: ob.packs.slice(), topics: ob.topics, onboarded: true, toured: !!s.prefs.toured };
     s.following = {};
     Object.keys(ob.follow).forEach(function (k) { if (ob.follow[k]) s.following[k] = true; });
     S.save();
@@ -1810,6 +1819,7 @@
     toast("Your feed is ready ✨");
     // Came from a friend's link: next, show how to keep toEfu on the Home Screen.
     if (joinedFromShare && canInstall() && isIOS()) setTimeout(openInstallGuide, 900);
+    else setTimeout(maybeAutoTour, 900);   // first time: the feature tour
     joinedFromShare = false;
   }
 
@@ -2034,6 +2044,8 @@
     else if (d.settings !== undefined) { profileSettings = true; editingProfile = false; renderProfile(); window.scrollTo(0, 0); }
     else if (d.settingsClose !== undefined) { profileSettings = false; renderProfile(); window.scrollTo(0, 0); }
     else if (d.ptab) { profileTab = d.ptab; renderProfile(); var tabs = $(".profile-tabs"); if (tabs) window.scrollTo(0, tabs.offsetTop - 60); }
+    else if (d.textSize) { setTextSize(d.textSize); renderProfile(); }
+    else if (d.tourStart !== undefined) { profileSettings = false; startTour(); }
     else if (d.rate) { st().settings.rate = parseFloat(d.rate); S.save(); renderProfile(); speak("This is how fast I will read."); }
     else if (d.avatar) { draft.avatar = d.avatar; draft.photo = ""; refreshDraftPreview(); }
     else if (d.saveProfile !== undefined) saveProfileForm();
@@ -2273,7 +2285,153 @@
     }
   }
 
+  // ---------- Text size (Settings → Text size; /quiz has an Aa button for the same setting) ----------
+  // html[data-text="l"|"xl"] scales every font size (css: calc(Npx * var(--fs))). The choice is kept in the account
+  // (settings.textSize) and in localStorage "toefu.textSize" ("std", "l", "xl"), which the quiz page and the
+  // inline script in index.html read before the page paints. A change made on the quiz page wins on this device.
+  var TEXT_KEY = "toefu.textSize";
+  function applyTextSize() {
+    var ls = null, s = st().settings;
+    try { ls = localStorage.getItem(TEXT_KEY); } catch (e) { /* ignore */ }
+    if (ls === "std" || ls === "l" || ls === "xl") {
+      var v = ls === "std" ? "" : ls;
+      if ((s.textSize || "") !== v) { s.textSize = v; S.save(); }
+    } else if (s.textSize) {
+      try { localStorage.setItem(TEXT_KEY, s.textSize); } catch (e) { /* ignore */ }
+    }
+    if (s.textSize === "l" || s.textSize === "xl") document.documentElement.setAttribute("data-text", s.textSize);
+    else document.documentElement.removeAttribute("data-text");
+  }
+  function setTextSize(v) {
+    try { localStorage.setItem(TEXT_KEY, v); } catch (e) { /* ignore */ }
+    st().settings.textSize = v === "std" ? "" : v;
+    S.save();
+    applyTextSize();
+  }
+
+  // ---------- Tour: a step-by-step guide to the main features (English + 中文) ----------
+  // Starts once after the welcome screens (or on the first visit after this update for existing users), never on
+  // a shared thread link; Settings → "How to use toEfu" replays it. Seen/skipped is kept in prefs.toured (synced)
+  // and localStorage "toefu.toured".
+  var TOUR_KEY = "toefu.toured";
+  var TOUR = [
+    { route: "", target: "#feed .post .vocab", en: ["Tap blue words", "Tap any blue word in a thread to see its meaning, hear it, and add it to Review."],
+      zh: ["點藍色單字", "點串文裡的藍色單字，可以看中文意思、聽發音，並加入複習。"] },
+    { route: "", target: ".packs-btn", en: ["Choose your word lists", "Pick the lists you learn from: Junior High, High School, TOEIC, IELTS or TOEFL."],
+      zh: ["選單字表", "選擇要學的單字表：國中、高中、多益、雅思或托福。"] },
+    { route: "", target: ".quiz-chip", en: ["Vocabulary test", "15 quick questions to estimate how many English words you know."],
+      zh: ["單字量測驗", "15 題，測出你的英文單字量。"] },
+    { route: "", target: '.tabbar [data-action="compose"]', en: ["Write a thread", "Post a thread with a word you just learned. The characters may reply."],
+      zh: ["發一則串文", "用剛學的單字寫一則串文，角色可能會回覆你。"] },
+    { route: "review", target: "#view-review .segmented", en: ["Review", "Saved words come back here: word list, flashcards or quiz. The number on the Review tab shows the words due today."],
+      zh: ["複習", "存下的單字會在這裡複習，可以用單字列表、閃卡或測驗。複習分頁上的數字是今天要複習的字數。"] },
+    { route: "profile", target: ".profile-stats", en: ["Your progress", "Your threads, the people you follow, your daily streak and vocabulary size."],
+      zh: ["你的進度", "這裡看你的串文、追蹤、連續天數和單字量。"] },
+    { route: "profile", target: "[data-settings]", en: ["Settings", "Change text size, read-aloud speed and notifications. You can replay this tour here anytime."],
+      zh: ["設定", "可以調整字體大小、朗讀速度和通知，也可以隨時在這裡重看導覽。"] }
+  ];
+  var tour = null;   // { i, el } while the tour is open
+
+  function tourSeen() {
+    var ls = null;
+    try { ls = localStorage.getItem(TOUR_KEY); } catch (e) { /* ignore */ }
+    return !!st().prefs.toured || ls === "1";
+  }
+  function maybeAutoTour() {
+    if (tour || !booted || !st().prefs.onboarded || ob || route.name === "t" || tourSeen()) return;
+    startTour();
+  }
+
+  function startTour() {
+    if (tour) return;
+    tour = { i: -1 };
+    var box = document.createElement("div");
+    box.className = "tour";
+    box.innerHTML = '<div class="tour-block"></div><div class="tour-spot"></div>' +
+      '<div class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tourTitle"><div class="tour-body" aria-live="polite"></div></div>';
+    document.body.appendChild(box);
+    tour.el = box;
+    tourGo(0, 1);
+  }
+
+  function endTour() {
+    if (!tour) return;
+    tour.el.remove(); tour = null;
+    st().prefs.toured = true; S.save();
+    try { localStorage.setItem(TOUR_KEY, "1"); } catch (e) { /* ignore */ }
+    if (route.name !== "home") location.hash = "#/";
+    window.scrollTo(0, 0);
+  }
+
+  // Go to step i (dir: +1 / -1 decides which way to skip a step whose element isn't on screen).
+  function tourGo(i, dir) {
+    if (!tour) return;
+    if (i < 0) i = 0;
+    if (i >= TOUR.length) return endTour();
+    var step = TOUR[i], want = step.route || "home";
+    tour.i = i;
+    if (want === "profile" && (profileSettings || editingProfile)) { profileSettings = false; editingProfile = false; }
+    if (route.name !== want) location.hash = "#/" + step.route;
+    else if (want === "profile") renderProfile();
+    setTimeout(function () {
+      if (!tour || tour.i !== i) return;
+      var el = document.querySelector(step.target);
+      if (!el || !el.getClientRects().length) return tourGo(i + (dir || 1), dir || 1);
+      var fixed = !!el.closest(".tabbar");
+      if (!fixed) {
+        var r = el.getBoundingClientRect();
+        if (r.top < 70 || r.bottom > window.innerHeight - 200) window.scrollTo(0, Math.max(0, window.scrollY + r.top - window.innerHeight * 0.3));
+      }
+      tourPaint();
+    }, 160);
+  }
+
+  function tourPaint() {
+    if (!tour) return;
+    var i = tour.i, step = TOUR[i], el = document.querySelector(step.target);
+    if (!el) return;
+    var r = el.getBoundingClientRect(), pad = 6, vw = window.innerWidth, vh = window.innerHeight;
+    var spot = tour.el.querySelector(".tour-spot"), card = tour.el.querySelector(".tour-card");
+    spot.style.left = (r.left - pad) + "px"; spot.style.top = (r.top - pad) + "px";
+    spot.style.width = (r.width + pad * 2) + "px"; spot.style.height = (r.height + pad * 2) + "px";
+    var last = i === TOUR.length - 1;
+    card.querySelector(".tour-body").innerHTML =
+      '<div class="tour-dots">' + TOUR.map(function (x, n) { return "<i" + (n === i ? ' class="on"' : "") + "></i>"; }).join("") + "</div>" +
+      '<h3 id="tourTitle">' + esc(step.en[0]) + ' <span class="tour-zh">' + esc(step.zh[0]) + "</span></h3>" +
+      "<p>" + esc(step.en[1]) + '</p><p class="tour-zh">' + esc(step.zh[1]) + "</p>" +
+      '<div class="tour-actions"><button class="link" data-tour-skip>Skip 略過</button><span>' +
+      (i > 0 ? '<button class="outline-btn" data-tour-back>Back 上一步</button>' : "") +
+      '<button class="primary-btn" data-tour-next>' + (last ? "Let's go 開始使用" : "Next 下一步") + "</button></span></div>";
+    var w = Math.min(380, vw - 24);
+    card.style.width = w + "px";
+    card.style.left = Math.max(12, Math.min(vw - w - 12, r.left + r.width / 2 - w / 2)) + "px";
+    var h = card.offsetHeight, below = vh - r.bottom, above = r.top;
+    var top = below >= h + 24 || below >= above ? r.bottom + pad + 10 : r.top - pad - 10 - h;
+    card.style.top = Math.max(8, Math.min(vh - h - 8, top)) + "px";
+    var next = card.querySelector("[data-tour-next]");
+    if (next) next.focus({ preventScroll: true });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (!tour) return;
+    var t = e.target.closest("[data-tour-next], [data-tour-back], [data-tour-skip]");
+    if (!t) return;
+    e.stopPropagation();
+    if (t.hasAttribute("data-tour-skip")) endTour();
+    else if (t.hasAttribute("data-tour-back")) tourGo(tour.i - 1, -1);
+    else tourGo(tour.i + 1, 1);
+  }, true);
+  document.addEventListener("keydown", function (e) {
+    if (!tour) return;
+    if (e.key === "Escape") { e.preventDefault(); endTour(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); tourGo(tour.i + 1, 1); }
+    else if (e.key === "ArrowLeft" && tour.i > 0) { e.preventDefault(); tourGo(tour.i - 1, -1); }
+  });
+  window.addEventListener("resize", function () { if (tour) tourPaint(); });
+  window.addEventListener("scroll", function () { if (tour) tourPaint(); }, { passive: true });
+
   function renderAll() {
+    applyTextSize();
     applyLang();
     updateNotices();
     renderInstallSlot();
@@ -2289,6 +2447,7 @@
     } else if (ob && !ob.editing) {
       closeOnboarding();
     }
+    setTimeout(maybeAutoTour, 600);
   }
 
   // ---------- Init ----------

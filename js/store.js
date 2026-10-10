@@ -23,7 +23,7 @@
       prefs: { levels: [1, 2, 3], topics: [], onboarded: false },
       following: {},
       daily: { goal: 10, log: {}, met: {} },
-      settings: { rate: 1, lang: "en" },   // lang: "en" English only, "bi" English + 中文
+      settings: { rate: 1, lang: "en", textSize: "" },   // lang: "en" English only, "bi" English + 中文; textSize: "", "l", "xl"
       stats: { quiz: 0, cards: 0, replies: 0 },
       badges: {},      // badge id -> unlocked timestamp
       reposted: {},    // postId -> when I reposted it

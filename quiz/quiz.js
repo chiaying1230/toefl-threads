@@ -115,6 +115,9 @@
 
   // ---- 挑戰連結、自我估計、紀錄 ----
   // 挑戰連結：toefu.app/quiz?vs=單字量-秒數
+  var GUESS_HINT = "左右拖曳圓點，或按 − ＋ 來猜；也可以不猜";
+  // 刻度上的對照：國中基本字彙約 1,200 字（教育部），高中參考詞彙約 7,000 字（大考中心）
+  var GUESS_MARKS = [[1200, "1,200", "國中"], [7000, "7,000", "高中"]];
   function guessText(g) { return g >= TOTAL ? fmt(TOTAL) + " 以上" : "約 " + fmt(g); }
   var rival = null, guess = null, RUN = null;   // RUN：每次完成會產生的那一筆紀錄，接上資料庫後寫入 Firestore（docs/quiz-db-spec.md）
   (function () { var m = /^(\d{3,5})-(\d{1,4})$/.exec(new URLSearchParams(location.search).get("vs") || ""); if (m) rival = { v: +m[1], sec: +m[2] }; })();
@@ -168,17 +171,29 @@
       (rival ? '<div class="duel"><p class="verdict">朋友向你下戰帖</p><p>對方' + sp(rival.v) + vocabText(rival.v) + "・" + spoken(rival.sec * 1000) + "。答完就知道誰贏。</p></div>" : "") +
       '<ul class="rules"><li>看貼文裡藍色的字，選出它的中文意思</li><li>每題 10 秒，答對會變難，答錯會變簡單</li><li>答完才公布成績</li></ul>' +
       '<div class="guess"><div class="guess-row"><label class="label" for="guessRange">先猜猜看，你有多少單字量？</label>' +
-        '<output class="guess-val unset" id="guessVal" for="guessRange">拉動滑桿來猜，也可以不猜</output></div>' +
-        '<input type="range" id="guessRange" min="500" max="' + TOTAL + '" step="500" value="5500">' +
-        '<div class="guess-scale"><span>500</span><span>' + fmt(TOTAL) + '</span></div>' +
+        '<output class="guess-val unset" id="guessVal" for="guessRange">' + GUESS_HINT + "</output></div>" +
+        '<div class="guess-ctl"><button class="guess-step" type="button" data-step="-1" aria-label="少 500 字">−</button>' +
+          '<div class="guess-track"><input type="range" id="guessRange" min="500" max="' + TOTAL + '" step="500" value="5500">' +
+          '<span class="guess-nudge" aria-hidden="true">← 拖曳 →</span></div>' +
+          '<button class="guess-step" type="button" data-step="1" aria-label="多 500 字">＋</button></div>' +
+        '<div class="guess-scale">' + GUESS_MARKS.map(function (m) {
+          return '<span style="left:' + ((m[0] - 500) / (TOTAL - 500) * 100).toFixed(1) + '%"><b>' + m[1] + "</b><i>" + m[2] + "</i></span>";
+        }).join("") + '<span class="end r"><b>' + fmt(TOTAL) + "+</b></span></div>" +
         '<button class="guess-clear" id="guessClear" type="button" hidden>不猜了</button></div>' +
       '<button class="post-btn" id="startBtn" type="button">開始挑戰</button><p class="muted small">按下後開始計時</p>'));
     p.classList.remove("slide");
-    var range = p.querySelector("#guessRange"), out = p.querySelector("#guessVal"), clr = p.querySelector("#guessClear");
+    var range = p.querySelector("#guessRange"), out = p.querySelector("#guessVal"), clr = p.querySelector("#guessClear"), guessBox = p.querySelector(".guess");
     function paintGuess() {
       range.classList.toggle("set", guess != null); out.classList.toggle("unset", guess == null); clr.hidden = guess == null;
-      out.textContent = guess == null ? "拉動滑桿來猜，也可以不猜" : guessText(guess) + " 字";
+      guessBox.classList.toggle("touched", guess != null);
+      out.textContent = guess == null ? GUESS_HINT : guess >= TOTAL ? fmt(TOTAL) + " 字以上" : guessText(guess) + " 字";
     }
+    p.querySelectorAll(".guess-step").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var v = (guess == null ? +range.value : guess) + 500 * +b.dataset.step;
+        guess = Math.max(500, Math.min(TOTAL, v)); range.value = guess; paintGuess();
+      });
+    });
     range.addEventListener("input", function () { guess = +range.value; paintGuess(); });
     range.addEventListener("change", function () { guess = +range.value; paintGuess(); });
     clr.addEventListener("click", function () { guess = null; range.value = 5500; paintGuess(); });
@@ -198,6 +213,26 @@
 
   // 左上角的 ✕：離開測驗，回到 App。作答中先問一次（避免誤觸），其他時候直接離開。
   var restartBtn = document.getElementById("restartBtn"), leaveBar = document.getElementById("leaveBar");
+
+  // Aa：字體大小 標準 → 大 → 特大，和 App 的「設定 → Text size」共用 localStorage "toefu.textSize"（"std"、"l"、"xl"）
+  var TEXT_SIZES = [["std", "標準"], ["l", "大"], ["xl", "特大"]], textSizeBtn = document.getElementById("textSizeBtn");
+  function textSizeNow() { var v = null; try { v = localStorage.getItem("toefu.textSize"); } catch (e) {} return v === "l" || v === "xl" ? v : "std"; }
+  function paintTextSize(flash) {
+    var v = textSizeNow(), name = TEXT_SIZES.filter(function (x) { return x[0] === v; })[0][1];
+    if (v === "std") document.documentElement.removeAttribute("data-text"); else document.documentElement.setAttribute("data-text", v);
+    textSizeBtn.setAttribute("aria-label", "字體大小：" + name);
+    if (flash) {
+      textSizeBtn.textContent = name; textSizeBtn.classList.add("flash");
+      clearTimeout(paintTextSize.t);
+      paintTextSize.t = setTimeout(function () { textSizeBtn.textContent = "Aa"; textSizeBtn.classList.remove("flash"); }, 1200);
+    }
+  }
+  textSizeBtn.addEventListener("click", function () {
+    var i = TEXT_SIZES.map(function (x) { return x[0]; }).indexOf(textSizeNow());
+    try { localStorage.setItem("toefu.textSize", TEXT_SIZES[(i + 1) % TEXT_SIZES.length][0]); } catch (e) {}
+    paintTextSize(true);
+  });
+  paintTextSize(false);
   function inRound() { return !!(S && !S.total); }
   function leave() {
     var ref = null;
@@ -206,7 +241,8 @@
     if (ref && ref.origin === location.origin && !/\/quiz\//.test(ref.pathname) && window.history.length > 1) window.history.back();
     else location.href = "../";
   }
-  restartBtn.addEventListener("click", function () {
+  restartBtn.addEventListener("click", function (e) {
+    e.preventDefault();   // it's a link to "../" only so it still works before this script runs
     if (!inRound()) return leave();
     leaveBar.hidden = !leaveBar.hidden;
     if (!leaveBar.hidden) document.getElementById("leaveStay").focus();
