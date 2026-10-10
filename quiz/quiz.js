@@ -82,7 +82,16 @@
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var NOTE_RATE = 0.5;   // 問「你是怎麼選的」的裝置比例（用 device 決定，同一裝置固定出現或固定不出現）
   var QV = typeof window.QUIZ_QV === "string" ? window.QUIZ_QV.slice(0, 20) : null;
-  var S = null, ticker = null, qTimer = null, plays = 0, lastResult = null, best = null, history = [];
+  var S = null, ticker = null, qTimer = null, lastResult = null, history = [];
+  // 這個裝置累計的挑戰次數和歷史最佳，存在 localStorage（讀不到就退回只存在記憶體，行為和以前一樣）
+  function loadPlays() { try { var n = parseInt(localStorage.getItem("quizPlays"), 10); return n > 0 ? n : 0; } catch (e) { return 0; } }
+  function loadBest() {
+    try { var b = JSON.parse(localStorage.getItem("quizBest")); if (b && isFinite(b.v) && isFinite(b.ms)) return { v: +b.v, ms: +b.ms }; } catch (e) {}
+    return null;
+  }
+  var plays = loadPlays(), best = loadBest(), sessionPlays = 0;   // sessionPlays：這次開啟頁面後的第幾次，只用來區分 quiz_start 和 retry_start
+  function savePlays() { try { localStorage.setItem("quizPlays", String(plays)); } catch (e) {} }
+  function saveBest() { try { localStorage.setItem("quizBest", JSON.stringify(best)); } catch (e) {} }
 
   function rnd(n) { return Math.floor(Math.random() * n); }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -177,9 +186,9 @@
   }
 
   function start() {
-    plays++;
+    plays = Math.max(plays, loadPlays()) + 1; sessionPlays++; savePlays();   // 重新讀一次，另一個分頁也玩過的話不會重複編號
     S = { used: {}, ans: [], t0: performance.now(), cur: null, locked: false, guess: guess, rival: rival };
-    RUN = null; track(plays > 1 ? "retry_start" : "start", { self_estimate: guess, challenge: !!rival });
+    RUN = null; track(sessionPlays > 1 ? "retry_start" : "start", { self_estimate: guess, challenge: !!rival });
     feed.innerHTML = ""; closeSheet(); restartBtn.hidden = false;
     add(postShell(HOST, "now", "", '<div class="post-text">計時開始。15 題，每題 10 秒。</div>', "done"));
     clearInterval(ticker); ticker = setInterval(tick, 200); tick();
@@ -198,7 +207,7 @@
     }
     var n = S.ans.length;
     track("abandon", { at_question: n + 1 });
-    if (n < 3) plays--;                      // 前 3 題內放棄不算一次挑戰（只影響「第幾次挑戰」的編號）
+    if (n < 3) { plays = Math.max(0, plays - 1); sessionPlays--; savePlays(); }                      // 前 3 題內放棄不算一次挑戰（只影響「第幾次挑戰」的編號）
     S = null; clearInterval(ticker); clearTimeout(qTimer); intro(); window.scrollTo(0, 0);
   });
 
@@ -484,8 +493,9 @@
   function finish() {
     clearInterval(ticker); restartBtn.hidden = true; confirmUntil = 0;
     var ans = S.ans, ms = S.total, v = estimate(ans);
+    var saved = loadBest(); if (saved && (!best || saved.v > best.v || (saved.v === best.v && saved.ms < best.ms))) best = saved;   // 另一個分頁可能刷新過最佳
     var isBest = !best || v > best.v || (v === best.v && ms < best.ms);
-    if (isBest) best = { v: v, ms: ms };
+    if (isBest) { best = { v: v, ms: Math.round(ms) }; saveBest(); }
     var prev = history.slice(); history.push([v, ms / 1000]);                  // 舊成績都留著，也都算進排名
     var correct = ans.filter(function (a) { return a.ok; }).length;
     var pf = prefixOf(ans, ms), ti = titleOf(v);
@@ -517,7 +527,7 @@
     }
     RUN = {
       date: (function (d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); })(new Date()),  // 使用者當地日期，每日排名用
-      attempt_no: plays, is_best: isBest, self_estimate: g,
+      attempt_no: Math.min(plays, 999), is_best: isBest, self_estimate: g,
       challenge: rv ? { rival_vocab: rv.v, rival_sec: rv.sec, won: won } : null,
       vocab: v, theta: Math.round(thetaOf(ans) * 100) / 100, correct: correct, total_ms: Math.round(ms),
       answers: ans.map(function (a, n) { return { n: n + 1, word: a.w.k, level: a.level, result: a.ok ? "correct" : a.kind === "pick" ? "wrong" : a.kind, picked: a.picked || null, options: a.options, ms: Math.round(a.rt * 1000), hid: !!a.hid }; })
