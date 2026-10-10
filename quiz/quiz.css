@@ -183,3 +183,9 @@ textarea.share { width: 100%; min-height: 156px; resize: vertical; border: 0; bo
 .sheet-example { background: var(--bg-soft); border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; }
 .sheet-example p { margin: 4px 0; }
 
+
+/* 作答中和作答後的題目：不能選取、長按不出選單，避免手機跳出「搜尋 Google／查字典」 */
+.post.live .post-text, .post.done .post-text {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+.post.live .vocab.target, .post.done .vocab.target { pointer-events: none; }

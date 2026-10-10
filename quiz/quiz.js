@@ -244,6 +244,9 @@
     qTimer = setTimeout(function () { answer("timeout", ""); }, LIMIT);
   }
 
+  // 作答中的題目不給長按選單（手機會跳出搜尋或查字典）
+  feed.addEventListener("contextmenu", function (e) { if (e.target.closest(".post.live .post-text, .post.done .post-text")) e.preventDefault(); });
+
   function answer(kind, z) {
     if (!S || S.locked) return;
     S.locked = true; clearTimeout(qTimer);
