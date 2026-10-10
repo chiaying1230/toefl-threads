@@ -4,7 +4,8 @@
 //   • counts at most PER_DEVICE_DAILY results per device per day; the rest are left out of the distribution;
 //   • rewrites quizStats/all and the day documents in one transaction as "verified baseline + results newer than the cursor",
 //     so results that arrive while it runs are never overwritten (the transaction retries if the live documents change);
-//   • updates quizStats/words: how often each word was shown and answered correctly (first attempts only).
+//   • updates quizStats/words (first attempts only): per word, how often it was shown (n) and answered correctly (c), and for each
+//     wrong option (o) how often it was shown (s) and picked (p), which shows how tempting each distractor is.
 // Results younger than SETTLE_MS are left for the next run, so a slow write can't slip behind the cursor.
 import crypto from "node:crypto";
 import fs from "node:fs";
@@ -27,7 +28,8 @@ function quizWords() {
   const ctx = {};
   ctx.window = ctx;
   vm.runInNewContext(fs.readFileSync(file, "utf8"), ctx);
-  return new Set(ctx.QUIZ_QUESTIONS.map((q) => q[0]));
+  // word -> the known wrong options (only these are counted, so a forged answer can't add fields)
+  return new Map(ctx.QUIZ_QUESTIONS.map((q) => [q[0], new Set(q.slice(6))]));
 }
 
 const add = (o, f) => { o[f] = (o[f] || 0) + 1; o.n = (o.n || 0) + 1; };
@@ -60,8 +62,15 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
       if (r.attempt_no === 1 && Array.isArray(r.answers)) {
         r.answers.forEach((a) => {
           if (!a || !words.has(a.word)) return;
-          const w = (wordInc[a.word] = wordInc[a.word] || { n: 0, c: 0 });
+          const w = (wordInc[a.word] = wordInc[a.word] || { n: 0, c: 0, o: {} });
           w.n++; if (a.result === "correct") w.c++;
+          if (Array.isArray(a.options)) {
+            a.options.forEach((opt) => {
+              if (!words.get(a.word).has(opt)) return;
+              const x = (w.o[opt] = w.o[opt] || { s: 0, p: 0 });
+              x.s++; if (a.picked === opt) x.p++;
+            });
+          }
         });
       }
     }
@@ -73,7 +82,11 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
     const batch = db.batch();
     batch.set(stateRef, { ...state, updatedAt: FieldValue.serverTimestamp() });
     const inc = {};
-    Object.keys(wordInc).forEach((w) => { inc[w] = { n: FieldValue.increment(wordInc[w].n), c: FieldValue.increment(wordInc[w].c) }; });
+    Object.keys(wordInc).forEach((w) => {
+      const o = {};
+      Object.keys(wordInc[w].o).forEach((t) => { o[t] = { s: FieldValue.increment(wordInc[w].o[t].s), p: FieldValue.increment(wordInc[w].o[t].p) }; });
+      inc[w] = { n: FieldValue.increment(wordInc[w].n), c: FieldValue.increment(wordInc[w].c), ...(Object.keys(o).length ? { o } : {}) };
+    });
     if (Object.keys(inc).length) batch.set(wordsRef, inc, { merge: true });
     await batch.commit();
   }

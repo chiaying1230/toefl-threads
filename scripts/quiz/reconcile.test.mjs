@@ -14,7 +14,9 @@ const ago = (min) => Timestamp.fromMillis(now.getTime() - min * 60000);
 const R = (over = {}) => ({
   date: "2026-10-10", createdAt: ago(60), device: "dev-aaaaaaaa", attempt_no: 1, is_best: true, self_estimate: null, challenge: null,
   vocab: 5500, theta: 0.4, correct: 9, total_ms: 72000, source: "web",
-  answers: [{ n: 1, word: "hole", level: 1, result: "correct" }, { n: 2, word: "hometown", level: 1, result: "wrong" }], ...over
+  answers: [
+    { n: 1, word: "hole", level: 1, result: "correct", picked: "洞", options: ["雪人", "洞", "蛋糕", "記號"] },
+    { n: 2, word: "hometown", level: 1, result: "wrong", picked: "祖母", options: ["祖母", "小狗", "家鄉", "房間"] }], ...over
 });
 const args = () => ({ db, FieldValue, FieldPath, Timestamp, now, log: () => {} });
 const get = async (p) => (await db.doc(p).get()).data();
@@ -30,7 +32,10 @@ test("counts results, caps one device at 10 a day, and rewrites the live documen
   const day = await get("quizStats/day-2026-10-10");
   assert.equal(day.n, 11);
   const w = await get("quizStats/words");
-  assert.deepEqual(w.hole, { n: 11, c: 11 }); assert.deepEqual(w.hometown, { n: 11, c: 0 });
+  assert.equal(w.hole.n, 11); assert.equal(w.hole.c, 11); assert.equal(w.hometown.n, 11); assert.equal(w.hometown.c, 0);
+  // distractor stats: "祖母" was shown 11 times and picked every time; the correct option "家鄉" is not listed
+  assert.deepEqual(w.hometown.o["祖母"], { s: 11, p: 11 }); assert.deepEqual(w.hometown.o["小狗"], { s: 11, p: 0 });
+  assert.equal(w.hometown.o["家鄉"], undefined); assert.deepEqual(w.hole.o["雪人"], { s: 11, p: 0 });
   const st = await get("quizStats/state");
   assert.ok(st.cursorId && st.verified.n === 11);
   assert.ok(!JSON.stringify(st).includes("dev-aaaaaaaa"), "device ids must not be stored in readable form");
@@ -62,4 +67,12 @@ test("unknown words in answers are ignored", async () => {
   await reconcile(args());
   const w = await get("quizStats/words");
   assert.ok(!w || Object.keys(w).length === 0);
+});
+
+test("forged options are not counted", async () => {
+  await db.doc("quizRuns/f").set(R({ answers: [{ n: 1, word: "hole", level: 1, result: "wrong", picked: "x.y", options: ["x.y", "洞", "雪人", "a/b"] }] }));
+  await reconcile(args());
+  const w = await get("quizStats/words");
+  assert.deepEqual(Object.keys(w.hole.o), ["雪人"]);
+  assert.deepEqual(w.hole.o["雪人"], { s: 1, p: 0 });
 });
