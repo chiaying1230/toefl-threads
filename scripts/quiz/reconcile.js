@@ -9,6 +9,11 @@
 //     Notes are asked mostly for wrong answers, so r counts are not rates over all answers: read them next to n and c.
 //   • updates quizStats/words (first attempts only): per word, how often it was shown (n) and answered correctly (c), and for each
 //     wrong option (o) how often it was shown (s) and picked (p), which shows how tempting each distractor is.
+//   • review quiz (Review tab → Quiz, docs/review-quiz-spec.md): reads reviewRuns and reviewNotes with cursors of their own and
+//     adds, per word, into quizStats/reviewWords-<first letter>: n / c (shown / right), n0 / c0 (the same for words at box 0,
+//     i.e. new or just missed), o (wrong options of /quiz bank words: shown s / picked p) and r (reasons, as for /quiz).
+//     At most PER_DEVICE_DAILY rounds and PER_DEVICE_DAILY notes per device per day. Kept apart from quizStats/words:
+//     these are people's own saved words, seen again and again, so they are a different population.
 // Results younger than SETTLE_MS are left for the next run, so a slow write can't slip behind the cursor.
 import crypto from "node:crypto";
 import fs from "node:fs";
@@ -36,6 +41,19 @@ function quizWords() {
   return new Map(ctx.QUIZ_QUESTIONS.map((q) => [q[0], new Set(q.slice(6, 9))]));
 }
 
+// Every word in the app's word lists (main list and packs): review answers for other words are ignored.
+function appWords() {
+  const dir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "js", "data");
+  const ctx = { VOCAB: {}, POSTS: [], PACKS: {}, PACK_POSTS: {} };
+  ctx.window = ctx;
+  const files = fs.readdirSync(dir).filter((f) => /^batch-\d+\.js$/.test(f)).map((f) => path.join(dir, f))
+    .concat(fs.readdirSync(path.join(dir, "packs")).filter((f) => f.endsWith(".js") && f !== "index.js").map((f) => path.join(dir, "packs", f)));
+  files.forEach((f) => vm.runInNewContext(fs.readFileSync(f, "utf8"), ctx));
+  return new Set(Object.keys(ctx.VOCAB));
+}
+
+const reviewDoc = (word) => "reviewWords-" + (/^[a-z]/.test(word) ? word[0] : "other");
+
 const add = (o, f) => { o[f] = (o[f] || 0) + 1; o.n = (o.n || 0) + 1; };
 const hash = (s) => crypto.createHash("sha256").update(String(s)).digest("hex").slice(0, 12);   // device ids are not kept in readable form
 
@@ -46,9 +64,12 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
   const settle = Timestamp.fromMillis(now.getTime() - SETTLE_MS);
   const old = (await stateRef.get()).data() || {};
   const state = { cursorAt: old.cursorAt || null, cursorId: old.cursorId || "", verified: old.verified || {}, days: old.days || {}, devDay: old.devDay || {},
-    noteCursorAt: old.noteCursorAt || null, noteCursorId: old.noteCursorId || "", noteDevDay: old.noteDevDay || {} };
+    noteCursorAt: old.noteCursorAt || null, noteCursorId: old.noteCursorId || "", noteDevDay: old.noteDevDay || {},
+    rvCursorAt: old.rvCursorAt || null, rvCursorId: old.rvCursorId || "", rvDevDay: old.rvDevDay || {},
+    rvNoteCursorAt: old.rvNoteCursorAt || null, rvNoteCursorId: old.rvNoteCursorId || "", rvNoteDevDay: old.rvNoteDevDay || {} };
   const oldest = new Date(now.getTime() - KEEP_DAYS * 86400000).toISOString().slice(0, 10);
   let processed = 0, excess = 0, notesProcessed = 0, notesExcess = 0, notesCounted = 0;
+  let rvProcessed = 0, rvExcess = 0, rvNotesProcessed = 0, rvNotesCounted = 0, rvNotesExcess = 0;
 
   for (;;) {
     let q = runs.where("createdAt", "<", settle).orderBy("createdAt").orderBy(FieldPath.documentId()).limit(PAGE);
@@ -132,6 +153,86 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
     await batch.commit();
   }
 
+  // Review quiz rounds and notes (docs/review-quiz-spec.md): per-word counts in quizStats/reviewWords-<letter>.
+  const vocab = appWords();
+  const bankOf = (word) => words.get(word.replace(/_/g, " "));   // review answers use word-list keys ("a_deluge_of")
+  // Adds the per-word increments to the right letter documents, together with the state that covers them.
+  const commitReview = async (perWord) => {
+    const batch = db.batch(), docs = {};
+    batch.set(stateRef, { ...state, updatedAt: FieldValue.serverTimestamp() });
+    Object.keys(perWord).forEach((w) => { (docs[reviewDoc(w)] = docs[reviewDoc(w)] || {})[w] = perWord[w]; });
+    Object.keys(docs).forEach((id) => batch.set(stats.doc(id), docs[id], { merge: true }));
+    await batch.commit();
+  };
+  const incOf = (counts) => {
+    const out = {};
+    Object.keys(counts).forEach((k) => { out[k] = typeof counts[k] === "number" ? FieldValue.increment(counts[k]) : incOf(counts[k]); });
+    return out;
+  };
+
+  const rvRuns = db.collection("reviewRuns");
+  for (;;) {
+    let q = rvRuns.where("createdAt", "<", settle).orderBy("createdAt").orderBy(FieldPath.documentId()).limit(PAGE);
+    if (state.rvCursorAt) q = q.startAfter(state.rvCursorAt, state.rvCursorId);
+    const snap = await q.get();
+    if (snap.empty) break;
+    const perWord = {};
+    for (const d of snap.docs) {
+      const r = d.data();
+      const dev = hash(r.device), day = (state.rvDevDay[r.date] = state.rvDevDay[r.date] || {});
+      if ((day[dev] || 0) >= PER_DEVICE_DAILY) { rvExcess++; continue; }
+      day[dev] = (day[dev] || 0) + 1;
+      (Array.isArray(r.answers) ? r.answers.slice(0, 10) : []).forEach((a) => {
+        if (!a || typeof a.word !== "string" || !vocab.has(a.word)) return;
+        const w = (perWord[a.word] = perWord[a.word] || { n: 0, c: 0, n0: 0, c0: 0 });
+        const ok = a.result === "correct";
+        w.n++; if (ok) w.c++;
+        if (a.box === 0) { w.n0++; if (ok) w.c0++; }
+        const known = bankOf(a.word);
+        if (known && Array.isArray(a.options)) {
+          a.options.forEach((opt) => {
+            if (!known.has(opt)) return;
+            const x = ((w.o = w.o || {})[opt] = w.o[opt] || { s: 0, p: 0 });
+            x.s++; if (a.picked === opt) x.p++;
+          });
+        }
+      });
+    }
+    const last = snap.docs[snap.docs.length - 1];
+    state.rvCursorAt = last.get("createdAt"); state.rvCursorId = last.id; rvProcessed += snap.size;
+    Object.keys(state.rvDevDay).forEach((k) => { if (k < oldest) delete state.rvDevDay[k]; });
+    const inc = {};
+    Object.keys(perWord).forEach((w) => { inc[w] = incOf(perWord[w]); });
+    await commitReview(inc);
+  }
+
+  const rvNotes = db.collection("reviewNotes");
+  for (;;) {
+    let q = rvNotes.where("createdAt", "<", settle).orderBy("createdAt").orderBy(FieldPath.documentId()).limit(PAGE);
+    if (state.rvNoteCursorAt) q = q.startAfter(state.rvNoteCursorAt, state.rvNoteCursorId);
+    const snap = await q.get();
+    if (snap.empty) break;
+    const perWord = {};
+    for (const d of snap.docs) {
+      const r = d.data();
+      const date = d.get("createdAt").toDate().toISOString().slice(0, 10);
+      const day = (state.rvNoteDevDay[date] = state.rvNoteDevDay[date] || {});
+      const dev = hash(r.device);
+      if ((day[dev] || 0) >= PER_DEVICE_DAILY) { rvNotesExcess++; continue; }
+      day[dev] = (day[dev] || 0) + 1;
+      if (typeof r.word !== "string" || !vocab.has(r.word) || !NOTE_REASONS.includes(r.reason) || (r.result !== "correct" && r.result !== "wrong")) continue;
+      const w = ((perWord[r.word] = perWord[r.word] || {}).r = perWord[r.word].r || {});
+      w[r.reason + "_" + r.result] = (w[r.reason + "_" + r.result] || 0) + 1;
+      rvNotesCounted++;
+    }
+    const last = snap.docs[snap.docs.length - 1];
+    state.rvNoteCursorAt = last.get("createdAt"); state.rvNoteCursorId = last.id; rvNotesProcessed += snap.size;
+    Object.keys(state.rvNoteDevDay).forEach((k) => { if (k < oldest) delete state.rvNoteDevDay[k]; });
+    const inc = {};
+    Object.keys(perWord).forEach((w) => { inc[w] = incOf(perWord[w]); });
+    await commitReview(inc);
+  }
+
   // Live documents = verified baseline + everything newer than the cursor (not yet verified).
   await db.runTransaction(async (tx) => {
     const dates = Object.keys(state.days);
@@ -155,8 +256,9 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
     Object.keys(byDay).forEach((dt, i) => write(stats.doc("day-" + dt), byDay[dt], live[1 + i] || { exists: false }));
   });
 
-  log(`quiz reconcile: ${processed} new results (${excess} over the per-device limit), cursor ${state.cursorId || "-"}; ${notesProcessed} new notes (${notesCounted} counted, ${notesExcess} over the per-device limit)`);
-  return { processed, excess, notesProcessed, notesCounted, notesExcess, state };
+  log(`quiz reconcile: ${processed} new results (${excess} over the per-device limit), cursor ${state.cursorId || "-"}; ${notesProcessed} new notes (${notesCounted} counted, ${notesExcess} over the per-device limit); ` +
+    `review: ${rvProcessed} new rounds (${rvExcess} over the limit), ${rvNotesProcessed} new notes (${rvNotesCounted} counted, ${rvNotesExcess} over the limit)`);
+  return { processed, excess, notesProcessed, notesCounted, notesExcess, rvProcessed, rvExcess, rvNotesProcessed, rvNotesCounted, rvNotesExcess, state };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

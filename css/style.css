@@ -621,3 +621,31 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .wotd-mini { display: block; margin: 8px 16px 0; color: var(--muted); font-size: 14px; }
 .saved-note { color: var(--saved); font-weight: 700; }
 .notice .primary-btn { margin-top: 8px; }
+
+/* Entry to the vocabulary-size test (/quiz) */
+.quiz-entry { margin: 10px 16px 6px; }
+.quiz-entry-link { display: grid; gap: 2px; margin-top: 4px; color: var(--text); text-decoration: none; }
+.quiz-entry-link b { font-size: 17px; }
+.quiz-entry-go { justify-self: start; margin-top: 8px; padding: 8px 14px; border-radius: 999px; background: var(--text); color: var(--bg); font-weight: 700; font-size: 14px; }
+a.wotd-mini { text-decoration: none; }
+.stat-link { color: var(--muted); text-decoration: none; }
+
+/* Review quiz (Review tab → Quiz) */
+.rq .quiz-word { margin: 4px 0 0; }
+.rq-card { margin-top: 10px; padding: 12px 14px; border-radius: 14px; background: var(--bg-soft); }
+.rq-who { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 14px; }
+.rq-text { margin: 0; font-size: 16px; line-height: 1.5; }
+.rq-target { background: color-mix(in srgb, var(--accent) 16%, transparent); border-radius: 5px; padding: 1px 4px; font-weight: 700; }
+.rq .quiz-opt:disabled { opacity: 1; }
+.rq .quiz-opt.picked { background: color-mix(in srgb, var(--text) 16%, var(--bg-soft)); }
+.rq-mine { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+.rq-mine b { color: var(--text); }
+.rq-note-q { margin: 10px 0 0; font-weight: 700; }
+.rq-other { display: flex; gap: 8px; margin-top: 10px; }
+.rq-other input { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: 16px; }
+.rq-small { display: flex; justify-content: center; gap: 18px; margin-top: 12px; }
+.rq-small button { color: var(--muted); font-size: 13px; text-decoration: underline; }
+.rq-sum { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; margin-top: 12px; font-size: 14px; }
+.rq-sum .ok { color: var(--saved); }
+.rq-sum .bad { color: var(--like); }
+.rq-full { display: block; margin-top: 16px; text-align: center; color: var(--accent); font-weight: 600; font-size: 14px; text-decoration: none; }

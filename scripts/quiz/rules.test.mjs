@@ -1,10 +1,10 @@
-// Firestore rules tests for the /quiz collections. Run: npm test --prefix scripts/quiz  (needs Java for the emulator)
+// Firestore rules tests for the /quiz and review-quiz collections. Run: npm test --prefix scripts/quiz  (needs Java for the emulator)
 import { test, before, after, beforeEach } from "node:test";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { initializeTestEnvironment, assertFails, assertSucceeds } from "@firebase/rules-unit-testing";
-import { doc, getDoc, setDoc, writeBatch, increment, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, writeBatch, increment, serverTimestamp, updateDoc, deleteDoc } from "firebase/firestore";
 
 const rules = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "../../firestore.rules"), "utf8");
 let env;
@@ -132,8 +132,8 @@ test("result with a challenge and a self estimate is accepted", async () => {
 });
 
 test("existing rules still work: meta probe and an unrelated collection", async () => {
-  await assertSucceeds(getDoc(doc(db(), "meta", "rules-v9")));
-  await assertFails(getDoc(doc(db(), "meta", "rules-v8")));
+  await assertSucceeds(getDoc(doc(db(), "meta", "rules-v10")));
+  await assertFails(getDoc(doc(db(), "meta", "rules-v9")));
   await assertFails(getDoc(doc(db(), "users", "someone")));
 });
 
@@ -191,4 +191,76 @@ test("notes can't be read, changed, deleted or overwritten", async () => {
   await assertFails(getDoc(noteDoc(db())));
   await assertFails(updateDoc(noteDoc(db()), { reason: "guess" }));
   await assertFails(setDoc(noteDoc(db()), note({ reason: "guess" })));
+});
+
+// ---- reviewRuns / reviewNotes (Review tab → Quiz) ----
+const rvDevice = "dev-12345678", rvRunId = "rvrun-000001";
+const rvRun = (over = {}) => ({
+  device: rvDevice, date: today, source: "app", qv: "5145ab15", correct: 2, createdAt: serverTimestamp(),
+  answers: [
+    { word: "hole", bank: true, options: ["洞", "雪人", "蛋糕", "記號"], picked: "洞", result: "correct", ms: 3100, hid: false, box: 0 },
+    { word: "a_deluge_of", bank: false, options: ["大量的…", "x", "y", "z"], picked: "x", result: "wrong", ms: 9000, hid: false, box: 2 },
+    { word: "lock", bank: true, options: ["鎖", "蓋子", "名字", "窗戶"], picked: "鎖", result: "correct", ms: 2500, hid: true, box: 1 }
+  ], ...over
+});
+const rvNote = (over = {}) => ({ run: rvRunId, device: rvDevice, word: "a_deluge_of", picked: "x", result: "wrong", ms: 9000, reason: "torn", box: 2, createdAt: serverTimestamp(), ...over });
+const rvNoteDoc = (d, over) => doc(d, "reviewNotes", (over && over.run || rvRunId) + "_" + (over && over.word || "a_deluge_of"));
+const withRvRun = async () => { await assertSucceeds(setDoc(doc(db(), "reviewRuns", rvRunId), rvRun())); };
+
+test("review round: a normal round is accepted, with or without source/qv", async () => {
+  await withRvRun();
+  const { source, qv, ...bare } = rvRun();
+  await assertSucceeds(setDoc(doc(db(), "reviewRuns", "rvrun-000002"), bare));
+});
+
+test("review round: bad values are rejected", async () => {
+  const bad = [
+    { answers: [] }, { answers: Array.from({ length: 11 }, () => rvRun().answers[0]) }, { correct: 4 }, { correct: -1 },
+    { date: "today" }, { device: "short" }, { uid: "someone" }, { createdAt: new Date(2020, 1, 1) }, { source: "x".repeat(21) }
+  ];
+  for (const [i, over] of bad.entries()) await assertFails(setDoc(doc(db(), "reviewRuns", "rvbad-0000" + i), rvRun(over)));
+});
+
+test("review round: can't be read, changed or deleted", async () => {
+  await withRvRun();
+  await assertFails(getDoc(doc(db(), "reviewRuns", rvRunId)));
+  await assertFails(updateDoc(doc(db(), "reviewRuns", rvRunId), { correct: 3 }));
+  await assertFails(deleteDoc(doc(db(), "reviewRuns", rvRunId)));
+});
+
+test("review note: accepted for an existing round (every reason), lookalike may carry other_word", async () => {
+  await withRvRun();
+  for (const reason of ["sure", "torn", "lookalike", "affix", "forgot", "guess", "misclick"]) {
+    await assertSucceeds(setDoc(rvNoteDoc(db(), { word: "w" + reason }), rvNote({ word: "w" + reason, reason })));
+  }
+  await assertSucceeds(setDoc(rvNoteDoc(db(), { word: "hole" }), rvNote({ word: "hole", reason: "lookalike", other_word: "hold" })));
+});
+
+test("review note: no round, another device, a /quiz run, or a bad id is rejected", async () => {
+  await assertFails(setDoc(rvNoteDoc(db()), rvNote()));
+  await assertSucceeds(setDoc(doc(db(), "quizRuns", rvRunId), run({ device: rvDevice })));
+  await assertFails(setDoc(rvNoteDoc(db()), rvNote()));          // a quizRuns doc with that id is not a review round
+  await withRvRun();
+  await assertFails(setDoc(rvNoteDoc(db()), rvNote({ device: "dev-someone-else" })));
+  await assertFails(setDoc(doc(db(), "reviewNotes", "something-else"), rvNote()));
+});
+
+test("review note: bad values are rejected", async () => {
+  await withRvRun();
+  const bad = [
+    { reason: "because" }, { result: "skip" }, { ms: 60001 }, { ms: -1 }, { box: -1 }, { box: 21 }, { box: "2" },
+    { other_word: "adopt" }, { reason: "lookalike", other_word: "" }, { reason: "lookalike", other_word: "x".repeat(31) },
+    { comment: "hi" }, { createdAt: new Date(2020, 1, 1) }
+  ];
+  for (const over of bad) await assertFails(setDoc(rvNoteDoc(db()), rvNote(over)));
+  const { box, ...noBox } = rvNote();
+  await assertFails(setDoc(rvNoteDoc(db()), noBox));
+});
+
+test("review note: can't be read, changed or overwritten", async () => {
+  await withRvRun();
+  await assertSucceeds(setDoc(rvNoteDoc(db()), rvNote()));
+  await assertFails(getDoc(rvNoteDoc(db())));
+  await assertFails(updateDoc(rvNoteDoc(db()), { reason: "guess" }));
+  await assertFails(setDoc(rvNoteDoc(db()), rvNote({ reason: "guess" })));
 });

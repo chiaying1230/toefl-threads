@@ -391,6 +391,7 @@
   function handleRoute() {
     scrollMemory[routeKey] = window.scrollY;
     route = parseHash();
+    if (route.name !== "review") rqSave();
     if (!VIEW_OF[route.name]) route = { name: "home", param: "", q: "" };
     routeKey = route.name + "/" + route.param;
     if (route.name !== "profile") profileSettings = false;
@@ -449,6 +450,28 @@
     });
   }
 
+  // ---------- Entry to the vocabulary-size test (/quiz) ----------
+  // /quiz is on the same site, so its best score (localStorage "quizBest": { v: words, ms }) can be read here.
+  var QUIZ_CARD_KEY = "toefu.quizCardHidden";
+  function quizBestVocab() {
+    try { var b = JSON.parse(localStorage.getItem("quizBest")); if (b && isFinite(b.v)) return +b.v; } catch (e) { /* ignore */ }
+    return null;
+  }
+
+  function quizEntryHtml() {
+    var v = quizBestVocab(), hidden = null;
+    if (v != null) {
+      return '<a class="wotd-mini" href="quiz/?from=home">📏 ' + T("Vocabulary size", "單字量") + ": <b>" + v.toLocaleString() + "</b> · " +
+        T("Try again", "再挑戰") + "</a>";
+    }
+    try { hidden = localStorage.getItem(QUIZ_CARD_KEY); } catch (e) { /* ignore */ }
+    if (hidden) return "";
+    return '<div class="card quiz-entry"><div class="wotd-top"><span class="muted small">🧪 ' + T("Vocabulary test", "單字量測驗") + "</span>" +
+      '<button class="notice-x" data-quiz-card-hide aria-label="Hide">✕</button></div>' +
+      '<a class="quiz-entry-link" href="quiz/?from=home"><b>' + T("How many English words do you know?", "你認得多少英文單字？") + "</b>" +
+      '<span class="muted small">' + T("15 questions · about 3 minutes", "15 題・約 3 分鐘") + '</span><span class="quiz-entry-go">' + T("Start", "開始") + " →</span></a></div>";
+  }
+
   function renderWordOfDay() {
     var slot = $("#wotdSlot");
     if (!slot) return;
@@ -457,9 +480,9 @@
     if (feedMode !== "foryou" || !st().prefs.onboarded) { slot.innerHTML = ""; return; }
     var key = C.wordOfDay(today, st().prefs.levels, C.activePool(st().prefs));
     var v = VOCAB[key];
-    if (!v) { slot.innerHTML = packStripHtml(); return; }
+    if (!v) { slot.innerHTML = packStripHtml() + quizEntryHtml(); return; }
     if (hidden === today) {
-      slot.innerHTML = packStripHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
+      slot.innerHTML = packStripHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>" + quizEntryHtml();
       return;
     }
     var saved = !!st().words[key];
@@ -472,7 +495,7 @@
       '<div class="wotd-actions">' + (saved
         ? '<span class="saved-note">✓ ' + T("In your Review list", "已在複習清單") + "</span>"
         : '<button class="primary-btn small" data-wotd-save="' + key + '">' + T("+ Add to Review", "加入複習") + "</button>") +
-      '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>";
+      '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>" + quizEntryHtml();
   }
 
   function buildFeed() {
@@ -1084,6 +1107,7 @@
       return;
     }
     if (reviewMode === "list") renderWordList(keys, body);
+    else if (reviewMode === "quiz") renderReviewQuiz(body);
     else renderFlashcards(body);
   }
 
@@ -1142,6 +1166,213 @@
       '<div class="flash-buttons"><button class="btn-again" data-again>Still learning</button><button class="btn-got" data-got>Got it ✓</button></div></div>';
   }
 
+  // ---------- Review quiz: pick the meaning; sometimes say how you chose (docs/review-quiz-spec.md) ----------
+  // Questions for words in the /quiz bank reuse its sentence and hand-picked wrong answers; other words use the
+  // word list's example and wrong answers from words with the same part of speech. Each answer moves the word in
+  // spaced repetition like a flashcard. For half of the devices (same anonymous id as /quiz), a few answers are
+  // followed by "how did you choose?" before the answer is shown; finished rounds are saved anonymously.
+  var RQ_MAX = 10, RQ_NOTE_DAY_MAX = 6, RQ_NOTE_RATE = 0.5, RQ_NOTE_KEY = "toefu.reviewNotesDay";
+  // Same wording as /quiz so the answers can be compared.
+  var RQ_REASONS = [["sure", "我會，很確定"], ["torn", "在兩個答案之間猶豫"], ["lookalike", "想到另一個很像的字"], ["affix", "看字的一部分猜的"], ["forgot", "有印象，但想不起來"], ["guess", "用猜的"]];
+  var rq = null;              // the current round
+  var rqBank = null, rqBankState = "";   // word key -> /quiz bank row; "", "loading", "ready", "failed"
+
+  function quizDeviceId() {
+    var id = null;
+    try { id = localStorage.getItem("quizDevice"); } catch (e) { /* ignore */ }
+    if (!id) {
+      var a = new Uint8Array(12);
+      if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a); else for (var i = 0; i < a.length; i++) a[i] = Math.floor(Math.random() * 256);
+      id = Array.prototype.map.call(a, function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      try { localStorage.setItem("quizDevice", id); } catch (e) { /* ignore */ }
+    }
+    return id;
+  }
+  function rqNoteArm() { return parseInt(quizDeviceId().slice(0, 8), 16) / 4294967296 < RQ_NOTE_RATE; }
+  function rqNotesToday() {
+    try { var x = JSON.parse(localStorage.getItem(RQ_NOTE_KEY)); return x && x.day === C.dayKey() ? x.n : 0; } catch (e) { return 0; }
+  }
+  function rqCountNote() {
+    try { localStorage.setItem(RQ_NOTE_KEY, JSON.stringify({ day: C.dayKey(), n: rqNotesToday() + 1 })); } catch (e) { /* ignore */ }
+  }
+
+  function rqLoadBank(done) {
+    function build() {
+      rqBank = {};
+      (window.QUIZ_QUESTIONS || []).forEach(function (r) { rqBank[r[0].replace(/ /g, "_")] = r; });
+      rqBankState = "ready"; done();
+    }
+    if (window.QUIZ_QUESTIONS) return build();
+    if (rqBankState === "loading") return;
+    rqBankState = "loading";
+    var el = document.createElement("script");
+    el.onload = build;
+    el.onerror = function () { rqBankState = "failed"; done(); };
+    el.src = "js/data/quiz-questions.js";
+    document.head.appendChild(el);
+  }
+
+  function rqItem(k) {
+    var v = VOCAB[k], row = rqBank && rqBank[k], m;
+    if (row) {
+      m = /^(.*?)\{([^}]+)\}(.*)$/.exec(row[3]);
+      var opts = [{ zh: row[5], t: "answer" }].concat([6, 7, 8].map(function (j, n) { return { zh: row[j], t: (row[9] && row[9][n]) || "" }; }));
+      return { key: k, bank: true, author: row[2], before: m ? m[1] : row[3], word: m ? m[2] : null, after: m ? m[3] : "", options: C.shuffle(opts) };
+    }
+    var all = Object.keys(VOCAB).filter(function (x) { return x !== k && VOCAB[x].zh !== v.zh; });
+    var samePos = all.filter(function (x) { return VOCAB[x].pos === v.pos; });
+    var sameLevel = samePos.filter(function (x) { return VOCAB[x].level === v.level; });
+    var picked = [], seen = {}; seen[v.zh] = 1;
+    [sameLevel, samePos, all].forEach(function (pool) {
+      C.shuffle(pool).some(function (x) {
+        if (picked.length >= 3) return true;
+        if (!seen[VOCAB[x].zh]) { seen[VOCAB[x].zh] = 1; picked.push({ zh: VOCAB[x].zh, t: "gen" }); }
+        return false;
+      });
+    });
+    m = C.wordPattern(k).exec(v.ex);
+    return { key: k, bank: false, author: null, before: m ? v.ex.slice(0, m.index) : v.ex, word: m ? m[0] : null, after: m ? v.ex.slice(m.index + m[0].length) : "",
+      options: C.shuffle([{ zh: v.zh, t: "answer" }].concat(picked)) };
+  }
+
+  function rqStart() {
+    var keys = C.shuffle(practiceAll ? savedKeys() : dueKeys()).slice(0, RQ_MAX);
+    rq = { items: keys.map(rqItem), i: 0, phase: keys.length ? "question" : "empty", shownAt: Date.now(), hid: false,
+      answers: [], notes: [], asked: { wrong: 0, slow: 0 }, from: 0, other: false };
+  }
+
+  // Ask about every wrong answer (up to 2 a round) and one right answer that took much longer than the others.
+  function rqShouldAsk(a) {
+    if (!rqNoteArm() || rqNotesToday() >= RQ_NOTE_DAY_MAX) return false;
+    if (a.result === "wrong") return rq.asked.wrong < 2;
+    if (a.hid || rq.asked.slow >= 1) return false;
+    var prev = rq.answers.slice(0, -1).map(function (x) { return x.ms; }).sort(function (x, y) { return x - y; });
+    if (prev.length < 3) return false;
+    var n = prev.length, med = n % 2 ? prev[(n - 1) / 2] : (prev[n / 2 - 1] + prev[n / 2]) / 2;
+    return a.ms > 1.5 * med;
+  }
+
+  function rqPick(n) {
+    if (!rq || rq.phase !== "question") return;
+    var it = rq.items[rq.i], o = it.options[n], w = st().words[it.key];
+    var a = { word: it.key, bank: it.bank, options: it.options.map(function (x) { return x.zh; }), picked: o.zh,
+      result: o.t === "answer" ? "correct" : "wrong", ms: Math.min(600000, Date.now() - rq.shownAt), hid: rq.hid, box: (w && w.box) || 0 };
+    rq.answers.push(a);
+    it.picked = n;
+    if (w) {
+      reviewWord(it.key, a.result === "correct");
+      if (a.result === "correct") { st().stats.quiz = (st().stats.quiz || 0) + 1; addActivity(1); }
+      S.save(); refreshWordMarks();
+    }
+    if (rqShouldAsk(a)) {
+      rq.asked[a.result === "wrong" ? "wrong" : "slow"]++;
+      rqCountNote();
+      rq.phase = "note"; rq.other = false;
+    } else rq.phase = "reveal";
+    renderReview();
+  }
+
+  function rqReason(reason, other) {
+    if (!rq || rq.phase !== "note") return;
+    var a = rq.answers[rq.answers.length - 1];
+    var note = { at: rq.answers.length - 1, word: a.word, picked: a.picked, result: a.result, ms: Math.min(60000, a.ms), reason: reason, box: a.box };
+    if (other) note.other_word = other;
+    if (reason) rq.notes.push(note);
+    rq.phase = "reveal";
+    renderReview();
+  }
+
+  function rqNext() {
+    if (!rq || rq.phase !== "reveal") return;
+    rq.i++;
+    if (rq.i >= rq.items.length) { rq.phase = "done"; rqSave(); }
+    else { rq.phase = "question"; rq.shownAt = Date.now(); rq.hid = false; }
+    renderReview(); window.scrollTo(0, 0);
+  }
+
+  // Saves the answers not saved yet: at the end of a round, or when leaving it with at least 3 new answers.
+  // The notes are written only after their round is saved (the database rules check that the round exists).
+  function rqSave() {
+    if (!rq) return;
+    var answers = rq.answers.slice(rq.from), from = rq.from;
+    if (!answers.length || (rq.phase !== "done" && answers.length < 3)) return;
+    var notes = rq.notes.filter(function (x) { return x.at >= from; }).map(function (x) {
+      var n = Object.assign({}, x); delete n.at; return n;
+    });
+    rq.from = rq.answers.length;
+    S.saveReviewRun({
+      device: quizDeviceId(), date: C.dayKey(), source: "app", qv: String(window.QUIZ_QV || ""),
+      correct: answers.filter(function (x) { return x.result === "correct"; }).length, answers: answers
+    }).then(function (runId) {
+      if (runId) notes.forEach(function (n) { S.saveReviewNote(runId, Object.assign({ run: runId, device: quizDeviceId() }, n)); });
+    });
+  }
+
+  function rqStemHtml(it) {
+    var who = it.author && CHARACTERS[it.author];
+    var text = it.word != null ? esc(it.before) + '<span class="rq-target">' + esc(it.word) + "</span>" + esc(it.after) : esc(it.before);
+    return '<div class="rq-card">' + (who ? '<div class="rq-who">' + avatarHtml(who, "sm") + "<b>" + esc(who.name) + "</b></div>" : "") +
+      '<p class="rq-text" lang="en">' + text + "</p></div>";
+  }
+
+  function renderReviewQuiz(body) {
+    if (rqBankState !== "ready" && rqBankState !== "failed") {
+      body.innerHTML = '<div class="flash-wrap"><p class="muted" style="text-align:center">Loading…</p></div>';
+      rqLoadBank(function () { if (route.name === "review" && reviewMode === "quiz") renderReview(); });
+      return;
+    }
+    if (!rq) rqStart();
+    if (rq.phase === "empty") {
+      body.innerHTML = '<div class="flash-wrap"><div class="flashcard">' + tofuSvg(72) + '<div class="fzh">' + T("All caught up!", "今天都複習完了") + "</div>" +
+        '<div class="fex">' + T("No words are due today.", "今天沒有要複習的字。") + "</div></div>" +
+        '<div class="flash-buttons"><button class="btn-again" data-rq-all>' + T("Quiz me on all my words", "用全部單字出題") + "</button></div></div>";
+      return;
+    }
+    if (rq.phase === "done") {
+      var right = rq.answers.filter(function (x) { return x.result === "correct"; }).length;
+      body.innerHTML = '<div class="flash-wrap"><div class="flashcard"><div class="fw">' + (right === rq.answers.length ? "🎉" : "💪") + "</div>" +
+        '<div class="fzh">' + right + " / " + rq.answers.length + " " + T("correct", "答對") + "</div>" +
+        '<div class="rq-sum">' + rq.answers.map(function (x) {
+          return '<span class="' + (x.result === "correct" ? "ok" : "bad") + '">' + (x.result === "correct" ? "✓ " : "✗ ") + esc(C.label(x.word)) + "</span>";
+        }).join("") + "</div></div>" +
+        '<div class="flash-buttons"><button class="btn-got" data-rq-restart>' + T("Another round", "再來一輪") + "</button></div>" +
+        '<a class="rq-full" href="quiz/?from=review">📏 ' + T("How many English words do you know? Take the full test →", "想知道總單字量？做完整測驗 →") + "</a></div>";
+      return;
+    }
+    var it = rq.items[rq.i], v = VOCAB[it.key];
+    var head = '<div class="flash-progress">' + (practiceAll ? "Practice" : T("Due today", "今日複習")) + " · " + (rq.i + 1) + " / " + rq.items.length + "</div>" +
+      '<div class="quiz-word">' + esc(C.label(it.key)) + '</div><div class="quiz-q">' + T("What does it mean here?", "在這裡是什麼意思？") + "</div>" + rqStemHtml(it);
+    var html;
+    if (rq.phase === "question") {
+      html = head + '<div class="quiz-options">' + it.options.map(function (o, n) {
+        return '<button class="quiz-opt" data-rq-pick="' + n + '">' + esc(o.zh) + "</button>";
+      }).join("") + "</div>";
+    } else if (rq.phase === "note") {
+      // Same screen whether the answer was right or wrong: no correct answer, no ✓/✗ until they answer.
+      html = head + '<p class="rq-mine">你選了：<b>' + esc(it.options[it.picked].zh) + "</b></p>" +
+        '<p class="rq-note-q">剛剛這題，你是怎麼選的？</p><div class="quiz-options">' + RQ_REASONS.map(function (r) {
+          return '<button class="quiz-opt' + (rq.other && r[0] === "lookalike" ? " picked" : "") + '" data-rq-reason="' + r[0] + '"' + (rq.other ? " disabled" : "") + ">" + r[1] + "</button>";
+        }).join("") + "</div>" +
+        (rq.other ? '<div class="rq-other"><input id="rqOther" type="text" maxlength="30" placeholder="是哪個字？（可不填）" aria-label="是哪個字？（可不填）" autocomplete="off" autocapitalize="off"><button class="post-btn small" data-rq-send>送出</button></div>' : "") +
+        '<div class="rq-small"><button data-rq-reason="misclick">按錯了</button><button data-rq-skip>略過</button></div>';
+    } else {
+      var ok = rq.answers[rq.answers.length - 1].result === "correct";
+      html = head + '<div class="quiz-options">' + it.options.map(function (o, n) {
+        return '<button class="quiz-opt' + (o.t === "answer" ? " correct" : n === it.picked ? " wrong" : "") + '" disabled>' + esc(o.zh) + "</button>";
+      }).join("") + "</div>" +
+        '<div class="quiz-result">' + (ok ? '<b class="ok">' + T("Correct!", "答對了！") + "</b>" : '<b class="bad">' + T("Not quite.", "不對喔。") + "</b>") +
+        "<div><b>" + esc(C.label(it.key)) + "</b> " + kkHtml(it.key) + " " + esc(v.pos + " " + v.zh) + ' <button class="link" data-speak="' + it.key + '">🔊</button></div>' +
+        '<div class="muted small">' + esc(v.ex) + "<br>" + esc(v.exZh) + "</div></div>" +
+        '<div class="flash-buttons"><button class="btn-got" data-rq-next>' + (rq.i + 1 >= rq.items.length ? T("See results", "看結果") : T("Next", "下一題")) + " →</button></div>";
+    }
+    body.innerHTML = '<div class="flash-wrap rq">' + html + "</div>";
+    if (rq.phase === "note" && rq.other) { var inp = $("#rqOther"); if (inp) inp.focus(); }
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden" && rq) { if (rq.phase === "question") rq.hid = true; rqSave(); }
+  });
+
   function reviewWord(key, correct) {
     var w = st().words[key];
     if (w) st().words[key] = C.review(w, correct);
@@ -1192,7 +1423,10 @@
       (p.target ? '<p class="profile-bio muted">🎯 Target: <b>' + p.target + "</b></p>" : "");
 
     html += '<div class="profile-stats"><span><b>' + bstats.posts + "</b> threads</span><span><b>" +
-      Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span></div>";
+      Object.keys(s.following).length + "</b> following</span><span><b>🔥 " + bstats.streak + "</b> day streak</span>" +
+      (quizBestVocab() != null
+        ? '<a class="stat-link" href="quiz/?from=profile"><b>📏 ' + quizBestVocab().toLocaleString() + "</b> words</a>"
+        : '<a class="stat-link" href="quiz/?from=profile">📏 ' + T("Test vocabulary size", "測單字量") + "</a>") + "</div>";
 
     if (editingProfile) {
       html += editFormHtml();
@@ -1767,7 +2001,18 @@
       refreshWordMarks();
     }
     // Review
-    else if (d.mode) { reviewMode = d.mode; practiceAll = false; if (reviewMode === "cards") startDeck(); renderReview(); window.scrollTo(0, 0); }
+    else if (d.mode) {
+      if (reviewMode === "quiz" && d.mode !== "quiz") rqSave();
+      if (d.mode === "quiz" && (!rq || rq.phase === "done" || rq.phase === "empty")) rq = null;
+      reviewMode = d.mode; practiceAll = false; if (reviewMode === "cards") startDeck(); renderReview(); window.scrollTo(0, 0);
+    }
+    else if (d.rqPick !== undefined) rqPick(+d.rqPick);
+    else if (d.rqReason) { if (d.rqReason === "lookalike") { rq.other = true; renderReview(); } else rqReason(d.rqReason); }
+    else if (d.rqSend !== undefined) { var other = ($("#rqOther") || {}).value; rqReason("lookalike", (other || "").trim().slice(0, 30)); }
+    else if (d.rqSkip !== undefined) rqReason(null);
+    else if (d.rqNext !== undefined) rqNext();
+    else if (d.rqRestart !== undefined) { rq = null; renderReview(); window.scrollTo(0, 0); }
+    else if (d.rqAll !== undefined) { practiceAll = true; rq = null; renderReview(); }
     else if (d.practiceAll !== undefined) { practiceAll = true; startDeck(); renderReview(); }
     else if (d.toggleWord) { openWord = openWord === d.toggleWord ? null : d.toggleWord; renderReview(); }
     else if (d.speak) speak(C.label(d.speak));
@@ -1798,6 +2043,7 @@
     else if (d.removePhoto !== undefined) { draft.photo = ""; refreshDraftPreview(); }
     else if (d.lang) setLang(d.lang);
     else if (d.wotdHide !== undefined) { try { localStorage.setItem(WOTD_KEY, C.dayKey()); } catch (e) { /* ignore */ } renderWordOfDay(); }
+    else if (d.quizCardHide !== undefined) { try { localStorage.setItem(QUIZ_CARD_KEY, "1"); } catch (e) { /* ignore */ } renderWordOfDay(); }
     else if (d.wotdShow !== undefined) { try { localStorage.removeItem(WOTD_KEY); } catch (e) { /* ignore */ } renderWordOfDay(); }
     else if (d.wotdSave) { addWord(d.wotdSave, null); S.save(); refreshWordMarks(); renderWordOfDay(); toast("Added to Review 📚"); }
     else if (d.pushOn !== undefined) turnOnPush();

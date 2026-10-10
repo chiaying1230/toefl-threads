@@ -281,6 +281,50 @@ service cloud.firestore {
       allow create: if quizNoteOk(noteId, request.resource.data);
     }
 
+    // ---------- Review quiz (Review tab → Quiz, docs/review-quiz-spec.md) ----------
+    // reviewRuns: one anonymous round (1–10 answers) from someone's own saved words. reviewNotes: how they say they
+    // chose a word in that round. Same pattern as quizRuns/quizNotes: anyone can add, nobody can read, change or
+    // delete (the reconcile job reads them with an admin key), and a note's round (and its device) must exist.
+    function reviewRunOk(d) {
+      return d.keys().hasOnly(['device', 'date', 'source', 'qv', 'correct', 'answers', 'createdAt'])
+        && d.keys().hasAll(['device', 'date', 'correct', 'answers', 'createdAt'])
+        && str(d.device, 40) && d.device.size() >= 8
+        && d.date is string && d.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && (!('source' in d) || str(d.source, 20))
+        && (!('qv' in d) || str(d.qv, 20))
+        && d.answers is list && d.answers.size() >= 1 && d.answers.size() <= 10
+        && d.correct is int && d.correct >= 0 && d.correct <= d.answers.size()
+        && d.createdAt == request.time;
+    }
+
+    match /reviewRuns/{runId} {
+      allow read, update, delete: if false;
+      allow create: if str(runId, 40) && runId.size() >= 8 && reviewRunOk(request.resource.data);
+    }
+
+    function reviewNoteOk(noteId, d) {
+      return d.keys().hasOnly(['run', 'device', 'word', 'picked', 'result', 'ms', 'reason', 'other_word', 'box', 'createdAt'])
+        && d.keys().hasAll(['run', 'device', 'word', 'picked', 'result', 'ms', 'reason', 'box', 'createdAt'])
+        && str(d.run, 40) && d.run.size() >= 8
+        && str(d.word, 60) && d.word.size() >= 1
+        && noteId == d.run + '_' + d.word
+        && str(d.device, 40) && d.device.size() >= 8
+        && str(d.picked, 60)
+        && d.result in ['correct', 'wrong']
+        && d.ms is int && d.ms >= 0 && d.ms <= 60000
+        && d.reason in ['sure', 'torn', 'lookalike', 'affix', 'forgot', 'guess', 'misclick']
+        && (!('other_word' in d) || (d.reason == 'lookalike' && str(d.other_word, 30) && d.other_word.size() >= 1))
+        && d.box is int && d.box >= 0 && d.box <= 20
+        && d.createdAt == request.time
+        && exists(/databases/$(database)/documents/reviewRuns/$(d.run))
+        && get(/databases/$(database)/documents/reviewRuns/$(d.run)).data.device == d.device;
+    }
+
+    match /reviewNotes/{noteId} {
+      allow read, update, delete: if false;
+      allow create: if reviewNoteOk(noteId, request.resource.data);
+    }
+
     // quizStats/all and quizStats/day-YYYY-MM-DD: live distribution counters, one field per
     // (vocabulary bucket of 100 words, time bucket of 10 seconds, capped at 120 s): "v<bucket>_t<bucket>".
     // Everyone can read. A write may only add exactly 1 to the one field that matches a quizRuns document
@@ -345,9 +389,9 @@ service cloud.firestore {
     }
 
     // Lets setup.html tell which version of these rules is published:
-    // reading meta/rules-v9 is allowed (404 "not found") only with this version.
+    // reading meta/rules-v10 is allowed (404 "not found") only with this version.
     match /meta/{name} {
-      allow read: if name == 'rules-v9';
+      allow read: if name == 'rules-v10';
     }
   }
 }

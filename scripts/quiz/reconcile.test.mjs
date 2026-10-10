@@ -7,7 +7,8 @@ import { reconcile, fieldOf } from "./reconcile.js";
 
 let db;
 before(() => { initializeApp({ projectId: "demo-toefu-reconcile" }); db = getFirestore(); });
-beforeEach(async () => { await db.recursiveDelete(db.collection("quizRuns")); await db.recursiveDelete(db.collection("quizStats")); await db.recursiveDelete(db.collection("quizNotes")); });
+beforeEach(async () => { await db.recursiveDelete(db.collection("quizRuns")); await db.recursiveDelete(db.collection("quizStats")); await db.recursiveDelete(db.collection("quizNotes"));
+  await db.recursiveDelete(db.collection("reviewRuns")); await db.recursiveDelete(db.collection("reviewNotes")); });
 
 const now = new Date("2026-10-10T12:00:00Z");
 const ago = (min) => Timestamp.fromMillis(now.getTime() - min * 60000);
@@ -118,4 +119,53 @@ test("a note newer than the settle window waits for the next run", async () => {
   await db.doc("quizNotes/fresh").set(N("hole", "sure", "wrong", { createdAt: ago(1) }));
   const out = await reconcile(args());
   assert.equal(out.notesProcessed, 0);
+});
+
+// ---- review quiz (reviewRuns / reviewNotes → quizStats/reviewWords-<letter>) ----
+const RV = (over = {}) => ({
+  device: "dev-aaaaaaaa", date: "2026-10-10", source: "app", qv: "5145ab15", correct: 1, createdAt: ago(60),
+  answers: [
+    { word: "hole", bank: true, options: ["雪人", "洞", "蛋糕", "記號"], picked: "雪人", result: "wrong", ms: 4000, hid: false, box: 0 },
+    { word: "a_deluge_of", bank: true, options: ["x", "y", "z", "w"], picked: "x", result: "correct", ms: 3000, hid: false, box: 2 }], ...over
+});
+const RN = (word, reason, result, over = {}) => ({ run: "rv1", device: "dev-aaaaaaaa", word, picked: "x", result, ms: 5000, reason, box: 0, createdAt: ago(60), ...over });
+
+test("review rounds: per-word counts by first letter, box-0 split, bank distractors only", async () => {
+  await db.doc("reviewRuns/rv1").set(RV());
+  await db.doc("reviewRuns/rv2").set(RV({ device: "dev-bbbbbbbb", createdAt: ago(50),
+    answers: [{ word: "hole", bank: true, options: ["洞", "雪人", "蛋糕", "記號"], picked: "洞", result: "correct", ms: 2000, hid: false, box: 1 },
+              { word: "not_a_word", bank: false, options: ["a", "b", "c", "d"], picked: "a", result: "correct", ms: 1, box: 0 }] }));
+  const out = await reconcile(args());
+  assert.equal(out.rvProcessed, 2); assert.equal(out.rvExcess, 0);
+  const h = await get("quizStats/reviewWords-h");
+  assert.deepEqual({ n: h.hole.n, c: h.hole.c, n0: h.hole.n0, c0: h.hole.c0 }, { n: 2, c: 1, n0: 1, c0: 0 });
+  assert.deepEqual(h.hole.o, { "雪人": { s: 2, p: 1 }, "蛋糕": { s: 2, p: 0 }, "記號": { s: 2, p: 0 } });
+  const a = await get("quizStats/reviewWords-a");
+  assert.equal(a.a_deluge_of.n, 1); assert.equal(a.a_deluge_of.o, undefined);   // forged options aren't counted
+  assert.equal((await get("quizStats/reviewWords-n")), undefined);               // unknown word ignored
+  assert.equal((await get("quizStats/words")), undefined);                       // /quiz word stats untouched
+  const again = await reconcile(args());
+  assert.equal(again.rvProcessed, 0);
+  assert.deepEqual(await get("quizStats/reviewWords-h"), h);
+  assert.ok(!JSON.stringify(await get("quizStats/state")).includes("dev-aaaaaaaa"));
+});
+
+test("review rounds: one device counts at most 10 rounds a day", async () => {
+  for (let i = 0; i < 12; i++) await db.doc("reviewRuns/r" + String(i).padStart(2, "0")).set(RV({ createdAt: ago(100 - i) }));
+  const out = await reconcile(args());
+  assert.equal(out.rvProcessed, 12); assert.equal(out.rvExcess, 2);
+  assert.equal((await get("quizStats/reviewWords-h")).hole.n, 10);
+});
+
+test("review notes: counted as reason_result, capped per device, unknown values ignored", async () => {
+  for (let i = 0; i < 12; i++) await db.doc("reviewNotes/n" + String(i).padStart(2, "0")).set(RN("hole", "lookalike", "wrong", { createdAt: ago(100 - i), other_word: "whole" }));
+  await db.doc("reviewNotes/b").set(RN("a_deluge_of", "torn", "correct", { device: "dev-bbbbbbbb", createdAt: ago(40) }));
+  await db.doc("reviewNotes/f1").set(RN("not_a_word", "torn", "correct", { device: "dev-cccccccc", createdAt: ago(39) }));
+  await db.doc("reviewNotes/f2").set(RN("hole", "a.b", "wrong", { device: "dev-dddddddd", createdAt: ago(38) }));
+  await db.doc("reviewNotes/fresh").set(RN("hole", "sure", "wrong", { device: "dev-eeeeeeee", createdAt: ago(1) }));
+  const out = await reconcile(args());
+  assert.equal(out.rvNotesProcessed, 15); assert.equal(out.rvNotesExcess, 2); assert.equal(out.rvNotesCounted, 11);
+  assert.deepEqual((await get("quizStats/reviewWords-h")).hole.r, { lookalike_wrong: 10 });
+  assert.deepEqual((await get("quizStats/reviewWords-a")).a_deluge_of.r, { torn_correct: 1 });
+  assert.ok(!JSON.stringify(await get("quizStats/state")).includes("whole"));
 });

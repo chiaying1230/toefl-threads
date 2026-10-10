@@ -673,5 +673,8 @@
 
   intro();
   startFirebase();
-  track("view", { challenge: !!rival });
+  // 從 App 進來的連結帶 ?from=home|profile|review（App 裡的入口位置），只記在分析事件，不寫進成績
+  var entry = null;
+  try { entry = new URLSearchParams(location.search).get("from"); } catch (e) {}
+  track("view", { challenge: !!rival, from: ["home", "profile", "review"].indexOf(entry) >= 0 ? "app_" + entry : null });
 })();

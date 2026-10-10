@@ -834,5 +834,24 @@
     }).catch(function (e) { console.error(e); });
   };
 
+  // Review quiz (docs/review-quiz-spec.md): one anonymous record per round, then the "how did you choose" notes
+  // for that round. Works signed in or out; nothing is written when Firebase isn't set up. Resolves to the round's
+  // id, or null when it wasn't saved (the notes need the round to exist).
+  Store.saveReviewRun = function (run) {
+    if (!db) return Promise.resolve(null);
+    try {
+      var ref = db.collection("reviewRuns").doc();
+      return ref.set(Object.assign({}, run, { createdAt: firebase.firestore.FieldValue.serverTimestamp() }))
+        .then(function () { return ref.id; }, function () { return null; });
+    } catch (e) { return Promise.resolve(null); }
+  };
+  Store.saveReviewNote = function (runId, note) {
+    if (!db || !runId) return;
+    try {
+      db.collection("reviewNotes").doc(runId + "_" + note.word)
+        .set(Object.assign({}, note, { createdAt: firebase.firestore.FieldValue.serverTimestamp() })).catch(function () {});
+    } catch (e) { /* ignore */ }
+  };
+
   window.Store = Store;
 })();
