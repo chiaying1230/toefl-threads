@@ -136,7 +136,7 @@
     var p = add(postShell(HOST, "now", "",
       '<div class="post-text">15 題，測出你的英文單字量。</div>' +
       (rival ? '<div class="duel"><p class="verdict">朋友向你下戰帖</p><p>對方' + sp(rival.v) + vocabText(rival.v) + "・" + spoken(rival.sec * 1000) + "。答完就知道誰贏。</p></div>" : "") +
-      '<ul class="rules"><li>看貼文裡藍色的字，選出它的中文意思</li><li>每題 10 秒，答對會變難，答錯會變簡單</li><li>答完才公布成績和排名</li></ul>' +
+      '<ul class="rules"><li>看貼文裡藍色的字，選出它的中文意思</li><li>每題 10 秒，答對會變難，答錯會變簡單</li><li>答完才公布成績</li></ul>' +
       '<div class="guess"><div class="guess-row"><label class="label" for="guessRange">先猜猜看，你有多少單字量？</label>' +
         '<output class="guess-val unset" id="guessVal" for="guessRange">拉動滑桿來猜，也可以不猜</output></div>' +
         '<input type="range" id="guessRange" min="500" max="' + TOTAL + '" step="500" value="5500">' +
