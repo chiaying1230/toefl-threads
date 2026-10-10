@@ -1,7 +1,7 @@
 # toEfu 🧈📚
 
-手機優先、社群動態牆形式的英文單字學習 App，吉祥物是一塊豆腐。單字表有國小國中、高中、多益、雅思、托福五種入口（動態牆的串文目前以托福字為主）。
-20 個虛擬角色（外星實習生、貓咪執行長、1885 年的時空旅人、會噴發的火山、圖書館幽靈……）發了 **468 則**好笑的串文，裡面自然融入 **1,300 個托福單字**（Soy Milk / Tofu / Natto 三級；難度來自統一的模型評分，見 `scripts/import-scores.py`，涵蓋 18 個托福常考題材）。
+手機優先、社群動態牆形式的英文單字學習 App，吉祥物是一塊豆腐。單字表有國小國中、高中、多益、雅思、托福五種入口。
+20 個虛擬角色（外星實習生、貓咪執行長、1885 年的時空旅人、會噴發的火山、圖書館幽靈……）發了 **468 則**好笑的串文，裡面自然融入 **1,300 個托福單字**（Soy Milk / Tofu / Natto 三級；難度來自統一的模型評分，見 `scripts/import-scores.py`，涵蓋 18 個托福常考題材）。另外四個單字表各有 100–130 則自己的串文（共 455 則），選了該單字表才會出現在動態牆。
 
 介面全英文（沉浸式學習），只有單字解釋與翻譯是中文。
 
@@ -128,6 +128,8 @@ js/data/characters.js      20 個角色、題材清單、角色的留言回覆
 js/data/batch-1.js … 13.js 單字與貼文（例句與串文都是為本 App 撰寫）
 js/data/kk.js              KK 音標（scripts/make-kk.mjs 產生）
 js/data/convos.js          角色在串文底下的互相留言
+js/data/levels.js          托福字的難度等級（scripts/import-scores.py 產生）
+js/data/packs/             單字包與各包串文（scripts/build-packs.py 產生，選了才載入）
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
@@ -139,6 +141,11 @@ scripts/notify/            推播發送程式（GitHub Actions 執行）
 .github/workflows/         每 30 分鐘發送推播的排程
 firestore.rules            Firestore 安全規則
 scripts/check-data.js      檢查內容有沒有打錯
+scripts/import-scores.py   難度分數 → js/data/levels.js（門檻在 scripts/scorelib.py）
+scripts/build-packs.py     data-src/ → js/data/packs/*.js
+scripts/make-kk.mjs        補 KK 音標
+scripts/gen-posts/         用 Claude API 產生串文與單字資料（見該資料夾 README）
+data-src/                  單字包原始資料：難度評分、人工修正、各包串文 threads/<包>.txt
 ```
 
 ## 新增更多串文或單字
@@ -209,7 +216,7 @@ TOEFL® 是 ETS 的註冊商標，Threads 是 Meta 的商標；toEfu 與 ETS、M
 |---|---|
 | 難度標籤 | Soy Milk（豆漿）/ Tofu（豆腐）/ Natto（納豆），全站同一把尺：`js/data/levels.js` 把 1,300 個托福字重新分級，門檻在 `scripts/scorelib.py`（分數 ≤40 / ≤65） |
 | 單字包 | 國小國中 2,029、高中 4,126、多益 822、雅思 5,045、托福 1,300（托福就是 `batch-*.js` 的基本字庫）。`js/data/packs/<id>.js` 在使用者選了之後才載入，已選的包會被 service worker 快取 |
-| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。動態牆有 468 則托福串文，加上每個入口各 10 則（`data-src/threads/<包>.txt`，重建時一起寫進 `js/data/packs/<包>.js`，選了該單字表才出現） |
+| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。動態牆有 468 則托福串文，加上國小國中 110、高中 130、多益 106、雅思 109 則（`data-src/threads/<包>.txt`，重建時一起寫進 `js/data/packs/<包>.js`，選了該單字表才出現） |
 | 資料來源 | `data-src/full_scores.csv`（Codex 的模型初評，**不是實測難度**）＋ `data-src/review-fixes/`（我逐筆檢查過 Codex 標為 review_required 的 1,118 筆，補上例句、修正詞義或剔除） |
 
 重建流程（不會動到 `batch-*.js`）：
@@ -221,3 +228,5 @@ cd /tmp && npm i cmu-pronouncing-dictionary
 node scripts/make-kk.mjs /tmp/node_modules   # 補上 KK 音標（kk.js 與各單字包）
 node scripts/check-data.js
 ```
+
+Windows 上把 `python3` 換成 `python`（`python3` 會打開 Microsoft Store）。要替單字包產生新串文，見 `scripts/gen-posts/README.md` 的「接到單字包」。

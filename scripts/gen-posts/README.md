@@ -56,11 +56,11 @@ kitchen,n,廚房,1
 - `--review`：每批寫完後由模型以「嚴格編輯」逐字檢查，有問題才改寫，改寫版本仍須通過驗證。
 - 失敗重試、可續跑、輸出寫完後再驗證一次。
 
-## 合併進網站前（還沒做）
+## 合併進網站
 
-- `check-data.js` 目前只接受單字 `level` 1–3，需放寬到 1–10。
-- 單字資料不含 KK 音標，合併後要跑 `scripts/make-kk.mjs`。
-- 一萬字約 4,000 則串文，網站目前一次載入全部 `batch-*.js`，量大時要改成分批載入。
+- 單字包（elem / hs / toeic / ielts）已經有完整流程，見下一節；`check-data.js` 接受 `level` 1–10，KK 音標由 `scripts/make-kk.mjs` 補上。
+- 如果要把大量串文併進托福的 `batch-*.js`：網站目前一次載入全部 `batch-*.js`，量大時要改成分批載入（單字包已經是選了才載入）。
+- `out/` 整個資料夾不進 git，產生完的串文以 `data-src/threads/<包>.txt` 為準。
 
 ## 接到單字包（elem / hs / toeic / ielts）
 
@@ -71,9 +71,9 @@ cd scripts\gen-posts
 node pack-words.mjs hs --out out/words-hs.csv --limit 150 --skip-used        # 從單字包挑 150 個字（難度 band = 分數/10）
 node gen.mjs --words out/words-hs.csv --out out/hs.js --review --max-cost 3  # 先試跑看 out/hs.report.json
 node to-threads.mjs out/hs.js hs --print                                     # 先看會加什麼
-node to-threads.mjs out/hs.js hs                                             # 寫進 data-src/threads/hs.txt
+node to-threads.mjs out/hs.js hs                                             # 寫進 data-src/threads/hs.txt（已有的會略過）
 cd ..\..
-python3 scripts/build-packs.py
+python scripts/build-packs.py
 node scripts/make-kk.mjs <node_modules 路徑>
 node scripts/check-data.js
 ```
