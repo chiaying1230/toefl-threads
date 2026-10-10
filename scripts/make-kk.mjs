@@ -6,10 +6,11 @@
 import fs from "fs";
 import path from "path";
 import { createRequire } from "module";
+import { pathToFileURL, fileURLToPath } from "url";
 
 const modDir = process.argv[2];
-const { dictionary } = await import(path.join(modDir, "cmu-pronouncing-dictionary", "index.js"));
-const root = path.join(path.dirname(new URL(import.meta.url).pathname), "..");
+const { dictionary } = await import(pathToFileURL(path.join(modDir, "cmu-pronouncing-dictionary", "index.js")).href);
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 global.window = {};
 const require = createRequire(import.meta.url);
