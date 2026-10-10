@@ -1,0 +1,18 @@
+{
+  "name": "toefl-tofu-quiz",
+  "private": true,
+  "type": "module",
+  "description": "Quiz tooling: daily reconcile job (GitHub Actions) and Firestore rules tests",
+  "scripts": {
+    "test": "cd ../.. && scripts/quiz/node_modules/.bin/firebase emulators:exec --only firestore --project demo-toefu \"node --test scripts/quiz/*.test.mjs\"",
+    "reconcile": "node reconcile.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^3.0.4",
+    "firebase": "^10.12.2",
+    "firebase-tools": "^13.29.0"
+  }
+}

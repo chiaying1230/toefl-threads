@@ -220,6 +220,98 @@ service cloud.firestore {
         && request.resource.data.tz is int;
     }
 
+    // ---------- Vocabulary quiz (/quiz) ----------
+    // quizRuns: one anonymous result per finished quiz. Anyone can add one; nobody can read, change or delete them
+    // (the daily reconcile job reads them with an admin key).
+    function quizAnswers(a) {
+      return a is list && a.size() == 15;
+    }
+
+    function quizRunOk(d) {
+      return d.keys().hasOnly(['date', 'createdAt', 'device', 'attempt_no', 'is_best', 'self_estimate', 'challenge',
+                               'vocab', 'theta', 'correct', 'total_ms', 'answers', 'source'])
+        && d.keys().hasAll(['date', 'createdAt', 'device', 'attempt_no', 'is_best', 'vocab', 'theta', 'correct', 'total_ms', 'answers'])
+        && d.date is string && d.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && d.createdAt == request.time
+        && str(d.device, 40) && d.device.size() >= 8
+        && d.attempt_no is int && d.attempt_no >= 1 && d.attempt_no <= 999
+        && d.is_best is bool
+        && (!('self_estimate' in d) || d.self_estimate == null || (d.self_estimate is int && d.self_estimate >= 0 && d.self_estimate <= 11000))
+        && (!('challenge' in d) || d.challenge == null
+            || (d.challenge is map && d.challenge.keys().hasOnly(['rival_vocab', 'rival_sec', 'won'])
+                && d.challenge.rival_vocab is int && d.challenge.rival_vocab >= 0 && d.challenge.rival_vocab <= 11000
+                && d.challenge.rival_sec is int && d.challenge.rival_sec >= 0 && d.challenge.rival_sec <= 9999
+                && (d.challenge.won == null || d.challenge.won is bool)))
+        && d.vocab is int && d.vocab >= 0 && d.vocab <= 11000
+        && d.theta is number && d.theta >= -10 && d.theta <= 10
+        && d.correct is int && d.correct >= 0 && d.correct <= 15
+        && d.total_ms is int && d.total_ms >= 5000 && d.total_ms <= 200000
+        && quizAnswers(d.answers)
+        && (!('source' in d) || str(d.source, 20));
+    }
+
+    match /quizRuns/{runId} {
+      allow read, update, delete: if false;
+      allow create: if str(runId, 40) && runId.size() >= 8 && quizRunOk(request.resource.data);
+    }
+
+    // quizStats/all and quizStats/day-YYYY-MM-DD: live distribution counters, one field per
+    // (vocabulary bucket of 100 words, time bucket of 10 seconds, capped at 120 s): "v<bucket>_t<bucket>".
+    // Everyone can read. A write may only add exactly 1 to the one field that matches a quizRuns document
+    // created in the same batch, add 1 to n, and set last to that document's id.
+    function quizTimeBucket(ms) {
+      return ms >= 120000 ? 12 : int(math.floor(ms / 10000));
+    }
+
+    function quizField(run) {
+      return 'v' + string(int(math.floor(run.vocab / 100))) + '_t' + string(quizTimeBucket(run.total_ms));
+    }
+
+    function quizRunRef(id) {
+      return /databases/$(database)/documents/quizRuns/$(id);
+    }
+
+    function quizStatId(docId) {
+      return docId == 'all' || docId.matches('^day-[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+    }
+
+    // Does this stats write belong to the run named in `last` (created in this very batch)?
+    function quizRunMatches(docId, d) {
+      let ref = quizRunRef(d.last);
+      return str(d.last, 40)
+        && !exists(ref) && existsAfter(ref)
+        && (docId == 'all' || docId == 'day-' + getAfter(ref).data.date)
+        && quizDayNear(docId);
+    }
+
+    // The day document's date is within a day of the server time.
+    function quizDayNear(docId) {
+      let p = docId.split('-');
+      return docId == 'all' || (
+        timestamp.date(int(p[1]), int(p[2]), int(p[3])) <= request.time + duration.value(1, 'd')
+        && timestamp.date(int(p[1]), int(p[2]), int(p[3])) >= request.time - duration.value(1, 'd'));
+    }
+
+    match /quizStats/{docId} {
+      allow read: if true;
+      allow create: if quizStatId(docId)
+        && request.resource.data.keys().hasOnly([quizField(getAfter(quizRunRef(request.resource.data.last)).data), 'n', 'last'])
+        && request.resource.data.keys().hasAll(['n', 'last'])
+        && request.resource.data.n == 1
+        && request.resource.data[quizField(getAfter(quizRunRef(request.resource.data.last)).data)] == 1
+        && quizRunMatches(docId, request.resource.data);
+      allow update: if quizStatId(docId)
+        && quizRunMatches(docId, request.resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly([quizField(getAfter(quizRunRef(request.resource.data.last)).data), 'n', 'last'])
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasAll([quizField(getAfter(quizRunRef(request.resource.data.last)).data), 'n', 'last'])
+        && request.resource.data.n == resource.data.get('n', 0) + 1
+        && request.resource.data[quizField(getAfter(quizRunRef(request.resource.data.last)).data)]
+             == resource.data.get(quizField(getAfter(quizRunRef(request.resource.data.last)).data), 0) + 1;
+      allow delete: if false;
+    }
+
     // Bookkeeping for the notification sender (GitHub Actions uses an admin key).
     // No app user can read or write it.
     match /notifyState/{docId} {
@@ -227,9 +319,9 @@ service cloud.firestore {
     }
 
     // Lets setup.html tell which version of these rules is published:
-    // reading meta/rules-v7 is allowed (404 "not found") only with this version.
+    // reading meta/rules-v8 is allowed (404 "not found") only with this version.
     match /meta/{name} {
-      allow read: if name == 'rules-v7';
+      allow read: if name == 'rules-v8';
     }
   }
 }

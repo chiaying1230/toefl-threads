@@ -112,12 +112,12 @@
         // Posts are public; other people's private user docs must NOT be readable.
         return getJSON(base + "users/setup-check?key=" + cfg.apiKey).then(function (r2) {
           if (r2.status === 403) {
-            // Each rules version opens one probe document: meta/rules-v7 reads as 404 (allowed, empty)
+            // Each rules version opens one probe document: meta/rules-v8 reads as 404 (allowed, empty)
             // with the latest rules and 403 (denied) with older ones.
-            return getJSON(base + "meta/rules-v7?key=" + cfg.apiKey).then(function (r3) {
+            return getJSON(base + "meta/rules-v8?key=" + cfg.apiKey).then(function (r3) {
               if (r3.status === 404 || r3.status === 200) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("ok", "⑤ 安全規則正確（最新版）") };
               if (r3.status === 401 || /app.?check/i.test(errText(r3))) return { ok: true, html: row("ok", "④ Firestore 資料庫已建立") + row("warn", "⑤ App Check 已強制啟用，這頁無法檢查規則版本", "如果剛更新過規則，請確認已按 Publish。") };
-              return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了防刷讚、發文頻率限制、檢舉與刪除帳號）", rulesFix) };
+              return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 安全規則需要更新（新增了防刷讚、發文頻率限制、檢舉與刪除帳號、單字量測驗排名）", rulesFix) };
             });
           }
           return { ok: false, html: row("ok", "④ Firestore 資料庫已建立") + row("bad", "⑤ 規則太寬鬆（可能是 test mode），別人可以讀取所有資料", rulesFix) };

@@ -111,18 +111,37 @@
   function vocabText(v) { return v >= TOTAL ? fmt(TOTAL) + "+ 字" : v <= 500 ? "不到 500 字" : "約 " + fmt(v) + " 字"; }
   // 漏斗事件送到 Firebase Analytics，事件名稱照 docs/quiz-db-spec.md。SDK 載入完成前先排隊；載入失敗就丟掉，不影響測驗。
   var EVENT_NAME = { view: "quiz_view", start: "quiz_start", retry_start: "quiz_start", abandon: "quiz_abandon", complete: "quiz_complete" };
-  var analytics = null, queued = [], SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+  var analytics = null, queued = [], db = null, SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
   function flushEvents() { if (!analytics) return; while (queued.length) { var e = queued.shift(); try { analytics.logEvent(e[0], e[1]); } catch (err) {} } }
-  function loadScript(src, ok) { var el = document.createElement("script"); el.src = src; el.async = true; el.onload = ok; document.head.appendChild(el); }
-  function startAnalytics() {
-    var cfg = window.FIREBASE_CONFIG;
-    if (!cfg || !cfg.measurementId) { queued.length = 0; return; }
-    loadScript(SDK + "firebase-app-compat.js", function () {
-      loadScript(SDK + "firebase-analytics-compat.js", function () {
-        try { if (!firebase.apps.length) firebase.initializeApp(cfg); analytics = firebase.analytics(); flushEvents(); } catch (e) { queued.length = 0; }
-      });
-    });
+  function loadScript(src) {
+    return new Promise(function (ok, fail) { var el = document.createElement("script"); el.src = src; el.async = true; el.onload = ok; el.onerror = fail; document.head.appendChild(el); });
   }
+  // Firebase（Analytics + Firestore，主站同一個專案），App Check 用和主站相同的金鑰。載入失敗時測驗照常進行，只是沒有排名也不記錄。
+  var fbReady = null;
+  function firebaseReady() {
+    if (fbReady) return fbReady;
+    var cfg = window.FIREBASE_CONFIG;
+    if (!cfg || !cfg.projectId) return (fbReady = Promise.reject(new Error("no firebase config")));
+    fbReady = loadScript(SDK + "firebase-app-compat.js").then(function () {
+      var libs = ["firebase-firestore-compat.js"];
+      if (cfg.measurementId) libs.push("firebase-analytics-compat.js");
+      if (window.FIREBASE_APPCHECK_KEY) libs.push("firebase-app-check-compat.js");
+      return Promise.all(libs.map(function (f) { return loadScript(SDK + f).catch(function () {}); }));
+    }).then(function () {
+      firebase.initializeApp(cfg);
+      if (window.FIREBASE_APPCHECK_KEY && firebase.appCheck) {
+        try {
+          var Provider = window.FIREBASE_APPCHECK_PROVIDER === "enterprise" ? firebase.appCheck.ReCaptchaEnterpriseProvider : firebase.appCheck.ReCaptchaV3Provider;
+          firebase.appCheck().activate(Provider ? new Provider(window.FIREBASE_APPCHECK_KEY) : window.FIREBASE_APPCHECK_KEY, true);
+        } catch (e) {}
+      }
+      try { if (cfg.measurementId && firebase.analytics) { analytics = firebase.analytics(); flushEvents(); } } catch (e) { queued.length = 0; }
+      db = firebase.firestore();
+    });
+    fbReady.catch(function () { queued.length = 0; });
+    return fbReady;
+  }
+  function startFirebase() { firebaseReady().catch(function () {}); }
   function track(ev, data) {
     var params = {};
     Object.keys(data || {}).forEach(function (k) { var v = data[k]; if (v != null) params[k] = typeof v === "boolean" ? (v ? 1 : 0) : v; });
@@ -286,10 +305,71 @@
     try { localStorage.setItem("lastTitle", t[0]); } catch (e) {}
     return t;
   }
-  // 排名先不顯示（還沒接資料庫）。接上後照 docs/quiz-db-spec.md，在成績卡加回排名那一行與說明列的「排名」，並改成每一次完成的挑戰都計入排名。
+  // ---- 排名與紀錄（Firestore，欄位設計見 docs/quiz-db-spec.md）----
+  // 每一筆完成的挑戰都計入分布。分布欄位：v<單字量 / 100 的整數>_t<耗時 / 10 秒的整數，120 秒以上都算 12>
+  function statField(v, ms) { return "v" + Math.floor(v / 100) + "_t" + (ms >= 120000 ? 12 : Math.floor(ms / 10000)); }
+  // 同一份分布裡，排在 (v, ms) 前面的筆數：單字量較高，或單字量同一格而耗時較短。self=true 代表這一筆還沒計入。
+  function rankAt(stats, v, ms, self) {
+    var vb = Math.floor(v / 100), tb = ms >= 120000 ? 12 : Math.floor(ms / 10000), ahead = 0, n = stats && stats.n || 0;
+    Object.keys(stats || {}).forEach(function (k) {
+      var m = /^v(\d+)_t(\d+)$/.exec(k); if (!m) return;
+      if (+m[1] > vb || (+m[1] === vb && +m[2] < tb)) ahead += stats[k];
+    });
+    var total = self ? n + 1 : Math.max(n, 1);
+    return { rank: ahead + 1, total: total, beat: total - (self ? 1 : 0) - ahead };
+  }
+  function rankParts(R, all, day, best) {
+    var a = rankAt(all, R.v, R.sec * 1000, true), mine = "";
+    if (R.prev.length) {
+      var b = rankAt(all, best.v, best.ms, false);
+      mine = R.isBest ? "這是你目前的最佳成績。" : "你的最佳成績是" + vocabText(best.v) + "（第 " + fmt(b.rank) + " 名）。";
+    }
+    if (a.total < 200) return { hero: "這是第 <em>" + a.total + "</em> 筆挑戰成績", row: "<b>目前排第 " + a.rank + " 名</b>。" + mine, shareRank: "" };
+    var pct = a.rank === 1 ? 100 : Math.min(99, Math.floor(a.beat / (a.total - 1) * 100));
+    var d = rankAt(day, R.v, R.sec * 1000, true);
+    return { hero: "贏過 <em>" + pct + "%</em> 的挑戰成績", row: "<b>第 " + fmt(a.rank) + " 名</b> / 共 " + fmt(a.total) + " 筆成績　今日第 " + fmt(d.rank) + " 名。" + mine,
+      shareRank: "・贏過 " + pct + "% 的成績" };
+  }
+  function deviceId() {
+    var id = null;
+    try { id = localStorage.getItem("quizDevice"); } catch (e) {}
+    if (!id) {
+      var a = new Uint8Array(12);
+      if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a); else for (var i = 0; i < a.length; i++) a[i] = rnd(256);
+      id = Array.prototype.map.call(a, function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      try { localStorage.setItem("quizDevice", id); } catch (e) {}
+    }
+    return id;
+  }
+  // 先讀分布、算出名次，再用同一個 batch 寫入成績和兩份計數。寫入失敗不影響成績；讀取失敗就不顯示排名。
+  function saveAndRank(R, run) {
+    var field = statField(run.vocab, run.total_ms), prevBest = best;
+    firebaseReady().then(function () {
+      var allRef = db.doc("quizStats/all"), dayRef = db.doc("quizStats/day-" + run.date), runRef = db.collection("quizRuns").doc();
+      return Promise.all([allRef.get(), dayRef.get()]).then(function (snaps) {
+        var all = snaps[0].exists ? snaps[0].data() : {}, day = snaps[1].exists ? snaps[1].data() : {};
+        if (lastResult === R && document.getElementById("heroRank")) {
+          var p = rankParts(R, all, day, prevBest);
+          R.shareRank = p.shareRank;
+          var hero = document.getElementById("heroRank"), row = document.getElementById("rankRow");
+          hero.innerHTML = p.hero; hero.style.display = "";
+          document.getElementById("rankDetail").innerHTML = p.row; row.style.display = "";
+          paintShare();
+        }
+        var FV = firebase.firestore.FieldValue, b = db.batch(), bump = {};
+        bump[field] = FV.increment(1); bump.n = FV.increment(1); bump.last = runRef.id;
+        var doc = Object.assign({}, run, { createdAt: FV.serverTimestamp(), device: deviceId(), source: "web" });
+        b.set(runRef, doc);
+        b.set(allRef, bump, { merge: true });
+        b.set(dayRef, bump, { merge: true });
+        return b.commit().catch(function () {});
+      });
+    }).catch(function () {});
+  }
+
   function shareText(R) {
     return "我的英文單字量" + R.label + "字 📚\n" + R.title + "\n" + R.squares + "\n" +
-      R.correct + "/" + N + "・" + spoken(R.ms) + (R.humble ? "\n" + R.humble : "") +
+      R.correct + "/" + N + "・" + spoken(R.ms) + R.shareRank + (R.humble ? "\n" + R.humble : "") +
       "\n你贏得過我嗎？👉 https://toefu.app/quiz?vs=" + R.v + "-" + Math.round(R.sec);
   }
   function countUp(el, to, text) {
@@ -334,7 +414,7 @@
       v: v, ms: ms, sec: ms / 1000, correct: correct, isBest: isBest, prev: prev,
       label: v >= TOTAL ? fmt(TOTAL) + "+ " : v <= 500 ? "不到 500 " : "約 " + fmt(v) + " ",
       title: pf[0] + "・" + ti[0],
-      squares: ans.map(function (a) { return a.ok ? "🟩" : "🟥"; }).join("")
+      squares: ans.map(function (a) { return a.ok ? "🟩" : "🟥"; }).join(""), shareRank: ""
     };
     barStat.textContent = "完成 · " + clock(ms);
     var num = v >= TOTAL ? fmt(TOTAL) + "+" : v <= 500 ? "500" : fmt(v), pre = v >= TOTAL ? "" : v <= 500 ? "不到" : "約";
@@ -370,6 +450,7 @@
         '<div class="hero-head">你的英文單字量</div>' +
         '<div class="vocab-line"><span class="dim">' + pre + '</span><span class="vocab-n">' + num + '</span><span class="dim">字</span></div>' +
         '<div class="title-chip">' + esc(R.title) + "</div>" +
+        '<div class="hero-rank" id="heroRank" style="display:none"></div>' +
         '<div class="grid15" aria-label="每題對錯">' + ans.map(function (a, n) { return '<i class="' + (a.ok ? "ok" : "") + '" style="--i:' + n + '"></i>'; }).join("") + "</div>" +
         '<div class="hero-foot"><span>答對 ' + correct + "/" + N + "・正確率 " + Math.round(correct / N * 100) + "%・" + spoken(ms) + "</span><span>toefu.app/quiz</span></div>" +
       "</div>" +
@@ -380,6 +461,7 @@
       '<dl class="about">' +
         "<div><dt>稱號</dt><dd><b>" + esc(ti[0]) + "</b>　" + TIER_RANGE[tierOf(v)] + "的稱號。" + esc(ti[1]) + "</dd></div>" +
         "<div><dt>前綴</dt><dd><b>" + esc(pf[0]) + "</b>　" + esc(pf[1]) + "</dd></div>" + guessLine +
+        '<div id="rankRow" style="display:none"><dt>排名</dt><dd id="rankDetail"></dd></div>' +
         (prev.length ? "<div><dt>紀錄</dt><dd>" + prev.map(function (h, n) { return "第 " + (n + 1) + " 次 " + vocabText(h[0]).replace(" 字", ""); }).join("　") +
           "　<b>這次 " + vocabText(v).replace(" 字", "") + "</b></dd></div>" : "") +
       "</dl>" +
@@ -387,6 +469,7 @@
         '<textarea class="share" id="shareText" readonly aria-label="會貼到脆上的文字"></textarea>' +
         '<button class="outline-btn" id="copyBtn" type="button">複製文字</button></details></section>');
     paintShare();
+    saveAndRank(R, RUN);
     countUp(card.querySelector(".vocab-n"), Math.max(500, Math.min(v, TOTAL)), num);
     card.querySelector("#shareBtn").addEventListener("click", function () {
       // 保險：先把文字放進剪貼簿。有些手機環境打開脆時不會帶入預填文字，使用者可以直接貼上
@@ -495,6 +578,6 @@
   });
 
   intro();
-  startAnalytics();
+  startFirebase();
   track("view", { challenge: !!rival });
 })();
