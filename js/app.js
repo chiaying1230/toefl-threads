@@ -429,12 +429,20 @@
   // ---------- Word of the day ----------
   var WOTD_KEY = "toefu.wotdHidden";
 
-  // Entry points: one chip per word list. Tapping toggles it for the Word of the Day, quizzes and flashcards.
-  function packStripHtml() {
+  // Top of Home: one row with the word-list button and the vocabulary-test button. The word-list button shows
+  // the lists that are on and opens the chips (one per list) that toggle them for the Word of the Day, quizzes and flashcards.
+  var packsOpen = false;
+  function homeBarHtml() {
     var on = st().prefs.packs && st().prefs.packs.length ? st().prefs.packs : ["toefl"];
-    return '<div class="pack-strip"><span class="muted small">' + T("Word lists", "單字表") + "</span>" + C.PACK_META.map(function (m) {
-      return '<button class="chip' + (on.indexOf(m.id) >= 0 ? " active" : "") + '" data-pack-toggle="' + m.id + '">' + esc(m.name) + "</button>";
-    }).join("") + "</div>";
+    var names = C.PACK_META.filter(function (m) { return on.indexOf(m.id) >= 0; }).map(function (m) { return m.name; }).join(", ");
+    var html = '<div class="home-bar"><button class="chip packs-btn' + (packsOpen ? " open" : "") + '" data-packs-open aria-expanded="' + packsOpen + '" aria-label="Word lists: ' + esc(names) + '">' +
+      '<span class="packs-names">📚 ' + esc(names) + '</span><span class="packs-caret">▾</span></button>' + quizEntryHtml() + "</div>";
+    if (packsOpen) {
+      html += '<div class="pack-strip">' + C.PACK_META.map(function (m) {
+        return '<button class="chip' + (on.indexOf(m.id) >= 0 ? " active" : "") + '" data-pack-toggle="' + m.id + '">' + esc(m.name) + "</button>";
+      }).join("") + "</div>";
+    }
+    return html;
   }
 
   function togglePack(id) {
@@ -452,24 +460,14 @@
 
   // ---------- Entry to the vocabulary-size test (/quiz) ----------
   // /quiz is on the same site, so its best score (localStorage "quizBest": { v: words, ms }) can be read here.
-  var QUIZ_CARD_KEY = "toefu.quizCardHidden";
   function quizBestVocab() {
     try { var b = JSON.parse(localStorage.getItem("quizBest")); if (b && isFinite(b.v)) return +b.v; } catch (e) { /* ignore */ }
     return null;
   }
 
   function quizEntryHtml() {
-    var v = quizBestVocab(), hidden = null;
-    if (v != null) {
-      return '<a class="wotd-mini" href="quiz/?from=home">📏 ' + T("Vocabulary size", "單字量") + ": <b>" + v.toLocaleString() + "</b> · " +
-        T("Try again", "再挑戰") + "</a>";
-    }
-    try { hidden = localStorage.getItem(QUIZ_CARD_KEY); } catch (e) { /* ignore */ }
-    if (hidden) return "";
-    return '<div class="card quiz-entry"><div class="wotd-top"><span class="muted small">🧪 ' + T("Vocabulary test", "單字量測驗") + "</span>" +
-      '<button class="notice-x" data-quiz-card-hide aria-label="Hide">✕</button></div>' +
-      '<a class="quiz-entry-link" href="quiz/?from=home"><b>' + T("How many English words do you know?", "你認得多少英文單字？") + "</b>" +
-      '<span class="muted small">' + T("15 questions · about 3 minutes", "15 題・約 3 分鐘") + '</span><span class="quiz-entry-go">' + T("Start", "開始") + " →</span></a></div>";
+    var v = quizBestVocab();
+    return '<a class="chip quiz-chip" href="quiz/?from=home">' + (v != null ? "📏 " + v.toLocaleString() + " words" : "🧪 Vocabulary test") + "</a>";
   }
 
   function renderWordOfDay() {
@@ -480,13 +478,13 @@
     if (feedMode !== "foryou" || !st().prefs.onboarded) { slot.innerHTML = ""; return; }
     var key = C.wordOfDay(today, st().prefs.levels, C.activePool(st().prefs));
     var v = VOCAB[key];
-    if (!v) { slot.innerHTML = packStripHtml() + quizEntryHtml(); return; }
+    if (!v) { slot.innerHTML = homeBarHtml(); return; }
     if (hidden === today) {
-      slot.innerHTML = packStripHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>" + quizEntryHtml();
+      slot.innerHTML = homeBarHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
       return;
     }
     var saved = !!st().words[key];
-    slot.innerHTML = packStripHtml() + '<div class="card wotd">' +
+    slot.innerHTML = homeBarHtml() + '<div class="card wotd">' +
       '<div class="wotd-top"><span class="muted small">📅 ' + T("Word of the day", "每日一字") + '</span><button class="notice-x" data-wotd-hide aria-label="Hide">✕</button></div>' +
       '<div class="wotd-word"><b>' + esc(C.label(key)) + '</b><button class="icon-btn plain" data-speak="' + key + '" aria-label="Pronounce">🔊</button></div>' +
       '<div class="wotd-meta"><span class="kk">' + esc(kk(key)) + "</span> · " + esc(v.pos) + ' · <span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span></div>" +
@@ -495,7 +493,7 @@
       '<div class="wotd-actions">' + (saved
         ? '<span class="saved-note">✓ ' + T("In your Review list", "已在複習清單") + "</span>"
         : '<button class="primary-btn small" data-wotd-save="' + key + '">' + T("+ Add to Review", "加入複習") + "</button>") +
-      '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>" + quizEntryHtml();
+      '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>";
   }
 
   function buildFeed() {
@@ -2043,7 +2041,7 @@
     else if (d.removePhoto !== undefined) { draft.photo = ""; refreshDraftPreview(); }
     else if (d.lang) setLang(d.lang);
     else if (d.wotdHide !== undefined) { try { localStorage.setItem(WOTD_KEY, C.dayKey()); } catch (e) { /* ignore */ } renderWordOfDay(); }
-    else if (d.quizCardHide !== undefined) { try { localStorage.setItem(QUIZ_CARD_KEY, "1"); } catch (e) { /* ignore */ } renderWordOfDay(); }
+    else if (d.packsOpen !== undefined) { packsOpen = !packsOpen; renderWordOfDay(); }
     else if (d.wotdShow !== undefined) { try { localStorage.removeItem(WOTD_KEY); } catch (e) { /* ignore */ } renderWordOfDay(); }
     else if (d.wotdSave) { addWord(d.wotdSave, null); S.save(); refreshWordMarks(); renderWordOfDay(); toast("Added to Review 📚"); }
     else if (d.pushOn !== undefined) turnOnPush();

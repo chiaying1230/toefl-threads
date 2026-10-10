@@ -4,9 +4,9 @@
 
 App 裡有三個入口，都連到 `quiz/?from=<位置>`：
 
-- **首頁**（`from=home`）：在每日一字下方。
-  - 還沒測過時（localStorage 沒有 `quizBest`），顯示「How many English words do you know? 15 題・約 3 分鐘」卡片。按 ✕ 後就不再出現（`toefu.quizCardHidden`）。
-  - 測過之後改成一行小字「📏 單字量 4,200・再挑戰」。
+- **首頁**（`from=home`）：最上方一行兩個小按鈕。
+  - 左邊「📚 TOEFL ▾」顯示目前開啟的單字表，點一下展開各單字表的開關，再點一下收起。
+  - 右邊是測驗按鈕：還沒測過時顯示「🧪 Vocabulary test」，測過之後顯示「📏 4,200 words」。
 - **個人頁**（`from=profile`）：統計列多一格「📏 4,200 words」。沒測過時顯示「Test vocabulary size」。
 - **複習測驗的結果畫面**（`from=review`）：「想知道總單字量？做完整測驗 →」。
 
