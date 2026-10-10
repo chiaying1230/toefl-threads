@@ -480,7 +480,7 @@
     var key = C.wordOfDay(today, st().prefs.levels, C.activePool(st().prefs));
     var v = VOCAB[key];
     if (!v) { slot.innerHTML = homeBarHtml(); return; }
-    if (hidden === today) {
+    if (hidden === today || qmItems().length) {   // folded while the missed-words thread is at the top
       slot.innerHTML = homeBarHtml() + '<button class="wotd-mini" data-wotd-show>📅 ' + T("Word of the day", "每日一字") + ": <b>" + esc(C.label(key)) + "</b></button>";
       return;
     }
@@ -497,6 +497,86 @@
       '<button class="link" data-word="' + key + '">' + T("More", "更多") + "</button></div></div>";
   }
 
+  // ---------- Words missed on /quiz (docs/review-quiz-spec.md, "從 /quiz 進 App") ----------
+  // /quiz links here with miss=word~pick,… (pick: 0–2 = which wrong option of its bank row, s = "I don't know",
+  // t = time ran out). Until the reader closes it (or for 7 days), the For you feed opens with a toEfu thread that
+  // explains each missed word, followed by threads that use those words.
+  var QM_KEY = "toefu.quizMissed", QM_DAYS = 7, QM_SHOW = 5;
+  var qmOpen = false;   // "show the other N" was tapped
+
+  function qmItems() {
+    var x = null;
+    try { x = JSON.parse(localStorage.getItem(QM_KEY)); } catch (e) { /* ignore */ }
+    if (!x || !Array.isArray(x.items) || !(Date.now() - x.at < QM_DAYS * 86400000)) return [];
+    return x.items.filter(function (it) { return it && VOCAB[it.k]; });
+  }
+  function qmSave(items) {
+    try { localStorage.setItem(QM_KEY, JSON.stringify({ at: Date.now(), items: items })); } catch (e) { /* ignore */ }
+    qmOpen = false;
+  }
+  function qmClear() { try { localStorage.removeItem(QM_KEY); } catch (e) { /* ignore */ } }
+
+  function qmItemHtml(it) {
+    var v = VOCAB[it.k], row = rqBank && rqBank[it.k], html = '<div class="qm-item">';
+    html += '<div class="qm-word"><button class="vocab" data-key="' + it.k + '">' + esc(C.label(it.k)) + "</button>" +
+      '<button class="icon-btn plain small" data-speak="' + it.k + '" aria-label="Pronounce">🔊</button>' + kkHtml(it.k) +
+      '<span class="muted">' + esc(v.pos) + '</span><span class="level-tag lv' + v.level + '">' + C.LEVEL_NAMES[v.level] + "</span></div>" +
+      '<div class="qm-zh">' + esc(v.zh) + "</div>";
+    if (row) {
+      var m = /^(.*?)\{([^}]+)\}(.*)$/.exec(row[3]), who = CHARACTERS[row[2]];
+      var sentence = m ? m[1] + m[2] + m[3] : row[3];
+      var mine = it.pick === "s" ? "你按了「我不認識這個字」" : it.pick === "t" ? "沒有在時間內作答" : "你選了：" + row[6 + it.pick] + " ✗";
+      html += '<div class="qm-q"><div class="qm-q-head"><span class="label">測驗那一題 · In the test</span>' +
+        (who ? '<span class="qm-who">' + avatarHtml(who, "xs") + esc(who.name) + "</span>" : "") + "</div>" +
+        '<p lang="en">' + (m ? esc(m[1]) + '<span class="qm-target">' + esc(m[2]) + "</span>" + esc(m[3]) : esc(row[3])) +
+        ' <button class="icon-btn plain small" data-speak-text="' + esc(sentence) + '" aria-label="Read the sentence aloud">🔊</button></p>' +
+        '<div class="qm-ans"><span class="bad">' + esc(mine) + '</span><span class="ok">正解：' + esc(row[5]) + " ✓</span></div></div>";
+    }
+    html += '<div class="qm-ex"><div class="qm-q-head"><span class="label">例句 · Example</span></div>' +
+      '<p lang="en">' + esc(v.ex).replace(C.wordPattern(it.k), "<strong>$&</strong>") +
+      ' <button class="icon-btn plain small" data-speak-text="' + esc(v.ex) + '" aria-label="Read the example aloud">🔊</button></p>' +
+      '<p class="muted small">' + esc(v.exZh) + "</p></div>";
+    var saved = !!st().words[it.k];
+    html += '<div class="qm-actions"><button class="link' + (saved ? " saved" : "") + '" data-qm-save="' + it.k + '">' +
+      (saved ? "✓ 已加入複習 In Review" : "+ 加入複習 Add to Review") + "</button>" +
+      '<a class="link" href="#/search?q=' + encodeURIComponent(it.k) + '">更多串文 More threads →</a></div></div>';
+    return html;
+  }
+
+  // The thread itself. The /quiz bank (sentence, options, character) loads on demand; until then the card shows the
+  // word, its meaning and example, and repaints once the bank arrives.
+  function quizMissedHtml() {
+    var items = qmItems();
+    if (!items.length) return "";
+    if (rqBankState !== "ready" && rqBankState !== "failed") rqLoadBank(qmRepaint);
+    var shown = qmOpen ? items : items.slice(0, QM_SHOW), rest = items.length - shown.length;
+    return '<article class="post qm-post" id="qmCard" data-observed="1">' +
+      '<div class="post-left"><div class="avatar qm-avatar">' + tofuSvg(30) + '</div><div class="thread-line"></div></div>' +
+      '<div class="post-main"><div class="post-head"><span class="post-name">toEfu</span><span class="post-handle">@toefu</span><span class="post-time">· now</span>' +
+        '<button class="more-btn" data-qm-close aria-label="Close">✕</button></div>' +
+      '<div class="post-text">你剛剛在單字量測驗答錯了 <b>' + items.length + "</b> 個字，一起看看。<br>" +
+        '<span class="muted">Here are the ' + items.length + " word" + (items.length > 1 ? "s" : "") + " you missed on the vocabulary test.</span></div>" +
+      shown.map(qmItemHtml).join("") +
+      (rest > 0 ? '<button class="outline-btn qm-more" data-qm-more>再看 ' + rest + " 個 · Show " + rest + " more</button>" : "") +
+      "</div></article>";
+  }
+  function qmRepaint() {
+    var el = document.getElementById("qmCard");
+    if (el) el.outerHTML = quizMissedHtml();
+  }
+
+  // For you: threads that use the missed words go first (up to 2 per word, 10 in all).
+  function qmFirst(ranked) {
+    var items = qmItems();
+    if (!items.length) return ranked;
+    var pick = [], used = {};
+    items.forEach(function (it) {
+      C.BUILTIN.filter(function (p) { return !used[p.id] && p.words.indexOf(it.k) >= 0; }).slice(0, 2)
+        .forEach(function (p) { if (pick.length < 10) { used[p.id] = true; pick.push(p); } });
+    });
+    return pick.concat(ranked.filter(function (p) { return !used[p.id]; }));
+  }
+
   function buildFeed() {
     feedDirty = false;
     renderWordOfDay();
@@ -506,7 +586,7 @@
     followingEndShown = false;
     var community = communityPosts().sort(function (a, b) { return b.ts - a.ts; });
     if (feedMode === "foryou") {
-      var ranked = C.rankForYou(st(), S.seen, Math.random() * 4294967296);
+      var ranked = qmFirst(C.rankForYou(st(), S.seen, Math.random() * 4294967296));
       feedItems = [];
       var ci = 0;
       ranked.forEach(function (p, i) {
@@ -531,7 +611,7 @@
     $all(".feed-tab").forEach(function (t) { t.classList.toggle("active", t.dataset.feed === feedMode); });
     $("#promptAvatar").textContent = st().profile.avatar;
     var feed = $("#feed");
-    feed.innerHTML = "";
+    feed.innerHTML = feedMode === "foryou" ? quizMissedHtml() : "";
     if (!feedItems.length && feedMode === "following") {
       feed.innerHTML = '<div class="empty"><span class="big">👀</span>You aren\'t following anyone yet.</div>' + suggestionsHtml(6);
       followingEndShown = true;
@@ -1195,18 +1275,21 @@
     try { localStorage.setItem(RQ_NOTE_KEY, JSON.stringify({ day: C.dayKey(), n: rqNotesToday() + 1 })); } catch (e) { /* ignore */ }
   }
 
+  var rqBankWaiting = [];   // callers waiting for the bank (the review quiz and the missed-words thread)
   function rqLoadBank(done) {
+    function finish() { var w = rqBankWaiting; rqBankWaiting = []; w.forEach(function (f) { f(); }); }
     function build() {
       rqBank = {};
       (window.QUIZ_QUESTIONS || []).forEach(function (r) { rqBank[r[0].replace(/ /g, "_")] = r; });
-      rqBankState = "ready"; done();
+      rqBankState = "ready"; finish();
     }
+    if (rqBankWaiting.indexOf(done) < 0) rqBankWaiting.push(done);
     if (window.QUIZ_QUESTIONS) return build();
     if (rqBankState === "loading") return;
     rqBankState = "loading";
     var el = document.createElement("script");
     el.onload = build;
-    el.onerror = function () { rqBankState = "failed"; done(); };
+    el.onerror = function () { rqBankState = "failed"; finish(); };
     el.src = "js/data/quiz-questions.js";
     document.head.appendChild(el);
   }
@@ -2023,7 +2106,14 @@
     else if (d.rqAll !== undefined) { practiceAll = true; rq = null; renderReview(); }
     else if (d.practiceAll !== undefined) { practiceAll = true; startDeck(); renderReview(); }
     else if (d.toggleWord) { openWord = openWord === d.toggleWord ? null : d.toggleWord; renderReview(); }
+    else if (d.speakText) speak(d.speakText);
     else if (d.speak) speak(C.label(d.speak));
+    else if (d.qmClose !== undefined) { qmClear(); buildFeed(); }
+    else if (d.qmMore !== undefined) { qmOpen = true; qmRepaint(); }
+    else if (d.qmSave) {
+      if (st().words[d.qmSave]) delete st().words[d.qmSave]; else addWord(d.qmSave, null);
+      S.save(); refreshWordMarks(); qmRepaint();
+    }
     else if (d.removeWord) {
       delete st().words[d.removeWord];
       S.save(); refreshWordMarks(); renderReview();
@@ -2121,6 +2211,7 @@
   // Word sheet
   $("#sheetOverlay").addEventListener("click", function () { closeSheet(); closeInstallGuide(); closeRepostSheet(); });
   $("#speakBtn").addEventListener("click", function () { if (sheetKey) speak(C.label(sheetKey)); });
+  $("#sheetExSpeak").addEventListener("click", function () { if (sheetKey && VOCAB[sheetKey]) speak(VOCAB[sheetKey].ex); });
   $("#sheetSave").addEventListener("click", function () {
     if (!sheetKey) return;
     if (st().words[sheetKey]) { delete st().words[sheetKey]; toast("Removed from Review"); }
@@ -2479,9 +2570,19 @@
   function importQuizWords() {
     var q = null;
     try { q = new URLSearchParams(location.search); } catch (e) { /* old browser */ }
-    var incoming = [];
+    var incoming = [], missed = [];
     if (q && q.get("from") === "quiz") {
       incoming = (q.get("words") || "").split(",").filter(function (k) { return /^[a-z_]+$/.test(k); }).slice(0, 40);
+      // miss=word~pick: the missed words and what was answered, for the thread at the top of the feed
+      var seenMiss = {};
+      (q.get("miss") || "").split(",").forEach(function (x) {
+        var m = /^([a-z_]{1,60})~([012st])$/.exec(x);
+        if (m && !seenMiss[m[1]] && missed.length < 15) { seenMiss[m[1]] = 1; missed.push({ k: m[1], pick: /\d/.test(m[2]) ? +m[2] : m[2] }); }
+      });
+      if (missed.length) {
+        qmSave(missed);
+        missed.forEach(function (x) { if (incoming.indexOf(x.k) < 0 && incoming.length < 40) incoming.push(x.k); });   // missed words go into Review too
+      }
       try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) { /* ignore */ }
     }
     var allLists = C.PACK_META.map(function (m) { return m.id; }).filter(function (id) { return id !== "toefl"; });
@@ -2489,7 +2590,8 @@
     function add() {
       var added = incoming.filter(function (k) { return VOCAB[k] && addWord(k, null); }).length;
       if (added) { S.save(); refreshWordMarks(); toast(added + " word" + (added > 1 ? "s" : "") + " added to Review 📚"); }
-      if (needLists) { buildFeed(); refreshWordMarks(); handleRoute(); }
+      if (needLists || missed.length) { buildFeed(); refreshWordMarks(); handleRoute(); }
+      if (missed.length && route.name === "home") window.scrollTo(0, 0);
     }
     if (needLists) C.loadPacks(allLists, add); else add();
   }

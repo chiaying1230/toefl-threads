@@ -676,3 +676,25 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .tour-actions span { display: flex; gap: 8px; }
 .tour-actions .outline-btn, .tour-actions .primary-btn { width: auto; padding: 9px 14px; font-size: calc(14px * var(--fs)); }
 @media (prefers-reduced-motion: reduce) { .tour-spot { transition: none; } }
+
+/* Words missed on /quiz: the thread at the top of the For you feed */
+.qm-avatar { background: #fff6e0; }
+.qm-post .post-head .more-btn { margin-left: auto; }
+.qm-item { margin: 12px 0 0; padding: 12px; border-radius: 14px; background: var(--bg-soft); display: grid; gap: 8px; }
+.qm-word { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.qm-word .vocab { font-size: calc(20px * var(--fs)); font-weight: 800; }
+.qm-word .muted { font-size: calc(14px * var(--fs)); }
+.qm-zh { font-size: calc(17px * var(--fs)); font-weight: 700; }
+.qm-q, .qm-ex { background: var(--bg); border-radius: 12px; padding: 8px 10px; }
+.qm-q p, .qm-ex p { margin: 4px 0 0; line-height: 1.5; }
+.qm-q-head { display: flex; align-items: center; gap: 8px; }
+.qm-who { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-size: calc(13px * var(--fs)); }
+.qm-target { background: color-mix(in srgb, var(--accent) 16%, transparent); border-radius: 5px; padding: 0 3px; font-weight: 700; }
+.qm-ans { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: calc(14px * var(--fs)); font-weight: 700; }
+.qm-ans .bad { color: var(--like); }
+.qm-ans .ok { color: var(--saved); }
+.qm-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; }
+.qm-actions .link.saved { color: var(--saved); }
+.icon-btn.small { display: inline-grid; width: 30px; height: 30px; font-size: 15px; vertical-align: middle; }
+.qm-more { margin-top: 10px; }
+.sheet-ex-head { display: flex; align-items: center; justify-content: space-between; }

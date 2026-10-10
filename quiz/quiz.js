@@ -638,10 +638,16 @@
 
     // 登入卡片的連結：帶著沒答對的字（和單字卡上按了加入複習的字），主站讀到後加進複習清單
     var missedKeys = ans.filter(function (a) { return !a.ok; }).map(function (a) { return a.w.k; });
+    // miss=字~選了哪個：0–2 是題庫第幾個干擾項（row[6..8]），s 是「我不認識這個字」，t 是時間到。主站用它在動態最上面放錯題解析
+    var missCodes = ans.filter(function (a) { return !a.ok; }).map(function (a) {
+      var d = a.kind === "pick" ? a.w.opts.indexOf(a.picked) - 1 : -1;
+      return a.w.k + "~" + (a.kind === "skip" ? "s" : a.kind === "timeout" ? "t" : d >= 0 && d <= 2 ? d : "t");
+    });
     function loginHref() {
       var ks = missedKeys.slice();
       Object.keys(savedWords).forEach(function (k) { if (savedWords[k] && ks.indexOf(k) < 0) ks.push(k); });
-      return "../?from=quiz" + (ks.length ? "&words=" + ks.map(encodeURIComponent).join(",") : "");
+      return "../?from=quiz" + (ks.length ? "&words=" + ks.map(encodeURIComponent).join(",") : "") +
+        (missCodes.length ? "&miss=" + missCodes.map(encodeURIComponent).join(",") : "");
     }
     // 沒答對的字：只給三則，挑最接近他程度的（最學得起來的），目標字畫螢光筆
     var shown = {}, at = v / (TOTAL / 10);
@@ -669,7 +675,7 @@
     var gate = add('<section class="gate"><div class="gate-posts" inert aria-hidden="true">' + teaser.map(function (p) { return fullPost(p); }).join("") + "</div>" +
       '<div class="gate-card"><p class="gate-title">' + (left > 0 ? "你還有 " + left + " 個字沒答對" : !missedAll.length ? "全對的人，這裡有更難的字" : "還有 " + D.stats.posts + " 則這樣的串文") + "</p>" +
       '<p class="muted">' + (missedAll.length ? "登入 toEfu，把沒答對的字存進複習清單，繼續往下滑。" : "toEfu 有 " + D.stats.posts + " 則串文、" + fmt(D.stats.words) + " 個單字，登入後繼續往下滑。") + '</p>' +
-      '<a class="primary-btn" href="' + esc(loginHref()) + '" target="_blank" rel="noopener">登入 toEfu 繼續看</a></div></section>');
+      '<a class="primary-btn" href="' + esc(loginHref()) + '">登入 toEfu 繼續看</a></div></section>');   // 同一個分頁：主畫面 App 裡開新分頁會跳到 Safari
     gate.querySelector("a").addEventListener("click", function () { track("login_click"); this.href = loginHref(); });
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { track("saw_three_posts"); io.disconnect(); } }, { threshold: 0.5 });
