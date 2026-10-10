@@ -22,7 +22,7 @@ const run = (over = {}) => ({
   date: today, createdAt: serverTimestamp(), device: "dev-12345678", attempt_no: 1, is_best: true, self_estimate: null,
   challenge: null, vocab: 5500, theta: 0.4, correct: 9, total_ms: 72000,
   answers: Array.from({ length: 15 }, (_, i) => ({ n: i + 1, word: "w" + i, level: 3, result: "correct", picked: "x", options: ["x", "y", "z", "w"], ms: 2000, hid: false })),
-  source: "web", qv: "5145ab15", ...over
+  source: "web-v2", qv: "5145ab15", ...over
 });
 const db = () => anon;
 const ids = { run: "run-0000001" };

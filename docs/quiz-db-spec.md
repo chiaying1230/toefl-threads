@@ -12,7 +12,7 @@
 `qv`(字串,最長 20):題庫版本,`js/data/quiz-questions.js` 的 `window.QUIZ_QV`,由 `build-quiz-data.mjs` 對玩家看得到的題目內容(字、等級、角色、題幹、詞性、正解、干擾項,不含 `dtypes`)取 SHA-256 前 8 碼。分析時用 `qv` 判斷是哪個題庫版本。舊文件沒有 `hid`、`qv`,所有新欄位都可缺省。
 
 `attempt_no` 是這個裝置累計的第幾次挑戰,`is_best` 與這個裝置的歷史最佳比較;兩者存在 localStorage(`quizPlays`、`quizBest`),讀寫失敗(隱私模式、被清除)時退回只存在記憶體,行為同舊版。前 3 題內放棄不算一次。
-**舊資料不修補**:修正前寫入的 quizRuns(`qv` 為 5145ab15 以前,以及 5145ab15 但在這次修正部署之前寫入的),`attempt_no` 只代表同一次開啟頁面內的次數,`is_best` 也只和同一次開啟頁面內的成績比較,所以同一個 device 會有多筆 `attempt_no` 為 1。題庫沒變時 `qv` 不會變,要區分新舊資料請用 `createdAt` 的部署時間點。
+**舊資料不修補**:修正前寫入的 quizRuns(`qv` 為 5145ab15 以前,以及 5145ab15 但在這次修正部署之前寫入的),`attempt_no` 只代表同一次開啟頁面內的次數,`is_best` 也只和同一次開啟頁面內的成績比較,所以同一個 device 會有多筆 `attempt_no` 為 1。題庫沒變時 `qv` 不會變,所以要區分新舊資料請看 `source`:修正後寫入的是 `web-v2`,之前的是 `web`(`source` 只用來分版本,沒有其他功能)。
 `quizStats/words` 只計 `attempt_no` 為 1 的成績:修正後等於每個 device 的第一次挑戰;修正前的資料則包含每次開啟頁面的第一次。
 不存任何個人資料。測驗頁必須初始化 App Check(與主站相同的金鑰)。
 

@@ -376,7 +376,7 @@
         applyRank(R);
         var FV = firebase.firestore.FieldValue, b = db.batch(), bump = {};
         bump[field] = FV.increment(1); bump.n = FV.increment(1); bump.last = runRef.id;
-        var doc = Object.assign({}, run, { createdAt: FV.serverTimestamp(), device: deviceId(), source: "web" });
+        var doc = Object.assign({}, run, { createdAt: FV.serverTimestamp(), device: deviceId(), source: "web-v2" });
         b.set(runRef, doc);
         b.set(allRef, bump, { merge: true });
         b.set(dayRef, bump, { merge: true });
