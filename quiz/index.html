@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>單字量挑戰</title>
+<meta name="description" content="15 題，測出你的英文單字量。每題 10 秒，答完看你的成績和稱號。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="toEfu">
+<meta property="og:title" content="單字量挑戰">
+<meta property="og:description" content="15 題，測出你的英文單字量。每題 10 秒，答完看你的成績和稱號。">
+<meta property="og:url" content="https://toefu.app/quiz">
+<meta property="og:image" content="https://toefu.app/quiz/og-image.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="toEfu 單字量挑戰：15 題測出你的英文單字量">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="18" width="48" height="38" rx="12" fill="#E9D3A3"/><rect x="8" y="12" width="48" height="38" rx="12" fill="#FFF6E0" stroke="#E7CF9C" stroke-width="2"/><circle cx="23.5" cy="31" r="3.2" fill="#3B2F2F"/><circle cx="40.5" cy="31" r="3.2" fill="#3B2F2F"/><ellipse cx="17.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8"/><ellipse cx="46.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8"/><path d="M28.5 37.5q3.5 3.5 7 0" stroke="#3B2F2F" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    <h1 class="topbar-title">toEfu</h1></div>
+  <button class="restart" id="restartBtn" type="button" aria-label="放棄這一輪" title="放棄這一輪" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="bar-right"><div class="goal-chip" id="barStat">15 題</div></div>
+</div></header>
+
+<main>
+  <div id="feed"></div>
+</main>
+
+<div class="overlay" id="sheetOverlay" hidden></div>
+<div class="sheet" id="wordSheet" role="dialog" aria-modal="true" aria-labelledby="sheetWord" hidden>
+  <div class="sheet-handle"></div>
+  <div class="sheet-head">
+    <div><h2 id="sheetWord"></h2><div class="kk" id="sheetKK"></div>
+      <div class="sheet-meta"><span id="sheetPos"></span> <span class="level-tag" id="sheetLevel"></span></div></div>
+    <button class="icon-btn" id="sheetClose" type="button" aria-label="關閉"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <p class="sheet-zh" id="sheetZh"></p>
+  <div class="sheet-example" id="sheetExBox"><div class="label">Example</div><p id="sheetEx"></p><p class="muted" id="sheetExZh"></p></div>
+  <button class="primary-btn" id="sheetSave" type="button">+ Add to Review 加入複習</button>
+</div>
+
+<script src="../js/firebase-config.js"></script>
+<script src="../js/data/quiz-questions.js"></script>
+<script src="../js/data/quiz-data.js"></script>
+<script src="quiz.js"></script>
+</body>
+</html>

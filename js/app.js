@@ -2061,5 +2061,27 @@
     // Packs the reader picked earlier load in the background, then the word cards refresh.
     var wanted = (st().prefs.packs || []).filter(function (id) { return id !== "toefl"; });
     if (wanted.length) C.loadPacks(wanted, function () { buildFeed(); refreshWordMarks(); handleRoute(); });
+    importQuizWords();
   });
+
+  // The /quiz page links here with ?from=quiz&words=a,b,c: the words the visitor missed go into Review
+  // (saved on this device when signed out, and merged into the account when they sign in).
+  // Those words may live in a word list that isn't loaded, so load the lists first.
+  function importQuizWords() {
+    var q = null;
+    try { q = new URLSearchParams(location.search); } catch (e) { /* old browser */ }
+    var incoming = [];
+    if (q && q.get("from") === "quiz") {
+      incoming = (q.get("words") || "").split(",").filter(function (k) { return /^[a-z_]+$/.test(k); }).slice(0, 40);
+      try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) { /* ignore */ }
+    }
+    var allLists = C.PACK_META.map(function (m) { return m.id; }).filter(function (id) { return id !== "toefl"; });
+    var needLists = incoming.concat(Object.keys(st().words)).some(function (k) { return !VOCAB[k]; });
+    function add() {
+      var added = incoming.filter(function (k) { return VOCAB[k] && addWord(k, null); }).length;
+      if (added) { S.save(); refreshWordMarks(); toast(added + " word" + (added > 1 ? "s" : "") + " added to Review 📚"); }
+      if (needLists) { buildFeed(); refreshWordMarks(); handleRoute(); }
+    }
+    if (needLists) C.loadPacks(allLists, add); else add();
+  }
 })();

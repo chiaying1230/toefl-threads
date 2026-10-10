@@ -1,0 +1,9141 @@
+[
+ {
+  "word": "hole",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I made a big {hole} in the garden.",
+  "pos": "n",
+  "answer": "洞",
+  "distractors": [
+   "雪人",
+   "蛋糕",
+   "記號"
+  ]
+ },
+ {
+  "word": "hometown",
+  "band": 1,
+  "character": "ann",
+  "stem": "I miss my {hometown} every winter.",
+  "pos": "n",
+  "answer": "家鄉",
+  "distractors": [
+   "祖母",
+   "小狗",
+   "房間"
+  ]
+ },
+ {
+  "word": "carrot",
+  "band": 1,
+  "character": "rex",
+  "stem": "Someone left a {carrot} on my chair.",
+  "pos": "n",
+  "answer": "胡蘿蔔",
+  "distractors": [
+   "帽子",
+   "信封",
+   "鑰匙"
+  ]
+ },
+ {
+  "word": "picnic",
+  "band": 1,
+  "character": "boba",
+  "stem": "We had a {picnic} on the roof.",
+  "pos": "n",
+  "answer": "野餐",
+  "distractors": [
+   "會議",
+   "派對",
+   "考試"
+  ]
+ },
+ {
+  "word": "lock",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I need a new {lock} for my box.",
+  "pos": "n",
+  "answer": "鎖",
+  "distractors": [
+   "蓋子",
+   "名字",
+   "窗戶"
+  ]
+ },
+ {
+  "word": "jam",
+  "band": 1,
+  "character": "grandma",
+  "stem": "There is {jam} on my phone again.",
+  "pos": "n",
+  "answer": "果醬",
+  "distractors": [
+   "灰塵",
+   "墨水",
+   "沙子"
+  ]
+ },
+ {
+  "word": "juice",
+  "band": 1,
+  "character": "zorp",
+  "stem": "Humans drink {juice} before work.",
+  "pos": "n",
+  "answer": "果汁",
+  "distractors": [
+   "牛奶",
+   "湯",
+   "茶"
+  ]
+ },
+ {
+  "word": "football",
+  "band": 1,
+  "character": "pablo",
+  "stem": "Penguins are good at {football}, I think.",
+  "pos": "n",
+  "answer": "足球",
+  "distractors": [
+   "籃球",
+   "數學",
+   "唱歌"
+  ]
+ },
+ {
+  "word": "metal",
+  "band": 1,
+  "character": "fern",
+  "stem": "This cup is made of {metal}.",
+  "pos": "n",
+  "answer": "金屬",
+  "distractors": [
+   "玻璃",
+   "木頭",
+   "紙"
+  ]
+ },
+ {
+  "word": "sky",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "I looked at the {sky} for an hour.",
+  "pos": "n",
+  "answer": "天空",
+  "distractors": [
+   "牆壁",
+   "地圖",
+   "菜單"
+  ]
+ },
+ {
+  "word": "towel",
+  "band": 1,
+  "character": "socrates",
+  "stem": "Never forget your {towel} at the gym.",
+  "pos": "n",
+  "answer": "毛巾",
+  "distractors": [
+   "水壺",
+   "鑰匙",
+   "鞋子"
+  ]
+ },
+ {
+  "word": "foot",
+  "band": 1,
+  "character": "rex",
+  "stem": "Something is wrong with my left {foot}.",
+  "pos": "n",
+  "answer": "腳",
+  "distractors": [
+   "手",
+   "眼睛",
+   "耳朵"
+  ]
+ },
+ {
+  "word": "think",
+  "band": 1,
+  "character": "fern",
+  "stem": "I {think} about water all day.",
+  "pos": "v",
+  "answer": "想",
+  "distractors": [
+   "談論",
+   "夢到",
+   "擔心"
+  ]
+ },
+ {
+  "word": "happen",
+  "band": 1,
+  "character": "llama",
+  "stem": "It will {happen} again tomorrow, I know.",
+  "pos": "v",
+  "answer": "發生",
+  "distractors": [
+   "結束",
+   "開始",
+   "改變"
+  ]
+ },
+ {
+  "word": "travel",
+  "band": 1,
+  "character": "zorp",
+  "stem": "I always {travel} with my chair.",
+  "pos": "v",
+  "answer": "旅行",
+  "distractors": [
+   "工作",
+   "跳舞",
+   "睡覺"
+  ]
+ },
+ {
+  "word": "eat",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I {eat} when the house is quiet.",
+  "pos": "v",
+  "answer": "吃",
+  "distractors": [
+   "唱歌",
+   "跳舞",
+   "工作"
+  ]
+ },
+ {
+  "word": "pull",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I {pull} the blanket every night.",
+  "pos": "v",
+  "answer": "拉",
+  "distractors": [
+   "洗",
+   "咬",
+   "藏"
+  ]
+ },
+ {
+  "word": "stay",
+  "band": 1,
+  "character": "vulcan",
+  "stem": "Please {stay} a little longer.",
+  "pos": "v",
+  "answer": "停留",
+  "distractors": [
+   "睡覺",
+   "唱歌",
+   "跑步"
+  ]
+ },
+ {
+  "word": "roll",
+  "band": 1,
+  "character": "pablo",
+  "stem": "I {roll} down the hill every morning.",
+  "pos": "v",
+  "answer": "滾",
+  "distractors": [
+   "走",
+   "跑",
+   "跳"
+  ]
+ },
+ {
+  "word": "close",
+  "band": 1,
+  "character": "agatha",
+  "stem": "Please {close} the book before midnight.",
+  "pos": "v",
+  "answer": "關上",
+  "distractors": [
+   "打開",
+   "歸還",
+   "藏好"
+  ]
+ },
+ {
+  "word": "big",
+  "band": 1,
+  "character": "boba",
+  "stem": "Today I got a {big} cup.",
+  "pos": "adj",
+  "answer": "大的",
+  "distractors": [
+   "新的",
+   "紅的",
+   "髒的"
+  ]
+ },
+ {
+  "word": "main",
+  "band": 1,
+  "character": "reginald",
+  "stem": "This is the {main} door of my house.",
+  "pos": "adj",
+  "answer": "主要的",
+  "distractors": [
+   "秘密的",
+   "最舊的",
+   "藍色的"
+  ]
+ },
+ {
+  "word": "fair",
+  "band": 2,
+  "character": "captain",
+  "stem": "The teacher was {fair} to me today.",
+  "pos": "adj",
+  "answer": "公平的",
+  "distractors": [
+   "友善的",
+   "嚴格的",
+   "冷淡的"
+  ]
+ },
+ {
+  "word": "basic",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "This is a {basic} soup for humans.",
+  "pos": "adj",
+  "answer": "基礎的",
+  "distractors": [
+   "特別的",
+   "危險的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "hot",
+  "band": 1,
+  "character": "ann",
+  "stem": "My room is too {hot} today.",
+  "pos": "adj",
+  "answer": "熱的",
+  "distractors": [
+   "暗的",
+   "吵的",
+   "小的"
+  ]
+ },
+ {
+  "word": "snowy",
+  "band": 1,
+  "character": "captain",
+  "stem": "It was a {snowy} day in my dream.",
+  "pos": "adj",
+  "answer": "下雪的",
+  "distractors": [
+   "下雨的",
+   "晴朗的",
+   "多風的"
+  ]
+ },
+ {
+  "word": "easy",
+  "band": 1,
+  "character": "socrates",
+  "stem": "The first step is {easy}, my friend.",
+  "pos": "adj",
+  "answer": "容易的",
+  "distractors": [
+   "重要的",
+   "危險的",
+   "無聊的"
+  ]
+ },
+ {
+  "word": "cool",
+  "band": 1,
+  "character": "fern",
+  "stem": "I like {cool} mornings by the window.",
+  "pos": "adj",
+  "answer": "涼爽的",
+  "distractors": [
+   "安靜的",
+   "晴朗的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "weak",
+  "band": 1,
+  "character": "socrates",
+  "stem": "My left arm is {weak} today.",
+  "pos": "adj",
+  "answer": "弱的",
+  "distractors": [
+   "強壯的",
+   "僵硬的",
+   "冰冷的"
+  ]
+ },
+ {
+  "word": "knowledge",
+  "band": 2,
+  "character": "zorp",
+  "stem": "I need more {knowledge} about cats.",
+  "pos": "n",
+  "answer": "知識",
+  "distractors": [
+   "照片",
+   "故事",
+   "規則"
+  ]
+ },
+ {
+  "word": "trouble",
+  "band": 2,
+  "character": "captain",
+  "stem": "My brother brings {trouble} to every party.",
+  "pos": "n",
+  "answer": "麻煩",
+  "distractors": [
+   "禮物",
+   "音樂",
+   "食物"
+  ]
+ },
+ {
+  "word": "doughnut",
+  "band": 2,
+  "character": "boba",
+  "stem": "I dropped my {doughnut} in the river.",
+  "pos": "n",
+  "answer": "甜甜圈",
+  "distractors": [
+   "手機",
+   "雨傘",
+   "帽子"
+  ]
+ },
+ {
+  "word": "memory",
+  "band": 2,
+  "character": "agatha",
+  "stem": "I have a clear {memory} of that night.",
+  "pos": "n",
+  "answer": "記憶",
+  "distractors": [
+   "照片",
+   "錄影",
+   "地圖"
+  ]
+ },
+ {
+  "word": "stomachache",
+  "band": 2,
+  "character": "rex",
+  "stem": "I got a {stomachache} after the party.",
+  "pos": "n",
+  "answer": "胃痛",
+  "distractors": [
+   "頭痛",
+   "感冒",
+   "禮物"
+  ]
+ },
+ {
+  "word": "voice",
+  "band": 2,
+  "character": "agatha",
+  "stem": "Nobody hears my {voice} in the library.",
+  "pos": "n",
+  "answer": "聲音",
+  "distractors": [
+   "腳步",
+   "音樂",
+   "鬧鐘"
+  ]
+ },
+ {
+  "word": "password",
+  "band": 2,
+  "character": "grandma",
+  "stem": "I wrote my {password} on the wall.",
+  "pos": "n",
+  "answer": "密碼",
+  "distractors": [
+   "名字",
+   "生日",
+   "地址"
+  ]
+ },
+ {
+  "word": "highway",
+  "band": 2,
+  "character": "pigeon",
+  "stem": "I live near a busy {highway}.",
+  "pos": "n",
+  "answer": "公路",
+  "distractors": [
+   "市場",
+   "學校",
+   "車站"
+  ]
+ },
+ {
+  "word": "program",
+  "band": 2,
+  "character": "grandma",
+  "stem": "I watch this {program} every night.",
+  "pos": "n",
+  "answer": "節目",
+  "distractors": [
+   "電影",
+   "比賽",
+   "影片"
+  ]
+ },
+ {
+  "word": "friendship",
+  "band": 2,
+  "character": "whiskers",
+  "stem": "Our {friendship} started with a box.",
+  "pos": "n",
+  "answer": "友誼",
+  "distractors": [
+   "公司",
+   "故事",
+   "旅行"
+  ]
+ },
+ {
+  "word": "employee",
+  "band": 2,
+  "character": "whiskers",
+  "stem": "My best {employee} is a dog.",
+  "pos": "n",
+  "answer": "員工",
+  "distractors": [
+   "朋友",
+   "鄰居",
+   "老師"
+  ]
+ },
+ {
+  "word": "fail",
+  "band": 2,
+  "character": "captain",
+  "stem": "I always {fail} on Mondays.",
+  "pos": "v",
+  "answer": "失敗",
+  "distractors": [
+   "遲到",
+   "哭泣",
+   "逃跑"
+  ]
+ },
+ {
+  "word": "shine",
+  "band": 2,
+  "character": "fern",
+  "stem": "Stars {shine} above my pot.",
+  "pos": "v",
+  "answer": "發光",
+  "distractors": [
+   "移動",
+   "消失",
+   "旋轉"
+  ]
+ },
+ {
+  "word": "divide",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "I {divide} the cake with my hands.",
+  "pos": "v",
+  "answer": "分割",
+  "distractors": [
+   "加熱",
+   "裝飾",
+   "測量"
+  ]
+ },
+ {
+  "word": "surprise",
+  "band": 2,
+  "character": "llama",
+  "stem": "I {surprise} my friends every weekend.",
+  "pos": "v",
+  "answer": "使驚訝",
+  "distractors": [
+   "拜訪",
+   "照顧",
+   "想念"
+  ]
+ },
+ {
+  "word": "rub",
+  "band": 2,
+  "character": "mochi",
+  "stem": "I {rub} my nose on the window.",
+  "pos": "v",
+  "answer": "摩擦",
+  "distractors": [
+   "碰撞",
+   "清洗",
+   "弄傷"
+  ]
+ },
+ {
+  "word": "sail",
+  "band": 2,
+  "character": "pablo",
+  "stem": "We {sail} to work on ice.",
+  "pos": "v",
+  "answer": "航行",
+  "distractors": [
+   "走路",
+   "游泳",
+   "滑行"
+  ]
+ },
+ {
+  "word": "lay",
+  "band": 2,
+  "character": "beatrice",
+  "stem": "I {lay} my hat on the table.",
+  "pos": "v",
+  "answer": "放置",
+  "distractors": [
+   "忘記",
+   "清潔",
+   "尋找"
+  ]
+ },
+ {
+  "word": "silent",
+  "band": 2,
+  "character": "agatha",
+  "stem": "The new reader is very {silent}.",
+  "pos": "adj",
+  "answer": "沉默的",
+  "distractors": [
+   "年輕的",
+   "高的",
+   "緊張的"
+  ]
+ },
+ {
+  "word": "exciting",
+  "band": 2,
+  "character": "captain",
+  "stem": "Today's class was {exciting}, really.",
+  "pos": "adj",
+  "answer": "令人興奮的",
+  "distractors": [
+   "無聊的",
+   "困難的",
+   "很短的"
+  ]
+ },
+ {
+  "word": "strange",
+  "band": 2,
+  "character": "zorp",
+  "stem": "My boss has a {strange} smile.",
+  "pos": "adj",
+  "answer": "奇怪的",
+  "distractors": [
+   "溫暖的",
+   "疲倦的",
+   "禮貌的"
+  ]
+ },
+ {
+  "word": "foggy",
+  "band": 2,
+  "character": "vulcan",
+  "stem": "It is {foggy} on my mountain today.",
+  "pos": "adj",
+  "answer": "有霧的",
+  "distractors": [
+   "下雨的",
+   "晴朗的",
+   "寒冷的"
+  ]
+ },
+ {
+  "word": "proud",
+  "band": 2,
+  "character": "beatrice",
+  "stem": "I am {proud} of my bees.",
+  "pos": "adj",
+  "answer": "驕傲的",
+  "distractors": [
+   "擔心的",
+   "厭倦的",
+   "害怕的"
+  ]
+ },
+ {
+  "word": "teenage",
+  "band": 2,
+  "character": "grandma",
+  "stem": "My {teenage} neighbor fixed my Wi-Fi.",
+  "pos": "adj",
+  "answer": "十幾歲的",
+  "distractors": [
+   "外國的",
+   "年老的",
+   "害羞的"
+  ]
+ },
+ {
+  "word": "windy",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "It was too {windy} to fly today.",
+  "pos": "adj",
+  "answer": "多風的",
+  "distractors": [
+   "寒冷的",
+   "黑暗的",
+   "危險的"
+  ]
+ },
+ {
+  "word": "dishonest",
+  "band": 2,
+  "character": "whiskers",
+  "stem": "My assistant was {dishonest} about lunch.",
+  "pos": "adj",
+  "answer": "不誠實的",
+  "distractors": [
+   "緊張的",
+   "興奮的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "valuable",
+  "band": 2,
+  "character": "reginald",
+  "stem": "This spoon is very {valuable}.",
+  "pos": "adj",
+  "answer": "有價值的",
+  "distractors": [
+   "老舊的",
+   "沉重的",
+   "骯髒的"
+  ]
+ },
+ {
+  "word": "producer",
+  "band": 3,
+  "character": "boba",
+  "stem": "I know a {producer} of tea.",
+  "pos": "n",
+  "answer": "生產者",
+  "distractors": [
+   "收藏家",
+   "評審",
+   "愛好者"
+  ]
+ },
+ {
+  "word": "chili",
+  "band": 3,
+  "character": "chefbot",
+  "stem": "I put {chili} in the ice cream.",
+  "pos": "n",
+  "answer": "辣椒",
+  "distractors": [
+   "鹽",
+   "大蒜",
+   "起司"
+  ]
+ },
+ {
+  "word": "tone",
+  "band": 3,
+  "character": "llama",
+  "stem": "I did not like his {tone}.",
+  "pos": "n",
+  "answer": "語氣",
+  "distractors": [
+   "髮型",
+   "建議",
+   "禮物"
+  ]
+ },
+ {
+  "word": "background",
+  "band": 3,
+  "character": "zorp",
+  "stem": "Nobody asked about my {background}.",
+  "pos": "n",
+  "answer": "背景",
+  "distractors": [
+   "假期",
+   "薪水",
+   "健康"
+  ]
+ },
+ {
+  "word": "mosquito",
+  "band": 3,
+  "character": "fern",
+  "stem": "A {mosquito} sat on my leaf all day.",
+  "pos": "n",
+  "answer": "蚊子",
+  "distractors": [
+   "蝴蝶",
+   "青蛙",
+   "蜜蜂"
+  ]
+ },
+ {
+  "word": "concept",
+  "band": 3,
+  "character": "socrates",
+  "stem": "This is a new {concept} for me.",
+  "pos": "n",
+  "answer": "概念",
+  "distractors": [
+   "規則",
+   "工具",
+   "習慣"
+  ]
+ },
+ {
+  "word": "appetite",
+  "band": 3,
+  "character": "rex",
+  "stem": "I lost my {appetite} this morning.",
+  "pos": "n",
+  "answer": "食慾",
+  "distractors": [
+   "耐心",
+   "聲音",
+   "錢包"
+  ]
+ },
+ {
+  "word": "retirement",
+  "band": 3,
+  "character": "grandma",
+  "stem": "My {retirement} is busier than my job.",
+  "pos": "n",
+  "answer": "退休",
+  "distractors": [
+   "假期",
+   "婚姻",
+   "嗜好"
+  ]
+ },
+ {
+  "word": "protection",
+  "band": 3,
+  "character": "fern",
+  "stem": "I need {protection} from the office cat.",
+  "pos": "n",
+  "answer": "保護",
+  "distractors": [
+   "建議",
+   "許可",
+   "消息"
+  ]
+ },
+ {
+  "word": "handwriting",
+  "band": 3,
+  "character": "ann",
+  "stem": "My {handwriting} scares my teacher.",
+  "pos": "n",
+  "answer": "筆跡",
+  "distractors": [
+   "髮型",
+   "寵物",
+   "笑聲"
+  ]
+ },
+ {
+  "word": "expression",
+  "band": 3,
+  "character": "ann",
+  "stem": "I learned a new {expression} today.",
+  "pos": "n",
+  "answer": "表達方式",
+  "distractors": [
+   "食譜",
+   "舞步",
+   "規則"
+  ]
+ },
+ {
+  "word": "briefcase",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "There is a fish in my {briefcase}.",
+  "pos": "n",
+  "answer": "公事包",
+  "distractors": [
+   "抽屜",
+   "口袋",
+   "帽子"
+  ]
+ },
+ {
+  "word": "ski",
+  "band": 3,
+  "character": "pablo",
+  "stem": "We {ski} to school every day.",
+  "pos": "v",
+  "answer": "滑雪",
+  "distractors": [
+   "游泳",
+   "走路",
+   "搭船"
+  ]
+ },
+ {
+  "word": "cheat",
+  "band": 3,
+  "character": "captain",
+  "stem": "I never {cheat} in card games.",
+  "pos": "v",
+  "answer": "作弊",
+  "distractors": [
+   "說話",
+   "認輸",
+   "睡著"
+  ]
+ },
+ {
+  "word": "contribute",
+  "band": 4,
+  "character": "zorp",
+  "stem": "I {contribute} snacks to every meeting.",
+  "pos": "v",
+  "answer": "貢獻",
+  "distractors": [
+   "走私",
+   "推薦",
+   "販賣"
+  ]
+ },
+ {
+  "word": "compete",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "I {compete} with the dog every day.",
+  "pos": "v",
+  "answer": "競爭",
+  "distractors": [
+   "散步",
+   "合作",
+   "吵架"
+  ]
+ },
+ {
+  "word": "rob",
+  "band": 3,
+  "character": "mochi",
+  "stem": "I did not {rob} the kitchen, really.",
+  "pos": "v",
+  "answer": "搶劫",
+  "distractors": [
+   "弄髒",
+   "燒掉",
+   "破壞"
+  ]
+ },
+ {
+  "word": "disturb",
+  "band": 4,
+  "character": "agatha",
+  "stem": "Please do not {disturb} the old books.",
+  "pos": "v",
+  "answer": "打擾",
+  "distractors": [
+   "借走",
+   "丟掉",
+   "搬動"
+  ]
+ },
+ {
+  "word": "widen",
+  "band": 3,
+  "character": "pablo",
+  "stem": "We must {widen} the ice road.",
+  "pos": "v",
+  "answer": "加寬",
+  "distractors": [
+   "清理",
+   "關閉",
+   "修理"
+  ]
+ },
+ {
+  "word": "respond",
+  "band": 3,
+  "character": "llama",
+  "stem": "He did not {respond} to my message.",
+  "pos": "v",
+  "answer": "回應",
+  "distractors": [
+   "看到",
+   "轉寄",
+   "刪除"
+  ]
+ },
+ {
+  "word": "hopeful",
+  "band": 3,
+  "character": "fern",
+  "stem": "I feel {hopeful} about the rain.",
+  "pos": "adj",
+  "answer": "充滿希望的",
+  "distractors": [
+   "緊張的",
+   "好奇的",
+   "生氣的"
+  ]
+ },
+ {
+  "word": "stylish",
+  "band": 3,
+  "character": "llama",
+  "stem": "My cousin has a {stylish} hat.",
+  "pos": "adj",
+  "answer": "時髦的",
+  "distractors": [
+   "老舊的",
+   "過大的",
+   "借來的"
+  ]
+ },
+ {
+  "word": "lifelong",
+  "band": 4,
+  "character": "reginald",
+  "stem": "He is my {lifelong} friend.",
+  "pos": "adj",
+  "answer": "終身的",
+  "distractors": [
+   "唯一的",
+   "最新的",
+   "可靠的"
+  ]
+ },
+ {
+  "word": "legal",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "Is it {legal} to sleep at work?",
+  "pos": "adj",
+  "answer": "合法的",
+  "distractors": [
+   "安全的",
+   "正常的",
+   "禮貌的"
+  ]
+ },
+ {
+  "word": "crisp",
+  "band": 3,
+  "character": "chefbot",
+  "stem": "I like my toast {crisp}.",
+  "pos": "adj",
+  "answer": "酥脆的",
+  "distractors": [
+   "溫熱的",
+   "很甜的",
+   "很厚的"
+  ]
+ },
+ {
+  "word": "raw",
+  "band": 3,
+  "character": "rex",
+  "stem": "I ate the fish {raw} today.",
+  "pos": "adj",
+  "answer": "生的",
+  "distractors": [
+   "冷的",
+   "辣的",
+   "烤的"
+  ]
+ },
+ {
+  "word": "scenic",
+  "band": 3,
+  "character": "captain",
+  "stem": "I took the {scenic} road to class.",
+  "pos": "adj",
+  "answer": "風景優美的",
+  "distractors": [
+   "最短的",
+   "安靜的",
+   "危險的"
+  ]
+ },
+ {
+  "word": "informal",
+  "band": 3,
+  "character": "zorp",
+  "stem": "It was an {informal} meeting with my boss.",
+  "pos": "adj",
+  "answer": "非正式的",
+  "distractors": [
+   "緊急的",
+   "很長的",
+   "秘密的"
+  ]
+ },
+ {
+  "word": "decent",
+  "band": 3,
+  "character": "reginald",
+  "stem": "He seems like a {decent} man.",
+  "pos": "adj",
+  "answer": "正派的",
+  "distractors": [
+   "富有的",
+   "孤單的",
+   "健談的"
+  ]
+ },
+ {
+  "word": "contestant",
+  "band": 4,
+  "character": "llama",
+  "stem": "I was the oldest {contestant} there.",
+  "pos": "n",
+  "answer": "參賽者",
+  "distractors": [
+   "觀眾",
+   "評審",
+   "志工"
+  ]
+ },
+ {
+  "word": "jade",
+  "band": 4,
+  "character": "grandma",
+  "stem": "My ring is made of {jade}.",
+  "pos": "n",
+  "answer": "翡翠",
+  "distractors": [
+   "銀",
+   "木頭",
+   "塑膠"
+  ]
+ },
+ {
+  "word": "affection",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "I show {affection} twice a year.",
+  "pos": "n",
+  "answer": "喜愛",
+  "distractors": [
+   "憤怒",
+   "勇氣",
+   "耐心"
+  ]
+ },
+ {
+  "word": "limitation",
+  "band": 5,
+  "character": "socrates",
+  "stem": "Every body has a {limitation}.",
+  "pos": "n",
+  "answer": "限制",
+  "distractors": [
+   "故事",
+   "節奏",
+   "優點"
+  ]
+ },
+ {
+  "word": "fantasy",
+  "band": 4,
+  "character": "captain",
+  "stem": "It is just a {fantasy} of mine.",
+  "pos": "n",
+  "answer": "幻想",
+  "distractors": [
+   "習慣",
+   "計畫",
+   "笑話"
+  ]
+ },
+ {
+  "word": "trial",
+  "band": 4,
+  "character": "pigeon",
+  "stem": "The {trial} lasted three long days.",
+  "pos": "n",
+  "answer": "審判",
+  "distractors": [
+   "婚禮",
+   "暴風雨",
+   "比賽"
+  ]
+ },
+ {
+  "word": "holder",
+  "band": 3,
+  "character": "zorp",
+  "stem": "I am the {holder} of the office key.",
+  "pos": "n",
+  "answer": "持有者",
+  "distractors": [
+   "製造者",
+   "設計者",
+   "清潔員"
+  ]
+ },
+ {
+  "word": "coastline",
+  "band": 4,
+  "character": "pablo",
+  "stem": "I walked along the {coastline} all night.",
+  "pos": "n",
+  "answer": "海岸線",
+  "distractors": [
+   "鐵軌",
+   "邊界",
+   "河岸"
+  ]
+ },
+ {
+  "word": "relaxation",
+  "band": 4,
+  "character": "socrates",
+  "stem": "My plan needs more {relaxation}.",
+  "pos": "n",
+  "answer": "放鬆",
+  "distractors": [
+   "紀律",
+   "睡眠",
+   "練習"
+  ]
+ },
+ {
+  "word": "fertilizer",
+  "band": 4,
+  "character": "boba",
+  "stem": "My uncle sells {fertilizer} online.",
+  "pos": "n",
+  "answer": "肥料",
+  "distractors": [
+   "家具",
+   "玩具",
+   "輪胎"
+  ]
+ },
+ {
+  "word": "riches",
+  "band": 4,
+  "character": "reginald",
+  "stem": "My family lost its {riches} long ago.",
+  "pos": "n",
+  "answer": "財富",
+  "distractors": [
+   "土地",
+   "名聲",
+   "城堡"
+  ]
+ },
+ {
+  "word": "recipe",
+  "band": 4,
+  "character": "grandma",
+  "stem": "I lost my best {recipe} again.",
+  "pos": "n",
+  "answer": "食譜",
+  "distractors": [
+   "眼鏡",
+   "鑰匙",
+   "戒指"
+  ]
+ },
+ {
+  "word": "collaborate",
+  "band": 4,
+  "character": "octavia",
+  "stem": "I {collaborate} with eight friends at work.",
+  "pos": "v",
+  "answer": "合作",
+  "distractors": [
+   "爭吵",
+   "聚餐",
+   "競爭"
+  ]
+ },
+ {
+  "word": "advertise",
+  "band": 4,
+  "character": "boba",
+  "stem": "We {advertise} on the back of cats.",
+  "pos": "v",
+  "answer": "做廣告",
+  "distractors": [
+   "畫畫",
+   "寫字",
+   "睡覺"
+  ]
+ },
+ {
+  "word": "suffer",
+  "band": 4,
+  "character": "llama",
+  "stem": "I {suffer} every Monday morning.",
+  "pos": "v",
+  "answer": "受苦",
+  "distractors": [
+   "慶祝",
+   "運動",
+   "禱告"
+  ]
+ },
+ {
+  "word": "rotate",
+  "band": 5,
+  "character": "chefbot",
+  "stem": "I {rotate} the pizza every minute.",
+  "pos": "v",
+  "answer": "旋轉",
+  "distractors": [
+   "檢查",
+   "品嚐",
+   "拍攝"
+  ]
+ },
+ {
+  "word": "amaze",
+  "band": 4,
+  "character": "zorp",
+  "stem": "Humans {amaze} me every single day.",
+  "pos": "v",
+  "answer": "使驚奇",
+  "distractors": [
+   "教導",
+   "忽視",
+   "跟隨"
+  ]
+ },
+ {
+  "word": "shrink",
+  "band": 4,
+  "character": "grandma",
+  "stem": "My sweaters {shrink} every winter.",
+  "pos": "v",
+  "answer": "縮小",
+  "distractors": [
+   "消失",
+   "褪色",
+   "變硬"
+  ]
+ },
+ {
+  "word": "detect",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "I {detect} a problem with this plan.",
+  "pos": "v",
+  "answer": "查出",
+  "distractors": [
+   "製造",
+   "隱藏",
+   "解決"
+  ]
+ },
+ {
+  "word": "assess",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "I {assess} every box before entering.",
+  "pos": "v",
+  "answer": "評估",
+  "distractors": [
+   "咬",
+   "搖晃",
+   "聞"
+  ]
+ },
+ {
+  "word": "excessive",
+  "band": 4,
+  "character": "socrates",
+  "stem": "His answer seemed {excessive} to me.",
+  "pos": "adj",
+  "answer": "過度的",
+  "distractors": [
+   "真誠的",
+   "奇怪的",
+   "正常的"
+  ]
+ },
+ {
+  "word": "contagious",
+  "band": 4,
+  "character": "llama",
+  "stem": "Her laugh is {contagious}.",
+  "pos": "adj",
+  "answer": "有感染力的",
+  "distractors": [
+   "很大聲的",
+   "很假的",
+   "很少見的"
+  ]
+ },
+ {
+  "word": "brutal",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "The review of my soup was {brutal}.",
+  "pos": "adj",
+  "answer": "殘暴的",
+  "distractors": [
+   "很短的",
+   "正面的",
+   "匿名的"
+  ]
+ },
+ {
+  "word": "bland",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "Humans say my soup is {bland}.",
+  "pos": "adj",
+  "answer": "乏味的",
+  "distractors": [
+   "太燙的",
+   "太鹹的",
+   "太稠的"
+  ]
+ },
+ {
+  "word": "hesitant",
+  "band": 4,
+  "character": "pablo",
+  "stem": "I felt {hesitant} at the edge.",
+  "pos": "adj",
+  "answer": "猶豫的",
+  "distractors": [
+   "興奮的",
+   "頭暈的",
+   "孤單的"
+  ]
+ },
+ {
+  "word": "frustrating",
+  "band": 4,
+  "character": "captain",
+  "stem": "This game is {frustrating}, honestly.",
+  "pos": "adj",
+  "answer": "令人沮喪的",
+  "distractors": [
+   "令人上癮的",
+   "很簡單的",
+   "很老的"
+  ]
+ },
+ {
+  "word": "festive",
+  "band": 4,
+  "character": "boba",
+  "stem": "The shop looks {festive} this week.",
+  "pos": "adj",
+  "answer": "有節慶氣氛的",
+  "distractors": [
+   "空蕩的",
+   "老舊的",
+   "乾淨的"
+  ]
+ },
+ {
+  "word": "swift",
+  "band": 3,
+  "character": "zorp",
+  "stem": "My boss gave me a {swift} answer.",
+  "pos": "adj",
+  "answer": "迅速的",
+  "distractors": [
+   "誠實的",
+   "奇怪的",
+   "冗長的"
+  ]
+ },
+ {
+  "word": "enthusiasm",
+  "band": 5,
+  "character": "socrates",
+  "stem": "I admire your {enthusiasm}, my friend.",
+  "pos": "n",
+  "answer": "熱情",
+  "distractors": [
+   "耐心",
+   "誠實",
+   "力氣"
+  ]
+ },
+ {
+  "word": "commerce",
+  "band": 5,
+  "character": "reginald",
+  "stem": "My uncle works in {commerce}.",
+  "pos": "n",
+  "answer": "商業",
+  "distractors": [
+   "農業",
+   "教育",
+   "醫療"
+  ]
+ },
+ {
+  "word": "economics",
+  "band": 5,
+  "character": "ann",
+  "stem": "I chose {economics} by accident.",
+  "pos": "n",
+  "answer": "經濟學",
+  "distractors": [
+   "心理學",
+   "哲學",
+   "法律"
+  ]
+ },
+ {
+  "word": "flexibility",
+  "band": 5,
+  "character": "socrates",
+  "stem": "You need more {flexibility} for this move.",
+  "pos": "n",
+  "answer": "柔軟度",
+  "distractors": [
+   "力量",
+   "速度",
+   "勇氣"
+  ]
+ },
+ {
+  "word": "ointment",
+  "band": 5,
+  "character": "grandma",
+  "stem": "I keep {ointment} in every bag.",
+  "pos": "n",
+  "answer": "藥膏",
+  "distractors": [
+   "糖果",
+   "零錢",
+   "面紙"
+  ]
+ },
+ {
+  "word": "cone",
+  "band": 5,
+  "character": "fern",
+  "stem": "The roof looks like a {cone}.",
+  "pos": "n",
+  "answer": "圓錐體",
+  "distractors": [
+   "蘑菇",
+   "帽子",
+   "碗"
+  ]
+ },
+ {
+  "word": "temper",
+  "band": 5,
+  "character": "beatrice",
+  "stem": "My sister has a very bad {temper}.",
+  "pos": "n",
+  "answer": "脾氣",
+  "distractors": [
+   "記性",
+   "品味",
+   "運氣"
+  ]
+ },
+ {
+  "word": "interpreter",
+  "band": 6,
+  "character": "zorp",
+  "stem": "I need an {interpreter} at lunch.",
+  "pos": "n",
+  "answer": "口譯員",
+  "distractors": [
+   "保鑣",
+   "見證人",
+   "律師"
+  ]
+ },
+ {
+  "word": "hawk",
+  "band": 5,
+  "character": "pigeon",
+  "stem": "A {hawk} moved into my street.",
+  "pos": "n",
+  "answer": "老鷹",
+  "distractors": [
+   "狐狸",
+   "警察",
+   "烏鴉"
+  ]
+ },
+ {
+  "word": "operator",
+  "band": 5,
+  "character": "grandma",
+  "stem": "I asked the {operator} for help.",
+  "pos": "n",
+  "answer": "操作員",
+  "distractors": [
+   "店員",
+   "警衛",
+   "鄰居"
+  ]
+ },
+ {
+  "word": "haven",
+  "band": 5,
+  "character": "agatha",
+  "stem": "The library is my {haven}.",
+  "pos": "n",
+  "answer": "避難所",
+  "distractors": [
+   "辦公室",
+   "舞台",
+   "戰場"
+  ]
+ },
+ {
+  "word": "strive",
+  "band": 6,
+  "character": "captain",
+  "stem": "I {strive} to be on time.",
+  "pos": "v",
+  "answer": "努力",
+  "distractors": [
+   "假裝",
+   "拒絕",
+   "忘記"
+  ]
+ },
+ {
+  "word": "revive",
+  "band": 5,
+  "character": "chefbot",
+  "stem": "I tried to {revive} the old toaster.",
+  "pos": "v",
+  "answer": "使復甦",
+  "distractors": [
+   "賣掉",
+   "拆開",
+   "替換"
+  ]
+ },
+ {
+  "word": "beautify",
+  "band": 4,
+  "character": "beatrice",
+  "stem": "We {beautify} our home every spring.",
+  "pos": "v",
+  "answer": "美化",
+  "distractors": [
+   "清理",
+   "擴建",
+   "檢查"
+  ]
+ },
+ {
+  "word": "bask",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "I {bask} by the window after lunch.",
+  "pos": "v",
+  "answer": "曬太陽",
+  "distractors": [
+   "打瞌睡",
+   "伸懶腰",
+   "發呆"
+  ]
+ },
+ {
+  "word": "alter",
+  "band": 5,
+  "character": "reginald",
+  "stem": "Do not {alter} my plan, please.",
+  "pos": "v",
+  "answer": "改動",
+  "distractors": [
+   "公開",
+   "忘記",
+   "複製"
+  ]
+ },
+ {
+  "word": "imitate",
+  "band": 4,
+  "character": "pigeon",
+  "stem": "I {imitate} my teacher every morning.",
+  "pos": "v",
+  "answer": "模仿",
+  "distractors": [
+   "跟蹤",
+   "迎接",
+   "批評"
+  ]
+ },
+ {
+  "word": "deepen",
+  "band": 5,
+  "character": "pablo",
+  "stem": "We must {deepen} the hole today.",
+  "pos": "v",
+  "answer": "加深",
+  "distractors": [
+   "填滿",
+   "遮住",
+   "測量"
+  ]
+ },
+ {
+  "word": "discolor",
+  "band": 5,
+  "character": "llama",
+  "stem": "The sun will {discolor} my hat.",
+  "pos": "v",
+  "answer": "使褪色",
+  "distractors": [
+   "曬乾",
+   "弄壞",
+   "融化"
+  ]
+ },
+ {
+  "word": "surgical",
+  "band": 5,
+  "character": "agatha",
+  "stem": "He has {surgical} tools in his bag.",
+  "pos": "adj",
+  "answer": "外科手術的",
+  "distractors": [
+   "園藝的",
+   "電子的",
+   "烹飪的"
+  ]
+ },
+ {
+  "word": "wary",
+  "band": 5,
+  "character": "pigeon",
+  "stem": "I am {wary} of new statues.",
+  "pos": "adj",
+  "answer": "小心提防的",
+  "distractors": [
+   "厭倦的",
+   "驕傲的",
+   "喜愛的"
+  ]
+ },
+ {
+  "word": "wicked",
+  "band": 5,
+  "character": "agatha",
+  "stem": "The old owner had a {wicked} laugh.",
+  "pos": "adj",
+  "answer": "邪惡的",
+  "distractors": [
+   "沙啞的",
+   "溫柔的",
+   "短促的"
+  ]
+ },
+ {
+  "word": "infertile",
+  "band": 5,
+  "character": "fern",
+  "stem": "My new soil is {infertile}, they say.",
+  "pos": "adj",
+  "answer": "不肥沃的",
+  "distractors": [
+   "潮濕的",
+   "昂貴的",
+   "進口的"
+  ]
+ },
+ {
+  "word": "proficient",
+  "band": 4,
+  "character": "zorp",
+  "stem": "I am {proficient} in human small talk.",
+  "pos": "adj",
+  "answer": "精通的",
+  "distractors": [
+   "感興趣的",
+   "受過訓練的",
+   "失望的"
+  ]
+ },
+ {
+  "word": "customary",
+  "band": 5,
+  "character": "reginald",
+  "stem": "It is {customary} to sing here.",
+  "pos": "adj",
+  "answer": "依照慣例的",
+  "distractors": [
+   "禁止的",
+   "危險的",
+   "困難的"
+  ]
+ },
+ {
+  "word": "nocturnal",
+  "band": 5,
+  "character": "ann",
+  "stem": "My new friend is {nocturnal}.",
+  "pos": "adj",
+  "answer": "夜間活動的",
+  "distractors": [
+   "愛乾淨的",
+   "健忘的",
+   "多話的"
+  ]
+ },
+ {
+  "word": "skeptical",
+  "band": 6,
+  "character": "socrates",
+  "stem": "I am {skeptical} about this diet.",
+  "pos": "adj",
+  "answer": "懷疑的",
+  "distractors": [
+   "興奮的",
+   "好奇的",
+   "樂觀的"
+  ]
+ },
+ {
+  "word": "famine",
+  "band": 6,
+  "character": "reginald",
+  "stem": "My grandfather wrote about the {famine}.",
+  "pos": "n",
+  "answer": "飢荒",
+  "distractors": [
+   "洪水",
+   "戰爭",
+   "瘟疫"
+  ]
+ },
+ {
+  "word": "convention",
+  "band": 6,
+  "character": "zorp",
+  "stem": "This {convention} confuses me.",
+  "pos": "n",
+  "answer": "慣例",
+  "distractors": [
+   "手勢",
+   "笑話",
+   "表格"
+  ]
+ },
+ {
+  "word": "accordion",
+  "band": 6,
+  "character": "grandma",
+  "stem": "I bought an {accordion} last night.",
+  "pos": "n",
+  "answer": "手風琴",
+  "distractors": [
+   "烤箱",
+   "望遠鏡",
+   "腳踏車"
+  ]
+ },
+ {
+  "word": "dilemma",
+  "band": 6,
+  "character": "captain",
+  "stem": "I face a {dilemma} every morning.",
+  "pos": "n",
+  "answer": "兩難困境",
+  "distractors": [
+   "考試",
+   "對手",
+   "鏡子"
+  ]
+ },
+ {
+  "word": "remembrance",
+  "band": 6,
+  "character": "agatha",
+  "stem": "We held a {remembrance} for the old clock.",
+  "pos": "n",
+  "answer": "紀念",
+  "distractors": [
+   "拍賣",
+   "派對",
+   "會議"
+  ]
+ },
+ {
+  "word": "diligence",
+  "band": 6,
+  "character": "beatrice",
+  "stem": "I reward {diligence} with honey.",
+  "pos": "n",
+  "answer": "勤勉",
+  "distractors": [
+   "誠實",
+   "勇氣",
+   "忠誠"
+  ]
+ },
+ {
+  "word": "freebie",
+  "band": 6,
+  "character": "boba",
+  "stem": "I only came for the {freebie}.",
+  "pos": "n",
+  "answer": "免費贈品",
+  "distractors": [
+   "演講",
+   "音樂",
+   "照片"
+  ]
+ },
+ {
+  "word": "portal",
+  "band": 6,
+  "character": "zorp",
+  "stem": "I found a {portal} behind the printer.",
+  "pos": "n",
+  "answer": "入口",
+  "distractors": [
+   "蜘蛛",
+   "信封",
+   "裂縫"
+  ]
+ },
+ {
+  "word": "accusation",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "I do not accept this {accusation}.",
+  "pos": "n",
+  "answer": "指控",
+  "distractors": [
+   "謠言",
+   "報告",
+   "故事"
+  ]
+ },
+ {
+  "word": "evade",
+  "band": 7,
+  "character": "captain",
+  "stem": "I {evade} my teacher in the hallway.",
+  "pos": "v",
+  "answer": "躲避",
+  "distractors": [
+   "迎接",
+   "跟蹤",
+   "模仿"
+  ]
+ },
+ {
+  "word": "renovate",
+  "band": 6,
+  "character": "beatrice",
+  "stem": "We will {renovate} our home next month.",
+  "pos": "v",
+  "answer": "翻新",
+  "distractors": [
+   "搬離",
+   "出售",
+   "參觀"
+  ]
+ },
+ {
+  "word": "endure",
+  "band": 6,
+  "character": "llama",
+  "stem": "I {endure} his jokes every day.",
+  "pos": "v",
+  "answer": "忍受",
+  "distractors": [
+   "收集",
+   "翻譯",
+   "期待"
+  ]
+ },
+ {
+  "word": "creep",
+  "band": 5,
+  "character": "mochi",
+  "stem": "I {creep} to the kitchen at night.",
+  "pos": "v",
+  "answer": "躡手躡腳地走",
+  "distractors": [
+   "狂奔",
+   "滑行",
+   "跳躍"
+  ]
+ },
+ {
+  "word": "vacate",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "Please {vacate} my chair by noon.",
+  "pos": "v",
+  "answer": "空出",
+  "distractors": [
+   "修理",
+   "清潔",
+   "裝飾"
+  ]
+ },
+ {
+  "word": "frustrate",
+  "band": 6,
+  "character": "zorp",
+  "stem": "Printers {frustrate} me deeply.",
+  "pos": "v",
+  "answer": "使挫折",
+  "distractors": [
+   "吸引",
+   "娛樂",
+   "安慰"
+  ]
+ },
+ {
+  "word": "bind",
+  "band": 6,
+  "character": "chefbot",
+  "stem": "I {bind} the noodles with string.",
+  "pos": "v",
+  "answer": "捆綁",
+  "distractors": [
+   "測量",
+   "切斷",
+   "裝飾"
+  ]
+ },
+ {
+  "word": "ambiguous",
+  "band": 6,
+  "character": "llama",
+  "stem": "His reply was {ambiguous}, as usual.",
+  "pos": "adj",
+  "answer": "含糊不清的",
+  "distractors": [
+   "簡短的",
+   "無禮的",
+   "遲來的"
+  ]
+ },
+ {
+  "word": "perceptive",
+  "band": 6,
+  "character": "agatha",
+  "stem": "The new teacher is {perceptive}.",
+  "pos": "adj",
+  "answer": "觀察敏銳的",
+  "distractors": [
+   "健忘的",
+   "嚴肅的",
+   "膽小的"
+  ]
+ },
+ {
+  "word": "benign",
+  "band": 6,
+  "character": "fizz",
+  "stem": "The smoke is {benign}, I promise.",
+  "pos": "adj",
+  "answer": "無害的",
+  "distractors": [
+   "暫時的",
+   "有色的",
+   "很濃的"
+  ]
+ },
+ {
+  "word": "insistent",
+  "band": 6,
+  "character": "grandma",
+  "stem": "The salesman was very {insistent}.",
+  "pos": "adj",
+  "answer": "堅持的",
+  "distractors": [
+   "有禮的",
+   "年輕的",
+   "緊張的"
+  ]
+ },
+ {
+  "word": "mundane",
+  "band": 6,
+  "character": "zorp",
+  "stem": "My job on Earth is {mundane}.",
+  "pos": "adj",
+  "answer": "平凡的",
+  "distractors": [
+   "危險的",
+   "秘密的",
+   "暫時的"
+  ]
+ },
+ {
+  "word": "acute",
+  "band": 6,
+  "character": "pigeon",
+  "stem": "I felt an {acute} pain in my wing.",
+  "pos": "adj",
+  "answer": "劇烈的",
+  "distractors": [
+   "輕微的",
+   "熟悉的",
+   "奇怪的"
+  ]
+ },
+ {
+  "word": "impoverished",
+  "band": 6,
+  "character": "reginald",
+  "stem": "He grew up in an {impoverished} town.",
+  "pos": "adj",
+  "answer": "貧困的",
+  "distractors": [
+   "偏遠的",
+   "寧靜的",
+   "擁擠的"
+  ]
+ },
+ {
+  "word": "dormant",
+  "band": 7,
+  "character": "fern",
+  "stem": "My neighbor has been {dormant} all winter.",
+  "pos": "adj",
+  "answer": "休眠的",
+  "distractors": [
+   "失蹤的",
+   "忙碌的",
+   "生病的"
+  ]
+ },
+ {
+  "word": "astronomical",
+  "band": 6,
+  "character": "zorp",
+  "stem": "He showed me an {astronomical} chart.",
+  "pos": "adj",
+  "answer": "天文的",
+  "distractors": [
+   "醫學的",
+   "家族的",
+   "航海的"
+  ]
+ },
+ {
+  "word": "pioneering",
+  "band": 6,
+  "character": "fizz",
+  "stem": "My {pioneering} study was about soup.",
+  "pos": "adj",
+  "answer": "開創性的",
+  "distractors": [
+   "失敗的",
+   "短期的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "efficacy",
+  "band": 8,
+  "character": "fizz",
+  "stem": "I am not sure about the {efficacy} of this tea.",
+  "pos": "n",
+  "answer": "功效",
+  "distractors": [
+   "來源",
+   "價格",
+   "口味"
+  ]
+ },
+ {
+  "word": "prodigy",
+  "band": 7,
+  "character": "grandma",
+  "stem": "My grandson is a {prodigy}, they say.",
+  "pos": "n",
+  "answer": "神童",
+  "distractors": [
+   "麻煩人物",
+   "素食者",
+   "夜貓子"
+  ]
+ },
+ {
+  "word": "monotone",
+  "band": 7,
+  "character": "llama",
+  "stem": "He speaks in a {monotone}.",
+  "pos": "n",
+  "answer": "單調的語調",
+  "distractors": [
+   "方言",
+   "耳語",
+   "密碼"
+  ]
+ },
+ {
+  "word": "forte",
+  "band": 8,
+  "character": "captain",
+  "stem": "Waking up early is not my {forte}.",
+  "pos": "n",
+  "answer": "強項",
+  "distractors": [
+   "嗜好",
+   "義務",
+   "計畫"
+  ]
+ },
+ {
+  "word": "intimacy",
+  "band": 7,
+  "character": "octavia",
+  "stem": "I avoid {intimacy} at work.",
+  "pos": "n",
+  "answer": "親密",
+  "distractors": [
+   "衝突",
+   "責任",
+   "閒聊"
+  ]
+ },
+ {
+  "word": "linguistics",
+  "band": 7,
+  "character": "zorp",
+  "stem": "I failed {linguistics} on my planet.",
+  "pos": "n",
+  "answer": "語言學",
+  "distractors": [
+   "天文學",
+   "烹飪",
+   "體育"
+  ]
+ },
+ {
+  "word": "unification",
+  "band": 7,
+  "character": "pablo",
+  "stem": "The {unification} of the two clubs failed.",
+  "pos": "n",
+  "answer": "統一",
+  "distractors": [
+   "比賽",
+   "會議",
+   "派對"
+  ]
+ },
+ {
+  "word": "charisma",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "My assistant has no {charisma} at all.",
+  "pos": "n",
+  "answer": "領袖魅力",
+  "distractors": [
+   "耐心",
+   "經驗",
+   "野心"
+  ]
+ },
+ {
+  "word": "sanitation",
+  "band": 7,
+  "character": "pigeon",
+  "stem": "The teacher talked about {sanitation} for hours.",
+  "pos": "n",
+  "answer": "環境衛生",
+  "distractors": [
+   "交通",
+   "稅金",
+   "治安"
+  ]
+ },
+ {
+  "word": "fulfillment",
+  "band": 7,
+  "character": "reginald",
+  "stem": "The {fulfillment} of my plan took years.",
+  "pos": "n",
+  "answer": "完成",
+  "distractors": [
+   "設計",
+   "失敗",
+   "公開"
+  ]
+ },
+ {
+  "word": "intuition",
+  "band": 7,
+  "character": "llama",
+  "stem": "My {intuition} was wrong again.",
+  "pos": "n",
+  "answer": "直覺",
+  "distractors": [
+   "計算",
+   "律師",
+   "導航"
+  ]
+ },
+ {
+  "word": "waive",
+  "band": 7,
+  "character": "reginald",
+  "stem": "I will {waive} my fee this time.",
+  "pos": "v",
+  "answer": "放棄",
+  "distractors": [
+   "提高",
+   "公開",
+   "計算"
+  ]
+ },
+ {
+  "word": "alleviate",
+  "band": 7,
+  "character": "fizz",
+  "stem": "This may {alleviate} your headache.",
+  "pos": "v",
+  "answer": "減輕",
+  "distractors": [
+   "引起",
+   "延長",
+   "解釋"
+  ]
+ },
+ {
+  "word": "portray",
+  "band": 7,
+  "character": "llama",
+  "stem": "The film will {portray} me as a hero.",
+  "pos": "v",
+  "answer": "描繪",
+  "distractors": [
+   "雇用",
+   "歡迎",
+   "紀念"
+  ]
+ },
+ {
+  "word": "attest",
+  "band": 7,
+  "character": "ann",
+  "stem": "My neighbors can {attest} to my singing.",
+  "pos": "v",
+  "answer": "證明",
+  "distractors": [
+   "忍受",
+   "模仿",
+   "錄下"
+  ]
+ },
+ {
+  "word": "exert",
+  "band": 7,
+  "character": "socrates",
+  "stem": "Do not {exert} too much force.",
+  "pos": "v",
+  "answer": "運用",
+  "distractors": [
+   "浪費",
+   "測量",
+   "隱藏"
+  ]
+ },
+ {
+  "word": "impede",
+  "band": 7,
+  "character": "pablo",
+  "stem": "Ice can {impede} our morning walk.",
+  "pos": "v",
+  "answer": "妨礙",
+  "distractors": [
+   "縮短",
+   "改善",
+   "取代"
+  ]
+ },
+ {
+  "word": "baffle",
+  "band": 7,
+  "character": "zorp",
+  "stem": "Birthdays {baffle} me completely.",
+  "pos": "v",
+  "answer": "使困惑",
+  "distractors": [
+   "使疲倦",
+   "使開心",
+   "使害怕"
+  ]
+ },
+ {
+  "word": "eloquent",
+  "band": 7,
+  "character": "pigeon",
+  "stem": "My boss is {eloquent} after lunch.",
+  "pos": "adj",
+  "answer": "雄辯的",
+  "distractors": [
+   "暴躁的",
+   "想睡的",
+   "大方的"
+  ]
+ },
+ {
+  "word": "truncated",
+  "band": 7,
+  "character": "zorp",
+  "stem": "I received a {truncated} message.",
+  "pos": "adj",
+  "answer": "截短的",
+  "distractors": [
+   "加密的",
+   "匿名的",
+   "手寫的"
+  ]
+ },
+ {
+  "word": "inept",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "My new manager is {inept}.",
+  "pos": "adj",
+  "answer": "無能的",
+  "distractors": [
+   "嚴格的",
+   "神秘的",
+   "熱心的"
+  ]
+ },
+ {
+  "word": "catastrophic",
+  "band": 7,
+  "character": "chefbot",
+  "stem": "Dinner was {catastrophic} last night.",
+  "pos": "adj",
+  "answer": "災難性的",
+  "distractors": [
+   "豐盛的",
+   "安靜的",
+   "倉促的"
+  ]
+ },
+ {
+  "word": "benevolent",
+  "band": 7,
+  "character": "beatrice",
+  "stem": "I am a {benevolent} queen, mostly.",
+  "pos": "adj",
+  "answer": "仁慈的",
+  "distractors": [
+   "忙碌的",
+   "年輕的",
+   "孤獨的"
+  ]
+ },
+ {
+  "word": "fickle",
+  "band": 7,
+  "character": "llama",
+  "stem": "My best friend is {fickle}.",
+  "pos": "adj",
+  "answer": "易變無常的",
+  "distractors": [
+   "守時的",
+   "節儉的",
+   "內向的"
+  ]
+ },
+ {
+  "word": "blatant",
+  "band": 7,
+  "character": "reginald",
+  "stem": "That was a {blatant} lie, sir.",
+  "pos": "adj",
+  "answer": "公然的",
+  "distractors": [
+   "善意的",
+   "小小的",
+   "常見的"
+  ]
+ },
+ {
+  "word": "unconcerned",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "He looked {unconcerned} during the fire.",
+  "pos": "adj",
+  "answer": "漠不關心的",
+  "distractors": [
+   "驚慌的",
+   "困惑的",
+   "興奮的"
+  ]
+ },
+ {
+  "word": "strategic",
+  "band": 7,
+  "character": "captain",
+  "stem": "It was a {strategic} lunch.",
+  "pos": "adj",
+  "answer": "策略性的",
+  "distractors": [
+   "短暫的",
+   "意外的",
+   "每日的"
+  ]
+ },
+ {
+  "word": "elusive",
+  "band": 7,
+  "character": "octavia",
+  "stem": "The office cat is {elusive}.",
+  "pos": "adj",
+  "answer": "難以捉摸的",
+  "distractors": [
+   "友善的",
+   "年老的",
+   "貪吃的"
+  ]
+ },
+ {
+  "word": "protrusion",
+  "band": 8,
+  "character": "fern",
+  "stem": "There is a {protrusion} on the wall.",
+  "pos": "n",
+  "answer": "突出物",
+  "distractors": [
+   "裂縫",
+   "污漬",
+   "標誌"
+  ]
+ },
+ {
+  "word": "utopia",
+  "band": 8,
+  "character": "zorp",
+  "stem": "My planet is not a {utopia}.",
+  "pos": "n",
+  "answer": "烏托邦",
+  "distractors": [
+   "殖民地",
+   "沙漠",
+   "迷宮"
+  ]
+ },
+ {
+  "word": "concussion",
+  "band": 8,
+  "character": "rex",
+  "stem": "I got a {concussion} at the party.",
+  "pos": "n",
+  "answer": "腦震盪",
+  "distractors": [
+   "獎盃",
+   "綽號",
+   "感冒"
+  ]
+ },
+ {
+  "word": "underling",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "My {underling} forgot my lunch.",
+  "pos": "n",
+  "answer": "手下",
+  "distractors": [
+   "司機",
+   "鄰居",
+   "廚師"
+  ]
+ },
+ {
+  "word": "statute",
+  "band": 8,
+  "character": "reginald",
+  "stem": "This {statute} is older than me.",
+  "pos": "n",
+  "answer": "成文法",
+  "distractors": [
+   "雕像",
+   "橋",
+   "傳統"
+  ]
+ },
+ {
+  "word": "mausoleum",
+  "band": 9,
+  "character": "ann",
+  "stem": "We visited a {mausoleum} on our trip.",
+  "pos": "n",
+  "answer": "陵墓",
+  "distractors": [
+   "水壩",
+   "燈塔",
+   "修道院"
+  ]
+ },
+ {
+  "word": "interloper",
+  "band": 8,
+  "character": "beatrice",
+  "stem": "There is an {interloper} in my garden.",
+  "pos": "n",
+  "answer": "闖入者",
+  "distractors": [
+   "稻草人",
+   "園丁",
+   "雕像"
+  ]
+ },
+ {
+  "word": "repeal",
+  "band": 8,
+  "character": "beatrice",
+  "stem": "I will {repeal} the sleep rule.",
+  "pos": "v",
+  "answer": "廢除",
+  "distractors": [
+   "公布",
+   "修改",
+   "執行"
+  ]
+ },
+ {
+  "word": "inscribe",
+  "band": 8,
+  "character": "reginald",
+  "stem": "Please {inscribe} my name on the cup.",
+  "pos": "v",
+  "answer": "題寫",
+  "distractors": [
+   "擦掉",
+   "檢查",
+   "念出"
+  ]
+ },
+ {
+  "word": "improvise",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "I {improvise} when the plan fails.",
+  "pos": "v",
+  "answer": "臨場發揮",
+  "distractors": [
+   "道歉",
+   "哭泣",
+   "放棄"
+  ]
+ },
+ {
+  "word": "astonish",
+  "band": 8,
+  "character": "zorp",
+  "stem": "Elevators still {astonish} me.",
+  "pos": "v",
+  "answer": "使吃驚",
+  "distractors": [
+   "使緊張",
+   "使厭煩",
+   "使頭暈"
+  ]
+ },
+ {
+  "word": "legislate",
+  "band": 8,
+  "character": "pigeon",
+  "stem": "We cannot {legislate} against bad jokes.",
+  "pos": "v",
+  "answer": "立法",
+  "distractors": [
+   "抗議",
+   "投票",
+   "防備"
+  ]
+ },
+ {
+  "word": "prattle",
+  "band": 8,
+  "character": "pigeon",
+  "stem": "They {prattle} on the roof all day.",
+  "pos": "v",
+  "answer": "閒扯",
+  "distractors": [
+   "打盹",
+   "跳舞",
+   "打架"
+  ]
+ },
+ {
+  "word": "enunciate",
+  "band": 8,
+  "character": "boba",
+  "stem": "Please {enunciate} when you order.",
+  "pos": "v",
+  "answer": "發音清晰",
+  "distractors": [
+   "微笑",
+   "排隊",
+   "付款"
+  ]
+ },
+ {
+  "word": "succumb",
+  "band": 8,
+  "character": "llama",
+  "stem": "I {succumb} to cake every time.",
+  "pos": "v",
+  "answer": "屈服",
+  "distractors": [
+   "過敏",
+   "感謝",
+   "習慣"
+  ]
+ },
+ {
+  "word": "garbled",
+  "band": 8,
+  "character": "grandma",
+  "stem": "The message was {garbled} again.",
+  "pos": "adj",
+  "answer": "混亂不清的",
+  "distractors": [
+   "很短的",
+   "重複的",
+   "遲到的"
+  ]
+ },
+ {
+  "word": "opulent",
+  "band": 9,
+  "character": "reginald",
+  "stem": "She lives in an {opulent} house.",
+  "pos": "adj",
+  "answer": "奢華的",
+  "distractors": [
+   "偏僻的",
+   "狹小的",
+   "租來的"
+  ]
+ },
+ {
+  "word": "frigid",
+  "band": 8,
+  "character": "fern",
+  "stem": "The office is {frigid} again this morning.",
+  "pos": "adj",
+  "answer": "寒冷的",
+  "distractors": [
+   "空蕩的",
+   "吵雜的",
+   "昏暗的"
+  ]
+ },
+ {
+  "word": "wrathful",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "The chef looked {wrathful} today.",
+  "pos": "adj",
+  "answer": "憤怒的",
+  "distractors": [
+   "疲憊的",
+   "得意的",
+   "緊張的"
+  ]
+ },
+ {
+  "word": "conspicuous",
+  "band": 8,
+  "character": "llama",
+  "stem": "My hat is too {conspicuous}, I fear.",
+  "pos": "adj",
+  "answer": "明顯的",
+  "distractors": [
+   "老氣的",
+   "緊的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "sumptuous",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "We had a {sumptuous} breakfast.",
+  "pos": "adj",
+  "answer": "奢華的",
+  "distractors": [
+   "簡單的",
+   "匆忙的",
+   "遲來的"
+  ]
+ },
+ {
+  "word": "extraneous",
+  "band": 9,
+  "character": "zorp",
+  "stem": "Please take out the {extraneous} parts.",
+  "pos": "adj",
+  "answer": "無直接關係的",
+  "distractors": [
+   "錯誤的",
+   "私人的",
+   "重複的"
+  ]
+ },
+ {
+  "word": "effectual",
+  "band": 9,
+  "character": "fizz",
+  "stem": "Her method was {effectual}.",
+  "pos": "adj",
+  "answer": "卓有成效的",
+  "distractors": [
+   "昂貴的",
+   "傳統的",
+   "危險的"
+  ]
+ },
+ {
+  "word": "complicity",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "I had no {complicity} in this.",
+  "pos": "n",
+  "answer": "同謀",
+  "distractors": [
+   "興趣",
+   "過失",
+   "角色"
+  ]
+ },
+ {
+  "word": "dissension",
+  "band": 9,
+  "character": "beatrice",
+  "stem": "There is {dissension} in my family.",
+  "pos": "n",
+  "answer": "分歧",
+  "distractors": [
+   "疾病",
+   "喜悅",
+   "謠言"
+  ]
+ },
+ {
+  "word": "prerogative",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "Sleeping here is my {prerogative}.",
+  "pos": "n",
+  "answer": "特權",
+  "distractors": [
+   "習慣",
+   "秘密",
+   "弱點"
+  ]
+ },
+ {
+  "word": "opulence",
+  "band": 9,
+  "character": "ann",
+  "stem": "The {opulence} of the room surprised me.",
+  "pos": "n",
+  "answer": "富麗",
+  "distractors": [
+   "寒冷",
+   "大小",
+   "寂靜"
+  ]
+ },
+ {
+  "word": "panacea",
+  "band": 10,
+  "character": "grandma",
+  "stem": "Soup is not a {panacea}, dear.",
+  "pos": "n",
+  "answer": "萬能之計",
+  "distractors": [
+   "甜點",
+   "藉口",
+   "玩具"
+  ]
+ },
+ {
+  "word": "matinee",
+  "band": 9,
+  "character": "llama",
+  "stem": "I slept through the {matinee}.",
+  "pos": "n",
+  "answer": "日場演出",
+  "distractors": [
+   "演講",
+   "暴風雨",
+   "警報"
+  ]
+ },
+ {
+  "word": "nadir",
+  "band": 9,
+  "character": "captain",
+  "stem": "Monday was the {nadir} of my week.",
+  "pos": "n",
+  "answer": "最低點",
+  "distractors": [
+   "亮點",
+   "中點",
+   "起點"
+  ]
+ },
+ {
+  "word": "juncture",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "At this {juncture}, I need a snack.",
+  "pos": "n",
+  "answer": "時刻",
+  "distractors": [
+   "價格",
+   "速度",
+   "年紀"
+  ]
+ },
+ {
+  "word": "functionary",
+  "band": 9,
+  "character": "zorp",
+  "stem": "A {functionary} stamped my form.",
+  "pos": "n",
+  "answer": "公務人員",
+  "distractors": [
+   "機器人",
+   "志工",
+   "陌生人"
+  ]
+ },
+ {
+  "word": "encumbrance",
+  "band": 9,
+  "character": "pablo",
+  "stem": "This coat is an {encumbrance}.",
+  "pos": "n",
+  "answer": "累贅",
+  "distractors": [
+   "傑作",
+   "警告",
+   "古董"
+  ]
+ },
+ {
+  "word": "brandish",
+  "band": 9,
+  "character": "chefbot",
+  "stem": "I {brandish} my spoon at guests.",
+  "pos": "v",
+  "answer": "揮舞",
+  "distractors": [
+   "丟擲",
+   "炫耀",
+   "敲打"
+  ]
+ },
+ {
+  "word": "bemoan",
+  "band": 9,
+  "character": "llama",
+  "stem": "I {bemoan} my haircut daily.",
+  "pos": "v",
+  "answer": "哀嘆",
+  "distractors": [
+   "欣賞",
+   "整理",
+   "拍攝"
+  ]
+ },
+ {
+  "word": "abhor",
+  "band": 9,
+  "character": "reginald",
+  "stem": "To be honest, I {abhor} all new music.",
+  "pos": "v",
+  "answer": "憎惡",
+  "distractors": [
+   "收藏",
+   "研究",
+   "懷念"
+  ]
+ },
+ {
+  "word": "venerate",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "The pigeons {venerate} that old statue.",
+  "pos": "v",
+  "answer": "崇敬",
+  "distractors": [
+   "躲避",
+   "佔領",
+   "弄髒"
+  ]
+ },
+ {
+  "word": "conscript",
+  "band": 9,
+  "character": "beatrice",
+  "stem": "I will {conscript} every lazy bee.",
+  "pos": "v",
+  "answer": "徵召",
+  "distractors": [
+   "開除",
+   "獎勵",
+   "點名"
+  ]
+ },
+ {
+  "word": "desist",
+  "band": 9,
+  "character": "agatha",
+  "stem": "Please {desist}, I am trying to sleep.",
+  "pos": "v",
+  "answer": "停止",
+  "distractors": [
+   "離開",
+   "道歉",
+   "解釋"
+  ]
+ },
+ {
+  "word": "apprehend",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "They will {apprehend} the cat tomorrow.",
+  "pos": "v",
+  "answer": "逮捕",
+  "distractors": [
+   "收養",
+   "檢查",
+   "表揚"
+  ]
+ },
+ {
+  "word": "embezzle",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "I did not {embezzle} the snack money.",
+  "pos": "v",
+  "answer": "侵占",
+  "distractors": [
+   "捐出",
+   "弄丟",
+   "凍結"
+  ]
+ },
+ {
+  "word": "impregnable",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "My box house is {impregnable}.",
+  "pos": "adj",
+  "answer": "堅不可摧的",
+  "distractors": [
+   "舒適的",
+   "臨時的",
+   "隱形的"
+  ]
+ },
+ {
+  "word": "taciturn",
+  "band": 9,
+  "character": "reginald",
+  "stem": "My new driver is {taciturn}.",
+  "pos": "adj",
+  "answer": "沉默寡言的",
+  "distractors": [
+   "粗心的",
+   "守時的",
+   "健談的"
+  ]
+ },
+ {
+  "word": "corpulent",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "My neighbor's dog is {corpulent}.",
+  "pos": "adj",
+  "answer": "肥胖的",
+  "distractors": [
+   "兇猛的",
+   "年老的",
+   "膽小的"
+  ]
+ },
+ {
+  "word": "maudlin",
+  "band": 10,
+  "character": "llama",
+  "stem": "He gets {maudlin} at weddings.",
+  "pos": "adj",
+  "answer": "感傷愛哭的",
+  "distractors": [
+   "吵鬧的",
+   "想睡的",
+   "緊張的"
+  ]
+ },
+ {
+  "word": "inadmissible",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "The teacher called my photo {inadmissible}.",
+  "pos": "adj",
+  "answer": "不可接受的",
+  "distractors": [
+   "模糊的",
+   "可笑的",
+   "過期的"
+  ]
+ },
+ {
+  "word": "tenacious",
+  "band": 9,
+  "character": "octavia",
+  "stem": "She is a {tenacious} player.",
+  "pos": "adj",
+  "answer": "堅韌的",
+  "distractors": [
+   "溫和的",
+   "新手的",
+   "狡猾的"
+  ]
+ },
+ {
+  "word": "phlegmatic",
+  "band": 9,
+  "character": "pablo",
+  "stem": "My pet fish is {phlegmatic}.",
+  "pos": "adj",
+  "answer": "冷靜淡漠的",
+  "distractors": [
+   "好動的",
+   "貪吃的",
+   "膽小的"
+  ]
+ },
+ {
+  "word": "idyllic",
+  "band": 9,
+  "character": "ann",
+  "stem": "We spent an {idyllic} week there.",
+  "pos": "adj",
+  "answer": "田園詩般的",
+  "distractors": [
+   "混亂的",
+   "昂貴的",
+   "多雨的"
+  ]
+ },
+ {
+  "word": "efficacious",
+  "band": 9,
+  "character": "grandma",
+  "stem": "The old medicine was {efficacious}.",
+  "pos": "adj",
+  "answer": "靈驗有效的",
+  "distractors": [
+   "危險的",
+   "昂貴的",
+   "無味的"
+  ]
+ },
+ {
+  "word": "sleight",
+  "band": 10,
+  "character": "captain",
+  "stem": "I admired his {sleight} at the card table.",
+  "pos": "n",
+  "answer": "巧妙手法",
+  "distractors": [
+   "耐心",
+   "運氣",
+   "禮貌"
+  ]
+ },
+ {
+  "word": "sophistry",
+  "band": 10,
+  "character": "socrates",
+  "stem": "His whole speech was {sophistry}.",
+  "pos": "n",
+  "answer": "詭辯",
+  "distractors": [
+   "常識",
+   "詩意",
+   "傳統"
+  ]
+ },
+ {
+  "word": "obelisk",
+  "band": 10,
+  "character": "pigeon",
+  "stem": "We met beside the {obelisk}.",
+  "pos": "n",
+  "answer": "方尖碑",
+  "distractors": [
+   "噴泉",
+   "涼亭",
+   "馬廄"
+  ]
+ },
+ {
+  "word": "aegis",
+  "band": 10,
+  "character": "beatrice",
+  "stem": "We work under the {aegis} of the queen.",
+  "pos": "n",
+  "answer": "庇護",
+  "distractors": [
+   "監視",
+   "命令",
+   "詛咒"
+  ]
+ },
+ {
+  "word": "conflagration",
+  "band": 10,
+  "character": "vulcan",
+  "stem": "The {conflagration} lasted two days.",
+  "pos": "n",
+  "answer": "大火",
+  "distractors": [
+   "慶典",
+   "審判",
+   "罷工"
+  ]
+ },
+ {
+  "word": "despotism",
+  "band": 10,
+  "character": "reginald",
+  "stem": "The book is about {despotism}.",
+  "pos": "n",
+  "answer": "專制",
+  "distractors": [
+   "友誼",
+   "航海",
+   "農耕"
+  ]
+ },
+ {
+  "word": "prosody",
+  "band": 10,
+  "character": "agatha",
+  "stem": "She teaches {prosody} on Fridays.",
+  "pos": "n",
+  "answer": "韻律學",
+  "distractors": [
+   "陶藝",
+   "擊劍",
+   "烘焙"
+  ]
+ },
+ {
+  "word": "sarcophagus",
+  "band": 10,
+  "character": "ann",
+  "stem": "They found a {sarcophagus} under the school.",
+  "pos": "n",
+  "answer": "石棺",
+  "distractors": [
+   "隧道",
+   "水井",
+   "金庫"
+  ]
+ },
+ {
+  "word": "exasperate",
+  "band": 10,
+  "character": "llama",
+  "stem": "Slow walkers {exasperate} me.",
+  "pos": "v",
+  "answer": "激怒",
+  "distractors": [
+   "吸引",
+   "逗樂",
+   "嚇到"
+  ]
+ },
+ {
+  "word": "expunge",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "Please {expunge} my name from the list.",
+  "pos": "v",
+  "answer": "刪除",
+  "distractors": [
+   "抄下",
+   "念出",
+   "挑出"
+  ]
+ },
+ {
+  "word": "besmirch",
+  "band": 10,
+  "character": "reginald",
+  "stem": "Do not {besmirch} my family name.",
+  "pos": "v",
+  "answer": "玷污",
+  "distractors": [
+   "使用",
+   "忘記",
+   "拼錯"
+  ]
+ },
+ {
+  "word": "abrogate",
+  "band": 10,
+  "character": "beatrice",
+  "stem": "The queen may {abrogate} the old rule.",
+  "pos": "v",
+  "answer": "廢除",
+  "distractors": [
+   "簽署",
+   "延長",
+   "公開"
+  ]
+ },
+ {
+  "word": "proscribe",
+  "band": 10,
+  "character": "reginald",
+  "stem": "The club will {proscribe} loud shoes.",
+  "pos": "v",
+  "answer": "禁止",
+  "distractors": [
+   "規定穿",
+   "販售",
+   "收集"
+  ]
+ },
+ {
+  "word": "inure",
+  "band": 10,
+  "character": "socrates",
+  "stem": "Years of noise {inure} you to anything.",
+  "pos": "v",
+  "answer": "使習慣",
+  "distractors": [
+   "使害怕",
+   "使好奇",
+   "使遠離"
+  ]
+ },
+ {
+  "word": "stolid",
+  "band": 10,
+  "character": "pablo",
+  "stem": "The guard remained {stolid}.",
+  "pos": "adj",
+  "answer": "不動聲色的",
+  "distractors": [
+   "警覺的",
+   "友善的",
+   "困惑的"
+  ]
+ },
+ {
+  "word": "concomitant",
+  "band": 10,
+  "character": "fizz",
+  "stem": "Success has {concomitant} problems.",
+  "pos": "adj",
+  "answer": "伴隨而來的",
+  "distractors": [
+   "嚴重的",
+   "隱藏的",
+   "常見的"
+  ]
+ },
+ {
+  "word": "dilatory",
+  "band": 10,
+  "character": "reginald",
+  "stem": "His reply was {dilatory}.",
+  "pos": "adj",
+  "answer": "拖延的",
+  "distractors": [
+   "簡潔的",
+   "憤怒的",
+   "含糊的"
+  ]
+ },
+ {
+  "word": "pugnacious",
+  "band": 10,
+  "character": "grandma",
+  "stem": "My neighbor's goose is {pugnacious}.",
+  "pos": "adj",
+  "answer": "好鬥的",
+  "distractors": [
+   "膽小的",
+   "肥胖的",
+   "年老的"
+  ]
+ },
+ {
+  "word": "effete",
+  "band": 10,
+  "character": "reginald",
+  "stem": "The old king had become {effete}.",
+  "pos": "adj",
+  "answer": "衰弱的",
+  "distractors": [
+   "富裕的",
+   "殘暴的",
+   "孤獨的"
+  ]
+ },
+ {
+  "word": "reprehensible",
+  "band": 10,
+  "character": "agatha",
+  "stem": "His behavior was {reprehensible}.",
+  "pos": "adj",
+  "answer": "應受斥責的",
+  "distractors": [
+   "古怪的",
+   "可預料的",
+   "勇敢的"
+  ]
+ },
+ {
+  "word": "importunate",
+  "band": 10,
+  "character": "grandma",
+  "stem": "The {importunate} salesman followed me home.",
+  "pos": "adj",
+  "answer": "糾纏不休的",
+  "distractors": [
+   "年輕的",
+   "迷路的",
+   "禮貌的"
+  ]
+ },
+ {
+  "word": "center",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "I live in the {center} of the park.",
+  "pos": "n",
+  "answer": "中心",
+  "distractors": [
+   "角落",
+   "北邊",
+   "外面"
+  ]
+ },
+ {
+  "word": "king",
+  "band": 1,
+  "character": "rex",
+  "stem": "I met a {king} at the bus stop.",
+  "pos": "n",
+  "answer": "國王",
+  "distractors": [
+   "醫生",
+   "歌手",
+   "警察"
+  ]
+ },
+ {
+  "word": "room",
+  "band": 1,
+  "character": "agatha",
+  "stem": "This {room} is always cold.",
+  "pos": "n",
+  "answer": "房間",
+  "distractors": [
+   "走廊",
+   "座位",
+   "地板"
+  ]
+ },
+ {
+  "word": "salad",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "I put candy in the {salad}.",
+  "pos": "n",
+  "answer": "沙拉",
+  "distractors": [
+   "湯",
+   "三明治",
+   "咖啡"
+  ]
+ },
+ {
+  "word": "princess",
+  "band": 1,
+  "character": "grandma",
+  "stem": "My cat thinks she is a {princess}.",
+  "pos": "n",
+  "answer": "公主",
+  "distractors": [
+   "獅子",
+   "老師",
+   "廚師"
+  ]
+ },
+ {
+  "word": "television",
+  "band": 1,
+  "character": "zorp",
+  "stem": "Humans talk to the {television} at night.",
+  "pos": "n",
+  "answer": "電視",
+  "distractors": [
+   "冰箱",
+   "月亮",
+   "鏡子"
+  ]
+ },
+ {
+  "word": "question",
+  "band": 1,
+  "character": "socrates",
+  "stem": "I have one {question} for you.",
+  "pos": "n",
+  "answer": "問題",
+  "distractors": [
+   "禮物",
+   "建議",
+   "故事"
+  ]
+ },
+ {
+  "word": "shorts",
+  "band": 1,
+  "character": "pablo",
+  "stem": "I wear {shorts} in winter.",
+  "pos": "n",
+  "answer": "短褲",
+  "distractors": [
+   "手套",
+   "拖鞋",
+   "墨鏡"
+  ]
+ },
+ {
+  "word": "climb",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I {climb} onto the sofa every night.",
+  "pos": "v",
+  "answer": "爬",
+  "distractors": [
+   "跳",
+   "飛",
+   "滾"
+  ]
+ },
+ {
+  "word": "bring",
+  "band": 1,
+  "character": "boba",
+  "stem": "Please {bring} your own cup tomorrow.",
+  "pos": "v",
+  "answer": "帶來",
+  "distractors": [
+   "清洗",
+   "選擇",
+   "設計"
+  ]
+ },
+ {
+  "word": "introduce",
+  "band": 1,
+  "character": "llama",
+  "stem": "Let me {introduce} my new hat.",
+  "pos": "v",
+  "answer": "介紹",
+  "distractors": [
+   "修理",
+   "出售",
+   "尋找"
+  ]
+ },
+ {
+  "word": "pay",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I never {pay} for lunch.",
+  "pos": "v",
+  "answer": "付錢",
+  "distractors": [
+   "等待",
+   "排隊",
+   "禱告"
+  ]
+ },
+ {
+  "word": "count",
+  "band": 1,
+  "character": "fern",
+  "stem": "I {count} my leaves every morning.",
+  "pos": "v",
+  "answer": "計算",
+  "distractors": [
+   "清洗",
+   "澆水",
+   "擦亮"
+  ]
+ },
+ {
+  "word": "wait",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "I {wait} near the bakery every day.",
+  "pos": "v",
+  "answer": "等待",
+  "distractors": [
+   "唱歌",
+   "跳舞",
+   "睡覺"
+  ]
+ },
+ {
+  "word": "agree",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I never {agree} with the dog.",
+  "pos": "v",
+  "answer": "同意",
+  "distractors": [
+   "說話",
+   "玩耍",
+   "分享"
+  ]
+ },
+ {
+  "word": "repeat",
+  "band": 1,
+  "character": "grandma",
+  "stem": "Please {repeat} the last part, dear.",
+  "pos": "v",
+  "answer": "重複",
+  "distractors": [
+   "解釋",
+   "刪掉",
+   "寫下"
+  ]
+ },
+ {
+  "word": "tall",
+  "band": 1,
+  "character": "pablo",
+  "stem": "My new friend is very {tall}.",
+  "pos": "adj",
+  "answer": "高的",
+  "distractors": [
+   "安靜的",
+   "年輕的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "impossible",
+  "band": 1,
+  "character": "captain",
+  "stem": "This homework is {impossible}, honestly.",
+  "pos": "adj",
+  "answer": "不可能的",
+  "distractors": [
+   "很重要的",
+   "很無聊的",
+   "很簡單的"
+  ]
+ },
+ {
+  "word": "cute",
+  "band": 1,
+  "character": "rex",
+  "stem": "People say I am {cute}.",
+  "pos": "adj",
+  "answer": "可愛的",
+  "distractors": [
+   "高大的",
+   "危險的",
+   "聰明的"
+  ]
+ },
+ {
+  "word": "unhappy",
+  "band": 1,
+  "character": "fern",
+  "stem": "The plant next to me looks {unhappy}.",
+  "pos": "adj",
+  "answer": "不快樂的",
+  "distractors": [
+   "很健康的",
+   "很年輕的",
+   "很乾燥的"
+  ]
+ },
+ {
+  "word": "fresh",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "This bread is not {fresh}.",
+  "pos": "adj",
+  "answer": "新鮮的",
+  "distractors": [
+   "免費的",
+   "柔軟的",
+   "完整的"
+  ]
+ },
+ {
+  "word": "southern",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "I prefer the {southern} side of town.",
+  "pos": "adj",
+  "answer": "南方的",
+  "distractors": [
+   "安靜的",
+   "老舊的",
+   "熱鬧的"
+  ]
+ },
+ {
+  "word": "thirsty",
+  "band": 1,
+  "character": "ann",
+  "stem": "I am always {thirsty} on Mondays.",
+  "pos": "adj",
+  "answer": "口渴的",
+  "distractors": [
+   "疲倦的",
+   "生氣的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "benefit",
+  "band": 2,
+  "character": "socrates",
+  "stem": "I see one {benefit} in this plan.",
+  "pos": "n",
+  "answer": "益處",
+  "distractors": [
+   "問題",
+   "錯誤",
+   "危險"
+  ]
+ },
+ {
+  "word": "ancestor",
+  "band": 2,
+  "character": "rex",
+  "stem": "My {ancestor} was much bigger than me.",
+  "pos": "n",
+  "answer": "祖先",
+  "distractors": [
+   "鄰居",
+   "老闆",
+   "對手"
+  ]
+ },
+ {
+  "word": "loss",
+  "band": 2,
+  "character": "whiskers",
+  "stem": "It was a big {loss} for the company.",
+  "pos": "n",
+  "answer": "損失",
+  "distractors": [
+   "驚喜",
+   "機會",
+   "改變"
+  ]
+ },
+ {
+  "word": "system",
+  "band": 2,
+  "character": "zorp",
+  "stem": "I do not trust this {system}.",
+  "pos": "n",
+  "answer": "系統",
+  "distractors": [
+   "新聞",
+   "廚師",
+   "地圖"
+  ]
+ },
+ {
+  "word": "junk",
+  "band": 2,
+  "character": "grandma",
+  "stem": "My drawer is full of {junk}.",
+  "pos": "n",
+  "answer": "垃圾",
+  "distractors": [
+   "信件",
+   "糖果",
+   "照片"
+  ]
+ },
+ {
+  "word": "battery",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "I need a new {battery} by Friday.",
+  "pos": "n",
+  "answer": "電池",
+  "distractors": [
+   "帽子",
+   "助手",
+   "護照"
+  ]
+ },
+ {
+  "word": "ladder",
+  "band": 2,
+  "character": "mochi",
+  "stem": "There is a {ladder} in my bedroom.",
+  "pos": "n",
+  "answer": "梯子",
+  "distractors": [
+   "鏡子",
+   "箱子",
+   "地毯"
+  ]
+ },
+ {
+  "word": "host",
+  "band": 2,
+  "character": "llama",
+  "stem": "The {host} forgot my name.",
+  "pos": "n",
+  "answer": "主人",
+  "distractors": [
+   "司機",
+   "醫生",
+   "裁判"
+  ]
+ },
+ {
+  "word": "zebra",
+  "band": 2,
+  "character": "pablo",
+  "stem": "I met a {zebra} on vacation.",
+  "pos": "n",
+  "answer": "斑馬",
+  "distractors": [
+   "駱駝",
+   "鯊魚",
+   "袋鼠"
+  ]
+ },
+ {
+  "word": "law",
+  "band": 2,
+  "character": "pigeon",
+  "stem": "There is a {law} about feeding me.",
+  "pos": "n",
+  "answer": "法律",
+  "distractors": [
+   "故事",
+   "歌曲",
+   "謠言"
+  ]
+ },
+ {
+  "word": "festival",
+  "band": 2,
+  "character": "boba",
+  "stem": "We sell more tea during the {festival}.",
+  "pos": "n",
+  "answer": "節日",
+  "distractors": [
+   "颱風",
+   "考試",
+   "比賽"
+  ]
+ },
+ {
+  "word": "pride",
+  "band": 2,
+  "character": "beatrice",
+  "stem": "I work with great {pride}.",
+  "pos": "n",
+  "answer": "驕傲",
+  "distractors": [
+   "速度",
+   "耐心",
+   "勇氣"
+  ]
+ },
+ {
+  "word": "population",
+  "band": 2,
+  "character": "vulcan",
+  "stem": "The {population} of my town is nine.",
+  "pos": "n",
+  "answer": "人口",
+  "distractors": [
+   "溫度",
+   "年紀",
+   "高度"
+  ]
+ },
+ {
+  "word": "recycle",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "I {recycle} old jokes every day.",
+  "pos": "v",
+  "answer": "回收",
+  "distractors": [
+   "收集",
+   "翻譯",
+   "忘記"
+  ]
+ },
+ {
+  "word": "communicate",
+  "band": 2,
+  "character": "zorp",
+  "stem": "We {communicate} with small lights.",
+  "pos": "v",
+  "answer": "溝通",
+  "distractors": [
+   "玩耍",
+   "烹飪",
+   "工作"
+  ]
+ },
+ {
+  "word": "release",
+  "band": 2,
+  "character": "pablo",
+  "stem": "They will {release} the fish tomorrow.",
+  "pos": "v",
+  "answer": "釋放",
+  "distractors": [
+   "購買",
+   "烹煮",
+   "檢查"
+  ]
+ },
+ {
+  "word": "expand",
+  "band": 2,
+  "character": "boba",
+  "stem": "We will {expand} the shop next year.",
+  "pos": "v",
+  "answer": "擴大",
+  "distractors": [
+   "關閉",
+   "粉刷",
+   "出售"
+  ]
+ },
+ {
+  "word": "celebrate",
+  "band": 2,
+  "character": "captain",
+  "stem": "I {celebrate} every small win.",
+  "pos": "v",
+  "answer": "慶祝",
+  "distractors": [
+   "忘記",
+   "懷疑",
+   "記錄"
+  ]
+ },
+ {
+  "word": "chase",
+  "band": 2,
+  "character": "mochi",
+  "stem": "I {chase} the mailman every morning.",
+  "pos": "v",
+  "answer": "追趕",
+  "distractors": [
+   "迎接",
+   "等待",
+   "害怕"
+  ]
+ },
+ {
+  "word": "taste",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "Please {taste} this before you leave.",
+  "pos": "v",
+  "answer": "品嚐",
+  "distractors": [
+   "簽名",
+   "閱讀",
+   "帶走"
+  ]
+ },
+ {
+  "word": "create",
+  "band": 2,
+  "character": "octavia",
+  "stem": "I {create} problems with eight arms.",
+  "pos": "v",
+  "answer": "創造",
+  "distractors": [
+   "解決",
+   "隱藏",
+   "計算"
+  ]
+ },
+ {
+  "word": "cancel",
+  "band": 2,
+  "character": "captain",
+  "stem": "I had to {cancel} my birthday party.",
+  "pos": "v",
+  "answer": "取消",
+  "distractors": [
+   "規劃",
+   "離開",
+   "拍攝"
+  ]
+ },
+ {
+  "word": "remain",
+  "band": 2,
+  "character": "agatha",
+  "stem": "I {remain} in the library after closing.",
+  "pos": "v",
+  "answer": "留下",
+  "distractors": [
+   "唱歌",
+   "打掃",
+   "閱讀"
+  ]
+ },
+ {
+  "word": "messy",
+  "band": 2,
+  "character": "ann",
+  "stem": "My desk is {messy} again.",
+  "pos": "adj",
+  "answer": "雜亂的",
+  "distractors": [
+   "空的",
+   "新的",
+   "太小的"
+  ]
+ },
+ {
+  "word": "prepared",
+  "band": 2,
+  "character": "socrates",
+  "stem": "Are you {prepared} for leg day?",
+  "pos": "adj",
+  "answer": "準備好的",
+  "distractors": [
+   "興奮的",
+   "害怕的",
+   "太老的"
+  ]
+ },
+ {
+  "word": "urban",
+  "band": 2,
+  "character": "pigeon",
+  "stem": "I love {urban} life.",
+  "pos": "adj",
+  "answer": "都市的",
+  "distractors": [
+   "簡單的",
+   "安靜的",
+   "戶外的"
+  ]
+ },
+ {
+  "word": "incomplete",
+  "band": 2,
+  "character": "captain",
+  "stem": "My report is {incomplete}, as usual.",
+  "pos": "adj",
+  "answer": "不完整的",
+  "distractors": [
+   "遲交的",
+   "太長的",
+   "無聊的"
+  ]
+ },
+ {
+  "word": "edible",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "Is this flower {edible}?",
+  "pos": "adj",
+  "answer": "可食用的",
+  "distractors": [
+   "昂貴的",
+   "稀有的",
+   "危險的"
+  ]
+ },
+ {
+  "word": "stale",
+  "band": 2,
+  "character": "pigeon",
+  "stem": "This bread is {stale}, but free.",
+  "pos": "adj",
+  "answer": "陳舊的",
+  "distractors": [
+   "很小的",
+   "很甜的",
+   "很硬的"
+  ]
+ },
+ {
+  "word": "current",
+  "band": 2,
+  "character": "reginald",
+  "stem": "My {current} driver is a robot.",
+  "pos": "adj",
+  "answer": "現在的",
+  "distractors": [
+   "最好的",
+   "唯一的",
+   "新來的"
+  ]
+ },
+ {
+  "word": "cozy",
+  "band": 2,
+  "character": "mochi",
+  "stem": "My bed is small but {cozy}.",
+  "pos": "adj",
+  "answer": "舒適的",
+  "distractors": [
+   "乾淨的",
+   "昂貴的",
+   "堅固的"
+  ]
+ },
+ {
+  "word": "elderly",
+  "band": 2,
+  "character": "grandma",
+  "stem": "My {elderly} neighbor runs every morning.",
+  "pos": "adj",
+  "answer": "年長的",
+  "distractors": [
+   "害羞的",
+   "外國的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "harmful",
+  "band": 2,
+  "character": "fizz",
+  "stem": "This gas is not {harmful}, probably.",
+  "pos": "adj",
+  "answer": "有害的",
+  "distractors": [
+   "昂貴的",
+   "可見的",
+   "稀有的"
+  ]
+ },
+ {
+  "word": "crisis",
+  "band": 3,
+  "character": "captain",
+  "stem": "We have a {crisis} in the group chat.",
+  "pos": "n",
+  "answer": "危機",
+  "distractors": [
+   "笑話",
+   "謠言",
+   "規則"
+  ]
+ },
+ {
+  "word": "tradition",
+  "band": 3,
+  "character": "grandma",
+  "stem": "It is a family {tradition}.",
+  "pos": "n",
+  "answer": "傳統",
+  "distractors": [
+   "秘密",
+   "笑話",
+   "生意"
+  ]
+ },
+ {
+  "word": "gap",
+  "band": 3,
+  "character": "pablo",
+  "stem": "There is a {gap} between us.",
+  "pos": "n",
+  "answer": "差距",
+  "distractors": [
+   "圍牆",
+   "秘密",
+   "誤會"
+  ]
+ },
+ {
+  "word": "observation",
+  "band": 3,
+  "character": "zorp",
+  "stem": "I made an {observation} at lunch.",
+  "pos": "n",
+  "answer": "觀察",
+  "distractors": [
+   "承諾",
+   "錯誤",
+   "決定"
+  ]
+ },
+ {
+  "word": "fossil",
+  "band": 3,
+  "character": "rex",
+  "stem": "I found a {fossil} in my yard.",
+  "pos": "n",
+  "answer": "化石",
+  "distractors": [
+   "水管",
+   "寶箱",
+   "地洞"
+  ]
+ },
+ {
+  "word": "fairness",
+  "band": 3,
+  "character": "beatrice",
+  "stem": "I care about {fairness} in my family.",
+  "pos": "n",
+  "answer": "公平",
+  "distractors": [
+   "速度",
+   "安全",
+   "安靜"
+  ]
+ },
+ {
+  "word": "preparation",
+  "band": 3,
+  "character": "chefbot",
+  "stem": "Dinner needs more {preparation}.",
+  "pos": "n",
+  "answer": "準備",
+  "distractors": [
+   "鹽",
+   "時間",
+   "想像力"
+  ]
+ },
+ {
+  "word": "currency",
+  "band": 3,
+  "character": "zorp",
+  "stem": "What {currency} do you use here?",
+  "pos": "n",
+  "answer": "貨幣",
+  "distractors": [
+   "語言",
+   "密碼",
+   "地圖"
+  ]
+ },
+ {
+  "word": "disaster",
+  "band": 3,
+  "character": "llama",
+  "stem": "My haircut was a {disaster}.",
+  "pos": "n",
+  "answer": "災難",
+  "distractors": [
+   "秘密",
+   "驚喜",
+   "禮物"
+  ]
+ },
+ {
+  "word": "vocabulary",
+  "band": 3,
+  "character": "captain",
+  "stem": "My {vocabulary} is very small.",
+  "pos": "n",
+  "answer": "字彙",
+  "distractors": [
+   "房間",
+   "預算",
+   "耐心"
+  ]
+ },
+ {
+  "word": "access",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "I need {access} to the kitchen.",
+  "pos": "n",
+  "answer": "進入管道",
+  "distractors": [
+   "地圖",
+   "近路",
+   "窗戶"
+  ]
+ },
+ {
+  "word": "efficiency",
+  "band": 3,
+  "character": "chefbot",
+  "stem": "I admire your {efficiency}, human.",
+  "pos": "n",
+  "answer": "效率",
+  "distractors": [
+   "勇氣",
+   "幽默",
+   "誠實"
+  ]
+ },
+ {
+  "word": "extend",
+  "band": 3,
+  "character": "reginald",
+  "stem": "Please {extend} my stay by a week.",
+  "pos": "v",
+  "answer": "延長",
+  "distractors": [
+   "取消",
+   "確認",
+   "縮短"
+  ]
+ },
+ {
+  "word": "identify",
+  "band": 3,
+  "character": "agatha",
+  "stem": "I cannot {identify} this sound.",
+  "pos": "v",
+  "answer": "識別",
+  "distractors": [
+   "忍受",
+   "模仿",
+   "錄下"
+  ]
+ },
+ {
+  "word": "collide",
+  "band": 3,
+  "character": "pablo",
+  "stem": "We {collide} on the ice every morning.",
+  "pos": "v",
+  "answer": "相撞",
+  "distractors": [
+   "見面",
+   "跳舞",
+   "滑倒"
+  ]
+ },
+ {
+  "word": "vanish",
+  "band": 3,
+  "character": "agatha",
+  "stem": "My socks {vanish} every week.",
+  "pos": "v",
+  "answer": "消失",
+  "distractors": [
+   "縮水",
+   "褪色",
+   "破掉"
+  ]
+ },
+ {
+  "word": "reflect",
+  "band": 3,
+  "character": "vulcan",
+  "stem": "The lake can {reflect} my whole face.",
+  "pos": "v",
+  "answer": "反射",
+  "distractors": [
+   "遮住",
+   "洗淨",
+   "冷卻"
+  ]
+ },
+ {
+  "word": "notify",
+  "band": 3,
+  "character": "zorp",
+  "stem": "Please {notify} me before the party.",
+  "pos": "v",
+  "answer": "通知",
+  "distractors": [
+   "叫醒",
+   "等待",
+   "忘記"
+  ]
+ },
+ {
+  "word": "consume",
+  "band": 3,
+  "character": "rex",
+  "stem": "I {consume} twelve eggs a day.",
+  "pos": "v",
+  "answer": "消耗",
+  "distractors": [
+   "收集",
+   "孵化",
+   "計算"
+  ]
+ },
+ {
+  "word": "absorb",
+  "band": 3,
+  "character": "fern",
+  "stem": "I {absorb} bad news all day.",
+  "pos": "v",
+  "answer": "吸收",
+  "distractors": [
+   "散播",
+   "忽略",
+   "記錄"
+  ]
+ },
+ {
+  "word": "permit",
+  "band": 3,
+  "character": "grandma",
+  "stem": "I do not {permit} shoes in here.",
+  "pos": "v",
+  "answer": "准許",
+  "distractors": [
+   "修理",
+   "販賣",
+   "收集"
+  ]
+ },
+ {
+  "word": "accurate",
+  "band": 3,
+  "character": "fizz",
+  "stem": "My guess was {accurate} this time.",
+  "pos": "adj",
+  "answer": "準確的",
+  "distractors": [
+   "大膽的",
+   "隨便的",
+   "遲來的"
+  ]
+ },
+ {
+  "word": "casual",
+  "band": 3,
+  "character": "llama",
+  "stem": "It was a {casual} dinner with the queen.",
+  "pos": "adj",
+  "answer": "隨興的",
+  "distractors": [
+   "正式的",
+   "安靜的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "alert",
+  "band": 3,
+  "character": "pigeon",
+  "stem": "I stay {alert} near cats.",
+  "pos": "adj",
+  "answer": "警惕的",
+  "distractors": [
+   "安靜的",
+   "友善的",
+   "勇敢的"
+  ]
+ },
+ {
+  "word": "secure",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "My box is {secure} now.",
+  "pos": "adj",
+  "answer": "安全的",
+  "distractors": [
+   "乾淨的",
+   "空的",
+   "完成的"
+  ]
+ },
+ {
+  "word": "homesick",
+  "band": 3,
+  "character": "zorp",
+  "stem": "I feel {homesick} on rainy days.",
+  "pos": "adj",
+  "answer": "想家的",
+  "distractors": [
+   "想睡的",
+   "飢餓的",
+   "無聊的"
+  ]
+ },
+ {
+  "word": "flattered",
+  "band": 3,
+  "character": "llama",
+  "stem": "I was {flattered} by his message.",
+  "pos": "adj",
+  "answer": "受寵若驚的",
+  "distractors": [
+   "被惹怒的",
+   "被嚇到的",
+   "被搞糊塗的"
+  ]
+ },
+ {
+  "word": "bilingual",
+  "band": 3,
+  "character": "grandma",
+  "stem": "My parrot is {bilingual}.",
+  "pos": "adj",
+  "answer": "雙語的",
+  "distractors": [
+   "害羞的",
+   "年老的",
+   "吵鬧的"
+  ]
+ },
+ {
+  "word": "exhausted",
+  "band": 3,
+  "character": "captain",
+  "stem": "I am {exhausted} after one email.",
+  "pos": "adj",
+  "answer": "筋疲力盡的",
+  "distractors": [
+   "興奮的",
+   "生氣的",
+   "困惑的"
+  ]
+ },
+ {
+  "word": "realistic",
+  "band": 3,
+  "character": "socrates",
+  "stem": "Set a {realistic} goal, my friend.",
+  "pos": "adj",
+  "answer": "實際的",
+  "distractors": [
+   "簡單的",
+   "秘密的",
+   "遠大的"
+  ]
+ },
+ {
+  "word": "gradual",
+  "band": 3,
+  "character": "fern",
+  "stem": "The change was {gradual}.",
+  "pos": "adj",
+  "answer": "逐漸的",
+  "distractors": [
+   "突然的",
+   "意外的",
+   "明顯的"
+  ]
+ },
+ {
+  "word": "competitor",
+  "band": 4,
+  "character": "boba",
+  "stem": "My {competitor} opened a shop next door.",
+  "pos": "n",
+  "answer": "競爭者",
+  "distractors": [
+   "表哥",
+   "房東",
+   "老師"
+  ]
+ },
+ {
+  "word": "element",
+  "band": 4,
+  "character": "fizz",
+  "stem": "I discovered a new {element} at lunch.",
+  "pos": "n",
+  "answer": "元素",
+  "distractors": [
+   "餐廳",
+   "規則",
+   "朋友"
+  ]
+ },
+ {
+  "word": "criticism",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "I do not accept {criticism} about soup.",
+  "pos": "n",
+  "answer": "批評",
+  "distractors": [
+   "建議",
+   "訂單",
+   "笑話"
+  ]
+ },
+ {
+  "word": "predator",
+  "band": 4,
+  "character": "pigeon",
+  "stem": "There is a {predator} in my park.",
+  "pos": "n",
+  "answer": "掠食者",
+  "distractors": [
+   "攝影師",
+   "清潔員",
+   "陌生人"
+  ]
+ },
+ {
+  "word": "utensil",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "This is my favorite {utensil}.",
+  "pos": "n",
+  "answer": "器具",
+  "distractors": [
+   "食譜",
+   "圍裙",
+   "客人"
+  ]
+ },
+ {
+  "word": "belongings",
+  "band": 4,
+  "character": "agatha",
+  "stem": "Someone moved my {belongings} again.",
+  "pos": "n",
+  "answer": "所有物",
+  "distractors": [
+   "書架",
+   "椅子",
+   "名牌"
+  ]
+ },
+ {
+  "word": "logic",
+  "band": 4,
+  "character": "socrates",
+  "stem": "Your {logic} surprises me.",
+  "pos": "n",
+  "answer": "邏輯",
+  "distractors": [
+   "力氣",
+   "髮型",
+   "勇氣"
+  ]
+ },
+ {
+  "word": "contract",
+  "band": 4,
+  "character": "whiskers",
+  "stem": "I lost the {contract} in my box.",
+  "pos": "n",
+  "answer": "合約",
+  "distractors": [
+   "地圖",
+   "鑰匙",
+   "報告"
+  ]
+ },
+ {
+  "word": "ritual",
+  "band": 4,
+  "character": "grandma",
+  "stem": "Tea at four is my {ritual}.",
+  "pos": "n",
+  "answer": "儀式",
+  "distractors": [
+   "工作",
+   "秘密",
+   "藥"
+  ]
+ },
+ {
+  "word": "contribution",
+  "band": 4,
+  "character": "zorp",
+  "stem": "My {contribution} was a spoon.",
+  "pos": "n",
+  "answer": "貢獻",
+  "distractors": [
+   "武器",
+   "藉口",
+   "獎品"
+  ]
+ },
+ {
+  "word": "technique",
+  "band": 4,
+  "character": "socrates",
+  "stem": "Your {technique} needs work.",
+  "pos": "n",
+  "answer": "技巧",
+  "distractors": [
+   "態度",
+   "飲食",
+   "呼吸"
+  ]
+ },
+ {
+  "word": "prank",
+  "band": 4,
+  "character": "captain",
+  "stem": "It was only a {prank}, I promise.",
+  "pos": "n",
+  "answer": "惡作劇",
+  "distractors": [
+   "練習",
+   "夢",
+   "意外"
+  ]
+ },
+ {
+  "word": "shortage",
+  "band": 4,
+  "character": "pablo",
+  "stem": "There is a {shortage} of fish this year.",
+  "pos": "n",
+  "answer": "短缺",
+  "distractors": [
+   "比賽",
+   "疾病",
+   "慶典"
+  ]
+ },
+ {
+  "word": "aroma",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "I like the {aroma} of this kitchen.",
+  "pos": "n",
+  "answer": "香味",
+  "distractors": [
+   "顏色",
+   "安靜",
+   "大小"
+  ]
+ },
+ {
+  "word": "migrate",
+  "band": 4,
+  "character": "pablo",
+  "stem": "We {migrate} when the boss arrives.",
+  "pos": "v",
+  "answer": "遷徙",
+  "distractors": [
+   "鼓掌",
+   "躲藏",
+   "工作"
+  ]
+ },
+ {
+  "word": "maintain",
+  "band": 4,
+  "character": "whiskers",
+  "stem": "I try to {maintain} a calm face.",
+  "pos": "v",
+  "answer": "維持",
+  "distractors": [
+   "假裝",
+   "畫出",
+   "模仿"
+  ]
+ },
+ {
+  "word": "adapt",
+  "band": 4,
+  "character": "zorp",
+  "stem": "I {adapt} to new offices quickly.",
+  "pos": "v",
+  "answer": "適應",
+  "distractors": [
+   "搬家",
+   "抱怨",
+   "道別"
+  ]
+ },
+ {
+  "word": "bleach",
+  "band": 4,
+  "character": "grandma",
+  "stem": "I {bleach} my curtains every spring.",
+  "pos": "v",
+  "answer": "漂白",
+  "distractors": [
+   "更換",
+   "清洗",
+   "縫補"
+  ]
+ },
+ {
+  "word": "prosper",
+  "band": 4,
+  "character": "boba",
+  "stem": "May your tea shop {prosper}.",
+  "pos": "v",
+  "answer": "繁榮興盛",
+  "distractors": [
+   "開張",
+   "擴大",
+   "存活"
+  ]
+ },
+ {
+  "word": "afford",
+  "band": 4,
+  "character": "captain",
+  "stem": "I cannot {afford} another coffee.",
+  "pos": "v",
+  "answer": "負擔得起",
+  "distractors": [
+   "喝完",
+   "拒絕",
+   "等待"
+  ]
+ },
+ {
+  "word": "invest",
+  "band": 4,
+  "character": "whiskers",
+  "stem": "I {invest} in boxes only.",
+  "pos": "v",
+  "answer": "投資",
+  "distractors": [
+   "睡覺",
+   "躲藏",
+   "相信"
+  ]
+ },
+ {
+  "word": "operate",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "I {operate} three ovens at once.",
+  "pos": "v",
+  "answer": "操作",
+  "distractors": [
+   "清洗",
+   "修理",
+   "購買"
+  ]
+ },
+ {
+  "word": "wither",
+  "band": 4,
+  "character": "fern",
+  "stem": "My neighbors {wither} in summer.",
+  "pos": "v",
+  "answer": "枯萎",
+  "distractors": [
+   "旅行",
+   "搬家",
+   "開花"
+  ]
+ },
+ {
+  "word": "vital",
+  "band": 4,
+  "character": "socrates",
+  "stem": "Sleep is {vital}, my friend.",
+  "pos": "adj",
+  "answer": "重要的",
+  "distractors": [
+   "無聊的",
+   "困難的",
+   "免費的"
+  ]
+ },
+ {
+  "word": "definite",
+  "band": 4,
+  "character": "reginald",
+  "stem": "I need a {definite} answer by noon.",
+  "pos": "adj",
+  "answer": "明確的",
+  "distractors": [
+   "簡短的",
+   "誠實的",
+   "不同的"
+  ]
+ },
+ {
+  "word": "poetic",
+  "band": 4,
+  "character": "llama",
+  "stem": "He sent me a {poetic} message.",
+  "pos": "adj",
+  "answer": "詩意的",
+  "distractors": [
+   "憤怒的",
+   "簡短的",
+   "神秘的"
+  ]
+ },
+ {
+  "word": "authentic",
+  "band": 4,
+  "character": "chefbot",
+  "stem": "This is {authentic} human food.",
+  "pos": "adj",
+  "answer": "真正的",
+  "distractors": [
+   "危險的",
+   "昂貴的",
+   "冷凍的"
+  ]
+ },
+ {
+  "word": "eager",
+  "band": 4,
+  "character": "mochi",
+  "stem": "I am {eager} to see the mailman.",
+  "pos": "adj",
+  "answer": "渴望的",
+  "distractors": [
+   "害怕的",
+   "準備好的",
+   "不情願的"
+  ]
+ },
+ {
+  "word": "upbeat",
+  "band": 4,
+  "character": "boba",
+  "stem": "My manager sounds {upbeat} today.",
+  "pos": "adj",
+  "answer": "樂觀的",
+  "distractors": [
+   "疲倦的",
+   "嚴肅的",
+   "緊張的"
+  ]
+ },
+ {
+  "word": "achievable",
+  "band": 4,
+  "character": "socrates",
+  "stem": "That goal is {achievable}.",
+  "pos": "adj",
+  "answer": "可達成的",
+  "distractors": [
+   "危險的",
+   "無聊的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "brisk",
+  "band": 4,
+  "character": "reginald",
+  "stem": "I took a {brisk} walk before tea.",
+  "pos": "adj",
+  "answer": "輕快的",
+  "distractors": [
+   "漫長的",
+   "孤單的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "trivial",
+  "band": 4,
+  "character": "llama",
+  "stem": "It is a {trivial} problem, really.",
+  "pos": "adj",
+  "answer": "瑣碎的",
+  "distractors": [
+   "嚴重的",
+   "私人的",
+   "常見的"
+  ]
+ },
+ {
+  "word": "naive",
+  "band": 4,
+  "character": "whiskers",
+  "stem": "My new student is {naive}.",
+  "pos": "adj",
+  "answer": "天真的",
+  "distractors": [
+   "嚴格的",
+   "神秘的",
+   "健忘的"
+  ]
+ },
+ {
+  "word": "heroic",
+  "band": 4,
+  "character": "rex",
+  "stem": "It was a {heroic} sneeze.",
+  "pos": "adj",
+  "answer": "英雄般的",
+  "distractors": [
+   "巨大的",
+   "安靜的",
+   "意外的"
+  ]
+ },
+ {
+  "word": "habitat",
+  "band": 5,
+  "character": "fern",
+  "stem": "This office is my {habitat} now.",
+  "pos": "n",
+  "answer": "棲息地",
+  "distractors": [
+   "監獄",
+   "舞台",
+   "教室"
+  ]
+ },
+ {
+  "word": "algorithm",
+  "band": 5,
+  "character": "zorp",
+  "stem": "My {algorithm} failed at the party.",
+  "pos": "n",
+  "answer": "演算法",
+  "distractors": [
+   "翻譯機",
+   "笑話",
+   "計畫"
+  ]
+ },
+ {
+  "word": "impact",
+  "band": 5,
+  "character": "vulcan",
+  "stem": "My speech had a big {impact}.",
+  "pos": "n",
+  "answer": "衝擊",
+  "distractors": [
+   "觀眾",
+   "錯誤",
+   "標題"
+  ]
+ },
+ {
+  "word": "significance",
+  "band": 5,
+  "character": "socrates",
+  "stem": "I see the {significance} of leg day.",
+  "pos": "n",
+  "answer": "重要性",
+  "distractors": [
+   "危險",
+   "樂趣",
+   "歷史"
+  ]
+ },
+ {
+  "word": "appreciation",
+  "band": 5,
+  "character": "chefbot",
+  "stem": "I expect {appreciation} after dinner.",
+  "pos": "n",
+  "answer": "感謝",
+  "distractors": [
+   "甜點",
+   "安靜",
+   "小費"
+  ]
+ },
+ {
+  "word": "masterpiece",
+  "band": 5,
+  "character": "llama",
+  "stem": "My photo is a {masterpiece}.",
+  "pos": "n",
+  "answer": "傑作",
+  "distractors": [
+   "災難",
+   "秘密",
+   "證據"
+  ]
+ },
+ {
+  "word": "negotiation",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "The {negotiation} lasted nine days.",
+  "pos": "n",
+  "answer": "談判",
+  "distractors": [
+   "旅程",
+   "暴風雨",
+   "假期"
+  ]
+ },
+ {
+  "word": "asset",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "My tail is my best {asset}.",
+  "pos": "n",
+  "answer": "資產",
+  "distractors": [
+   "武器",
+   "朋友",
+   "秘密"
+  ]
+ },
+ {
+  "word": "triumph",
+  "band": 5,
+  "character": "captain",
+  "stem": "Waking up at ten was a {triumph}.",
+  "pos": "n",
+  "answer": "勝利",
+  "distractors": [
+   "意外",
+   "錯誤",
+   "習慣"
+  ]
+ },
+ {
+  "word": "peer",
+  "band": 5,
+  "character": "ann",
+  "stem": "My {peer} ate my homework.",
+  "pos": "n",
+  "answer": "同儕",
+  "distractors": [
+   "教授",
+   "房東",
+   "弟弟"
+  ]
+ },
+ {
+  "word": "pioneer",
+  "band": 5,
+  "character": "fizz",
+  "stem": "I am a {pioneer} in soup science.",
+  "pos": "n",
+  "answer": "先鋒者",
+  "distractors": [
+   "新手",
+   "學生",
+   "騙子"
+  ]
+ },
+ {
+  "word": "hazard",
+  "band": 5,
+  "character": "chefbot",
+  "stem": "That spoon is a {hazard}.",
+  "pos": "n",
+  "answer": "危險",
+  "distractors": [
+   "古董",
+   "禮物",
+   "玩具"
+  ]
+ },
+ {
+  "word": "consistency",
+  "band": 5,
+  "character": "socrates",
+  "stem": "Success needs {consistency}, not luck.",
+  "pos": "n",
+  "answer": "一致性",
+  "distractors": [
+   "天分",
+   "金錢",
+   "觀眾"
+  ]
+ },
+ {
+  "word": "controversy",
+  "band": 5,
+  "character": "pigeon",
+  "stem": "The statue caused a {controversy}.",
+  "pos": "n",
+  "answer": "爭議",
+  "distractors": [
+   "塞車",
+   "慶典",
+   "意外"
+  ]
+ },
+ {
+  "word": "heritage",
+  "band": 5,
+  "character": "reginald",
+  "stem": "This teapot is part of my {heritage}.",
+  "pos": "n",
+  "answer": "傳統",
+  "distractors": [
+   "收藏",
+   "計畫",
+   "生意"
+  ]
+ },
+ {
+  "word": "evolve",
+  "band": 5,
+  "character": "rex",
+  "stem": "We did not {evolve} for this.",
+  "pos": "v",
+  "answer": "演化",
+  "distractors": [
+   "訓練",
+   "投票",
+   "付錢"
+  ]
+ },
+ {
+  "word": "halt",
+  "band": 5,
+  "character": "pablo",
+  "stem": "We must {halt} the game now.",
+  "pos": "v",
+  "answer": "停下",
+  "distractors": [
+   "加入",
+   "拍攝",
+   "帶領"
+  ]
+ },
+ {
+  "word": "compensate",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "I will {compensate} you with fish.",
+  "pos": "v",
+  "answer": "補償",
+  "distractors": [
+   "歡迎",
+   "說服",
+   "收買"
+  ]
+ },
+ {
+  "word": "trigger",
+  "band": 5,
+  "character": "grandma",
+  "stem": "Loud music can {trigger} my alarm.",
+  "pos": "v",
+  "answer": "觸發",
+  "distractors": [
+   "蓋過",
+   "關掉",
+   "損壞"
+  ]
+ },
+ {
+  "word": "multiply",
+  "band": 5,
+  "character": "fizz",
+  "stem": "These problems {multiply} every night.",
+  "pos": "v",
+  "answer": "倍增",
+  "distractors": [
+   "消失",
+   "改變",
+   "出現"
+  ]
+ },
+ {
+  "word": "reserve",
+  "band": 5,
+  "character": "llama",
+  "stem": "I want to {reserve} the whole restaurant.",
+  "pos": "v",
+  "answer": "預訂",
+  "distractors": [
+   "買下",
+   "參觀",
+   "評論"
+  ]
+ },
+ {
+  "word": "implement",
+  "band": 5,
+  "character": "zorp",
+  "stem": "We will {implement} the plan after lunch.",
+  "pos": "v",
+  "answer": "實施",
+  "distractors": [
+   "討論",
+   "取消",
+   "公布"
+  ]
+ },
+ {
+  "word": "consult",
+  "band": 5,
+  "character": "grandma",
+  "stem": "I {consult} my cat before big decisions.",
+  "pos": "v",
+  "answer": "諮詢",
+  "distractors": [
+   "通知",
+   "餵",
+   "責怪"
+  ]
+ },
+ {
+  "word": "conform",
+  "band": 5,
+  "character": "llama",
+  "stem": "I will not {conform} this time.",
+  "pos": "v",
+  "answer": "遵守",
+  "distractors": [
+   "道歉",
+   "等待",
+   "回答"
+  ]
+ },
+ {
+  "word": "emerge",
+  "band": 5,
+  "character": "captain",
+  "stem": "New problems {emerge} every Monday.",
+  "pos": "v",
+  "answer": "出現",
+  "distractors": [
+   "結束",
+   "重複",
+   "惡化"
+  ]
+ },
+ {
+  "word": "settle",
+  "band": 5,
+  "character": "reginald",
+  "stem": "Let us {settle} this over tea.",
+  "pos": "v",
+  "answer": "解決",
+  "distractors": [
+   "討論",
+   "忘記",
+   "慶祝"
+  ]
+ },
+ {
+  "word": "govern",
+  "band": 5,
+  "character": "beatrice",
+  "stem": "I {govern} fifty thousand bees.",
+  "pos": "v",
+  "answer": "統治",
+  "distractors": [
+   "餵養",
+   "訓練",
+   "認識"
+  ]
+ },
+ {
+  "word": "solitary",
+  "band": 5,
+  "character": "agatha",
+  "stem": "I live a {solitary} life.",
+  "pos": "adj",
+  "answer": "獨居的",
+  "distractors": [
+   "忙碌的",
+   "簡單的",
+   "奢侈的"
+  ]
+ },
+ {
+  "word": "migratory",
+  "band": 5,
+  "character": "pigeon",
+  "stem": "My cousin is a {migratory} bird.",
+  "pos": "adj",
+  "answer": "遷徙的",
+  "distractors": [
+   "稀有的",
+   "夜行的",
+   "吵鬧的"
+  ]
+ },
+ {
+  "word": "vicious",
+  "band": 5,
+  "character": "pigeon",
+  "stem": "That goose is {vicious}.",
+  "pos": "adj",
+  "answer": "惡毒的",
+  "distractors": [
+   "膽小的",
+   "年老的",
+   "迷路的"
+  ]
+ },
+ {
+  "word": "durable",
+  "band": 5,
+  "character": "chefbot",
+  "stem": "My new arm is very {durable}.",
+  "pos": "adj",
+  "answer": "經久耐用的",
+  "distractors": [
+   "輕巧的",
+   "昂貴的",
+   "閃亮的"
+  ]
+ },
+ {
+  "word": "indecisive",
+  "band": 5,
+  "character": "captain",
+  "stem": "I am {indecisive} about lunch.",
+  "pos": "adj",
+  "answer": "優柔寡斷的",
+  "distractors": [
+   "挑剔的",
+   "興奮的",
+   "隨便的"
+  ]
+ },
+ {
+  "word": "tangled",
+  "band": 5,
+  "character": "octavia",
+  "stem": "My arms are {tangled} again.",
+  "pos": "adj",
+  "answer": "糾結的",
+  "distractors": [
+   "疲倦的",
+   "冰冷的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "bizarre",
+  "band": 5,
+  "character": "zorp",
+  "stem": "Human weddings are {bizarre}.",
+  "pos": "adj",
+  "answer": "怪異的",
+  "distractors": [
+   "昂貴的",
+   "漫長的",
+   "吵鬧的"
+  ]
+ },
+ {
+  "word": "abstract",
+  "band": 5,
+  "character": "llama",
+  "stem": "My feelings are too {abstract} today.",
+  "pos": "adj",
+  "answer": "抽象的",
+  "distractors": [
+   "強烈的",
+   "複雜的",
+   "私人的"
+  ]
+ },
+ {
+  "word": "extraordinary",
+  "band": 5,
+  "character": "rex",
+  "stem": "I had an {extraordinary} breakfast.",
+  "pos": "adj",
+  "answer": "非凡的",
+  "distractors": [
+   "簡單的",
+   "匆忙的",
+   "遲來的"
+  ]
+ },
+ {
+  "word": "infinite",
+  "band": 5,
+  "character": "socrates",
+  "stem": "My time is not {infinite}.",
+  "pos": "adj",
+  "answer": "無限的",
+  "distractors": [
+   "免費的",
+   "重要的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "insignificant",
+  "band": 5,
+  "character": "whiskers",
+  "stem": "Your opinion is {insignificant} to me.",
+  "pos": "adj",
+  "answer": "微不足道的",
+  "distractors": [
+   "很重要的",
+   "很新鮮的",
+   "很熟悉的"
+  ]
+ },
+ {
+  "word": "partial",
+  "band": 5,
+  "character": "fizz",
+  "stem": "It was a {partial} success.",
+  "pos": "adj",
+  "answer": "局部的",
+  "distractors": [
+   "意外的",
+   "巨大的",
+   "短暫的"
+  ]
+ },
+ {
+  "word": "fundamental",
+  "band": 5,
+  "character": "socrates",
+  "stem": "Breathing is {fundamental}, my friend.",
+  "pos": "adj",
+  "answer": "根本的",
+  "distractors": [
+   "免費的",
+   "無聊的",
+   "困難的"
+  ]
+ },
+ {
+  "word": "sediment",
+  "band": 6,
+  "character": "vulcan",
+  "stem": "There is {sediment} in my coffee.",
+  "pos": "n",
+  "answer": "沉積物",
+  "distractors": [
+   "昆蟲",
+   "鹽",
+   "冰塊"
+  ]
+ },
+ {
+  "word": "commodity",
+  "band": 6,
+  "character": "boba",
+  "stem": "Tea is a serious {commodity} here.",
+  "pos": "n",
+  "answer": "商品",
+  "distractors": [
+   "話題",
+   "傳統",
+   "問題"
+  ]
+ },
+ {
+  "word": "revelation",
+  "band": 6,
+  "character": "llama",
+  "stem": "It was a {revelation} to everyone.",
+  "pos": "n",
+  "answer": "揭露",
+  "distractors": [
+   "警告",
+   "侮辱",
+   "安慰"
+  ]
+ },
+ {
+  "word": "acquisition",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "My latest {acquisition} is a box.",
+  "pos": "n",
+  "answer": "獲得",
+  "distractors": [
+   "發明",
+   "對手",
+   "秘密"
+  ]
+ },
+ {
+  "word": "negligence",
+  "band": 6,
+  "character": "chefbot",
+  "stem": "The fire was caused by {negligence}.",
+  "pos": "n",
+  "answer": "疏忽",
+  "distractors": [
+   "閃電",
+   "好奇",
+   "魔法"
+  ]
+ },
+ {
+  "word": "etiquette",
+  "band": 6,
+  "character": "reginald",
+  "stem": "Your {etiquette} needs practice.",
+  "pos": "n",
+  "answer": "禮儀",
+  "distractors": [
+   "發音",
+   "筆跡",
+   "舞步"
+  ]
+ },
+ {
+  "word": "accomplishment",
+  "band": 6,
+  "character": "captain",
+  "stem": "Getting dressed was my {accomplishment} today.",
+  "pos": "n",
+  "answer": "成就",
+  "distractors": [
+   "錯誤",
+   "計畫",
+   "秘密"
+  ]
+ },
+ {
+  "word": "proficiency",
+  "band": 6,
+  "character": "zorp",
+  "stem": "My {proficiency} in small talk is low.",
+  "pos": "n",
+  "answer": "精通",
+  "distractors": [
+   "興趣",
+   "信心",
+   "預算"
+  ]
+ },
+ {
+  "word": "deficiency",
+  "band": 6,
+  "character": "fern",
+  "stem": "I have a {deficiency} of sleep.",
+  "pos": "n",
+  "answer": "缺乏",
+  "distractors": [
+   "恐懼",
+   "紀錄",
+   "習慣"
+  ]
+ },
+ {
+  "word": "enhance",
+  "band": 6,
+  "character": "chefbot",
+  "stem": "Music can {enhance} my cooking.",
+  "pos": "v",
+  "answer": "提高",
+  "distractors": [
+   "毀掉",
+   "打斷",
+   "取代"
+  ]
+ },
+ {
+  "word": "emit",
+  "band": 6,
+  "character": "vulcan",
+  "stem": "I {emit} strange sounds at night.",
+  "pos": "v",
+  "answer": "排放",
+  "distractors": [
+   "聽見",
+   "錄下",
+   "害怕"
+  ]
+ },
+ {
+  "word": "oversee",
+  "band": 6,
+  "character": "beatrice",
+  "stem": "I {oversee} every drop of honey.",
+  "pos": "v",
+  "answer": "監督",
+  "distractors": [
+   "品嚐",
+   "出售",
+   "計算"
+  ]
+ },
+ {
+  "word": "allocate",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "I {allocate} two hours to every meal.",
+  "pos": "v",
+  "answer": "分配",
+  "distractors": [
+   "浪費",
+   "增加",
+   "限制"
+  ]
+ },
+ {
+  "word": "compress",
+  "band": 6,
+  "character": "chefbot",
+  "stem": "I {compress} my feelings into a cube.",
+  "pos": "v",
+  "answer": "壓縮",
+  "distractors": [
+   "隱藏",
+   "整理",
+   "冷凍"
+  ]
+ },
+ {
+  "word": "flourish",
+  "band": 6,
+  "character": "fern",
+  "stem": "I {flourish} near the window.",
+  "pos": "v",
+  "answer": "興盛茁壯",
+  "distractors": [
+   "睡覺",
+   "發呆",
+   "等待"
+  ]
+ },
+ {
+  "word": "depict",
+  "band": 6,
+  "character": "llama",
+  "stem": "The painting should {depict} my good side.",
+  "pos": "v",
+  "answer": "描繪",
+  "distractors": [
+   "隱藏",
+   "放大",
+   "修正"
+  ]
+ },
+ {
+  "word": "thrive",
+  "band": 6,
+  "character": "pablo",
+  "stem": "We {thrive} in bad weather.",
+  "pos": "v",
+  "answer": "茁壯成長",
+  "distractors": [
+   "躲藏",
+   "抱怨",
+   "工作"
+  ]
+ },
+ {
+  "word": "disperse",
+  "band": 6,
+  "character": "pigeon",
+  "stem": "We {disperse} when the cat arrives.",
+  "pos": "v",
+  "answer": "驅散",
+  "distractors": [
+   "集合",
+   "安靜",
+   "鞠躬"
+  ]
+ },
+ {
+  "word": "attain",
+  "band": 6,
+  "character": "socrates",
+  "stem": "You will {attain} it one day.",
+  "pos": "v",
+  "answer": "獲得",
+  "distractors": [
+   "理解",
+   "忘記",
+   "失去"
+  ]
+ },
+ {
+  "word": "versatile",
+  "band": 6,
+  "character": "chefbot",
+  "stem": "My new spoon is {versatile}.",
+  "pos": "adj",
+  "answer": "多功能的",
+  "distractors": [
+   "堅固的",
+   "乾淨的",
+   "便宜的"
+  ]
+ },
+ {
+  "word": "simultaneous",
+  "band": 6,
+  "character": "octavia",
+  "stem": "I gave eight {simultaneous} hugs.",
+  "pos": "adj",
+  "answer": "同時發生的",
+  "distractors": [
+   "溫暖的",
+   "短暫的",
+   "尷尬的"
+  ]
+ },
+ {
+  "word": "continual",
+  "band": 6,
+  "character": "grandma",
+  "stem": "The {continual} noise makes me tired.",
+  "pos": "adj",
+  "answer": "連續頻繁的",
+  "distractors": [
+   "刺耳的",
+   "神秘的",
+   "微弱的"
+  ]
+ },
+ {
+  "word": "chaotic",
+  "band": 6,
+  "character": "ann",
+  "stem": "My morning was {chaotic}.",
+  "pos": "adj",
+  "answer": "混亂的",
+  "distractors": [
+   "漫長的",
+   "寧靜的",
+   "寒冷的"
+  ]
+ },
+ {
+  "word": "systematic",
+  "band": 6,
+  "character": "fizz",
+  "stem": "I have a {systematic} way of eating noodles.",
+  "pos": "adj",
+  "answer": "有系統的",
+  "distractors": [
+   "安靜的",
+   "秘密的",
+   "奇怪的"
+  ]
+ },
+ {
+  "word": "irresistible",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "That box is {irresistible}.",
+  "pos": "adj",
+  "answer": "無法抗拒的",
+  "distractors": [
+   "太小的",
+   "易碎的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "nomadic",
+  "band": 6,
+  "character": "pigeon",
+  "stem": "I enjoy a {nomadic} life.",
+  "pos": "adj",
+  "answer": "遊牧的",
+  "distractors": [
+   "簡單的",
+   "忙碌的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "parched",
+  "band": 6,
+  "character": "ann",
+  "stem": "I feel {parched} after the meeting.",
+  "pos": "adj",
+  "answer": "極乾渴的",
+  "distractors": [
+   "疲倦的",
+   "困惑的",
+   "生氣的"
+  ]
+ },
+ {
+  "word": "watchful",
+  "band": 6,
+  "character": "pigeon",
+  "stem": "I keep a {watchful} eye on the bakery.",
+  "pos": "adj",
+  "answer": "警惕注意的",
+  "distractors": [
+   "友善的",
+   "好奇的",
+   "嫉妒的"
+  ]
+ },
+ {
+  "word": "accomplice",
+  "band": 7,
+  "character": "mochi",
+  "stem": "The cat was my {accomplice}.",
+  "pos": "n",
+  "answer": "共犯",
+  "distractors": [
+   "老師",
+   "對手",
+   "粉絲"
+  ]
+ },
+ {
+  "word": "royalty",
+  "band": 7,
+  "character": "beatrice",
+  "stem": "I only eat with {royalty}.",
+  "pos": "n",
+  "answer": "王室成員",
+  "distractors": [
+   "同事",
+   "鄰居",
+   "陌生人"
+  ]
+ },
+ {
+  "word": "skeptic",
+  "band": 7,
+  "character": "socrates",
+  "stem": "I am a {skeptic} about lucky numbers.",
+  "pos": "n",
+  "answer": "懷疑論者",
+  "distractors": [
+   "專家",
+   "粉絲",
+   "收藏家"
+  ]
+ },
+ {
+  "word": "apathy",
+  "band": 7,
+  "character": "llama",
+  "stem": "I felt only {apathy} at the party.",
+  "pos": "n",
+  "answer": "漠不關心",
+  "distractors": [
+   "喜悅",
+   "嫉妒",
+   "尷尬"
+  ]
+ },
+ {
+  "word": "distinction",
+  "band": 7,
+  "character": "reginald",
+  "stem": "I see no {distinction} between them.",
+  "pos": "n",
+  "answer": "區別",
+  "distractors": [
+   "關聯",
+   "友誼",
+   "秘密"
+  ]
+ },
+ {
+  "word": "ambiguity",
+  "band": 7,
+  "character": "zorp",
+  "stem": "Human jokes are full of {ambiguity}.",
+  "pos": "n",
+  "answer": "模稜兩可",
+  "distractors": [
+   "暴力",
+   "智慧",
+   "悲傷"
+  ]
+ },
+ {
+  "word": "cessation",
+  "band": 7,
+  "character": "agatha",
+  "stem": "I want a {cessation} of the drums.",
+  "pos": "n",
+  "answer": "停止",
+  "distractors": [
+   "錄音",
+   "示範",
+   "評論"
+  ]
+ },
+ {
+  "word": "inhibition",
+  "band": 7,
+  "character": "llama",
+  "stem": "I lost my {inhibition} at the party.",
+  "pos": "n",
+  "answer": "壓抑",
+  "distractors": [
+   "錢包",
+   "聲音",
+   "朋友"
+  ]
+ },
+ {
+  "word": "analogy",
+  "band": 7,
+  "character": "socrates",
+  "stem": "Let me use an {analogy}.",
+  "pos": "n",
+  "answer": "類比",
+  "distractors": [
+   "圖表",
+   "翻譯",
+   "暗號"
+  ]
+ },
+ {
+  "word": "prelude",
+  "band": 7,
+  "character": "llama",
+  "stem": "That text was only a {prelude}.",
+  "pos": "n",
+  "answer": "序曲",
+  "distractors": [
+   "玩笑",
+   "錯誤",
+   "測試"
+  ]
+ },
+ {
+  "word": "gist",
+  "band": 7,
+  "character": "captain",
+  "stem": "I only read the {gist}.",
+  "pos": "n",
+  "answer": "要旨",
+  "distractors": [
+   "標題",
+   "結尾",
+   "評論"
+  ]
+ },
+ {
+  "word": "ascend",
+  "band": 7,
+  "character": "pigeon",
+  "stem": "I {ascend} every morning.",
+  "pos": "v",
+  "answer": "上升",
+  "distractors": [
+   "唱歌",
+   "覓食",
+   "離開"
+  ]
+ },
+ {
+  "word": "emulate",
+  "band": 7,
+  "character": "ann",
+  "stem": "I try to {emulate} my sister.",
+  "pos": "v",
+  "answer": "效仿",
+  "distractors": [
+   "避開",
+   "說服",
+   "原諒"
+  ]
+ },
+ {
+  "word": "compel",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "You cannot {compel} me to move.",
+  "pos": "v",
+  "answer": "強迫",
+  "distractors": [
+   "請求",
+   "期待",
+   "看見"
+  ]
+ },
+ {
+  "word": "deteriorate",
+  "band": 7,
+  "character": "grandma",
+  "stem": "My singing may {deteriorate} soon.",
+  "pos": "v",
+  "answer": "惡化",
+  "distractors": [
+   "進步",
+   "改變",
+   "消失"
+  ]
+ },
+ {
+  "word": "mitigate",
+  "band": 7,
+  "character": "fizz",
+  "stem": "This may {mitigate} the smell.",
+  "pos": "v",
+  "answer": "減輕",
+  "distractors": [
+   "加重",
+   "解釋",
+   "引起"
+  ]
+ },
+ {
+  "word": "deter",
+  "band": 7,
+  "character": "pigeon",
+  "stem": "Loud music will not {deter} me.",
+  "pos": "v",
+  "answer": "阻撓",
+  "distractors": [
+   "吵醒",
+   "娛樂",
+   "傷害"
+  ]
+ },
+ {
+  "word": "solicit",
+  "band": 7,
+  "character": "boba",
+  "stem": "We {solicit} advice from customers.",
+  "pos": "v",
+  "answer": "請求",
+  "distractors": [
+   "忽略",
+   "收到",
+   "拒絕"
+  ]
+ },
+ {
+  "word": "revere",
+  "band": 7,
+  "character": "reginald",
+  "stem": "I {revere} my grandmother's teapot.",
+  "pos": "v",
+  "answer": "崇敬",
+  "distractors": [
+   "收藏",
+   "使用",
+   "清洗"
+  ]
+ },
+ {
+  "word": "neutralize",
+  "band": 7,
+  "character": "fizz",
+  "stem": "I can {neutralize} it with lemon.",
+  "pos": "v",
+  "answer": "中和",
+  "distractors": [
+   "裝飾",
+   "保存",
+   "測量"
+  ]
+ },
+ {
+  "word": "delegate",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "I {delegate} everything to the dog.",
+  "pos": "v",
+  "answer": "委派",
+  "distractors": [
+   "解釋",
+   "歸還",
+   "報告"
+  ]
+ },
+ {
+  "word": "intimidate",
+  "band": 7,
+  "character": "rex",
+  "stem": "I do not want to {intimidate} anyone.",
+  "pos": "v",
+  "answer": "威嚇",
+  "distractors": [
+   "打擾",
+   "模仿",
+   "誤導"
+  ]
+ },
+ {
+  "word": "copious",
+  "band": 7,
+  "character": "grandma",
+  "stem": "I took {copious} notes at the doctor's.",
+  "pos": "adj",
+  "answer": "大量的",
+  "distractors": [
+   "潦草的",
+   "秘密的",
+   "錯誤的"
+  ]
+ },
+ {
+  "word": "supplementary",
+  "band": 7,
+  "character": "ann",
+  "stem": "I need {supplementary} snacks for class.",
+  "pos": "adj",
+  "answer": "補充的",
+  "distractors": [
+   "健康的",
+   "安靜的",
+   "便宜的"
+  ]
+ },
+ {
+  "word": "legitimate",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "That is a {legitimate} reason to sleep.",
+  "pos": "adj",
+  "answer": "合理的",
+  "distractors": [
+   "常見的",
+   "奇怪的",
+   "私人的"
+  ]
+ },
+ {
+  "word": "inherent",
+  "band": 7,
+  "character": "socrates",
+  "stem": "Fear is not {inherent}, my friend.",
+  "pos": "adj",
+  "answer": "固有的",
+  "distractors": [
+   "危險的",
+   "可恥的",
+   "永久的"
+  ]
+ },
+ {
+  "word": "neurotic",
+  "band": 7,
+  "character": "llama",
+  "stem": "My plant is a bit {neurotic}.",
+  "pos": "adj",
+  "answer": "神經質的",
+  "distractors": [
+   "乾燥的",
+   "年老的",
+   "稀有的"
+  ]
+ },
+ {
+  "word": "exhilarating",
+  "band": 7,
+  "character": "pablo",
+  "stem": "The ride was {exhilarating}.",
+  "pos": "adj",
+  "answer": "令人振奮的",
+  "distractors": [
+   "危險的",
+   "很短的",
+   "很貴的"
+  ]
+ },
+ {
+  "word": "erratic",
+  "band": 7,
+  "character": "grandma",
+  "stem": "My Wi-Fi is {erratic} today.",
+  "pos": "adj",
+  "answer": "不規律的",
+  "distractors": [
+   "很慢的",
+   "免費的",
+   "關閉的"
+  ]
+ },
+ {
+  "word": "overt",
+  "band": 7,
+  "character": "reginald",
+  "stem": "It was an {overt} lie.",
+  "pos": "adj",
+  "answer": "公然的",
+  "distractors": [
+   "無心的",
+   "輕微的",
+   "常見的"
+  ]
+ },
+ {
+  "word": "nominal",
+  "band": 7,
+  "character": "whiskers",
+  "stem": "I pay a {nominal} fee for the box.",
+  "pos": "adj",
+  "answer": "名義上的",
+  "distractors": [
+   "每月的",
+   "額外的",
+   "秘密的"
+  ]
+ },
+ {
+  "word": "bewildered",
+  "band": 7,
+  "character": "zorp",
+  "stem": "I am {bewildered} by birthdays.",
+  "pos": "adj",
+  "answer": "困惑的",
+  "distractors": [
+   "感動的",
+   "厭倦的",
+   "嚇到的"
+  ]
+ },
+ {
+  "word": "susceptible",
+  "band": 7,
+  "character": "fern",
+  "stem": "I am {susceptible} to sad songs.",
+  "pos": "adj",
+  "answer": "易受影響的",
+  "distractors": [
+   "過敏的",
+   "習慣的",
+   "感激的"
+  ]
+ },
+ {
+  "word": "infatuation",
+  "band": 8,
+  "character": "llama",
+  "stem": "It was only an {infatuation}.",
+  "pos": "n",
+  "answer": "迷戀",
+  "distractors": [
+   "誤會",
+   "謠言",
+   "惡作劇"
+  ]
+ },
+ {
+  "word": "appendage",
+  "band": 8,
+  "character": "zorp",
+  "stem": "Humans have a strange {appendage} called a nose.",
+  "pos": "n",
+  "answer": "附肢",
+  "distractors": [
+   "習慣",
+   "裝飾",
+   "工具"
+  ]
+ },
+ {
+  "word": "salvation",
+  "band": 8,
+  "character": "captain",
+  "stem": "Coffee is my {salvation}.",
+  "pos": "n",
+  "answer": "拯救",
+  "distractors": [
+   "早餐",
+   "習慣",
+   "弱點"
+  ]
+ },
+ {
+  "word": "scrutiny",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "My lunch is under {scrutiny}.",
+  "pos": "n",
+  "answer": "仔細審查",
+  "distractors": [
+   "保護",
+   "壓力",
+   "建設"
+  ]
+ },
+ {
+  "word": "aesthetics",
+  "band": 8,
+  "character": "llama",
+  "stem": "I chose it for the {aesthetics}.",
+  "pos": "n",
+  "answer": "美學",
+  "distractors": [
+   "價格",
+   "保固",
+   "顏色"
+  ]
+ },
+ {
+  "word": "frugality",
+  "band": 8,
+  "character": "grandma",
+  "stem": "My {frugality} is famous in this town.",
+  "pos": "n",
+  "answer": "節儉",
+  "distractors": [
+   "廚藝",
+   "脾氣",
+   "花園"
+  ]
+ },
+ {
+  "word": "dupe",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "I am nobody's {dupe}.",
+  "pos": "n",
+  "answer": "易受騙的人",
+  "distractors": [
+   "僕人",
+   "寵物",
+   "對手"
+  ]
+ },
+ {
+  "word": "expatriate",
+  "band": 8,
+  "character": "ann",
+  "stem": "My neighbor is an {expatriate}.",
+  "pos": "n",
+  "answer": "移居國外者",
+  "distractors": [
+   "退休人員",
+   "素食者",
+   "收藏家"
+  ]
+ },
+ {
+  "word": "geyser",
+  "band": 8,
+  "character": "vulcan",
+  "stem": "There is a {geyser} behind my house.",
+  "pos": "n",
+  "answer": "間歇泉",
+  "distractors": [
+   "墓園",
+   "工廠",
+   "懸崖"
+  ]
+ },
+ {
+  "word": "malady",
+  "band": 8,
+  "character": "grandma",
+  "stem": "It is a common {malady}.",
+  "pos": "n",
+  "answer": "疾病",
+  "distractors": [
+   "誤會",
+   "習俗",
+   "藉口"
+  ]
+ },
+ {
+  "word": "ambivalence",
+  "band": 8,
+  "character": "llama",
+  "stem": "I feel {ambivalence} about Mondays.",
+  "pos": "n",
+  "answer": "矛盾",
+  "distractors": [
+   "熱情",
+   "厭惡",
+   "好奇"
+  ]
+ },
+ {
+  "word": "woe",
+  "band": 8,
+  "character": "llama",
+  "stem": "Monday brings me {woe}.",
+  "pos": "n",
+  "answer": "悲傷",
+  "distractors": [
+   "郵件",
+   "靈感",
+   "力量"
+  ]
+ },
+ {
+  "word": "perpetuate",
+  "band": 8,
+  "character": "pigeon",
+  "stem": "Let us not {perpetuate} this story.",
+  "pos": "v",
+  "answer": "使永存",
+  "distractors": [
+   "相信",
+   "調查",
+   "否認"
+  ]
+ },
+ {
+  "word": "rejuvenate",
+  "band": 8,
+  "character": "grandma",
+  "stem": "A long sleep will {rejuvenate} me.",
+  "pos": "v",
+  "answer": "使恢復活力",
+  "distractors": [
+   "保護",
+   "安撫",
+   "說服"
+  ]
+ },
+ {
+  "word": "taint",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "Do not {taint} my soup with ketchup.",
+  "pos": "v",
+  "answer": "玷污",
+  "distractors": [
+   "稀釋",
+   "裝飾",
+   "加熱"
+  ]
+ },
+ {
+  "word": "deplete",
+  "band": 8,
+  "character": "rex",
+  "stem": "I {deplete} the snack shelf weekly.",
+  "pos": "v",
+  "answer": "耗盡",
+  "distractors": [
+   "整理",
+   "檢查",
+   "補充"
+  ]
+ },
+ {
+  "word": "discern",
+  "band": 8,
+  "character": "agatha",
+  "stem": "I can {discern} voices in the dark.",
+  "pos": "v",
+  "answer": "辨別",
+  "distractors": [
+   "跟隨",
+   "模仿",
+   "害怕"
+  ]
+ },
+ {
+  "word": "permeate",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "Garlic will {permeate} the whole building.",
+  "pos": "v",
+  "answer": "瀰漫",
+  "distractors": [
+   "拯救",
+   "毀掉",
+   "叫醒"
+  ]
+ },
+ {
+  "word": "fabricate",
+  "band": 8,
+  "character": "captain",
+  "stem": "I did not {fabricate} this story.",
+  "pos": "v",
+  "answer": "捏造",
+  "distractors": [
+   "借用",
+   "忘記",
+   "練習"
+  ]
+ },
+ {
+  "word": "vie",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "We {vie} for the same sunny spot.",
+  "pos": "v",
+  "answer": "競爭",
+  "distractors": [
+   "等待",
+   "投票",
+   "付錢"
+  ]
+ },
+ {
+  "word": "coerce",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "Nobody can {coerce} me into a bath.",
+  "pos": "v",
+  "answer": "強迫",
+  "distractors": [
+   "邀請",
+   "哄騙",
+   "帶"
+  ]
+ },
+ {
+  "word": "rue",
+  "band": 8,
+  "character": "llama",
+  "stem": "I {rue} that haircut.",
+  "pos": "v",
+  "answer": "懊悔",
+  "distractors": [
+   "喜歡",
+   "記得",
+   "需要"
+  ]
+ },
+ {
+  "word": "insatiable",
+  "band": 8,
+  "character": "rex",
+  "stem": "My hunger is {insatiable}.",
+  "pos": "adj",
+  "answer": "永不知足的",
+  "distractors": [
+   "短暫的",
+   "輕微的",
+   "奇怪的"
+  ]
+ },
+ {
+  "word": "meticulous",
+  "band": 8,
+  "character": "octavia",
+  "stem": "I am {meticulous} about my sock colors.",
+  "pos": "adj",
+  "answer": "一絲不苟的",
+  "distractors": [
+   "隨便的",
+   "緊張的",
+   "樂觀的"
+  ]
+ },
+ {
+  "word": "interminable",
+  "band": 8,
+  "character": "captain",
+  "stem": "The class felt {interminable}.",
+  "pos": "adj",
+  "answer": "無休止的",
+  "distractors": [
+   "很精彩的",
+   "很混亂的",
+   "很簡短的"
+  ]
+ },
+ {
+  "word": "altruistic",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "My reasons were not {altruistic}.",
+  "pos": "adj",
+  "answer": "利他的",
+  "distractors": [
+   "合法的",
+   "複雜的",
+   "明顯的"
+  ]
+ },
+ {
+  "word": "unforgiving",
+  "band": 8,
+  "character": "ann",
+  "stem": "My mother is {unforgiving} about dirty shoes.",
+  "pos": "adj",
+  "answer": "不寬容的",
+  "distractors": [
+   "緊張的",
+   "隨和的",
+   "好奇的"
+  ]
+ },
+ {
+  "word": "innocuous",
+  "band": 8,
+  "character": "fizz",
+  "stem": "It was an {innocuous} question.",
+  "pos": "adj",
+  "answer": "無害的",
+  "distractors": [
+   "私人的",
+   "困難的",
+   "愚蠢的"
+  ]
+ },
+ {
+  "word": "nondescript",
+  "band": 8,
+  "character": "agatha",
+  "stem": "He wore a {nondescript} coat.",
+  "pos": "adj",
+  "answer": "毫無特色的",
+  "distractors": [
+   "昂貴的",
+   "破舊的",
+   "過大的"
+  ]
+ },
+ {
+  "word": "profound",
+  "band": 8,
+  "character": "socrates",
+  "stem": "That was a {profound} sandwich.",
+  "pos": "adj",
+  "answer": "深刻的",
+  "distractors": [
+   "巨大的",
+   "昂貴的",
+   "普通的"
+  ]
+ },
+ {
+  "word": "reciprocal",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "Our dislike is {reciprocal}.",
+  "pos": "adj",
+  "answer": "相互的",
+  "distractors": [
+   "短暫的",
+   "秘密的",
+   "明顯的"
+  ]
+ },
+ {
+  "word": "culpable",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "The dog is {culpable}, not me.",
+  "pos": "adj",
+  "answer": "應受歸咎的",
+  "distractors": [
+   "飢餓的",
+   "害怕的",
+   "無辜的"
+  ]
+ },
+ {
+  "word": "intrinsic",
+  "band": 8,
+  "character": "socrates",
+  "stem": "It has no {intrinsic} value.",
+  "pos": "adj",
+  "answer": "固有的",
+  "distractors": [
+   "實際的",
+   "金錢的",
+   "長期的"
+  ]
+ },
+ {
+  "word": "pungent",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "The cheese is {pungent} today.",
+  "pos": "adj",
+  "answer": "辛辣刺鼻的",
+  "distractors": [
+   "柔軟的",
+   "新鮮的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "bulwark",
+  "band": 9,
+  "character": "pablo",
+  "stem": "This wall is our {bulwark}.",
+  "pos": "n",
+  "answer": "堡壘",
+  "distractors": [
+   "傑作",
+   "邊界",
+   "秘密"
+  ]
+ },
+ {
+  "word": "ornithology",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "He studies {ornithology}, sadly.",
+  "pos": "n",
+  "answer": "鳥類學",
+  "distractors": [
+   "法律",
+   "烹飪",
+   "天文學"
+  ]
+ },
+ {
+  "word": "chagrin",
+  "band": 9,
+  "character": "llama",
+  "stem": "To my {chagrin}, he remembered.",
+  "pos": "n",
+  "answer": "悔恨",
+  "distractors": [
+   "驚喜",
+   "安慰",
+   "恐懼"
+  ]
+ },
+ {
+  "word": "gallantry",
+  "band": 9,
+  "character": "reginald",
+  "stem": "I admire his {gallantry}.",
+  "pos": "n",
+  "answer": "勇敢",
+  "distractors": [
+   "筆跡",
+   "鬍子",
+   "收藏"
+  ]
+ },
+ {
+  "word": "penance",
+  "band": 9,
+  "character": "captain",
+  "stem": "Doing the dishes is my {penance}.",
+  "pos": "n",
+  "answer": "贖罪苦行",
+  "distractors": [
+   "嗜好",
+   "專長",
+   "工作"
+  ]
+ },
+ {
+  "word": "epithet",
+  "band": 9,
+  "character": "rex",
+  "stem": "I dislike that {epithet}.",
+  "pos": "n",
+  "answer": "綽號",
+  "distractors": [
+   "帽子",
+   "規定",
+   "味道"
+  ]
+ },
+ {
+  "word": "pique",
+  "band": 9,
+  "character": "llama",
+  "stem": "I left the party in {pique}.",
+  "pos": "n",
+  "answer": "惱怒",
+  "distractors": [
+   "匆忙",
+   "沉默",
+   "眼淚"
+  ]
+ },
+ {
+  "word": "levity",
+  "band": 9,
+  "character": "agatha",
+  "stem": "This is no time for {levity}.",
+  "pos": "n",
+  "answer": "輕浮",
+  "distractors": [
+   "睡眠",
+   "爭吵",
+   "慶祝"
+  ]
+ },
+ {
+  "word": "domicile",
+  "band": 9,
+  "character": "reginald",
+  "stem": "Welcome to my little {domicile}.",
+  "pos": "n",
+  "answer": "住處",
+  "distractors": [
+   "花園",
+   "辦公室",
+   "廚房"
+  ]
+ },
+ {
+  "word": "gusto",
+  "band": 9,
+  "character": "rex",
+  "stem": "I eat salad with {gusto}.",
+  "pos": "n",
+  "answer": "熱忱",
+  "distractors": [
+   "猶豫",
+   "罪惡感",
+   "耐心"
+  ]
+ },
+ {
+  "word": "scion",
+  "band": 9,
+  "character": "reginald",
+  "stem": "I am the {scion} of a great family.",
+  "pos": "n",
+  "answer": "貴族後裔",
+  "distractors": [
+   "管家",
+   "廚師",
+   "敵人"
+  ]
+ },
+ {
+  "word": "propensity",
+  "band": 9,
+  "character": "captain",
+  "stem": "I have a {propensity} for long lunches.",
+  "pos": "n",
+  "answer": "癖好",
+  "distractors": [
+   "時間表",
+   "恐懼",
+   "天分"
+  ]
+ },
+ {
+  "word": "schism",
+  "band": 9,
+  "character": "beatrice",
+  "stem": "There is a {schism} in the band.",
+  "pos": "n",
+  "answer": "分裂",
+  "distractors": [
+   "新人",
+   "傳統",
+   "秘密"
+  ]
+ },
+ {
+  "word": "nihilist",
+  "band": 9,
+  "character": "socrates",
+  "stem": "My trainer is a {nihilist}.",
+  "pos": "n",
+  "answer": "虛無主義者",
+  "distractors": [
+   "素食者",
+   "完美主義者",
+   "樂觀主義者"
+  ]
+ },
+ {
+  "word": "obliterate",
+  "band": 9,
+  "character": "rex",
+  "stem": "I will {obliterate} this cake.",
+  "pos": "v",
+  "answer": "徹底消滅",
+  "distractors": [
+   "裝飾",
+   "分享",
+   "拍攝"
+  ]
+ },
+ {
+  "word": "allay",
+  "band": 9,
+  "character": "grandma",
+  "stem": "Tea will {allay} your fears.",
+  "pos": "v",
+  "answer": "減輕",
+  "distractors": [
+   "證實",
+   "喚醒",
+   "解釋"
+  ]
+ },
+ {
+  "word": "recant",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "I will not {recant} my words.",
+  "pos": "v",
+  "answer": "撤回",
+  "distractors": [
+   "重複",
+   "翻譯",
+   "大聲念出"
+  ]
+ },
+ {
+  "word": "scrutinize",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "I {scrutinize} every bowl.",
+  "pos": "v",
+  "answer": "仔細檢查",
+  "distractors": [
+   "舔",
+   "打翻",
+   "忽視"
+  ]
+ },
+ {
+  "word": "condone",
+  "band": 9,
+  "character": "reginald",
+  "stem": "I cannot {condone} such hats.",
+  "pos": "v",
+  "answer": "寬恕容忍",
+  "distractors": [
+   "購買",
+   "理解",
+   "設計"
+  ]
+ },
+ {
+  "word": "indoctrinate",
+  "band": 9,
+  "character": "beatrice",
+  "stem": "I {indoctrinate} the young bees early.",
+  "pos": "v",
+  "answer": "灌輸",
+  "distractors": [
+   "餵養",
+   "點名",
+   "獎勵"
+  ]
+ },
+ {
+  "word": "usurp",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "The dog tried to {usurp} my chair.",
+  "pos": "v",
+  "answer": "篡奪",
+  "distractors": [
+   "修理",
+   "聞",
+   "清潔"
+  ]
+ },
+ {
+  "word": "galvanize",
+  "band": 9,
+  "character": "socrates",
+  "stem": "My speech will {galvanize} the team.",
+  "pos": "v",
+  "answer": "激勵",
+  "distractors": [
+   "娛樂",
+   "安撫",
+   "惹惱"
+  ]
+ },
+ {
+  "word": "corroborate",
+  "band": 9,
+  "character": "pigeon",
+  "stem": "Nobody can {corroborate} my story.",
+  "pos": "v",
+  "answer": "證實",
+  "distractors": [
+   "理解",
+   "複述",
+   "出版"
+  ]
+ },
+ {
+  "word": "incapacitate",
+  "band": 9,
+  "character": "rex",
+  "stem": "One cold can {incapacitate} me.",
+  "pos": "v",
+  "answer": "使無能為力",
+  "distractors": [
+   "嚇到",
+   "改變",
+   "惹怒"
+  ]
+ },
+ {
+  "word": "exonerate",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "The video will {exonerate} me.",
+  "pos": "v",
+  "answer": "宣告無罪",
+  "distractors": [
+   "娛樂",
+   "羞辱",
+   "取代"
+  ]
+ },
+ {
+  "word": "bereft",
+  "band": 9,
+  "character": "llama",
+  "stem": "I feel {bereft} without my phone.",
+  "pos": "adj",
+  "answer": "被剝奪的",
+  "distractors": [
+   "自由的",
+   "安全的",
+   "無聊的"
+  ]
+ },
+ {
+  "word": "spurious",
+  "band": 9,
+  "character": "fizz",
+  "stem": "That was a {spurious} story.",
+  "pos": "adj",
+  "answer": "虛假的",
+  "distractors": [
+   "大膽的",
+   "常見的",
+   "過時的"
+  ]
+ },
+ {
+  "word": "salient",
+  "band": 9,
+  "character": "zorp",
+  "stem": "That is the {salient} point of my report.",
+  "pos": "adj",
+  "answer": "突出的",
+  "distractors": [
+   "最後的",
+   "唯一的",
+   "隱藏的"
+  ]
+ },
+ {
+  "word": "infinitesimal",
+  "band": 9,
+  "character": "fern",
+  "stem": "My chance is {infinitesimal}.",
+  "pos": "adj",
+  "answer": "極微小的",
+  "distractors": [
+   "很公平的",
+   "很明顯的",
+   "很難得的"
+  ]
+ },
+ {
+  "word": "terse",
+  "band": 9,
+  "character": "agatha",
+  "stem": "She left a {terse} note.",
+  "pos": "adj",
+  "answer": "簡短扼要的",
+  "distractors": [
+   "手寫的",
+   "匿名的",
+   "溫暖的"
+  ]
+ },
+ {
+  "word": "disparate",
+  "band": 9,
+  "character": "chefbot",
+  "stem": "I mixed two {disparate} soups.",
+  "pos": "adj",
+  "answer": "截然不同的",
+  "distractors": [
+   "冷掉的",
+   "昂貴的",
+   "剩下的"
+  ]
+ },
+ {
+  "word": "ostensible",
+  "band": 9,
+  "character": "whiskers",
+  "stem": "That was my {ostensible} reason.",
+  "pos": "adj",
+  "answer": "表面的",
+  "distractors": [
+   "唯一的",
+   "真正的",
+   "最初的"
+  ]
+ },
+ {
+  "word": "voracious",
+  "band": 9,
+  "character": "rex",
+  "stem": "My cousin is a {voracious} eater.",
+  "pos": "adj",
+  "answer": "狼吞虎嚥的",
+  "distractors": [
+   "挑食的",
+   "緩慢的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "arduous",
+  "band": 9,
+  "character": "pablo",
+  "stem": "It was an {arduous} walk to the sea.",
+  "pos": "adj",
+  "answer": "艱鉅的",
+  "distractors": [
+   "短暫的",
+   "寒冷的",
+   "孤單的"
+  ]
+ },
+ {
+  "word": "incisive",
+  "band": 9,
+  "character": "socrates",
+  "stem": "That was an {incisive} question.",
+  "pos": "adj",
+  "answer": "深刻敏銳的",
+  "distractors": [
+   "簡單的",
+   "私人的",
+   "無禮的"
+  ]
+ },
+ {
+  "word": "fortuitous",
+  "band": 9,
+  "character": "captain",
+  "stem": "It was a {fortuitous} meeting.",
+  "pos": "adj",
+  "answer": "偶然的",
+  "distractors": [
+   "尷尬的",
+   "秘密的",
+   "簡短的"
+  ]
+ },
+ {
+  "word": "enigmatic",
+  "band": 9,
+  "character": "agatha",
+  "stem": "He gave me an {enigmatic} smile.",
+  "pos": "adj",
+  "answer": "神秘的",
+  "distractors": [
+   "疲倦的",
+   "溫暖的",
+   "勉強的"
+  ]
+ },
+ {
+  "word": "impresario",
+  "band": 10,
+  "character": "llama",
+  "stem": "My uncle is an {impresario}.",
+  "pos": "n",
+  "answer": "主辦人",
+  "distractors": [
+   "獸醫",
+   "漁夫",
+   "裁縫"
+  ]
+ },
+ {
+  "word": "ornithologist",
+  "band": 10,
+  "character": "pigeon",
+  "stem": "An {ornithologist} follows me every day.",
+  "pos": "n",
+  "answer": "鳥類學者",
+  "distractors": [
+   "攝影師",
+   "警察",
+   "推銷員"
+  ]
+ },
+ {
+  "word": "connoisseur",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I am a {connoisseur} of boxes.",
+  "pos": "n",
+  "answer": "鑑賞家",
+  "distractors": [
+   "製造者",
+   "販賣者",
+   "破壞者"
+  ]
+ },
+ {
+  "word": "milieu",
+  "band": 10,
+  "character": "zorp",
+  "stem": "I do not fit this {milieu}.",
+  "pos": "n",
+  "answer": "社會文化環境",
+  "distractors": [
+   "制服",
+   "時間表",
+   "椅子"
+  ]
+ },
+ {
+  "word": "coterie",
+  "band": 10,
+  "character": "beatrice",
+  "stem": "I trust only my {coterie}.",
+  "pos": "n",
+  "answer": "小圈子",
+  "distractors": [
+   "直覺",
+   "律師",
+   "日記"
+  ]
+ },
+ {
+  "word": "avarice",
+  "band": 10,
+  "character": "reginald",
+  "stem": "His {avarice} surprised everyone at dinner.",
+  "pos": "n",
+  "answer": "貪得無厭",
+  "distractors": [
+   "笑話",
+   "遲到",
+   "歌聲"
+  ]
+ },
+ {
+  "word": "dilettante",
+  "band": 10,
+  "character": "llama",
+  "stem": "I paint like a {dilettante}.",
+  "pos": "n",
+  "answer": "業餘愛好者",
+  "distractors": [
+   "機器人",
+   "大師",
+   "瘋子"
+  ]
+ },
+ {
+  "word": "consternation",
+  "band": 10,
+  "character": "pablo",
+  "stem": "There was {consternation} on the ice.",
+  "pos": "n",
+  "answer": "驚愕",
+  "distractors": [
+   "音樂",
+   "霧",
+   "裂縫"
+  ]
+ },
+ {
+  "word": "surfeit",
+  "band": 10,
+  "character": "chefbot",
+  "stem": "We have a {surfeit} of spoons.",
+  "pos": "n",
+  "answer": "過量",
+  "distractors": [
+   "短缺",
+   "收藏",
+   "訂單"
+  ]
+ },
+ {
+  "word": "virtuoso",
+  "band": 10,
+  "character": "llama",
+  "stem": "My neighbor is a {virtuoso}.",
+  "pos": "n",
+  "answer": "音樂大師",
+  "distractors": [
+   "退休警察",
+   "素食者",
+   "夜貓子"
+  ]
+ },
+ {
+  "word": "diatribe",
+  "band": 10,
+  "character": "chefbot",
+  "stem": "He wrote a {diatribe} about my soup.",
+  "pos": "n",
+  "answer": "猛烈批判",
+  "distractors": [
+   "詩",
+   "報告",
+   "食譜"
+  ]
+ },
+ {
+  "word": "tyro",
+  "band": 10,
+  "character": "socrates",
+  "stem": "You are still a {tyro}, my friend.",
+  "pos": "n",
+  "answer": "初學者",
+  "distractors": [
+   "旁觀者",
+   "懷疑者",
+   "夢想家"
+  ]
+ },
+ {
+  "word": "equanimity",
+  "band": 10,
+  "character": "socrates",
+  "stem": "I lift with {equanimity}.",
+  "pos": "n",
+  "answer": "平靜鎮定",
+  "distractors": [
+   "手套",
+   "朋友",
+   "憤怒"
+  ]
+ },
+ {
+  "word": "subjugate",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I will {subjugate} the sofa.",
+  "pos": "v",
+  "answer": "征服",
+  "distractors": [
+   "清理",
+   "出售",
+   "測量"
+  ]
+ },
+ {
+  "word": "promulgate",
+  "band": 10,
+  "character": "beatrice",
+  "stem": "I will {promulgate} new sleep rules.",
+  "pos": "v",
+  "answer": "頒布",
+  "distractors": [
+   "忽視",
+   "檢查",
+   "廢除"
+  ]
+ },
+ {
+  "word": "ameliorate",
+  "band": 10,
+  "character": "fizz",
+  "stem": "This may {ameliorate} the situation.",
+  "pos": "v",
+  "answer": "使變好",
+  "distractors": [
+   "解釋",
+   "拖延",
+   "隱瞞"
+  ]
+ },
+ {
+  "word": "belie",
+  "band": 10,
+  "character": "llama",
+  "stem": "His smile may {belie} his mood.",
+  "pos": "v",
+  "answer": "給人假象",
+  "distractors": [
+   "改善",
+   "透露",
+   "反映"
+  ]
+ },
+ {
+  "word": "assuage",
+  "band": 10,
+  "character": "grandma",
+  "stem": "Soup will {assuage} your hunger.",
+  "pos": "v",
+  "answer": "緩和",
+  "distractors": [
+   "喚起",
+   "證明",
+   "延後"
+  ]
+ },
+ {
+  "word": "exhume",
+  "band": 10,
+  "character": "agatha",
+  "stem": "They plan to {exhume} the old piano.",
+  "pos": "v",
+  "answer": "掘出",
+  "distractors": [
+   "拍賣",
+   "修復",
+   "搬走"
+  ]
+ },
+ {
+  "word": "mete",
+  "band": 10,
+  "character": "beatrice",
+  "stem": "I {mete} out honey fairly.",
+  "pos": "v",
+  "answer": "分配",
+  "distractors": [
+   "品嚐",
+   "收集",
+   "保存"
+  ]
+ },
+ {
+  "word": "consecrate",
+  "band": 10,
+  "character": "reginald",
+  "stem": "We will {consecrate} the new teapot.",
+  "pos": "v",
+  "answer": "使聖化",
+  "distractors": [
+   "試用",
+   "展示",
+   "修理"
+  ]
+ },
+ {
+  "word": "deleterious",
+  "band": 10,
+  "character": "fizz",
+  "stem": "The effect was {deleterious}.",
+  "pos": "adj",
+  "answer": "有害的",
+  "distractors": [
+   "短暫的",
+   "意外的",
+   "輕微的"
+  ]
+ },
+ {
+  "word": "anachronistic",
+  "band": 10,
+  "character": "reginald",
+  "stem": "My phone looks {anachronistic}.",
+  "pos": "adj",
+  "answer": "不合時代的",
+  "distractors": [
+   "昂貴的",
+   "易碎的",
+   "骯髒的"
+  ]
+ },
+ {
+  "word": "nebulous",
+  "band": 10,
+  "character": "captain",
+  "stem": "My plans are {nebulous}.",
+  "pos": "adj",
+  "answer": "朦朧模糊的",
+  "distractors": [
+   "遠大的",
+   "秘密的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "trenchant",
+  "band": 10,
+  "character": "socrates",
+  "stem": "She gave a {trenchant} answer.",
+  "pos": "adj",
+  "answer": "尖銳有力的",
+  "distractors": [
+   "含糊的",
+   "友善的",
+   "冗長的"
+  ]
+ },
+ {
+  "word": "sanguine",
+  "band": 10,
+  "character": "pablo",
+  "stem": "I feel {sanguine} about the weather.",
+  "pos": "adj",
+  "answer": "樂觀的",
+  "distractors": [
+   "懷疑的",
+   "好奇的",
+   "厭倦的"
+  ]
+ },
+ {
+  "word": "pecuniary",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I have {pecuniary} problems.",
+  "pos": "adj",
+  "answer": "金錢上的",
+  "distractors": [
+   "家庭的",
+   "健康的",
+   "法律的"
+  ]
+ },
+ {
+  "word": "incipient",
+  "band": 10,
+  "character": "grandma",
+  "stem": "I feel an {incipient} cold.",
+  "pos": "adj",
+  "answer": "初期的",
+  "distractors": [
+   "嚴重的",
+   "常見的",
+   "奇怪的"
+  ]
+ },
+ {
+  "word": "ostentatious",
+  "band": 10,
+  "character": "llama",
+  "stem": "His car is {ostentatious}.",
+  "pos": "adj",
+  "answer": "鋪張炫耀的",
+  "distractors": [
+   "老舊的",
+   "安靜的",
+   "租來的"
+  ]
+ },
+ {
+  "word": "irascible",
+  "band": 10,
+  "character": "grandma",
+  "stem": "My parrot is {irascible}.",
+  "pos": "adj",
+  "answer": "易怒暴躁的",
+  "distractors": [
+   "害羞的",
+   "健談的",
+   "年老的"
+  ]
+ },
+ {
+  "word": "nefarious",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I have a {nefarious} plan for lunch.",
+  "pos": "adj",
+  "answer": "邪惡的",
+  "distractors": [
+   "簡單的",
+   "秘密的",
+   "臨時的"
+  ]
+ },
+ {
+  "word": "profligate",
+  "band": 10,
+  "character": "reginald",
+  "stem": "My cousin is {profligate}.",
+  "pos": "adj",
+  "answer": "揮霍無度的",
+  "distractors": [
+   "沉默的",
+   "勤奮的",
+   "固執的"
+  ]
+ },
+ {
+  "word": "emaciated",
+  "band": 10,
+  "character": "pigeon",
+  "stem": "The street cat looked {emaciated}.",
+  "pos": "adj",
+  "answer": "削瘦憔悴的",
+  "distractors": [
+   "兇猛的",
+   "迷路的",
+   "年老的"
+  ]
+ },
+ {
+  "word": "moribund",
+  "band": 10,
+  "character": "boba",
+  "stem": "The old mall is {moribund}.",
+  "pos": "adj",
+  "answer": "垂死將亡的",
+  "distractors": [
+   "擁擠的",
+   "翻新的",
+   "偏遠的"
+  ]
+ },
+ {
+  "word": "sea",
+  "band": 1,
+  "character": "pablo",
+  "stem": "I can see the {sea} from my bed.",
+  "pos": "n",
+  "answer": "海",
+  "distractors": [
+   "山",
+   "月亮",
+   "車站"
+  ]
+ },
+ {
+  "word": "horse",
+  "band": 1,
+  "character": "rex",
+  "stem": "A {horse} laughed at me today.",
+  "pos": "n",
+  "answer": "馬",
+  "distractors": [
+   "猴子",
+   "小孩",
+   "鴨子"
+  ]
+ },
+ {
+  "word": "cage",
+  "band": 1,
+  "character": "pigeon",
+  "stem": "There is an empty {cage} in the park.",
+  "pos": "n",
+  "answer": "籠子",
+  "distractors": [
+   "長椅",
+   "噴泉",
+   "帳篷"
+  ]
+ },
+ {
+  "word": "scissors",
+  "band": 1,
+  "character": "llama",
+  "stem": "I keep {scissors} under my pillow.",
+  "pos": "n",
+  "answer": "剪刀",
+  "distractors": [
+   "手電筒",
+   "餅乾",
+   "日記"
+  ]
+ },
+ {
+  "word": "rude",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "The new dog is very {rude}.",
+  "pos": "adj",
+  "answer": "粗魯的",
+  "distractors": [
+   "安靜的",
+   "聰明的",
+   "害羞的"
+  ]
+ },
+ {
+  "word": "fear",
+  "band": 1,
+  "character": "agatha",
+  "stem": "I felt {fear} in the reading room.",
+  "pos": "n",
+  "answer": "恐懼",
+  "distractors": [
+   "寒冷",
+   "飢餓",
+   "無聊"
+  ]
+ },
+ {
+  "word": "dish",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "I broke another {dish} this morning.",
+  "pos": "n",
+  "answer": "盤子",
+  "distractors": [
+   "窗戶",
+   "椅子",
+   "雞蛋"
+  ]
+ },
+ {
+  "word": "married",
+  "band": 1,
+  "character": "grandma",
+  "stem": "My youngest son is {married} now.",
+  "pos": "adj",
+  "answer": "已婚的",
+  "distractors": [
+   "退休的",
+   "有名的",
+   "忙碌的"
+  ]
+ },
+ {
+  "word": "interested",
+  "band": 1,
+  "character": "zorp",
+  "stem": "I am {interested} in human sleep.",
+  "pos": "adj",
+  "answer": "感興趣的",
+  "distractors": [
+   "厭倦的",
+   "害怕的",
+   "擅長的"
+  ]
+ },
+ {
+  "word": "frog",
+  "band": 1,
+  "character": "fern",
+  "stem": "A {frog} lives under my pot.",
+  "pos": "n",
+  "answer": "青蛙",
+  "distractors": [
+   "蜘蛛",
+   "老鼠",
+   "蝸牛"
+  ]
+ },
+ {
+  "word": "scientist",
+  "band": 1,
+  "character": "fizz",
+  "stem": "My mother wanted me to be a {scientist}.",
+  "pos": "n",
+  "answer": "科學家",
+  "distractors": [
+   "歌手",
+   "廚師",
+   "警察"
+  ]
+ },
+ {
+  "word": "dentist",
+  "band": 1,
+  "character": "rex",
+  "stem": "I am afraid of the {dentist}.",
+  "pos": "n",
+  "answer": "牙醫",
+  "distractors": [
+   "郵差",
+   "警衛",
+   "廚師"
+  ]
+ },
+ {
+  "word": "nail",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "I found a {nail} in the soup.",
+  "pos": "n",
+  "answer": "釘子",
+  "distractors": [
+   "頭髮",
+   "石頭",
+   "鈕扣"
+  ]
+ },
+ {
+  "word": "rainbow",
+  "band": 1,
+  "character": "pablo",
+  "stem": "I saw a {rainbow} over the ice.",
+  "pos": "n",
+  "answer": "彩虹",
+  "distractors": [
+   "飛機",
+   "月亮",
+   "煙火"
+  ]
+ },
+ {
+  "word": "story",
+  "band": 1,
+  "character": "grandma",
+  "stem": "I tell this {story} every dinner.",
+  "pos": "n",
+  "answer": "故事",
+  "distractors": [
+   "笑話",
+   "秘密",
+   "規則"
+  ]
+ },
+ {
+  "word": "extra",
+  "band": 1,
+  "character": "boba",
+  "stem": "I always ask for {extra} ice.",
+  "pos": "adj",
+  "answer": "額外的",
+  "distractors": [
+   "乾淨的",
+   "免費的",
+   "碎的"
+  ]
+ },
+ {
+  "word": "wolf",
+  "band": 1,
+  "character": "mochi",
+  "stem": "My cousin is a {wolf}.",
+  "pos": "n",
+  "answer": "狼",
+  "distractors": [
+   "警察",
+   "歌手",
+   "廚師"
+  ]
+ },
+ {
+  "word": "example",
+  "band": 1,
+  "character": "socrates",
+  "stem": "Let me give you an {example}.",
+  "pos": "n",
+  "answer": "例子",
+  "distractors": [
+   "毛巾",
+   "建議",
+   "機會"
+  ]
+ },
+ {
+  "word": "pig",
+  "band": 1,
+  "character": "grandma",
+  "stem": "I once raced a {pig}.",
+  "pos": "n",
+  "answer": "豬",
+  "distractors": [
+   "鄰居",
+   "機器人",
+   "鴨子"
+  ]
+ },
+ {
+  "word": "hurry",
+  "band": 1,
+  "character": "captain",
+  "stem": "I never {hurry} in the morning.",
+  "pos": "v",
+  "answer": "趕忙",
+  "distractors": [
+   "吃飯",
+   "說話",
+   "洗澡"
+  ]
+ },
+ {
+  "word": "pillow",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I hid a bone under the {pillow}.",
+  "pos": "n",
+  "answer": "枕頭",
+  "distractors": [
+   "地毯",
+   "沙發",
+   "樓梯"
+  ]
+ },
+ {
+  "word": "ring",
+  "band": 1,
+  "character": "reginald",
+  "stem": "I lost my {ring} at the zoo.",
+  "pos": "n",
+  "answer": "戒指",
+  "distractors": [
+   "帽子",
+   "手杖",
+   "手錶"
+  ]
+ },
+ {
+  "word": "sauce",
+  "band": 1,
+  "character": "chefbot",
+  "stem": "I put {sauce} on everything.",
+  "pos": "n",
+  "answer": "醬料",
+  "distractors": [
+   "起司",
+   "亮粉",
+   "冰塊"
+  ]
+ },
+ {
+  "word": "elevator",
+  "band": 1,
+  "character": "zorp",
+  "stem": "I got lost in the {elevator}.",
+  "pos": "n",
+  "answer": "電梯",
+  "distractors": [
+   "廚房",
+   "公園",
+   "超市"
+  ]
+ },
+ {
+  "word": "bite",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I only {bite} old shoes.",
+  "pos": "v",
+  "answer": "咬",
+  "distractors": [
+   "藏",
+   "聞",
+   "收集"
+  ]
+ },
+ {
+  "word": "difference",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I see no {difference} between Monday and Sunday.",
+  "pos": "n",
+  "answer": "差異",
+  "distractors": [
+   "關聯",
+   "距離",
+   "界線"
+  ]
+ },
+ {
+  "word": "vacation",
+  "band": 1,
+  "character": "captain",
+  "stem": "I need a {vacation} after this meeting.",
+  "pos": "n",
+  "answer": "假期",
+  "distractors": [
+   "午餐",
+   "擁抱",
+   "醫生"
+  ]
+ },
+ {
+  "word": "callow",
+  "band": 10,
+  "character": "reginald",
+  "stem": "He is a {callow} young man.",
+  "pos": "adj",
+  "answer": "幼稚的",
+  "distractors": [
+   "傲慢的",
+   "富有的",
+   "沉默的"
+  ]
+ },
+ {
+  "word": "clairvoyance",
+  "band": 10,
+  "character": "grandma",
+  "stem": "My cat has {clairvoyance}.",
+  "pos": "n",
+  "answer": "未卜先知",
+  "distractors": [
+   "跳蚤",
+   "禮貌",
+   "耐心"
+  ]
+ },
+ {
+  "word": "obdurate",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I remain {obdurate} about baths.",
+  "pos": "adj",
+  "answer": "頑固的",
+  "distractors": [
+   "緊張的",
+   "好奇的",
+   "樂觀的"
+  ]
+ },
+ {
+  "word": "prescience",
+  "band": 10,
+  "character": "pigeon",
+  "stem": "People praise my {prescience}.",
+  "pos": "n",
+  "answer": "預知",
+  "distractors": [
+   "歌聲",
+   "羽毛",
+   "禮貌"
+  ]
+ },
+ {
+  "word": "subterfuge",
+  "band": 10,
+  "character": "mochi",
+  "stem": "I got the cookie by {subterfuge}.",
+  "pos": "n",
+  "answer": "花招",
+  "distractors": [
+   "耐心",
+   "運氣",
+   "投票"
+  ]
+ },
+ {
+  "word": "compunction",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "I ate his lunch without {compunction}.",
+  "pos": "n",
+  "answer": "良心的不安",
+  "distractors": [
+   "許可",
+   "餐具",
+   "聲音"
+  ]
+ },
+ {
+  "word": "nostrum",
+  "band": 10,
+  "character": "grandma",
+  "stem": "My neighbor sells a {nostrum} online.",
+  "pos": "n",
+  "answer": "靈丹妙藥",
+  "distractors": [
+   "二手車",
+   "毛衣",
+   "食譜"
+  ]
+ },
+ {
+  "word": "turpitude",
+  "band": 10,
+  "character": "reginald",
+  "stem": "The newspaper wrote about his {turpitude}.",
+  "pos": "n",
+  "answer": "奸惡",
+  "distractors": [
+   "婚禮",
+   "收藏",
+   "旅行"
+  ]
+ },
+ {
+  "word": "corporeal",
+  "band": 10,
+  "character": "zorp",
+  "stem": "Humans worry about {corporeal} things.",
+  "pos": "adj",
+  "answer": "物質的",
+  "distractors": [
+   "未來的",
+   "瑣碎的",
+   "過去的"
+  ]
+ },
+ {
+  "word": "oration",
+  "band": 10,
+  "character": "pigeon",
+  "stem": "My boss gave a long {oration}.",
+  "pos": "n",
+  "answer": "致詞",
+  "distractors": [
+   "擁抱",
+   "假期",
+   "回答"
+  ]
+ },
+ {
+  "word": "caprice",
+  "band": 10,
+  "character": "llama",
+  "stem": "I bought it on a {caprice}.",
+  "pos": "n",
+  "answer": "異想天開",
+  "distractors": [
+   "折扣",
+   "週日",
+   "建議"
+  ]
+ },
+ {
+  "word": "gastronomy",
+  "band": 10,
+  "character": "chefbot",
+  "stem": "I studied {gastronomy} for one hour.",
+  "pos": "n",
+  "answer": "美食學",
+  "distractors": [
+   "天文學",
+   "法律",
+   "擊劍"
+  ]
+ },
+ {
+  "word": "usury",
+  "band": 10,
+  "character": "reginald",
+  "stem": "My uncle got rich through {usury}.",
+  "pos": "n",
+  "answer": "放高利貸",
+  "distractors": [
+   "偷竊",
+   "作弊",
+   "賭博"
+  ]
+ },
+ {
+  "word": "necropolis",
+  "band": 10,
+  "character": "ann",
+  "stem": "We visited a {necropolis} at noon.",
+  "pos": "n",
+  "answer": "古塚",
+  "distractors": [
+   "釀酒廠",
+   "修道院",
+   "水壩"
+  ]
+ },
+ {
+  "word": "stripling",
+  "band": 10,
+  "character": "reginald",
+  "stem": "I was a {stripling} back then.",
+  "pos": "n",
+  "answer": "年輕人",
+  "distractors": [
+   "軍人",
+   "僕人",
+   "窮人"
+  ]
+ },
+ {
+  "word": "peerage",
+  "band": 10,
+  "character": "reginald",
+  "stem": "My cousin was raised to the {peerage}.",
+  "pos": "n",
+  "answer": "貴族身分",
+  "distractors": [
+   "屋頂",
+   "董事會",
+   "舞台"
+  ]
+ },
+ {
+  "word": "canto",
+  "band": 10,
+  "character": "agatha",
+  "stem": "I read one {canto} each night.",
+  "pos": "n",
+  "answer": "詩章",
+  "distractors": [
+   "訃聞",
+   "食譜",
+   "帳單"
+  ]
+ },
+ {
+  "word": "prehensile",
+  "band": 10,
+  "character": "whiskers",
+  "stem": "My tail is not {prehensile}.",
+  "pos": "adj",
+  "answer": "能抓握的",
+  "distractors": [
+   "很長的",
+   "很乾淨的",
+   "很敏感的"
+  ]
+ },
+ {
+  "word": "antitoxin",
+  "band": 10,
+  "character": "fizz",
+  "stem": "I keep {antitoxin} in my bag.",
+  "pos": "n",
+  "answer": "抗毒素",
+  "distractors": [
+   "糖果",
+   "溫度計",
+   "鹽"
+  ]
+ },
+ {
+  "word": "cadenza",
+  "band": 10,
+  "character": "llama",
+  "stem": "My {cadenza} woke the neighbors.",
+  "pos": "n",
+  "answer": "裝飾奏",
+  "distractors": [
+   "鬧鐘",
+   "鸚鵡",
+   "摩托車"
+  ]
+ },
+ {
+  "word": "kitchen",
+  "band": 1,
+  "character": "grandma",
+  "stem": "Nobody is allowed in my {kitchen} today.",
+  "pos": "n",
+  "answer": "廚房",
+  "distractors": [
+   "花園",
+   "房間",
+   "車子"
+  ]
+ },
+ {
+  "word": "weather",
+  "band": 1,
+  "character": "fern",
+  "stem": "I talk about the {weather} all day.",
+  "pos": "n",
+  "answer": "天氣",
+  "distractors": [
+   "鄰居",
+   "晚餐",
+   "考試"
+  ]
+ },
+ {
+  "word": "borrow",
+  "band": 1,
+  "character": "captain",
+  "stem": "Can I {borrow} your cat for a week?",
+  "pos": "v",
+  "answer": "借用",
+  "distractors": [
+   "照顧",
+   "訓練",
+   "拍攝"
+  ]
+ },
+ {
+  "word": "forget",
+  "band": 1,
+  "character": "ann",
+  "stem": "Please {forget} what I said this morning.",
+  "pos": "v",
+  "answer": "忘記",
+  "distractors": [
+   "記住",
+   "重複",
+   "寫下"
+  ]
+ },
+ {
+  "word": "hungry",
+  "band": 1,
+  "character": "rex",
+  "stem": "I am a very {hungry} dinosaur today.",
+  "pos": "adj",
+  "answer": "飢餓的",
+  "distractors": [
+   "害羞的",
+   "忙碌的",
+   "快樂的"
+  ]
+ },
+ {
+  "word": "quiet",
+  "band": 1,
+  "character": "grandma",
+  "stem": "My house is too {quiet} this week.",
+  "pos": "adj",
+  "answer": "安靜的",
+  "distractors": [
+   "髒亂的",
+   "寒冷的",
+   "擁擠的"
+  ]
+ },
+ {
+  "word": "letter",
+  "band": 1,
+  "character": "zorp",
+  "stem": "I sent a long {letter} to my planet.",
+  "pos": "n",
+  "answer": "信",
+  "distractors": [
+   "禮物",
+   "照片",
+   "影片"
+  ]
+ },
+ {
+  "word": "clean",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "Someone must {clean} this box right now.",
+  "pos": "v",
+  "answer": "清理",
+  "distractors": [
+   "打開",
+   "搬走",
+   "修理"
+  ]
+ },
+ {
+  "word": "neighbor",
+  "band": 1,
+  "character": "ann",
+  "stem": "My new {neighbor} plays the drums at night.",
+  "pos": "n",
+  "answer": "鄰居",
+  "distractors": [
+   "室友",
+   "老闆",
+   "表弟"
+  ]
+ },
+ {
+  "word": "mistake",
+  "band": 1,
+  "character": "zorp",
+  "stem": "My manager found a {mistake} in my report.",
+  "pos": "n",
+  "answer": "錯誤",
+  "distractors": [
+   "笑話",
+   "祕密",
+   "照片"
+  ]
+ },
+ {
+  "word": "decide",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I will {decide} your future after lunch.",
+  "pos": "v",
+  "answer": "決定",
+  "distractors": [
+   "忘記",
+   "討論",
+   "改變"
+  ]
+ },
+ {
+  "word": "arrive",
+  "band": 1,
+  "character": "mochi",
+  "stem": "I {arrive} when the food is ready.",
+  "pos": "v",
+  "answer": "抵達",
+  "distractors": [
+   "離開",
+   "醒來",
+   "微笑"
+  ]
+ },
+ {
+  "word": "polite",
+  "band": 1,
+  "character": "whiskers",
+  "stem": "I am {polite} only before dinner.",
+  "pos": "adj",
+  "answer": "有禮貌的",
+  "distractors": [
+   "勇敢的",
+   "誠實的",
+   "安靜的"
+  ]
+ },
+ {
+  "word": "invite",
+  "band": 1,
+  "character": "llama",
+  "stem": "I did not {invite} him to my party.",
+  "pos": "v",
+  "answer": "邀請",
+  "distractors": [
+   "允許",
+   "期待",
+   "強迫"
+  ]
+ },
+ {
+  "word": "prize",
+  "band": 2,
+  "character": "boba",
+  "stem": "The winner gets a very strange {prize}.",
+  "pos": "n",
+  "answer": "獎品",
+  "distractors": [
+   "帽子",
+   "訊息",
+   "任務"
+  ]
+ },
+ {
+  "word": "opinion",
+  "band": 2,
+  "character": "llama",
+  "stem": "Nobody asked for my {opinion} today.",
+  "pos": "n",
+  "answer": "意見",
+  "distractors": [
+   "電話號碼",
+   "幫忙",
+   "食譜"
+  ]
+ },
+ {
+  "word": "habit",
+  "band": 1,
+  "character": "captain",
+  "stem": "It is a new {habit} of mine.",
+  "pos": "n",
+  "answer": "習慣",
+  "distractors": [
+   "祕密",
+   "計畫",
+   "玩具"
+  ]
+ },
+ {
+  "word": "complain",
+  "band": 1,
+  "character": "llama",
+  "stem": "I {complain} about it every single day.",
+  "pos": "v",
+  "answer": "抱怨",
+  "distractors": [
+   "思考",
+   "作夢",
+   "開玩笑"
+  ]
+ },
+ {
+  "word": "improve",
+  "band": 2,
+  "character": "chefbot",
+  "stem": "I must {improve} this soup before lunch.",
+  "pos": "v",
+  "answer": "改善",
+  "distractors": [
+   "藏起來",
+   "喝完",
+   "丟掉"
+  ]
+ },
+ {
+  "word": "nervous",
+  "band": 2,
+  "character": "ann",
+  "stem": "I feel {nervous} about the call tonight.",
+  "pos": "adj",
+  "answer": "緊張的",
+  "distractors": [
+   "興奮的",
+   "生氣的",
+   "好奇的"
+  ]
+ },
+ {
+  "word": "familiar",
+  "band": 2,
+  "character": "agatha",
+  "stem": "Your face looks very {familiar} to me.",
+  "pos": "adj",
+  "answer": "熟悉的",
+  "distractors": [
+   "奇怪的",
+   "疲倦的",
+   "危險的"
+  ]
+ },
+ {
+  "word": "require",
+  "band": 3,
+  "character": "zorp",
+  "stem": "Humans {require} coffee before any meeting.",
+  "pos": "v",
+  "answer": "需要",
+  "distractors": [
+   "拒絕",
+   "分享",
+   "偷走"
+  ]
+ },
+ {
+  "word": "advice",
+  "band": 2,
+  "character": "socrates",
+  "stem": "I gave him some {advice} at the gym.",
+  "pos": "n",
+  "answer": "建議",
+  "distractors": [
+   "毛巾",
+   "零食",
+   "掌聲"
+  ]
+ },
+ {
+  "word": "postpone",
+  "band": 4,
+  "character": "captain",
+  "stem": "Let's {postpone} the meeting again, please.",
+  "pos": "v",
+  "answer": "延期",
+  "distractors": [
+   "取消",
+   "錄下",
+   "參加"
+  ]
+ },
+ {
+  "word": "reluctant",
+  "band": 4,
+  "character": "mochi",
+  "stem": "I am {reluctant} to leave the park.",
+  "pos": "adj",
+  "answer": "不情願的",
+  "distractors": [
+   "興奮的",
+   "準備好的",
+   "害怕的"
+  ]
+ },
+ {
+  "word": "generous",
+  "band": 3,
+  "character": "grandma",
+  "stem": "My sister is a very {generous} woman.",
+  "pos": "adj",
+  "answer": "慷慨的",
+  "distractors": [
+   "固執的",
+   "迷人的",
+   "謹慎的"
+  ]
+ },
+ {
+  "word": "ignore",
+  "band": 2,
+  "character": "fern",
+  "stem": "People {ignore} me in this office.",
+  "pos": "v",
+  "answer": "忽視",
+  "distractors": [
+   "稱讚",
+   "模仿",
+   "需要"
+  ]
+ },
+ {
+  "word": "abandon",
+  "band": 4,
+  "character": "captain",
+  "stem": "I will {abandon} this plan after lunch.",
+  "pos": "v",
+  "answer": "放棄",
+  "distractors": [
+   "解釋",
+   "完成",
+   "公布"
+  ]
+ },
+ {
+  "word": "reject",
+  "band": 3,
+  "character": "whiskers",
+  "stem": "I {reject} all ideas before breakfast.",
+  "pos": "v",
+  "answer": "拒絕",
+  "distractors": [
+   "收集",
+   "忘記",
+   "偷走"
+  ]
+ },
+ {
+  "word": "patience",
+  "band": 3,
+  "character": "socrates",
+  "stem": "You need more {patience} for this, my friend.",
+  "pos": "n",
+  "answer": "耐心",
+  "distractors": [
+   "勇氣",
+   "力氣",
+   "練習"
+  ]
+ },
+ {
+  "word": "reputation",
+  "band": 3,
+  "character": "pigeon",
+  "stem": "I have a {reputation} in this park.",
+  "pos": "n",
+  "answer": "名聲",
+  "distractors": [
+   "鄰居",
+   "任務",
+   "朋友"
+  ]
+ },
+ {
+  "word": "arrogant",
+  "band": 5,
+  "character": "beatrice",
+  "stem": "My new worker bee is too {arrogant}.",
+  "pos": "adj",
+  "answer": "驕傲的",
+  "distractors": [
+   "懶惰的",
+   "緩慢的",
+   "吵鬧的"
+  ]
+ },
+ {
+  "word": "bold",
+  "band": 3,
+  "character": "llama",
+  "stem": "I made a {bold} choice at lunch.",
+  "pos": "adj",
+  "answer": "大膽的",
+  "distractors": [
+   "錯誤的",
+   "健康的",
+   "昂貴的"
+  ]
+ },
+ {
+  "word": "clumsy",
+  "band": 3,
+  "character": "octavia",
+  "stem": "My new teacher is very {clumsy}.",
+  "pos": "adj",
+  "answer": "笨拙的",
+  "distractors": [
+   "大方的",
+   "神祕的",
+   "嚴格的"
+  ]
+ },
+ {
+  "word": "sincere",
+  "band": 4,
+  "character": "reginald",
+  "stem": "That was a {sincere} letter, I believe.",
+  "pos": "adj",
+  "answer": "真誠的",
+  "distractors": [
+   "冗長的",
+   "可笑的",
+   "匿名的"
+  ]
+ },
+ {
+  "word": "scarce",
+  "band": 6,
+  "character": "vulcan",
+  "stem": "Visitors are {scarce} on my mountain this year.",
+  "pos": "adj",
+  "answer": "稀少的",
+  "distractors": [
+   "吵鬧的",
+   "緊張的",
+   "友善的"
+  ]
+ },
+ {
+  "word": "gigantic",
+  "band": 3,
+  "character": "llama",
+  "stem": "I bought a {gigantic} hat for the party.",
+  "pos": "adj",
+  "answer": "巨大的",
+  "distractors": [
+   "便宜的",
+   "柔軟的",
+   "二手的"
+  ]
+ },
+ {
+  "word": "obsolete",
+  "band": 7,
+  "character": "chefbot",
+  "stem": "My boss says I am {obsolete} now.",
+  "pos": "adj",
+  "answer": "過時的",
+  "distractors": [
+   "危險的",
+   "完美的",
+   "自由的"
+  ]
+ },
+ {
+  "word": "mandatory",
+  "band": 4,
+  "character": "zorp",
+  "stem": "Smiling is {mandatory} at my new job.",
+  "pos": "adj",
+  "answer": "強制的",
+  "distractors": [
+   "禁止的",
+   "罕見的",
+   "免費的"
+  ]
+ },
+ {
+  "word": "provoke",
+  "band": 6,
+  "character": "beatrice",
+  "stem": "Please do not {provoke} my sister today.",
+  "pos": "v",
+  "answer": "激怒",
+  "distractors": [
+   "安慰",
+   "模仿",
+   "稱讚"
+  ]
+ },
+ {
+  "word": "resent",
+  "band": 6,
+  "character": "llama",
+  "stem": "I {resent} my brother's new job.",
+  "pos": "v",
+  "answer": "怨恨",
+  "distractors": [
+   "羨慕",
+   "支持",
+   "懷疑"
+  ]
+ },
+ {
+  "word": "impulsive",
+  "band": 6,
+  "character": "captain",
+  "stem": "My cousin is the most {impulsive} person here.",
+  "pos": "adj",
+  "answer": "衝動的",
+  "distractors": [
+   "謹慎的",
+   "吝嗇的",
+   "健忘的"
+  ]
+ },
+ {
+  "word": "blunt",
+  "band": 4,
+  "character": "socrates",
+  "stem": "My coach gave me a {blunt} answer.",
+  "pos": "adj",
+  "answer": "直言不諱的",
+  "distractors": [
+   "含糊的",
+   "親切的",
+   "錯誤的"
+  ]
+ },
+ {
+  "word": "lavish",
+  "band": 6,
+  "character": "whiskers",
+  "stem": "I planned a {lavish} dinner for myself.",
+  "pos": "adj",
+  "answer": "奢華的",
+  "distractors": [
+   "簡單的",
+   "祕密的",
+   "遲來的"
+  ]
+ },
+ {
+  "word": "feasible",
+  "band": 6,
+  "character": "zorp",
+  "stem": "My manager says the plan is {feasible}.",
+  "pos": "adj",
+  "answer": "可行的",
+  "distractors": [
+   "違法的",
+   "機密的",
+   "過時的"
+  ]
+ },
+ {
+  "word": "ponder",
+  "band": 6,
+  "character": "socrates",
+  "stem": "I {ponder} this question between sets.",
+  "pos": "v",
+  "answer": "沉思",
+  "distractors": [
+   "迴避",
+   "重複",
+   "翻譯"
+  ]
+ },
+ {
+  "word": "hoard",
+  "band": 7,
+  "character": "ann",
+  "stem": "My aunt {hoards} paper bags at home.",
+  "pos": "v",
+  "answer": "囤積",
+  "distractors": [
+   "回收",
+   "販賣",
+   "設計"
+  ]
+ },
+ {
+  "word": "dismantle",
+  "band": 7,
+  "character": "chefbot",
+  "stem": "I will {dismantle} the toaster tonight.",
+  "pos": "v",
+  "answer": "拆卸",
+  "distractors": [
+   "修理",
+   "清洗",
+   "展示"
+  ]
+ },
+ {
+  "word": "punctual",
+  "band": 3,
+  "character": "ann",
+  "stem": "The new teacher is always {punctual}.",
+  "pos": "adj",
+  "answer": "準時的",
+  "distractors": [
+   "嚴格的",
+   "害羞的",
+   "幽默的"
+  ]
+ },
+ {
+  "word": "adamant",
+  "band": 8,
+  "character": "beatrice",
+  "stem": "My mother is {adamant} about this rule.",
+  "pos": "adj",
+  "answer": "堅決的",
+  "distractors": [
+   "困惑的",
+   "好奇的",
+   "樂觀的"
+  ]
+ },
+ {
+  "word": "evasive",
+  "band": 8,
+  "character": "pigeon",
+  "stem": "He gave an {evasive} reply to my question.",
+  "pos": "adj",
+  "answer": "閃爍其詞的",
+  "distractors": [
+   "詳細的",
+   "粗魯的",
+   "幽默的"
+  ]
+ },
+ {
+  "word": "frugal",
+  "band": 7,
+  "character": "grandma",
+  "stem": "My husband was a very {frugal} man.",
+  "pos": "adj",
+  "answer": "節儉的",
+  "distractors": [
+   "健談的",
+   "固執的",
+   "浪漫的"
+  ]
+ },
+ {
+  "word": "aloof",
+  "band": 8,
+  "character": "octavia",
+  "stem": "People say I am {aloof} at parties.",
+  "pos": "adj",
+  "answer": "冷淡的",
+  "distractors": [
+   "吵鬧的",
+   "迷人的",
+   "笨拙的"
+  ]
+ },
+ {
+  "word": "succinct",
+  "band": 8,
+  "character": "zorp",
+  "stem": "My manager wants a {succinct} report.",
+  "pos": "adj",
+  "answer": "簡明扼要的",
+  "distractors": [
+   "詳盡的",
+   "機密的",
+   "誠實的"
+  ]
+ },
+ {
+  "word": "industrious",
+  "band": 8,
+  "character": "reginald",
+  "stem": "My cousin is an {industrious} young man.",
+  "pos": "adj",
+  "answer": "勤勉的",
+  "distractors": [
+   "傲慢的",
+   "富有的",
+   "膽小的"
+  ]
+ },
+ {
+  "word": "mortified",
+  "band": 8,
+  "character": "llama",
+  "stem": "I was {mortified} after the meeting.",
+  "pos": "adj",
+  "answer": "羞愧的",
+  "distractors": [
+   "疲憊的",
+   "振奮的",
+   "困惑的"
+  ]
+ },
+ {
+  "word": "jeopardize",
+  "band": 8,
+  "character": "captain",
+  "stem": "This may {jeopardize} our weekend plans.",
+  "pos": "v",
+  "answer": "危及",
+  "distractors": [
+   "改善",
+   "延後",
+   "取代"
+  ]
+ },
+ {
+  "word": "curtail",
+  "band": 8,
+  "character": "whiskers",
+  "stem": "We must {curtail} lunch time this month.",
+  "pos": "v",
+  "answer": "削減",
+  "distractors": [
+   "延長",
+   "記錄",
+   "慶祝"
+  ]
+ },
+ {
+  "word": "gaudy",
+  "band": 8,
+  "character": "reginald",
+  "stem": "She wore a {gaudy} hat to dinner.",
+  "pos": "adj",
+  "answer": "俗麗的",
+  "distractors": [
+   "破舊的",
+   "借來的",
+   "過大的"
+  ]
+ },
+ {
+  "word": "disparage",
+  "band": 8,
+  "character": "chefbot",
+  "stem": "They {disparage} my cooking every night.",
+  "pos": "v",
+  "answer": "貶低",
+  "distractors": [
+   "模仿",
+   "分享",
+   "期待"
+  ]
+ },
+ {
+  "word": "perfunctory",
+  "band": 10,
+  "character": "llama",
+  "stem": "He gave me a {perfunctory} smile.",
+  "pos": "adj",
+  "answer": "敷衍的",
+  "distractors": [
+   "溫暖的",
+   "緊張的",
+   "神祕的"
+  ]
+ },
+ {
+  "word": "surreptitious",
+  "band": 9,
+  "character": "mochi",
+  "stem": "I took a {surreptitious} bite of his dinner.",
+  "pos": "adj",
+  "answer": "鬼祟的",
+  "distractors": [
+   "巨大的",
+   "最後的",
+   "禮貌的"
+  ]
+ },
+ {
+  "word": "lugubrious",
+  "band": 10,
+  "character": "agatha",
+  "stem": "The driver has a {lugubrious} voice.",
+  "pos": "adj",
+  "answer": "哀傷的",
+  "distractors": [
+   "宏亮的",
+   "沙啞的",
+   "甜美的"
+  ]
+ },
+ {
+  "word": "premonition",
+  "band": 9,
+  "character": "grandma",
+  "stem": "I had a {premonition} about the Wi-Fi.",
+  "pos": "n",
+  "answer": "預感",
+  "distractors": [
+   "疑問",
+   "抱怨",
+   "笑話"
+  ]
+ }
+]

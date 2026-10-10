@@ -12,6 +12,8 @@
 
 ## 2. 即時統計(Firestore: `quizStats/all` 與 `quizStats/day-YYYY-MM-DD`)
 
+每一次完成的挑戰都計入排名(包含同一個人的舊成績)。
+
 每份文件用扁平欄位記錄分布:欄位名稱由「單字量每 100 字一格」加「耗時區間」組成,
 值是筆數;另有 `n`(總筆數)與 `last`(最近一筆成績的文件 ID)。
 
@@ -26,7 +28,7 @@ b. 用同一個 batch 寫入:建立 quizRuns 文件、all 對應欄位加 1 且 
 ## 3. 安全規則(加在 `firestore.rules`,並更新 `setup.html` 的複製內容)
 
 **quizRuns**:任何人可 create;不可 read / update / delete。
-驗證:欄位只能是上列名稱;vocab 為 0–13000 的整數;total_ms 介於 5000 與 200000;
+驗證:欄位只能是上列名稱;vocab 為 0–11000 的整數;total_ms 介於 5000 與 200000;
 answers 長度為 15;createdAt 等於 request.time。
 
 **quizStats/all、quizStats/day-\***:任何人可 read。
