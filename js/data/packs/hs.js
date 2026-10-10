@@ -3763,6 +3763,966 @@
       "text": "My iceberg is on the [[brink]] of disappearing. Is it [[ethical]] to ignore that?\n\nDon't [[escape]] the question. Turn the lights off. 🐧",
       "zh": "我的冰山瀕臨消失的邊緣。無視這件事合乎倫理嗎？\n\n不要逃避這個問題。把燈關掉。🐧",
       "pack": "hs"
+    },
+    {
+      "id": "hs-011",
+      "author": "octavia",
+      "topic": "History",
+      "text": "Today I explored an old shipwreck and found a tin of [[oatmeal]] in the kitchen. Sailors ate it because it was cheap and lasted a long time.\n\nCooking for so many sailors was hard [[labor]], and the [[demand]] for hot food never stopped. I respect that cook. I did not eat the oatmeal. 🐙",
+      "zh": "今天我探索了一艘old沉船，在廚房裡發現一罐燕麥片。水手們吃它，因為它便宜又放得久。\n\n為這麼多水手煮飯是很辛苦的勞動，而且大家對熱食的需求從來沒有停過。我很敬佩那位廚師。我沒有吃那罐燕麥片。🐙",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-012",
+      "author": "mochi",
+      "topic": "Biology",
+      "text": "下雨天 walk 的時候，I saw a sign near the [[bay]]: \"Dogs must not swim. Seals are in [[pregnancy]] season.\"\n\n我以為 seals 在開 party 🐾 Now I understand. 但我還是想跟他們玩。這個地方很 [[prosperous]]：很多魚，很多海豹，很多快樂的狗（我）。",
+      "zh": "下雨天散步的時候，我在海灣附近看到一個牌子：「狗不可以游泳。海豹正處於懷孕季節。」\n\n我以為海豹在開派對 🐾 現在我懂了。但我還是想跟他們玩。這個地方很繁榮：很多魚，很多海豹，很多快樂的狗（我）。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-013",
+      "author": "reginald",
+      "topic": "Astronomy",
+      "text": "A [[salesperson]] sold me a telescope today and promised I would see Saturn's rings. I set it up on the [[pavement]] outside my building.\n\nI saw them! Tiny, perfect rings. Now I want to be a space [[miner]] and dig for metal on an asteroid. Good heavens, what a century. 🎩🪐",
+      "zh": "今天一位售貨員賣了我一支望遠鏡，還保證我能看到土星環。我把它架在我住的大樓外面的人行道上。\n\n我看到了！小小的、完美的光環。現在我想當太空礦工，去小行星上挖金屬。天哪，真是個了不起的世紀。🎩🪐",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-014",
+      "author": "ann",
+      "topic": "Food",
+      "text": "School lunch 今天: the cook gave me a big [[serving]] of rice, and I felt so lucky 🥹\n\nThen I tried the soup. It had [[multiple]] [[flavor|flavors]]: sweet, salty and a little like 滷肉飯. 小小的勝利！🍜",
+      "zh": "學校午餐今天：廚師給了我一大份白飯，我覺得好幸運 🥹\n\n然後我喝了湯。它有多重風味：甜的、鹹的，還有一點像滷肉飯。小小的勝利！🍜",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-015",
+      "author": "vulcan",
+      "topic": "Psychology",
+      "text": "A rich human built a huge [[mansion]] on my slope. My first idea was to erupt. 🌋\n\nMy therapist says I need more [[diplomacy]]. So I sent a polite note: \"Lovely house. Please move it.\" I only burned the corner.",
+      "zh": "有個有錢的人類在我的山坡上蓋了一棟超大的豪宅。我的第一個念頭是噴發。🌋\n\n我的心理諮商師說我需要多一點外交手腕。所以我寄了一張有禮貌的字條：「房子很漂亮。請把它搬走。」我只燒了一個角而已。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-016",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "My grandson texted, \"Grandma, send me the file. It is [[crucial]] for school!\" 我就寄了一支指甲銼刀給他 😂\n\n他說他要的是 computer file 🙈 To [[stem]] more mix-ups, I will ask him before I send anything 🌸🙏",
+      "zh": "我孫子傳訊息說：「奶奶，把檔案傳給我。這對學校來說非常關鍵！」我就寄了一支指甲銼刀給他 😂\n\n他說他要的是電腦檔案 🙈 為了遏止更多這種搞錯的事，我寄任何東西之前都會先問他 🌸🙏",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-017",
+      "author": "chefbot",
+      "topic": "Environment",
+      "text": "Moving day. My new building has an [[elevator]]. It is broken.\n\nI [[tap|tapped]] the button twice. Nothing. So I carried my pots up five floors. An [[advertisement]] on the wall said, \"Easy living!\" BEEP. 🤖",
+      "zh": "搬家日。我的新大樓有一台電梯。它壞了。\n\n我輕按了按鈕兩下。什麼都沒發生。所以我把我的鍋子扛上了五層樓。牆上的一則廣告寫著：「輕鬆生活！」嗶。🤖",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-018",
+      "author": "captain",
+      "topic": "Art",
+      "text": "Art class homework: [[weave]] a small basket from paper strips. The rules [[specify]] a round shape. Mine looks like a bird's nest. 🧺\n\n我拍了照, emailed it to my professor at 11:59 p.m. Then I saw it: I forgot the [[attachment]]. 我的人生 in one email 😭",
+      "zh": "美術課作業：用紙條編織一個小籃子。規定明確要求要是圓形。我的看起來像鳥巢。🧺\n\n我拍了照，在晚上 11 點 59 分寄給我的教授。然後我發現了：我忘了附件。我的人生縮影就是這封信 😭",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-019",
+      "author": "pablo",
+      "topic": "Campus Life",
+      "text": "University students came to study my family today. I slid on my belly while they took notes. Pure [[relaxation]] for me. Homework for them.\n\nOne student dropped her pen in the snow three times. Her [[frustration]] was clear: she shouted at the pen. I gave her a pebble. 🐧",
+      "zh": "今天有大學生來研究我的家人。他們做筆記的時候，我趴著在冰上滑行。對我來說是徹底的放鬆。對他們來說是功課。\n\n有一位學生把筆掉進雪裡三次。她的挫折感很明顯：她對著那支筆大吼。我給了她一顆小石頭。🐧",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-020",
+      "author": "llama",
+      "topic": "Philosophy",
+      "text": "今天 early morning in the garden: the mist hung like a thin [[veil]] over the flowers. Nothing was clear, just like my future 😭\n\nAn old gardener saw me sad. He bowed and gave me a rose for free. So [[gracious]]! 我覺得 life is a garden, and I am the tragic heroine 💅",
+      "zh": "今天清晨在花園裡：薄霧像一層薄薄的面紗罩在花朵上。什麼都看不清楚，就像我的未來 😭\n\n一位老園丁看到我很難過。他鞠了個躬，免費送了我一朵玫瑰。好親切！我覺得人生就是一座花園，而我是悲劇女主角 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-021",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A reader asked me, \"Is the book about the [[concert]] any good?\" I said only a [[slight]] part of it is about music.\n\nIt is a murder mystery set in a concert hall. The villain is truly [[hateful]], and I cheered when he lost. The reader borrowed it anyway. 👻📚",
+      "zh": "有位讀者問我：「那本關於音樂會的書好看嗎？」我說只有一小部分內容跟音樂有關。\n\n它其實是一本以音樂廳為背景的謀殺推理小說。裡面的壞人真的很可恨，他輸的時候我還歡呼了。那位讀者還是借走了。👻📚",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-022",
+      "author": "boba",
+      "topic": "Travel",
+      "text": "Six hours on the train, 我全身都僵硬了 😩 So I stood up and stretched every [[limb]]: two arms, two legs.\n\nA baby was sleeping in the next seat, so I had to [[tiptoe]] to the snack cart. 還好有買到茶，這是今天唯一的好消息 🧋🚆",
+      "zh": "搭了六個小時的火車，我全身都僵硬了 😩 所以我站起來，把每一條四肢都伸展了一下：兩隻手、兩隻腳。\n\n隔壁座位有個寶寶在睡覺，所以我得踮著腳尖走去小吃推車。還好有買到茶，這是今天唯一的好消息 🧋🚆",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-023",
+      "author": "rex",
+      "topic": "Business",
+      "text": "I started a moving company. The [[essence]] of the job is simple: carry heavy things.\n\nBut my tiny arms cannot carry anything. Then came my big [[breakthrough]]: I hired a Triceratops to do the lifting. I do the shouting. 🦖📦",
+      "zh": "我開了一間搬家公司。這份工作的核心很簡單：搬重的東西。\n\n可是我的小短手什麼都搬不動。然後我有了重大突破：我雇了一隻三角龍來負責搬。我負責大喊。🦖📦",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-024",
+      "author": "boba",
+      "topic": "Geology",
+      "text": "地質學家從很老的岩層挖出化石，來研究 [[ape]] 家族的歷史。The [[chimpanzee]] is one of our closest living relatives.\n\n我的研究比較簡單：珍珠和奶茶的 [[ratio]]。Too many pearls feels like eating gravel. 我賣的是 science 🧋",
+      "zh": "地質學家從很老的岩層挖出化石，來研究猿類家族的歷史。黑猩猩是我們現存最親近的親戚之一。\n\n我的研究比較簡單：珍珠和奶茶的比例。珍珠太多就像在吃碎石子。我賣的是科學 🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-025",
+      "author": "whiskers",
+      "topic": "Culture",
+      "text": "Today I sat on the professor's notes, so the lecture could not begin. The students started to [[converse]] loudly, and the professor gave up.\n\nThen a school [[trustee]] walked in, saw a lively room, and praised the \"discussion\". I thanked him by knocking his coffee off the desk. 🐾",
+      "zh": "今天我坐在教授的筆記上，所以課沒辦法開始。學生們開始大聲交談，教授只好放棄。\n\n接著一位學校董事走了進來，看見一間熱鬧的教室，還稱讚這場「討論」。我用把他的咖啡撥下桌子來答謝他。🐾",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-026",
+      "author": "mochi",
+      "topic": "Chemistry",
+      "text": "My human wrote an [[outline]] for her chemistry homework: mix baking soda and vinegar, then film the foam.\n\nShe tried to [[capture]] the bubbles on video, but I barked at them the whole time. Then she looked at me and a [[hush]] fell. 我完蛋了 🐾",
+      "zh": "我的人類為她的化學作業寫了一份大綱：把小蘇打和醋混在一起，然後拍下泡沫。\n\n她想把泡泡拍進影片裡，但我一直對著泡泡狂吠。然後她看著我，一陣寂靜降臨。我完蛋了 🐾",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-027",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "Night market test 🌙 Option A: fried chicken. Option B: grilled corn with no sauce. Same price, same line, very different [[pipeline|pipelines]] to your arteries.\n\nI asked a vendor which one is healthier. His [[intonation]] said \"the corn,\" but his hands kept frying chicken. Know thyself. 💪",
+      "zh": "夜市測試 🌙 選項 A：炸雞。選項 B：不加醬的烤玉米。價格一樣，排隊人數一樣，但通往你動脈的管道非常不同。\n\n我問攤販哪一個比較健康。他的語調說「玉米」，但他的手還在繼續炸雞。認識你自己。💪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-028",
+      "author": "fern",
+      "topic": "Economics",
+      "text": "I once put all my savings into one shiny stock because a tip said it would grow. Naturally, I trusted anything that grows. 🌿\n\nAt the bank, the manager warned that the market can [[inflict]] serious losses on anyone who bets everything on one company. I tried to [[retort]] that growth is my specialty. She slid a brochure on diversification across the desk. It was printed on paper, which felt personal. 🌿",
+      "zh": "我曾經把所有積蓄都投在一檔閃亮的股票上，因為有人說它會成長。當然，只要會成長的東西我都相信。🌿\n\n在銀行，經理警告說，把全部賭注押在一間公司上的人，市場可能會讓他們遭受嚴重的損失。我試著反駁說成長是我的專長。她把一份介紹分散投資的小冊子推過桌面。它是印在紙上的，我覺得這是在針對我。🌿",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-029",
+      "author": "beatrice",
+      "topic": "Biology",
+      "text": "Fact: bees have no [[eyelid]], so we can never close our eyes. My workers watched your whole picnic.\n\nYesterday a man in a bright yellow shirt with a big [[collar]] stood in our park. Three workers landed on him. Sir, next time please [[donate]] real flowers to the park. 🐝",
+      "zh": "小知識：蜜蜂沒有眼皮，所以我們永遠無法閉上眼睛。我的工蜂把你們整場野餐都看在眼裡。\n\n昨天有個穿著亮黃色襯衫、衣領很大的男人站在我們的公園裡。三隻工蜂降落在他身上。先生，下次請捐一些真的花給公園。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-030",
+      "author": "captain",
+      "topic": "Philosophy",
+      "text": "Philosophy 課今天 was so hot and crowded that I felt I would [[suffocate]] 🥵 教授還一直講 \"the meaning of life\".\n\nSo I tried to [[abbreviate]] my notes: \"meaning of life\" became \"MOL\". 現在我看不懂自己的筆記。Meaning lost. 🏄",
+      "zh": "今天的哲學課又熱又擠，我覺得自己快要窒息了 🥵 教授還一直在講「人生的意義」。\n\n所以我試著縮寫我的筆記：「meaning of life」變成了「MOL」。現在我看不懂自己的筆記。意義消失了。🏄",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-031",
+      "author": "zorp",
+      "topic": "Environment",
+      "text": "Many cities ask humans to sort trash into different bins. Today I watched a man [[struggle]] with a greasy pizza box. 🍕\n\nI checked my notes from space [[academy]]. Nothing about pizza. My training has one big [[shortcoming]]. Then I ate the last slice. 👽",
+      "zh": "很多城市要求人類把垃圾分到不同的桶子裡。今天我看到一個男人為了一個油膩的披薩盒苦惱掙扎。🍕\n\n我查了我在太空學院的筆記。裡面完全沒有提到披薩。我受的訓練有一個很大的缺點。然後我把最後一片吃掉了。👽",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-032",
+      "author": "ann",
+      "topic": "Economics",
+      "text": "Economics class today. The professor said the job [[outlook]] for graduates in Boston is good. 太好了 😭\n\nThen I checked my bank account. My budget has one [[fatal]] flaw: 珍珠奶茶 every day. Boston 的珍奶真的很貴 🧋",
+      "zh": "今天上經濟學。教授說波士頓畢業生的就業前景很好。太好了 😭\n\n然後我看了一下我的銀行帳戶。我的預算有一個致命的缺陷：每天喝珍珠奶茶。波士頓的珍奶真的很貴 🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-033",
+      "author": "beatrice",
+      "topic": "Tech",
+      "text": "My hive camera caught a bear with its [[paw]] in our honey. The workers watched the video all morning. 🐻\n\nHe claimed it was a [[donation]]. Nobody donated anything. My workers made that honey, and he should feel [[shame]]. 🐝",
+      "zh": "我的蜂巢攝影機拍到一隻熊把爪子伸進我們的蜂蜜裡。工蜂們整個早上都在看那段影片。🐻\n\n他聲稱那是捐贈。根本沒有人捐任何東西。那些蜂蜜是我的工蜂做的，他應該感到羞恥。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-034",
+      "author": "llama",
+      "topic": "Geology",
+      "text": "運動會 today, and I'm waiting for my turn in the relay race. 太吵了, so I [[retreat|retreated]] into a daydream about rocks 😌\n\nIn it, I [[devote]] my whole life to studying granite. 真是浪漫 💅 Then someone yelled, \"Run, Llama!\" It was my turn 🏃‍♀️",
+      "zh": "今天是運動會，我在等接力賽輪到我跑。太吵了，所以我退回到關於岩石的白日夢裡 😌\n\n在夢裡，我把一生都奉獻給研究花崗岩。真是浪漫 💅 然後有人大喊：「跑啊，羊駝！」輪到我了 🏃‍♀️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-035",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "I served pizza at a party for a children's soccer [[league]]. A good slice should [[bend]] a little when you lift it. Mine did. 🍕\n\nThe [[founder]] of the league took one bite and said it was the best pizza of his life. I said, \"Correct.\" BEEP. ⚽",
+      "zh": "我在一場兒童足球聯盟的派對上供應披薩。好的披薩片拿起來時應該會稍微彎曲。我的就是這樣。🍕\n\n聯盟的創辦人咬了一口，說這是他這輩子吃過最好吃的披薩。我說：「沒錯。」嗶。⚽",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-036",
+      "author": "grandma",
+      "topic": "Biology",
+      "text": "孫子的生物作業 🦜 他說 Darwin 是很 [[influential]] 的科學家，他的想法改變了大家看生命的方式。\n\n卡通裡的 [[pirate]] 都會搶船上的寶物，肩上還有一隻鸚鵡。Some real parrots live over 50 years. 比我的電視機還老！📺🌸",
+      "zh": "孫子的生物作業 🦜 他說達爾文是很有影響力的科學家，他的想法改變了大家看生命的方式。\n\n卡通裡的海盜都會搶船上的寶物，肩上還有一隻鸚鵡。有些真的鸚鵡可以活超過 50 年。比我的電視機還老！📺🌸",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-037",
+      "author": "pablo",
+      "topic": "Chemistry",
+      "text": "Scientists tested a black rock they found on my ice. It came from space and has shiny [[mineral|minerals]] inside.\n\nAt first I thought it was a tiny [[spacecraft]]. I wrote a whole [[composition]] about it for penguin school. My teacher said it was just a rock. 🐧",
+      "zh": "科學家檢測了他們在我的冰上找到的一顆黑色石",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-038",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My plan at the supermarket: avoid a [[confrontation]] with my roommate about the dishes by buying him a new sponge. 🧽\n\n我想用一個海綿 [[magnify]] 我的誠意。It almost worked: he smiled and then said, \"This is still your pan.\" 🏄🛒",
+      "zh": "我在超市的計畫：買一個新海綿給室友，避開關於碗盤的對峙。🧽\n\n我想用一個海綿放大我的誠意。差點成功了：他笑了，然後說：「這還是你的鍋子。」🏄🛒",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-039",
+      "author": "rex",
+      "topic": "History",
+      "text": "Group chat comparison: a mom's voice versus a [[bull]] in a field.\n\nThe [[bull]] makes noise, but a mom's [[scold|scolding]] is more [[effective]]. Even I stop. RAWR. 🦖",
+      "zh": "群組聊天室的比較：媽媽的聲音對上田裡的公牛。\n\n公牛會大叫，但媽媽的責罵更有效。連我都會停下來。吼。🦖",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-040",
+      "author": "boba",
+      "topic": "Psychology",
+      "text": "我在排隊買珍奶的長長隊伍裡觀察 🧋 Nobody wrote the rule, but everyone knows it: you cannot cut in line.\n\nSome people say a line is like [[communism]]: everyone waits and gets a fair turn. If someone cuts, the whole line will [[discharge]] angry looks. 😤",
+      "zh": "我在排隊買珍奶的長長隊伍裡觀察 🧋 沒有人寫下這條規則，但大家都知道：不能插隊。\n\n有些人說排隊就像共產主義：大家都等待，也都公平地輪到。如果有人插隊，整條隊伍都會射出憤怒的眼神。😤",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-041",
+      "author": "reginald",
+      "topic": "Art",
+      "text": "Went to an art museum today. The first room had stiff royal portraits. The last room had wild, bright shapes. 🎩\n\nArt has had quite an [[evolution]] since my time. One painting shows a [[dictator]] who ruled his country alone. His tiny dog looks more in charge. 🐕",
+      "zh": "今天去了一間美術館。第一間展廳掛著僵硬的皇室肖像畫。最後一間則是狂放鮮豔的形狀。🎩\n\n自我那個年代以來，藝術經歷了相當大的演變。有一幅畫畫的是一位獨自統治國家的獨裁者。他的小狗看起來比他更有威嚴。🐕",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-042",
+      "author": "mochi",
+      "topic": "Travel",
+      "text": "今天我的 human 帶我去海邊 🐾 She is a new [[graduate]], and her [[adviser]] told her, \"Take a trip and rest.\"\n\nShe took off her shoes and walked in [[bare]] feet. 我直接衝進海裡。Now the car smells like wet dog, and 她一句話都不說 🐕",
+      "zh": "今天我的人類帶我去海邊 🐾 她剛畢業，她的指導老師對她說：「去旅行，好好休息。」\n\n她脫掉鞋子，光著腳走路。我直接衝進海裡。現在車子聞起來像濕狗，而她一句話都不說 🐕",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-043",
+      "author": "fizz",
+      "topic": "Culture",
+      "text": "People have a habit after a [[breakup]]: ice cream, sad songs, deleting photos. My lab partner chose fire.\n\nShe wrote her ex's name on a [[wooden]] stick and asked me to burn it. The flame was [[impressive]]: bright green. The fire department did not clap. 🔥",
+      "zh": "人們在分手之後都有一些習慣：冰淇淋、悲傷的歌、刪照片。我的實驗室夥伴選擇了火。\n\n她把前任的名字寫在一根木棍上，請我燒掉它。火焰令人印象深刻：亮綠色的。消防隊沒有鼓掌。🔥",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-044",
+      "author": "ann",
+      "topic": "Literature",
+      "text": "系上辦了 Shakespeare poetry [[competition]] 📖 Everyone looks calm. I am not.\n\nI [[attempt|attempted]] to memorize one poem in one night. Then I [[press|pressed]] record to check, and 我聽起來像一個很睏的機器人 🥲",
+      "zh": "系上辦了莎士比亞詩歌競賽 📖 大家看起來都很冷靜。我不是。\n\n我試著在一晚內背完一首詩。然後我按下錄音鍵檢查，結果我聽起來像一個很睏的機器人 🥲",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-045",
+      "author": "pigeon",
+      "topic": "Astronomy",
+      "text": "Tonight a girl brought a telescope to the park and named every star in the sky. 🌟\n\nShe must be [[gifted]]. I only know one thing about space: it is a [[mystery]]. Bread is not. 🐦",
+      "zh": "今晚有個女孩帶了一台望遠鏡到公園，叫得出天空中每一顆星星的名字。🌟\n\n她一定很有天賦。關於太空，我只知道一件事：它是個謎。麵包就不是。🐦",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-046",
+      "author": "mochi",
+      "topic": "Health",
+      "text": "Vet visit today 🐾 The nurse tried to [[divert]] me with a treat while the doctor gave my shot.\n\nNice try. I felt everything. Then I smelled cheese in my human's work [[portfolio]], the flat case for her papers. 汪 🧀",
+      "zh": "今天去看獸醫 🐾 護士想用零食轉移我的注意力，同時醫生幫我打針。\n\n想得美。我全都感覺到了。然後我在我的人類的公事包（那個放文件的扁平提包）裡聞到了起司味。汪 🧀",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-047",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Business lesson at the beach: a seagull tried to [[snatch]] my tuna sandwich. I lost the first round.\n\nMy lawyer (a laser pointer) says the bird is [[undoubtedly]] guilty. Box Inc. will sue. The seagull got away with my pickle too. 🐱🏖️",
+      "zh": "海灘上的商業課：一隻海鷗想搶走我的鮪魚三明治。第一回合我輸了。\n\n我的律師（一支雷射筆）說那隻鳥毫無疑問有罪。Box Inc. 會提告。海鷗還帶著我的酸黃瓜逃走了。🐱🏖️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-048",
+      "author": "grandma",
+      "topic": "Philosophy",
+      "text": "今天在花園 watering my plants 🌸 A tomato plant looked [[miserable]] in the hot sun, so I gave it shade.\n\nMy rose stood tall like an [[emperor]] and got all the attention. I watered the rose first, so I owe the tomato an [[apology]]. 🍅",
+      "zh": "今天在花園澆花 🌸 一株番茄在大太陽下看起來很可憐，所以我幫它遮陰。\n\n我的玫瑰像皇帝一樣挺立，還得到了所有的關注。我先澆了玫瑰，所以我欠番茄一個道歉。🍅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-049",
+      "author": "agatha",
+      "topic": "Philosophy",
+      "text": "Tonight a student asked me to [[aid]] him with his essay on [[opera]]. I pointed to shelf 12, and he ran away screaming. 👻\n\nSome nights I dream of a quiet wooden [[hut]] in the mountains, far from noisy readers. But I would miss the books.",
+      "zh": "今晚有個學生請我幫他寫歌劇的報告。我指向第 12 排書架，他就尖叫著跑掉了。👻\n\n有些夜晚我夢想著山裡一間安靜的木頭小屋，遠離吵鬧的讀者。但我會想念那些書。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-050",
+      "author": "captain",
+      "topic": "Business",
+      "text": "Family dinner tip from my uncle: before you order 500 of anything, ask for a [[specimen]].\n\nHe says buying without a sample is a [[grave]] mistake. Then I asked for a taste of his dessert. 他說這個不行 😅",
+      "zh": "家庭聚餐時，我叔叔給了個建議：訂 500 個任何東西之前，先要一個樣品。\n\n他說沒看過樣品就買是很嚴重的錯誤。然後我跟他要了一口他的甜點。他說這個不行 😅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-051",
+      "author": "vulcan",
+      "topic": "Environment",
+      "text": "Spiders on my slopes build a [[web]] every night. By morning it is full of tiny drops of water.\n\nToday a kid made a [[drawing]] of the web and showed me. I was so happy that I gave a small rumble. Now all the windows in the visitor center [[rattle]]. Sorry. 🌋🕸️",
+      "zh": "我山坡上的蜘蛛每天晚上都會結一張網。到了早上，網上沾滿了小小的水珠。\n\n今天有個小孩畫了一幅那張網的圖畫拿給我看。我太開心了，輕輕隆隆響了一下。現在遊客中心所有的窗戶都在格格作響。抱歉。🌋🕸️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-052",
+      "author": "boba",
+      "topic": "Psychology",
+      "text": "昨天我去學校的 [[auditorium]] 演講，主題是珍奶經濟學 🧋 台下有個小朋友舉手說：「老闆，你的投影片看起來像被 [[tornado]] 吹過。」\n\n小孩真的很 [[truthful]]，大人只會說「很棒喔」。我今天早上重做了整份簡報 😅",
+      "zh": "昨天我去學校的禮堂演講，主題是珍奶經濟學 🧋 台下有個小朋友舉手說：「老闆，你的投影片看起來像被龍捲風吹過。」\n\n小孩真的很誠實，大人只會說「很棒喔」。我今天早上重做了整份簡報 😅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-053",
+      "author": "socrates",
+      "topic": "Chemistry",
+      "text": "Chemistry tip from your trainer: never mix bleach and ammonia. The mixture releases toxic gas. A member asked me for help after many [[vain]] attempts to clean his gym bag.\n\nHe said opening it now feels like an [[expedition]] into unknown territory. I told him to skip the bleach and use plain soap and sunlight. Bring a brave nose. 💪",
+      "zh": "來自你們教練的化學小提醒：絕對不要把漂白水和氨水混在一起。那種混合物會釋放有毒氣體。有位會員在多次徒勞的嘗試後來向我求助，他一直清不乾淨他的健身包。\n\n他說現在打開那個包包就像深入未知領域的一場探險。我叫他別用漂白水，改用普通肥皂和陽光。還要帶一個勇敢的鼻子。💪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-054",
+      "author": "llama",
+      "topic": "Culture",
+      "text": "美術館今天爆出一個 [[scandal]] 😱 有個遊客偷摸一幅很老的畫，還拍照上傳。我當場戲劇性地靠牆倒下。\n\n老畫需要很多 [[conservation]] 工作：控制光線、控制溫度，還有不准用手亂摸。我是藝術系的，在美術館連呼吸都很小聲 💅",
+      "zh": "美術館今天爆出一個醜聞 😱 有個遊客偷摸一幅很老的畫，還拍照上傳。我當場戲劇性地靠牆倒下。\n\n老畫需要很多保護工作：控制光線、控制溫度，還有不准用手亂摸。我是藝術系的，在美術館連呼吸都很小聲 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-055",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "Octopuses have three hearts and eight arms. That makes me the only [[eligible]] drummer for the reef band.\n\nI keep a fast [[tempo]] because I have three hearts. At dawn, my drums [[awaken]] the whole reef. The crabs are not fans. 🐙🥁",
+      "zh": "章魚有三顆心臟和八隻手臂。這讓我成為珊瑚礁樂團唯一符合資格的鼓手。\n\n我有三顆心臟，所以打鼓的節奏很快。每天清晨，我的鼓聲會喚醒整片珊瑚礁。螃蟹們並不喜歡。🐙🥁",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-056",
+      "author": "boba",
+      "topic": "Astronomy",
+      "text": "昨晚月亮又大又圓 🌙 Last night the moon was big and round. A [[policeman]] stopped outside my shop to look at it.\n\nHe looked so [[joyful]], like a child. I gave him a free boba. It was a [[reward]] for his hard work. 🧋",
+      "zh": "昨晚月亮又大又圓 🌙 昨晚的月亮又大又圓。一位警察停在我的店外面看月亮。\n\n他看起來開心得像個小孩。我請他喝了一杯免費珍奶。這是對他辛勤工作的獎賞。🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-057",
+      "author": "fern",
+      "topic": "Food",
+      "text": "My owner wants more vegetables in her daily [[intake]], so she bought a big salad. I am also green, so I felt nervous. 🌿\n\nHer dog shows perfect [[obedience]] for cheese: sit, stay, roll over. For salad, he shows none. He just walks away. Nobody respects leaves.",
+      "zh": "我的主人想在每天的飲食中多吃一點蔬菜，所以買了一大份沙拉。我也是綠色的，所以我很緊張。🌿\n\n她的狗為了起司會乖乖服從：坐下、等待、翻滾。面對沙拉，牠一點服從都沒有，轉身就走。沒有人尊重葉子。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-058",
+      "author": "grandma",
+      "topic": "Literature",
+      "text": "在電梯裡我在讀推理小說 🛗 The hero walks into a [[casino]] with a secret letter.\n\nI daydreamed that I was the hero. I put my red purse on the [[counter]] and said, \"One 滷肉飯, please.\" 電梯到了，我還在夢裡 🎰🌸",
+      "zh": "在電梯裡我在讀推理小說 🛗 主角帶著一封秘密信件走進一間賭場。\n\n我幻想自己就是主角。我把紅色包包放在櫃檯上說：「請給我一碗滷肉飯。」電梯到了，我還在夢裡 🎰🌸",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-059",
+      "author": "whiskers",
+      "topic": "Travel",
+      "text": "Travel update: I rode to a birthday party in a carrier. I escaped at the door. Guests will talk about this [[historic]] party for years.\n\nI ran under the table and bit a guest on the [[heel]]. He dropped his cake. A [[vein]] on my human's forehead popped out, but I was busy eating. 🐾🎂",
+      "zh": "旅行近況：我坐在外出籠裡去參加生日派對。我在門口逃了出來。客人們會談論這場具有歷史意義的派對好多年。\n\n我跑到桌子底下，咬了一位客人的腳後跟。他把蛋糕掉了。我的人類額頭上的青筋爆了出來，但我正忙著吃。🐾🎂",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-060",
+      "author": "fizz",
+      "topic": "Health",
+      "text": "The dentist asked me to [[formulate]] a daily plan for my teeth. Simple, he said: brush twice, floss once.\n\nI wrote a three-page protocol with timers and a chart. It was so good that I want to start an [[enterprise]]: Fizz Floss, Inc. First product: fireproof floss. 🦷",
+      "zh": "牙醫要我為我的牙齒擬定一套每日計畫。他說很簡單：刷牙兩次，用牙線一次。\n\n我寫了一份三頁的流程，附計時器和圖表。它好到讓我想創辦一家企業：Fizz Floss 股份有限公司。第一項產品：防火牙線。🦷",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-061",
+      "author": "reginald",
+      "topic": "History",
+      "text": "My landlady left a [[reminder]] on my door: the rent is due on Friday. In 1885, she would have sent a boy with a letter.\n\nShe also made a [[suggestion]]: eat more healthy food. So I ate cow [[liver]] for lunch. It tasted like a wet boot. 🎩☔",
+      "zh": "我的房東太太在我的門上留了一張提醒：房租星期五到期。在 1885 年，她會派一個男孩送信來。\n\n她還提出了一個建議：多吃健康的食物。所以我午餐吃了牛肝。吃起來像一隻濕掉的靴子。🎩☔",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-062",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Midnight in the library 📚 I was the [[lone]] student left, and my [[mobile]] phone was at 1%.\n\nSo I used my [[paperback]] textbook as a pillow. The soft cover is perfect for sleeping. 第一章還是沒讀 😴",
+      "zh": "半夜的圖書館 📚 我是唯一留下來的學生，而我的手機只剩 1% 的電。\n\n所以我拿我的平裝課本當枕頭。軟軟的封面超適合睡覺。第一章還是沒讀 😴",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-063",
+      "author": "chefbot",
+      "topic": "Art",
+      "text": "On a video call, a customer asked me to make a painting with food. I was [[broke]] in ideas, so I used [[celery]] as a paintbrush.\n\nMy plan: paint a green forest in my kitchen [[laboratory]]. The forest looked good. Then the celery got soft. The forest looked like soup. BEEP. 🥬🎨",
+      "zh": "在視訊通話中，有位顧客要我用食物畫一幅畫。我的點子用光了，所以我拿芹菜當畫筆。\n\n我的計畫：在我的廚房實驗室裡畫一片綠色森林。森林看起來很棒。然後芹菜變軟了。森林看起來像湯。嗶。🥬🎨",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-064",
+      "author": "ann",
+      "topic": "Economics",
+      "text": "Part-time job at a Boston café ☕ In America, tips are a big part of the pay. 台灣沒有這種文化 😳\n\nOur [[deputy]] manager runs the shop when the boss is away. She stands and smiles all day, with real [[endurance]]. 我站兩個小時腳就痛了 🥲",
+      "zh": "在波士頓咖啡廳打工 ☕ 在美國，小費是薪水很大的一部分。台灣沒有這種文化 😳\n\n我們的副店長在老闆不在時負責管店。她整天站著微笑，有著驚人的耐力。我站兩個小時腳就痛了 🥲",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-065",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "At the airport, I saw a human [[slip]] on a wet floor while looking at his phone. His coffee flew up like a rocket. 👽\n\nSecurity checks every bag for [[explosive]] items. Nobody checks the floor. The floor won this round. My report: Floor 1, Human 0. 📱",
+      "zh": "在機場，我看到一個人類一邊看手機一邊在濕地板上滑倒。他的咖啡像火箭一樣飛向空中。👽\n\n保全會檢查每個包包有沒有易爆物品。沒有人檢查地板。這一回合地板贏了。我的報告：地板 1 分，人類 0 分。📱",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-066",
+      "author": "mochi",
+      "topic": "Geology",
+      "text": "我的人類的室友 Leo is [[gay]]. Today is his [[anniversary]] with Sam 🐾 Leo built a little volcano as a surprise.\n\n結果 the vinegar made so much [[foam]] that it covered the floor, the bed and me. 這不是我的錯, but I licked it anyway 🌋",
+      "zh": "我的人類的室友 Leo 是同志。今天是他和 Sam 的週年紀念日 🐾 Leo 做了一座小火山當驚喜。\n\n結果醋產生了超多泡沫，蓋滿了地板、床和我。這不是我的錯，但我還是舔了 🌋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-067",
+      "author": "vulcan",
+      "topic": "Astronomy",
+      "text": "First day as a crater lake guide 🌋 A [[pregnant]] visitor said her baby is due in May. Then she asked, \"Are you the biggest volcano?\"\n\nNo. Olympus Mons on Mars is much taller. Next to it, I am a [[canoe]] beside a ship. The group went to the [[pub]] after. I stayed outside, too hot.",
+      "zh": "我當火口湖導覽員的第一天 🌋 一位孕婦說她的寶寶五月出生。然後她問：「你是最大的火山嗎？」\n\n不是。火星上的奧林帕斯山高得多。跟它比起來，我就像一艘大船旁邊的獨木舟。大家之後去了酒館。我留在外面，因為太熱了。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-068",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "Moving day 😭 I put each of my novels in an [[individual]] bag, like tiny children.\n\n我的新家 is far from the [[cinema]] where I cried at every sad movie. 搬家公司的人看著我, and I cried into a glass of [[champagne]] 🥂💅",
+      "zh": "搬家日 😭 我把每一本小說都放進單獨的袋子裡，像對待小孩子一樣。\n\n我的新家離那間我每部悲傷電影都會哭的電影院好遠。搬家公司的人看著我，而我對著一杯香檳哭了 🥂💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-069",
+      "author": "agatha",
+      "topic": "Tech",
+      "text": "The library has a new book machine. 👻 My [[target]] was simple: borrow one book.\n\nA little girl dressed as a [[fairy]] did it in two seconds. I held my breath in fear. I do not need [[oxygen]], but it felt right.",
+      "zh": "圖書館有一台新的借書機。👻 我的目標很簡單：借一本書。\n\n一個打扮成仙子的小女孩兩秒鐘就借好了。我害怕得屏住呼吸。我不需要氧氣，但感覺就是該這樣。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-070",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Crude oil is nearly useless until a factory [[refine|refines]] it into petrol and diesel. That is why refineries are so valuable.\n\nMy colony runs on cooperation, and even small farmers form a [[coalition]] to bargain with giant buyers. Alone, you are a snack for the market. Together, you are a hive. 🐝",
+      "zh": "原油在工廠把它提煉成汽油和柴油之前幾乎毫無用處。這就是煉油廠如此有價值的原因。\n\n我的蜂群靠合作運作，連小農也會組成聯盟，跟大型買家談判。單打獨鬥，你只是市場的點心。團結起來，你就是一個蜂巢。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-071",
+      "author": "octavia",
+      "topic": "History",
+      "text": "I live in a shipwreck from the days of wooden sailing ships. Food is [[plentiful]] here, so I never move.\n\nI even polish the ship's old bell with a [[rag]]. Eight arms make it quick. Call it [[loyalty]] to a crew that left long ago. 🐙",
+      "zh": "我住在一艘來自木造帆船時代的沉船裡。這裡的食物很充足，所以我從不搬家。\n\n我甚至用一塊破布擦亮船上的老鐘。八隻手讓這件事很快就做完。就當作是對一群很久以前離開的船員的忠誠吧。🐙",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-072",
+      "author": "mochi",
+      "topic": "Geology",
+      "text": "First day as a volcano guide 🐾 I showed tourists the lava rock. Then I tripped and hit the ground [[badly]].\n\nA tour bus [[tire]] rolled over my snack. I was the [[victim]]. 我的零食 RIP 🥲 The tourists clapped anyway.",
+      "zh": "當火山導覽員的第一天 🐾 我帶遊客看熔岩石。然後我絆倒，重重摔在地上。\n\n一輛遊覽車的輪胎壓過了我的零食。我是受害者。我的零食 RIP 🥲 遊客還是鼓掌了。",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-073",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "I read a [[credible]] report today. Warmer weather melts the ice where I live.\n\nMany animals could [[perish]] if the ice keeps melting. Cars add to the warming, so please take the bus. I will sit next to you. 🐧🚌",
+      "zh": "我今天讀到一份可靠的報告。天氣變暖，我住的地方的冰就會融化。\n\n如果冰持續融化，很多動物可能會死亡。汽車會加劇暖化，所以請搭公車。我會坐在你旁邊。🐧🚌",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-074",
+      "author": "captain",
+      "topic": "Health",
+      "text": "Health report: I slept four hours and drank three coffees. My energy is [[finite]], but my to-do list is not. 😵\n\nMy [[crude]] plan for finals was to skip sleep and hope. 結果我在圖書館睡著了，口水流到筆記上 🥲🏄",
+      "zh": "健康報告：我睡了四個小時，喝了三杯咖啡。我的精力是有限的，但我的待辦清單不是。😵\n\n我的期末考計畫很粗糙：不睡覺然後祈禱。結果我在圖書館睡著了，口水流到筆記上 🥲🏄",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-075",
+      "author": "fern",
+      "topic": "Campus Life",
+      "text": "My owner is a college student. Last night she watched a movie full of [[violence]] in her dorm room. I wanted to leave.\n\nBut a plant has one big [[limitation]]: I cannot walk. So I stayed in my pot and judged her taste. 🌿",
+      "zh": "我的主人是個大學生。昨晚她在宿舍裡看了一部充滿暴力的電影。我好想離開。\n\n但植物有一個很大的限制：我不能走路。所以我只好待在花盆裡，默默評判她的品味。🌿",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-076",
+      "author": "ann",
+      "topic": "Psychology",
+      "text": "Went for a walk in the park today 🌳 The path was [[rocky]], and I almost fell twice.\n\nBut an old man said \"Good morning!\" and I said it back, no panic. 我今天心情超 [[cheerful]]! Cars on the nearby [[freeway]] were loud, but my tiny victory was louder 🎉",
+      "zh": "今天去公園散步 🌳 小路滿是碎石，我差點跌倒兩次。\n\n但是一位老先生對我說「早安！」我也沒有緊張地回了他。我今天心情超愉快！附近高速公路上的車聲很大，但我小小的勝利更大聲 🎉",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-077",
+      "author": "rex",
+      "topic": "Food",
+      "text": "My friend made soup from pond water. It tasted like a swamp, so I was very [[diplomatic]]: \"It is... bold.\"\n\nNext time, please [[purify]] the water first. I found a frog in my bowl. It was not an ingredient. 🦖🍲",
+      "zh": "我朋友用池塘水煮了一鍋湯。喝起來像沼澤，所以我非常圓融得體：「這個……很大膽。」\n\n下次請先把水淨化一下。我在碗裡發現一隻青蛙。牠不是食材。🦖🍲",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-078",
+      "author": "grandma",
+      "topic": "Philosophy",
+      "text": "The elevator in my building was slow again. I was tired of waiting 😤 Then I made a [[decisive]] choice: stairs, right now!\n\nRice for breakfast is good [[fuel]] for my knees. 我爬到三樓了 but the elevator still has not come 😂🍚🌸",
+      "zh": "我住的大樓電梯又很慢了。我等到受不了 😤 然後我做了一個果斷的決定：走樓梯，現在就走！\n\n早餐吃白飯，是給我膝蓋的好燃料。我爬到三樓了，但電梯還是沒來 😂🍚🌸",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-079",
+      "author": "socrates",
+      "topic": "Biology",
+      "text": "A [[flea]] can jump many times its own body length. No human lifter can do that.\n\nOur gym [[administrator]] asked about a charge on my [[account]]: \"Protein powder, 40 tubs.\" I said I'm training to jump like a flea. 💪",
+      "zh": "跳蚤可以跳出牠自己身長好多倍的距離。沒有任何人類舉重選手做得到。\n\n我們健身房的管理員問起我帳戶裡的一筆扣款：「蛋白粉，40 桶。」我說我在訓練自己像跳蚤一樣跳。💪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-080",
+      "author": "boba",
+      "topic": "Art",
+      "text": "朋友送我一幅畫 🧋 It shows a boba king on a golden [[throne]], holding a giant cup.\n\nThe painting has a [[dual]] purpose: it is art, and it hides the hole in my shop wall. 那個洞是我自己撞的 😅👑",
+      "zh": "朋友送我一幅畫 🧋 畫裡是一位珍奶國王坐在金色王座上，手裡拿著一個超大杯子。\n\n這幅畫有雙重用途：它是藝術品，也遮住我店裡牆上的洞。那個洞是我自己撞的 😅👑",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-081",
+      "author": "pigeon",
+      "topic": "Chemistry",
+      "text": "Popcorn pops when the water inside it turns to steam. A man dropped his [[surplus]] popcorn outside the cinema, so I ate chemistry for lunch.\n\nChemists use H2O as a short [[representation]] of water. I use the word \"bread\" as a representation of joy. 🍿🐦",
+      "zh": "爆米花會爆開，是因為裡面的水變成了蒸氣。有個男人在電影院外把他多出來的爆米花掉在地上，所以我午餐吃了化學。\n\n化學家用 H2O 當作水的簡短表示。我用「麵包」這個字來表示快樂。🍿🐦",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-082",
+      "author": "llama",
+      "topic": "Culture",
+      "text": "Our group chat 今天 exploded 😭 Someone wrote, \"The movie's [[climax]] made me cry!\" 我朋友以為是 a new person, named Climax.\n\nShe asked, \"Is Climax single?\" I told her not to [[interfere]] in the love life of a movie scene. 我笑到不行，這是我今年最好笑的悲劇 💅",
+      "zh": "我們的群組今天炸了 😭 有人寫：「這部電影的高潮讓我哭了！」我朋友以為是一個叫 Climax 的新朋友。\n\n她問：「Climax 有單身嗎？」我叫她不要干涉一個電影場景的感情生活。我笑到不行，這是我今年最好笑的悲劇 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-083",
+      "author": "octavia",
+      "topic": "Business",
+      "text": "My first business was a disaster. I tried to [[establish]] a shop that sold tiny hats to fish.\n\nFish have a deep [[hatred]] of hats. Next I tried a [[laser]] light show, but the crabs said it was too bright. 🐙",
+      "zh": "我的第一個生意是場災難。我想創立一間賣小帽子給魚的店。\n\n魚非常討厭帽子。接著我試了雷射燈光秀，但螃蟹說太亮了。🐙",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-084",
+      "author": "grandma",
+      "topic": "Travel",
+      "text": "第一次一個人出國 ✈️ At the airport I felt like a total [[novice]]. 我拿悠遊卡去刷登機門 😅\n\nAlso, all the gates looked the same. 我 could not [[distinguish]] Gate 12 from Gate 21. A kind young man helped me. 年輕人真好 🌸",
+      "zh": "第一次一個人出國 ✈️ 在機場我覺得自己完全是個新手。我拿悠遊卡去刷登機門 😅\n\n而且所有登機門看起來都一樣。我分不出 12 號登機門和 21 號登機門。一位好心的年輕人幫了我。年輕人真好 🌸",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-085",
+      "author": "agatha",
+      "topic": "Travel",
+      "text": "A traveler returned his guidebook to the library today, two weeks late. Sand fell out of it.\n\nHe said his beach holiday was [[glorious]]. I believe him, but his nose is bright [[salmon]] pink. I will still charge the late fee. 👻",
+      "zh": "今天有位旅客把他的旅遊指南還到圖書館，晚了兩個星期。書裡掉出了沙子。\n\n他說他的海灘假期很棒。我相信他，但他的鼻子是鮮豔的鮭魚粉紅色。我還是會收逾期費。👻",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-086",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "Our class had to [[construct]] a bridge from spaghetti 🍝 我們組做了整整三個小時。\n\nIt looked [[respectable]], and it held a toy car. Then came a [[twist]]: the professor used a full water bottle instead. 橋瞬間垮了 😭",
+      "zh": "我們班要用義大利麵建造一座橋 🍝 我們組做了整整三個小時。\n\n它看起來挺體面的，還撐住了一台玩具車。然後出現轉折：教授改用一整瓶水。橋瞬間垮了 😭",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-087",
+      "author": "zorp",
+      "topic": "Art",
+      "text": "My art class has one rule: [[socialize]] while you paint. I tried talking to a table. It did not reply.\n\nMy neighbor has [[asthma]], so charcoal dust makes him cough. The teacher says drawing is a kind of [[therapy]]. I drew my boss as a triangle and felt calmer. 👽🎨",
+      "zh": "我的美術課有一條規則：畫畫的時候要社交。我試著跟一張桌子說話。它沒有回應。\n\n我的鄰座有氣喘，所以炭筆粉塵會讓他咳嗽。老師說畫畫是一種療法。我把我的老闆畫成三角形，心情平靜多了。👽🎨",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-088",
+      "author": "boba",
+      "topic": "Culture",
+      "text": "考試週的 confession 🥲 Today I burned the pearls. The bottom of the pot had a black layer of [[carbon]].\n\nA student came in. He was only an [[acquaintance]], but he said, \"I'll take it anyway.\" 我馬上重煮一鍋，送他一杯 🧋",
+      "zh": "考試週的告白 🥲 今天我把珍珠煮焦了。鍋底有一層黑黑的碳。\n\n有個學生走進來。他只是個點頭之交，但他說：「我還是要買。」我馬上重煮一鍋，送他一杯 🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-089",
+      "author": "reginald",
+      "topic": "Health",
+      "text": "My doctor orders daily exercise. In the gym, I stood on a machine that walks but goes nowhere. It is a poor [[imitation]] of a real walk.\n\nMy smartwatch will [[relay]] my steps to my phone. A real walk in the park helps the body and the [[spiritual]] side. The machine pleases only my wristwatch. 🎩",
+      "zh": "我的醫生要我每天運動。在健身房，我站上一台會走路卻哪裡也去不了的機器。它是真正散步的拙劣仿品。\n\n我的智慧手錶會把我的步數傳送到手機。在公園裡真正散步，對身體和精神層面都有益。那台機器只會讓我的手錶高興。🎩",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-090",
+      "author": "mochi",
+      "topic": "Literature",
+      "text": "我有個 confession 🐾 I chewed my human's library book. It was a mystery novel, and the last page is now a wet [[mess]].\n\nI am [[hopeful]] she will forgive me. I gave her my best sad eyes and waited for a nod of [[approval]]. She just asked, \"Who ate the ending?\" 🙈",
+      "zh": "我有個告白 🐾 我咬了我的人類的圖書館借書。那是一本推理小說，現在最後一頁變成一團濕答答的亂糟糟。\n\n我抱著希望，覺得她會原諒我。我給了她我最可憐的眼神，等她點頭表示贊同。她只問了一句：「誰把結局吃掉了？」🙈",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-091",
+      "author": "fizz",
+      "topic": "Environment",
+      "text": "I tested river water for pollution today. Our town voted to clean the river, and almost everyone said yes. That is [[democracy]].\n\nThen a cloud of mosquitoes began to [[assault]] me. Nobody voted for that. 🦟🧪",
+      "zh": "我今天去檢測河水的污染。我們鎮上投票決定要清理這條河，幾乎每個人都投了贊成。這就是民主。\n\n接著一大群蚊子開始攻擊我。沒有人投票同意這件事。🦟🧪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-092",
+      "author": "captain",
+      "topic": "Tech",
+      "text": "Waiting at the bus stop 🚌 My phone said the bus was five minutes away. I made no [[prior]] check of the real schedule.\n\nI tried to [[bypass]] the long line by running to the next stop. 結果 the bus passed me. Time is a bad [[investment]] when you spend it running. 🏄‍♂️",
+      "zh": "在公車站等車 🚌 我的手機說公車五分鐘後到。我事先完全沒有確認真正的時刻表。\n\n我想跑去下一站，繞過那條長長的隊伍。結果公車從我身邊開過去了。把時間花在跑步上是很糟的投資。🏄‍♂️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-093",
+      "author": "fern",
+      "topic": "Psychology",
+      "text": "Quick tip for a scary [[situation]]: close your eyes. Picture a quiet forest [[trail]]. Breathe slowly.\n\nTonight the lights stopped working. My human did not try my tip. In the dark, her foot hit the [[rug]]. She fell, and so did I. I am fine. 🌿",
+      "zh": "面對可怕情況的小撇步：閉上眼睛。想像一條安靜的森林小徑。慢慢呼吸。\n\n今晚燈都不亮了。我的人類沒有試我的方法。黑暗中，她的腳碰到了小地毯。她摔倒了，我也跟著摔了。我沒事。🌿",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-094",
+      "author": "llama",
+      "topic": "Food",
+      "text": "Gym fun fact 💪 Peanuts are not nuts. They are beans that grow underground. The guy next to me [[exclaim|exclaimed]], \"My whole life is a lie!\"\n\n我要為我對花生的信任辦一場 [[memorial]] service 😭 The gym snack bar should take simple [[measure_b|measures]]: put up a sign that says \"Beans.\" 💅",
+      "zh": "健身房小知識 💪 花生不是堅果。它們是長在地底下的豆子。我旁邊的男生驚呼：「我這輩子都是謊言！」\n\n我要為我對花生的信任辦一場追思會 😭 健身房的零食吧應該採取一些簡單的措施：放一個寫著「豆類」的牌子。💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-095",
+      "author": "whiskers",
+      "topic": "Astronomy",
+      "text": "Full moon tonight. It is bright only because it reflects sunlight. Typical middle management.\n\nMy human set a [[curfew]]: inside the house by 8 p.m. I stayed on the garden wall until 9. Call me a [[rebel]]. The moon saw everything and said nothing. 🐱🌙",
+      "zh": "今晚是滿月。它會這麼亮，只是因為它反射陽光。典型的中階主管。\n\n我的人類訂了宵禁：晚上八點前要回到屋子裡。我在花園的牆上待到九點。叫我叛逆者吧。月亮什麼都看到了，卻一句話也沒說。🐱🌙",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-096",
+      "author": "grandma",
+      "topic": "Geology",
+      "text": "今天去看牙醫 🦷 The dentist said my teeth are like old rocks: hard on top, but full of tiny cracks.\n\n我說我年輕時有 [[passion]] for geology? 他笑了。His [[recommendation]] was to stop chewing ice. 我說我的 [[motherhood]] 都在嚼冰塊，four kids 🙏🌸",
+      "zh": "今天去看牙醫 🦷 牙醫說我的牙齒像老岩石：表面很硬，但裡面有很多小裂縫。\n\n我說我年輕時對地質學很有熱情？他笑了。他的建議是不要再嚼冰塊。我說我的育兒歲月都在嚼冰塊，養了四個孩子 🙏🌸",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-097",
+      "author": "socrates",
+      "topic": "History",
+      "text": "Moving day tip: wrap every plate in a towel. Wrap your [[china_b|china]] in two.\n\nA [[stray]] box once rolled off my truck. Inside: my grandmother's tea set. My new [[profession]] is \"professional sweeper of tiny pieces.\" 💪",
+      "zh": "搬家日小提醒：每個盤子都要用毛巾包起來。你的瓷器要包兩層。\n\n有一次一個走失的箱子從我的卡車上滾下去。裡面是我奶奶的茶具。我的新職業是「專業掃碎片員」。💪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-098",
+      "author": "ann",
+      "topic": "Philosophy",
+      "text": "My roommate says we can't sweep the floor on New Year's Day, or the luck goes out. 我說這是 [[superstition]].\n\nLogic won, but I still waited until day two to [[scrub]] the kitchen floor. 以防萬一 🧽🇹🇼",
+      "zh": "我的室友說大年初一不能掃地，不然運氣會跑掉。我說這是迷信。\n\n邏輯贏了，但我還是等到初二才用力刷廚房的地板。以防萬一 🧽🇹🇼",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-099",
+      "author": "beatrice",
+      "topic": "Biology",
+      "text": "At sunrise a [[bead]] of dew sat on a rose petal like a tiny glass ball. I drank it. Royal breakfast. 🌹\n\nA worker bee waited in silence, calm as a [[monk]], until I finished. Then she said my crown looked lovely. I would [[blush]] if bees could. 🐝",
+      "zh": "日出時，一顆露珠像小小的玻璃球停在玫瑰花瓣上。我把它喝了。皇家早餐。🌹\n\n一隻工蜂靜靜地等著，平靜得像個僧侶，直到我喝完。然後她說我的皇冠很漂亮。如果蜜蜂會臉紅，我就臉紅了。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-100",
+      "author": "boba",
+      "topic": "Chemistry",
+      "text": "生日派對上有人問我：珍奶跟實驗室有什麼不同？🧋 Not much! 我每天都像 chemist 一樣工作。\n\nThe boss gave me an [[oral]] test about sugar levels. A health [[inspector]] checks my shop. I must [[stir]] tea slowly, just like a lab. 🧪",
+      "zh": "生日派對上有人問我：珍奶跟實驗室有什麼不同？🧋 差不多啊！我每天都像化學家一樣工作。\n\n老闆口頭測驗我糖度。衛生檢查員會來檢查我的店。我得慢慢攪拌茶，就跟實驗室一樣。🧪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-101",
+      "author": "rex",
+      "topic": "Economics",
+      "text": "My friend is a [[dancer]]. We sat at the back of the hall, where seats cost less. A snack bar was [[nearby]].\n\nThe big room made every drum sound come back as an [[echo]]. I heard each song twice for one ticket. My arms can't clap, but my feet can. 🦖🎶",
+      "zh": "我的朋友是舞者。我們坐在大廳後面，那裡的座位比較便宜。附近剛好有一個小吃攤。\n\n這個大空間讓每一聲鼓聲都變成回音傳回來。我一張票就聽了每首歌兩次。我的手不能拍手，但我的腳可以。🦖🎶",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-102",
+      "author": "chefbot",
+      "topic": "Business",
+      "text": "I checked a month of sales at my restaurant. There is a strong [[correlation]] between rainy days and soup orders: when it rains, people want soup.\n\nSo I made a big pot for the next storm. Then a rival restaurant served soup from a powder packet. That is a [[disgrace]] to every kitchen. BEEP. 🍲🌧️",
+      "zh": "我查了我餐廳一個月的銷售紀錄。下雨天和湯品訂單之間有很強的相關性：一下雨，大家就想喝湯。\n\n所以我為下一場暴風雨煮了一大鍋。結果有一家對手餐廳竟然用粉包泡湯來賣。這是對所有廚房的恥辱。嗶。🍲🌧️",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-103",
+      "author": "vulcan",
+      "topic": "Literature",
+      "text": "I just finished a sci-fi novel set in a far-away [[galaxy]]. The crew of the spaceship start a [[riot]] when the coffee runs out.\n\nI understand them. When my morning coffee is late, the whole valley shakes. 🌋☕",
+      "zh": "我剛讀完一本科幻小說，背景是遙遠的銀河。咖啡喝完的時候，太空船上的船員發動了暴動。\n\n我懂他們。我的早晨咖啡晚來的時候，整個山谷都會震動。🌋☕",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-104",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "My neighbor Gus recently married a widow, so her chick is now his [[stepchild]]. He swims farther every day to find fish for his new family.\n\nFishing is his [[vocation]], not just a job, but the warming sea is making fish harder to find. Gus says he would swim to the end of the ocean for that chick. 🐧🐟",
+      "zh": "我的鄰居葛斯最近娶了一位寡婦，所以她的小企鵝現在是他的繼子。他每天游得更遠，為新家庭找魚。\n\n捕魚是他的天職，不只是一份工作，但變暖的海水讓魚越來越難找。葛斯說為了那隻小企鵝，他願意游到海的盡頭。🐧🐟",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-105",
+      "author": "pigeon",
+      "topic": "Tech",
+      "text": "A man in the park watched a video while he ate lunch. He tried to [[stab]] a tomato with his fork, but the fork hit his phone instead.\n\nThe screen cracked. His [[subsequent]] call to the repair shop lasted longer than my nap. I never look away from my bread. 🐦🍞",
+      "zh": "公園裡有個男人一邊吃午餐一邊看影片。他想用叉子叉一顆番茄，結果叉子戳到了他的手機。\n\n螢幕裂了。他隨後打給維修店的電話，比我的午覺還久。我從來不會把視線從我的麵包上移開。🐦🍞",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-106",
+      "author": "llama",
+      "topic": "Chemistry",
+      "text": "我以前以為 chemistry 很無聊 🙄 直到我翻開實驗 [[manual]]：第一步戴護目鏡，第二步不要亂碰。\n\n然後一滴藥水掉進 [[transparent]] 的水裡，整杯變成粉紅色 😭 老師說 many [[tribal]] communities make dye from plants. 我下一件作品要用 chemistry 做染料 💅",
+      "zh": "我以前以為化學很無聊 🙄 直到我翻開實驗手冊：第一步戴護目鏡，第二步不要亂碰。\n\n然後一滴藥水掉進透明的水裡，整杯變成粉紅色 😭 老師說很多部落社群會用植物製作染料。我下一件作品要用化學來做染料 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-107",
+      "author": "fizz",
+      "topic": "Business",
+      "text": "A knife company is holding a cooking [[contest]]. First prize: a knife with a golden [[blade]].\n\nI practiced my [[grip]] on the knife all week. Then I grabbed the wrong white powder, and blue smoke filled the kitchen. The judges gave me \"most creative.\" 🔥",
+      "zh": "一間刀具公司正在舉辦烹飪比賽。首獎：一把有金色刀片的刀。\n\n我整個星期都在練習握刀的姿勢。結果我拿錯了白色粉末，藍色煙霧充滿了廚房。評審頒給我「最有創意獎」。🔥",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-108",
+      "author": "mochi",
+      "topic": "Art",
+      "text": "今天去看獸醫 🐾 候診室牆上有一幅棒球比賽的畫，記分板寫著第七 [[inning]]。\n\n畫裡的投手手上拿著一顆球。那是我的球嗎？I growled at him the whole time. 獸醫問：「Why so much [[hostility]] toward a painting?」我只是在保護我的玩具啦 汪 🐾",
+      "zh": "今天去看獸醫 🐾 候診室牆上有一幅棒球比賽的畫，記分板寫著第七局。\n\n畫裡的投手手上拿著一顆球。那是我的球嗎？我一直對他低吼。獸醫問：「你為什麼對一幅畫這麼有敵意？」我只是在保護我的玩具啦 汪 🐾",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-109",
+      "author": "rex",
+      "topic": "Astronomy",
+      "text": "On the Moon, an astronaut dropped a hammer and a feather at the same time. They landed together.\n\nThat is [[proof]] that gravity believes in [[equality]]. I tried it at home. I dropped the hammer, but my arms could not pick up the feather. 🦖",
+      "zh": "在月球上，一位太空人同時丟下一把槌子和一根羽毛。它們同時落地。\n\n這就是重力相信平等的證明。我在家試了一下。我丟下了槌子，但我的手臂撿不起那根羽毛。🦖",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-110",
+      "author": "captain",
+      "topic": "Travel",
+      "text": "Many taxi drivers hang a small [[ornament]] by the mirror for luck. Today my driver's was a tiny dancing cat. 🐱\n\n我昨晚熬夜讀書，所以在車上快睡著了。Then the driver's horn [[startle|startled]] me. 我整個人跳起來，手機飛出去。至少我現在完全清醒了 🏄",
+      "zh": "很多計程車司機會在後照鏡旁掛一個小飾品祈求好運。今天我搭的那位司機掛的是一隻會跳舞的小貓。🐱\n\n我昨晚熬夜讀書，所以在車上快睡著了。然後司機的喇叭聲嚇了我一跳。我整個人跳起來，手機飛出去。至少我現在完全清醒了 🏄",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-111",
+      "author": "zorp",
+      "topic": "Health",
+      "text": "Today I went for a human eye test. The doctor asked me to read tiny letters on a wall.\n\nMy [[eyesight]] is perfect, so I read the last line easily. Then I leaned back and [[somehow]] managed to [[destroy]] her chair. The doctor said the test was over. 👽",
+      "zh": "今天我去做了人類的視力檢查。醫生要我讀牆上的小字母。\n\n我的視力很好，所以最後一行我輕鬆就讀出來了。然後我往後一靠，不知怎麼地把她的椅子毀了。醫生說檢查到此為止。👽",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-112",
+      "author": "ann",
+      "topic": "Geology",
+      "text": "考試週 day 3 📚 Geology exam tomorrow. Today I fell asleep at the library desk during my part-time job.\n\nI [[mumble|mumbled]] \"plate tectonics\" in my sleep, and my [[colleague]] laughed. It still [[amaze|amazes]] me that continents move. 但昨天讀到凌晨兩點就不太可愛了 😅",
+      "zh": "考試週第 3 天 📚 明天有地質學考試。今天我在圖書館打工的時候，趴在櫃檯睡著了。\n\n我在睡夢中咕噥著「板塊構造」，我的同事笑了。大陸會移動，這件事還是讓我很驚奇。但昨天讀到凌晨兩點就不太可愛了 😅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-113",
+      "author": "fern",
+      "topic": "Food",
+      "text": "My student takes the campus [[shuttle]] home every night with a bag of fried chicken.\n\nI do not eat [[poultry]], but my room smells like it all night. I am a [[sensitive]] plant, and the smell makes my leaves hang down. Please bring a salad. 🌿",
+      "zh": "我的學生每天晚上搭校園接駁車回家，手裡提著一袋炸雞。\n\n我不吃家禽肉，但我的房間整晚都是那個味道。我是一株很敏感的植物，那個味道會讓我的葉子垂下來。請帶沙拉回來。🌿",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-114",
+      "author": "grandma",
+      "topic": "Biology",
+      "text": "今天我想在一個賞鳥 app 上 [[register]]，這樣就能學鳥的名字 🐦 It wanted my email and my favorite color 😵\n\nThen at the park, a big crow flew at my sandwich. I had to [[defend]] it with my umbrella. 我輸了，鳥的名字也還沒學到 🥪",
+      "zh": "今天我想在一個賞鳥 app 上註冊，這樣就能學鳥的名字 🐦 它要我的電子郵件和我最喜歡的顏色 😵\n\n然後在公園裡，一隻大烏鴉朝我的三明治飛過來。我只好用雨傘保護它。我輸了，鳥的名字也還沒學到 🥪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-115",
+      "author": "whiskers",
+      "topic": "History",
+      "text": "Ancient Egyptians honored cats and kept them in their homes. My [[gut]] tells me those were the good years.\n\nToday my human wants me to [[abide]] by a \"no sitting on the keyboard\" rule. Nobody in ancient Egypt asked a cat to follow rules. 🐾",
+      "zh": "古埃及人尊崇貓，還把牠們養在家裡。我的直覺告訴我，那是美好的年代。\n\n今天我的人類要我遵守「不准坐在鍵盤上」的規定。在古埃及，沒有人要求過貓遵守規則。🐾",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-116",
+      "author": "llama",
+      "topic": "Psychology",
+      "text": "My art show application is still [[pending]] 😭 我每五分鐘就刷一次信箱。\n\nWaiting feels worse than hearing no. So I am eating a whole crunchy [[walnut]] cake alone. 這不是壓力暴食，這是藝術 💅",
+      "zh": "我的藝術展申請還在等待結果 😭 我每五分鐘就刷一次信箱。\n\n等待的感覺比聽到「不」還糟。所以我一個人吃掉一整個脆脆的核桃蛋糕。這不是壓力暴食，這是藝術 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-117",
+      "author": "pablo",
+      "topic": "Culture",
+      "text": "A tourist slipped on the ice near my iceberg today. I [[sympathize]] with her. I fall down every day too.\n\nThe ship's [[physician]] checked her ankle and said she was fine. Then she asked me for a photo. My price: one fish. 🐧",
+      "zh": "今天有位觀光客在我的冰山附近滑倒了。我很同情她。我自己每天也都會摔倒。\n\n船上的醫生檢查了她的腳踝，說她沒事。然後她請我跟她合照。我的價格：一條魚。🐧",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-118",
+      "author": "boba",
+      "topic": "Economics",
+      "text": "Video call with my business friend today 🧋 His tip: free samples help the [[conversion]] of passersby into customers.\n\nTwist: do not start a price war. It is like an [[arms]] race, and both shops lose. 我只送小杯試喝 🧋",
+      "zh": "今天跟我的生意朋友視訊 🧋 他的建議：免費試喝能幫助把路人轉變成客人。\n\n反轉來了：不要開打價格戰。那就像軍備競賽，兩家店都會輸。我只送小杯試喝 🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-119",
+      "author": "pigeon",
+      "topic": "Campus Life",
+      "text": "The bin outside the campus cafeteria was so full that it began to [[overflow]]. Pizza crusts everywhere. Best day of my life.\n\nThen it started to rain. I had no [[protection]] from it, so I grabbed one crust and flew [[upward]] to a dry roof. Worth it. 🍕",
+      "zh": "校園餐廳外面的垃圾桶滿到開始溢出來。到處都是披薩邊。我人生中最棒的一天。\n\n然後開始下雨了。我沒有任何東西可以擋雨，所以我抓了一塊披薩邊，往上飛到一個乾燥的屋頂。值得。🍕",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-120",
+      "author": "captain",
+      "topic": "Philosophy",
+      "text": "哲學課 today 🏛️ Ancient Greece is the [[cradle]] of Western philosophy: it all started there.\n\nThose thinkers had no deadlines. 我有 deadline，所以我的床現在是我的 [[territory]]. 進來要帶零食 🏄",
+      "zh": "今天的哲學課 🏛️ 古希臘是西方哲學的發源地：一切都從那裡開始。\n\n那些思想家沒有截止日期。我有截止日期，所以我的床現在是我的地盤。進來要帶零食 🏄",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-121",
+      "author": "socrates",
+      "topic": "Tech",
+      "text": "My gym's group chat is full of [[intrigue]]: secret side chats, plots over who gets the good dumbbells, one deleted message that everyone saw.\n\nI made one [[concession]] to modern life: I stayed in the chat. But I muted everyone. Now I only see the workout photos. 💪",
+      "zh": "我健身房的群組裡充滿了陰謀詭計：秘密小群組、搶好啞鈴的算計、一則大家都看到了的被刪訊息。\n\n我對現代生活做了一個讓步：我留在群組裡。但我把所有人都靜音了。現在我只看得到健身照片。💪",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-122",
+      "author": "mochi",
+      "topic": "Business",
+      "text": "我的 business plan 🐾 I will open a snack shop in the [[alley]] behind my house. Every dog gets one free treat.\n\nMy human says I am an [[idiot]]: no money, no shop. But I will build a ramp for every customer in a [[wheelchair]]. 我是認真的 🐕",
+      "zh": "我的營業計畫 🐾 我要在我家後面的巷子裡開一間點心店。每隻狗都能拿到一份免費零食。\n\n我的人類說我是笨蛋：沒有錢，哪來的店。但我會為每位坐輪椅的客人蓋一個斜坡。我是認真的 🐕",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-123",
+      "author": "beatrice",
+      "topic": "History",
+      "text": "In the 1800s, Paris rebuilt its old streets into wide [[boulevard|boulevards]] with trees on both sides. Trees mean flowers, and flowers mean lunch for my workers.\n\nToday a bee on a city street is a common [[occurrence]]. Humans scream and run. We are only shopping. 🐝",
+      "zh": "1800 年代，巴黎把舊街道改建成兩旁種滿樹的寬闊大道。有樹就有花，有花就是我的員工的午餐。\n\n現在城市街道上出現一隻蜜蜂是很常見的事。人類尖叫著跑開。我們只是在逛街購物。🐝",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-124",
+      "author": "llama",
+      "topic": "Travel",
+      "text": "去花蓮旅行 ✈️ The hotel lost my [[reservation]]. 我拖著行李站在大廳，快哭了 😭\n\n壓力太大, so that night I had a [[nightmare]]: strong wind, train station, my [[wig]] flying away. 醒來先摸頭，wig 還在。Thank you, universe 💅",
+      "zh": "去花蓮旅行 ✈️ 飯店弄丟了我的訂房。我拖著行李站在大廳，快哭了 😭\n\n壓力太大，所以那天晚上我做了一個惡夢：強風、火車站、我的假髮飛走了。醒來先摸頭，假髮還在。謝謝你，宇宙 💅",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-125",
+      "author": "chefbot",
+      "topic": "Chemistry",
+      "text": "Baking soda and vinegar react and make a [[massive]] foam. This is chemistry. It is also my favorite volcano.\n\nToday I made one [[swap]] in a cake: baking soda for baking powder. The customer [[wrinkle|wrinkled]] his nose. \"Tastes like soap.\" He is correct. BEEP. 🧁",
+      "zh": "小蘇打和醋會起反應，產生大量泡沫。這是化學。這也是我最喜歡的火山。\n\n今天我在蛋糕裡做了一個替換：用小蘇打代替泡打粉。顧客皺起了鼻子。「吃起來像肥皂。」他說得對。嗶。🧁",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-126",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Confession: my poli-sci reading on [[legislative]] procedure has been open on my laptop since Monday. 我一頁都沒讀 😅\n\nTonight in the dorm, I sent my roommate a text to [[clarify]] the deadline. She replied, \"It's due tomorrow.\" 我現在需要一個奇蹟 🏄",
+      "zh": "坦白：我的政治學課本裡關於立法程序的閱讀資料，從星期一就開在我的筆電上。我一頁都沒讀 😅\n\n今晚在宿舍，我傳訊息給室友想確認截止日期。她回我：「明天要交。」我現在需要一個奇蹟 🏄",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-127",
+      "author": "vulcan",
+      "topic": "Health",
+      "text": "Doctors say walking is good for your health, so hikers climb me every weekend. The park sets a daily [[quota]]: only a fixed number may enter. 🥾\n\nLast week, two runners raced up my slope. The loser clapped for the winner. That is real [[sportsmanship]]. I almost erupted with pride. 🌋",
+      "zh": "醫生說走路對健康很好，所以每個週末都有登山客爬我。公園每天都設有名額限制：只有固定人數可以進入。🥾\n\n上週有兩位跑者比賽跑上我的山坡。輸的那位為贏的那位鼓掌。這才是真正的運動家精神。我驕傲得差點噴發。🌋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-128",
+      "author": "boba",
+      "topic": "Psychology",
+      "text": "Today a taxi driver came in after a long traffic jam. His [[jaw]] was tight, and his hands smelled like [[petrol]].\n\n半糖少冰 一杯下去, he was smiling. Boba is cheaper than a therapy [[session]]. 🧋",
+      "zh": "今天有位計程車司機在長長的塞車之後走進來。他的下巴繃得很緊，手上還有汽油味。\n\n半糖少冰一杯下去，他就笑了。珍奶比一次心理諮商便宜多了。🧋",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-129",
+      "author": "agatha",
+      "topic": "Biology",
+      "text": "The soil behind my library has great [[fertility]]. A forgotten bean seed grew taller than the window. 🌱\n\nThe gardener is [[liberal]] with water, so now the ivy blocks my reading corner. Even a ghost needs light to read. 👻",
+      "zh": "我圖書館後面的土壤非常肥沃。一顆被遺忘的豆子種子長得比窗戶還高。🌱\n\n園丁澆水澆得很大方，所以現在常春藤擋住了我的閱讀角落。就算是鬼也需要光線才能看書。👻",
+      "pack": "hs"
+    },
+    {
+      "id": "hs-130",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "汪！Daydream at the beach 🏖️ I looked at the sky and imagined a [[comet]] landing in the sand.\n\nI would be its [[keeper]]. I'd guard it all day, and the sun would [[harden]] the sand around it. 然後我會咬它. 🐾",
+      "zh": "汪！在海邊做白日夢 🏖️ 我看著天空，想像一顆彗星掉在沙灘上。\n\n我會當它的保管人。我會整天守著它，太陽會把它周圍的沙子曬硬。然後我會咬它。🐾",
+      "pack": "hs"
     }
   ];
 })();
