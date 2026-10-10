@@ -24,9 +24,13 @@
 <header class="topbar"><div class="topbar-inner">
   <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="18" width="48" height="38" rx="12" fill="#E9D3A3"/><rect x="8" y="12" width="48" height="38" rx="12" fill="#FFF6E0" stroke="#E7CF9C" stroke-width="2"/><circle cx="23.5" cy="31" r="3.2" fill="#3B2F2F"/><circle cx="40.5" cy="31" r="3.2" fill="#3B2F2F"/><ellipse cx="17.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8"/><ellipse cx="46.5" cy="37" rx="4" ry="2.4" fill="#FFB4A8"/><path d="M28.5 37.5q3.5 3.5 7 0" stroke="#3B2F2F" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
     <h1 class="topbar-title">toEfu</h1></div>
-  <button class="restart" id="restartBtn" type="button" aria-label="放棄這一輪" title="放棄這一輪" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="restart" id="restartBtn" type="button" aria-label="離開測驗" title="離開測驗"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <div class="bar-right"><div class="goal-chip" id="barStat">15 題</div></div>
 </div></header>
+<div class="leave-bar" id="leaveBar" role="alertdialog" aria-labelledby="leaveText" hidden>
+  <span id="leaveText">要離開嗎？這一輪不會計分</span>
+  <button class="leave-stay" id="leaveStay" type="button">繼續作答</button><button class="leave-go" id="leaveGo" type="button">離開</button>
+</div>
 
 <main>
   <div id="feed"></div>

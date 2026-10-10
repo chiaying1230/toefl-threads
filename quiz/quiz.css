@@ -40,7 +40,12 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .bar-right { position: absolute; right: 12px; top: 10px; display: flex; align-items: center; gap: 6px; }
 .restart { position: absolute; left: 12px; top: 10px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-soft); color: var(--muted); }
 .restart svg { width: 17px; height: 17px; stroke-width: 2.2; }
-.restart.armed { background: var(--like); color: #ffffff; }
+.leave-bar { position: sticky; top: calc(52px + env(safe-area-inset-top, 0px)); z-index: 5; max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--bg-soft); border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.leave-bar[hidden] { display: none; }
+.leave-bar span { flex: 1; min-width: 0; }
+.leave-stay, .leave-go { flex: none; padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+.leave-stay { background: var(--text); color: var(--bg); }
+.leave-go { border: 1px solid var(--line); color: var(--like); }
 .goal-chip {
   padding: 4px 12px; border-radius: 999px; background: var(--bg-soft);
   font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums;

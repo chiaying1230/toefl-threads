@@ -162,7 +162,7 @@
 
   function intro() {
     feed.innerHTML = ""; barStat.textContent = "15 題"; guess = null;
-    confirmUntil = 0; restartBtn.hidden = true; restartBtn.classList.remove("armed");
+    leaveBar.hidden = true;
     var p = add(postShell(HOST, "now", "",
       '<div class="post-text">15 題，測出你的英文單字量。</div>' +
       (rival ? '<div class="duel"><p class="verdict">朋友向你下戰帖</p><p>對方' + sp(rival.v) + vocabText(rival.v) + "・" + spoken(rival.sec * 1000) + "。答完就知道誰贏。</p></div>" : "") +
@@ -189,26 +189,38 @@
     plays = Math.max(plays, loadPlays()) + 1; sessionPlays++; savePlays();   // 重新讀一次，另一個分頁也玩過的話不會重複編號
     S = { used: {}, ans: [], t0: performance.now(), cur: null, locked: false, guess: guess, rival: rival };
     RUN = null; track(sessionPlays > 1 ? "retry_start" : "start", { self_estimate: guess, challenge: !!rival });
-    feed.innerHTML = ""; closeSheet(); restartBtn.hidden = false;
+    feed.innerHTML = ""; closeSheet(); leaveBar.hidden = true;
     add(postShell(HOST, "now", "", '<div class="post-text">計時開始。15 題，每題 10 秒。</div>', "done"));
     clearInterval(ticker); ticker = setInterval(tick, 200); tick();
     ask();
   }
-  function tick() { if (S) barStat.textContent = Date.now() < confirmUntil ? "再按一次放棄" : Math.min(S.ans.length + 1, N) + "/" + N + " · " + clock(performance.now() - S.t0); }
+  function tick() { if (S) barStat.textContent = Math.min(S.ans.length + 1, N) + "/" + N + " · " + clock(performance.now() - S.t0); }
 
-  // 測驗中的放棄鈕：要按兩次才生效，避免誤觸
-  var restartBtn = document.getElementById("restartBtn"), confirmUntil = 0;
+  // 左上角的 ✕：離開測驗，回到 App。作答中先問一次（避免誤觸），其他時候直接離開。
+  var restartBtn = document.getElementById("restartBtn"), leaveBar = document.getElementById("leaveBar");
+  function inRound() { return !!(S && !S.total); }
+  function leave() {
+    var ref = null;
+    try { ref = document.referrer ? new URL(document.referrer) : null; } catch (e) {}
+    // 從 App 點進來的就回上一頁（App 會停在原本的位置），其他情況（分享連結、直接打開）到首頁
+    if (ref && ref.origin === location.origin && !/\/quiz\//.test(ref.pathname) && window.history.length > 1) window.history.back();
+    else location.href = "../";
+  }
   restartBtn.addEventListener("click", function () {
-    if (!S || S.total) return;
-    if (Date.now() > confirmUntil) {
-      confirmUntil = Date.now() + 3000; restartBtn.classList.add("armed"); tick();
-      setTimeout(function () { if (Date.now() >= confirmUntil) restartBtn.classList.remove("armed"); }, 3100);
-      return;
+    if (!inRound()) return leave();
+    leaveBar.hidden = !leaveBar.hidden;
+    if (!leaveBar.hidden) document.getElementById("leaveStay").focus();
+  });
+  document.getElementById("leaveStay").addEventListener("click", function () { leaveBar.hidden = true; });
+  document.getElementById("leaveGo").addEventListener("click", function () {
+    if (inRound()) {
+      var n = S.ans.length;
+      track("abandon", { at_question: n + 1 });
+      if (n < 3) { plays = Math.max(0, plays - 1); sessionPlays--; savePlays(); }                    // 前 3 題內放棄不算一次挑戰（只影響「第幾次挑戰」的編號）
+      S = null; clearInterval(ticker); clearTimeout(qTimer);
     }
-    var n = S.ans.length;
-    track("abandon", { at_question: n + 1 });
-    if (n < 3) { plays = Math.max(0, plays - 1); sessionPlays--; savePlays(); }                      // 前 3 題內放棄不算一次挑戰（只影響「第幾次挑戰」的編號）
-    S = null; clearInterval(ticker); clearTimeout(qTimer); intro(); window.scrollTo(0, 0);
+    leaveBar.hidden = true;
+    leave();
   });
 
   // 出過的題目記在這台裝置上，整個題庫都出過一輪之前不會重複
@@ -491,7 +503,7 @@
   }
 
   function finish() {
-    clearInterval(ticker); restartBtn.hidden = true; confirmUntil = 0;
+    clearInterval(ticker); leaveBar.hidden = true;
     var ans = S.ans, ms = S.total, v = estimate(ans);
     var saved = loadBest(); if (saved && (!best || saved.v > best.v || (saved.v === best.v && saved.ms < best.ms))) best = saved;   // 另一個分頁可能刷新過最佳
     var isBest = !best || v > best.v || (v === best.v && ms < best.ms);
