@@ -248,8 +248,8 @@
     var i = S.ans.length;
     if (i >= N) return finish();
     var w = pick(nextLevel()); S.used[w.k] = true; SEEN[w.k] = 1; saveSeen();
-    S.cur = { w: w, level: w.lv, t: performance.now() }; S.locked = false;
-    var opts = shuffle(w.opts).map(function (z) { return '<button class="quiz-opt" type="button" data-z="' + esc(z) + '">' + esc(z) + "</button>"; }).join("");
+    S.cur = { w: w, level: w.lv, t: performance.now(), options: shuffle(w.opts) }; S.locked = false;
+    var opts = S.cur.options.map(function (z) { return '<button class="quiz-opt" type="button" data-z="' + esc(z) + '">' + esc(z) + "</button>"; }).join("");
     var p = add(postShell(D.CH[w.a], w.t, (i + 1) + "/" + N + (i === N - 1 ? " · 最後一題" : ""),
       (w.tp ? '<div class="post-tags"><span class="tag">#' + esc(w.tp) + "</span></div>" : "") +
       '<div class="post-text" lang="en">' + esc(w.before) + '<span class="vocab target">' + esc(w.shown) + "</span>" + esc(w.after) + "</div>" +
@@ -270,7 +270,7 @@
     if (!S || S.locked) return;
     S.locked = true; clearTimeout(qTimer);
     var c = S.cur, ok = kind === "pick" && z === c.w.z, i = S.ans.length;
-    S.ans.push({ w: c.w, level: c.level, ok: ok, kind: kind, picked: z, rt: (performance.now() - c.t) / 1000 });
+    S.ans.push({ w: c.w, level: c.level, ok: ok, kind: kind, picked: z, options: c.options, rt: (performance.now() - c.t) / 1000 });
     var said = kind === "pick" ? z : kind === "skip" ? "不認識" : "時間到";
     c.node.querySelector(".q-ui").outerHTML = '<div class="my-reply">' + avatar({ a: "🙂" }, true) + "<span>你回覆：<b>" + esc(said) + "</b></span></div>";
     c.node.classList.remove("live"); c.node.classList.add("done");
@@ -441,7 +441,7 @@
       attempt_no: plays, is_best: isBest, self_estimate: g,
       challenge: rv ? { rival_vocab: rv.v, rival_sec: rv.sec, won: won } : null,
       vocab: v, theta: Math.round(thetaOf(ans) * 100) / 100, correct: correct, total_ms: Math.round(ms),
-      answers: ans.map(function (a, n) { return { n: n + 1, word: a.w.k, level: a.level, result: a.ok ? "correct" : a.kind === "pick" ? "wrong" : a.kind, picked: a.picked || null, ms: Math.round(a.rt * 1000) }; })
+      answers: ans.map(function (a, n) { return { n: n + 1, word: a.w.k, level: a.level, result: a.ok ? "correct" : a.kind === "pick" ? "wrong" : a.kind, picked: a.picked || null, options: a.options, ms: Math.round(a.rt * 1000) }; })
     };
     track("complete", { vocab: v });
 

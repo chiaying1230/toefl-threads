@@ -7,7 +7,7 @@
 欄位:`date`(使用者當地日期)、`createdAt`(伺服器時間)、`device`(隨機匿名代號,存 localStorage)、
 `attempt_no`、`is_best`、`self_estimate`、`challenge{rival_vocab, rival_sec, won}`、
 `vocab`、`theta`、`correct`、`total_ms`、
-`answers[15]{n, word, level, result(correct|wrong|skip|timeout), picked, ms}`、`source`。
+`answers[15]{n, word, level, result(correct|wrong|skip|timeout), picked, options[4](該題畫面上四個選項,依顯示順序), ms}`、`source`。
 不存任何個人資料。測驗頁必須初始化 App Check(與主站相同的金鑰)。
 
 ## 2. 即時統計(Firestore: `quizStats/all` 與 `quizStats/day-YYYY-MM-DD`)
