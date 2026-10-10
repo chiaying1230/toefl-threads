@@ -81,7 +81,7 @@
 
   function signIn() {
     var app = inAppBrowser();
-    if (app) { alert("Google sign-in doesn't work inside the " + app + " app's browser. Tap ⋯ and choose \"Open in browser\" first."); return; }
+    if (app) { if (confirm("Google sign-in doesn't work inside the " + app + " app's browser. " + (isAndroid() ? "Open in Chrome now?" : "Copy the link so you can paste it in Safari?"))) openInBrowser(); return; }
     S.signIn().catch(function (e) {
       if (e && e.code === "auth/popup-closed-by-user") return;
       toast("Sign-in failed. Please try again.");
@@ -1740,6 +1740,7 @@
     else if (d.shareApp !== undefined) shareApp();
     else if (d.join !== undefined) { joinedFromShare = true; openOnboarding(false); }
     else if (d.noticeClose !== undefined) hideNotice();
+    else if (d.openBrowser !== undefined) openInBrowser();
     else if (d.delete) deletePost(d.delete);
     else if (d.open) { if (route.name !== "t" || route.param !== d.open) go("#/t/" + d.open); }
     else if (d.person) go("#/u/" + encodeURIComponent(d.person));
@@ -1981,6 +1982,20 @@
     return null;
   }
 
+  function isAndroid() { return /Android/i.test(navigator.userAgent || ""); }
+
+  // Web pages can't force the phone's browser open. Android lets an intent:// link hand the page to Chrome;
+  // on iPhone the best we can do is copy the link so it can be pasted into Safari.
+  function openInBrowser() {
+    if (isAndroid()) {
+      var url = location.href;
+      var rest = url.replace(/^https?:\/\//, "");
+      location.href = "intent://" + rest + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end";
+    } else {
+      copyLink(location.href.split("#")[0] + location.hash);
+    }
+  }
+
   function showNotice(html, kind) {
     var n = $("#notice");
     if (!n) {
@@ -2000,7 +2015,7 @@
   function updateNotices() {
     var app = inAppBrowser();
     if (app) {
-      showNotice("<b>You're in the " + app + " app's browser.</b> Sign-in and your progress may not be saved here. Tap <b>⋯</b> or the share icon and choose <b>Open in browser</b>（在瀏覽器開啟）.", "inapp");
+      showNotice("<b>You're in the " + app + " app's browser.</b> You can look around here, but Google sign-in and saved progress need your phone's real browser.<br><button class=\"primary-btn\" data-open-browser>" + (isAndroid() ? "Open in Chrome（用瀏覽器開啟）" : "Copy link（複製連結）") + "</button>" + (isAndroid() ? "" : " <span class=\"muted small\">then paste it in Safari</span>"), "inapp");
     } else if (S.wasSignedOut()) {
       showNotice("You've been signed out on this browser. <button class=\"link\" data-signin>Sign in again</button>", "signedout");
     } else {
@@ -2030,6 +2045,12 @@
   // LINE supports ?openExternalBrowser=1 to jump straight to the phone's real browser.
   if (inAppBrowser() === "LINE" && !/openExternalBrowser=1/.test(location.search)) {
     location.replace(location.origin + location.pathname + (location.search ? location.search + "&" : "?") + "openExternalBrowser=1" + location.hash);
+  }
+  // Android in-app browsers (Threads, Instagram, Facebook…): try once to jump to Chrome automatically.
+  if (inAppBrowser() && inAppBrowser() !== "LINE" && isAndroid()) {
+    var tried = false;
+    try { tried = sessionStorage.getItem("toefu-ext-tried") === "1"; sessionStorage.setItem("toefu-ext-tried", "1"); } catch (e) { tried = true; }
+    if (!tried) openInBrowser();
   }
   setupInfiniteScroll();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
