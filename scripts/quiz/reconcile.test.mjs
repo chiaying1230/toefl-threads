@@ -7,7 +7,7 @@ import { reconcile, fieldOf } from "./reconcile.js";
 
 let db;
 before(() => { initializeApp({ projectId: "demo-toefu-reconcile" }); db = getFirestore(); });
-beforeEach(async () => { await db.recursiveDelete(db.collection("quizRuns")); await db.recursiveDelete(db.collection("quizStats")); });
+beforeEach(async () => { await db.recursiveDelete(db.collection("quizRuns")); await db.recursiveDelete(db.collection("quizStats")); await db.recursiveDelete(db.collection("quizNotes")); });
 
 const now = new Date("2026-10-10T12:00:00Z");
 const ago = (min) => Timestamp.fromMillis(now.getTime() - min * 60000);
@@ -75,4 +75,47 @@ test("forged options are not counted", async () => {
   const w = await get("quizStats/words");
   assert.deepEqual(Object.keys(w.hole.o), ["雪人"]);
   assert.deepEqual(w.hole.o["雪人"], { s: 1, p: 0 });
+});
+
+const N = (word, reason, result, over = {}) => ({ run: "r1", device: "dev-aaaaaaaa", word, picked: "x", result, ms: 5000, reason, createdAt: ago(60), ...over });
+
+test("notes are counted per word as reason_result", async () => {
+  await db.doc("quizNotes/a").set(N("hole", "sure", "wrong"));
+  await db.doc("quizNotes/b").set(N("hole", "sure", "wrong", { device: "dev-bbbbbbbb", createdAt: ago(59) }));
+  await db.doc("quizNotes/c").set(N("hole", "sure", "correct", { device: "dev-cccccccc", createdAt: ago(58) }));
+  await db.doc("quizNotes/d").set(N("hole", "lookalike", "wrong", { device: "dev-dddddddd", createdAt: ago(57), other_word: "whole" }));
+  await db.doc("quizNotes/e").set(N("hometown", "misclick", "wrong", { device: "dev-eeeeeeee", createdAt: ago(56) }));
+  const out = await reconcile(args());
+  assert.equal(out.notesProcessed, 5); assert.equal(out.notesCounted, 5);
+  const w = await get("quizStats/words");
+  assert.deepEqual(w.hole.r, { sure_wrong: 2, sure_correct: 1, lookalike_wrong: 1 });
+  assert.deepEqual(w.hometown.r, { misclick_wrong: 1 });
+  assert.ok(!JSON.stringify(await get("quizStats/state")).includes("whole"), "other_word is not copied into the stats");
+});
+
+test("one device counts at most 10 notes a day", async () => {
+  for (let i = 0; i < 13; i++) await db.doc("quizNotes/n" + String(i).padStart(2, "0")).set(N("hole", "guess", "wrong", { createdAt: ago(100 - i) }));
+  await db.doc("quizNotes/other").set(N("hole", "guess", "wrong", { device: "dev-bbbbbbbb", createdAt: ago(30) }));
+  const out = await reconcile(args());
+  assert.equal(out.notesProcessed, 14); assert.equal(out.notesExcess, 3); assert.equal(out.notesCounted, 11);
+  assert.equal((await get("quizStats/words")).hole.r.guess_wrong, 11);
+});
+
+test("notes are counted once, and unknown words, reasons and results are ignored", async () => {
+  await db.doc("quizNotes/a").set(N("hole", "torn", "correct"));
+  await db.doc("quizNotes/f1").set(N("not-a-quiz-word", "torn", "correct", { device: "dev-bbbbbbbb", createdAt: ago(55) }));
+  await db.doc("quizNotes/f2").set(N("hole", "a.b", "wrong", { device: "dev-cccccccc", createdAt: ago(54) }));
+  await db.doc("quizNotes/f3").set(N("hole", "torn", "skip", { device: "dev-dddddddd", createdAt: ago(53) }));
+  await reconcile(args());
+  const before = await get("quizStats/words");
+  assert.deepEqual(before.hole.r, { torn_correct: 1 });
+  const again = await reconcile(args());
+  assert.equal(again.notesProcessed, 0);
+  assert.deepEqual(await get("quizStats/words"), before);
+});
+
+test("a note newer than the settle window waits for the next run", async () => {
+  await db.doc("quizNotes/fresh").set(N("hole", "sure", "wrong", { createdAt: ago(1) }));
+  const out = await reconcile(args());
+  assert.equal(out.notesProcessed, 0);
 });

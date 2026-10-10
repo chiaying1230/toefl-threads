@@ -4,6 +4,9 @@
 //   • counts at most PER_DEVICE_DAILY results per device per day; the rest are left out of the distribution;
 //   • rewrites quizStats/all and the day documents in one transaction as "verified baseline + results newer than the cursor",
 //     so results that arrive while it runs are never overwritten (the transaction retries if the live documents change);
+//   • reads quizNotes (how a player says they chose a word) with their own cursor and adds, per word, r: how often each reason was
+//     given, split by whether the answer was right ("sure_wrong", "sure_correct", ...); at most PER_DEVICE_DAILY notes per device per day.
+//     Notes are asked mostly for wrong answers, so r counts are not rates over all answers: read them next to n and c.
 //   • updates quizStats/words (first attempts only): per word, how often it was shown (n) and answered correctly (c), and for each
 //     wrong option (o) how often it was shown (s) and picked (p), which shows how tempting each distractor is.
 // Results younger than SETTLE_MS are left for the next run, so a slow write can't slip behind the cursor.
@@ -16,6 +19,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 export const PER_DEVICE_DAILY = 10;
 export const SETTLE_MS = 5 * 60 * 1000;
 export const KEEP_DAYS = 3;
+export const NOTE_REASONS = ["sure", "torn", "lookalike", "affix", "forgot", "guess", "misclick"];
 const PAGE = 500;
 
 // Same bucket names as the page and the security rules: vocab / 100, and 10-second steps capped at 120 s.
@@ -29,7 +33,7 @@ function quizWords() {
   ctx.window = ctx;
   vm.runInNewContext(fs.readFileSync(file, "utf8"), ctx);
   // word -> the known wrong options (only these are counted, so a forged answer can't add fields)
-  return new Map(ctx.QUIZ_QUESTIONS.map((q) => [q[0], new Set(q.slice(6))]));
+  return new Map(ctx.QUIZ_QUESTIONS.map((q) => [q[0], new Set(q.slice(6, 9))]));
 }
 
 const add = (o, f) => { o[f] = (o[f] || 0) + 1; o.n = (o.n || 0) + 1; };
@@ -41,9 +45,10 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
   const words = quizWords();
   const settle = Timestamp.fromMillis(now.getTime() - SETTLE_MS);
   const old = (await stateRef.get()).data() || {};
-  const state = { cursorAt: old.cursorAt || null, cursorId: old.cursorId || "", verified: old.verified || {}, days: old.days || {}, devDay: old.devDay || {} };
+  const state = { cursorAt: old.cursorAt || null, cursorId: old.cursorId || "", verified: old.verified || {}, days: old.days || {}, devDay: old.devDay || {},
+    noteCursorAt: old.noteCursorAt || null, noteCursorId: old.noteCursorId || "", noteDevDay: old.noteDevDay || {} };
   const oldest = new Date(now.getTime() - KEEP_DAYS * 86400000).toISOString().slice(0, 10);
-  let processed = 0, excess = 0;
+  let processed = 0, excess = 0, notesProcessed = 0, notesExcess = 0, notesCounted = 0;
 
   for (;;) {
     let q = runs.where("createdAt", "<", settle).orderBy("createdAt").orderBy(FieldPath.documentId()).limit(PAGE);
@@ -91,6 +96,42 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
     await batch.commit();
   }
 
+  // Notes: same idea as the runs above, with a cursor of their own.
+  const notes = db.collection("quizNotes");
+  for (;;) {
+    let q = notes.where("createdAt", "<", settle).orderBy("createdAt").orderBy(FieldPath.documentId()).limit(PAGE);
+    if (state.noteCursorAt) q = q.startAfter(state.noteCursorAt, state.noteCursorId);
+    const snap = await q.get();
+    if (snap.empty) break;
+    const rInc = {};
+    for (const d of snap.docs) {
+      const r = d.data();
+      const date = d.get("createdAt").toDate().toISOString().slice(0, 10);   // notes carry no local date, so the server day is used
+      const day = (state.noteDevDay[date] = state.noteDevDay[date] || {});
+      const dev = hash(r.device);
+      if ((day[dev] || 0) >= PER_DEVICE_DAILY) { notesExcess++; continue; }
+      day[dev] = (day[dev] || 0) + 1;
+      // only words in the bank and known values are counted, so a forged note can't add fields
+      if (!words.has(r.word) || !NOTE_REASONS.includes(r.reason) || (r.result !== "correct" && r.result !== "wrong")) continue;
+      const w = (rInc[r.word] = rInc[r.word] || {});
+      w[r.reason + "_" + r.result] = (w[r.reason + "_" + r.result] || 0) + 1;
+      notesCounted++;
+    }
+    const last = snap.docs[snap.docs.length - 1];
+    state.noteCursorAt = last.get("createdAt"); state.noteCursorId = last.id; notesProcessed += snap.size;
+    Object.keys(state.noteDevDay).forEach((k) => { if (k < oldest) delete state.noteDevDay[k]; });
+    const batch = db.batch();
+    batch.set(stateRef, { ...state, updatedAt: FieldValue.serverTimestamp() });
+    const inc = {};
+    Object.keys(rInc).forEach((w) => {
+      const r = {};
+      Object.keys(rInc[w]).forEach((k) => { r[k] = FieldValue.increment(rInc[w][k]); });
+      inc[w] = { r };
+    });
+    if (Object.keys(inc).length) batch.set(wordsRef, inc, { merge: true });
+    await batch.commit();
+  }
+
   // Live documents = verified baseline + everything newer than the cursor (not yet verified).
   await db.runTransaction(async (tx) => {
     const dates = Object.keys(state.days);
@@ -114,8 +155,8 @@ export async function reconcile({ db, FieldValue, FieldPath, Timestamp, now = ne
     Object.keys(byDay).forEach((dt, i) => write(stats.doc("day-" + dt), byDay[dt], live[1 + i] || { exists: false }));
   });
 
-  log(`quiz reconcile: ${processed} new results (${excess} over the per-device limit), cursor ${state.cursorId || "-"}`);
-  return { processed, excess, state };
+  log(`quiz reconcile: ${processed} new results (${excess} over the per-device limit), cursor ${state.cursorId || "-"}; ${notesProcessed} new notes (${notesCounted} counted, ${notesExcess} over the per-device limit)`);
+  return { processed, excess, notesProcessed, notesCounted, notesExcess, state };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

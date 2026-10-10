@@ -114,6 +114,16 @@ if (fs.existsSync(packDir)) {
   }
 }
 
+// Quiz question bank: every question needs 3 distractors and one distractor type (dtypes) for each.
+const DTYPES = ["sem", "l1", "form", "sound", "morph", "ctx"];
+const bank = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data-src", "quiz_questions_703.json"), "utf8").replace(/^﻿/, ""));
+for (const q of bank) {
+  if (!Array.isArray(q.dtypes) || q.dtypes.length !== 3) errors.push(`quiz ${q.word}: dtypes must have 3 entries (one per distractor)`);
+  else if (q.dtypes.some((t) => !DTYPES.includes(t))) errors.push(`quiz ${q.word}: bad dtypes ${JSON.stringify(q.dtypes)} (allowed: ${DTYPES.join(", ")})`);
+  if (!Array.isArray(q.distractors) || q.distractors.length !== 3) errors.push(`quiz ${q.word}: needs 3 distractors`);
+}
+console.log(`Quiz questions: ${bank.length}`);
+
 const unused = [...baseKeys].filter((k) => !used.has(k));
 
 console.log(`Pack words: ${packWords} (own entries across the extra packs), pack threads: ${packPosts}`);

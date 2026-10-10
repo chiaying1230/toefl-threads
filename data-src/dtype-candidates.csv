@@ -1,0 +1,38 @@
+﻿word,stem,distractor,建議類型,信心,理由
+corporeal,Humans worry about {corporeal} things.,瑣碎的,ctx,高,「瑣碎的」= trivial；trivial 的例句「Don't waste time arguing about trivial things.」中，它前後的字與題目句相同（前：about、後：things）
+insignificant,Your opinion is {insignificant} to me.,很重要的,morph,高,去掉字首 in- 得到 significant（重大的；顯著的），與「很重要的」共用「重」
+adamant,My mother is {adamant} about this rule.,樂觀的,ctx,低,「樂觀的」= optimistic；optimistic 的例句「I'm optimistic about my test results.」中，它前後的字與題目句相同（後：about）
+attain,You will {attain} it one day.,失去,ctx,低,"「失去」= forfeit；forfeit 的例句「If you cancel now, you will forfeit your deposit.」中，它前後的字與題目句相同（前：will）"
+attest,My neighbors can {attest} to my singing.,忍受,ctx,低,「忍受」= tolerate；tolerate 的例句「Some plants can tolerate very cold weather.」中，它前後的字與題目句相同（前：can）
+clumsy,My new teacher is very {clumsy}.,嚴格的,ctx,低,「嚴格的」= rigid；rigid 的例句「The school has very rigid rules about uniforms.」中，它前後的字與題目句相同（前：very）
+happen,"It will {happen} again tomorrow, I know.",開始,ctx,低,「開始」= commence；commence 的例句「The ceremony will commence at 10 a.m.」中，它前後的字與題目句相同（前：will）
+hoard,My aunt {hoards} paper bags at home.,回收,ctx,低,"「回收」= recycle；recycle 的例句「We recycle paper, glass and plastic.」中，它前後的字與題目句相同（後：paper）"
+meticulous,I am {meticulous} about my sock colors.,樂觀的,ctx,低,「樂觀的」= optimistic；optimistic 的例句「I'm optimistic about my test results.」中，它前後的字與題目句相同（後：about）
+obdurate,I remain {obdurate} about baths.,樂觀的,ctx,低,「樂觀的」= optimistic；optimistic 的例句「I'm optimistic about my test results.」中，它前後的字與題目句相同（後：about）
+repeal,I will {repeal} the sleep rule.,執行,ctx,低,「執行」= implement；implement 的例句「The school will implement a new lunch program next month.」中，它前後的字與題目句相同（前：will）
+sanguine,I feel {sanguine} about the weather.,懷疑的,ctx,低,「懷疑的」= cynical；cynical 的例句「He is cynical about politicians' promises.」中，它前後的字與題目句相同（後：about）
+skeptical,I am {skeptical} about this diet.,樂觀的,ctx,低,「樂觀的」= optimistic；optimistic 的例句「I'm optimistic about my test results.」中，它前後的字與題目句相同（後：about）
+unconcerned,He looked {unconcerned} during the fire.,困惑的,ctx,低,「困惑的」= bewildered；bewildered 的例句「The tourists looked bewildered by the subway map.」中，它前後的字與題目句相同（前：looked）
+insignificant,Your opinion is {insignificant} to me.,很重要的,l1,低,與詞庫釋義「微不足道的；不重要的」共用「重要」
+compete,I {compete} with the dog every day.,合作,morph,低,compete 字首 co- 常被誤讀為「合」，干擾項「合作」含「合」
+definite,I need a {definite} answer by noon.,簡短的,morph,低,definite 字首 de- 常被誤讀為「短」，干擾項「簡短的」含「短」
+deleterious,The effect was {deleterious}.,短暫的,morph,低,deleterious 字首 de- 常被誤讀為「短」，干擾項「短暫的」含「短」
+desist,"Please {desist}, I am trying to sleep.",離開,morph,低,desist 字首 de- 常被誤讀為「離」，干擾項「離開」含「離」
+disparage,They {disparage} my cooking every night.,分享,morph,低,disparage 字首 dis- 常被誤讀為「分」，干擾項「分享」含「分」
+expand,We will {expand} the shop next year.,出售,morph,低,expand 字首 ex- 常被誤讀為「出」，干擾項「出售」含「出」
+expunge,Please {expunge} my name from the list.,念出,morph,低,expunge 字首 ex- 常被誤讀為「出」，干擾項「念出」含「出」
+expunge,Please {expunge} my name from the list.,挑出,morph,低,expunge 字首 ex- 常被誤讀為「出」，干擾項「挑出」含「出」
+harmful,"This gas is not {harmful}, probably.",稀有的,morph,低,harmful 字尾 -ful 常被誤讀為「有」，干擾項「稀有的」含「有」
+holder,I am the {holder} of the office key.,製造者,morph,低,holder 字尾 -er 常被誤讀為「者」，干擾項「製造者」含「者」
+holder,I am the {holder} of the office key.,設計者,morph,低,holder 字尾 -er 常被誤讀為「者」，干擾項「設計者」含「者」
+impossible,"This homework is {impossible}, honestly.",很無聊的,morph,低,impossible 字首 im- 常被誤讀為「無」，干擾項「很無聊的」含「無」
+inadmissible,The teacher called my photo {inadmissible}.,可笑的,morph,低,inadmissible 字尾 -ible 常被誤讀為「可」，干擾項「可笑的」含「可」
+incisive,That was an {incisive} question.,無禮的,morph,低,incisive 字首 in- 常被誤讀為「無」，干擾項「無禮的」含「無」
+incomplete,"My report is {incomplete}, as usual.",無聊的,morph,低,incomplete 字首 in- 常被誤讀為「無」，干擾項「無聊的」含「無」
+infertile,"My new soil is {infertile}, they say.",進口的,morph,低,infertile 字首 in- 常被誤讀為「進」，干擾項「進口的」含「進」
+interloper,There is an {interloper} in my garden.,稻草人,morph,低,interloper 字尾 -er 常被誤讀為「人」，干擾項「稻草人」含「人」
+interpreter,I need an {interpreter} at lunch.,見證人,morph,低,interpreter 字尾 -er 常被誤讀為「人」，干擾項「見證人」含「人」
+predator,There is a {predator} in my park.,陌生人,morph,低,predator 字尾 -or 常被誤讀為「人」，干擾項「陌生人」含「人」
+producer,I know a {producer} of tea.,愛好者,morph,低,producer 字尾 -er 常被誤讀為「者」，干擾項「愛好者」含「者」
+recant,I will not {recant} my words.,重複,morph,低,recant 字首 re- 常被誤讀為「重」，干擾項「重複」含「重」
+reprehensible,His behavior was {reprehensible}.,可預料的,morph,低,reprehensible 字尾 -ible 常被誤讀為「可」，干擾項「可預料的」含「可」

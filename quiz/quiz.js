@@ -47,7 +47,7 @@
   STEMS.forEach(function (q, n) {
     var k = q[0], m = q[3].match(/\{([^}]+)\}/), post = null;
     if (D.V[k]) { for (var i = 0; i < D.P.length && !post; i++) if (D.P[i].x.indexOf("[[" + k + "]]") >= 0 || D.P[i].x.indexOf("[[" + k + "|") >= 0) post = D.P[i]; }
-    POOL.push({ k: k, lv: q[1], a: q[2], pos: q[4], z: q[5], opts: q.slice(5), shown: m[1],
+    POOL.push({ k: k, lv: q[1], a: q[2], pos: q[4], z: q[5], opts: q.slice(5, 9), shown: m[1],
       before: q[3].slice(0, m.index), after: q[3].slice(m.index + m[0].length), post: post, t: AGES[n % AGES.length] });
   });
 
@@ -80,6 +80,8 @@
 
   var feed = document.getElementById("feed"), barStat = document.getElementById("barStat");
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NOTE_RATE = 0.5;   // 問「你是怎麼選的」的裝置比例（用 device 決定，同一裝置固定出現或固定不出現）
+  var QV = typeof window.QUIZ_QV === "string" ? window.QUIZ_QV.slice(0, 20) : null;
   var S = null, ticker = null, qTimer = null, plays = 0, lastResult = null, best = null, history = [];
 
   function rnd(n) { return Math.floor(Math.random() * n); }
@@ -248,7 +250,7 @@
     var i = S.ans.length;
     if (i >= N) return finish();
     var w = pick(nextLevel()); S.used[w.k] = true; SEEN[w.k] = 1; saveSeen();
-    S.cur = { w: w, level: w.lv, t: performance.now(), options: shuffle(w.opts) }; S.locked = false;
+    S.cur = { w: w, level: w.lv, t: performance.now(), options: shuffle(w.opts), hid: !!document.hidden }; S.locked = false;
     var opts = S.cur.options.map(function (z) { return '<button class="quiz-opt" type="button" data-z="' + esc(z) + '">' + esc(z) + "</button>"; }).join("");
     var p = add(postShell(D.CH[w.a], w.t, (i + 1) + "/" + N + (i === N - 1 ? " · 最後一題" : ""),
       (w.tp ? '<div class="post-tags"><span class="tag">#' + esc(w.tp) + "</span></div>" : "") +
@@ -263,6 +265,9 @@
     qTimer = setTimeout(function () { answer("timeout", ""); }, LIMIT);
   }
 
+  // 作答這題期間頁面曾被切到背景：這題的 ms 不可信，記在 answers[].hid
+  document.addEventListener("visibilitychange", function () { if (document.hidden && S && S.cur && !S.locked) S.cur.hid = true; });
+
   // 作答中的題目不給長按選單（手機會跳出搜尋或查字典）
   feed.addEventListener("contextmenu", function (e) { if (e.target.closest(".post.live .post-text, .post.done .post-text")) e.preventDefault(); });
 
@@ -270,7 +275,7 @@
     if (!S || S.locked) return;
     S.locked = true; clearTimeout(qTimer);
     var c = S.cur, ok = kind === "pick" && z === c.w.z, i = S.ans.length;
-    S.ans.push({ w: c.w, level: c.level, ok: ok, kind: kind, picked: z, options: c.options, rt: (performance.now() - c.t) / 1000 });
+    S.ans.push({ w: c.w, level: c.level, ok: ok, kind: kind, picked: z, options: c.options, hid: !!c.hid, rt: (performance.now() - c.t) / 1000 });
     var said = kind === "pick" ? z : kind === "skip" ? "不認識" : "時間到";
     c.node.querySelector(".q-ui").outerHTML = '<div class="my-reply">' + avatar({ a: "🙂" }, true) + "<span>你回覆：<b>" + esc(said) + "</b></span></div>";
     c.node.classList.remove("live"); c.node.classList.add("done");
@@ -341,30 +346,104 @@
     }
     return id;
   }
+  // 名次算好後存在 R.rp；成績卡片已經在畫面上就立刻顯示，還沒出現（還在回答作答方式）就等卡片出現後再顯示
+  function applyRank(R) {
+    var hero = document.getElementById("heroRank"), row = document.getElementById("rankRow");
+    if (!R.rp || lastResult !== R || !hero || !row) return;
+    R.shareRank = R.rp.shareRank;
+    hero.innerHTML = R.rp.hero; hero.style.display = "";
+    document.getElementById("rankDetail").innerHTML = R.rp.row; row.style.display = "";
+    paintShare();
+  }
   // 先讀分布、算出名次，再用同一個 batch 寫入成績和兩份計數。寫入失敗不影響成績；讀取失敗就不顯示排名。
+  // 回傳 Promise：寫入成功時是這筆成績的文件 ID，否則是 null（作答方式的紀錄要等成績寫入成功才寫）。
   function saveAndRank(R, run) {
     var field = statField(run.vocab, run.total_ms), prevBest = best;
-    firebaseReady().then(function () {
+    return firebaseReady().then(function () {
       var allRef = db.doc("quizStats/all"), dayRef = db.doc("quizStats/day-" + run.date), runRef = db.collection("quizRuns").doc();
       return Promise.all([allRef.get(), dayRef.get()]).then(function (snaps) {
         var all = snaps[0].exists ? snaps[0].data() : {}, day = snaps[1].exists ? snaps[1].data() : {};
-        if (lastResult === R && document.getElementById("heroRank")) {
-          var p = rankParts(R, all, day, prevBest);
-          R.shareRank = p.shareRank;
-          var hero = document.getElementById("heroRank"), row = document.getElementById("rankRow");
-          hero.innerHTML = p.hero; hero.style.display = "";
-          document.getElementById("rankDetail").innerHTML = p.row; row.style.display = "";
-          paintShare();
-        }
+        R.rp = rankParts(R, all, day, prevBest);
+        applyRank(R);
         var FV = firebase.firestore.FieldValue, b = db.batch(), bump = {};
         bump[field] = FV.increment(1); bump.n = FV.increment(1); bump.last = runRef.id;
         var doc = Object.assign({}, run, { createdAt: FV.serverTimestamp(), device: deviceId(), source: "web" });
         b.set(runRef, doc);
         b.set(allRef, bump, { merge: true });
         b.set(dayRef, bump, { merge: true });
-        return b.commit().catch(function () {});
+        return b.commit().then(function () { return runRef.id; }, function () { return null; });
       });
-    }).catch(function () {});
+    }).catch(function () { return null; });
+  }
+
+  // ---- 作答方式回饋（quizNotes）：成績公布前，隨機請部分作答者回想最多 2 題是怎麼選的 ----
+  var NOTE_REASONS = [["sure", "我會，很確定"], ["torn", "在兩個答案之間猶豫"], ["lookalike", "想到另一個很像的字"], ["affix", "看字的一部分猜的"], ["forgot", "有印象，但想不起來"], ["guess", "用猜的"]];
+  function noteArm() { return parseInt(deviceId().slice(0, 8), 16) / 4294967296 < NOTE_RATE; }
+  // 答錯的題目優先（最多 2 題）；不足 2 題時補 1 題答對但明顯比較久（超過中位數 1.5 倍、頁面沒被切到背景）的題目。依題號排序，不洩漏對錯。
+  function noteItems(ans) {
+    var picks = ans.filter(function (a) { return a.kind === "pick"; }).map(function (a) { return a.rt; }).sort(function (x, y) { return x - y; });
+    if (!picks.length) return [];
+    var med = picks.length % 2 ? picks[(picks.length - 1) / 2] : (picks[picks.length / 2 - 1] + picks[picks.length / 2]) / 2;
+    var all = ans.map(function (a, i) { return { a: a, n: i }; });
+    var out = shuffle(all.filter(function (x) { return x.a.kind === "pick" && !x.a.ok; })).slice(0, 2);
+    if (out.length < 2) {
+      var slow = all.filter(function (x) { return x.a.ok && !x.a.hid && x.a.rt > 1.5 * med; }).sort(function (x, y) { return y.a.rt - x.a.rt; });
+      if (slow.length) out.push(slow[0]);
+    }
+    return out.sort(function (x, y) { return x.n - y.n; });
+  }
+  // 兩題的畫面和選項完全一樣：只有單字、例句、他選的選項。不顯示正確答案，也不顯示對錯。
+  function askNotes(items, savedRun, done) {
+    var got = [], i = 0, finished = false;
+    function end() {
+      if (finished) return; finished = true;
+      if (got.length) savedRun.then(function (runId) {
+        if (!runId || !db) return;
+        got.forEach(function (g) {
+          var doc = { run: runId, device: deviceId(), word: g.word, picked: g.picked, result: g.result, ms: g.ms, reason: g.reason, createdAt: firebase.firestore.FieldValue.serverTimestamp() };
+          if (g.other) doc.other_word = g.other;
+          try { db.collection("quizNotes").doc(runId + "_" + g.word).set(doc).catch(function () {}); } catch (e) {}
+        });
+      });
+      done();
+    }
+    function next() {
+      if (i >= items.length) return end();
+      var it = items[i++], a = it.a, w = a.w, node, settled = false;
+      var btns = NOTE_REASONS.map(function (r) { return '<button class="quiz-opt" type="button" data-r="' + r[0] + '">' + r[1] + "</button>"; }).join("");
+      node = add(postShell(D.CH[w.a], w.t, i + "/" + items.length,
+        '<div class="post-text" lang="en">' + esc(w.before) + '<span class="vocab target">' + esc(w.shown) + "</span>" + esc(w.after) + "</div>" +
+        '<div class="my-reply">' + avatar({ a: "🙂" }, true) + "<span>你回覆：<b>" + esc(a.picked) + "</b></span></div>" +
+        '<p class="note-q">剛剛這題，你是怎麼選的？</p><div class="quiz-options">' + btns + "</div>" +
+        '<div class="note-other" hidden><input type="text" maxlength="30" placeholder="是哪個字？（可不填）" aria-label="是哪個字？（可不填）"><button class="outline-btn" type="button" data-send>送出</button></div>' +
+        '<div class="note-small"><button type="button" data-r="misclick">按錯了</button><button type="button" data-skip>略過</button></div>', "note"));
+      show(node);
+      function lock(el) { node.querySelectorAll("button").forEach(function (b) { b.disabled = true; }); if (el) el.classList.add("picked"); }
+      function record(reason, other) {
+        if (settled) return; settled = true;
+        var g = { word: w.k, picked: a.picked, result: a.ok ? "correct" : "wrong", ms: Math.round(a.rt * 1000), reason: reason };
+        if (other) g.other = other;
+        got.push(g); track("quiz_note_answer", { reason: reason });
+        next();
+      }
+      track("quiz_note_shown", { n: i });
+      node.addEventListener("click", function (e) {
+        var skip = e.target.closest("[data-skip]"), r = e.target.closest("[data-r]"), send = e.target.closest("[data-send]");
+        if (settled) return;
+        if (skip) { settled = true; lock(skip); track("quiz_note_skip"); return next(); }
+        if (send) { var v = node.querySelector(".note-other input").value.trim().slice(0, 30); lock(send); return record("lookalike", v); }
+        if (!r) return;
+        if (r.dataset.r === "lookalike") {
+          var box = node.querySelector(".note-other"); box.hidden = false; r.classList.add("picked");
+          node.querySelectorAll(".quiz-opt").forEach(function (b) { b.disabled = true; });
+          var inp = box.querySelector("input"); inp.focus();
+          inp.addEventListener("keydown", function (ev) { if (ev.key === "Enter") { ev.preventDefault(); node.querySelector("[data-send]").click(); } });
+          return;
+        }
+        lock(r); record(r.dataset.r);
+      });
+    }
+    next();
   }
 
   function shareText(R) {
@@ -441,10 +520,14 @@
       attempt_no: plays, is_best: isBest, self_estimate: g,
       challenge: rv ? { rival_vocab: rv.v, rival_sec: rv.sec, won: won } : null,
       vocab: v, theta: Math.round(thetaOf(ans) * 100) / 100, correct: correct, total_ms: Math.round(ms),
-      answers: ans.map(function (a, n) { return { n: n + 1, word: a.w.k, level: a.level, result: a.ok ? "correct" : a.kind === "pick" ? "wrong" : a.kind, picked: a.picked || null, options: a.options, ms: Math.round(a.rt * 1000) }; })
+      answers: ans.map(function (a, n) { return { n: n + 1, word: a.w.k, level: a.level, result: a.ok ? "correct" : a.kind === "pick" ? "wrong" : a.kind, picked: a.picked || null, options: a.options, ms: Math.round(a.rt * 1000), hid: !!a.hid }; })
     };
+    if (QV) RUN.qv = QV;
     track("complete", { vocab: v });
+    var savedRun = saveAndRank(R, RUN), items = noteArm() ? noteItems(ans) : [];
+    if (items.length) askNotes(items, savedRun, function () { showResult(); }); else showResult();
 
+    function showResult() {
     var card = add('<section class="result slide reveal" aria-label="成績">' + duel +
       '<div class="hero">' +
         '<div class="hero-head">你的英文單字量</div>' +
@@ -469,7 +552,7 @@
         '<textarea class="share" id="shareText" readonly aria-label="會貼到脆上的文字"></textarea>' +
         '<button class="outline-btn" id="copyBtn" type="button">複製文字</button></details></section>');
     paintShare();
-    saveAndRank(R, RUN);
+    applyRank(R);
     countUp(card.querySelector(".vocab-n"), Math.max(500, Math.min(v, TOTAL)), num);
     card.querySelector("#shareBtn").addEventListener("click", function () {
       // 保險：先把文字放進剪貼簿。有些手機環境打開脆時不會帶入預填文字，使用者可以直接貼上
@@ -535,6 +618,7 @@
       io.observe(gate);
     }
     show(card, "start");
+    }
   }
   function paintShare() {
     var text = shareText(lastResult);

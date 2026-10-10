@@ -189,3 +189,14 @@ textarea.share { width: 100%; min-height: 156px; resize: vertical; border: 0; bo
   -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
 }
 .post.live .vocab.target, .post.done .vocab.target { pointer-events: none; }
+
+/* 作答方式回饋（成績公布前） */
+.note-q { margin: 12px 0 0; font-weight: 600; font-size: 15px; }
+.quiz-opt.picked { background: color-mix(in srgb, var(--text) 16%, var(--bg-soft)); }
+.quiz-opt:disabled, .note-small button:disabled { opacity: .7; cursor: default; }
+.note-other { display: flex; gap: 8px; margin-top: 10px; }
+.note-other[hidden] { display: none; }
+.note-other input { flex: 1; min-width: 0; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: 16px; }
+.note-other .outline-btn { flex: none; width: auto; padding: 0 16px; }
+.note-small { display: flex; justify-content: center; gap: 18px; margin-top: 10px; }
+.note-small button { padding: 6px 10px; font-size: 13px; color: var(--muted); text-decoration: underline; }

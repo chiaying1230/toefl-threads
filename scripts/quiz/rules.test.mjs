@@ -21,8 +21,8 @@ const FIELD = "v55_t7";                       // vocab 5,500 → bucket 55; 72 s
 const run = (over = {}) => ({
   date: today, createdAt: serverTimestamp(), device: "dev-12345678", attempt_no: 1, is_best: true, self_estimate: null,
   challenge: null, vocab: 5500, theta: 0.4, correct: 9, total_ms: 72000,
-  answers: Array.from({ length: 15 }, (_, i) => ({ n: i + 1, word: "w" + i, level: 3, result: "correct", picked: "x", options: ["x", "y", "z", "w"], ms: 2000 })),
-  source: "web", ...over
+  answers: Array.from({ length: 15 }, (_, i) => ({ n: i + 1, word: "w" + i, level: 3, result: "correct", picked: "x", options: ["x", "y", "z", "w"], ms: 2000, hid: false })),
+  source: "web", qv: "5145ab15", ...over
 });
 const db = () => anon;
 const ids = { run: "run-0000001" };
@@ -117,7 +117,7 @@ test("other quizStats documents are read-only", async () => {
 
 test("result validation: bad values are rejected", async () => {
   const bad = [
-    { vocab: 11001 }, { vocab: -1 }, { vocab: 5500.5 }, { total_ms: 4999 }, { total_ms: 200001 },
+    { qv: "x".repeat(21) }, { qv: 5 }, { vocab: 11001 }, { vocab: -1 }, { vocab: 5500.5 }, { total_ms: 4999 }, { total_ms: 200001 },
     { answers: [] }, { correct: 16 }, { extra: "x" }, { attempt_no: 0 }, { device: "x" }
   ];
   for (const [i, o] of bad.entries()) {
@@ -132,7 +132,63 @@ test("result with a challenge and a self estimate is accepted", async () => {
 });
 
 test("existing rules still work: meta probe and an unrelated collection", async () => {
-  await assertSucceeds(getDoc(doc(db(), "meta", "rules-v8")));
-  await assertFails(getDoc(doc(db(), "meta", "rules-v7")));
+  await assertSucceeds(getDoc(doc(db(), "meta", "rules-v9")));
+  await assertFails(getDoc(doc(db(), "meta", "rules-v8")));
   await assertFails(getDoc(doc(db(), "users", "someone")));
+});
+
+// ---- quizNotes ----
+const noteRun = "run-0000100", noteDevice = "dev-12345678";
+const note = (over = {}) => ({ run: noteRun, device: noteDevice, word: "hole", picked: "洞", result: "correct", ms: 8200, reason: "sure", createdAt: serverTimestamp(), ...over });
+const noteDoc = (d, over) => doc(d, "quizNotes", (over && over.run || noteRun) + "_" + (over && over.word || "hole"));
+const withRun = async () => { await assertSucceeds(setDoc(doc(db(), "quizRuns", noteRun), run())); };
+
+test("a note for an existing run is accepted (every reason)", async () => {
+  await withRun();
+  await assertSucceeds(setDoc(noteDoc(db()), note()));
+  for (const r of ["torn", "affix", "forgot", "guess", "misclick"]) await assertSucceeds(setDoc(noteDoc(db(), { word: "w" + r }), note({ word: "w" + r, reason: r, result: "wrong" })));
+});
+
+test("a lookalike note may carry other_word", async () => {
+  await withRun();
+  await assertSucceeds(setDoc(noteDoc(db()), note({ reason: "lookalike", other_word: "adopt" })));
+  await assertSucceeds(setDoc(noteDoc(db(), { word: "w2" }), note({ word: "w2", reason: "lookalike" })));
+});
+
+test("an unknown reason is rejected", async () => {
+  await withRun();
+  await assertFails(setDoc(noteDoc(db()), note({ reason: "bored" })));
+  await assertFails(setDoc(noteDoc(db()), note({ reason: "skip" })));
+});
+
+test("a note for a run that does not exist is rejected", async () => {
+  await assertFails(setDoc(noteDoc(db()), note()));
+});
+
+test("a note with an extra field is rejected", async () => {
+  await withRun();
+  await assertFails(setDoc(noteDoc(db()), note({ comment: "hi" })));
+});
+
+test("other_word is only allowed with reason lookalike", async () => {
+  await withRun();
+  await assertFails(setDoc(noteDoc(db()), note({ reason: "sure", other_word: "adopt" })));
+  await assertFails(setDoc(noteDoc(db()), note({ reason: "lookalike", other_word: "x".repeat(31) })));
+});
+
+test("a note must match its run's device, its own id, and use the server time", async () => {
+  await withRun();
+  await assertFails(setDoc(noteDoc(db()), note({ device: "dev-someone-else" })));
+  await assertFails(setDoc(doc(db(), "quizNotes", "something-else"), note()));
+  await assertFails(setDoc(noteDoc(db()), note({ createdAt: new Date(2020, 1, 1) })));
+  await assertFails(setDoc(noteDoc(db()), note({ result: "skip" })));
+  await assertFails(setDoc(noteDoc(db()), note({ ms: -1 })));
+});
+
+test("notes can't be read, changed, deleted or overwritten", async () => {
+  await withRun();
+  await assertSucceeds(setDoc(noteDoc(db()), note()));
+  await assertFails(getDoc(noteDoc(db())));
+  await assertFails(updateDoc(noteDoc(db()), { reason: "guess" }));
+  await assertFails(setDoc(noteDoc(db()), note({ reason: "guess" })));
 });
