@@ -1,3 +1,2 @@
-# progress / logs are local run state; the finished out/*.js files can be reviewed and committed
-out/*.progress.jsonl
-out/*.log
+# out/ is local run state. Finished threads go into data-src/threads/<pack>.txt via to-threads.mjs.
+out/
