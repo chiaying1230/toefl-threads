@@ -3,6 +3,6 @@
   "private": true,
   "description": "Push notification sender for toEfu (runs on GitHub Actions)",
   "dependencies": {
-    "firebase-admin": "^12.7.0"
+    "firebase-admin": "^14.5.0"
   }
 }

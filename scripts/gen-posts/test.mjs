@@ -39,7 +39,7 @@ test("review prompt lists drafts and the OK protocol", () => {
 test("system prompt carries the naturalness / facts rules", () => {
   const { CHARACTERS } = L.loadSite();
   const sys = L.buildSystem({ characters: CHARACTERS, examples: {}, authors: ["ann"] })[0].text;
-  assert.ok(/non sequiturs/.test(sys) && /Soviet Union/.test(sys) && /sentence where its meaning can be inferred/.test(sys));
+  assert.ok(/non sequiturs/.test(sys) && /Soviet Union/.test(sys) && /let a learner infer the meaning/.test(sys));
 });
 
 test("easy profile rejects very long sentences, allows normal ones", () => {

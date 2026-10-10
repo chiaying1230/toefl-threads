@@ -154,20 +154,22 @@ async function run({ db, send, Timestamp, FieldValue, now = new Date(), log = co
 module.exports = { run };
 
 if (require.main === module) {
-  const admin = require("firebase-admin");
+  const { initializeApp, cert } = require("firebase-admin/app");
+  const { getFirestore, Timestamp, FieldValue } = require("firebase-admin/firestore");
+  const { getMessaging } = require("firebase-admin/messaging");
   const emulator = !!process.env.FIRESTORE_EMULATOR_HOST;
   if (!process.env.FIREBASE_SERVICE_ACCOUNT && !emulator) {
     console.log("FIREBASE_SERVICE_ACCOUNT secret is not set yet — nothing to do.");
     process.exit(0);
   }
-  admin.initializeApp(emulator
+  initializeApp(emulator
     ? { projectId: process.env.GCLOUD_PROJECT || "demo-toefl" }
-    : { credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
-  const db = admin.firestore();
+    : { credential: cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
+  const db = getFirestore();
   run({
     db,
-    send: (msg) => admin.messaging().send(msg),
-    Timestamp: admin.firestore.Timestamp,
-    FieldValue: admin.firestore.FieldValue
+    send: (msg) => getMessaging().send(msg),
+    Timestamp,
+    FieldValue
   }).then(() => process.exit(0)).catch((e) => { console.error(e); process.exit(1); });
 }

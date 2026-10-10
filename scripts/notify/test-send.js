@@ -1,11 +1,11 @@
 // Emulator test for send.js:  firebase emulators:exec --only firestore "node scripts/notify/test-send.js"
 const assert = require("assert");
-const admin = require("firebase-admin");
+const { initializeApp } = require("firebase-admin/app");
+const { getFirestore, Timestamp, FieldValue } = require("firebase-admin/firestore");
 const { run } = require("./send");
 
-admin.initializeApp({ projectId: process.env.GCLOUD_PROJECT || "demo-toefl" });
-const db = admin.firestore();
-const { Timestamp, FieldValue } = admin.firestore;
+initializeApp({ projectId: process.env.GCLOUD_PROJECT || "demo-toefl" });
+const db = getFirestore();
 
 async function main() {
   const sent = [];
