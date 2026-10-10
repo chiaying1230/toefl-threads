@@ -567,7 +567,7 @@
 
   // ---------- Quiz ----------
   function quizPool() {
-    var saved = Object.keys(st().words);
+    var saved = loadedWordKeys();
     if (saved.length >= 4) return saved;
     var fromSeen = [];
     Object.keys(S.seen).forEach(function (id) {
@@ -1059,14 +1059,20 @@
   var openWord = null;
   var deck = [], deckIndex = 0, flipped = false, knownCount = 0, practiceAll = false;
 
+  // Saved words whose word list is loaded. A word saved from another list (or from /quiz) stays saved
+  // and shows up once its list arrives; until then it would have no meaning or example to show.
+  function loadedWordKeys() {
+    return Object.keys(st().words).filter(function (k) { return VOCAB[k]; });
+  }
+
   function savedKeys() {
     var w = st().words;
-    return Object.keys(w).sort(function (a, b) { return w[b].addedAt - w[a].addedAt; });
+    return loadedWordKeys().sort(function (a, b) { return w[b].addedAt - w[a].addedAt; });
   }
 
   function dueKeys() {
     var w = st().words, now = Date.now();
-    return Object.keys(w).filter(function (k) { return C.isDue(w[k], now); });
+    return loadedWordKeys().filter(function (k) { return C.isDue(w[k], now); });
   }
 
   function renderReview() {
@@ -1585,7 +1591,7 @@
   var challenge = [];
 
   function pickChallenge() {
-    var pool = Object.keys(st().words);
+    var pool = loadedWordKeys();
     if (pool.length < 3) {
       pool = C.activePool(st().prefs);
     }
