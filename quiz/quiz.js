@@ -80,7 +80,7 @@
 
   var feed = document.getElementById("feed"), barStat = document.getElementById("barStat");
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var NOTE_RATE = 0.5;   // 問「你是怎麼選的」的裝置比例（用 device 決定，同一裝置固定出現或固定不出現）
+  var NOTE_RATE = 1;   // 問「你是怎麼選的」的裝置比例：目前每個裝置都問（小於 1 時用 device 決定，同一裝置固定出現或固定不出現）
   var QV = typeof window.QUIZ_QV === "string" ? window.QUIZ_QV.slice(0, 20) : null;
   var S = null, ticker = null, qTimer = null, lastResult = null, history = [];
   // 這個裝置累計的挑戰次數和歷史最佳，存在 localStorage（讀不到就退回只存在記憶體，行為和以前一樣）
@@ -433,7 +433,7 @@
     }).catch(function () { return null; });
   }
 
-  // ---- 作答方式回饋（quizNotes）：成績公布前，隨機請部分作答者回想最多 2 題是怎麼選的 ----
+  // ---- 作答方式回饋（quizNotes）：成績公布前，請作答者回想最多 2 題是怎麼選的 ----
   var NOTE_REASONS = [["sure", "我會，很確定"], ["torn", "在兩個答案之間猶豫"], ["lookalike", "想到另一個很像的字"], ["affix", "看字的一部分猜的"], ["forgot", "有印象，但想不起來"], ["guess", "用猜的"]];
   function noteArm() { return parseInt(deviceId().slice(0, 8), 16) / 4294967296 < NOTE_RATE; }
   // 答錯的題目優先（最多 2 題）；不足 2 題時補 1 題答對但明顯比較久（超過中位數 1.5 倍、頁面沒被切到背景）的題目。依題號排序，不洩漏對錯。

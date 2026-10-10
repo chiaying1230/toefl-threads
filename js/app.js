@@ -1168,9 +1168,9 @@
   // ---------- Review quiz: pick the meaning; sometimes say how you chose (docs/review-quiz-spec.md) ----------
   // Questions for words in the /quiz bank reuse its sentence and hand-picked wrong answers; other words use the
   // word list's example and wrong answers from words with the same part of speech. Each answer moves the word in
-  // spaced repetition like a flashcard. For half of the devices (same anonymous id as /quiz), a few answers are
+  // spaced repetition like a flashcard. On every device (RQ_NOTE_RATE; same anonymous id as /quiz), a few answers are
   // followed by "how did you choose?" before the answer is shown; finished rounds are saved anonymously.
-  var RQ_MAX = 10, RQ_NOTE_DAY_MAX = 6, RQ_NOTE_RATE = 0.5, RQ_NOTE_KEY = "toefu.reviewNotesDay";
+  var RQ_MAX = 10, RQ_NOTE_DAY_MAX = 6, RQ_NOTE_RATE = 1, RQ_NOTE_KEY = "toefu.reviewNotesDay";
   // Same wording as /quiz so the answers can be compared.
   var RQ_REASONS = [["sure", "我會，很確定"], ["torn", "在兩個答案之間猶豫"], ["lookalike", "想到另一個很像的字"], ["affix", "看字的一部分猜的"], ["forgot", "有印象，但想不起來"], ["guess", "用猜的"]];
   var rq = null;              // the current round
