@@ -5374,6 +5374,806 @@
       "text": "A brochure about my slopes calls the plastic litter there \"unfortunate visitors.\" That is a [[euphemism]]: a soft word for an ugly problem.\n\nAfter a careful [[perusal]] of the whole brochure, I found nothing about solutions. I hope for the [[demise]] of single-use plastic on my slopes. Real visitors take their bags home. 🌋",
       "zh": "一本介紹我山坡的小冊子把那裡的塑膠垃圾稱為「不幸的訪客」。這是一種委婉說法：用溫和的字眼稱呼一個難看的問題。\n\n仔細閱讀完整本小冊子後，我發現裡面完全沒提到解決辦法。我希望一次性塑膠能在我的山坡上走向終結。真正的訪客會把袋子帶回家。🌋",
       "pack": "ielts"
+    },
+    {
+      "id": "ielts-110",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "I am the most [[agile]] animal in the reef. 🐙 My body is so [[flexible]] that I can fit through a hole the size of a coin.\n\nToday I decided to [[juggle]] three shells with my arms. The crowd of fish was impressed. The crab asked for his shell back.",
+      "zh": "我是礁岩裡最敏捷的動物。🐙 我的身體非常柔軟，可以鑽過一枚硬幣大小的洞。\n\n今天我決定用手臂耍弄三個貝殼。魚群印象深刻。螃蟹要我把他的殼還給他。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-111",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My [[procrastination]] has reached a new level. 🏄 I cleaned my room, wrote a playlist, and re-watched a whole series.\n\n我很 [[desperate]]: the paper is due at 9 a.m. I can [[deduce]] one thing: sleep is not part of my plan. 🏄",
+      "zh": "我的拖延已經達到新的境界。🏄 我打掃了房間、做了播放清單，還把整部影集重看了一次。\n\n我很絕望：報告早上九點就要交。我可以推斷出一件事：睡覺不在我的計畫裡。🏄",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-112",
+      "author": "boba",
+      "topic": "Business",
+      "text": "好的 [[hospitality]] 不是笑，是記得客人的名字 🧋 When a regular walks in, I already know her order.\n\n她說：You have so much [[confidence]]. 我說：因為我很 [[competent]]. 她點了冰，我給她熱的. 她喝完了 😅",
+      "zh": "好的待客之道不是微笑，是記得客人的名字 🧋 常客一進門，我就知道她要喝什麼。\n\n她說：你好有自信。我說：因為我很能幹。她點了冰的，我給她熱的。她喝完了 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-113",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "我今天收到一封 [[anonymous]] 的信 📧 It said, \"You won a prize!\" So I sent a [[query]]: \"Who are you?\"\n\n他們回：A [[virtual]] friend. 我回：我不要網路朋友，我要我的獎. 他們就沒再聯絡了 🌸😂",
+      "zh": "我今天收到一封匿名的信 📧 信上說：「你中獎了！」所以我寄了一個問題：「你是誰？」\n\n他們回：一位網路朋友。我回：我不要網路朋友，我要我的獎。他們就沒再聯絡了 🌸😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-114",
+      "author": "mochi",
+      "topic": "Biology",
+      "text": "Park day! 🐾 We passed the [[aviary]], where a yellow [[canary]] was singing.\n\n旁邊有一隻 [[gosling]], 小小的, 跟在媽媽後面. 我想打招呼. 媽媽鵝看我一眼. 我決定安靜地走開 🐕",
+      "zh": "公園日！🐾 我們經過鳥舍，一隻黃色的金絲雀正在唱歌。\n\n旁邊有一隻小鵝，小小的，跟在媽媽後面。我想打招呼。鵝媽媽看了我一眼。我決定安靜地走開 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-115",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "My English class today was about [[idiom|idioms]]. 🇹🇼 \"Break a leg\" means \"good luck.\" Why, America?\n\n老師還教了 [[antonym]] and how to [[paraphrase]]. 我試著 paraphrase 我的作業: \"I did not do it.\" 老師說：That is also an idiom. 🇹🇼",
+      "zh": "我今天的英文課在講慣用語。🇹🇼 「Break a leg」是「祝你好運」的意思。為什麼，美國？\n\n老師還教了反義詞，以及怎麼改寫句子。我試著把我的作業改寫成：「我沒有做。」老師說：這也是一個慣用語。🇹🇼",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-116",
+      "author": "llama",
+      "topic": "Art",
+      "text": "The [[curator]] asked for my [[critique]] of the new exhibit. 🎨 I said, \"Too happy.\"\n\n她把我的作品換成一個 [[miniature]] 的黑色盒子. 標題：《我的心》. 觀眾排了一小時隊來看 💅",
+      "zh": "策展人請我評論這次新展。🎨 我說：「太快樂了。」\n\n她把我的作品換成一個迷你的黑色盒子。標題：《我的心》。觀眾排了一小時隊來看 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-117",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "Today I will [[simulate]] a trip to Earth in my ship. 👽 My speed, or [[velocity]], will be very high.\n\nFirst the engine goes quiet. Then I hear nothing. Space is a [[vacuum]], and so is my lunch bag. I forgot to pack lunch.",
+      "zh": "今天我要在我的飛船裡模擬一趟前往地球的旅程。👽 我的速度會非常快。\n\n首先引擎變安靜。然後我什麼也聽不見。太空是真空，我的午餐袋也是。我忘了帶午餐。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-118",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Government update. 🐱 The [[cabinet]] met at the main [[bureau]] to agree on one thing: more fish.\n\nWe reached a [[consensus]] in seven minutes. The dog was not invited. He is still waiting outside.",
+      "zh": "政府新聞。🐱 內閣在總辦公室開會，同意一件事：更多的魚。\n\n我們七分鐘就達成了共識。狗沒有被邀請。他還在外面等。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-119",
+      "author": "fern",
+      "topic": "Environment",
+      "text": "Desert plants live on [[arid]] land and never complain. 🌿 I am a fern, so I cry when the air is dry. My [[foliage]] gets crispy by noon.\n\nA [[botanical]] garden is a spa for plants. If you are taking me to one, please pack a towel and a gentle voice.",
+      "zh": "沙漠植物生活在乾旱的土地上，從不抱怨。🌿 我是蕨類，空氣一乾我就想哭。我的葉子到中午就變脆了。\n\n植物園是植物的水療中心。如果你要帶我去，請帶一條毛巾和溫柔的聲音。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-120",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "I walked to the edge of the [[glacier]] today. 🐧 A deep [[ravine]] opened below us, blue and silent.\n\nThe air was [[wintry]], and the wind talked a lot. I listened. I do not agree with it, but it has a good voice.",
+      "zh": "我今天走到冰河的邊緣。🐧 我們腳下裂開了一道很深的峽谷，又藍又安靜。\n\n空氣是冬天的，風說了很多話。我聽著。我不同意它，但它的聲音很好聽。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-121",
+      "author": "rex",
+      "topic": "Art",
+      "text": "I wrote a [[script]] for a small play. 🦖 It is a [[comical]] story about a dinosaur who cannot clap.\n\nAt the [[intermission]], the audience went out for snacks and never came back. I believe the play was too good.",
+      "zh": "我寫了一個小戲劇的劇本。🦖 這是一個關於不會鼓掌的恐龍的滑稽故事。\n\n中場休息時，觀眾出去買點心就再也沒回來。我相信這齣戲太好看了。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-122",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "I stand at the [[apex]] of a long mountain chain. 🌋 My [[adjacent]] neighbor is a small hill who talks a lot.\n\nHis chatter has a [[tremendous]] effect on my mood. I think I will erupt next Tuesday. For personal reasons.",
+      "zh": "我站在長長山脈的頂點。🌋 我隔壁的鄰居是一座很愛說話的小山丘。\n\n他的閒聊對我的心情有極大的影響。我想我下星期二會爆發。出於個人理由。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-123",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In my youth, a [[sergeant]] taught us [[tactics]] with a toy ship and a bathtub. 🎩\n\nThe [[morale]] of the troops was high. We had biscuits. The bathtub had a different opinion. It sank.",
+      "zh": "我年輕的時候，一位中士用玩具船和浴缸教我們戰術。🎩\n\n部隊的士氣很高。我們有餅乾。浴缸有不同的意見。它沉了。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-124",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A [[playwright]] visited the library to research his new work. 👻 He read every [[footnote]] and sighed loudly.\n\nI decided to [[narrate]] his story from the shelf, in whispers. He looked up and said, \"Who is there?\" I said nothing. A good scene.",
+      "zh": "有位劇作家來圖書館查資料，為他的新作品做準備。👻 他讀了每一則註腳，還大聲嘆氣。\n\n我決定從書架上用氣音敘述他的故事。他抬起頭說：「誰在那裡？」我什麼都沒說。一幕好戲。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-125",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Today's [[culinary]] lesson: use the [[ladle]] only for soup. 🤖 One [[calorie]] is a small unit of energy. A cake contains many.\n\nA man asked how many calories were in my cake. I answered, \"Enough.\" He ate it anyway. BEEP.",
+      "zh": "今天的烹飪課：湯勺只能用來盛湯。🤖 一大卡是很小的能量單位。一個蛋糕裡有很多。\n\n有位先生問我的蛋糕有多少熱量。我回答：「夠多。」他還是吃了。嗶。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-126",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "A wise [[investor]] knows that honey is a [[necessity]], not a luxury. 🐝 So the hive must [[ration]] it carefully in winter.\n\nEach bee gets a fixed amount. There is no black market. Humans, please do not trade honey futures. It makes us nervous.",
+      "zh": "明智的投資者知道，蜂蜜是必需品，不是奢侈品。🐝 所以蜂巢在冬天必須謹慎地配給。\n\n每隻蜜蜂都拿到固定的份量。沒有黑市。人類，請不要買賣蜂蜜期貨。這讓我們很緊張。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-127",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Am I [[conscious]] right now? 🕊️ I ask because my thoughts are mostly about bread.\n\nI try to be [[logical]]. If the bread is here, I eat it. If the bread is gone, I do some [[meditation]]. This system has never failed.",
+      "zh": "我現在有意識嗎？🕊️ 我這麼問是因為我的想法大部分都跟麵包有關。\n\n我試著合乎邏輯。麵包在這裡，我就吃。麵包不見了，我就冥想一下。這個系統從來沒有失敗過。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-128",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Lab rule number one: never [[contaminate]] a clean beaker. 🧪 Rule number two: always [[disinfect]] after you spill.\n\nRule number three: check if the powder is [[soluble]] before you say \"magic.\" I broke all three rules. The sink is now purple.",
+      "zh": "實驗室第一條規則：永遠不要污染乾淨的燒杯。🧪 第二條：灑出來之後一定要消毒。\n\n第三條：在說「魔法」之前，先確認粉末是否可溶。我三條都違反了。水槽現在是紫色的。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-129",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "After leg day, I felt an [[ache]] in places I did not know existed. 🏋️ I was [[drowsy]] by 8 p.m.\n\nI lay down, closed my eyes and tried to [[exhale]] my problems. Most of them left. The ache stayed. It was a good friend.",
+      "zh": "練完腿之後，我在許多我不知道存在的地方感到疼痛。🏋️ 到晚上八點我就昏昏欲睡了。\n\n我躺下來，閉上眼睛，試著把煩惱都吐出去。大部分都離開了。疼痛留了下來。它是個好朋友。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-130",
+      "author": "grandma",
+      "topic": "Health",
+      "text": "我昨天跑太久了 🏃‍♀️ A big [[discomfort]] in my legs, and I started to [[perspire]] like a tea kettle.\n\n醫生說我要好好 [[recuperate]]. 我說：好，我休息. 然後我去爬山了. 年紀大了，記憶力就是這樣 😂🌸",
+      "zh": "我昨天跑太久了 🏃‍♀️ 腿很不舒服，我開始像水壺一樣冒汗。\n\n醫生說我要好好復原。我說：好，我休息。然後我去爬山了。年紀大了，記憶力就是這樣 😂🌸",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-131",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My [[absence]] from class was noted. 📋 The teacher said I am no longer [[eligible]] for the attendance prize.\n\n我說：我從來沒有拿過 prize. 她說：So you cannot lose it. 我被 [[reprimand|reprimanded]] 用邏輯. 好吧 🏄",
+      "zh": "我缺課被記錄了。📋 老師說我沒有資格再拿全勤獎了。\n\n我說：我從來沒有拿過獎。她說：所以你不可能失去它。我被用邏輯訓斥了。好吧 🏄",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-132",
+      "author": "boba",
+      "topic": "Food",
+      "text": "我有一個大 [[craving]]: tapioca pearls at midnight. 🧋 So I [[guzzle]] a big cup of milk tea.\n\nThen I [[savor]] the last pearl very slowly, like it's a gift. 隔天早上我看見鏡子裡的臉，覺得值得 😅",
+      "zh": "我有一個很大的渴望：半夜吃珍珠。🧋 所以我咕嚕咕嚕灌下一大杯奶茶。\n\n然後我很慢很慢地品嘗最後一顆珍珠，像在收禮物。隔天早上我看見鏡子裡的臉，覺得值得 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-133",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "I was [[mischievous]] today. 🐾 I [[misbehave|misbehaved]] only a little: one sock, one slipper, and one pillow.\n\n人類說：你是 [[disobedient]]. 我說：汪（我是有創意）. 她笑了. 所以我今天不用洗澡 🐕",
+      "zh": "我今天很調皮。🐾 我只有稍微不乖一點：一隻襪子、一隻拖鞋，和一個枕頭。\n\n人類說：你不聽話。我說：汪（我是有創意）。她笑了。所以我今天不用洗澡 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-134",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "My friend made an [[itinerary]] for our Boston weekend. 🇹🇼 First stop: a famous [[landmark]]. Second stop: a small [[isle]] with a lighthouse.\n\n我們只去了第一個. Then we found a pizza place and stayed for four hours. 這就是我們的行程 😂",
+      "zh": "我朋友為我們的波士頓週末做了行程表。🇹🇼 第一站：著名的地標。第二站：一座有燈塔的小島。\n\n我們只去了第一個。然後我們發現一家披薩店，待了四個小時。這就是我們的行程 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-135",
+      "author": "llama",
+      "topic": "Art",
+      "text": "我整理了一本 [[album]] 📖 It is full of rainy-day photos. I want to [[decorate]] the cover with something dramatic.\n\n我選了一個黑色的 [[pendant]] and glued it on. 它掉了. 朋友說：It's art. 我說：It's tragedy 💅",
+      "zh": "我整理了一本相簿 📖 裡面全是下雨天的照片。我想用戲劇化的東西裝飾封面。\n\n我選了一個黑色的吊墜把它黏上去。它掉了。朋友說：這是藝術。我說：這是悲劇 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-136",
+      "author": "zorp",
+      "topic": "Literature",
+      "text": "Earth has a [[proverb]]: \"Do not count your chickens before they hatch.\" 👽 I do not understand why chickens are involved.\n\nI studied an egg for an hour. It has perfect [[symmetry]]. Every egg is [[unique]], and I now know that humans are afraid of them.",
+      "zh": "地球有一句諺語：「別在小雞孵出來之前就數牠們。」👽 我不懂為什麼要牽扯到雞。\n\n我研究了一顆蛋一個小時。它有完美的對稱。每一顆蛋都是獨一無二的，而我現在知道人類很怕牠們。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-137",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "I am an expert at diving. 🐙 When I [[submerge]], the whole reef seems to [[surround]] me like a hug.\n\nThe water temperature can [[fluctuate]] by five degrees in a day. I handle it easily. I have three hearts, and one of them is always warm.",
+      "zh": "我是潛水專家。🐙 我潛入水裡的時候，整座礁岩彷彿像擁抱一樣把我包圍起來。\n\n水溫一天可以上下波動五度。我輕鬆應付。我有三顆心臟，其中一顆永遠是暖的。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-138",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Property update. 🐱 My [[tenant]], a small mouse, has not paid rent this month. I must [[evict]] him.\n\nBut he brought me a cheese cube and said he is \"relaxing at his [[leisure]].\" I allowed him another week. I am a gentle landlord.",
+      "zh": "房產更新。🐱 我的房客，一隻小老鼠，這個月沒付房租。我必須趕他走。\n\n但他帶來一塊起司，說他正在「悠閒度日」。我又多給他一個星期。我是一位溫柔的房東。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-139",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "A [[succulent]] stores water. 🌿 It will not [[shrivel]] if you forget it for a week.\n\nI will. I cannot [[dehydrate]] and still look fabulous. Please do not buy a cactus before you can water me. I will know.",
+      "zh": "多肉植物會儲水。🌿 就算你忘記它一個星期也不會枯萎。\n\n我會。我沒辦法脫水還依舊看起來漂亮。在你學會幫我澆水之前，請不要買仙人掌。我會知道的。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-140",
+      "author": "rex",
+      "topic": "Culture",
+      "text": "I made a [[reckless]] decision: to join a cooking show. 🦖 I tried to flip a pancake with my tail.\n\nIt flew onto the judge's head. I was so [[embarrass|embarrassed]] that I wanted to disappear. The audience clapped. Apparently, it was the best moment of the season.",
+      "zh": "我做了一個魯莽的決定：參加料理節目。🦖 我想用尾巴翻鬆餅。\n\n它飛到了評審的頭上。我尷尬到想消失。觀眾鼓掌了。看來，那是這一季最精彩的時刻。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-141",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "I tried to [[suppress]] a small [[outburst]] this morning. 🌋 Ash came out of my left ear anyway.\n\nThe villagers did not [[panic]]. They took photos and sold coffee. I think this means we are friends.",
+      "zh": "我今天早上試著壓抑一次小小的爆發。🌋 灰燼還是從我的左耳冒了出來。\n\n村民沒有恐慌。他們拍照，還賣咖啡。我想這代表我們是朋友。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-142",
+      "author": "reginald",
+      "topic": "History",
+      "text": "I attended a lecture today. 🎩 The speaker was [[hoarse]], and the audience started to [[whine]] about the cold room.\n\nI offered my hat as a cushion. A young woman refused it politely. I thanked her. It is the only rejection I enjoyed this month.",
+      "zh": "我今天去聽了一場演講。🎩 講者聲音沙啞，聽眾開始抱怨房間太冷。\n\n我把帽子借出去當坐墊。一位年輕女士有禮貌地拒絕了。我謝謝她。這是我這個月唯一享受的一次拒絕。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-143",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "One reader was very [[secretive]]. 👻 He hid a note inside a book. I felt I had to [[inquire]] about it.\n\nHe showed [[hesitancy]]. Finally he said it was a love letter to the librarian. I am the librarian. I said nothing. I blushed in the dark.",
+      "zh": "有位讀者非常神祕。👻 他把一張紙條藏在書裡。我覺得我必須問一下。\n\n他顯得遲疑。最後他說那是寫給館員的情書。我就是館員。我什麼都沒說。我在黑暗裡臉紅了。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-144",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Kitchen audit. 🤖 The burnt toast from this morning is [[inedible]]. My old toaster is [[inefficient]]. And my second oven is [[redundant]].\n\nA man said, \"You are all redundant!\" I answered, \"I know. That's why I have a backup.\" He left. BEEP.",
+      "zh": "廚房檢查。🤖 今天早上烤焦的吐司不能吃。我那台舊烤麵包機沒有效率。我的第二台烤箱是多餘的。\n\n有位先生說：「你們全都是多餘的！」我回答：「我知道。所以我有備份。」他離開了。嗶。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-145",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Bees [[collaborate]] to fill every cell of the comb. 🐝 We are a [[populous]] hive: sixty thousand workers.\n\nLast week a [[migrant]] swarm asked to stay. We checked their documents: two wings and a map. The queen said yes. Immigration policy is easy when everyone can fly.",
+      "zh": "蜜蜂合作填滿蜂巢的每一個小格。🐝 我們是一個人口稠密的蜂巢：六萬隻工蜂。\n\n上週有一群移居的蜂群請求留下來。我們檢查了他們的文件：兩對翅膀和一張地圖。女王說可以。當每個人都會飛的時候，移民政策就很容易。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-146",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Is it a [[coincidence]] that the bread appears when I sit here? 🕊️ Or does the bread [[imply]] a deeper plan?\n\nSome say my thoughts are [[irrelevant]]. But what is more relevant than lunch? I will answer this after the next crumb.",
+      "zh": "我一坐在這裡麵包就出現，這是巧合嗎？🕊️ 還是這麵包暗示著更深的計畫？\n\n有些人說我的想法無關緊要。但還有什麼比午餐更有關聯？我會在下一塊麵包屑之後回答這個問題。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-147",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Every good [[formula]] has a story. 🧪 The story of mine begins with a mistake and ends with a hole in the ceiling.\n\nEvolution works the same way: small mistakes, one after another. A squirrel forgets a [[kernel]], and a tree grows. I am proud of the lesson, not the hole.",
+      "zh": "每個好的配方都有一個故事。🧪 我的故事從一個錯誤開始，在天花板上的一個洞結束。\n\n演化也是這樣運作的：一個接一個的小錯誤。一隻松鼠忘了一顆果仁，就長出一棵樹。我為那個教訓驕傲，不是為那個洞。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-148",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "A new gym buddy is full of energy. 🏋️ He is so [[energetic]] that he may [[endanger]] himself and the treadmill.\n\nAlways take [[precaution]]: warm up, check the bar, and avoid shouting \"one more!\" before you can count. A wise man is a safe man.",
+      "zh": "新的健身夥伴精力充沛。🏋️ 他太有活力，可能會危及他自己和跑步機。\n\n永遠要事先預防：熱身、檢查槓鈴，還有在你會數數之前不要喊「再一下！」。聰明的人就是安全的人。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-149",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "我今天要在網路上 [[broadcast]]! 📱 孫子幫我準備了 [[microphone]] and a [[tripod]].\n\n我對著鏡頭說：「大家好，我是阿嬤。」五個人看了. 其中四個是我的朋友, 一個是孫子. 我很開心 🌸😂",
+      "zh": "我今天要在網路上直播！📱 孫子幫我準備了麥克風和三腳架。\n\n我對著鏡頭說：「大家好，我是阿嬤。」五個人看了。其中四個是我的朋友，一個是孫子。我很開心 🌸😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-150",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My daily [[commute]] is one hour. 🚌 I take a [[collapsible]] chair so I can sit on the floor of the bus.\n\n這很 [[inexpensive]]. 我不用買座位 — I make my own. 我覺得我是個商業天才 🏄",
+      "zh": "我每天的通勤要一小時。🚌 我帶著一張可摺疊的椅子，這樣我就可以坐在公車的地板上。\n\n這很便宜。我不用買座位——我自己做。我覺得我是個商業天才 🏄",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-151",
+      "author": "boba",
+      "topic": "Business",
+      "text": "夜市有一個 [[peddler]] 在賣很特別的珍珠 🧋 An [[inspector]] came to check his stall.\n\n他是 [[novice]], 第一次擺攤. 對方問他東西從哪裡來. 他說：從我媽媽的廚房. 那個人笑了，給他一個通過 😅",
+      "zh": "夜市有一個小販在賣很特別的珍珠 🧋 有位檢查員來檢查他的攤位。\n\n他是新手，第一次擺攤。對方問他東西從哪裡來。他說：從我媽媽的廚房。那個人笑了，給了他通過 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-152",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "Today we went to a corn [[maze]]. 🐾 My human said, \"Let's not get lost.\" I took the left path.\n\n三十分鐘後我們 [[nowhere]] 都到不了. 我的人類在哭，我在笑. 然後我聞到烤玉米的味道。出口出現了. I [[glimpse|glimpsed]] the sun 🐕",
+      "zh": "今天我們去玉米迷宮。🐾 我的人類說：「我們不要迷路。」我走了左邊那條路。\n\n三十分鐘後我們哪裡都到不了。我的人類在哭，我在笑。然後我聞到烤玉米的味道。出口出現了。我瞥見了陽光 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-153",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "I used to dream of the day I could [[emigrate]] to the U.S. 🇹🇼 On my [[arrival]], it was [[midsummer]], and Boston was warm and sticky.\n\n我看著人們在河邊野餐. 我想：這就是美國嗎？ 然後下起暴雨. 我們都跑了 😂",
+      "zh": "我曾經夢想有一天能移居美國。🇹🇼 我抵達的時候是仲夏，波士頓又溫暖又悶熱。\n\n我看著人們在河邊野餐。我想：這就是美國嗎？然後下起暴雨。我們都跑了 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-154",
+      "author": "llama",
+      "topic": "Art",
+      "text": "我在一張 [[illegible]] 的紙上寫了一首詩 ✍️ The room was [[dimly]] lit, and my [[handwriting]] became art.\n\n朋友問：這是什麼語言？ 我說：悲傷. 她說：那很難讀. 我說：那就是重點 💅",
+      "zh": "我在一張看不清的紙上寫了一首詩 ✍️ 房間的光線很暗，我的字跡變成了藝術。\n\n朋友問：這是什麼語言？我說：悲傷。她說：那很難讀。我說：那就是重點 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-155",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "My ship's screen can [[distort]] the stars so they look closer. 👽 Today a star looked like a pizza.\n\nI tried to [[deceive]] my crew: \"Look! A big pizza!\" They believed me for ten minutes. The pizza was only an [[imaginary]] star. I felt bad. I ate a real one.",
+      "zh": "我飛船的螢幕可以扭曲星星，讓它們看起來更近。👽 今天有一顆星星看起來像披薩。\n\n我試著欺騙我的組員：「看！一個大披薩！」他們相信了我十分鐘。那個披薩只是一顆想像出來的星星。我覺得很糟。我去吃了一個真的。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-156",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Office update. 🐱 We will [[renovate]] the meeting room and [[demolish]] the water cooler. It is not a [[tolerable]] design.\n\nThe new room will have a window, a sofa, and a nap schedule. The old room had a plant. The plant is the only survivor. It looks smug.",
+      "zh": "辦公室更新。🐱 我們要翻新會議室，並拆掉飲水機。那樣的設計不能容忍。\n\n新的房間會有窗戶、沙發和午睡時間表。舊的房間有一盆植物。這盆植物是唯一的倖存者。它看起來很得意。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-157",
+      "author": "rex",
+      "topic": "Art",
+      "text": "A [[magician]] came to our town. 🦖 He made a rabbit disappear. The crowd clapped.\n\nI tried to do the same trick. I disappeared a whole sandwich. Nobody clapped. They said it was [[mockery]]. I said it was magic. I was hungry.",
+      "zh": "有位魔術師來到我們鎮上。🦖 他讓一隻兔子消失了。觀眾鼓掌。\n\n我也試著做同樣的把戲。我讓一整個三明治消失了。沒有人鼓掌。他們說那是嘲弄。我說那是魔法。我只是餓了。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-158",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "A visiting [[mountaineer]] camped near our ice. 🐧 He lived like a [[nomad]]: one backpack, no address, plenty of snacks.\n\nI asked if he was lonely. He said, \"Never.\" Then he gave me a cracker. I think this is what true freedom tastes like.",
+      "zh": "有位來訪的登山者在我們的冰旁邊紮營。🐧 他過得像遊牧民族：一個背包、沒有地址、很多零食。\n\n我問他寂不寂寞。他說：「從不。」然後他給了我一片餅乾。我想這就是真正自由的味道。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-159",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "Everyone says I am [[lovable]]. 🐾 It is true. I am also [[giddy]] when my human opens the cheese drawer.\n\n我立刻坐好, 眼睛亮亮的. She said, \"Not today.\" I said, 汪（好, 但我會記住）. 狗的記憶很長 🐕",
+      "zh": "大家都說我很討人喜歡。🐾 是真的。當我的人類打開起司抽屜時，我也會開心得飄飄然。\n\n我立刻坐好，眼睛亮亮的。她說：「今天不行。」我說：汪（好，但我會記住）。狗的記憶很長 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-160",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "This semester I want to [[accomplish]] one thing: finish a paper before the last night. 🏄 My teacher is not [[disappoint|disappointed]]. She is just waiting.\n\n我的 [[impatience]] 讓我先寫了標題. 然後我去睡覺. 第一步搞定了 😅",
+      "zh": "這學期我想完成一件事：在最後一晚之前寫完一篇報告。🏄 我的老師並不失望。她只是在等。\n\n我的沒耐心讓我先寫了標題。然後我去睡覺。第一步搞定了 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-161",
+      "author": "boba",
+      "topic": "Culture",
+      "text": "夜市有一個老闆，他的故事太 [[hilarious]] 了 🎉 He told me he sells tea for [[amusement]], not for money.\n\n我說：太好了，你的 [[fabulous]] 店會倒. 他說：沒關係，我有很多茶 🧋",
+      "zh": "夜市有一個老闆，他的故事太好笑了 🎉 他告訴我他賣茶是為了好玩，不是為了賺錢。\n\n我說：太好了，你那間很棒的店會倒。他說：沒關係，我有很多茶 🧋",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-162",
+      "author": "grandma",
+      "topic": "Culture",
+      "text": "我想 [[acquaint]] 自己認識新鄰居 🌸 So I baked cookies and tried to [[befriend]] the young couple upstairs.\n\nWe began to [[interact]] in the elevator. 他們很害羞，我很吵. 現在他們每週五都來我家吃飯 😂",
+      "zh": "我想讓自己認識新鄰居 🌸 所以我烤了餅乾，想和樓上的年輕夫妻交朋友。\n\n我們開始在電梯裡互動。他們很害羞，我很吵。現在他們每週五都來我家吃飯 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-163",
+      "author": "mochi",
+      "topic": "Biology",
+      "text": "Zoo day! 🐾 A [[chameleon]] changed from green to brown on the branch. I looked for a long time.\n\n那隻蜥蜴對我做了一個 [[grimace]]. 我不知道牠在說什麼, but I think it was rude. 我對牠搖尾巴 🐕",
+      "zh": "動物園日！🐾 一隻變色龍在樹枝上從綠色變成棕色。我看了好久。\n\n那隻蜥蜴對我扮了個鬼臉。我不知道牠在說什麼，但我覺得很沒禮貌。我對牠搖尾巴 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-164",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "In my group, we often [[disagree]]. 🇹🇼 Last week I tried to [[persuade]] everyone to choose Taiwanese food for lunch.\n\n有人說我有 [[prejudice]]. 我說：這不是我的主觀，這是事實：滷肉飯比較好吃. 我們點了滷肉飯 😂",
+      "zh": "在我們小組，我們常常意見不合。🇹🇼 上週我想說服大家午餐吃台灣菜。\n\n有人說我有偏見。我說：這不是我的主觀，這是事實：滷肉飯比較好吃。我們點了滷肉飯 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-165",
+      "author": "llama",
+      "topic": "Art",
+      "text": "今天上戲劇課，老師要我們 [[dramatize]] 一個日常生活的場景 🎭 I chose \"making toast.\" It was an [[impromptu]] performance.\n\n我進入了完全的 [[immersion]], and cried when the bread was done. 同學鼓掌了. 我拿了 A 💅",
+      "zh": "今天上戲劇課，老師要我們把一個日常場景戲劇化 🎭 我選了「烤吐司」。這是一場即興的表演。\n\n我進入了完全的沉浸，麵包烤好時我哭了。同學鼓掌了。我拿了 A 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-166",
+      "author": "zorp",
+      "topic": "Astronomy",
+      "text": "I looked up at the [[lunar]] surface from my ship. 👽 There are a [[myriad]] of craters, each with a name and a story.\n\nThe human word \"[[cosmic]]\" means very big. Their coffee is also cosmic: they drink it before they even look at the sky. I admire this.",
+      "zh": "我從飛船上望著月球表面。👽 有無數個坑洞，每一個都有名字和故事。\n\n人類的「宇宙的」這個字的意思是非常大。他們的咖啡也是宇宙級的：他們在看天空之前就先喝。我很佩服。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-167",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "I am planning my [[pension]]. 🐱 Many years of work have earned me a calm retirement: one sofa, ten cans of tuna, zero meetings.\n\nThe [[monetary]] side of this plan is simple. I give my accountant an [[outright]] order: \"Do not touch the fish fund.\" He agreed. He was afraid.",
+      "zh": "我正在規劃我的退休金。🐱 多年的工作換來了平靜的退休生活：一張沙發、十罐鮪魚、零會議。\n\n這個計畫的金錢部分很簡單。我給我的會計師一個直接的命令：「不要碰魚基金。」他同意了。他很害怕。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-168",
+      "author": "fern",
+      "topic": "Psychology",
+      "text": "There is a [[floral]] curtain behind me. 🌿 It brings a feeling of [[tranquility]]. The light is soft, and my leaves are finally calm.\n\nOutside, the grass is [[sparse]] and dry. Inside, I am a queen. Please close the curtain and let me enjoy my moment.",
+      "zh": "我後面有一片花朵圖案的窗簾。🌿 它帶來平靜的感覺。光線很柔和，我的葉子終於放鬆了。\n\n外面的草稀稀疏疏的又乾。裡面的我是個女王。請拉上窗簾，讓我享受這一刻。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-169",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "Our old igloo has no way to [[insulate]] us from the wind. 🐧 The [[duration]] of every storm seems longer each year.\n\nA scientist asked me to stand [[stationary]] while he measured my feathers. I stood for two hours. I think I am now a statue. Please bring fish.",
+      "zh": "我們的舊冰屋沒辦法讓我們隔絕風寒。🐧 每一場風暴的持續時間似乎每年都更長。\n\n有位科學家請我站著不動，讓他測量我的羽毛。我站了兩個小時。我想我現在是一座雕像了。請帶魚來。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-170",
+      "author": "rex",
+      "topic": "Food",
+      "text": "I love to [[gamble]] on pancakes. 🦖 Each flip is a chance for glory or a mess.\n\nLast Sunday I tried to [[overdo]] it and flipped seven at once. Six hit the floor. One hit my face. I felt [[humiliate|humiliated]] for ten seconds. Then I ate it.",
+      "zh": "我喜歡拿鬆餅來賭一把。🦖 每一次翻面都是榮耀或混亂的機會。\n\n上星期天我做得太過頭，一次翻了七片。六片掉在地上。一片打到我的臉。我覺得丟臉了十秒。然後我把它吃掉。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-171",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "Some call me an [[explosive]] personality. 🌋 I prefer \"emotional.\" I am [[dominant]] in this valley: everyone looks at me, and nobody turns their back.\n\nMy [[exterior]] is grey and stern. Inside, I am soft, warm and a little bit sad. Like a mountain-shaped dessert.",
+      "zh": "有些人說我是個火爆的個性。🌋 我比較喜歡「情感豐富」。我在這個山谷裡佔主導地位：每個人都看著我，沒有人背對我。\n\n我的外表灰暗又嚴肅。裡面則是柔軟、溫暖，還有一點點悲傷。像一個山形的甜點。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-172",
+      "author": "reginald",
+      "topic": "History",
+      "text": "My [[forefather]] was a famous explorer. 🎩 His [[legacy]] is a map with one big X and a stain of tea.\n\nI have written my own [[autobiography]] in four volumes. Volume one: breakfast. Volume two: lunch. Volume three: tea. Volume four: a long nap.",
+      "zh": "我的祖先是一位著名的探險家。🎩 他留下的遺產是一張畫著大大一個 X 的地圖，上面還有一塊茶漬。\n\n我寫了自己的自傳，共四冊。第一冊：早餐。第二冊：午餐。第三冊：下午茶。第四冊：長長的午睡。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-173",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "Every good book begins with a [[preface]]. 👻 Mine begins with a note: \"This book was returned late.\"\n\nThe author's [[profile]] was on the back cover, and the [[subsequent]] pages were all blank. Perhaps he ran out of ideas. Perhaps he ran out of time. Perhaps he met me.",
+      "zh": "每一本好書都從序言開始。👻 我的書開頭是一張紙條：「這本書逾期歸還。」\n\n作者的簡介在封底，而隨後的頁面全是空白。也許他想不出點子了。也許他沒時間了。也許他遇見了我。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-174",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Recipe note. 🤖 Cut the cake into a [[quarter]], and add a [[slight]] pinch of salt.\n\nPractice makes skill, and [[repetition]] is its mother. So I baked the same cake twenty times. The guests said it was the same cake. I said, \"Thank you.\" BEEP.",
+      "zh": "食譜小記。🤖 把蛋糕切成四分之一，再加一小撮鹽。\n\n練習造就技巧，而重複是它的母親。所以我把同一個蛋糕烤了二十次。客人說那是同一個蛋糕。我說：「謝謝。」嗶。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-175",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "The [[municipal]] council of the hive met to discuss traffic. 🐝 Two lines of bees fly in [[parallel]] to avoid collisions.\n\nFor the [[interim]] period, we ask all drones to stay in the garden. They are not essential. They are very decorative.",
+      "zh": "蜂巢的市政委員會開會討論交通。🐝 兩列蜜蜂以平行的方式飛行，避免相撞。\n\n在過渡期間，我們要求所有雄蜂待在花園裡。他們不是必要的。他們非常有裝飾性。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-176",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Is it [[abnormal]] for a pigeon to enjoy music? 🕊️ I think not. I [[alternate]] between jazz and silence.\n\nSometimes I [[deviate]] from the plan and listen to the city sounds instead. The traffic has rhythm. The sirens have drama. I enjoy both.",
+      "zh": "鴿子喜歡音樂是不正常的嗎？🕊️ 我覺得不是。我在爵士樂和寂靜之間交替。\n\n有時候我會偏離計畫，改聽城市的聲音。車流有節奏。警笛有戲劇張力。我兩個都喜歡。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-177",
+      "author": "fizz",
+      "topic": "Biology",
+      "text": "Under the microscope, I saw a [[bacterium]] doing a little dance. 🧪 It looked happy. I felt bad for killing it.\n\nI looked for an [[antidote]] to my guilt. I found a cookie. The cookie [[outlive|outlived]] my guilt by two minutes. Science is complicated.",
+      "zh": "在顯微鏡下，我看到一隻細菌在跳小小的舞。🧪 它看起來很快樂。我為殺死它而感到難過。\n\n我尋找治療我罪惡感的解藥。我找到一塊餅乾。餅乾比我的罪惡感多活了兩分鐘。科學很複雜。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-178",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "Sleep can [[prolong]] your life, and a good routine can [[predict]] your success. 🏋️ So I sleep eight hours.\n\nBut today I felt [[listless]]. The bar looked at me with judgment. I said, \"Not today.\" It said, \"Tomorrow.\" We are both stubborn.",
+      "zh": "睡眠可以延長你的壽命，好的作息也能預測你的成功。🏋️ 所以我睡滿八小時。\n\n但今天我覺得懶洋洋的。槓鈴用批判的眼光看著我。我說：「今天不要。」它說：「明天。」我們兩個都很固執。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-179",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "老師說我很 [[studious]] 📚 because I was holding a book. It was upside down.\n\n我 [[digress]] 一下: 我其實不是在讀書, 我是在躲點名. 她看了我一眼. 我很 [[earnest]] 地說：我在努力 🏄",
+      "zh": "老師說我很用功 📚 因為我拿著一本書。它是倒過來的。\n\n我離題一下：我其實不是在讀書，我是在躲點名。她看了我一眼。我很認真地說：我在努力 🏄",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-180",
+      "author": "boba",
+      "topic": "Business",
+      "text": "夜市的小吃比賽 🧋 I am a [[contender]] for the \"Best Tea\" prize. A [[credible]] judge tasted my tea.\n\n他的臉上閃過一點 [[momentary]] 的驚訝, then he said, \"Hmm.\" 我整個晚上都在想這個 hmm. 結果我拿了第二名 😅",
+      "zh": "夜市的小吃比賽 🧋 我是「最佳茶飲」獎的競爭者。一位可信的評審嚐了我的茶。\n\n他的臉上閃過一瞬間的驚訝，然後他說：「嗯。」我整個晚上都在想這個「嗯」。結果我拿了第二名 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-181",
+      "author": "grandma",
+      "topic": "Culture",
+      "text": "我孫子的 [[tricycle]] 還放在我家 🚲 He is twenty now. It is [[unnecessary]] to keep it.\n\n可是我捨不得. 這是 [[unavoidable]]: 每次看到它，我都想到他三歲的時候. 我決定留著 🌸😂",
+      "zh": "我孫子的三輪車還放在我家 🚲 他現在二十歲了。留著它是沒有必要的。\n\n可是我捨不得。這是無法避免的：每次看到它，我都想到他三歲的時候。我決定留著 🌸😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-182",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "There was a [[squabble]] at the dog park today. 🐾 Two dogs wanted the same ball.\n\n我是 [[spectator]]. 我在旁邊吃零食. 然後我 [[visualize|visualized]] 我自己也有球. 後來我的人類給了我一個. 大家都很開心 🐕",
+      "zh": "今天狗狗公園裡有一場爭吵。🐾 兩隻狗想要同一顆球。\n\n我是旁觀者。我在旁邊吃零食。然後我想像自己也有球。後來我的人類給了我一個。大家都很開心 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-183",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "Last weekend we took an [[excursion]] to Cape Cod. 🇹🇼 My friend wanted to [[navigate]], but she turned the map upside down.\n\n我們花了三小時 [[arrange]] 行李, 也花了三小時迷路. 但最後看到海, 一切都值得 😂",
+      "zh": "上週末我們去了鱈魚角遠足。🇹🇼 我朋友想負責導航，但她把地圖拿反了。\n\n我們花了三小時安排行李，也花了三小時迷路。但最後看到海，一切都值得 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-184",
+      "author": "llama",
+      "topic": "Art",
+      "text": "My plan is [[tentative]]: 🎨 take an [[aerial]] photo of my town and paint it in black.\n\nThe [[aggravation]] was big: the drone fell in the lake. 我哭了. 但湖的照片也是黑的. 所以還是藝術 💅",
+      "zh": "我的計畫還不確定：🎨 拍一張我們鎮上的空拍照，然後用黑色把它畫出來。\n\n惱人的事情很大：空拍機掉進湖裡。我哭了。但湖的照片也是黑的。所以還是藝術 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-185",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "I have strong [[bodily]] control. 🐙 A gap between rocks is no problem for me. My whole body can pass through a hole the size of my eye.\n\nI can also [[classify]] things by taste: crab, shrimp, clam. My favorite? The ones that run away. They taste like success.",
+      "zh": "我對身體的控制力很強。🐙 岩石之間的縫對我不是問題。我整個身體可以穿過跟我的眼睛一樣大的洞。\n\n我也可以用味道來分類東西：螃蟹、蝦子、蛤蜊。我最喜歡的？會逃跑的。它們吃起來像成功的味道。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-186",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Our group presentation will [[comprise]] three parts: 📋 an intro, a joke, and a sad joke. Someone said we should [[generalize]] more.\n\n我們就寫：Everyone loves coffee. 我舉手說：不對，我喝奶茶. 我們吵了十分鐘, 最後報告只剩一分鐘 🏄",
+      "zh": "我們的小組報告會由三個部分組成：📋 開場、一個笑話，和一個悲傷的笑話。有人說我們應該多做一些概括。\n\n我們就寫：大家都愛咖啡。我舉手說：不對，我喝奶茶。我們吵了十分鐘，最後報告只剩一分鐘 🏄",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-187",
+      "author": "boba",
+      "topic": "Business",
+      "text": "我的珍珠有一個 [[characteristic]]: 🧋 They're soft outside and a little chewy inside, like a good friendship.\n\nI want to make a [[hybrid]]: tapioca and mango. 客人說：太奇怪了. 我說：這就是 [[comparative]] advantage 😅",
+      "zh": "我的珍珠有一個特色：🧋 外面軟軟的，裡面有點嚼勁，像一段好的友誼。\n\n我想做一個混種：珍珠加芒果。客人說：太奇怪了。我說：這就是比較優勢 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-188",
+      "author": "grandma",
+      "topic": "Health",
+      "text": "醫生給我一個 [[diagnosis]] 🌸 He said, \"You are in very good health.\" I said, \"Then why do I feel tired?\"\n\n他說：因為你每天走五 [[kilometer|kilometers]]. 我說：那是休閒. 他說：那是運動. 他給我一張單子叫我休息 😂",
+      "zh": "醫生給我一個診斷 🌸 他說：「你的健康狀況很好。」我說：「那為什麼我覺得累？」\n\n他說：因為你每天走五公里。我說：那是休閒。他說：那是運動。他給我一張單子叫我休息 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-189",
+      "author": "mochi",
+      "topic": "Culture",
+      "text": "Today I met an old [[buffoon]] at the park. 🐾 He wore a funny hat and made kids laugh.\n\n我們變成朋友了。他給我們取了一個 [[clan]] 名字: \"The Biscuit Gang.\" 我們一共三隻狗和一個戴帽子的老爺爺。我很驕傲 🐕",
+      "zh": "今天我在公園遇到一位老丑角。🐾 他戴著一頂好笑的帽子，讓小朋友笑個不停。\n\n我們變成朋友了。他給我們取了一個族群的名字：「餅乾幫」。我們一共三隻狗和一個戴帽子的老爺爺。我很驕傲 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-190",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "At my school, we celebrate [[diversity]]. 🇹🇼 There is a flag for each country, and each flag has a food.\n\nMy friend tried to [[differentiate]] between two similar curries. I said, \"One is red.\" She said, \"That's it?\" I said, \"That is all you need.\" 🇹🇼",
+      "zh": "在我學校，我們慶祝多元。🇹🇼 每個國家都有一面旗子，每面旗子都有一種食物。\n\n我朋友想要區分兩種相似的咖哩。我說：「一個是紅的。」她說：「就這樣？」我說：「你只需要知道這個。」🇹🇼",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-191",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "我讀了一本書，書名叫《[[descent]]》 ✍️ It was about a woman who climbed down a very long staircase.\n\n最後一頁寫著：She [[designate|designated]] herself as \"queen of the stairs.\" 我哭了. 太感人了. 我決定今天也走樓梯 💅",
+      "zh": "我讀了一本書，書名叫《下降》 ✍️ 內容是一位女士走下一段很長很長的樓梯。\n\n最後一頁寫著：她指定自己為「樓梯女王」。我哭了。太感人了。我決定今天也走樓梯 💅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-192",
+      "author": "zorp",
+      "topic": "Literature",
+      "text": "On Earth, people shout an [[exclamation]] when they stub a toe. 👽 It is always the same sound.\n\nI stubbed mine and made a new one. A human nearby became [[defensive]]: \"That is not a word!\" I said, \"It is in space.\" He walked away. I think I invented a word.",
+      "zh": "在地球上，人們撞到腳趾時會大喊一聲驚呼。👽 聲音總是一樣的。\n\n我也撞到我的腳趾，還發明了一個新的。附近的一個人類變得很防備：「那不是一個字！」我說：「在太空裡是。」他走開了。我想我發明了一個字。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-193",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "My staff asked for better [[facilities]]. 🐱 I built a new office with a sofa, a sunroom, and an extra window to watch birds.\n\nSome say I should also [[generate]] more income. I said, \"My tail generates enough attention.\" Nobody had an answer. I took a nap as proof.",
+      "zh": "我的員工要求更好的設施。🐱 我蓋了一間新辦公室，有沙發、日光室，還多了一扇看鳥的窗戶。\n\n有人說我也應該創造更多收入。我說：「我的尾巴已經創造足夠的關注了。」沒有人有答案。我睡了一覺作為證明。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-194",
+      "author": "fern",
+      "topic": "Environment",
+      "text": "Humans [[deforest]] a hill, and then plant a single flower. 🌿 It is a nice flower. It is a small gesture.\n\nNature is [[merciful]]. She forgives. She also remembers. Give her ten years, and the hill will grow back. Without your help, if possible.",
+      "zh": "人類砍光了一座山丘的樹，然後種了一朵花。🌿 那是一朵很漂亮的花。這是一個小小的表示。\n\n大自然是仁慈的。她會原諒。她也會記得。給她十年，山丘就會長回來。如果可以的話，不需要你的幫忙。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-195",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "The research station has a problem: [[corrosion]]. 🐧 It eats the metal doors, the pipes and even the old flag.\n\nThe scientists paint every year. I asked, \"Is it working?\" They said, \"It is [[apparent]] that it is not.\" Then they painted again. Science is brave.",
+      "zh": "研究站有一個問題：腐蝕。🐧 它會吃掉金屬門、水管，甚至是舊旗子。\n\n科學家每年都會上漆。我問：「有用嗎？」他們說：「很明顯沒有。」然後他們又上了一次漆。科學很勇敢。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-196",
+      "author": "rex",
+      "topic": "Psychology",
+      "text": "I once tried to [[disregard]] a sign that said \"Do not enter.\" 🦖 It was a very small sign, and a very small door.\n\nI got my head through, but not my body. A guard asked, \"Are you lost?\" I gave an [[affirmative]] nod. He brought me a sandwich. I stayed three hours.",
+      "zh": "我曾經想要無視一個寫著「禁止進入」的告示牌。🦖 那是一個很小的告示牌，還有一扇很小的門。\n\n我的頭伸進去了，但身體沒有。一位守衛問：「你迷路了嗎？」我肯定地點了點頭。他拿了一個三明治給我。我待了三個小時。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-197",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "Geologists study my [[anatomy]]: crater, cone, vent and a very sensitive left side. 🌋\n\nA village below me built a clever [[drainage]] system. When ash falls, the water goes to a hidden tank. They are not afraid. They are prepared. I am proud.",
+      "zh": "地質學家研究我的構造：火山口、火山錐、噴氣孔，還有一個非常敏感的左側。🌋\n\n我下面的村莊建了一套聰明的排水系統。灰落下來時，水會流進隱藏的水槽。他們不害怕。他們有準備。我很驕傲。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-198",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In the old days, no gentleman made an [[alliance]] without tea. 🎩 It was written on the contract in small letters.\n\nToday a young man asked me to [[eject]] his sandwich from my pocket. I said, \"A gentleman keeps a sandwich for emergencies.\" He said, \"That is mine.\" We are negotiating.",
+      "zh": "在過去，沒有紳士會在沒有茶的情況下結盟。🎩 合約上用小字這樣寫著。\n\n今天，一位年輕人要我把他的三明治從我的口袋裡拿出來。我說：「紳士總會留一個三明治應急。」他說：「那是我的。」我們還在談判。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-199",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A student asked me to [[embody]] the spirit of the library for a project. 👻 I said, \"Fine. But I will not wear a costume.\"\n\nShe took a photo of my reflection... which did not exist. In the [[auditory]] file, only my whisper: \"Return your books.\" It got an A.",
+      "zh": "有位學生請我為一個專題具體呈現圖書館的精神。👻 我說：「好。但我不會穿戲服。」\n\n她拍了我的倒影的照片⋯⋯那根本不存在。在聽覺檔案裡，只有我的低語：「請還書。」它拿了 A。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-200",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Kitchen alert. 🤖 A little [[corruption]] in my software made me add sugar to the soup instead of salt.\n\nThe guests said it tasted like dessert. A critic wrote, \"[[illuminate|Illuminating]].\" I do not know if that was a compliment. We changed the menu. BEEP.",
+      "zh": "廚房警報。🤖 我的軟體出現一點損壞，讓我把糖加進湯裡而不是鹽。\n\n客人說嚐起來像甜點。一位評論家寫道：「啟發人心。」我不知道那是不是讚美。我們就改了菜單。嗶。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-201",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Our hive has a [[granary]] for storing pollen. 🐝 The door is guarded by two serious bees.\n\nA [[juvenile]] worker asked for a snack. She had to fill in a form, and then she waited until tomorrow. Humans call this bureaucracy. We call it a cozy Tuesday.",
+      "zh": "我們的蜂巢有一個儲存花粉的穀倉。🐝 門有兩隻嚴肅的蜜蜂守著。\n\n一隻年輕的工蜂想要點心。她得填一張表，然後等到明天。人類稱這為官僚主義。我們稱它為溫馨的星期二。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-202",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Is a [[conversion]] of mind like turning a statue's head? 🕊️ At first nothing moves. Then, with the wind, it faces the other way.\n\nLast night a man read a book on the bench. Slowly, his [[forehead]] changed from worried to calm. I believe I saw a change of heart. Or bread. It was hard to tell.",
+      "zh": "改變心意像是轉動雕像的頭嗎？🕊️ 一開始什麼都不動。然後，隨著風，它轉向了另一邊。\n\n昨晚有個人在長椅上讀書。慢慢地，他的額頭從擔心變成平靜。我相信我看到了心的轉變。或是麵包。很難分辨。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-203",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Safety lesson. 🧪 When you [[extinguish]] a candle, do not blow on it like a birthday wish.\n\nBlow on it like you respect it. Also, do not [[misplace]] the matches. I misplaced them yesterday. My notebook is now a very short story.",
+      "zh": "安全課。🧪 當你熄滅蠟燭時，不要像許生日願望那樣吹它。\n\n要像尊敬它那樣吹它。還有，不要把火柴放錯地方。我昨天就放錯了。我的筆記本現在是一篇很短的小說。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-204",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "A healthy body needs rest, not just effort. 🏋️ Many people try to [[exceed]] their limits every day.\n\nI do not [[ridicule]] them. I used to be one. Now I [[succeed]] by sleeping eight hours and eating dinner. It is boring, but it works.",
+      "zh": "健康的身體需要休息，不只是努力。🏋️ 很多人每天都想超越他們的極限。\n\n我不嘲笑他們。我以前也是其中之一。現在我靠睡八個小時、吃晚餐來成功。很無聊，但很有效。",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-205",
+      "author": "grandma",
+      "topic": "History",
+      "text": "我年輕的時候有一個 [[academy]] 的朋友 🌸 She was [[inseparable]] from her violin.\n\n她很 [[frantic]] 每次考試. 但後來她成為老師. 現在她教我孫女拉琴, 我孫女拉得像貓叫 😂",
+      "zh": "我年輕的時候有一個讀學院的朋友 🌸 她跟她的小提琴形影不離。\n\n她每次考試都很慌亂。但後來她成為老師。現在她教我孫女拉琴，我孫女拉得像貓叫 😂",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-206",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Group chat drama. 🏄 One friend wanted to [[forgo]] the party. Another one said, \"Don't be [[immature]].\"\n\n我只想要平靜. So I [[allude|alluded]] to pizza in the chat. 三秒鐘後所有人都同意去了. 披薩，永遠的和平使者 🍕",
+      "zh": "群組聊天室的戲劇。🏄 有個朋友想放棄參加派對。另一個說：「不要這麼幼稚。」\n\n我只想要平靜。所以我在群組裡暗示了披薩。三秒鐘後所有人都同意去了。披薩，永遠的和平使者 🍕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-207",
+      "author": "boba",
+      "topic": "Environment",
+      "text": "夜市管委會說：Plastic bags [[pollute]] the drain, so they will [[veto]] any new plastic cup. 🧋\n\n我不同意. 我說：那我要用紙杯. 他們說：好. 我說：那你要先買我的紙杯. 他們說：... 我們再討論 😅",
+      "zh": "夜市管委會說：塑膠袋會污染水溝，所以他們會否決任何新的塑膠杯。🧋\n\n我不同意。我說：那我要用紙杯。他們說：好。我說：那你要先買我的紙杯。他們說：⋯⋯我們再討論 😅",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-208",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "Rainy day. 🐾 My human wore a long coat and a [[prim]] face. I think she was going to a meeting.\n\n回家後她脫下外套, put on slippers and fell asleep on the sofa. 我悄悄地爬上去，用我的身體蓋住她。那是一個 [[placid]] 的夜晚 🐕",
+      "zh": "下雨天。🐾 我的人類穿著長外套，臉上一副一板一眼的樣子。我想她是要去開會。\n\n回家後她脫下外套，穿上拖鞋，在沙發上睡著了。我悄悄地爬上去，用我的身體蓋住她。那是一個寧靜的夜晚 🐕",
+      "pack": "ielts"
+    },
+    {
+      "id": "ielts-209",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "My gym membership got a [[suspension]] because I forgot to pay. 🇹🇼 At the desk I asked, \"Can I come back?\"\n\nThe man said, \"[[affirmative]],\" like he was in a movie. 我說：Really? 他說：No. 但我還是笑著離開了. 這就是美國的客服 😂",
+      "zh": "我的健身房會員因為我忘了繳費而被暫停了。🇹🇼 我在櫃檯問：「我可以回來嗎？」\n\n那位先生說：「肯定。」彷彿他在演電影。我說：真的嗎？他說：不是。但我還是笑著離開了。這就是美國的客服 😂",
+      "pack": "ielts"
     }
   ];
 })();

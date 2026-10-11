@@ -4864,8 +4864,8 @@
       "id": "hs-148",
       "author": "beatrice",
       "topic": "Economics",
-      "text": "The hive's yearly [[expenditure]] is huge. 🐝 We [[subsidize]] the nursery with extra nectar.\n\nWhen a worker loses her job, there is no [[unemployment]] office. She joins another team by noon. Human economies, take notes.",
-      "zh": "蜂巢每年的支出很龐大。🐝 我們用額外的花蜜補助育幼室。\n\n當工蜂失去工作時，並沒有失業辦公室。到中午她就加入另一個團隊了。人類的經濟，請做筆記。",
+      "text": "The hive's yearly [[expenditure]] is huge. 🐝 We [[subsidize]] the nursery with extra nectar.\n\nWhen a worker loses her job, there is no [[unemployment]] office. She joins another team by noon. Human economies could learn something from a beehive.",
+      "zh": "蜂巢每年的支出很龐大。🐝 我們用額外的花蜜補助育幼室。\n\n當工蜂失去工作時，並沒有失業辦公室。到中午她就加入另一個團隊了。人類的經濟或許能向蜂巢學點東西。",
       "pack": "hs"
     },
     {
@@ -5456,8 +5456,8 @@
       "id": "hs-222",
       "author": "beatrice",
       "topic": "Economics",
-      "text": "A worker must [[acquire]] two skills before she can [[fulfill]] her role. 🐝 One is flying. The other is not complaining.\n\nThe [[vocational]] school in the hive runs for three days. After that, everyone is a professional. Humans, take notes.",
-      "zh": "一隻工蜂在能夠實現她的角色之前，必須學會兩種技能。🐝 一種是飛行。另一種是不抱怨。\n\n蜂巢裡的職業學校只上三天。之後，每個人都是專業人士。人類，請做筆記。",
+      "text": "A worker must [[acquire]] two skills before she can [[fulfill]] her role. 🐝 One is flying. The other is not complaining.\n\nThe [[vocational]] school in the hive runs for three days. After that, everyone is a professional. Humans may copy this plan.",
+      "zh": "一隻工蜂在能夠實現她的角色之前，必須學會兩種技能。🐝 一種是飛行。另一種是不抱怨。\n\n蜂巢裡的職業學校只上三天。之後，每個人都是專業人士。人類可以抄這個計畫。",
       "pack": "hs"
     },
     {
