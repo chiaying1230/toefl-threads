@@ -3,7 +3,8 @@
 //   node scripts/make-video.mjs <postId> [options]
 //
 //   --out <dir>      output folder (default ./videos)
-//   --words <n>      max words to teach (default 3; trimmed automatically to stay under 45 s)
+//   --words <n>      cap the number of words taught (default: every word in the thread)
+//   --bg <style>     classroom (default) or solid
 //   --voice <dir>    folder with line-<id>.mp3 from scripts/make-voice.py (adds real narration)
 //   --preview        half-size, 15 fps: fast draft render
 //   --stills a,b,c   only write PNG stills at those seconds (for checking layout), no video
@@ -31,7 +32,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argv = process.argv.slice(2);
 const flag = (n) => argv.includes("--" + n);
 const opt = (n, d) => { const i = argv.indexOf("--" + n); return i >= 0 ? argv[i + 1] : d; };
-const valued = new Set(["out", "words", "voice", "stills", "fps", "scale", "port"]);
+const valued = new Set(["out", "words", "voice", "stills", "fps", "scale", "port", "bg"]);
 const postId = argv.find((a, i) => !a.startsWith("--") && !(i > 0 && argv[i - 1].startsWith("--") && valued.has(argv[i - 1].slice(2))));
 if (!postId) { console.error("usage: node scripts/make-video.mjs <postId> [--voice dir] [--preview] [--stills 1,5,9]"); process.exit(1); }
 
@@ -42,8 +43,8 @@ const SCALE = parseFloat(opt("scale", PREVIEW ? "1" : "2"));
 const PORT = parseInt(opt("port", "8123"), 10);
 const VOICE_DIR = opt("voice", null) && path.resolve(opt("voice"));
 const STILLS = opt("stills", null)?.split(",").map(Number);
-const MAX_WORDS = parseInt(opt("words", "3"), 10);
-const MAX_SECONDS = 45;
+const MAX_WORDS = parseInt(opt("words", "99"), 10);
+const BG = opt("bg", "classroom");
 
 // ---------- tiny static server (the page needs the app's data files) ----------
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml" };
@@ -79,6 +80,11 @@ const LEVEL_NAME = { 1: "Soy Milk 豆漿", 2: "Tofu 豆腐", 3: "Natto 納豆" }
 const hash = (s) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 0) >>> 0;
 
 function tokenize(raw, lang) {
+  // paragraphs are tokenized separately; the first token of a later paragraph carries `brk`
+  const paras = raw.split(/\n\s*\n/);
+  if (paras.length > 1) {
+    return paras.flatMap((p, i) => { const t = tokenize(p, lang); if (i && t.length) t[0].brk = true; return t; });
+  }
   const out = [];
   const push = (text, key) => {
     text = text.replace(EMOJI, "");
@@ -97,8 +103,11 @@ function tokenize(raw, lang) {
   };
   let last = 0, m;
   MARK.lastIndex = 0;
-  while ((m = MARK.exec(raw))) { addPlain(raw.slice(last, m.index)); push(m[2] || m[1], m[1]); last = m.index + m[0].length; }
-  addPlain(raw.slice(last));
+  // punctuation right after a highlighted word ("[[word]].") stays glued to it
+  const addAfterMark = (seg) => { const g = seg.match(/^[^\s]+/); if (g && out.length) { out[out.length - 1].text += g[0]; seg = seg.slice(g[0].length); } addPlain(seg); };
+  let afterMark = false;
+  while ((m = MARK.exec(raw))) { (afterMark ? addAfterMark : addPlain)(raw.slice(last, m.index)); push(m[2] || m[1], m[1]); last = m.index + m[0].length; afterMark = true; }
+  (afterMark ? addAfterMark : addPlain)(raw.slice(last));
   out.forEach((k) => { k.pause = /[.!?。！？]["”’)]*$/.test(k.text) ? 0.35 : /[,;:，；：、]$/.test(k.text) ? 0.15 : 0; });
   return out;
 }
@@ -114,21 +123,31 @@ const VOICES = {
 };
 
 // ---------- choose what to teach ----------
-const paras = post.text.split(/\n\s*\n/), zhParas = post.zh.split(/\n\s*\n/);
+// The whole thread is read out, and every word highlighted in it is taught — in the order
+// it appears, so the lesson follows the story. (One word → one card, three words → three.)
+const storyRaw = post.text.trim();
+const storyZh = post.zh.trim().replace(/\n\s*\n/g, "\n");
 const keysIn = (s) => { const ks = []; s.replace(MARK, (m, k) => { if (!ks.includes(k)) ks.push(k); }); return ks; };
-const wordCount = (s) => plain(s).split(/\s+/).length;
-const best = paras.map((p, i) => ({ i, n: keysIn(p).length, len: wordCount(p) })).filter((x) => x.len <= 48).sort((a, b) => b.n - a.n || a.i - b.i)[0];
-let storyRaw, storyZh = "";
-if (best) { storyRaw = paras[best.i]; storyZh = zhParas.length === paras.length ? zhParas[best.i] : ""; }
-else { // first paragraph is too long: keep whole sentences up to ~36 words
-  const sents = paras[0].match(/[^.!?]+[.!?]*\s*/g) || [paras[0]];
-  storyRaw = ""; for (const s of sents) { if (wordCount(storyRaw + s) > 36 && storyRaw) break; storyRaw += s; }
-  storyRaw = storyRaw.trim();
+const teachAll = keysIn(storyRaw);
+const hardest = (keys) => keys.reduce((b, k) => (vocab[k].level > vocab[b].level ? k : b), keys[0]);
+
+const soften = (hex) => { const n = parseInt(hex.slice(1), 16); const mix = (c) => Math.round(c + (255 - c) * 0.6).toString(16).padStart(2, "0"); return "#" + mix(n >> 16) + mix((n >> 8) & 255) + mix(n & 255); };
+
+// Real-audio loudness: 60 values/s in 0..1 per voiced line, so the voice rings and the mouth
+// follow the actual recording. Normalised against the loudest 5% of all voiced samples.
+function envelopes(files) {
+  const raw = files.map((f) => {
+    const pcm = execFileSync("ffmpeg", ["-v", "error", "-i", f, "-ac", "1", "-ar", "8000", "-f", "s16le", "-"], { maxBuffer: 1 << 28 });
+    const win = 8000 / 60, out = [];
+    for (let i = 0; i + win <= pcm.length / 2; i += win) {
+      let sum = 0; for (let j = 0; j < win; j++) { const v = pcm.readInt16LE((Math.floor(i) + j) * 2) / 32768; sum += v * v; }
+      out.push(Math.sqrt(sum / win));
+    }
+    return out.map((v, i, a) => (v + (a[i - 1] ?? v) + (a[i + 1] ?? v)) / 3);
+  });
+  const all = raw.flat().sort((a, b) => a - b), ref = all[Math.floor(all.length * 0.95)] || 1;
+  return raw.map((r) => r.map((v) => +Math.min(1, v / ref).toFixed(2)));
 }
-const byLevel = (a, b) => (vocab[b].level - vocab[a].level) || 0;
-const inStory = keysIn(storyRaw).sort(byLevel);
-const rest = Object.keys(vocab).filter((k) => !inStory.includes(k)).sort(byLevel);
-const teachAll = [...inStory, ...rest];
 
 // ---------- build the plan ----------
 function buildPlan(teach) {
@@ -156,13 +175,13 @@ function buildPlan(teach) {
     return { start, end: t };
   };
 
-  const hookWord = teach[0], hv = vocab[hookWord];
+  const hookWord = hardest(teach), hv = vocab[hookWord];
   const question = ["你會嗎？", "看得懂嗎？", "知道嗎？"][hash(post.id) % 3];
   const h = [line("host", "en", hookWord, VOICES.hostEn), line("host", "zh", question, VOICES.hostZh)];
   scenes.push({ type: "hook", ...schedule(h, 0.1, 0.35), lines: h, word: hookWord, level: LEVEL_NAME[hv.level], question });
 
   const sl = line("char", "en", storyRaw, VOICES.char);
-  scenes.push({ type: "story", ...schedule([sl], 0.3, storyZh ? 1.6 : 0.8), line: sl, zh: storyZh, teach });
+  scenes.push({ type: "story", ...schedule([sl], 0.3, storyZh ? Math.min(4, Math.max(1.6, storyZh.length / 14)) : 0.8), line: sl, zh: storyZh, teach });
 
   teach.forEach((k, i) => {
     const v = vocab[k];
@@ -171,21 +190,29 @@ function buildPlan(teach) {
     scenes.push({ type: "word", ...schedule(ids, 0.35, 0.6, 0.2), lines: { word: ids[0], mean: ids[1], ex: ids[2] }, key: k, word: k, pos: v.pos, zh: v.zh, kk: kk[k], level: LEVEL_NAME[v.level], exZh: v.exZh, index: i + 1, total: teach.length });
   });
 
-  const c = [line("host", "zh", "收藏起來，考前複習", VOICES.hostZh), line("host", "zh", `留言用 ${hookWord} 造句`, VOICES.hostZh), line("host", "zh", "追蹤 toEfu，每天一篇", VOICES.hostZh)];
+  const c = [line("host", "zh", "收藏起來，隨時複習", VOICES.hostZh), line("host", "zh", `留言用 ${hookWord} 造句`, VOICES.hostZh), line("host", "zh", "追蹤 toEfu，每天一則", VOICES.hostZh)];
   scenes.push({ type: "cta", ...schedule(c, 0.2, 1.2, 0.25), lines: c, word: hookWord });
 
-  return { postId: post.id, duration: +t.toFixed(2), char: { name: char.name, handle: char.handle, avatar: char.avatar, color: char.color, topic: post.topic }, lines, scenes };
+  return { postId: post.id, duration: +t.toFixed(2), bg: BG, char: { name: char.name, handle: char.handle, avatar: char.avatar, color: char.color, soft: soften(char.color), topic: post.topic }, lines, scenes };
 }
 
-let teach = teachAll.slice(0, Math.max(1, MAX_WORDS)), plan = buildPlan(teach);
-while (plan.duration > MAX_SECONDS && teach.length > 1) { teach = teach.slice(0, -1); plan = buildPlan(teach); }
+const teach = teachAll.slice(0, Math.max(1, MAX_WORDS)), plan = buildPlan(teach);
+const voicedLines = plan.lines.filter((l) => voiceFile(l.id) && fs.existsSync(voiceFile(l.id)));
+envelopes(voicedLines.map((l) => voiceFile(l.id))).forEach((env, i) => { voicedLines[i].env = env; });
 fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, `${postId}.plan.json`), JSON.stringify({ ...plan, lines: plan.lines.map(({ tokens, ...l }) => l) }, null, 2));
-console.log(`${postId}: ${plan.duration}s, teaching ${teach.join(", ")}${VOICE_DIR ? " (voiced)" : " (estimated timing)"}`);
+fs.writeFileSync(path.join(OUT, `${postId}.plan.json`), JSON.stringify({ ...plan, lines: plan.lines.map(({ tokens, env, ...l }) => l) }, null, 2));
+console.log(`${postId}: ${plan.duration}s, teaching ${teach.length} word(s): ${teach.join(", ")}${VOICE_DIR ? " (voiced)" : " (estimated timing)"}`);
+if (plan.duration > 60) console.warn(`note: ${plan.duration}s is long for a short; use --words to teach fewer.`);
 
 // ---------- render ----------
 await page.goto(`http://localhost:${PORT}/scripts/video/scene.html`);
 await page.evaluate((spec) => window.init(spec), plan);
+{ // load every web-font glyph the clip needs, then settle before the first frame
+  const text = plan.scenes.flatMap((sc) => [sc.zh, sc.exZh, sc.word, sc.kk, sc.level, sc.question]).concat(plan.lines.map((l) => l.text)).join("") + "今天學會了嗎？收藏起來，隨時複習留言用造句追蹤每天一則用生活日常背單字⭐托福必考字例句";
+  await page.evaluate((t) => window.preloadFonts(t), text);
+  for (const sc of plan.scenes) await page.evaluate((t) => window.renderFrame(t), sc.start + 0.01);
+  await page.evaluate(() => document.fonts.ready);
+}
 
 if (STILLS) {
   for (const s of STILLS) {
@@ -197,7 +224,7 @@ if (STILLS) {
 }
 
 const out = path.join(OUT, `${postId}.mp4`);
-const voiced = plan.lines.filter((l) => voiceFile(l.id) && fs.existsSync(voiceFile(l.id)));
+const voiced = voicedLines;
 const ffArgs = ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-"];
 voiced.forEach((l) => ffArgs.push("-i", voiceFile(l.id)));
 if (voiced.length) {

@@ -7,60 +7,73 @@
   Deterministic motion-graphics renderer for the thread explainer clips.
   scripts/make-video.mjs calls window.init(spec) once, then window.renderFrame(t) for every frame.
   Nothing here uses real time: every pixel is a pure function of (spec, t), so renders are repeatable.
+  Fonts come from Google Fonts (Fredoka / Nunito / Noto Sans TC); offline it falls back to system fonts.
 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=block">
 <style>
-  html, body { margin: 0; background: #000; }
-  #stage {
-    position: relative; width: 540px; height: 960px; overflow: hidden; background: #FFF6E0;
-    font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", "Helvetica Neue", Arial, sans-serif;
-    color: #2b2320;
+  :root {
+    --ink: #2b2320; --muted: #7a6d64; --blue: #1d6fe0; --red: #d4202a; --gold: #FFD66B;
+    --body: "Nunito", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
+    --display: "Fredoka", "Nunito", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
   }
+  html, body { margin: 0; background: #000; }
+  #stage { position: relative; width: 540px; height: 960px; overflow: hidden; background: #FBE9CC; font-family: var(--body); color: var(--ink); }
   .abs { position: absolute; }
   .layer { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
-  .blob { position: absolute; border-radius: 50%; filter: blur(2px); opacity: .55; }
   #progress { position: absolute; left: 0; top: 0; height: 7px; background: #ff4d4f; width: 0; z-index: 50; }
-  #brand { position: absolute; left: 0; right: 0; bottom: 22px; text-align: center; font-weight: 800; font-size: 18px; letter-spacing: .5px; opacity: .55; z-index: 40; }
+  #brand { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font-family: var(--display); font-weight: 600; font-size: 19px; letter-spacing: .6px; color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.28); z-index: 40; }
+  body.solid #brand { color: var(--ink); text-shadow: none; opacity: .6; }
 
-  .pill { display: inline-block; padding: 8px 18px; border-radius: 999px; font-weight: 800; font-size: 22px; background: #2b2320; color: #FFD66B; }
+  .pill { display: inline-block; padding: 7px 20px; border-radius: 999px; font-family: var(--display); font-weight: 600; font-size: 21px; letter-spacing: .5px; background: var(--ink); color: var(--gold); box-shadow: 0 4px 0 rgba(0,0,0,.2); }
   .center { position: absolute; left: 0; right: 0; text-align: center; }
-  .big-word { font-weight: 900; line-height: 1.05; letter-spacing: -1px; }
-  .hl { background: #FFD66B; color: #2b2320; padding: 2px 14px; border-radius: 14px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .display { font-family: var(--display); font-weight: 700; letter-spacing: -.5px; line-height: 1.05; }
+  .hl { background: var(--gold); color: var(--ink); padding: 4px 22px 8px; border-radius: 22px; box-shadow: 0 7px 0 rgba(0,0,0,.2); display: inline-block; }
 
-  /* story bubble */
-  .bubble { position: absolute; left: 28px; right: 28px; background: #fff; border-radius: 28px; padding: 24px 26px; box-shadow: 0 8px 0 rgba(0,0,0,.12); font-size: 27px; line-height: 1.42; font-weight: 600; }
-  .tok { display: inline-block; white-space: pre; transition: none; padding: 0 2px; border-radius: 8px; }
-  .tok.vocab { color: #1d6fe0; text-decoration: underline; text-decoration-style: dotted; text-decoration-thickness: 3px; font-weight: 800; }
-  .zh-line { font-size: 21px; color: #6b5f57; font-weight: 600; line-height: 1.4; }
+  /* story */
+  .bubble { position: absolute; left: 26px; right: 26px; background: #fff; border-radius: 30px; padding: 24px 26px 22px; box-shadow: 0 9px 0 rgba(0,0,0,.16); }
+  .story-text { font-weight: 800; line-height: 1.5; letter-spacing: .1px; }
+  .tok { display: inline-block; white-space: pre; padding: 0 3px; border-radius: 9px; }
+  .tok.vocab { color: var(--blue); font-weight: 900; background-image: linear-gradient(transparent 66%, rgba(255,214,107,.95) 66%); }
+  .tok.brk { margin-top: 14px; }
+  .zh-line { color: var(--muted); font-weight: 500; line-height: 1.55; letter-spacing: .3px; }
+  .rule { height: 3px; border-radius: 3px; background: #eadfce; margin: 14px 0 12px; }
 
   /* word card */
-  .card { position: absolute; left: 24px; right: 24px; background: #fff; border-radius: 32px; padding: 26px 26px 22px; box-shadow: 0 10px 0 rgba(0,0,0,.12); }
-  .kk { font-size: 24px; color: #8b7f76; font-weight: 600; }
-  .tag { display: inline-block; font-size: 17px; font-weight: 800; padding: 3px 12px; border-radius: 999px; margin-right: 8px; }
-  .ex { font-size: 25px; line-height: 1.4; font-weight: 600; background: #FFF6E0; border-radius: 20px; padding: 16px 18px; }
+  .card { position: absolute; left: 24px; right: 24px; background: #fff; border-radius: 34px; padding: 26px 28px 24px; box-shadow: 0 10px 0 rgba(0,0,0,.16); }
+  .kk { font-family: var(--body); font-size: 24px; color: var(--muted); font-weight: 700; }
+  .tag { display: inline-block; font-family: var(--display); font-size: 18px; font-weight: 600; padding: 2px 13px; border-radius: 999px; background: var(--ink); color: var(--gold); margin-left: 8px; vertical-align: 2px; }
+  .label { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: 2.5px; color: #b49b83; margin-bottom: 6px; }
+  .ex { background: #FFF4DA; border-radius: 22px; padding: 16px 20px 18px; }
+  .ex-en { font-size: 27px; font-weight: 800; line-height: 1.42; }
 
-  .cta-pill { position: absolute; left: 38px; right: 38px; background: #fff; border-radius: 26px; padding: 18px 22px; font-size: 26px; font-weight: 800; box-shadow: 0 7px 0 rgba(0,0,0,.14); display: flex; align-items: center; gap: 14px; }
-  .cta-pill .ic { font-size: 34px; }
+  .cta-pill { position: absolute; left: 38px; right: 38px; background: #fff; border-radius: 28px; padding: 18px 24px; font-size: 28px; font-weight: 800; box-shadow: 0 7px 0 rgba(0,0,0,.16); display: flex; align-items: center; gap: 16px; }
+  .cta-pill .ic { font-size: 36px; }
 
   #host { position: absolute; left: 0; top: 0; width: 220px; height: 220px; z-index: 30; transform-origin: 50% 85%; }
-  #avatar { position: absolute; width: 150px; height: 150px; border-radius: 50%; font-size: 92px; line-height: 150px; text-align: center; box-shadow: 0 8px 0 rgba(0,0,0,.14); }
-  .ring { position: absolute; border-radius: 50%; border: 6px solid; }
+  #avatar { position: absolute; width: 112px; height: 112px; border-radius: 50%; font-size: 70px; line-height: 112px; text-align: center; box-shadow: 0 6px 0 rgba(0,0,0,.18); z-index: 2; }
+  .mic { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="bg"></div>
   <div id="progress"></div>
-  <div id="brand">toEfu 🧈 用串文背托福單字</div>
+  <div id="brand">toEfu 🧈 用生活日常背單字</div>
 
-  <!-- scenes -->
   <div class="layer" id="s-hook"></div>
   <div class="layer" id="s-story"></div>
   <div class="layer" id="s-word"></div>
   <div class="layer" id="s-cta"></div>
 
+  <!-- voice rings (like a live mic): scale with loudness -->
+  <div class="mic" id="host-ring-a" style="z-index:28"></div>
+  <div class="mic" id="host-ring-b" style="z-index:28"></div>
+
   <!-- tofu host (lip-synced) -->
   <svg id="host" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".12"/>
+    <ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".14"/>
     <g id="h-body">
       <rect x="8" y="18" width="48" height="38" rx="12" fill="#E9D3A3"/>
       <rect x="8" y="12" width="48" height="38" rx="12" fill="#FFF6E0" stroke="#E7CF9C" stroke-width="1.5"/>
@@ -76,7 +89,6 @@
         <ellipse id="h-mouth-o" cx="0" cy="0" rx="3.6" ry="2" fill="#7a2e2e"/>
         <ellipse id="h-tongue" cx="0" cy="1" rx="2.2" ry="1" fill="#ff8f8f"/>
       </g>
-      <!-- graduation cap -->
       <g transform="translate(32 12)">
         <polygon points="-17,0 0,-7.5 17,0 0,7.5" fill="#2f3b52"/>
         <path d="M-8 3.5v5.5q8 4 16 0v-5.5" fill="#3b4a68"/>
@@ -89,152 +101,184 @@
 
 <script>
 (function () {
-  var S, stage = document.getElementById("stage");
-  var $ = function (id) { return document.getElementById(id); };
+  var S, $ = function (id) { return document.getElementById(id); };
   var clamp = function (x, a, b) { return Math.max(a, Math.min(b, x)); };
   var lerp = function (a, b, p) { return a + (b - a) * p; };
   var easeOut = function (p) { return 1 - Math.pow(1 - clamp(p, 0, 1), 3); };
-  var easeBack = function (p) { p = clamp(p, 0, 1); var c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+  var easeBack = function (p) { p = clamp(p, 0, 1); var c = 1.7; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var hash = function (s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); };
 
-  // A pop-in: element scales/fades in from `delay` seconds into the scene.
+  // Pop-in from `delay` seconds into the scene (a single gentle entrance, no wobble).
   function pop(el, local, delay, opts) {
     opts = opts || {};
-    var p = (local - delay) / (opts.dur || 0.35);
-    var e = easeBack(p), vis = p > 0;
+    var p = (local - delay) / (opts.dur || 0.35), vis = p > 0;
     el.style.opacity = vis ? clamp(p * 3, 0, 1) : 0;
-    el.style.transform = (opts.base || "") + " translateY(" + ((1 - easeOut(p)) * (opts.rise == null ? 30 : opts.rise)) + "px) scale(" + (vis ? lerp(0.6, 1, clamp(e, 0, 1.15)) : 0.6) + ")";
+    el.style.transform = (opts.base || "") + " translateY(" + ((1 - easeOut(p)) * (opts.rise == null ? 28 : opts.rise)) + "px) scale(" + (vis ? lerp(0.85, 1, clamp(easeBack(p), 0, 1.06)) : 0.85) + ")";
   }
 
-  // ---------- speech activity (drives the mouth) ----------
-  var allTokens = [];
-  function speaking(t, speaker) {
-    for (var i = 0; i < allTokens.length; i++) {
-      var k = allTokens[i];
-      if (k.speaker !== speaker || t < k.s || t > k.e) continue;
-      var d = k.e - k.s, x = t - k.s;
-      var env = Math.min(1, x / 0.05, (d - x) / 0.05);
+  // ---------- loudness ----------
+  // Real audio: lines carry a 60 Hz envelope (0..1). Otherwise a syllable-like envelope is
+  // synthesised from the word timings. Either way it is a pure function of t.
+  function lineAt(t, speaker) {
+    for (var i = 0; i < S.lines.length; i++) { var l = S.lines[i]; if (l.speaker === speaker && t >= l.start && t <= l.end) return l; }
+    return null;
+  }
+  function rawLevel(t, speaker) {
+    var l = lineAt(t, speaker);
+    if (!l) return 0;
+    if (l.env) { var i = Math.floor((t - l.start) * 60); return l.env[clamp(i, 0, l.env.length - 1)] || 0; }
+    for (var j = 0; j < l.tokens.length; j++) {
+      var k = l.tokens[j];
+      if (t < k.s || t > k.e) continue;
+      var d = k.e - k.s, x = t - k.s, env = Math.min(1, x / 0.05, (d - x) / 0.05);
       var seed = 0.65 + 0.35 * ((hash(k.text) % 7) / 6);
       return clamp(env, 0, 1) * seed * (0.45 + 0.55 * Math.abs(Math.sin(x * Math.PI * 6.2)));
     }
     return 0;
   }
-  function tokenAt(t, speaker) {
-    var best = null;
-    for (var i = 0; i < allTokens.length; i++) { var k = allTokens[i]; if (k.speaker === speaker && t >= k.s) best = k; }
-    return best;
+  // Smoothed over the last ~0.18 s so the rings breathe instead of flicker.
+  function level(t, speaker) {
+    var sum = 0, n = 9;
+    for (var i = 0; i < n; i++) sum += rawLevel(t - i * 0.02, speaker);
+    return sum / n;
+  }
+
+  function micRings(a, b, cx, cy, base, lv, on, color) {
+    var ra = base * (1 + 0.28 * lv * 2.2), rb = base * (1 + 0.55 * lv * 2.2);
+    function ring(el, r, op, fill) {
+      el.style.cssText = "position:absolute;border-radius:50%;left:" + (cx - r) + "px;top:" + (cy - r) + "px;width:" + (2 * r) + "px;height:" + (2 * r) + "px;" +
+        "opacity:" + (on ? op : 0) + ";" + (fill ? "background:" + color : "border:5px solid " + color) + ";z-index:" + (el.style.zIndex || 28) + ";";
+    }
+    ring(b, rb, 0.28, true);
+    ring(a, ra, 0.95, false);
   }
 
   // ---------- host ----------
-  var POSE = { hook: { x: 160, y: 580, s: 1.0 }, story: { x: -10, y: 700, s: 0.7 }, word: { x: 20, y: 640, s: 0.95 }, cta: { x: 150, y: 560, s: 1.1 } };
+  var POSE = { hook: { x: 160, y: 585, s: 1.0 }, story: { x: -30, y: 748, s: 0.52 }, word: { x: 20, y: 640, s: 0.95 }, cta: { x: 150, y: 570, s: 1.1 } };
   function hostFrame(t, scene, local) {
     var cur = POSE[scene.type], prev = scene.prevType ? POSE[scene.prevType] : cur;
     var p = easeOut(local / 0.4);
     var x = lerp(prev.x, cur.x, p), y = lerp(prev.y, cur.y, p), s = lerp(prev.s, cur.s, p);
-    var talk = speaking(t, "host");
-    var bob = Math.sin(t * 2.6) * 4 + talk * -10;
-    var squash = 1 + talk * 0.07;
-    var tilt = Math.sin(t * 1.7) * 2.5 + (scene.type === "cta" ? Math.sin(t * 6) * 3 : 0);
+    var raw = rawLevel(t, "host"), lv = level(t, "host");
     var h = $("host");
-    h.style.width = h.style.height = "220px";
-    h.style.transform = "translate(" + x + "px," + (y + bob) + "px) scale(" + s * (2 - squash) + "," + s * squash + ") rotate(" + tilt + "deg)";
-    // mouth
+    h.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";   // body stays put
     var o = $("h-mouth"), sm = $("h-smile");
-    if (talk > 0.08) {
+    if (raw > 0.08) {
+      var m = clamp(raw * 1.25, 0, 1);
       sm.style.display = "none"; o.style.display = "";
-      $("h-mouth-o").setAttribute("ry", (0.7 + talk * 3.6).toFixed(2));
-      $("h-mouth-o").setAttribute("rx", (3.2 + talk * 0.8).toFixed(2));
-      $("h-tongue").setAttribute("cy", (0.6 + talk * 1.2).toFixed(2));
-      $("h-tongue").setAttribute("ry", (0.3 + talk * 1.2).toFixed(2));
+      $("h-mouth-o").setAttribute("ry", (0.7 + m * 3.6).toFixed(2));
+      $("h-mouth-o").setAttribute("rx", (3.2 + m * 0.8).toFixed(2));
+      $("h-tongue").setAttribute("cy", (0.6 + m * 1.2).toFixed(2));
+      $("h-tongue").setAttribute("ry", (0.3 + m * 1.2).toFixed(2));
     } else { sm.style.display = ""; o.style.display = "none"; }
-    // blink every ~3.1 s
-    var b = (t % 3.1), blink = b < 0.12 ? Math.sin((b / 0.12) * Math.PI) : 0;
-    var eyes = $("h-eyes").children;
+    var b = t % 3.1, blink = b < 0.12 ? Math.sin((b / 0.12) * Math.PI) : 0, eyes = $("h-eyes").children;
     for (var i = 0; i < eyes.length; i++) eyes[i].setAttribute("transform", "translate(0 " + (31 * blink) + ") scale(1 " + (1 - 0.9 * blink) + ")");
+    // rings are centred on the body
+    var cx = x + 110, cy = y + 187 - 78 * s;
+    micRings($("host-ring-a"), $("host-ring-b"), cx, cy, 98 * s, lv, lv > 0.02, "#FFD66B");
   }
 
   // ---------- background ----------
-  var BG = { hook: ["#FF6B6B", "#FFD66B"], story: null, word: ["#FFD66B", "#FFB74D"], cta: ["#7ee081", "#FFD66B"] };
-  function bgFrame(t, scene) {
-    var cols = BG[scene.type] || [S.char.color, "#FFF6E0"];
-    var bg = $("bg");
-    bg.style.cssText = "position:absolute;inset:0;background:linear-gradient(" + (160 + Math.sin(t * 0.5) * 20) + "deg," + cols[0] + "," + cols[1] + ")";
-    var blobs = bg.children;
-    if (!blobs.length) for (var i = 0; i < 5; i++) { var d = document.createElement("div"); d.className = "blob"; bg.appendChild(d); }
-    for (var j = 0; j < blobs.length; j++) {
-      var r = 120 + j * 40, bx = 270 + Math.sin(t * (0.3 + j * 0.11) + j) * 260, by = 480 + Math.cos(t * (0.25 + j * 0.07) + j * 2) * 420;
-      blobs[j].style.cssText = "width:" + r + "px;height:" + r + "px;left:" + (bx - r / 2) + "px;top:" + (by - r / 2) + "px;background:rgba(255,255,255," + (0.14 + (j % 3) * 0.05) + ")";
-    }
+  function classroomSvg() {
+    // flat illustration: wall, blackboard with chalk doodles, window, clock, floor
+    return '<svg width="540" height="960" viewBox="0 0 540 960" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">' +
+      '<rect width="540" height="960" fill="#F4E3C3"/>' +
+      '<rect y="640" width="540" height="40" fill="#E8CFA2"/>' +                                   // wainscot top
+      '<rect y="680" width="540" height="280" fill="#CFA06A"/>' +                                  // floor
+      '<g stroke="#B98A55" stroke-width="3" opacity=".7"><path d="M0 760h540M0 850h540"/><path d="M90 680v80M300 680v80M180 760v90M420 760v90M90 850v110M330 850v110"/></g>' +
+      '<rect y="672" width="540" height="12" fill="#B88A55"/>' +                                    // baseboard
+      // blackboard
+      '<rect x="22" y="78" width="496" height="506" rx="16" fill="#B07A47"/>' +
+      '<rect x="36" y="92" width="468" height="478" rx="10" fill="#2F5D50"/>' +
+      '<rect x="36" y="92" width="468" height="478" rx="10" fill="url(#chalk)" opacity=".18"/>' +
+      '<rect x="60" y="584" width="150" height="12" rx="5" fill="#8d5f33"/><rect x="82" y="578" width="34" height="7" rx="3" fill="#fff"/><rect x="130" y="579" width="26" height="6" rx="3" fill="#FFD66B"/>' +
+      '<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".22">' +
+        '<path d="M56 540q20-14 40 0t40 0"/><path d="M400 530l16-22 16 22z"/><circle cx="470" cy="525" r="14"/>' +
+        '<path d="M58 118h40M58 134h26"/></g>' +
+      '<text x="470" y="128" font-size="26" fill="#fff" opacity=".2" font-family="Fredoka,Nunito,sans-serif" font-weight="700" text-anchor="end">ABC</text>' +
+      // clock + window peeking at the top
+      '<circle cx="486" cy="40" r="26" fill="#fff" stroke="#B07A47" stroke-width="6"/><path d="M486 40v-13M486 40l10 6" stroke="#2b2320" stroke-width="3" stroke-linecap="round"/>' +
+      '<rect x="26" y="14" width="86" height="52" rx="8" fill="#BFE4F5" stroke="#B07A47" stroke-width="6"/><path d="M69 14v52M26 40h86" stroke="#B07A47" stroke-width="4"/>' +
+      '<defs><pattern id="chalk" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="12" cy="14" r="22" fill="#fff"/><circle cx="46" cy="44" r="18" fill="#fff"/></pattern></defs>' +
+      '</svg>';
+  }
+  var SOLID = { hook: "#FFD66B", word: "#FFE39A", cta: "#BFEAC0" };
+  function bgInit() {
+    document.body.classList.toggle("solid", S.bg === "solid");
+    if (S.bg !== "solid") $("bg").innerHTML = classroomSvg();
+  }
+  function bgFrame(scene) {
+    if (S.bg !== "solid") return;
+    var c = SOLID[scene.type] || S.char.soft;
+    $("bg").style.cssText = "position:absolute;inset:0;background:" + c;
   }
 
   // ---------- karaoke ----------
   function karaokeHtml(tokens, joiner) {
     return tokens.map(function (k, i) {
-      return '<span class="tok' + (k.key ? " vocab" : "") + '" data-i="' + i + '">' + esc(k.text) + "</span>" + (i < tokens.length - 1 ? joiner : "");
+      return (k.brk ? '<br>' : "") + '<span class="tok' + (k.key ? " vocab" : "") + (k.brk ? " brk" : "") + '">' + esc(k.text) + "</span>" + (i < tokens.length - 1 ? joiner : "");
     }).join("");
   }
-  function karaokeUpdate(root, tokens, t, teach) {
+  function karaokeUpdate(root, tokens, t) {
     var spans = root.querySelectorAll(".tok");
     for (var i = 0; i < spans.length; i++) {
-      var k = tokens[i], sp = spans[i], on = t >= k.s, cur = t >= k.s && t < k.e + 0.05;
-      sp.style.opacity = on ? 1 : 0.32;
-      sp.style.background = cur ? "#FFD66B" : "transparent";
-      var strong = k.key && teach.indexOf(k.key) >= 0;
-      sp.style.transform = cur ? "scale(" + (strong ? 1.18 : 1.08) + ")" : "scale(1)";
-      if (k.key) sp.style.opacity = on ? 1 : 0.7;
+      var k = tokens[i], on = t >= k.s, cur = t >= k.s && t < k.e + 0.06;
+      spans[i].style.opacity = on ? 1 : (k.key ? 0.75 : 0.3);
+      spans[i].style.backgroundColor = cur ? "#FFD66B" : "transparent";
     }
   }
+  // meaning "分配；撥出（資源）" → main text + small note
+  function splitNote(zh) {
+    var m = zh.match(/^(.*?)\s*[（(]([^）)]*)[）)]\s*$/);
+    return m ? { main: m[1], note: m[2] } : { main: zh, note: "" };
+  }
 
-  // ---------- scene builders ----------
-  var built = {};
+  // ---------- scenes ----------
   function build() {
-    S.scenes.forEach(function (sc, idx) {
+    S.scenes.forEach(function (sc) {
       var el = $("s-" + sc.type);
       if (sc.type === "hook") {
         el.innerHTML =
           '<div class="center" id="hk-pill" style="top:120px"><span class="pill">⭐ TOEFL 必考字 · ' + esc(sc.level) + '</span></div>' +
-          '<div class="center big-word" id="hk-word" style="top:215px;font-size:' + (sc.word.length > 11 ? 56 : 72) + 'px"><span class="hl">' + esc(sc.word) + '</span></div>' +
-          '<div class="center" id="hk-q" style="top:365px;font-size:92px;font-weight:900;color:#d4202a;-webkit-text-stroke:3px #fff;paint-order:stroke fill">' + esc(sc.question) + '</div>' +
-          '<div class="abs" id="hk-x" style="right:50px;top:470px;font-size:84px">🤔</div>';
+          '<div class="center display" id="hk-word" style="top:200px;font-size:' + (sc.word.length > 12 ? 52 : sc.word.length > 9 ? 62 : 74) + 'px"><span class="hl">' + esc(sc.word) + '</span></div>' +
+          '<div class="center display" id="hk-q" style="top:372px;font-size:' + (sc.question.length > 4 ? 84 : 100) + 'px;color:var(--red);-webkit-text-stroke:9px #fff;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.25)">' + esc(sc.question) + '</div>';
       } else if (sc.type === "story") {
-        var a = S.char;
+        var a = S.char, n = S.lines[sc.line].tokens.length;
+        var fs = n <= 26 ? 33 : n <= 36 ? 30 : n <= 46 ? 27 : n <= 56 ? 24 : 22, zfs = n <= 36 ? 20 : n <= 50 ? 18 : 16;
         el.innerHTML =
           '<div id="avatar" style="left:34px;top:92px;background:' + esc(a.color) + '">' + a.avatar + '</div>' +
-          '<div class="ring" id="st-ring" style="left:34px;top:92px;width:138px;height:138px;border-color:#fff"></div>' +
-          '<div class="abs" id="st-name" style="left:200px;top:112px;font-weight:900;font-size:34px;line-height:1.1">' + esc(a.name) + '<div style="font-size:19px;font-weight:600;opacity:.65">@' + esc(a.handle) + ' · ' + esc(a.topic) + '</div></div>' +
-          '<div class="bubble" id="st-bubble" style="top:270px"><div id="st-text"></div><div class="zh-line" id="st-zh" style="margin-top:16px"></div></div>';
+          '<div class="abs" id="st-name" style="left:188px;top:100px;line-height:1.15"><div class="display" style="font-size:34px;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.3)">' + esc(a.name) + '</div><div style="font-size:19px;font-weight:700;color:#fff;opacity:.85;text-shadow:0 2px 0 rgba(0,0,0,.25)">@' + esc(a.handle) + ' · ' + esc(a.topic) + '</div></div>' +
+          '<div class="bubble" id="st-bubble" style="top:226px"><div class="story-text" id="st-text" style="font-size:' + fs + 'px"></div><div id="st-zhwrap"><div class="rule"></div><div class="zh-line" id="st-zh" style="font-size:' + zfs + 'px"></div></div></div>';
         $("st-text").innerHTML = karaokeHtml(S.lines[sc.line].tokens, " ");
         $("st-zh").textContent = sc.zh || "";
+        ["st-ring-b", "st-ring-a"].forEach(function (id, i) { var d = document.createElement("div"); d.id = id; d.className = "mic"; d.style.zIndex = String(i); el.insertBefore(d, $("avatar")); });
+        if (!sc.zh) $("st-zhwrap").style.display = "none";
+        if (S.bg === "solid") { $("st-name").firstChild.style.cssText += ";color:#2b2320;text-shadow:none"; $("st-name").lastChild.style.cssText += ";color:#2b2320;text-shadow:none"; }
       } else if (sc.type === "cta") {
-        buildCta(el, sc);
+        el.innerHTML =
+          '<div class="center display" id="c-title" style="top:100px;font-size:56px"><span class="hl">今天學會了嗎？</span></div>' +
+          '<div class="cta-pill" id="c-1" style="top:236px"><span class="ic">🔖</span>收藏起來，隨時複習</div>' +
+          '<div class="cta-pill" id="c-2" style="top:336px"><span class="ic">💬</span><span>留言用 <span style="color:var(--blue)">' + esc(sc.word) + '</span> 造句</span></div>' +
+          '<div class="cta-pill" id="c-3" style="top:436px"><span class="ic">➕</span>追蹤 toEfu，每天一則</div>';
       }
     });
   }
 
   // Word cards share one layer, so each is built when its turn comes.
   function buildWord(sc) {
-    var el = $("s-word"), ex = S.lines[sc.lines.ex];
+    var el = $("s-word"), ex = S.lines[sc.lines.ex], z = splitNote(sc.zh);
     el.dataset.key = sc.key;
-        el.innerHTML =
-          '<div class="center" id="w-count" style="top:92px"><span class="pill">' + esc(sc.index + "/" + sc.total) + ' · ' + esc(sc.level) + '</span></div>' +
-          '<div class="card" id="w-card" style="top:150px">' +
-            '<div class="big-word" id="w-word" style="font-size:' + (sc.word.length > 11 ? 50 : 64) + 'px;color:#1d6fe0">' + esc(sc.word) + '</div>' +
-            '<div class="kk">' + esc(sc.kk || "") + ' <span class="tag" style="background:#2b2320;color:#FFD66B;margin-left:6px">' + esc(sc.pos) + '</span></div>' +
-            '<div id="w-zh" style="font-size:46px;font-weight:900;color:#d4202a;margin:14px 0 14px;line-height:1.15">' + esc(sc.zh) + '</div>' +
-            '<div class="ex" id="w-ex"><div id="w-ex-en"></div><div class="zh-line" id="w-ex-zh" style="margin-top:8px"></div></div>' +
-          '</div>';
-        $("w-ex-en").innerHTML = karaokeHtml(ex.tokens, " ");
-        $("w-ex-zh").textContent = sc.exZh || "";
-  }
-
-  function buildCta(el, sc) {
-        el.innerHTML =
-          '<div class="center big-word" id="c-title" style="top:100px;font-size:60px"><span class="hl">考前一定用得上！</span></div>' +
-          '<div class="cta-pill" id="c-1" style="top:230px"><span class="ic">🔖</span>收藏起來，考前複習</div>' +
-          '<div class="cta-pill" id="c-2" style="top:330px"><span class="ic">💬</span>留言用 <span style="color:#1d6fe0">' + esc(sc.word) + '</span> 造句</div>' +
-          '<div class="cta-pill" id="c-3" style="top:430px"><span class="ic">➕</span>追蹤 toEfu，每天一篇</div>' +
-          '<div class="abs" id="c-arrow" style="right:56px;top:540px;font-size:80px">👇</div>';
+    el.innerHTML =
+      '<div class="center" id="w-count" style="top:92px"><span class="pill">' + esc(sc.index + " / " + sc.total) + ' · ' + esc(sc.level) + '</span></div>' +
+      '<div class="card" id="w-card" style="top:150px">' +
+        '<div class="display" id="w-word" style="font-size:' + (sc.word.length > 12 ? 50 : sc.word.length > 9 ? 58 : 68) + 'px;color:var(--blue)">' + esc(sc.word) + '</div>' +
+        '<div class="kk">' + esc(sc.kk || "") + '<span class="tag">' + esc(sc.pos) + '</span></div>' +
+        '<div id="w-zh" style="margin:16px 0 18px"><span style="font-size:46px;font-weight:900;color:var(--red);line-height:1.2">' + esc(z.main) + '</span>' + (z.note ? ' <span style="font-size:24px;font-weight:700;color:var(--muted)">（' + esc(z.note) + '）</span>' : "") + '</div>' +
+        '<div class="ex" id="w-ex"><div class="label">EXAMPLE · 例句</div><div class="ex-en" id="w-ex-en"></div><div class="zh-line" id="w-ex-zh" style="font-size:21px;margin-top:8px"></div></div>' +
+      '</div>';
+    $("w-ex-en").innerHTML = karaokeHtml(ex.tokens, " ");
+    $("w-ex-zh").textContent = sc.exZh || "";
   }
 
   function sceneAt(t) {
@@ -244,67 +288,65 @@
 
   window.init = function (spec) {
     S = spec;
-    allTokens = [];
-    S.lines.forEach(function (l) { l.tokens.forEach(function (k) { allTokens.push({ speaker: l.speaker, s: k.s, e: k.e, text: k.text }); }); });
     S.scenes.forEach(function (sc, i) { sc.prevType = i ? S.scenes[i - 1].type : null; });
+    bgInit();
     build();
+  };
+
+  // Make sure every web font glyph needed is loaded before frames are captured.
+  window.preloadFonts = function (text) {
+    var faces = ['500 20px "Noto Sans TC"', '700 20px "Noto Sans TC"', '900 20px "Noto Sans TC"', '600 20px "Fredoka"', '700 20px "Fredoka"', '600 20px "Nunito"', '700 20px "Nunito"', '800 20px "Nunito"', '900 20px "Nunito"'];
+    return Promise.all(faces.map(function (f) { return document.fonts.load(f, text); })).then(function () { return document.fonts.ready; });
   };
 
   window.renderFrame = function (t) {
     var sc = sceneAt(t), local = t - sc.start;
-    var layers = ["hook", "story", "word", "cta"];
-    layers.forEach(function (n) { $("s-" + n).style.opacity = 0; });
-    var el = $("s-" + sc.type);
-    el.style.opacity = 1;
+    ["hook", "story", "word", "cta"].forEach(function (n) { $("s-" + n).style.opacity = 0; });
+    $("s-" + sc.type).style.opacity = 1;
     $("progress").style.width = (clamp(t / S.duration, 0, 1) * 100) + "%";
-    bgFrame(t, sc);
+    bgFrame(sc);
     hostFrame(t, sc, local);
 
+    // the active scene decides who gets a mic ring: thread author in "story", tofu otherwise
     if (sc.type === "hook") {
       pop($("hk-pill"), local, 0.05);
-      var w = $("hk-word"); pop(w, local, 0.0, { dur: 0.3 });
-      var shake = local < 0.9 ? Math.sin(local * 60) * 5 * (1 - local / 0.9) : 0;
-      w.style.transform += " rotate(" + shake * 0.3 + "deg) translateX(" + shake + "px)";
-      pop($("hk-q"), local, S.lines[sc.lines[1]].start - sc.start, { dur: 0.3, base: "rotate(-4deg)" });
-      pop($("hk-x"), local, S.lines[sc.lines[1]].start - sc.start + 0.1, { base: "rotate(" + Math.sin(t * 5) * 8 + "deg)" });
+      pop($("hk-word"), local, 0.0, { dur: 0.3 });
+      var qd = S.lines[sc.lines[1]].start - sc.start;
+      pop($("hk-q"), local, qd, { dur: 0.3, base: "rotate(-3deg)" });
     } else if (sc.type === "story") {
-      var talk = speaking(t, "char");
-      var av = $("avatar");
-      av.style.transform = "translateY(" + (-talk * 14) + "px) scale(" + (1 + talk * 0.08) + "," + (1 - talk * 0.05) + ") rotate(" + (Math.sin(t * 7) * talk * 6) + "deg)";
-      var ring = $("st-ring"), ph = (t * 1.6) % 1;
-      ring.style.opacity = talk > 0.05 ? (1 - ph) * 0.9 : 0;
-      ring.style.transform = "translateY(" + (-talk * 14) + "px) scale(" + (1 + ph * 0.45) + ")";
-      pop($("st-bubble"), local, 0.05, { dur: 0.4, rise: 40 });
+      var lv = level(t, "char"), a = $("avatar");
+      // avatar stays still; rings around it carry the voice
+      micRings($("st-ring-a"), $("st-ring-b"), 34 + 56, 92 + 56, 66, lv, lv > 0.02, "#fff");
+      a.style.opacity = 1;
+      pop($("st-bubble"), local, 0.05, { dur: 0.4, rise: 36 });
       var line = S.lines[sc.line];
-      karaokeUpdate($("st-text"), line.tokens, t, sc.teach);
-      var zh = $("st-zh");
-      zh.style.opacity = clamp((t - line.end) / 0.3, 0, 1);
+      karaokeUpdate($("st-text"), line.tokens, t);
+      $("st-zhwrap").style.opacity = clamp((t - line.end) / 0.3, 0, 1);
       pop($("st-name"), local, 0.0, { dur: 0.3, rise: 0 });
     } else if (sc.type === "word") {
       if ($("s-word").dataset.key !== sc.key) buildWord(sc);
       pop($("w-count"), local, 0.0);
-      pop($("w-card"), local, 0.05, { dur: 0.4, rise: 50 });
+      pop($("w-card"), local, 0.05, { dur: 0.4, rise: 46 });
       var lw = S.lines[sc.lines.word], lm = S.lines[sc.lines.mean], le = S.lines[sc.lines.ex];
-      var ww = $("w-word"), spoken = t - lw.start;
+      var sp = t - lw.start, ww = $("w-word");
       ww.style.transformOrigin = "left center";
-      ww.style.transform = spoken > 0 && spoken < 0.5 ? "scale(" + (1 + Math.sin(spoken / 0.5 * Math.PI) * 0.12) + ")" : "none";
-      var zhEl = $("w-zh"); pop(zhEl, local, lm.start - sc.start - 0.05, { dur: 0.35, rise: 24 });
-      zhEl.style.transformOrigin = "left center";
-      pop($("w-ex"), local, le.start - sc.start - 0.25, { dur: 0.4, rise: 30 });
-      karaokeUpdate($("w-ex-en"), le.tokens, t, [sc.key]);
+      ww.style.transform = sp > 0 && sp < 0.4 ? "scale(" + (1 + Math.sin(sp / 0.4 * Math.PI) * 0.07) + ")" : "none";
+      var zhEl = $("w-zh"); zhEl.style.transformOrigin = "left center";
+      pop(zhEl, local, lm.start - sc.start - 0.05, { dur: 0.35, rise: 20 });
+      pop($("w-ex"), local, le.start - sc.start - 0.25, { dur: 0.4, rise: 26 });
+      karaokeUpdate($("w-ex-en"), le.tokens, t);
       $("w-ex-zh").style.opacity = clamp((t - le.start - 0.4) / 0.4, 0, 1);
     } else if (sc.type === "cta") {
       pop($("c-title"), local, 0.0, { dur: 0.35 });
-      var c1 = S.lines[sc.lines[0]].start - sc.start, c2 = S.lines[sc.lines[1]].start - sc.start, c3 = S.lines[sc.lines[2]].start - sc.start;
-      pop($("c-1"), local, c1 - 0.1); pop($("c-2"), local, c2 - 0.1); pop($("c-3"), local, c3 - 0.1);
-      var ar = $("c-arrow"); pop(ar, local, c2); ar.style.transform += " translateY(" + (Math.abs(Math.sin(t * 5)) * -26) + "px)";
+      var cs = sc.lines.map(function (i) { return S.lines[i]; });
       [1, 2, 3].forEach(function (n) {
-        var pill = $("c-" + n), k = tokenAt(t, "host");
-        var ln = S.lines[sc.lines[n - 1]];
-        if (t >= ln.start && t < ln.end + 0.2) pill.style.boxShadow = "0 7px 0 #ff4d4f";
-        else pill.style.boxShadow = "0 7px 0 rgba(0,0,0,.14)";
+        var pill = $("c-" + n), ln = cs[n - 1];
+        pop(pill, local, ln.start - sc.start - 0.1);
+        pill.style.boxShadow = (t >= ln.start && t < ln.end + 0.2) ? "0 7px 0 #ff4d4f" : "0 7px 0 rgba(0,0,0,.16)";
       });
     }
+    // hide the author's rings outside the story scene
+    ["st-ring-a", "st-ring-b"].forEach(function (id) { var e = $(id); if (e && sc.type !== "story") e.style.opacity = 0; });
     return sc.type;
   };
 })();
