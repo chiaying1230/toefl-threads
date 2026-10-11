@@ -4,17 +4,17 @@
 //
 //   --out <dir>      output folder (default ./videos)
 //   --words <n>      cap the number of words taught (default: every word in the thread)
-//   --bg <style>     classroom (default) or solid
 //   --voice <dir>    folder with line-<id>.mp3 from scripts/make-voice.py (adds real narration)
 //   --preview        half-size, 15 fps: fast draft render
 //   --stills a,b,c   only write PNG stills at those seconds (for checking layout), no video
 //   --fps <n> --scale <n>   override frame rate / pixel density (default 30 / 2 → 1080×1920)
 //
-// Structure (hook → story → one card per word → call to action) follows the short-video
-// formula: a 3-second hook, the thread as the "situation", a quick explanation, then a
-// save/comment prompt. A talking tofu host explains; the thread's author bounces along
-// while "speaking" the post. Without --voice the mouth and karaoke captions run on
-// estimated timings; with voice files they follow the real audio length.
+// The picture is the real toEfu app (feed → thread → the app's own word sheet) with our overlays
+// on top: a hook, rolling captions, a talking tofu host, small voice bars, tap marks.
+// Structure: 3-second hook → the whole thread read aloud → one card per word → call to action.
+// Works for every thread: the TOEFL list and the Elementary / High School / IELTS / TOEIC packs.
+// Without --voice the mouth, bars and captions run on estimated timings; with voice files they
+// follow the real audio (length and loudness).
 //
 // Outputs: <out>/<postId>.mp4 and <out>/<postId>.plan.json (every line to be voiced,
 // with its voice settings) — feed the plan to scripts/make-voice.py for narration.
@@ -32,7 +32,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const argv = process.argv.slice(2);
 const flag = (n) => argv.includes("--" + n);
 const opt = (n, d) => { const i = argv.indexOf("--" + n); return i >= 0 ? argv[i + 1] : d; };
-const valued = new Set(["out", "words", "voice", "stills", "fps", "scale", "port", "bg"]);
+const valued = new Set(["out", "words", "voice", "stills", "fps", "scale", "port"]);
 const postId = argv.find((a, i) => !a.startsWith("--") && !(i > 0 && argv[i - 1].startsWith("--") && valued.has(argv[i - 1].slice(2))));
 if (!postId) { console.error("usage: node scripts/make-video.mjs <postId> [--voice dir] [--preview] [--stills 1,5,9]"); process.exit(1); }
 
@@ -44,7 +44,6 @@ const PORT = parseInt(opt("port", "8123"), 10);
 const VOICE_DIR = opt("voice", null) && path.resolve(opt("voice"));
 const STILLS = opt("stills", null)?.split(",").map(Number);
 const MAX_WORDS = parseInt(opt("words", "99"), 10);
-const BG = opt("bg", "classroom");
 
 // ---------- tiny static server (the page needs the app's data files) ----------
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml" };
@@ -56,21 +55,34 @@ const server = http.createServer((req, res) => {
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ? pathToFileURL(process.env.PLAYWRIGHT_MODULE).href : "playwright");
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
-const page = await (await browser.newContext({ viewport: { width: 540, height: 960 }, deviceScaleFactor: SCALE })).newPage();
+const ctx = await browser.newContext({ viewport: { width: 540, height: 960 }, deviceScaleFactor: SCALE });
+const page = await ctx.newPage();
+await page.emulateMedia({ colorScheme: "light" });
 const done = async (code = 0) => { await browser.close(); server.close(); process.exit(code); };
 
 // ---------- read the thread from the app's own data ----------
 await page.goto(`http://localhost:${PORT}/index.html`);
 await page.waitForFunction(() => window.POSTS && window.VOCAB && window.CHARACTERS);
-const data = await page.evaluate((id) => {
-  const post = window.POSTS.find((p) => p.id === id);
+const data = await page.evaluate(async (id) => {
+  let post = window.POSTS.find((p) => p.id === id), pack = null;
+  if (!post) { // threads of the other word lists live in js/data/packs/<id>.js and load on demand
+    const ids = (window.PACK_META || []).map((p) => p.id);
+    await new Promise((res) => window.Core.loadPacks(ids, res));
+    for (const k of ids) { post = ((window.PACK_POSTS || {})[k] || []).find((p) => p.id === id); if (post) { pack = k; break; } }
+  }
   if (!post) return null;
   const vocab = {}, kk = {};
   post.text.replace(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g, (m, k) => { vocab[k] = window.VOCAB[k]; kk[k] = (window.KK || {})[k] || ""; });
-  return { post, vocab, kk, char: window.CHARACTERS[post.author] };
+  const meta = (window.PACK_META || []).find((p) => p.id === (pack || "toefl"));
+  return { post, vocab, kk, pack, packZh: meta ? meta.zh : "托福", char: window.CHARACTERS[post.author] };
 }, postId);
-if (!data) { console.error(`Post "${postId}" not found in window.POSTS (pack threads are not supported yet).`); await done(1); }
-const { post, vocab, kk, char } = data;
+if (!data) { console.error(`Post "${postId}" not found (looked in the TOEFL list and every word pack).`); await done(1); }
+const { post, vocab, kk, char, pack, packZh } = data;
+if (!char) { console.error(`Unknown author "${post.author}" for ${postId}.`); await done(1); }
+// The app runs inside the video: skip its first-run screens and select the thread's word pack.
+await ctx.addInitScript((pk) => {
+  try { localStorage.setItem("toeflThreads.v2", JSON.stringify({ prefs: { levels: [1, 2, 3], packs: pk ? [pk] : [], topics: [], onboarded: true, toured: true } })); } catch (e) {}
+}, pack);
 
 // ---------- text → timed tokens ----------
 const EMOJI = /\p{Extended_Pictographic}|️|‍/gu;
@@ -131,7 +143,6 @@ const keysIn = (s) => { const ks = []; s.replace(MARK, (m, k) => { if (!ks.inclu
 const teachAll = keysIn(storyRaw);
 const hardest = (keys) => keys.reduce((b, k) => (vocab[k].level > vocab[b].level ? k : b), keys[0]);
 
-const soften = (hex) => { const n = parseInt(hex.slice(1), 16); const mix = (c) => Math.round(c + (255 - c) * 0.6).toString(16).padStart(2, "0"); return "#" + mix(n >> 16) + mix((n >> 8) & 255) + mix(n & 255); };
 
 // Real-audio loudness: 60 values/s in 0..1 per voiced line, so the voice rings and the mouth
 // follow the actual recording. Normalised against the loudest 5% of all voiced samples.
@@ -178,7 +189,7 @@ function buildPlan(teach) {
   const hookWord = hardest(teach), hv = vocab[hookWord];
   const question = ["你會嗎？", "看得懂嗎？", "知道嗎？"][hash(post.id) % 3];
   const h = [line("host", "en", hookWord, VOICES.hostEn), line("host", "zh", question, VOICES.hostZh)];
-  scenes.push({ type: "hook", ...schedule(h, 0.1, 0.35), lines: h, word: hookWord, level: LEVEL_NAME[hv.level], question });
+  scenes.push({ type: "hook", ...schedule(h, 0.1, 0.35), lines: h, word: hookWord, label: `${packZh}單字`, level: LEVEL_NAME[hv.level], question });
 
   const sl = line("char", "en", storyRaw, VOICES.char);
   scenes.push({ type: "story", ...schedule([sl], 0.3, storyZh ? Math.min(4, Math.max(1.6, storyZh.length / 14)) : 0.8), line: sl, zh: storyZh, teach });
@@ -193,7 +204,7 @@ function buildPlan(teach) {
   const c = [line("host", "zh", "收藏起來，隨時複習", VOICES.hostZh), line("host", "zh", `留言用 ${hookWord} 造句`, VOICES.hostZh), line("host", "zh", "追蹤 toEfu，每天一則", VOICES.hostZh)];
   scenes.push({ type: "cta", ...schedule(c, 0.2, 1.2, 0.25), lines: c, word: hookWord });
 
-  return { postId: post.id, duration: +t.toFixed(2), bg: BG, char: { name: char.name, handle: char.handle, avatar: char.avatar, color: char.color, soft: soften(char.color), topic: post.topic }, lines, scenes };
+  return { postId: post.id, duration: +t.toFixed(2), pack, char: { name: char.name, handle: char.handle, avatar: char.avatar, color: char.color, topic: post.topic }, lines, scenes };
 }
 
 const teach = teachAll.slice(0, Math.max(1, MAX_WORDS)), plan = buildPlan(teach);

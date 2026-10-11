@@ -4,76 +4,74 @@
 <meta charset="utf-8">
 <title>toEfu video scene</title>
 <!--
-  Deterministic motion-graphics renderer for the thread explainer clips.
-  scripts/make-video.mjs calls window.init(spec) once, then window.renderFrame(t) for every frame.
-  Nothing here uses real time: every pixel is a pure function of (spec, t), so renders are repeatable.
-  Fonts come from Google Fonts (Fredoka / Nunito / Noto Sans TC); offline it falls back to system fonts.
+  Deterministic compositor for the thread explainer clips.
+
+  The background is the real toEfu app (two same-origin iframes, scaled to fill the phone-shaped
+  canvas): the feed, then the thread page, with the app's own word sheet opened on top.
+  Everything we add (hook text, captions, tofu host, voice bars, tap marks, spotlight) sits above.
+
+  scripts/make-video.mjs calls `await window.init(spec)` once, then `window.renderFrame(t)` for every
+  frame. Frames are a pure function of (spec, t): app animations are switched off and the few
+  state changes (sheet open, translation shown, bookmark, typed reply) are applied from `t`.
+  Fonts come from Google Fonts for our overlays; offline it falls back to system fonts.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=block">
 <style>
   :root {
-    --ink: #2b2320; --muted: #7a6d64; --blue: #1d6fe0; --red: #d4202a; --gold: #FFD66B;
+    --ink: #2b2320; --blue: #3b82f6; --red: #d4202a; --gold: #FFD66B;
     --body: "Nunito", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
     --display: "Fredoka", "Nunito", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
   }
   html, body { margin: 0; background: #000; }
-  #stage { position: relative; width: 540px; height: 960px; overflow: hidden; background: #FBE9CC; font-family: var(--body); color: var(--ink); }
-  .abs { position: absolute; }
-  .layer { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
-  #progress { position: absolute; left: 0; top: 0; height: 7px; background: #ff4d4f; width: 0; z-index: 50; }
-  #brand { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font-family: var(--display); font-weight: 600; font-size: 19px; letter-spacing: .6px; color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.28); z-index: 40; }
-  body.solid #brand { color: var(--ink); text-shadow: none; opacity: .6; }
+  #stage { position: relative; width: 540px; height: 960px; overflow: hidden; background: #fff; font-family: var(--body); color: var(--ink); }
+  /* the app, 390×693 CSS px scaled to 540×960 */
+  #appwrap { position: absolute; left: 0; top: 0; width: 390px; height: 693px; transform: scale(1.384615); transform-origin: 0 0; overflow: hidden; background: #fff; }
+  #appwrap iframe { position: absolute; left: 0; top: 0; width: 390px; height: 693px; border: 0; background: #fff; }
+  #fThread { box-shadow: -10px 0 30px rgba(0,0,0,.18); }
+  .layer { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  #scrim { position: absolute; inset: 0; background: rgba(28,20,14,.55); opacity: 0; }
+  #progress { position: absolute; left: 0; top: 0; height: 6px; background: #ff4d4f; width: 0; z-index: 60; }
 
-  .pill { display: inline-block; padding: 7px 20px; border-radius: 999px; font-family: var(--display); font-weight: 600; font-size: 21px; letter-spacing: .5px; background: var(--ink); color: var(--gold); box-shadow: 0 4px 0 rgba(0,0,0,.2); }
+  .pill { display: inline-block; padding: 7px 20px; border-radius: 999px; font-family: var(--display); font-weight: 600; font-size: 21px; letter-spacing: .5px; background: #fff; color: var(--ink); box-shadow: 0 4px 0 rgba(0,0,0,.25); }
   .center { position: absolute; left: 0; right: 0; text-align: center; }
   .display { font-family: var(--display); font-weight: 700; letter-spacing: -.5px; line-height: 1.05; }
-  .hl { background: var(--gold); color: var(--ink); padding: 4px 22px 8px; border-radius: 22px; box-shadow: 0 7px 0 rgba(0,0,0,.2); display: inline-block; }
+  .hl { background: var(--gold); color: var(--ink); padding: 4px 22px 8px; border-radius: 22px; box-shadow: 0 7px 0 rgba(0,0,0,.25); display: inline-block; }
 
-  /* story */
-  .bubble { position: absolute; left: 26px; right: 26px; background: #fff; border-radius: 30px; padding: 24px 26px 22px; box-shadow: 0 9px 0 rgba(0,0,0,.16); }
-  .story-text { font-weight: 800; line-height: 1.5; letter-spacing: .1px; }
-  .tok { display: inline-block; white-space: pre; padding: 0 3px; border-radius: 9px; }
-  .tok.vocab { color: var(--blue); font-weight: 900; background-image: linear-gradient(transparent 66%, rgba(255,214,107,.95) 66%); }
-  .tok.brk { margin-top: 14px; }
-  .zh-line { color: var(--muted); font-weight: 500; line-height: 1.55; letter-spacing: .3px; }
-  .rule { height: 3px; border-radius: 3px; background: #eadfce; margin: 14px 0 12px; }
+  /* captions: a rolling phrase with the current word lit */
+  #cap { position: absolute; left: 24px; right: 24px; text-align: center; opacity: 0; z-index: 35; }
+  #cap .box { display: inline-block; max-width: 100%; box-sizing: border-box; background: rgba(24,18,14,.86); border-radius: 22px; padding: 12px 20px 14px; font-weight: 800; font-size: 29px; line-height: 1.42; color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+  #cap .tk { display: inline-block; padding: 0 4px; border-radius: 8px; white-space: pre; }
+  #cap .ic { font-size: 34px; margin-right: 6px; }
 
-  /* word card */
-  .card { position: absolute; left: 24px; right: 24px; background: #fff; border-radius: 34px; padding: 26px 28px 24px; box-shadow: 0 10px 0 rgba(0,0,0,.16); }
-  .kk { font-family: var(--body); font-size: 24px; color: var(--muted); font-weight: 700; }
-  .tag { display: inline-block; font-family: var(--display); font-size: 18px; font-weight: 600; padding: 2px 13px; border-radius: 999px; background: var(--ink); color: var(--gold); margin-left: 8px; vertical-align: 2px; }
-  .label { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: 2.5px; color: #b49b83; margin-bottom: 6px; }
-  .ex { background: #FFF4DA; border-radius: 22px; padding: 16px 20px 18px; }
-  .ex-en { font-size: 27px; font-weight: 800; line-height: 1.42; }
+  /* voice bars: a small, plain "someone is speaking" indicator */
+  .eq { position: absolute; z-index: 36; height: 30px; padding: 0 11px; border-radius: 999px; background: #fff; box-shadow: 0 3px 0 rgba(0,0,0,.2); display: flex; align-items: center; gap: 4px; opacity: 0; }
+  .eq i { display: block; width: 5px; border-radius: 3px; background: var(--blue); height: 5px; }
 
-  .cta-pill { position: absolute; left: 38px; right: 38px; background: #fff; border-radius: 28px; padding: 18px 24px; font-size: 28px; font-weight: 800; box-shadow: 0 7px 0 rgba(0,0,0,.16); display: flex; align-items: center; gap: 16px; }
-  .cta-pill .ic { font-size: 36px; }
+  #spot { position: absolute; z-index: 34; border-radius: 10px; border: 3.5px solid #FFB400; box-shadow: 0 0 0 5px rgba(255,214,107,.55); opacity: 0; pointer-events: none; box-sizing: content-box; }
+  #tap { position: absolute; z-index: 45; width: 0; height: 0; opacity: 0; }
+  #tap .dot { position: absolute; border-radius: 50%; background: rgba(40,30,25,.32); border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.3); box-sizing: border-box; }
+  #tap .rip { position: absolute; border-radius: 50%; border: 3px solid #fff; box-sizing: border-box; }
 
   #host { position: absolute; left: 0; top: 0; width: 220px; height: 220px; z-index: 30; transform-origin: 50% 85%; }
-  #avatar { position: absolute; width: 112px; height: 112px; border-radius: 50%; font-size: 70px; line-height: 112px; text-align: center; box-shadow: 0 6px 0 rgba(0,0,0,.18); z-index: 2; }
-  .mic { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; }
 </style>
 </head>
 <body>
 <div id="stage">
-  <div id="bg"></div>
+  <div id="appwrap"><iframe id="fFeed" title="feed"></iframe><iframe id="fThread" title="thread"></iframe></div>
+  <div id="scrim"></div>
   <div id="progress"></div>
-  <div id="brand">toEfu 🧈 用生活日常背單字</div>
 
   <div class="layer" id="s-hook"></div>
-  <div class="layer" id="s-story"></div>
-  <div class="layer" id="s-word"></div>
-  <div class="layer" id="s-cta"></div>
 
-  <!-- voice rings (like a live mic): scale with loudness -->
-  <div class="mic" id="host-ring-a" style="z-index:28"></div>
-  <div class="mic" id="host-ring-b" style="z-index:28"></div>
+  <div id="spot"></div>
+  <div class="eq" id="eq-host"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="eq" id="eq-char"><i></i><i></i><i></i><i></i><i></i></div>
 
-  <!-- tofu host (lip-synced) -->
+  <!-- tofu host -->
   <svg id="host" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".14"/>
+    <ellipse cx="32" cy="58" rx="22" ry="3.5" fill="#000" opacity=".16"/>
     <g id="h-body">
       <rect x="8" y="18" width="48" height="38" rx="12" fill="#E9D3A3"/>
       <rect x="8" y="12" width="48" height="38" rx="12" fill="#FFF6E0" stroke="#E7CF9C" stroke-width="1.5"/>
@@ -97,28 +95,31 @@
       </g>
     </g>
   </svg>
+  <div id="cap"><div class="box" id="cap-box"></div></div>
+  <div id="tap"><div class="rip" id="tap-rip"></div><div class="dot" id="tap-dot"></div></div>
 </div>
 
 <script>
 (function () {
-  var S, $ = function (id) { return document.getElementById(id); };
+  var S, SC = 540 / 390, FT, FF, DT, DF, WT, WF;
+  var $ = function (id) { return document.getElementById(id); };
   var clamp = function (x, a, b) { return Math.max(a, Math.min(b, x)); };
   var lerp = function (a, b, p) { return a + (b - a) * p; };
   var easeOut = function (p) { return 1 - Math.pow(1 - clamp(p, 0, 1), 3); };
-  var easeBack = function (p) { p = clamp(p, 0, 1); var c = 1.7; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+  var easeBack = function (p) { p = clamp(p, 0, 1); var c = 1.5; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var hash = function (s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); };
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
 
-  // Pop-in from `delay` seconds into the scene (a single gentle entrance, no wobble).
   function pop(el, local, delay, opts) {
     opts = opts || {};
     var p = (local - delay) / (opts.dur || 0.35), vis = p > 0;
     el.style.opacity = vis ? clamp(p * 3, 0, 1) : 0;
-    el.style.transform = (opts.base || "") + " translateY(" + ((1 - easeOut(p)) * (opts.rise == null ? 28 : opts.rise)) + "px) scale(" + (vis ? lerp(0.85, 1, clamp(easeBack(p), 0, 1.06)) : 0.85) + ")";
+    el.style.transform = (opts.base || "") + " translateY(" + ((1 - easeOut(p)) * (opts.rise == null ? 24 : opts.rise)) + "px) scale(" + (vis ? lerp(0.88, 1, clamp(easeBack(p), 0, 1.05)) : 0.88) + ")";
   }
 
   // ---------- loudness ----------
-  // Real audio: lines carry a 60 Hz envelope (0..1). Otherwise a syllable-like envelope is
+  // Real audio: each line carries a 60 Hz envelope (0..1). Otherwise a syllable-like envelope is
   // synthesised from the word timings. Either way it is a pure function of t.
   function lineAt(t, speaker) {
     for (var i = 0; i < S.lines.length; i++) { var l = S.lines[i]; if (l.speaker === speaker && t >= l.start && t <= l.end) return l; }
@@ -127,7 +128,7 @@
   function rawLevel(t, speaker) {
     var l = lineAt(t, speaker);
     if (!l) return 0;
-    if (l.env) { var i = Math.floor((t - l.start) * 60); return l.env[clamp(i, 0, l.env.length - 1)] || 0; }
+    if (l.env) return l.env[clamp(Math.floor((t - l.start) * 60), 0, l.env.length - 1)] || 0;
     for (var j = 0; j < l.tokens.length; j++) {
       var k = l.tokens[j];
       if (t < k.s || t > k.e) continue;
@@ -137,32 +138,89 @@
     }
     return 0;
   }
-  // Smoothed over the last ~0.18 s so the rings breathe instead of flicker.
-  function level(t, speaker) {
-    var sum = 0, n = 9;
-    for (var i = 0; i < n; i++) sum += rawLevel(t - i * 0.02, speaker);
+  function level(t, speaker, win) {
+    var n = 7, w = win || 0.14, sum = 0;
+    for (var i = 0; i < n; i++) sum += rawLevel(t - (i / (n - 1)) * w, speaker);
     return sum / n;
   }
 
-  function micRings(a, b, cx, cy, base, lv, on, color) {
-    var ra = base * (1 + 0.28 * lv * 2.2), rb = base * (1 + 0.55 * lv * 2.2);
-    function ring(el, r, op, fill) {
-      el.style.cssText = "position:absolute;border-radius:50%;left:" + (cx - r) + "px;top:" + (cy - r) + "px;width:" + (2 * r) + "px;height:" + (2 * r) + "px;" +
-        "opacity:" + (on ? op : 0) + ";" + (fill ? "background:" + color : "border:5px solid " + color) + ";z-index:" + (el.style.zIndex || 28) + ";";
+  // ---------- voice bars ----------
+  var BAR_W = [0.55, 0.85, 1, 0.8, 0.5];
+  function eqFrame(el, x, y, t, speaker, on) {
+    var bars = el.children;
+    el.style.left = x + "px"; el.style.top = y + "px";
+    el.style.opacity = on ? 1 : 0;
+    for (var i = 0; i < bars.length; i++) {
+      var lv = clamp(level(t - i * 0.05, speaker, 0.07) * 2.0, 0, 1) * BAR_W[i];
+      bars[i].style.height = (5 + 17 * lv).toFixed(1) + "px";
     }
-    ring(b, rb, 0.28, true);
-    ring(a, ra, 0.95, false);
+  }
+
+  // ---------- app access ----------
+  function vocabBtn(doc, key) {
+    var bs = doc.querySelectorAll("#threadBody .post-text .vocab");
+    for (var i = 0; i < bs.length; i++) if (bs[i].dataset.key === key) return bs[i];
+    return null;
+  }
+  function rectOf(el) { if (!el) return null; var r = el.getBoundingClientRect(); return { x: r.left * SC, y: r.top * SC, w: r.width * SC, h: r.height * SC }; }
+  function openSheet(sc) { var b = vocabBtn(DT, sc.key); if (b) b.click(); }
+  function closeSheet() { DT.getElementById("sheetOverlay").hidden = true; DT.getElementById("wordSheet").hidden = true; }
+  var CSS = "*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}" +
+            "#toast,.toast,#installSlot,#replies .empty{display:none!important}::-webkit-scrollbar{display:none}html{scrollbar-width:none}";
+  function loadFrame(fr, src) {
+    return new Promise(function (resolve) {
+      fr.onload = function () { var d = fr.contentDocument, s = d.createElement("style"); s.textContent = CSS; d.head.appendChild(s); resolve(); };
+      fr.src = src;
+    });
+  }
+  function waitFor(test, ms) {
+    var t0 = Date.now();
+    return new Promise(function (res) { (function poll() { var ok = false; try { ok = test(); } catch (e) {} if (ok || Date.now() - t0 > ms) res(ok); else setTimeout(poll, 60); })(); });
+  }
+
+  // ---------- captions ----------
+  function chunks(tokens) {
+    var out = [], cur = [], zh = /[一-鿿]/.test(tokens.map(function (k) { return k.text; }).join(""));
+    var max = zh ? 14 : 8;
+    tokens.forEach(function (k, i) {
+      cur.push(i);
+      var endS = /[.!?。！？]["”’)]*$/.test(k.text), endC = /[,;:，；：、]$/.test(k.text);
+      if (endS || cur.length >= max || (endC && cur.length >= (zh ? 8 : 5))) { out.push(cur); cur = []; }
+    });
+    if (cur.length) out.push(cur);
+    return out;
+  }
+  function caption(t, line, emoji, top) {
+    var cap = $("cap");
+    if (!line || t < line.start - 0.05 || t > line.end + 0.3) { cap.style.opacity = 0; return; }
+    if (!line._chunks) line._chunks = chunks(line.tokens);
+    var ci = 0;
+    for (var c = 0; c < line._chunks.length; c++) if (line.tokens[line._chunks[c][0]].s <= t + 0.04) ci = c;
+    var idx = line._chunks[ci], zh = line.lang === "zh", html = emoji ? '<span class="ic">' + emoji + "</span>" : "";
+    idx.forEach(function (i, n) {
+      var k = line.tokens[i], on = t >= k.s, cur = t >= k.s && t < k.e + 0.06;
+      html += '<span class="tk" style="opacity:' + (on ? 1 : 0.5) + ";background:" + (cur ? "#FFD66B" : "transparent") + ";color:" + (cur ? "#2b2320" : "#fff") + '">' + esc(k.text) + "</span>" + (zh || n === idx.length - 1 ? "" : " ");
+    });
+    $("cap-box").innerHTML = html;
+    cap.style.top = top + "px";
+    cap.style.opacity = 1;
   }
 
   // ---------- host ----------
-  var POSE = { hook: { x: 160, y: 585, s: 1.0 }, story: { x: -30, y: 748, s: 0.52 }, word: { x: 20, y: 640, s: 0.95 }, cta: { x: 150, y: 570, s: 1.1 } };
-  function hostFrame(t, scene, local) {
-    var cur = POSE[scene.type], prev = scene.prevType ? POSE[scene.prevType] : cur;
+  // Poses are for the tofu's centre-x (x+110) and its feet; the svg is 220px, origin at 50% 85%.
+  function wordPose(sheetTop) { var s = 0.6; return { x: (520 - 82.5 * s) - 110, y: sheetTop + 16 - 187 - 12 * s, s: s }; }
+  var POSE = { hook: { x: 160, y: 575, s: 1.0 }, story: { x: 361, y: 597, s: 0.5 }, cta: { x: 159, y: 480, s: 0.75 } };
+  function restPose(sc) { return sc.type === "word" ? wordPose((693 - (sc.sheetH || 330)) * SC) : POSE[sc.type]; }
+  var hostBounds = null;
+  function hostFrame(t, sc, local, sheetTop) {
+    var pose = sc.type === "word" ? wordPose(sheetTop) : POSE[sc.type];
+    var prev = sc.prevScene ? restPose(sc.prevScene) : pose;
     var p = easeOut(local / 0.4);
-    var x = lerp(prev.x, cur.x, p), y = lerp(prev.y, cur.y, p), s = lerp(prev.s, cur.s, p);
-    var raw = rawLevel(t, "host"), lv = level(t, "host");
-    var h = $("host");
-    h.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";   // body stays put
+    var x = lerp(prev.x, pose.x, p), y = lerp(prev.y, pose.y, p), s = lerp(prev.s, pose.s, p);
+    // a gentle talking bob that follows the smoothed loudness (never a jitter)
+    var lv = level(t, "host", 0.2), raw = rawLevel(t, "host"), up = Math.min(1, lv * 1.8);
+    var bob = -up * 9 * s, sy = 1 + up * 0.05, sx = 1 - up * 0.025, tilt = Math.sin(t * 3.0) * up * 3.5;
+    $("host").style.transform = "translate(" + x + "px," + (y + bob) + "px) rotate(" + tilt + "deg) scale(" + (s * sx) + "," + (s * sy) + ")";
     var o = $("h-mouth"), sm = $("h-smile");
     if (raw > 0.08) {
       var m = clamp(raw * 1.25, 0, 1);
@@ -174,111 +232,38 @@
     } else { sm.style.display = ""; o.style.display = "none"; }
     var b = t % 3.1, blink = b < 0.12 ? Math.sin((b / 0.12) * Math.PI) : 0, eyes = $("h-eyes").children;
     for (var i = 0; i < eyes.length; i++) eyes[i].setAttribute("transform", "translate(0 " + (31 * blink) + ") scale(1 " + (1 - 0.9 * blink) + ")");
-    // rings are centred on the body
-    var cx = x + 110, cy = y + 187 - 78 * s;
-    micRings($("host-ring-a"), $("host-ring-b"), cx, cy, 98 * s, lv, lv > 0.02, "#FFD66B");
+    hostBounds = { cx: x + 110, top: y + bob + 187 + (15 - 187) * s, s: s };
+    return level(t, "host", 0.1) > 0.02;
   }
 
-  // ---------- background ----------
-  function classroomSvg() {
-    // flat illustration: wall, blackboard with chalk doodles, window, clock, floor
-    return '<svg width="540" height="960" viewBox="0 0 540 960" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">' +
-      '<rect width="540" height="960" fill="#F4E3C3"/>' +
-      '<rect y="640" width="540" height="40" fill="#E8CFA2"/>' +                                   // wainscot top
-      '<rect y="680" width="540" height="280" fill="#CFA06A"/>' +                                  // floor
-      '<g stroke="#B98A55" stroke-width="3" opacity=".7"><path d="M0 760h540M0 850h540"/><path d="M90 680v80M300 680v80M180 760v90M420 760v90M90 850v110M330 850v110"/></g>' +
-      '<rect y="672" width="540" height="12" fill="#B88A55"/>' +                                    // baseboard
-      // blackboard
-      '<rect x="22" y="78" width="496" height="506" rx="16" fill="#B07A47"/>' +
-      '<rect x="36" y="92" width="468" height="478" rx="10" fill="#2F5D50"/>' +
-      '<rect x="36" y="92" width="468" height="478" rx="10" fill="url(#chalk)" opacity=".18"/>' +
-      '<rect x="60" y="584" width="150" height="12" rx="5" fill="#8d5f33"/><rect x="82" y="578" width="34" height="7" rx="3" fill="#fff"/><rect x="130" y="579" width="26" height="6" rx="3" fill="#FFD66B"/>' +
-      '<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".22">' +
-        '<path d="M56 540q20-14 40 0t40 0"/><path d="M400 530l16-22 16 22z"/><circle cx="470" cy="525" r="14"/>' +
-        '<path d="M58 118h40M58 134h26"/></g>' +
-      '<text x="470" y="128" font-size="26" fill="#fff" opacity=".2" font-family="Fredoka,Nunito,sans-serif" font-weight="700" text-anchor="end">ABC</text>' +
-      // clock + window peeking at the top
-      '<circle cx="486" cy="40" r="26" fill="#fff" stroke="#B07A47" stroke-width="6"/><path d="M486 40v-13M486 40l10 6" stroke="#2b2320" stroke-width="3" stroke-linecap="round"/>' +
-      '<rect x="26" y="14" width="86" height="52" rx="8" fill="#BFE4F5" stroke="#B07A47" stroke-width="6"/><path d="M69 14v52M26 40h86" stroke="#B07A47" stroke-width="4"/>' +
-      '<defs><pattern id="chalk" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="12" cy="14" r="22" fill="#fff"/><circle cx="46" cy="44" r="18" fill="#fff"/></pattern></defs>' +
-      '</svg>';
+  // ---------- taps & spotlight ----------
+  function tap(t, t0, x, y) {
+    var d = t - t0, el = $("tap");
+    if (d < 0 || d > 0.55) return false;
+    el.style.opacity = 1; el.style.left = x + "px"; el.style.top = y + "px";
+    var press = d < 0.18 ? 1 - 0.2 * (d / 0.18) : 0.8 + 0.2 * clamp((d - 0.18) / 0.1, 0, 1), sz = 38 * press;
+    $("tap-dot").style.cssText = "left:" + (-sz / 2) + "px;top:" + (-sz / 2) + "px;width:" + sz + "px;height:" + sz + "px;opacity:" + (1 - clamp((d - 0.4) / 0.15, 0, 1));
+    var rp = clamp((d - 0.15) / 0.4, 0, 1), r = 14 + 34 * rp;
+    $("tap-rip").style.cssText = "left:" + (-r) + "px;top:" + (-r) + "px;width:" + (2 * r) + "px;height:" + (2 * r) + "px;opacity:" + (d > 0.15 ? 0.9 * (1 - rp) : 0);
+    return true;
   }
-  var SOLID = { hook: "#FFD66B", word: "#FFE39A", cta: "#BFEAC0" };
-  function bgInit() {
-    document.body.classList.toggle("solid", S.bg === "solid");
-    if (S.bg !== "solid") $("bg").innerHTML = classroomSvg();
-  }
-  function bgFrame(scene) {
-    if (S.bg !== "solid") return;
-    var c = SOLID[scene.type] || S.char.soft;
-    $("bg").style.cssText = "position:absolute;inset:0;background:" + c;
-  }
-
-  // ---------- karaoke ----------
-  function karaokeHtml(tokens, joiner) {
-    return tokens.map(function (k, i) {
-      return (k.brk ? '<br>' : "") + '<span class="tok' + (k.key ? " vocab" : "") + (k.brk ? " brk" : "") + '">' + esc(k.text) + "</span>" + (i < tokens.length - 1 ? joiner : "");
-    }).join("");
-  }
-  function karaokeUpdate(root, tokens, t) {
-    var spans = root.querySelectorAll(".tok");
-    for (var i = 0; i < spans.length; i++) {
-      var k = tokens[i], on = t >= k.s, cur = t >= k.s && t < k.e + 0.06;
-      spans[i].style.opacity = on ? 1 : (k.key ? 0.75 : 0.3);
-      spans[i].style.backgroundColor = cur ? "#FFD66B" : "transparent";
-    }
-  }
-  // meaning "分配；撥出（資源）" → main text + small note
-  function splitNote(zh) {
-    var m = zh.match(/^(.*?)\s*[（(]([^）)]*)[）)]\s*$/);
-    return m ? { main: m[1], note: m[2] } : { main: zh, note: "" };
+  function spot(r, t, on) {
+    var el = $("spot");
+    if (!on || !r) { el.style.opacity = 0; return; }
+    var pad = 5 + Math.sin(t * 7) * 1.2;
+    el.style.left = (r.x - pad) + "px"; el.style.top = (r.y - pad) + "px";
+    el.style.width = (r.w + 2 * pad - 7) + "px"; el.style.height = (r.h + 2 * pad - 7) + "px";
+    el.style.opacity = 1;
   }
 
   // ---------- scenes ----------
   function build() {
-    S.scenes.forEach(function (sc) {
-      var el = $("s-" + sc.type);
-      if (sc.type === "hook") {
-        el.innerHTML =
-          '<div class="center" id="hk-pill" style="top:120px"><span class="pill">⭐ TOEFL 必考字 · ' + esc(sc.level) + '</span></div>' +
-          '<div class="center display" id="hk-word" style="top:200px;font-size:' + (sc.word.length > 12 ? 52 : sc.word.length > 9 ? 62 : 74) + 'px"><span class="hl">' + esc(sc.word) + '</span></div>' +
-          '<div class="center display" id="hk-q" style="top:372px;font-size:' + (sc.question.length > 4 ? 84 : 100) + 'px;color:var(--red);-webkit-text-stroke:9px #fff;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.25)">' + esc(sc.question) + '</div>';
-      } else if (sc.type === "story") {
-        var a = S.char, n = S.lines[sc.line].tokens.length;
-        var fs = n <= 26 ? 33 : n <= 36 ? 30 : n <= 46 ? 27 : n <= 56 ? 24 : 22, zfs = n <= 36 ? 20 : n <= 50 ? 18 : 16;
-        el.innerHTML =
-          '<div id="avatar" style="left:34px;top:92px;background:' + esc(a.color) + '">' + a.avatar + '</div>' +
-          '<div class="abs" id="st-name" style="left:188px;top:100px;line-height:1.15"><div class="display" style="font-size:34px;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.3)">' + esc(a.name) + '</div><div style="font-size:19px;font-weight:700;color:#fff;opacity:.85;text-shadow:0 2px 0 rgba(0,0,0,.25)">@' + esc(a.handle) + ' · ' + esc(a.topic) + '</div></div>' +
-          '<div class="bubble" id="st-bubble" style="top:226px"><div class="story-text" id="st-text" style="font-size:' + fs + 'px"></div><div id="st-zhwrap"><div class="rule"></div><div class="zh-line" id="st-zh" style="font-size:' + zfs + 'px"></div></div></div>';
-        $("st-text").innerHTML = karaokeHtml(S.lines[sc.line].tokens, " ");
-        $("st-zh").textContent = sc.zh || "";
-        ["st-ring-b", "st-ring-a"].forEach(function (id, i) { var d = document.createElement("div"); d.id = id; d.className = "mic"; d.style.zIndex = String(i); el.insertBefore(d, $("avatar")); });
-        if (!sc.zh) $("st-zhwrap").style.display = "none";
-        if (S.bg === "solid") { $("st-name").firstChild.style.cssText += ";color:#2b2320;text-shadow:none"; $("st-name").lastChild.style.cssText += ";color:#2b2320;text-shadow:none"; }
-      } else if (sc.type === "cta") {
-        el.innerHTML =
-          '<div class="center display" id="c-title" style="top:100px;font-size:56px"><span class="hl">今天學會了嗎？</span></div>' +
-          '<div class="cta-pill" id="c-1" style="top:236px"><span class="ic">🔖</span>收藏起來，隨時複習</div>' +
-          '<div class="cta-pill" id="c-2" style="top:336px"><span class="ic">💬</span><span>留言用 <span style="color:var(--blue)">' + esc(sc.word) + '</span> 造句</span></div>' +
-          '<div class="cta-pill" id="c-3" style="top:436px"><span class="ic">➕</span>追蹤 toEfu，每天一則</div>';
-      }
-    });
-  }
-
-  // Word cards share one layer, so each is built when its turn comes.
-  function buildWord(sc) {
-    var el = $("s-word"), ex = S.lines[sc.lines.ex], z = splitNote(sc.zh);
-    el.dataset.key = sc.key;
-    el.innerHTML =
-      '<div class="center" id="w-count" style="top:92px"><span class="pill">' + esc(sc.index + " / " + sc.total) + ' · ' + esc(sc.level) + '</span></div>' +
-      '<div class="card" id="w-card" style="top:150px">' +
-        '<div class="display" id="w-word" style="font-size:' + (sc.word.length > 12 ? 50 : sc.word.length > 9 ? 58 : 68) + 'px;color:var(--blue)">' + esc(sc.word) + '</div>' +
-        '<div class="kk">' + esc(sc.kk || "") + '<span class="tag">' + esc(sc.pos) + '</span></div>' +
-        '<div id="w-zh" style="margin:16px 0 18px"><span style="font-size:46px;font-weight:900;color:var(--red);line-height:1.2">' + esc(z.main) + '</span>' + (z.note ? ' <span style="font-size:24px;font-weight:700;color:var(--muted)">（' + esc(z.note) + '）</span>' : "") + '</div>' +
-        '<div class="ex" id="w-ex"><div class="label">EXAMPLE · 例句</div><div class="ex-en" id="w-ex-en"></div><div class="zh-line" id="w-ex-zh" style="font-size:21px;margin-top:8px"></div></div>' +
-      '</div>';
-    $("w-ex-en").innerHTML = karaokeHtml(ex.tokens, " ");
-    $("w-ex-zh").textContent = sc.exZh || "";
+    var sc = S.scenes[0];
+    $("s-hook").innerHTML =
+      '<div class="center" id="hk-pill" style="top:112px"><span class="pill">⭐ ' + esc(sc.label) + ' · ' + esc(sc.level) + '</span></div>' +
+      '<div class="center display" id="hk-word" style="top:190px;font-size:' + (sc.word.length > 12 ? 52 : sc.word.length > 9 ? 62 : 74) + 'px"><span class="hl">' + esc(sc.word) + '</span></div>' +
+      '<div class="center display" id="hk-q" style="top:360px;font-size:' + (sc.question.length > 4 ? 84 : 100) + 'px;color:var(--red);-webkit-text-stroke:9px #fff;paint-order:stroke fill;text-shadow:0 6px 0 rgba(0,0,0,.28)">' + esc(sc.question) + '</div>' +
+      '<div class="center" id="hk-tag" style="top:880px"><span class="pill" style="font-size:19px">toEfu 🧈 用生活日常背單字</span></div>';
   }
 
   function sceneAt(t) {
@@ -286,68 +271,143 @@
     return S.scenes[S.scenes.length - 1];
   }
 
-  window.init = function (spec) {
+  // Measure each word's sheet and decide how far to scroll the post so the word stays visible.
+  async function prepare() {
+    DT.body.style.paddingBottom = "900px";   // room to scroll a word above the sheet, even on short threads
+    var maxScroll = Math.max(0, DT.documentElement.scrollHeight - 693);
+    S.scenes.forEach(function (sc) {
+      sc.scroll = 0;
+      if (sc.type !== "word") return;
+      WT.scrollTo(0, 0);
+      var b = vocabBtn(DT, sc.key);
+      if (!b) return;
+      b.click();
+      sc.sheetH = DT.getElementById("wordSheet").offsetHeight;
+      closeSheet();
+      var r = b.getBoundingClientRect(), docTop = r.top + WT.scrollY, sheetTop = 693 - sc.sheetH;
+      sc.scroll = r.bottom < sheetTop - 36 ? 0 : clamp(docTop - 96, 0, maxScroll);
+    });
+    S.scenes.forEach(function (sc, j) { sc.scrollFrom = j ? S.scenes[j - 1].scroll : 0; });
+    WT.scrollTo(0, 0);
+  }
+
+  window.init = async function (spec) {
     S = spec;
-    S.scenes.forEach(function (sc, i) { sc.prevType = i ? S.scenes[i - 1].type : null; });
-    bgInit();
+    S.scenes.forEach(function (sc, i) { sc.prevScene = i ? S.scenes[i - 1] : null; });
     build();
+    FT = $("fThread"); FF = $("fFeed");
+    var base = location.origin + "/index.html";
+    await Promise.all([loadFrame(FF, base), loadFrame(FT, base + "#/t/" + S.postId)]);
+    DT = FT.contentDocument; DF = FF.contentDocument; WT = FT.contentWindow; WF = FF.contentWindow;
+    var ok1 = await waitFor(function () { return DT.querySelector("#threadBody .post") && !/Loading/.test(DT.getElementById("replies").textContent); }, 10000);
+    var ok2 = await waitFor(function () { return DF.querySelector(".post"); }, 10000);
+    if (!ok1) throw new Error("thread " + S.postId + " did not render in the app");
+    await sleep(300);
+    await prepare();
+    return ok2;
   };
 
-  // Make sure every web font glyph needed is loaded before frames are captured.
-  window.preloadFonts = function (text) {
-    var faces = ['500 20px "Noto Sans TC"', '700 20px "Noto Sans TC"', '900 20px "Noto Sans TC"', '600 20px "Fredoka"', '700 20px "Fredoka"', '600 20px "Nunito"', '700 20px "Nunito"', '800 20px "Nunito"', '900 20px "Nunito"'];
-    return Promise.all(faces.map(function (f) { return document.fonts.load(f, text); })).then(function () { return document.fonts.ready; });
-  };
+  var st = { key: null, trans: null, saved: null, typed: null };
 
   window.renderFrame = function (t) {
     var sc = sceneAt(t), local = t - sc.start;
-    ["hook", "story", "word", "cta"].forEach(function (n) { $("s-" + n).style.opacity = 0; });
-    $("s-" + sc.type).style.opacity = 1;
+    $("s-hook").style.opacity = sc.type === "hook" ? 1 : 0;
     $("progress").style.width = (clamp(t / S.duration, 0, 1) * 100) + "%";
-    bgFrame(sc);
-    hostFrame(t, sc, local);
 
-    // the active scene decides who gets a mic ring: thread author in "story", tofu otherwise
-    if (sc.type === "hook") {
-      pop($("hk-pill"), local, 0.05);
-      pop($("hk-word"), local, 0.0, { dur: 0.3 });
-      var qd = S.lines[sc.lines[1]].start - sc.start;
-      pop($("hk-q"), local, qd, { dur: 0.3, base: "rotate(-3deg)" });
-    } else if (sc.type === "story") {
-      var lv = level(t, "char"), a = $("avatar");
-      // avatar stays still; rings around it carry the voice
-      micRings($("st-ring-a"), $("st-ring-b"), 34 + 56, 92 + 56, 66, lv, lv > 0.02, "#fff");
-      a.style.opacity = 1;
-      pop($("st-bubble"), local, 0.05, { dur: 0.4, rise: 36 });
-      var line = S.lines[sc.line];
-      karaokeUpdate($("st-text"), line.tokens, t);
-      $("st-zhwrap").style.opacity = clamp((t - line.end) / 0.3, 0, 1);
-      pop($("st-name"), local, 0.0, { dur: 0.3, rise: 0 });
-    } else if (sc.type === "word") {
-      if ($("s-word").dataset.key !== sc.key) buildWord(sc);
-      pop($("w-count"), local, 0.0);
-      pop($("w-card"), local, 0.05, { dur: 0.4, rise: 46 });
-      var lw = S.lines[sc.lines.word], lm = S.lines[sc.lines.mean], le = S.lines[sc.lines.ex];
-      var sp = t - lw.start, ww = $("w-word");
-      ww.style.transformOrigin = "left center";
-      ww.style.transform = sp > 0 && sp < 0.4 ? "scale(" + (1 + Math.sin(sp / 0.4 * Math.PI) * 0.07) + ")" : "none";
-      var zhEl = $("w-zh"); zhEl.style.transformOrigin = "left center";
-      pop(zhEl, local, lm.start - sc.start - 0.05, { dur: 0.35, rise: 20 });
-      pop($("w-ex"), local, le.start - sc.start - 0.25, { dur: 0.4, rise: 26 });
-      karaokeUpdate($("w-ex-en"), le.tokens, t);
-      $("w-ex-zh").style.opacity = clamp((t - le.start - 0.4) / 0.4, 0, 1);
-    } else if (sc.type === "cta") {
-      pop($("c-title"), local, 0.0, { dur: 0.35 });
-      var cs = sc.lines.map(function (i) { return S.lines[i]; });
-      [1, 2, 3].forEach(function (n) {
-        var pill = $("c-" + n), ln = cs[n - 1];
-        pop(pill, local, ln.start - sc.start - 0.1);
-        pill.style.boxShadow = (t >= ln.start && t < ln.end + 0.2) ? "0 7px 0 #ff4d4f" : "0 7px 0 rgba(0,0,0,.16)";
-      });
+    // --- app state, derived from t ---
+    var wantKey = sc.type === "word" ? sc.key : null;
+    if (st.key !== wantKey) {
+      if (st.key) closeSheet();
+      if (wantKey) {
+        openSheet(sc);
+        var ex = S.lines[sc.lines.ex], pat = null;
+        try { pat = new WT.RegExp(WT.Core.wordPattern(sc.key).source, "i"); } catch (e) {}
+        DT.getElementById("sheetEx").innerHTML = ex.tokens.map(function (k) { return '<span class="ktk">' + (pat && pat.test(k.text) ? "<strong>" + esc(k.text) + "</strong>" : esc(k.text)) + "</span>"; }).join(" ");
+      }
+      st.key = wantKey;
     }
-    // hide the author's rings outside the story scene
-    ["st-ring-a", "st-ring-b"].forEach(function (id) { var e = $(id); if (e && sc.type !== "story") e.style.opacity = 0; });
+    var wantTrans = sc.type === "story" && t >= S.lines[sc.line].end + 0.5;
+    if (st.trans !== wantTrans) { var tr = DT.querySelector("#threadBody .post .translation"); if (tr) tr.hidden = !wantTrans; st.trans = wantTrans; }
+    var wantSaved = sc.type === "cta" && t >= S.lines[sc.lines[0]].start + 0.32;
+    if (st.saved !== wantSaved) { var bm = DT.querySelector("#threadBody .post .act[data-bookmark]"); if (bm) bm.classList.toggle("bookmarked", wantSaved); st.saved = wantSaved; }
+    var typed = sc.type === "cta" ? clamp(Math.floor((t - S.lines[sc.lines[1]].start - 0.35) / 0.07) + 1, 0, sc.word.length) : 0;
+    if (st.typed !== typed) { var inp = DT.getElementById("replyInput"); if (inp) inp.value = sc.type === "cta" ? sc.word.slice(0, typed) : ""; st.typed = typed; }
+
+    // --- layers: the feed sits under; the thread slides in as the story starts ---
+    var slide = sc.type === "hook" ? 0 : sc.type === "story" ? easeOut(local / 0.38) : 1;
+    FT.style.transform = "translateX(" + ((1 - slide) * 390) + "px)";
+    FF.style.transform = "translateX(" + (-slide * 70) + "px)";
+    WF.scrollTo(0, sc.type === "hook" ? t * 70 : 0);
+    WT.scrollTo(0, sc.type === "word" ? lerp(sc.scrollFrom, sc.scroll, easeOut(local / 0.4)) : sc.type === "cta" ? lerp(sc.scrollFrom, 0, easeOut(local / 0.4)) : 0);
+    $("scrim").style.opacity = sc.type === "hook" ? 1 : 0;
+
+    // --- word sheet (the app's own, slid by us) ---
+    var sheetTop = 693 * SC;
+    if (sc.type === "word") {
+      var sh = DT.getElementById("wordSheet"), ov = DT.getElementById("sheetOverlay");
+      var p = Math.min(easeOut((local - 0.12) / 0.3), easeOut((sc.end - t) / 0.22));
+      sh.style.transform = "translateY(" + ((1 - p) * 100) + "%)";
+      ov.style.opacity = p;
+      sheetTop = (693 - (sc.sheetH || sh.offsetHeight) * p) * SC;
+      var lm = S.lines[sc.lines.mean], le = S.lines[sc.lines.ex];
+      DT.getElementById("sheetZh").style.opacity = clamp((t - lm.start + 0.05) / 0.25, 0, 1);
+      DT.querySelector(".sheet-example").style.opacity = clamp((t - le.start + 0.3) / 0.3, 0, 1);
+      DT.getElementById("sheetExZh").style.opacity = clamp((t - le.start - 0.4) / 0.4, 0, 1);
+      var ks = DT.querySelectorAll("#sheetEx .ktk");
+      for (var i = 0; i < ks.length; i++) {
+        var k = le.tokens[i], on = t >= k.s, cur = t >= k.s && t < k.e + 0.06;
+        ks[i].style.opacity = on ? 1 : 0.35;
+        ks[i].style.background = cur ? "#FFD66B" : "transparent";
+        ks[i].style.borderRadius = "5px";
+        ks[i].style.padding = "0 2px";
+      }
+    }
+
+    // --- host + its voice bars ---
+    var speaking = hostFrame(t, sc, local, sheetTop);
+    eqFrame($("eq-host"), hostBounds.cx + 56 * hostBounds.s, hostBounds.top - 6, t, "host", speaking);
+
+    // --- per-scene overlays ---
+    var spotRect = null, spotOn = false, tapped = false, charEq = false, capLine = null, capEmoji = "", capTop = 560;
+    if (sc.type === "hook") {
+      pop($("hk-pill"), local, 0.05); pop($("hk-word"), local, 0.0, { dur: 0.3 });
+      pop($("hk-q"), local, S.lines[sc.lines[1]].start - sc.start, { dur: 0.3, base: "rotate(-3deg)" });
+      pop($("hk-tag"), local, 0.4, { rise: 10 });
+    } else if (sc.type === "story") {
+      var line = S.lines[sc.line];
+      capLine = line;
+      var ar = rectOf(DT.querySelector("#threadBody .post-left .avatar"));
+      if (ar) { eqFrame($("eq-char"), ar.x + ar.w - 46, ar.y + ar.h - 14, t, "char", level(t, "char", 0.1) > 0.02); charEq = true; }
+      for (var q = 0; q < line.tokens.length; q++) {
+        var tk = line.tokens[q];   // spotlight a taught word while it is read
+        if (tk.key && t >= tk.s - 0.05 && t < tk.e + 0.5) { spotRect = rectOf(vocabBtn(DT, tk.key)); spotOn = !!spotRect; break; }
+      }
+      var tr2 = rectOf(DT.querySelector("#threadBody .post .translate-btn"));
+      if (tr2 && tap(t, line.end + 0.12, tr2.x + 30, tr2.y + tr2.h / 2)) tapped = true;
+    } else if (sc.type === "word") {
+      var wr = rectOf(vocabBtn(DT, sc.key));
+      spotRect = wr; spotOn = !!wr && wr.y + wr.h < sheetTop - 4 && wr.y > 70;
+      if (wr && tap(t, sc.start + 0.02, wr.x + wr.w / 2, wr.y + wr.h / 2)) tapped = true;
+    } else if (sc.type === "cta") {
+      var cs = sc.lines.map(function (i) { return S.lines[i]; });
+      var which = t < cs[1].start - 0.05 ? 0 : t < cs[2].start - 0.05 ? 1 : 2;
+      spotRect = rectOf([DT.querySelector("#threadBody .post .act[data-bookmark]"), DT.getElementById("replyInput"), DT.querySelector("#threadBody .post .follow-plus") || DT.querySelector(".brand")][which]);
+      spotOn = !!spotRect && t >= cs[0].start - 0.1 && t < cs[2].end + 0.3;
+      if (spotRect && tap(t, cs[which].start + 0.12, spotRect.x + spotRect.w / 2, spotRect.y + spotRect.h / 2)) tapped = true;
+      capLine = cs.filter(function (l) { return t >= l.start - 0.05 && t <= l.end + 0.3; })[0] || null;
+      capEmoji = capLine ? ["🔖", "💬", "➕"][cs.indexOf(capLine)] : ""; capTop = 700;
+    }
+    if (!tapped) $("tap").style.opacity = 0;
+    if (!charEq) $("eq-char").style.opacity = 0;
+    spot(spotRect, t, spotOn);
+    caption(t, capLine, capEmoji, capTop);
     return sc.type;
+  };
+
+  // Make sure every web-font glyph our overlays need is loaded before frames are captured.
+  window.preloadFonts = function (text) {
+    var faces = ['500 20px "Noto Sans TC"', '700 20px "Noto Sans TC"', '900 20px "Noto Sans TC"', '600 20px "Fredoka"', '700 20px "Fredoka"', '600 20px "Nunito"', '700 20px "Nunito"', '800 20px "Nunito"', '900 20px "Nunito"'];
+    return Promise.all(faces.map(function (f) { return document.fonts.load(f, text); })).then(function () { return document.fonts.ready; });
   };
 })();
 </script>
