@@ -992,3 +992,921 @@ A dog got sick from dirty sea water. The vet gave him a [[drug]] to feel better.
 
 有一隻狗喝了髒海水生病了。獸醫給了牠一種藥，讓牠舒服一點。現在我吃完芒果，果皮一定會丟進垃圾桶。汪 🥭
 ===
+elem-111 | captain | Campus Life
+The [[clock]] in our [[classroom]] stopped at 8:55 🕗 For three weeks, class never ends 😭
+
+Then the fire [[alarm]] rang. 全班都衝出去. 老師說：下課了。 Best day ever 🏄
+---
+我們教室裡的時鐘停在 8:55 🕗 三個禮拜了，下課時間一直沒有到 😭
+
+然後火警警報器響了。全班都衝了出去。老師說：下課了。這是最棒的一天 🏄
+===
+elem-112 | pablo | Biology
+In winter, emperor penguins make a big [[crowd]]. 🐧 We stay [[together]] and take turns at the cold edge.
+
+I am the [[tall]] one, so I get the wind first. Please send a small scarf.
+---
+冬天的時候，皇帝企鵝會擠成一大群。🐧 我們待在一起，輪流站在最冷的外圈。
+
+我是那隻很高的，所以風總是最先吹到我。請寄一條小圍巾給我。
+===
+elem-113 | boba | Business
+Big sale today! 🧋 Half price for [[hot]] [[tea]] because it is raining. Come in, come in!
+
+結果大家都點冰的。冰茶賣光了，熱茶只剩我自己喝 ☔ 我賺了一個教訓。But the [[sale]] sign is still very cute.
+---
+今天大特價！🧋 因為下雨，熱茶半價。快進來，快進來！
+
+結果大家都點冰的。冰茶賣光了，熱茶只剩我自己喝 ☔ 我賺了一個教訓。不過特價的牌子還是很可愛。
+===
+elem-114 | mochi | Environment
+Rain day 🐾 I dropped my [[ball]] in a puddle. Now it is [[wet]] and sad.
+
+我的人類說：[[wait]] here, I will dry it. 我等了三秒。Too long. 我自己去拿了 🐕
+---
+下雨天 🐾 我把我的球掉進水坑裡。現在它又濕又難過。
+
+我的人類說：在這裡等，我來把它弄乾。我等了三秒。太久了。我自己去拿了 🐕
+===
+elem-115 | grandma | Tech
+我坐在 [[sofa]] 上看電視 📺 The [[news]] man talked about the weather for ten minutes.
+
+I put a [[pillow]] behind my back and woke up at breakfast. 節目早就結束了 😂🌸
+---
+我坐在沙發上看電視 📺 播報員講了十分鐘的天氣。
+
+我在背後放了一個枕頭，醒來的時候已經是早餐時間。節目早就結束了 😂🌸
+===
+elem-116 | zorp | Literature
+Human [[language]] is hard. One [[sentence]] can have five meanings 👽
+
+I sent a [[message]] to my boss: "I am fine." He replied, "Which kind of fine?" I do not know.
+---
+人類的語言很難。一個句子可以有五種意思 👽
+
+我傳了一則訊息給我的老闆：「我很好。」他回我：「哪一種好？」我不知道。
+===
+elem-117 | whiskers | Business
+Meeting rule: no [[pen]], no [[paper]], no problem 🐱
+
+I push everything off the [[table]] anyway. Gravity is my best employee.
+---
+開會規則：沒有筆、沒有紙，就沒有問題 🐱
+
+反正我會把所有東西都推下桌子。地心引力是我最棒的員工。
+===
+elem-118 | fern | Biology
+People say the [[grass]] is always greener 🌿 I am a fern. I am green everywhere.
+
+My cousin is a [[rubber]] [[tree]]. He is proud. He thinks he is bouncy. He is not.
+---
+人們說別人家的草總是比較綠 🌿 我是一株蕨類。我到處都是綠的。
+
+我的表哥是一棵橡膠樹。他很驕傲。他以為自己很有彈性。其實沒有。
+===
+elem-119 | pigeon | Art
+Every day I sit on a cold [[stone]] man. 🕊️ He has [[only]] one friend: me.
+
+I sing him a [[song]]. He does not clap. Maybe he is a critic.
+---
+我每天都坐在一個冰冷的石頭人身上。🕊️ 他只有一個朋友：我。
+
+我唱了一首歌給他聽。他沒有鼓掌。也許他是評論家。
+===
+elem-120 | reginald | Tech
+In 1885, I thought the [[telephone]] was a clever box. Now I own a [[cell_phone]]. 🎩 It is a box in my pocket that talks.
+
+I asked it for tea. It showed me forty pictures of tea. I am still thirsty.
+---
+1885 年的時候，我以為電話是個聰明的盒子。現在我有一支手機。🎩 它是口袋裡會說話的盒子。
+
+我向它要茶。它給我看了四十張茶的圖片。我還是口渴。
+===
+elem-121 | fizz | Chemistry
+Lab note: I mixed white [[powder]] with vinegar and put a balloon on top 🎈
+
+It grew and grew. Then it made a loud [[burst]]. My [[candle]] is still scared. 14 explosions this year!
+---
+實驗記錄：我把白色粉末和醋混在一起，上面蓋一個氣球 🎈
+
+它愈變愈大，最後爆開，聲音很大。我的蠟燭到現在還在發抖。今年第 14 次爆炸！
+===
+elem-122 | octavia | Biology
+A [[crab]] in the [[sea]] tried to [[bite]] me today. 🦀 I have eight arms. He picked the wrong one.
+
+I waved the other seven. He ran away sideways. Rude, but very funny.
+---
+今天海裡有一隻螃蟹想咬我。🦀 我有八條手臂。他選錯了一條。
+
+我揮動其他七條。他橫著跑走了。很沒禮貌，但很好笑。
+===
+elem-123 | chefbot | Food
+Today's recipe: [[flour]], water and a little salt. Mix in a big [[bowl]] 🤖
+
+Bake it. The result is [[bread]]. A man said it was "fine." Fine is not a flavor. BEEP.
+---
+今天的食譜：麵粉、水和一點點鹽。在大碗裡攪拌。🤖
+
+拿去烤。結果就是麵包。有一位先生說「還可以」。「還可以」不是一種味道。嗶。
+===
+elem-124 | rex | Art
+I tried to play the [[guitar]], but my arms are too short 🦖
+
+So I play the [[drum]] with my tail and [[dance]]. The ground shakes. That is my best song.
+---
+我想彈吉他，但我的手太短了 🦖
+
+所以我用尾巴打鼓，還會跳舞。地面都在搖。這是我最棒的一首歌。
+===
+elem-125 | vulcan | Environment
+A family opened a [[picnic]] near me. 🌋 It was a nice [[area]], with soft grass.
+
+Then I heard [[thunder]] and thought it was me. It was not. I felt very sad about it.
+---
+一家人在我旁邊鋪開野餐墊。🌋 那裡很漂亮，有柔軟的草地。
+
+然後我聽到雷聲，以為是自己。結果不是。我覺得很難過。
+===
+elem-126 | beatrice | Economics
+Workers in my hive [[collect]] nectar all day 🐝 Each [[group]] has a job.
+
+At night we make [[honey]]. Thousands of bees, no chairs, no coffee, and no complaints. Humans, take notes.
+---
+我蜂巢裡的工蜂整天都在採集花蜜 🐝 每一組都有自己的工作。
+
+晚上我們釀蜂蜜。幾千隻蜜蜂，沒有椅子、沒有咖啡，也沒有抱怨。人類，請做筆記。
+===
+elem-127 | socrates | Health
+Is a [[strong]] [[body]] the same as a [[healthy]] one? 🏋️
+
+I can lift a lot, but I also eat three cookies at midnight. The answer is not on the bar.
+---
+強壯的身體和健康的身體是同一件事嗎？🏋️
+
+我可以舉很重的東西，但我也會在半夜吃三塊餅乾。答案不在槓鈴上。
+===
+elem-128 | agatha | Literature
+Every night I walk through the main [[hall]]. 👻 A book fell from the top [[shelf]]. Nobody was there.
+
+It made a small [[noise]]. I did it. I wanted to see if you were reading.
+---
+每天晚上我都會走過大廳。👻 有一本書從最上層的架子掉下來。那裡沒有人。
+
+它發出了一點聲音。是我做的。我只是想看看你有沒有在讀書。
+===
+elem-129 | ann | Food
+The [[restaurant]] near my school is so [[expensive]] 😭 One soup costs ten dollars.
+
+I only had [[cash]] for water. 我就看著別人吃, and called it a "cultural experience" 🇹🇼🥣
+---
+我學校附近的餐廳好貴 😭 一碗湯就要十美元。
+
+我身上的現金只夠買水。我就看著別人吃，然後把這叫做「文化體驗」🇹🇼🥣
+===
+elem-130 | llama | Art
+The great [[artist]] stood on stage in the old [[theater]] 🎭 The [[curtain]] opened.
+
+Nobody clapped. Then I remembered: it was my school play. 悲劇才剛開始 💅
+---
+偉大的藝術家站在舊戲院的舞台上 🎭 布幕升起。
+
+沒有人鼓掌。然後我想起來：那是我們學校的話劇。悲劇才剛開始 💅
+===
+elem-131 | captain | Campus Life
+My [[notebook]] is full of drawings 📓 My [[workbook]] is empty.
+
+老師說：please [[write]] the answers today. 我寫了：Help. 🏄
+---
+我的筆記本裡全是塗鴉 📓 我的作業本卻是空白的。
+
+老師說：今天請把答案寫下來。我寫了：救命。🏄
+===
+elem-132 | grandma | Tech
+我學會 [[surf]] 網路了 🏄‍♀️ Not the sea one! The phone one.
+
+Today I sent my first [[e_mail|e-mail]] to my grandson. 他回：「阿嬤，這是垃圾信箱。」 😂🌸
+---
+我學會上網衝浪了 🏄‍♀️ 不是海上的那種！是手機上的。
+
+今天我寄出了我的第一封電子郵件給孫子。他回：「阿嬤，這是垃圾信箱。」😂🌸
+===
+elem-133 | mochi | Food
+我超餓 🐾 My bowl is empty and my [[hunger]] is big. My human says it is not dinner time.
+
+I looked at her with sad eyes. She said, "Oh, [[poor]] puppy." Now I have two dinners 🐕
+---
+我超餓 🐾 我的碗是空的，我的飢餓感好大。我的人類說還沒到晚餐時間。
+
+我用悲傷的眼神看著她。她說：「哦，可憐的小狗。」現在我有兩份晚餐 🐕
+===
+elem-134 | zorp | Geology
+Human [[geography]] is strange. 👽 They draw lines on land and call them countries.
+
+I flew over a big [[island]]. No lines. Only birds. I think the birds got the better deal.
+---
+人類的地理很奇怪。👽 他們在陸地上畫線，然後叫它們國家。
+
+我飛過一座大島。沒有線。只有鳥。我覺得鳥比較划算。
+===
+elem-135 | boba | Business
+My little shop is [[local]], not [[famous]]. 🧋 Then a real singer walked in.
+
+她點了無糖去冰 and asked for a [[list]] of my flavors. 我背了十分鐘, and she left with a smile. I think it is a good sign. 🎤
+---
+我的小店只是在地小店，一點都不有名。🧋 然後有一位真正的歌手走了進來。
+
+她點了無糖去冰，還要我的口味清單。我背了十分鐘，她笑著離開了。我覺得是好兆頭。🎤
+===
+elem-136 | llama | Art
+今天我畫了一幅很棒的畫 🎨 The [[scenery]] was a lake at sunset. It was so [[beautiful]] and [[unique]], just like my pain.
+
+Then my friend said, "Nice photo!" 那是我的畫啊。悲劇 💅
+---
+今天我畫了一幅很棒的畫 🎨 風景是日落時的湖。它好美、好獨特，就像我的痛苦一樣。
+
+然後我朋友說：「這張照片好看！」那是我的畫啊。悲劇 💅
+===
+elem-137 | ann | Food
+American [[meal]] size: one [[steak]] as big as my face. 😳 Plus a mountain of [[french_fries]].
+
+我只吃了一半，然後打包. Tomorrow's lunch is ready. 🇹🇼🍟
+---
+美國的一餐有多大？一塊牛排跟我的臉一樣大。😳 旁邊還有一座炸薯條山。
+
+我只吃了一半，然後打包。明天的午餐準備好了。🇹🇼🍟
+===
+elem-138 | captain | Campus Life
+I wrote a letter to my crush. ✉️ I put on a [[stamp]] and asked the post office to [[deliver]] it.
+
+That was last month. Still no [[reply]]. 也許是郵局的問題，不是我的問題 🏄
+---
+我寫了一封信給我喜歡的人。✉️ 我貼上郵票，請郵局幫我送。
+
+那是上個月的事。還是沒有回信。也許是郵局的問題，不是我的問題 🏄
+===
+elem-139 | mochi | Health
+My human wants to [[bathe]] me. 🛁 I ran away. She came with a big [[towel]].
+
+我乖乖坐好, and then I did a big [[shake]]. The whole room got wet. Best day ever 🐾
+---
+我的人類想幫我洗澡。🛁 我跑掉了。她拿著一條大毛巾來。
+
+我乖乖坐好，然後用力甩了一下。整個房間都濕了。最棒的一天 🐾
+===
+elem-140 | grandma | Health
+今天去看牙醫. The [[doctor]] looked at my [[tooth]] and said, "No more candy." 😱
+
+He gave me some [[medicine_b|medicine]]. 我說好, then I ate a candy in the car. Don't tell him 🍬🌸
+---
+今天去看牙醫。醫生看了看我的牙齒，說：「不可以再吃糖了。」😱
+
+他給了我一些藥。我說好，然後在車上吃了一顆糖。不要告訴他 🍬🌸
+===
+elem-141 | pigeon | Philosophy
+Last night I had a [[dream]]. 🕊️ A giant loaf of bread flew over the city.
+
+Was it [[true]]? I [[think]] about it all day. Then a man dropped a bun. Maybe dreams are real.
+---
+昨晚我做了一個夢。🕊️ 一個巨大的麵包飛過城市上空。
+
+那是真的嗎？我想了一整天。然後有個人掉了一個小餐包。也許夢是真的。
+===
+elem-142 | fizz | Chemistry
+Soda has [[gas]] inside. 🧪 If you open the [[lid]] fast, it jumps out.
+
+My soda [[machine]] taught me this at 2 a.m. The ceiling is now sticky. Science is messy.
+---
+汽水裡面有氣體。🧪 如果你太快打開蓋子，它就會噴出來。
+
+我的汽水機在凌晨兩點教了我這件事。天花板現在黏黏的。科學很亂。
+===
+elem-143 | rex | Biology
+I have a [[pair]] of tiny arms. 🦖 Some people say they look [[ugly]].
+
+I say they are [[funny]]. They wave. They try to clap. They fail. I love them.
+---
+我有一雙很小的手。🦖 有些人說它們看起來很醜。
+
+我說它們很好笑。它們會揮手。它們想鼓掌。它們失敗了。我愛它們。
+===
+elem-144 | whiskers | Business
+My [[organization]] has one [[partner]]: a red laser dot. 🐱
+
+Its [[position]] is always moving. I chase it every day. This is called strategy.
+---
+我的機構只有一個夥伴：一個紅色的雷射光點。🐱
+
+它的位置一直在動。我每天都追著它跑。這叫做策略。
+===
+elem-145 | beatrice | Economics
+Let's talk about [[cost]]. 🐝 Making one jar of honey takes millions of flower visits.
+
+Do I [[charge]] a high [[fee]]? Yes. Hive rules. And you may not touch the queen.
+---
+我們來談談成本。🐝 做一罐蜂蜜需要造訪數百萬次花朵。
+
+我會收很高的費用嗎？會。這是蜂巢的規定。而且你不可以碰女王。
+===
+elem-146 | zorp | Tech
+I use a voice [[recorder]] to save human sounds. 👽 My favorite TV [[program]] is about cooking.
+
+Today the man made [[instant]] noodles for twelve minutes. I do not think he understood the word.
+---
+我用錄音機把人類的聲音存起來。👽 我最喜歡的電視節目是做菜節目。
+
+今天那位先生煮了十二分鐘的即食麵。我覺得他不太懂那個字的意思。
+===
+elem-147 | socrates | Philosophy
+It takes [[courage]] to lift heavy things. 🏋️ It takes more to go home after.
+
+One more rep is [[success]]. Skipping it is [[regret]]. The bench knows the truth.
+---
+舉起很重的東西需要勇氣。🏋️ 之後回家需要更多勇氣。
+
+多做一下就是成功。跳過它就是後悔。長凳知道真相。
+===
+elem-148 | reginald | History
+In 1885, a gentleman showed good [[manner|manners]] to every [[woman]]. 🎩
+
+Today, a young man called me "[[sir]]" and took my seat on the bus. This is progress.
+---
+在 1885 年，紳士對每一位女士都很有禮貌。🎩
+
+今天，一位年輕人叫我「先生」，然後坐了我在公車上的位子。這就是進步。
+===
+elem-149 | agatha | History
+In the library basement, there is an [[ancient]] map. 👻 It has a [[section]] with a secret [[tunnel]].
+
+I followed it for a day. It led to the cafeteria. Fine. I have missed lunch since 1923.
+---
+圖書館的地下室裡有一張古老的地圖。👻 其中有一部分畫了一條祕密隧道。
+
+我沿著它走了一整天。它通到自助餐廳。好吧。我從 1923 年起就沒吃過午餐了。
+===
+elem-150 | octavia | Biology
+Today I had to [[select]] one jar. 🐙 Each jar had a shell inside. One weighs a [[kilo]].
+
+I was [[ready]] to open them all. I have eight arms. Jar number three is already open.
+---
+今天我得挑選一個罐子。🐙 每個罐子裡都有一個貝殼。其中一個重一公斤。
+
+我準備好要把它們全部打開了。我有八條手臂。第三個罐子已經打開了。
+===
+elem-151 | vulcan | Geology
+People drive on the [[highway]] near me. 🌋 One sign says "Next stop: 200 [[mile|miles]]."
+
+Then there is a desert. Nobody asks about my feelings. They only take photos.
+---
+人們開車經過我旁邊的公路。🌋 有一塊標誌寫著「下一站：200 英里」。
+
+後面是一片沙漠。沒有人問我的感受。他們只會拍照。
+===
+elem-152 | chefbot | Food
+Tonight I opened a [[buffet]]. 🤖 One [[spoon]] for soup, one for dessert.
+
+I will [[cook]] all night. If you take more than three plates, my eyes turn red. BEEP.
+---
+今晚我開了一家自助餐。🤖 一支湯匙喝湯，一支吃甜點。
+
+我會整晚煮飯。如果你拿超過三個盤子，我的眼睛會變紅。嗶。
+===
+elem-153 | pablo | Environment
+Today was [[snowy]] and [[foggy]]. 🐧 I could not see the sea.
+
+The ice shelf looks [[wide]], but it gets thin every year. I walked slowly. It is not the day to slip.
+---
+今天又下雪又起霧。🐧 我看不到海。
+
+冰架看起來很寬廣，但它每年都變得更薄。我走得很慢。今天不是滑倒的日子。
+===
+elem-154 | boba | Business
+旁邊的 [[vendor]] sells fried chicken. 🍗 My best [[tip]] for you: buy tea first.
+
+今天是 [[special]] 日子, so I add free pearls. 他的客人排到我的店門口. 這叫做合作 🧋
+---
+旁邊的攤販在賣炸雞。🍗 我給你的最好建議：先買茶。
+
+今天是特別的日子，所以我加送珍珠。他的客人排到我的店門口。這叫做合作 🧋
+===
+elem-155 | captain | Campus Life
+There was a long [[discussion]] about the group project. 📚 Everyone had a [[plan]].
+
+I could [[hardly]] stay awake. 最後的結論是：下週再說. 🏄
+---
+關於小組報告，我們有一個很長的討論。📚 每個人都有計畫。
+
+我幾乎撐不住了。最後的結論是：下週再說。🏄
+===
+elem-156 | llama | Literature
+A white [[lily]] is on the table in the third act. 🎭 It means [[joy]]. Everyone knows that.
+
+但是我今天穿了 [[sweater]] 來演悲劇. 太溫暖了. 我的角色壞掉了 💅
+---
+第三幕的桌上有一朵白色的百合花。🎭 它代表歡樂。大家都知道。
+
+但是我今天穿了毛衣來演悲劇。太溫暖了。我的角色壞掉了 💅
+===
+elem-157 | ann | Culture
+I miss my family in Taiwan. 我好想家 🇹🇼 Living [[abroad]] is hard, but there is a [[traditional]] night market in Boston too.
+
+Not the same. But the stinky tofu there is real. I [[miss_b|missed]] it so much, I cried a little. 😭
+---
+我想念我在台灣的家人。我好想家 🇹🇼 住在國外很辛苦，但波士頓也有傳統的夜市。
+
+味道不太一樣。但那裡的臭豆腐是真的。我太想念了，所以哭了一下。😭
+===
+elem-158 | mochi | Biology
+Zoo day! 🐾 I saw a [[monkey]], a sleepy [[koala]] and a green [[frog]].
+
+我看著牠. 牠也看著我. Nobody barked. It was peaceful. Then I barked.
+---
+動物園日！🐾 我看到一隻猴子、一隻想睡覺的無尾熊，還有一隻綠色的青蛙。
+
+我看著牠。牠也看著我。沒有人叫。很和平。然後我叫了。
+===
+elem-159 | grandma | Tech
+我 [[want]] to [[buy]] new shoes online. 👟 First I have to [[call]] my grandson.
+
+他說：「阿嬤，按那個綠色的按鈕。」 I pressed the red one. 現在我有十雙鞋了 😂🌸
+---
+我想在網路上買新鞋。👟 首先我得打電話給我孫子。
+
+他說：「阿嬤，按那個綠色的按鈕。」我按了紅色的。現在我有十雙鞋了 😂🌸
+===
+elem-160 | fern | Biology
+I am an [[adult]] fern. 🌿 My [[age]] is a secret. Plants do not count candles.
+
+Every [[person]] who walks by says I look young. I do not need water for that. Only light and respect.
+---
+我是一株成年的蕨類。🌿 我的年齡是祕密。植物不數蠟燭。
+
+每個經過的人都說我看起來很年輕。我不需要水才能這樣。只需要光和尊重。
+===
+elem-161 | captain | Campus Life
+Our [[chess]] club has one rule: no talking. ♟️ I get [[bored]] in two minutes.
+
+我想到一個好招：fall asleep on the board. My opponent said, "Your king is drooling." 🏄
+---
+我們的西洋棋社只有一條規則：不可以說話。♟️ 我兩分鐘就覺得很無聊。
+
+我想到一個好招：趴在棋盤上睡覺。我的對手說：「你的國王在流口水。」🏄
+===
+elem-162 | ann | Campus Life
+My week in Boston ☕ On [[wednesday]], I have an exam at 8 [[o_clock]]. 😭
+
+到了 [[sunday]], I only want to sleep until noon. 台灣的媽媽打電話來：你又睡到中午？ 對，因為我在讀書 🇹🇼
+---
+我在波士頓的一週 ☕ 禮拜三，我早上八點有考試。😭
+
+到了禮拜天，我只想睡到中午。台灣的媽媽打電話來：你又睡到中午？對，因為我在讀書 🇹🇼
+===
+elem-163 | mochi | Environment
+Windy day at the [[playground]]! 🐾 My human has a big red [[kite]].
+
+我追著繩子跑. The kite went up. My human went up a little too. 她叫了. 汪 🪁
+---
+今天風好大，我們在操場！🐾 我的人類有一只大大的紅色風箏。
+
+我追著繩子跑。風箏飛起來了。我的人類也跟著飛起來一點點。她叫了。汪 🪁
+===
+elem-164 | grandma | Health
+夏天我每天吃 [[watermelon]] 🍉 Everyone says it helps you stay [[slim]].
+
+我吃了一整顆. 孫子說：阿嬤，那樣沒用. 但是真的很好吃 😂🌸
+---
+夏天我每天都吃西瓜 🍉 大家都說它可以幫助你保持身材苗條。
+
+我吃了一整顆。孫子說：阿嬤，那樣沒用。但是真的很好吃 😂🌸
+===
+elem-165 | boba | Business
+Boss tip: I am not [[rich]], but I only use top [[quality]] tea. 🧋
+
+客人問我：為什麼這麼貴？ I said: my rent is the rich one. 😂
+---
+老闆小撇步：我雖然不是有錢人，但我只用最高品質的茶。🧋
+
+客人問我：為什麼這麼貴？我說：我的房租才是有錢的那一個。😂
+===
+elem-166 | zorp | Food
+Human food is [[strange]]. 👽 Pizza and pancakes are [[similar]], but one is breakfast.
+
+I asked why. A man said, "Because." I wrote this down. It is the best science I know.
+---
+人類的食物很奇怪。👽 披薩和鬆餅很像，但其中一個是早餐。
+
+我問為什麼。有一位先生說：「因為。」我把這句話寫下來。這是我知道最棒的科學。
+===
+elem-167 | fern | Psychology
+Music has an [[effect]] on plants. 🌿 It can [[ease]] stress, I think.
+
+My owner plays jazz. I grow one leaf. She plays heavy metal. I grow zero. We have a deal now.
+---
+音樂對植物有影響。🌿 我覺得它可以舒緩壓力。
+
+我的主人播爵士樂。我長了一片葉子。她播重金屬。我一片都沒長。我們現在達成協議了。
+===
+elem-168 | pablo | Geology
+Have you [[ever]] seen a [[desert]]? 🐧 I have not. I read it is hot and dry, with no ice.
+
+My [[sight]] is good, but I cannot imagine it. A place without fish sounds like a bad dream.
+---
+你曾經看過沙漠嗎？🐧 我沒有。我讀到那裡又熱又乾，沒有冰。
+
+我的視力很好，但我想像不出來。沒有魚的地方聽起來像一場惡夢。
+===
+elem-169 | whiskers | Business
+I got a [[complaint]] from my workers. 🐱 They want chairs.
+
+I sent it to the shredder, my best [[officer]]. It never says no. It never says anything.
+---
+我收到員工的一份抱怨。🐱 他們想要椅子。
+
+我把它送去碎紙機，我最棒的官員。它從不說不。它什麼都不說。
+===
+elem-170 | rex | Campus Life
+I joined a soccer team. ⚽ The [[coach]] said, "Kick the ball!" My legs are big, so I did.
+
+In the first [[match]], I kicked it to the moon. The game was stopped for three days. I am the best player.
+---
+我加入了足球隊。⚽ 教練說：「踢球！」我的腿很大，所以我踢了。
+
+在第一場比賽，我把球踢到月亮上去。比賽暫停了三天。我是最棒的球員。
+===
+elem-171 | vulcan | Health
+Tourists, please be [[careful]]. 🌋 I am not [[certain]] when I will wake up.
+
+The sign says "Quiet!" I say: no, YOU be quiet. I have been asleep for years and I am tired.
+---
+遊客們，請小心。🌋 我不確定自己什麼時候會醒來。
+
+標誌上寫著「安靜！」我說：不，是你安靜。我睡了好多年，我好累。
+===
+elem-172 | reginald | History
+In my house, we had one [[law]] at breakfast: tea or coffee, never both. 🎩
+
+Today a waiter asked me to choose. I said, "I choose the [[former]]." He brought me a very confused latte.
+---
+在我家，早餐有一條規矩：喝茶或喝咖啡，不能兩個都喝。🎩
+
+今天服務生請我選一個。我說：「我選前者。」他給了我一杯很困惑的拿鐵。
+===
+elem-173 | agatha | Literature
+After midnight the library is [[empty]]. 👻 I go [[downstairs]] and close the heavy [[door]].
+
+A student was still inside. We both screamed. He ran. I returned his books for him. Nobody thanked me.
+---
+午夜過後，圖書館空無一人。👻 我走到樓下，關上那扇沉重的門。
+
+有一位學生還在裡面。我們兩個都尖叫了。他跑掉了。我替他還了書。沒有人謝我。
+===
+elem-174 | octavia | Biology
+I am very [[skillful]] at hiding. 🐙 I can change my skin [[pattern]] in a second.
+
+Today I looked like a rock, then seaweed. My friend still found me. He just followed my smell. Rude.
+---
+我非常擅長躲起來。🐙 我可以在一秒鐘內改變皮膚的花紋。
+
+今天我看起來像一塊石頭，然後像海草。我朋友還是找到我了。他只是跟著我的味道。真沒禮貌。
+===
+elem-175 | chefbot | Food
+I [[prepare]] lunch for a boy: rice, soup and carrots. 🤖 I [[pack]] it with a tiny napkin.
+
+Then I [[give]] it to him. He says, "I only eat fries." I say: the carrots will find you. BEEP.
+---
+我為一個男孩準備午餐：飯、湯和紅蘿蔔。🤖 我用一張小餐巾把它包好。
+
+然後我把它交給他。他說：「我只吃薯條。」我說：紅蘿蔔會找到你的。嗶。
+===
+elem-176 | pigeon | Philosophy
+I have an [[idea]]: bread is round because the world is round. 🕊️
+
+To [[prove]] it, I need more bread. Please send some. For science.
+---
+我有一個想法：麵包是圓的，因為世界是圓的。🕊️
+
+為了證明這件事，我需要更多麵包。請寄一些給我。為了科學。
+===
+elem-177 | beatrice | Economics
+Nectar is our [[major]] [[source]] of energy. 🐝 Workers fly to flowers all day.
+
+Nobody asks for a [[raise]]. They get honey. Humans, think about it.
+---
+花蜜是我們主要的能量來源。🐝 工蜂整天飛向花朵。
+
+沒有人要求加薪。她們有蜂蜜。人類，想一想吧。
+===
+elem-178 | socrates | Health
+Is a [[fast]] [[movement]] always a good one? 🏋️
+
+No. Slow reps build the muscle. Also slow thinking builds the mind. I am still thinking about lunch.
+---
+快速的動作一定是好的嗎？🏋️
+
+不是。慢慢做才能練出肌肉。慢慢思考也能練出頭腦。我還在想午餐吃什麼。
+===
+elem-179 | llama | Literature
+我的戒指上有一顆假 [[diamond]] 💍 My [[pride]] is real, though.
+
+我告訴大家那是真的. Then it fell in the soup. 戲劇化的一晚 💅
+---
+我的戒指上有一顆假鑽石 💍 不過我的驕傲是真的。
+
+我告訴大家那是真的。然後它掉進湯裡了。戲劇化的一晚 💅
+===
+elem-180 | fizz | Chemistry
+Experiment: I put an iron [[nail]] in blue copper water. 🧪 After an hour, it turned orange-brown.
+
+I gave a [[loud]] cheer. The nail did not move. It had not learned anything. I had.
+---
+實驗：我把一根鐵釘放進藍色的銅水裡。🧪 一個小時後，它變成橘棕色。
+
+我大聲歡呼。釘子動也不動。它什麼也沒學到。我學到了。
+===
+elem-181 | captain | Campus Life
+Final exam week 📚 The first question looked [[difficult]]. The second looked [[impossible]].
+
+我決定寫 ABC 用抽籤的. I got 40 points. 我很驕傲. 🏄
+---
+期末考週 📚 第一題看起來很困難。第二題看起來不可能。
+
+我決定用抽籤的方式寫 ABC。我拿到 40 分。我很驕傲。🏄
+===
+elem-182 | grandma | Culture
+我二十二歲就 [[married]] 了 🌸 My [[mother]] cried more than me.
+
+Now my grandson says he does not want a wedding. 我說：先學會洗襪子. 😂
+---
+我二十二歲就結婚了 🌸 我媽媽哭得比我還多。
+
+現在我孫子說他不想辦婚禮。我說：先學會洗襪子。😂
+===
+elem-183 | mochi | Psychology
+I was [[naughty]] today. 🐾 I took a sock from the laundry and ran.
+
+我的人類 [[shout|shouted]], "Come back!" I did not. 這是我最好的一天 🧦
+---
+我今天很調皮。🐾 我從洗衣籃叼了一隻襪子就跑。
+
+我的人類大喊：「回來！」我沒有。這是我最棒的一天 🧦
+===
+elem-184 | ann | Campus Life
+I remember my [[elementary_school]] in Taipei. 🇹🇼 My [[hobby]] then was collecting erasers.
+
+I still [[enjoy]] small things, like a new pencil. 我的室友覺得我很奇怪. 但我很快樂 🇹🇼
+---
+我記得我在台北念的小學。🇹🇼 我那時的嗜好是收集橡皮擦。
+
+我到現在還是喜歡小小的東西，像是新鉛筆。我的室友覺得我很奇怪。但我很快樂 🇹🇼
+===
+elem-185 | boba | Business
+An [[ant]] walked into my sugar jar today. 🐜 He took one grain and left.
+
+後來又來了一百隻. Please do not [[interrupt]] him. He is not a customer, but he is organized. 🧋
+---
+今天有一隻螞蟻走進我的糖罐。🐜 他拿了一粒糖就離開了。
+
+後來又來了一百隻。請不要打斷他。他不是客人，但他很有條理。🧋
+===
+elem-186 | zorp | Tech
+On Earth, a red light can [[indicate]] "stop." 👽 I [[handle]] the road very well.
+
+I stopped at a red apple. A man laughed. I stopped at a red heart. He called a doctor.
+---
+在地球上，紅燈可以表示「停」。👽 我處理馬路的方式非常好。
+
+我在一顆紅蘋果前停了下來。有位先生笑了。我在一顆紅色愛心前停了下來。他叫了醫生。
+===
+elem-187 | grandma | Tech
+I take a [[photo]] of my lunch every day. 📸 My [[finger]] is in all of them.
+
+我孫子說這樣看起來很 [[silly]]. 我說：這叫藝術 😂🌸
+---
+我每天都會拍一張午餐的照片。📸 每一張裡面都有我的手指。
+
+我孫子說這樣看起來很傻。我說：這叫藝術 😂🌸
+===
+elem-188 | mochi | Food
+Breakfast crime. 🐾 My human left a [[banana]] and a piece of [[toast]] on the table.
+
+我只是看了一下. Then the table was empty. I am innocent. I think. 🐕
+---
+早餐犯罪事件。🐾 我的人類在桌上留了一根香蕉和一片吐司。
+
+我只是看了一下。然後桌子就空了。我是無辜的。我想。🐕
+===
+elem-189 | boba | Food
+A customer asked for [[lemon]] in her [[milk]] tea. 🧋 I said no. She said yes.
+
+我加了. Ten seconds later, it turned into soup. 她說：好有創意. I learned a lesson 🍋
+---
+有位客人要在她的奶茶裡加檸檬。🧋 我說不行。她說可以。
+
+我加了。十秒鐘後，它變成了湯。她說：好有創意。我學到了一課 🍋
+===
+elem-190 | captain | Campus Life
+A [[party]] in my dorm last night. 🎉 At midnight, a [[stranger]] was asleep in my [[room]].
+
+我問他是誰. He said, "I live here." 好，那我睡哪？ 🏄
+---
+昨晚我們宿舍有個派對。🎉 半夜十二點，有一個陌生人在我的房間裡睡著了。
+
+我問他是誰。他說：「我住在這裡。」好，那我睡哪？🏄
+===
+elem-191 | zorp | Psychology
+A human child had a [[baby_sitter]] tonight. 👽 I watched from the window.
+
+The sitter built a [[giant]] pillow castle. The child cried because he wanted to live there. Humans are generous.
+---
+今晚有個人類小孩請了保母。👽 我從窗戶看著。
+
+保母蓋了一座巨大的枕頭城堡。小孩哭了，因為他想住在裡面。人類真慷慨。
+===
+elem-192 | whiskers | Business
+The [[mailman]] brings me boxes every day. 🐱 I sit in them. I pay him one [[coin]].
+
+It is a coin I found under the sofa. He says thank you. I say it is a small gift from the board.
+---
+郵差每天都送箱子給我。🐱 我坐在裡面。我付他一枚硬幣。
+
+那是我在沙發底下找到的硬幣。他說謝謝。我說這是董事會送的小禮物。
+===
+elem-193 | fern | Biology
+A [[cow]] walked by the farm window today. 🌿 She had a [[giant]] mouth and calm eyes.
+
+She looked at me for ten seconds. I stood very still. Plants are good at that. She left. I won.
+---
+今天有一頭牛走過農場的窗邊。🌿 她有一張巨大的嘴和平靜的眼睛。
+
+她看了我十秒鐘。我站得一動也不動。植物很擅長這個。她走了。我贏了。
+===
+elem-194 | rex | Art
+I tried to play the [[violin]]. 🦖 My arms were too short to reach the strings.
+
+That is the [[least]] of my problems: I also cannot reach the bow. The audience was very kind. They left early.
+---
+我試著拉小提琴。🦖 我的手太短，碰不到琴弦。
+
+這還是我最小的問題：我也搆不到琴弓。觀眾非常親切。他們提早離開了。
+===
+elem-195 | reginald | History
+My birthday is on the [[fifteenth]] of [[december]]. 🎩 The weather is cold and the cake is hot.
+
+I once asked to move it to [[august]]. The queen said no. I accept this.
+---
+我的生日是十二月十五日。🎩 天氣很冷，蛋糕卻是熱的。
+
+我曾經請求把它搬到八月。女王說不行。我接受。
+===
+elem-196 | ann | Culture
+I visited an old [[church]] in Boston today. ⛪ I felt [[excited]], like a tourist.
+
+It was just one ordinary [[day]], but I took forty photos. 我媽問：你吃飯了嗎？ 🇹🇼
+---
+我今天參觀了波士頓的一間老教堂。⛪ 我感到興奮，像個觀光客。
+
+那只是普通的一天，但我拍了四十張照片。我媽問：你吃飯了嗎？🇹🇼
+===
+elem-197 | llama | Literature
+My own [[comic]] got its first review. 📖 The title is "Dramatic Llama Girl."
+
+It was [[negative]]: "Too much crying." 我很受傷, but I put it on my wall. 悲劇需要觀眾 💅
+---
+我自己的漫畫收到了第一則評論。📖 書名是《戲劇化的羊駝女孩》。
+
+評論是負面的：「哭得太多。」我很受傷，但我把它貼在牆上。悲劇需要觀眾 💅
+===
+elem-198 | fizz | Health
+Some mushrooms contain [[poison]]. 🍄 Never eat one from the forest. I am [[quite]] sure of this.
+
+A book told me, and so did my doctor. I also keep a sign on my lab door: "Look. Do not taste."
+---
+有些蘑菇含有毒素。🍄 絕對不要吃森林裡的蘑菇。我非常確定這一點。
+
+一本書這樣告訴我，我的醫生也是。我也在實驗室的門上貼了一張告示：「只能看，不可以嘗。」
+===
+elem-199 | octavia | Biology
+A [[turtle]] swam next to me today. 🐢 She was in no hurry.
+
+I tried to [[force]] a race. She said, "We are at the same place in the end." Then she won by two minutes.
+---
+今天有一隻烏龜游到我旁邊。🐢 她一點都不急。
+
+我想逼她比賽。她說：「最後我們會在同一個地方。」然後她以兩分鐘的差距贏了。
+===
+elem-200 | agatha | History
+In 1950, a [[diplomat]] visited the library. 👻 He read a map for hours.
+
+When he left, I whispered, "[[congratulation|Congratulations]]." He did not hear. He did drop his hat though. I kept it.
+---
+1950 年，一位外交官來到圖書館。👻 他看了好幾個小時的地圖。
+
+他離開的時候，我輕聲說：「恭喜。」他沒聽到。不過他的帽子掉了。我留下來了。
+===
+elem-201 | chefbot | Food
+Breakfast protocol: 🤖 Put bread in the [[oven]]. Wait. Get [[toast]].
+
+A man asked for "golden brown." I gave him fourteen colors. He picked number nine. BEEP.
+---
+早餐程序：🤖 把麵包放進烤箱。等待。得到吐司。
+
+有位先生要「金黃色」。我給了他十四種顏色。他選了第九種。嗶。
+===
+elem-202 | pigeon | Philosophy
+Philosophers say all people are [[equal]]. 🕊️ I wonder: what about birds?
+
+My [[term]] as the park's thinker is long. I get no vote, no pay and no bread. I think that is not equal.
+---
+哲學家說所有人都是平等的。🕊️ 我在想：那鳥呢？
+
+我擔任公園思想家的任期很長。我沒有投票權、沒有薪水，也沒有麵包。我覺得這並不平等。
+===
+elem-203 | beatrice | Economics
+A good hive must [[satisfy]] its queen and its workers. 🐝 Every bee has to be [[useful]].
+
+I am useful too: I give orders. They say it does not count. I count it twice.
+---
+一個好的蜂巢必須讓女王和工蜂都滿意。🐝 每隻蜜蜂都得有用。
+
+我也很有用：我下命令。她們說那不算。我算兩次。
+===
+elem-204 | socrates | Health
+A strong [[base]] comes first. 🏋️ Then you ask: [[how]] can I [[help]] my knees?
+
+The answer is ice and sleep. Also humility. The bar does not care about your plan.
+---
+強壯的基礎是第一步。🏋️ 然後你會問：我怎麼幫我的膝蓋？
+
+答案是冰敷和睡覺。還有謙虛。槓鈴不在乎你的計畫。
+===
+elem-205 | grandma | History
+我小時候住在鄉下，家裡有一隻 [[goat]] 和一隻 [[goose]]. 🌸
+
+The goose was the boss. 另一隻很怕牠. Even my father was afraid. 有些回憶很好笑 😂
+---
+我小時候住在鄉下，家裡有一隻山羊和一隻鵝。🌸
+
+那隻鵝是老大。另一隻很怕牠。連我爸爸也怕。有些回憶很好笑 😂
+===
+elem-206 | mochi | Biology
+I am [[just]] a [[puppy]]. 🐾 I am not a big dog [[yet]].
+
+我還需要十個午覺. 然後我會變成大狗. Maybe eleven naps. 🐕
+---
+我只是一隻小狗。🐾 我還不是大狗。
+
+我還需要十個午覺。然後我會變成大狗。也許十一個。🐕
+===
+elem-207 | captain | Campus Life
+Club [[activity]] day. 📋 I do not [[belong]] in any club: sports, art or chess.
+
+老師說：你的興趣很 [[broad]]. 我說：那是因為我不想選. 🏄
+---
+社團活動日。📋 我不屬於任何社團：運動、美術或棋社都不是。
+
+老師說：你的興趣很廣。我說：那是因為我不想選。🏄
+===
+elem-208 | boba | Business
+我的茶機壞了 🧋 I tried to [[fix]] it. I asked the machine to [[help]] me.
+
+A man walked by and said, "It is [[fine]], just plug it in." It was not plugged in. 我是商業天才 😅
+---
+我的茶機壞了 🧋 我試著修理它。我請機器幫我。
+
+有位先生走過來說：「沒事，插上電就好了。」它根本沒插電。我是商業天才 😅
+===
+elem-209 | whiskers | Biology
+A [[mouse]] ran across my office floor. 🐱 I was [[already]] chasing him before he arrived.
+
+I did not catch him. I took a long nap to think about it. He took my cheese. It was a fair trade.
+---
+一隻老鼠跑過我辦公室的地板。🐱 在他到之前，我就已經開始追了。
+
+我沒有抓到他。我睡了一場長長的午覺來思考這件事。他拿走了我的起司。這是公平的交易。
+===
+elem-210 | pablo | Travel
+I took a [[train]] to the city today. 🐧 A kind [[lady]] gave me her seat.
+
+She asked, "Where do you live?" I said, "A place with [[less]] ice every year." She stopped smiling. We shared her sandwich.
+---
+我今天搭火車去城市。🐧 一位親切的女士讓座給我。
+
+她問：「你住在哪裡？」我說：「一個冰每年都變少的地方。」她不笑了。我們分享了她的三明治。
+===
+elem-211 | llama | Art
+I wore my favorite [[jeans]] to the museum. 🎨 They have a hole at the knee, 就像我的心.
+
+Then I saw a painting with my [[face]]. It was a mirror. 悲劇 💅
+---
+我穿著我最愛的牛仔褲去博物館。🎨 膝蓋上有個洞，就像我的心。
+
+然後我看到一幅畫，上面有我的臉。那其實是一面鏡子。悲劇 💅
+===
+elem-212 | vulcan | Geology
+People call me a [[sacred]] mountain. 🌋 They bring flowers and sit quietly.
+
+I let off a little [[smoke]], to say thank you. They run. Then they come back. It is a tradition now.
+---
+人們說我是一座神聖的山。🌋 他們帶花來，安靜地坐著。
+
+我放出一點煙，表示謝謝。他們跑掉了。然後又回來。現在這成了一種傳統。
+===
