@@ -1,0 +1,129 @@
+{
+  "segments": [
+    {
+      "id": "hook",
+      "hash": "744afeda8bc0ad33a9f00275e38deeac",
+      "voice": "arthur",
+      "sourceDuration": 4.32
+    },
+    {
+      "id": "session",
+      "hash": "c12f7664c0d8a6233bc2107c29ce5680",
+      "voice": "arthur",
+      "sourceDuration": 2.56
+    },
+    {
+      "id": "patron",
+      "hash": "dc53f14b15f3bf1b0b330523baa8c852",
+      "voice": "arthur",
+      "sourceDuration": 3.84,
+      "parts": [
+        "accusedLead",
+        "accusedRest"
+      ],
+      "cuts": [
+        {
+          "before": "accusedRest",
+          "sample": 61124,
+          "at": 1.386031746031746,
+          "wordEnd": 1.36,
+          "nextStart": 1.4,
+          "ratio": 0.22,
+          "cut": "late"
+        }
+      ]
+    },
+    {
+      "id": "accuseMeaning",
+      "hash": "a77ef34c6b0fe314d0d401aa636de3de",
+      "voice": "ling",
+      "sourceDuration": 1.92
+    },
+    {
+      "id": "accuseExample",
+      "hash": "18352634743349df1434bbec89028423",
+      "voice": "arthur",
+      "sourceDuration": 2.8
+    },
+    {
+      "id": "suspect",
+      "hash": "e66c06584b2fc146315ec716b8ce2720",
+      "voice": "arthur",
+      "sourceDuration": 2.24
+    },
+    {
+      "id": "witnessSent",
+      "hash": "6ecd0d18f773a908120c22026054c8e8",
+      "voice": "arthur",
+      "sourceDuration": 3.36,
+      "parts": [
+        "witnessLead",
+        "witnessRest"
+      ],
+      "cuts": [
+        {
+          "before": "witnessRest",
+          "sample": 57280,
+          "at": 1.2988662131519275,
+          "wordEnd": 1.28,
+          "nextStart": 1.36,
+          "ratio": 0.024
+        }
+      ]
+    },
+    {
+      "id": "witnessMeaning",
+      "hash": "5a4bd7ed683dc0301538989764e158dc",
+      "voice": "ling",
+      "sourceDuration": 2
+    },
+    {
+      "id": "witnessExample",
+      "hash": "ef0425ed5fa1345fe643dad9f68b56fe",
+      "voice": "arthur",
+      "sourceDuration": 2.56
+    },
+    {
+      "id": "found",
+      "hash": "70330d44be2fbe2f26d6d709ed8e81b9",
+      "voice": "arthur",
+      "sourceDuration": 1.6
+    },
+    {
+      "id": "guiltyMeaning",
+      "hash": "dffce31b30995b5791e3025f5665c97c",
+      "voice": "ling",
+      "sourceDuration": 2.16
+    },
+    {
+      "id": "guiltyExample",
+      "hash": "5c2dc0ecc5de8f055aa735122df133ef",
+      "voice": "arthur",
+      "sourceDuration": 3.2
+    },
+    {
+      "id": "sentence",
+      "hash": "aaebe119a076cfaadd12e1c1fb91f555",
+      "voice": "arthur",
+      "sourceDuration": 6.08
+    },
+    {
+      "id": "justice",
+      "hash": "638aa2d10c784557a0f6e4347b0ae4a5",
+      "voice": "arthur",
+      "sourceDuration": 1.76
+    },
+    {
+      "id": "question",
+      "silent": true
+    },
+    {
+      "id": "answer",
+      "silent": true
+    }
+  ],
+  "warnings": [],
+  "duration": 42.86666666666667,
+  "audioEnd": 38.716142,
+  "frames": 1286
+}

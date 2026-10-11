@@ -92,3 +92,25 @@ test("assertEpisode throws one ConfigError listing every problem with the file n
   const e = episode(); e.story[0].parts[0].line = "ghost"; e.camera[0].id = "chapter9";
   assert.throws(() => assertEpisode(e, lines(), "p3.json"), (err) => err instanceof ConfigError && err.problems.length >= 2 && err.problems.every((p) => p.startsWith("p3.json: ")));
 });
+
+test("hook types: a hook without `type` is number_contrast; number / caption / ratio are required only there", (t) => {
+  if (!have) return t.skip();
+  assert.deepEqual(problems((e) => { e.hook.type = "number_contrast"; }), []);
+  has(problems((e) => { delete e.hook.number; }), /hook\.number: is required/);
+  has(problems((e) => { e.hook.type = "quote"; }), /hook\.type: unsupported hook type "quote" \(renderer supports: number_contrast, scene_contrast\)/);
+  // the same data as scene_contrast: setup replaces number / caption / ratio, which stop being required
+  const asScene = problems((e) => { e.hook.type = "scene_contrast"; delete e.hook.number; delete e.hook.caption; delete e.hook.ratio; e.hook.setup = ["A scene", "and a place."]; });
+  assert.deepEqual(asScene, []);
+  has(problems((e) => { e.hook.type = "scene_contrast"; delete e.hook.number; delete e.hook.caption; delete e.hook.ratio; }), /hook\.setup: is required/);
+  has(problems((e) => { e.hook.type = "scene_contrast"; e.hook.setup = "not an array"; }), /hook\.setup: must be an array/);
+});
+
+test("known-good: the p348 draft episode matches its draft narration (scene_contrast)", (t) => {
+  const ep = path.join(REPO_ROOT, "scripts/video/episodes/p348-auto.json"), nar = path.join(REPO_ROOT, "scripts/video/narration/p348.json");
+  if (!fs.existsSync(ep) || !fs.existsSync(nar)) return t.skip("p348 draft not present");
+  const l = linesFromNarration(prepareNarration(loadNarration(nar), loadVoiceConfig(), { requireApiKey: false }));
+  const e = JSON.parse(fs.readFileSync(ep, "utf8"));
+  assert.equal(e.hook.type, "scene_contrast");
+  assert.deepEqual(validateEpisode(e, l), []);
+  assert.equal(path.basename(findEpisodeFor("p348")), "p348-auto.json");
+});

@@ -48,6 +48,7 @@ export function layoutParts(seg) {
     const last = i === list.length - 1;
     if (!p || typeof p.id !== "string" || !p.id) { problems.push(`${at}[${i}]: id is missing`); return; }
     if (p.gap !== undefined && !(typeof p.gap === "number" && p.gap >= 0)) problems.push(`${at}[${i}] (${p.id}): gap must be a number >= 0`);
+    if (p.cut !== undefined && (i === 0 || p.cut !== "late")) problems.push(`${at}[${i}] (${p.id}): "cut" is only valid as "late" on a resuming part (the cut before it is made after the previous word's release, see split.mjs)`);
     if (i > 0 && (typeof p.resumeAfter !== "string" || !p.resumeAfter)) problems.push(`${at}[${i}] (${p.id}): "resumeAfter" (the segment this part plays after) is required`);
     if (i === 0 && p.resumeAfter !== undefined) problems.push(`${at}[${i}] (${p.id}): the first part plays at the segment's own position; remove "resumeAfter"`);
     let endToken = tokens.length - 1;
@@ -60,7 +61,7 @@ export function layoutParts(seg) {
       if (endToken >= tokens.length - 1) { problems.push(`${at}[${i}] (${p.id}): "${p.through}" is the last word of the sentence, so nothing interrupts it`); return; }
     }
     if (cursor > endToken) { problems.push(`${at}[${i}] (${p.id}): empty part`); return; }
-    parts.push({ id: p.id, resumeAfter: p.resumeAfter ?? null, gap: p.gap ?? 0, tokenFrom: cursor, tokenTo: endToken, charFrom: tokens[cursor].from, charTo: tokens[endToken].to, text: seg.text.slice(tokens[cursor].from, tokens[endToken].to) });
+    parts.push({ id: p.id, resumeAfter: p.resumeAfter ?? null, gap: p.gap ?? 0, ...(p.cut ? { cut: p.cut } : {}), tokenFrom: cursor, tokenTo: endToken, charFrom: tokens[cursor].from, charTo: tokens[endToken].to, text: seg.text.slice(tokens[cursor].from, tokens[endToken].to) });
     cursor = endToken + 1;
   });
   return { parts, problems };

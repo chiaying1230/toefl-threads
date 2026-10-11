@@ -69,7 +69,7 @@ try {
     let resumeCue = null;
     if (resumeWord) { await at(close + (resumeWord.at + resumeWord.until) / 2); resumeCue = await active(v.close.line); }
     await at(close + v.closeDuration + 0.05); const closed = await noteHeight(v.id);
-    const ok = before < 1 && opened > 20 && cue.map(norm).includes(v.word) && meaningOn && exCue.map(norm).includes(norm(exWord.text)) && (!resumeWord || resumeCue.map(norm).includes(norm(resumeWord.text))) && closed < 1;
+    const ok = before < 1 && opened > 20 && cue.map(norm).includes(norm(v.open.word)) && meaningOn && exCue.map(norm).includes(norm(exWord.text)) && (!resumeWord || resumeCue.map(norm).includes(norm(resumeWord.text))) && closed < 1;
     (ok ? pass : fail)(`vocabulary "${v.word}": yellow handoff → meaning → example → back to story`, { openAt: +open.toFixed(3), noteHeightBefore: before, noteHeightOpen: Math.round(opened), activeCueAtOpen: cue, meaningActive: meaningOn, exampleCue: exCue, resumeLine: v.close.line, resumeCue, noteHeightAfterClose: closed });
   }
 

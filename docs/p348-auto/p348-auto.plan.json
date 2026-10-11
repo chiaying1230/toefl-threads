@@ -1,0 +1,864 @@
+{
+  "id": "p348-auto",
+  "duration": 42.86666666666667,
+  "frames": 1286,
+  "fps": 30,
+  "voices": {
+    "en": "ElevenLabs arthur (eleven_v4, C1npRmjB19a6yNkEucvx)",
+    "zh": "ElevenLabs ling (eleven_v4, Z8Aisvg1z70p27kGvkZZ)"
+  },
+  "audioEnd": 38.716142,
+  "source": "ElevenLabs voice pipeline (voice.mjs → assemble)",
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "One coffee stain on a library book. Now it's a court case.",
+      "gap": 0.08,
+      "duration": 4.21,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.4,
+          "pos": 0,
+          "count": 3,
+          "text": "One"
+        },
+        {
+          "at": 0.4,
+          "until": 0.8,
+          "pos": 4,
+          "count": 6,
+          "text": "coffee"
+        },
+        {
+          "at": 0.8,
+          "until": 1.2,
+          "pos": 11,
+          "count": 5,
+          "text": "stain"
+        },
+        {
+          "at": 1.2,
+          "until": 1.333,
+          "pos": 17,
+          "count": 2,
+          "text": "on"
+        },
+        {
+          "at": 1.333,
+          "until": 1.44,
+          "pos": 20,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 1.44,
+          "until": 2.08,
+          "pos": 22,
+          "count": 7,
+          "text": "library"
+        },
+        {
+          "at": 2.08,
+          "until": 2.8,
+          "pos": 30,
+          "count": 5,
+          "text": "book"
+        },
+        {
+          "at": 2.8,
+          "until": 3.12,
+          "pos": 36,
+          "count": 3,
+          "text": "Now"
+        },
+        {
+          "at": 3.12,
+          "until": 3.28,
+          "pos": 40,
+          "count": 4,
+          "text": "it's"
+        },
+        {
+          "at": 3.28,
+          "until": 3.44,
+          "pos": 45,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 3.44,
+          "until": 3.88,
+          "pos": 47,
+          "count": 5,
+          "text": "court"
+        },
+        {
+          "at": 3.88,
+          "until": 4.21,
+          "pos": 53,
+          "count": 5,
+          "text": "case"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (744afeda)",
+      "start": 0,
+      "end": 4.21
+    },
+    {
+      "id": "session",
+      "lang": "en",
+      "text": "Library Court is now in session.",
+      "gap": 0.1,
+      "duration": 2.3850113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.6150113378684807,
+          "pos": 0,
+          "count": 7,
+          "text": "Library"
+        },
+        {
+          "at": 0.6150113378684807,
+          "until": 1.095011337868481,
+          "pos": 8,
+          "count": 5,
+          "text": "Court"
+        },
+        {
+          "at": 1.095011337868481,
+          "until": 1.335011337868481,
+          "pos": 14,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 1.335011337868481,
+          "until": 1.6550113378684808,
+          "pos": 17,
+          "count": 3,
+          "text": "now"
+        },
+        {
+          "at": 1.6550113378684808,
+          "until": 1.815011337868481,
+          "pos": 21,
+          "count": 2,
+          "text": "in"
+        },
+        {
+          "at": 1.815011337868481,
+          "until": 2.3850113378684807,
+          "pos": 24,
+          "count": 8,
+          "text": "session"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (c12f7664)",
+      "start": 4.29,
+      "end": 6.675011
+    },
+    {
+      "id": "accusedLead",
+      "lang": "en",
+      "text": "A patron was accused",
+      "gap": 0.04,
+      "duration": 1.3410430839002268,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.27501133786848075,
+          "pos": 0,
+          "count": 1,
+          "text": "A"
+        },
+        {
+          "at": 0.27501133786848075,
+          "until": 0.6750113378684807,
+          "pos": 2,
+          "count": 6,
+          "text": "patron"
+        },
+        {
+          "at": 0.6750113378684807,
+          "until": 0.9550113378684807,
+          "pos": 9,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 0.9550113378684807,
+          "until": 1.3410430839002268,
+          "pos": 13,
+          "count": 7,
+          "text": "accused"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of patron (dc53f14b)",
+      "start": 6.775011,
+      "end": 8.116054
+    },
+    {
+      "id": "accuseMeaning",
+      "lang": "zh",
+      "text": "指控、控告。",
+      "gap": 0.04,
+      "duration": 1.7450113378684806,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (a77ef34c)",
+      "start": 8.156054,
+      "end": 9.901065
+    },
+    {
+      "id": "accuseExample",
+      "lang": "en",
+      "text": "She accused her brother of eating her cake.",
+      "gap": 0.08,
+      "duration": 2.6750113378684808,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.3450113378684807,
+          "pos": 0,
+          "count": 3,
+          "text": "She"
+        },
+        {
+          "at": 0.3450113378684807,
+          "until": 0.7850113378684808,
+          "pos": 4,
+          "count": 7,
+          "text": "accused"
+        },
+        {
+          "at": 0.7850113378684808,
+          "until": 0.9450113378684807,
+          "pos": 12,
+          "count": 3,
+          "text": "her"
+        },
+        {
+          "at": 0.9450113378684807,
+          "until": 1.4250113378684808,
+          "pos": 16,
+          "count": 7,
+          "text": "brother"
+        },
+        {
+          "at": 1.4250113378684808,
+          "until": 1.6650113378684808,
+          "pos": 24,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 1.6650113378684808,
+          "until": 2.025011337868481,
+          "pos": 27,
+          "count": 6,
+          "text": "eating"
+        },
+        {
+          "at": 2.025011337868481,
+          "until": 2.3450113378684807,
+          "pos": 34,
+          "count": 3,
+          "text": "her"
+        },
+        {
+          "at": 2.3450113378684807,
+          "until": 2.6750113378684808,
+          "pos": 38,
+          "count": 5,
+          "text": "cake"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (18352634)",
+      "start": 9.941065,
+      "end": 12.616076
+    },
+    {
+      "id": "accusedRest",
+      "lang": "en",
+      "text": "of returning a book with a coffee stain.",
+      "gap": 0.1,
+      "duration": 2.33,
+      "words": [
+        {
+          "at": 0.013968253968253963,
+          "until": 0.13396825396825407,
+          "pos": 0,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 0.13396825396825407,
+          "until": 0.613968253968254,
+          "pos": 3,
+          "count": 9,
+          "text": "returning"
+        },
+        {
+          "at": 0.613968253968254,
+          "until": 0.7739682539682542,
+          "pos": 13,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 0.7739682539682542,
+          "until": 1.173968253968254,
+          "pos": 15,
+          "count": 4,
+          "text": "book"
+        },
+        {
+          "at": 1.173968253968254,
+          "until": 1.2939682539682542,
+          "pos": 20,
+          "count": 4,
+          "text": "with"
+        },
+        {
+          "at": 1.2939682539682542,
+          "until": 1.4139682539682539,
+          "pos": 25,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 1.4139682539682539,
+          "until": 1.8139682539682542,
+          "pos": 27,
+          "count": 6,
+          "text": "coffee"
+        },
+        {
+          "at": 1.8139682539682542,
+          "until": 2.33,
+          "pos": 34,
+          "count": 6,
+          "text": "stain"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of patron (dc53f14b)",
+      "start": 12.696076,
+      "end": 15.026076
+    },
+    {
+      "id": "suspect",
+      "lang": "en",
+      "text": "The suspect said he was innocent.",
+      "gap": 0.1,
+      "duration": 2.0950113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.21501133786848073,
+          "pos": 0,
+          "count": 3,
+          "text": "The"
+        },
+        {
+          "at": 0.21501133786848073,
+          "until": 0.7750113378684808,
+          "pos": 4,
+          "count": 7,
+          "text": "suspect"
+        },
+        {
+          "at": 0.7750113378684808,
+          "until": 1.095011337868481,
+          "pos": 12,
+          "count": 4,
+          "text": "said"
+        },
+        {
+          "at": 1.095011337868481,
+          "until": 1.2950113378684809,
+          "pos": 17,
+          "count": 2,
+          "text": "he"
+        },
+        {
+          "at": 1.2950113378684809,
+          "until": 1.4950113378684808,
+          "pos": 20,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 1.4950113378684808,
+          "until": 2.0950113378684807,
+          "pos": 24,
+          "count": 9,
+          "text": "innocent"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (e66c0658)",
+      "start": 15.126076,
+      "end": 17.221087
+    },
+    {
+      "id": "witnessLead",
+      "lang": "en",
+      "text": "But a witness,",
+      "gap": 0.04,
+      "duration": 1.01,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.2,
+          "pos": 0,
+          "count": 3,
+          "text": "But"
+        },
+        {
+          "at": 0.2,
+          "until": 0.32,
+          "pos": 4,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 0.32,
+          "until": 1.01,
+          "pos": 6,
+          "count": 8,
+          "text": "witness"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of witnessSent (6ecd0d18)",
+      "start": 17.321087,
+      "end": 18.331087
+    },
+    {
+      "id": "witnessMeaning",
+      "lang": "zh",
+      "text": "目擊者、證人。",
+      "gap": 0.04,
+      "duration": 1.7150113378684808,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (5a4bd7ed)",
+      "start": 18.371087,
+      "end": 20.086098
+    },
+    {
+      "id": "witnessExample",
+      "lang": "en",
+      "text": "A witness saw the car drive away.",
+      "gap": 0.08,
+      "duration": 2.215011337868481,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.1950113378684807,
+          "pos": 0,
+          "count": 1,
+          "text": "A"
+        },
+        {
+          "at": 0.1950113378684807,
+          "until": 0.7150113378684807,
+          "pos": 2,
+          "count": 7,
+          "text": "witness"
+        },
+        {
+          "at": 0.7150113378684807,
+          "until": 0.9550113378684807,
+          "pos": 10,
+          "count": 3,
+          "text": "saw"
+        },
+        {
+          "at": 0.9550113378684807,
+          "until": 1.075011337868481,
+          "pos": 14,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 1.075011337868481,
+          "until": 1.3950113378684807,
+          "pos": 18,
+          "count": 3,
+          "text": "car"
+        },
+        {
+          "at": 1.3950113378684807,
+          "until": 1.9150113378684808,
+          "pos": 22,
+          "count": 5,
+          "text": "drive"
+        },
+        {
+          "at": 1.9150113378684808,
+          "until": 2.215011337868481,
+          "pos": 28,
+          "count": 5,
+          "text": "away"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (ef0425ed)",
+      "start": 20.126098,
+      "end": 22.341109
+    },
+    {
+      "id": "witnessRest",
+      "lang": "en",
+      "text": "me, saw everything.",
+      "gap": 0.1,
+      "duration": 1.89,
+      "words": [
+        {
+          "at": 0.06113378684807258,
+          "until": 0.8211337868480726,
+          "pos": 0,
+          "count": 3,
+          "text": "me"
+        },
+        {
+          "at": 0.8211337868480726,
+          "until": 1.2611337868480725,
+          "pos": 4,
+          "count": 3,
+          "text": "saw"
+        },
+        {
+          "at": 1.2611337868480725,
+          "until": 1.89,
+          "pos": 8,
+          "count": 11,
+          "text": "everything"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of witnessSent (6ecd0d18)",
+      "start": 22.421109,
+      "end": 24.311109
+    },
+    {
+      "id": "found",
+      "lang": "en",
+      "text": "He was found guilty.",
+      "gap": 0.06,
+      "duration": 1.4350113378684808,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.2250113378684807,
+          "pos": 0,
+          "count": 2,
+          "text": "He"
+        },
+        {
+          "at": 0.2250113378684807,
+          "until": 0.38501133786848074,
+          "pos": 3,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 0.38501133786848074,
+          "until": 0.8650113378684807,
+          "pos": 7,
+          "count": 5,
+          "text": "found"
+        },
+        {
+          "at": 0.8650113378684807,
+          "until": 1.4350113378684808,
+          "pos": 13,
+          "count": 7,
+          "text": "guilty"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (70330d44)",
+      "start": 24.411109,
+      "end": 25.84612
+    },
+    {
+      "id": "guiltyMeaning",
+      "lang": "zh",
+      "text": "有罪的、內疚的。",
+      "gap": 0.04,
+      "duration": 1.99,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (dffce31b)",
+      "start": 25.90612,
+      "end": 27.89612
+    },
+    {
+      "id": "guiltyExample",
+      "lang": "en",
+      "text": "I feel guilty about forgetting my friend's birthday.",
+      "gap": 0.08,
+      "duration": 3.005011337868481,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.21501133786848073,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.21501133786848073,
+          "until": 0.5350113378684808,
+          "pos": 2,
+          "count": 4,
+          "text": "feel"
+        },
+        {
+          "at": 0.5350113378684808,
+          "until": 1.095011337868481,
+          "pos": 7,
+          "count": 6,
+          "text": "guilty"
+        },
+        {
+          "at": 1.095011337868481,
+          "until": 1.4150113378684808,
+          "pos": 14,
+          "count": 5,
+          "text": "about"
+        },
+        {
+          "at": 1.4150113378684808,
+          "until": 1.7350113378684808,
+          "pos": 20,
+          "count": 10,
+          "text": "forgetting"
+        },
+        {
+          "at": 1.7350113378684808,
+          "until": 1.8950113378684807,
+          "pos": 31,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 1.8950113378684807,
+          "until": 2.5750113378684807,
+          "pos": 34,
+          "count": 8,
+          "text": "friend's"
+        },
+        {
+          "at": 2.5750113378684807,
+          "until": 3.005011337868481,
+          "pos": 43,
+          "count": 9,
+          "text": "birthday"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (5c2dc0ec)",
+      "start": 27.93612,
+      "end": 30.941131
+    },
+    {
+      "id": "sentence",
+      "lang": "en",
+      "text": "He was not indicted by any real court, but he must now read to the children every Saturday.",
+      "gap": 0.1,
+      "duration": 5.955011337868481,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.2250113378684807,
+          "pos": 0,
+          "count": 2,
+          "text": "He"
+        },
+        {
+          "at": 0.2250113378684807,
+          "until": 0.38501133786848074,
+          "pos": 3,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 0.38501133786848074,
+          "until": 0.6250113378684807,
+          "pos": 7,
+          "count": 3,
+          "text": "not"
+        },
+        {
+          "at": 0.6250113378684807,
+          "until": 1.105011337868481,
+          "pos": 11,
+          "count": 8,
+          "text": "indicted"
+        },
+        {
+          "at": 1.105011337868481,
+          "until": 1.345011337868481,
+          "pos": 20,
+          "count": 2,
+          "text": "by"
+        },
+        {
+          "at": 1.345011337868481,
+          "until": 1.6650113378684808,
+          "pos": 23,
+          "count": 3,
+          "text": "any"
+        },
+        {
+          "at": 1.6650113378684808,
+          "until": 1.9850113378684808,
+          "pos": 27,
+          "count": 4,
+          "text": "real"
+        },
+        {
+          "at": 1.9850113378684808,
+          "until": 2.7850113378684807,
+          "pos": 32,
+          "count": 6,
+          "text": "court"
+        },
+        {
+          "at": 2.7850113378684807,
+          "until": 3.105011337868481,
+          "pos": 39,
+          "count": 3,
+          "text": "but"
+        },
+        {
+          "at": 3.105011337868481,
+          "until": 3.3850113378684807,
+          "pos": 43,
+          "count": 2,
+          "text": "he"
+        },
+        {
+          "at": 3.3850113378684807,
+          "until": 3.585011337868481,
+          "pos": 46,
+          "count": 4,
+          "text": "must"
+        },
+        {
+          "at": 3.585011337868481,
+          "until": 3.8250113378684807,
+          "pos": 51,
+          "count": 3,
+          "text": "now"
+        },
+        {
+          "at": 3.8250113378684807,
+          "until": 4.105011337868481,
+          "pos": 55,
+          "count": 4,
+          "text": "read"
+        },
+        {
+          "at": 4.105011337868481,
+          "until": 4.185011337868481,
+          "pos": 60,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 4.185011337868481,
+          "until": 4.385011337868481,
+          "pos": 63,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 4.385011337868481,
+          "until": 4.945011337868481,
+          "pos": 67,
+          "count": 8,
+          "text": "children"
+        },
+        {
+          "at": 4.945011337868481,
+          "until": 5.345011337868481,
+          "pos": 76,
+          "count": 5,
+          "text": "every"
+        },
+        {
+          "at": 5.345011337868481,
+          "until": 5.955011337868481,
+          "pos": 82,
+          "count": 9,
+          "text": "Saturday"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (aaebe119)",
+      "start": 31.021131,
+      "end": 36.976142
+    },
+    {
+      "id": "justice",
+      "lang": "en",
+      "text": "Justice with a smile.",
+      "gap": 0.1,
+      "duration": 1.64,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.72,
+          "pos": 0,
+          "count": 7,
+          "text": "Justice"
+        },
+        {
+          "at": 0.72,
+          "until": 0.88,
+          "pos": 8,
+          "count": 4,
+          "text": "with"
+        },
+        {
+          "at": 0.88,
+          "until": 1.04,
+          "pos": 13,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 1.04,
+          "until": 1.64,
+          "pos": 15,
+          "count": 6,
+          "text": "smile"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (638aa2d1)",
+      "start": 37.076142,
+      "end": 38.716142
+    },
+    {
+      "id": "question",
+      "lang": null,
+      "text": "",
+      "gap": 2,
+      "duration": 0.8,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 38.816142,
+      "end": 39.616142
+    },
+    {
+      "id": "answer",
+      "lang": null,
+      "text": "",
+      "gap": 0.85,
+      "duration": 1.25,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 41.616142,
+      "end": 42.866142
+    }
+  ]
+}

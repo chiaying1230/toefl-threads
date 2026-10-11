@@ -1,0 +1,129 @@
+{
+  "_comment": "DRAFT narration for p348 (source: js/data/batch-10.js, author agatha). Original text is kept; emoji are display-only and never spoken. Teach words: accused (base 'accuse'), witness, guilty. 'suspect' and 'indicted' are read normally, no handoff. 'patron' and 'witnessSent' are ONE sentence each, interrupted by a vocabulary note (one take, cut after the teach word). 'But a witness — me — saw everything.' is written with commas here: the em dashes would become word-less display tokens that the reading cue shows as active for the whole line (ReadingCue is frozen). The 'hook' segment is the chosen scene_contrast candidate A. Vocabulary meanings / examples are the real entries from js/data/batch-10.js (accuse, witness, guilty). 'accusedRest' uses cut: \"late\": the final /d/ of 'accused' is released into 'of', so the default quietest-point cut left the /d/ burst at the start of the second part (heard as 'the returning'). KNOWN LIMITATION: display-only punctuation (here the em dashes) has no punctuation mapping in the reading cue yet; this episode uses the comma version.",
+  "id": "p348",
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "text": "One coffee stain on a library book. Now it's a court case.",
+      "gap": 0.08
+    },
+    {
+      "id": "session",
+      "kind": "story",
+      "text": "Library Court is now in session.",
+      "gap": 0.1
+    },
+    {
+      "id": "patron",
+      "kind": "story",
+      "text": "A patron was accused of returning a book with a coffee stain.",
+      "parts": [
+        {
+          "id": "accusedLead",
+          "through": "accused",
+          "gap": 0.04
+        },
+        {
+          "id": "accusedRest",
+          "resumeAfter": "accuseExample",
+          "cut": "late",
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "id": "accuseMeaning",
+      "kind": "meaning",
+      "text": "指控、控告。",
+      "gap": 0.04
+    },
+    {
+      "id": "accuseExample",
+      "kind": "example",
+      "text": "She accused her brother of eating her cake.",
+      "gap": 0.08
+    },
+    {
+      "id": "suspect",
+      "kind": "story",
+      "text": "The suspect said he was innocent.",
+      "gap": 0.1
+    },
+    {
+      "id": "witnessSent",
+      "kind": "story",
+      "text": "But a witness, me, saw everything.",
+      "parts": [
+        {
+          "id": "witnessLead",
+          "through": "witness",
+          "gap": 0.04
+        },
+        {
+          "id": "witnessRest",
+          "resumeAfter": "witnessExample",
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "id": "witnessMeaning",
+      "kind": "meaning",
+      "text": "目擊者、證人。",
+      "gap": 0.04
+    },
+    {
+      "id": "witnessExample",
+      "kind": "example",
+      "text": "A witness saw the car drive away.",
+      "gap": 0.08
+    },
+    {
+      "id": "found",
+      "kind": "story",
+      "text": "He was found guilty.",
+      "gap": 0.06
+    },
+    {
+      "id": "guiltyMeaning",
+      "kind": "meaning",
+      "text": "有罪的、內疚的。",
+      "gap": 0.04
+    },
+    {
+      "id": "guiltyExample",
+      "kind": "example",
+      "text": "I feel guilty about forgetting my friend's birthday.",
+      "gap": 0.08
+    },
+    {
+      "id": "sentence",
+      "kind": "story",
+      "text": "He was not indicted by any real court, but he must now read to the children every Saturday.",
+      "gap": 0.1
+    },
+    {
+      "id": "justice",
+      "kind": "story",
+      "text": "Justice with a smile.",
+      "gap": 0.1
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "silent": true,
+      "duration": 0.8
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "text": "有罪的。",
+      "gap": 0.85,
+      "silent": true,
+      "duration": 1.25
+    }
+  ]
+}

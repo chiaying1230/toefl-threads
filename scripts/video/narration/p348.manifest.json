@@ -1,0 +1,185 @@
+{
+  "id": "p348",
+  "outputFormat": "mp3_44100_128",
+  "complete": true,
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "744afeda8bc0ad33a9f00275e38deeac",
+      "chars": 58,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "744afeda8bc0ad33a9f00275e38deeac.mp3"
+    },
+    {
+      "id": "session",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "c12f7664c0d8a6233bc2107c29ce5680",
+      "chars": 32,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "c12f7664c0d8a6233bc2107c29ce5680.mp3"
+    },
+    {
+      "id": "patron",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "dc53f14b15f3bf1b0b330523baa8c852",
+      "chars": 61,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "accusedLead",
+          "text": "A patron was accused",
+          "gap": 0.04
+        },
+        {
+          "id": "accusedRest",
+          "text": "of returning a book with a coffee stain.",
+          "gap": 0.1
+        }
+      ],
+      "status": "ready",
+      "audio": "dc53f14b15f3bf1b0b330523baa8c852.mp3"
+    },
+    {
+      "id": "accuseMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "a77ef34c6b0fe314d0d401aa636de3de",
+      "chars": 6,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "a77ef34c6b0fe314d0d401aa636de3de.mp3"
+    },
+    {
+      "id": "accuseExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "18352634743349df1434bbec89028423",
+      "chars": 43,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "18352634743349df1434bbec89028423.mp3"
+    },
+    {
+      "id": "suspect",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "e66c06584b2fc146315ec716b8ce2720",
+      "chars": 33,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "e66c06584b2fc146315ec716b8ce2720.mp3"
+    },
+    {
+      "id": "witnessSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "6ecd0d18f773a908120c22026054c8e8",
+      "chars": 34,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "witnessLead",
+          "text": "But a witness,",
+          "gap": 0.04
+        },
+        {
+          "id": "witnessRest",
+          "text": "me, saw everything.",
+          "gap": 0.1
+        }
+      ],
+      "status": "ready",
+      "audio": "6ecd0d18f773a908120c22026054c8e8.mp3"
+    },
+    {
+      "id": "witnessMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "5a4bd7ed683dc0301538989764e158dc",
+      "chars": 7,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "5a4bd7ed683dc0301538989764e158dc.mp3"
+    },
+    {
+      "id": "witnessExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "ef0425ed5fa1345fe643dad9f68b56fe",
+      "chars": 33,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "ef0425ed5fa1345fe643dad9f68b56fe.mp3"
+    },
+    {
+      "id": "found",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "70330d44be2fbe2f26d6d709ed8e81b9",
+      "chars": 20,
+      "gap": 0.06,
+      "status": "ready",
+      "audio": "70330d44be2fbe2f26d6d709ed8e81b9.mp3"
+    },
+    {
+      "id": "guiltyMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "dffce31b30995b5791e3025f5665c97c",
+      "chars": 8,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "dffce31b30995b5791e3025f5665c97c.mp3"
+    },
+    {
+      "id": "guiltyExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "5c2dc0ecc5de8f055aa735122df133ef",
+      "chars": 52,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "5c2dc0ecc5de8f055aa735122df133ef.mp3"
+    },
+    {
+      "id": "sentence",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "aaebe119a076cfaadd12e1c1fb91f555",
+      "chars": 91,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "aaebe119a076cfaadd12e1c1fb91f555.mp3"
+    },
+    {
+      "id": "justice",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "638aa2d10c784557a0f6e4347b0ae4a5",
+      "chars": 21,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "638aa2d10c784557a0f6e4347b0ae4a5.mp3"
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 0.8,
+      "gap": 2
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 1.25,
+      "gap": 0.85
+    }
+  ]
+}

@@ -90,3 +90,18 @@ test("split: continuous speech (no silence at the join) still cuts, with a warni
   assert.equal(r.parts.length, 2);
   assert.match(r.warnings[0], /not clearly quiet/);
 });
+
+// "accused of": the first word ends in a closure (silence), its release burst (short, low level) comes right before the next
+// word's vowel. The default cut is the quietest point = the closure, which leaves the burst at the start of part two.
+test('split: cut "late" cuts after the release burst, before the next word; the default cut stays in the closure', () => {
+  const text = "one two three four";
+  const { x, alignment } = synth([["one", 0.2, 0.6], ["two", 0.6, 1.0], ["three", 1.15, 1.6], ["four", 1.6, 2.1]], 2.3);
+  for (let i = Math.round(1.12 * SR); i < Math.round(1.14 * SR); i++) x[i] = 0.04 * Math.sin((2 * Math.PI * 3000 * i) / SR); // burst, ~20 dB under speech
+  const make = (cut) => prep(narration((n) => (Object.assign(n.segments[0], { text, parts: [{ id: "a", through: "two" }, { id: "b", resumeAfter: "mid", ...(cut ? { cut } : {}) }] }), n))).segments[0];
+  const dflt = splitSentence(make(), alignment, x).cuts[0], late = splitSentence(make("late"), alignment, x).cuts[0];
+  assert.ok(dflt.at < 1.12, `default cut ${dflt.at} is in the closure, before the burst`);
+  assert.equal(late.cut, "late");
+  assert.ok(late.at >= 1.14 && late.at <= 1.15, `late cut ${late.at} is after the burst and before the next word`);
+  assert.throws(() => make("early"), /"cut" is only valid as "late"/);
+  assert.throws(() => prep(narration((n) => (n.segments[0].parts[0].cut = "late", n))), /"cut" is only valid as "late"/);
+});

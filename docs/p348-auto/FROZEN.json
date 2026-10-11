@@ -1,0 +1,54 @@
+{
+  "status": "accepted",
+  "acceptedAt": "2026-10-11",
+  "name": "P3 reference (p348, first cross-episode validation)",
+  "reference": "outputs/p348-first-render.mp4",
+  "verified": "p348 post data (js/data/batch-10.js) → narration / episode data → ElevenLabs TTS (Arthur + Ling) → cache → character alignment → words[] → interrupted-sentence assembly (2 sentences) → renderer (scene_contrast hook, 3 vocabulary, Quiz, 3-word Outro) → reusable music / SFX mix → final MP4",
+  "acceptedBy": "user, after watching p348-first-render.mp4 (no further polish requested)",
+  "length": {
+    "video": 45.267,
+    "narration": 42.867,
+    "frames": 1358
+  },
+  "validationRecord": "docs/p348-auto/VALIDATION.md",
+  "sharedCode": "not listed here: shared template / pipeline code is governed by docs/p2-auto/FROZEN.json (revisions r2, r3, r4 were made for this episode). Run both check-freeze commands.",
+  "hashes": {
+    "referenceVideos": {
+      "outputs/p348-first-render.mp4": "ec25fc340499b5a87af3abf6d9876d2838125324e354355d24c6fd3ce53a91ea"
+    },
+    "narrationPlanManifestAndConfig": {
+      "docs/p348-auto/narration.wav": "4a2ad50827d1085828033ab8e727885ba697c5a66bc4811285bfc590ac91a8c4",
+      "docs/p348-auto/p348-auto.plan.json": "c3343713e29ac3c1b5fbd9e8c2b0b648f00933327c22d2af9761648473e3a295",
+      "scripts/video/narration/p348.json": "90927e18b195ceeecab485f968ffbd561b3c8ae6b5b5d45e6773df3e5919141b",
+      "scripts/video/narration/p348.manifest.json": "567f83523e96c0cd30b23884d31f54a40beafe1db226347190101812e0741bd2",
+      "scripts/video/episodes/p348-auto.json": "f5d76bba0eda998f97c8d69924bfe714d881726c58d8d3983f4ea6864f9af20a",
+      "scripts/video/voices.json": "8264488ec584d48b730d45a5e4ad85c62476fded69788eb41e37ce45e1f6284d"
+    },
+    "audioAssets": {
+      "scripts/video/assets/social-soft-groove.wav": "d2a9715b4aeeb933a417926a96459521204cc798f1ca33d73d0c95a213a23875",
+      "scripts/video/assets/answer-correct.wav": "ddad5e42f8b7b9e616a2742bec36edc9be3abc6938e1443e792e96978abd6693"
+    },
+    "alignment": {
+      "scripts/video/narration/alignment/744afeda8bc0ad33a9f00275e38deeac.json": "e3f421363f53e7d8f4200f00d9e6654396ca7de43f23d40e4d2315a2b9ecea56",
+      "scripts/video/narration/alignment/c12f7664c0d8a6233bc2107c29ce5680.json": "c624a2802faf26a2780b09447a5eb45e9a4e263c14e6ea0ebf3c9f1ee43476e9",
+      "scripts/video/narration/alignment/dc53f14b15f3bf1b0b330523baa8c852.json": "55fa4282c1384faf42384dd229cf7d0ffe271db04c3c78bc74476eeaf3a3e4ab",
+      "scripts/video/narration/alignment/a77ef34c6b0fe314d0d401aa636de3de.json": "c716540b23a8bb51137c7c0b5ade01b2960f277b328ad04690d5bddc00b83f11",
+      "scripts/video/narration/alignment/18352634743349df1434bbec89028423.json": "c08f56a0d55fb9ae9afb334b18bc0c12e4dbb1f883da18ba6b1737f22d299ef7",
+      "scripts/video/narration/alignment/e66c06584b2fc146315ec716b8ce2720.json": "bf0ce09a8b493e698a67c3fd6d798d3a8e18a006bf66178b600ff7372cc79fb4",
+      "scripts/video/narration/alignment/6ecd0d18f773a908120c22026054c8e8.json": "0de07a0b883a15e684ca8f9a7afa68c5cd8744efd8961d881ea374a10a9f98b2",
+      "scripts/video/narration/alignment/5a4bd7ed683dc0301538989764e158dc.json": "d5b3065dd9db9eb24a8563371c5cba612a807e85947fb7fda3308a7d05e862ec",
+      "scripts/video/narration/alignment/ef0425ed5fa1345fe643dad9f68b56fe.json": "4403805ba7448d58af32c77ebcbdcbd178dc18da557658a3338c62c6bdb15b68",
+      "scripts/video/narration/alignment/70330d44be2fbe2f26d6d709ed8e81b9.json": "568c7514085b803052954926bc2132f0cf5dd858052b9b7ce10ab9207f6c7254",
+      "scripts/video/narration/alignment/dffce31b30995b5791e3025f5665c97c.json": "ecb5c3987874b604c3601ee769793a24a7facac5f1d45abba819508b79070a33",
+      "scripts/video/narration/alignment/5c2dc0ecc5de8f055aa735122df133ef.json": "c58eacd87347023aa59dfcd89976710c92b8834f80975bdcff8345f27105a7dc",
+      "scripts/video/narration/alignment/aaebe119a076cfaadd12e1c1fb91f555.json": "0c37876f38579d68f30f3e0b2747cce8686f26cd7ebccb7370964428d6de63a6",
+      "scripts/video/narration/alignment/638aa2d10c784557a0f6e4347b0ae4a5.json": "c5fb387f43d369deabebcf2a5af589e187e1dc3d59b6b76d58a7704c512e219f"
+    }
+  },
+  "knownNotBlocking": [
+    "The dash sentence 'But a witness — me — saw everything.' is written with commas (display-only punctuation mapping is not supported by the reading cue).",
+    "Header fields without source data use neutral values (episodeLabel 'p348', social 'Literature', outside / status taken from series.json) – see VALIDATION.md.",
+    "The quiz uses the 'guilty' = 有罪 sense; the vocabulary example (from the source data) uses the 內疚 sense.",
+    "The narration-only render (outputs/p348-first-render.narration-only.mp4) and docs/p348-auto/mix-work/ are rebuildable and not part of the reference."
+  ]
+}

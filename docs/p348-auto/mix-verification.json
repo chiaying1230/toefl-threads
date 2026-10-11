@@ -1,0 +1,120 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "video stream identical to the narration-only render",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "duration unchanged by the music",
+      "ok": true,
+      "detail": {
+        "base": 45.267,
+        "mixed": 45.267
+      }
+    },
+    {
+      "name": "no clipping (peak below −0.5 dBFS)",
+      "ok": true,
+      "detail": {
+        "peakDbfs": -4.39
+      }
+    },
+    {
+      "name": "narration preserved inside the mix (SNR vs the original narration, AAC noise only)",
+      "ok": true,
+      "detail": {
+        "snrDb": 40.6,
+        "note": "AAC 192k coding noise is the only expected difference"
+      }
+    },
+    {
+      "name": "music at least 10 dB below the narration during every spoken line",
+      "ok": true,
+      "detail": {
+        "loudest": {
+          "id": "accuseMeaning",
+          "musicVsVoiceDb": -19.5
+        },
+        "lines": [
+          {
+            "id": "hook",
+            "musicVsVoiceDb": -24.5
+          },
+          {
+            "id": "session",
+            "musicVsVoiceDb": -24
+          },
+          {
+            "id": "accusedLead",
+            "musicVsVoiceDb": -22.1
+          },
+          {
+            "id": "accuseMeaning",
+            "musicVsVoiceDb": -19.5
+          },
+          {
+            "id": "accuseExample",
+            "musicVsVoiceDb": -24.3
+          },
+          {
+            "id": "accusedRest",
+            "musicVsVoiceDb": -22.9
+          },
+          {
+            "id": "suspect",
+            "musicVsVoiceDb": -22.8
+          },
+          {
+            "id": "witnessLead",
+            "musicVsVoiceDb": -22.8
+          },
+          {
+            "id": "witnessMeaning",
+            "musicVsVoiceDb": -21.6
+          },
+          {
+            "id": "witnessExample",
+            "musicVsVoiceDb": -25.2
+          },
+          {
+            "id": "witnessRest",
+            "musicVsVoiceDb": -21.7
+          },
+          {
+            "id": "found",
+            "musicVsVoiceDb": -22.5
+          },
+          {
+            "id": "guiltyMeaning",
+            "musicVsVoiceDb": -21.4
+          },
+          {
+            "id": "guiltyExample",
+            "musicVsVoiceDb": -24.9
+          },
+          {
+            "id": "sentence",
+            "musicVsVoiceDb": -23.7
+          },
+          {
+            "id": "justice",
+            "musicVsVoiceDb": -26.9
+          }
+        ]
+      }
+    },
+    {
+      "name": "SFX 0 (answer-correct.wav) starts at its trigger",
+      "ok": true,
+      "detail": {
+        "trigger": 41.616,
+        "expectedAudible": 41.616,
+        "inBus": 41.617,
+        "inFinalFile": 41.617
+      }
+    }
+  ],
+  "peakDbfs": -4.39
+}

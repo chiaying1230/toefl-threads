@@ -1,0 +1,49 @@
+{
+  "hash": "5a4bd7ed683dc0301538989764e158dc",
+  "segment": "witnessMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "目擊者、證人。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 7,
+  "estimatedDuration": 2.066375,
+  "speechStart": 0,
+  "speechEnd": 2.08,
+  "alignment": {
+    "characters": [
+      "目",
+      "擊",
+      "者",
+      "、",
+      "證",
+      "人",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.24,
+      0.56,
+      1.04,
+      1.2,
+      1.36,
+      1.68
+    ],
+    "character_end_times_seconds": [
+      0.24,
+      0.56,
+      1.04,
+      1.2,
+      1.36,
+      1.68,
+      2.08
+    ]
+  }
+}

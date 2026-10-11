@@ -1,10 +1,21 @@
 // Presentation only. All episode copy, target words and answer indexes come from JSON.
 export function node(tag,className,text,id){const e=document.createElement(tag);if(className)e.className=className;if(text!=null)e.textContent=text;if(id)e.id=id;return e;}
 function lines(e,text){text.forEach((s,i)=>{if(i)e.append(document.createElement('br'));e.append(document.createTextNode(s));});return e;}
+// Hook System v0: two content variants. `type` is optional; a hook without one is number_contrast (the P2 shape).
+// Both reveal their payoff on the narrated word (hook.reveal) – the episode gives the content and the timing, this file the look.
 export function createHook(data){
+ if(data.type==='scene_contrast')return createSceneHook(data);
+ if(data.type!==undefined&&data.type!=='number_contrast')throw Error('Unsupported hook type: '+data.type);
  const root=node('section',null,null,data.id),number=node('div','hooknum',data.number),boxes=lines(node('div','hookbox'),data.payoff),emoji=node('span','boxemoji',data.emoji),bar=node('div','bar'),fill=node('i');
  fill.style.width=100*data.ratio+'%';bar.append(fill);boxes.append(emoji);
- root.append(node('div','eyebrow',data.label),number,node('div','hooksub',data.caption),bar,boxes,node('div','zh',data.zh));return {el:root,number,boxes,emoji};
+ root.append(node('div','eyebrow',data.label),number,node('div','hooksub',data.caption),bar,boxes,node('div','zh',data.zh));
+ return {el:root,number,boxes,emoji,update(t,reveal,duration,ramp){boxes.style.opacity=.18+.82*ramp(t,reveal,duration);emoji.style.transform=`scale(${.75+.25*ramp(t,reveal+.15,.18)})`;number.style.background=t<reveal?'linear-gradient(transparent 67%,#FFD66B 67%)':'transparent';}};
+}
+// scene_contrast: a concrete scene (setup) against an unexpected result (payoff). No number, no bar.
+function createSceneHook(data){
+ const root=node('section',null,null,data.id),boxes=lines(node('div','hookbox scene'),data.payoff),emoji=node('span','boxemoji',data.emoji);boxes.append(emoji);
+ root.append(node('div','eyebrow',data.label),lines(node('div','hooksetup'),data.setup),boxes,node('div','zh',data.zh));
+ return {el:root,boxes,emoji,update(t,reveal,duration,ramp){boxes.style.opacity=.18+.82*ramp(t,reveal,duration);emoji.style.transform=`scale(${.75+.25*ramp(t,reveal+.15,.18)})`;}};
 }
 export function createVocabulary(data,reading){
  const root=node('div','note'+(data.memory?' memoryNote':''),null,data.id),inner=node('div','noteInner');

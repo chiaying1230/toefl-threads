@@ -26,7 +26,7 @@ export async function mountPostTemplate(data,plan){
  const reveal=time(data.hook.reveal),q=line(data.quiz.questionLine),answer=line(data.quiz.answerLine);
  function render(t){
   for(const n of notes){n.api.el.style.height=n.height*(ramp(t,n.open,n.data.openDuration)-ramp(t,n.close,n.data.closeDuration))+'px';const meaning=line(n.data.meaningLine);n.api.meaning.classList.toggle('active',t>=meaning.start&&t<meaning.end);}
-  reading.forEach(r=>r.update(t));hook.boxes.style.opacity=.18+.82*ramp(t,reveal,data.hook.revealDuration);hook.emoji.style.transform=`scale(${.75+.25*ramp(t,reveal+.15,.18)})`;hook.number.style.background=t<reveal?'linear-gradient(transparent 67%,#FFD66B 67%)':'transparent';
+  reading.forEach(r=>r.update(t));hook.update(t,reveal,data.hook.revealDuration,ramp);
   let target=0,previous=0,at=0,duration=data.scrollDuration;for(let i=0;i<camera.length;i++){const c=camera[i];if(t<c.at)break;previous=i>0?Math.max(0,$(camera[i-1].id).offsetTop-camera[i-1].offset):0;target=Math.max(0,$(c.id).offsetTop-c.offset);at=c.at;duration=c.duration??data.scrollDuration;}
   thread.style.transform=`translateY(${-previous-(target-previous)*ramp(t,at,duration)}px)`;visible.forEach(v=>$(v.id).style.opacity=t>=v.at?1:v.before);
   if(data.reaction?.kind==='pen'){const r=data.reaction,p=line(r.line),knock=time({line:r.line,word:r.word}),fall=ramp(t,knock+.2,.38),el=$(r.id);el.querySelector('.pen').style.transform=`translate(${fall*65}px,${fall*67}px) rotate(${fall*32}deg)`;el.querySelector('.paw').style.transform=`translateX(${ramp(t,knock,.16)*(1-ramp(t,knock+.3,.25))*75}px)`;$(r.captionId).style.opacity=t>=time(r.captionAt)?1:0;}

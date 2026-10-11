@@ -1,0 +1,182 @@
+{
+  "_status": "p348 episode. Hook = scene_contrast candidate A (chosen). Teach words accused / witness / guilty and their meanings / examples come from js/data/batch-10.js; suspect and indicted are plain reading. Camera offsets and visibility are P2 values carried over UNTUNED – tune after reviewing the real plan. Known limitation: display-only punctuation mapping is not supported by the reading cue; the comma version of the dash sentence is used.",
+  "id": "p348-auto",
+  "plan": "/docs/p348-auto/p348-auto.plan.json",
+  "audio": "/docs/p348-auto/narration.wav",
+  "soundEffects": [
+    {
+      "asset": "/scripts/video/assets/answer-correct.wav",
+      "at": { "line": "answer" },
+      "gain": 0.75
+    }
+  ],
+  "music": {
+    "asset": "/scripts/video/assets/social-soft-groove.wav",
+    "bpm": 94,
+    "narrationGain": 0.16,
+    "endingGain": 0.3,
+    "riseDuration": 0.6,
+    "fadeIn": 0.35,
+    "fadeOut": 0.8
+  },
+  "brand": "● toEfu",
+  "episodeLabel": "p348",
+  "author": {
+    "avatar": "👻",
+    "name": "Agatha the Ghost",
+    "meta": "@library_ghost",
+    "level": "L1 → L2"
+  },
+  "social": "Literature",
+  "outside": "toEfu 單字情境",
+  "vocabulary": [
+    {
+      "id": "accuseNote",
+      "word": "accuse",
+      "forms": ["accused"],
+      "zh": "指控；控告",
+      "pos": "v.",
+      "meaningLine": "accuseMeaning",
+      "exampleLine": "accuseExample",
+      "exampleZh": "她指控她弟弟吃了她的蛋糕。",
+      "open": { "line": "accusedLead", "word": "accused" },
+      "close": { "line": "accusedRest" },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    },
+    {
+      "id": "witnessNote",
+      "word": "witness",
+      "zh": "目擊者；證人",
+      "pos": "n.",
+      "meaningLine": "witnessMeaning",
+      "exampleLine": "witnessExample",
+      "exampleZh": "一名目擊者看到那輛車開走。",
+      "open": { "line": "witnessLead", "word": "witness" },
+      "close": { "line": "witnessRest" },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    },
+    {
+      "id": "guiltyNote",
+      "word": "guilty",
+      "zh": "有罪的；內疚的",
+      "pos": "adj.",
+      "meaningLine": "guiltyMeaning",
+      "exampleLine": "guiltyExample",
+      "exampleZh": "忘了朋友的生日讓我覺得很內疚。",
+      "open": { "line": "found", "word": "guilty" },
+      "close": { "line": "sentence" },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    }
+  ],
+  "hook": {
+    "type": "scene_contrast",
+    "id": "hook",
+    "label": "LIBRARY COURT",
+    "setup": ["One coffee stain", "on a library book."],
+    "payoff": ["NOW IT'S A", "COURT CASE. "],
+    "emoji": "⚖️",
+    "zh": "一個咖啡漬，竟然上了法庭？",
+    "reveal": { "line": "hook", "word": "now" },
+    "revealDuration": 0.16
+  },
+  "story": [
+    {
+      "id": "charge",
+      "parts": [
+        { "type": "reading", "line": "session" },
+        { "type": "translation", "text": "圖書館法庭現在開庭。👻⚖️" },
+        { "type": "reading", "line": "accusedLead" },
+        { "type": "vocabulary", "id": "accuseNote" },
+        { "type": "reading", "line": "accusedRest" },
+        { "type": "translation", "text": "一位讀者被指控還書時書上有咖啡漬。" }
+      ]
+    },
+    {
+      "id": "testimony",
+      "parts": [
+        { "type": "reading", "line": "suspect" },
+        { "type": "translation", "text": "嫌疑犯說他是無辜的。" },
+        { "type": "reading", "line": "witnessLead" },
+        { "type": "vocabulary", "id": "witnessNote" },
+        { "type": "reading", "line": "witnessRest" },
+        { "type": "translation", "text": "但有個目擊者——我——看到了一切。" }
+      ]
+    },
+    {
+      "id": "verdict",
+      "parts": [
+        { "type": "reading", "line": "found" },
+        { "type": "translation", "text": "他被判有罪。" },
+        { "type": "vocabulary", "id": "guiltyNote" },
+        { "type": "reading", "line": "sentence" },
+        { "type": "translation", "text": "他沒有被任何真正的法院起訴，但他現在每週六都必須給孩子們讀故事。" },
+        { "type": "reading", "line": "justice" },
+        { "type": "translation", "text": "帶著微笑的正義。📚☕" }
+      ]
+    }
+  ],
+  "camera": [
+    { "at": 0, "id": "hook", "offset": 0 },
+    { "at": { "line": "session" }, "id": "charge", "offset": 95 },
+    { "at": { "line": "accusedLead", "word": "accused" }, "id": "charge", "offset": 60 },
+    { "at": { "line": "accusedRest" }, "id": "charge", "offset": 35 },
+    { "at": { "line": "suspect" }, "id": "testimony", "offset": 70 },
+    { "at": { "line": "witnessLead", "word": "witness" }, "id": "testimony", "offset": 40 },
+    { "at": { "line": "witnessRest" }, "id": "testimony", "offset": 0 },
+    { "at": { "line": "found" }, "id": "verdict", "offset": 80 },
+    { "at": { "line": "found", "word": "guilty" }, "id": "verdict", "offset": 40 },
+    { "at": { "line": "justice" }, "id": "verdict", "offset": -80 },
+    { "at": { "line": "question" }, "id": "quiz", "offset": 35 }
+  ],
+  "scrollDuration": 0.35,
+  "visibility": [
+    { "id": "charge", "at": { "line": "session", "delay": -0.35 }, "before": 0.2 },
+    { "id": "testimony", "at": { "line": "suspect", "delay": -0.3 }, "before": 0 },
+    { "id": "verdict", "at": { "line": "found", "delay": -0.3 }, "before": 0 },
+    { "id": "quiz", "at": { "line": "question", "delay": -0.3 }, "before": 0 }
+  ],
+  "quiz": {
+    "id": "quiz",
+    "type": "meaning",
+    "meta": "↳ 回覆這個判決",
+    "quote": ["“He was found guilty.”"],
+    "word": "guilty",
+    "question": " 是什麼意思？",
+    "options": ["無辜的", "有罪的", "遲到的"],
+    "answer": 1,
+    "questionLine": "question",
+    "answerLine": "answer",
+    "feedback": "✓ B · 法庭的判決",
+    "feedbackDetail": "咖啡漬。目擊者是我。判決：有罪。"
+  },
+  "status": {
+    "reading": "用生活日常背單字",
+    "question": "剛剛那個字，你記住了嗎？",
+    "answer": "✓ 答案揭曉",
+    "readingPhase": "● 正在朗讀",
+    "thinkingPhase": "● 換你想想",
+    "answerPhase": "● 答案揭曉"
+  },
+  "outro": {
+    "id": "outro",
+    "start": "planEnd",
+    "duration": 2.4,
+    "scrollDuration": 0.45,
+    "offset": 35,
+    "author": "toEfu 單字情境",
+    "lead": "剛剛那篇，你看懂了。",
+    "cta": "收藏這篇，記住這三個字。",
+    "words": [
+      { "en": "accuse", "zh": "指控；控告" },
+      { "en": "witness", "zh": "目擊者；證人" },
+      { "en": "guilty", "zh": "有罪的；內疚的" }
+    ],
+    "brandLine": "用生活日常背單字",
+    "status": "↳ 收藏這篇",
+    "phase": "● 下次遇到就認得",
+    "mascot": { "enabled": true, "lookAt": "cta", "cueDuration": 0.65 }
+  }
+}

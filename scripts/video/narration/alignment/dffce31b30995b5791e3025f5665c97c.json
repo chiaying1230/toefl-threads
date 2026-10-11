@@ -1,0 +1,52 @@
+{
+  "hash": "dffce31b30995b5791e3025f5665c97c",
+  "segment": "guiltyMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "有罪的、內疚的。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 8,
+  "estimatedDuration": 2.223125,
+  "speechStart": 0,
+  "speechEnd": 2.24,
+  "alignment": {
+    "characters": [
+      "有",
+      "罪",
+      "的",
+      "、",
+      "內",
+      "疚",
+      "的",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.32,
+      0.64,
+      1.12,
+      1.36,
+      1.44,
+      1.76,
+      1.92
+    ],
+    "character_end_times_seconds": [
+      0.32,
+      0.64,
+      1.12,
+      1.36,
+      1.44,
+      1.76,
+      1.92,
+      2.24
+    ]
+  }
+}

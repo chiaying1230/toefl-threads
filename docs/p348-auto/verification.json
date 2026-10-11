@@ -1,0 +1,304 @@
+{
+  "episode": "p348-auto",
+  "checks": [
+    {
+      "name": "navy reading cue sits on the spoken word",
+      "ok": true,
+      "detail": "79 words in 12 lines"
+    },
+    {
+      "name": "hook reveal happens on \"now\"",
+      "ok": true,
+      "detail": {
+        "revealAt": 2.8,
+        "opacityBefore": 0.18,
+        "opacityAfter": 1
+      }
+    },
+    {
+      "name": "vocabulary \"accuse\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 7.73,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 333,
+        "activeCueAtOpen": [
+          "accused"
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "of"
+        ],
+        "resumeLine": "accusedRest",
+        "resumeCue": [
+          "of"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"witness\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 17.641,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 333,
+        "activeCueAtOpen": [
+          "witness,"
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "the"
+        ],
+        "resumeLine": "witnessRest",
+        "resumeCue": [
+          "me,"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"guilty\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 25.276,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 333,
+        "activeCueAtOpen": [
+          "guilty."
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "forgetting"
+        ],
+        "resumeLine": "sentence",
+        "resumeCue": [
+          "He"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "quiz question → think → answer",
+      "ok": true,
+      "detail": {
+        "question": [
+          38.816142,
+          39.616142
+        ],
+        "answer": [
+          41.616142,
+          42.866142
+        ],
+        "thinking": "● 換你想想",
+        "answered": "✓ 答案揭曉"
+      }
+    },
+    {
+      "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+      "ok": true,
+      "detail": {
+        "lines": 16,
+        "outside": [],
+        "rows": [
+          {
+            "id": "hook",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "session",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "accusedLead",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.001
+          },
+          {
+            "id": "accuseMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "accuseExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "accusedRest",
+            "onsetMinusStart": 0,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "suspect",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "witnessLead",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "witnessMeaning",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "witnessExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "witnessRest",
+            "onsetMinusStart": 0,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "found",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "guiltyMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "guiltyExample",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "sentence",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "justice",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          }
+        ]
+      }
+    },
+    {
+      "name": "mp4 decodes completely and has the expected length",
+      "ok": true,
+      "detail": {
+        "decodeErrors": "none",
+        "seconds": 45.27,
+        "expected": 45.266666666666666,
+        "video": [
+          "h264 (High) (avc1 / 0x31637661)",
+          "1080x1920"
+        ],
+        "audio": "aac (LC) (mp4a / 0x6134706D)"
+      }
+    }
+  ],
+  "frames": [
+    {
+      "label": "Hook",
+      "t": 0.7,
+      "lit": ""
+    },
+    {
+      "label": "Hook reveal",
+      "t": 3.0999999999999996,
+      "lit": ""
+    },
+    {
+      "label": "Reading before \"accuse\"",
+      "t": 7.590022337868481,
+      "lit": "was"
+    },
+    {
+      "label": "Handoff → accuse",
+      "t": 8.11002233786848,
+      "lit": "accused"
+    },
+    {
+      "label": "accuse: meaning",
+      "t": 9.0285595,
+      "lit": "accuse · 指控；控告v."
+    },
+    {
+      "label": "accuse: example",
+      "t": 11.48607633786848,
+      "lit": "of"
+    },
+    {
+      "label": "Back to story after accuse",
+      "t": 12.770044253968253,
+      "lit": "of"
+    },
+    {
+      "label": "Reading before \"witness\"",
+      "t": 17.581087,
+      "lit": "a"
+    },
+    {
+      "label": "Handoff → witness",
+      "t": 18.021087,
+      "lit": "witness,"
+    },
+    {
+      "label": "witness: meaning",
+      "t": 19.228592499999998,
+      "lit": "witness · 目擊者；證人n."
+    },
+    {
+      "label": "witness: example",
+      "t": 21.14110933786848,
+      "lit": "the"
+    },
+    {
+      "label": "Back to story after witness",
+      "t": 22.862242786848075,
+      "lit": "me,"
+    },
+    {
+      "label": "Reading before \"guilty\"",
+      "t": 25.036120337868482,
+      "lit": "found"
+    },
+    {
+      "label": "Handoff → guilty",
+      "t": 25.656120337868483,
+      "lit": "guilty."
+    },
+    {
+      "label": "guilty: meaning",
+      "t": 26.90112,
+      "lit": "guilty · 有罪的；內疚的adj."
+    },
+    {
+      "label": "guilty: example",
+      "t": 29.51113133786848,
+      "lit": "forgetting"
+    },
+    {
+      "label": "Back to story after guilty",
+      "t": 31.13363666893424,
+      "lit": "He"
+    },
+    {
+      "label": "Quiz",
+      "t": 40.116142,
+      "lit": ""
+    },
+    {
+      "label": "Answer",
+      "t": 42.116142,
+      "lit": ""
+    },
+    {
+      "label": "Outro",
+      "t": 44.266666666666666,
+      "lit": ""
+    }
+  ]
+}

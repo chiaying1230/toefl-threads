@@ -12,6 +12,7 @@ import { SAMPLE_RATE, fade, rms, voicedBounds } from "./audio.mjs";
 const CUT_WINDOW = 0.008;     // seconds of audio compared per candidate cut point
 const SEARCH_PAD = 0.04;      // how far outside the word gap the search may reach
 const QUIET_RATIO = 0.15;     // cut level / median speech level above which we warn
+const LATE_WINDOW = 0.002, LATE_RATIO = 0.25; // cut: "late" – the latest point before the next word whose 2 ms level is still this quiet (relative to median speech level): after a stop's release burst, before the vowel
 export const HEAD_PAD = 0.035, TAIL_PAD = 0.05; // silence kept around the voiced part of every clip (as in V4.2)
 
 /** start/end seconds of the alignment element that contains string index `i` of the spoken text. */
@@ -40,6 +41,20 @@ export function quietestPoint(x, lo, hi, prefer, sr = SAMPLE_RATE) {
 }
 
 /**
+ * cut: "late" – for a sentence whose previous word ends in a stop consonant that is released into the next word
+ * ("accused of"): the quietest point is the stop's closure, which would leave the release burst at the start of the
+ * next part ("d-uh returning"). Cut instead at the latest point before the next word that is still quiet, i.e. after the release.
+ */
+export function latePoint(x, wordEnd, nextStart, median, sr = SAMPLE_RATE) {
+  const win = Math.round(sr * LATE_WINDOW), step = Math.max(1, Math.round(sr * 0.0005)), lo = Math.round(wordEnd * sr);
+  for (let p = Math.min(x.length - (win >> 1), Math.round(nextStart * sr)); p >= Math.max(win >> 1, lo); p -= step) {
+    const level = rms(x, p - (win >> 1), p + (win >> 1));
+    if (level <= median * LATE_RATIO) return { p, level };
+  }
+  return null;
+}
+
+/**
  * @param {object} seg        a prepared spoken segment with `parts` (text, parts[])
  * @param {object} alignment  the API alignment for seg.speak
  * @param {Float32Array} x    the decoded audio of that sentence
@@ -59,10 +74,12 @@ export function splitSentence(seg, alignment, x, sr = SAMPLE_RATE) {
     const wordEnd = elementAt(alignment, a.charTo - 1).end, nextStart = elementAt(alignment, b.charFrom).start;
     const lo = Math.round((Math.min(wordEnd, nextStart) - SEARCH_PAD) * sr), hi = Math.round((Math.max(wordEnd, nextStart) + SEARCH_PAD) * sr);
     const mid = Math.round(((wordEnd + nextStart) / 2) * sr);
-    const q = quietestPoint(x, Math.max(0, lo), Math.min(x.length, hi), mid, sr);
+    const late = b.cut === "late" ? latePoint(x, wordEnd, nextStart, bounds.medianLevel, sr) : null;
+    if (b.cut === "late" && !late) warnings.push(`${seg.id}: cut "late" before "${b.id}" found no quiet point before the next word – used the quietest point instead`);
+    const q = late ?? quietestPoint(x, Math.max(0, lo), Math.min(x.length, hi), mid, sr);
     const ratio = q.level / bounds.medianLevel;
-    if (ratio > QUIET_RATIO) warnings.push(`${seg.id}: cut before "${b.id}" is not clearly quiet (level ${(ratio * 100).toFixed(0)}% of speech) – listen to this join`);
-    cuts.push({ before: b.id, sample: q.p, at: q.p / sr, wordEnd, nextStart, ratio: +ratio.toFixed(3) });
+    if (ratio > QUIET_RATIO && !late) warnings.push(`${seg.id}: cut before "${b.id}" is not clearly quiet (level ${(ratio * 100).toFixed(0)}% of speech) – listen to this join`);
+    cuts.push({ before: b.id, sample: q.p, at: q.p / sr, wordEnd, nextStart, ratio: +ratio.toFixed(3), ...(late ? { cut: "late" } : {}) });
   }
 
   const edges = [0, ...cuts.map((c) => c.sample), x.length];

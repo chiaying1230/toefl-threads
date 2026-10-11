@@ -57,3 +57,24 @@ Optional, per episode, in the episode JSON; an episode with neither renders as p
   untouched, same duration, no clipping, narration preserved inside the mix, music ≥ 10 dB under every spoken line, each effect
   audible at its trigger. `--reference <approved.mp4>` also compares against an approved mix sample by sample.
 * Tests (offline, need ffmpeg): `node --test scripts/video/audio-mix.test.mjs scripts/video/voice/*.test.mjs`.
+
+## Cut after a released stop consonant: `cut: "late"`
+
+The cut between two parts is normally the quietest point between the two words. When the last word before the
+interruption ends in a stop consonant that is **released into the next word** ("accused of"), the quietest point is the
+stop's closure and the release burst ends up at the start of the next part (heard as "the returning"). Mark the
+resuming part:
+
+```json
+{ "id": "accusedRest", "resumeAfter": "accuseExample", "cut": "late", "gap": 0.1 }
+```
+
+`late` cuts at the latest point before the next word whose 2 ms level is still under 25 % of the median speech level
+(after the burst, before the vowel). It is only valid on a resuming part; without it nothing changes. Found on p348; a
+sentence that breaks at a real pause (P2 "allocate") does not need it. Listen to a new interrupted sentence once.
+
+## Known limitation: display-only punctuation
+
+Displayed words are matched to aligned words one-to-one. A display token with no spoken word (an em dash between
+spaces) has no aligned word, so the reading cue shows it as active for the whole line. Write such sentences with
+commas for now (p348 does). No punctuation mapping exists yet.

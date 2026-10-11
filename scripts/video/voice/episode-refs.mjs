@@ -13,6 +13,7 @@ import { ConfigError, REPO_ROOT } from "./config.mjs";
 /** What the renderer (reference/PostTemplate.js + Components.js) can draw today. Anything else fails here, not mid-render. */
 export const RENDERER_CONTRACT = {
   storyParts: ["reading", "translation", "vocabulary", "reaction", "illustration"],
+  hookTypes: ["number_contrast", "scene_contrast"], // a hook without `type` is number_contrast (the frozen P2 shape)
   illustrationKinds: ["pen"],
   reactionKinds: ["pen"],
 };
@@ -64,7 +65,12 @@ export function validateEpisode(episode, lines) {
   need(episode, ["id", "plan", "audio", "brand", "episodeLabel", "author", "social", "outside", "vocabulary", "hook", "story", "camera", "scrollDuration", "visibility", "quiz", "status"], "episode");
   if (!isObj(episode.hook) || !isObj(episode.quiz) || !isObj(episode.status) || !isObj(episode.author) || !Array.isArray(episode.story) || !Array.isArray(episode.vocabulary)) return P;
   need(episode.author, ["avatar", "name", "meta", "level"], "author");
-  need(episode.hook, ["id", "label", "number", "caption", "ratio", "payoff", "emoji", "zh", "reveal", "revealDuration"], "hook");
+  const hookType = episode.hook.type ?? "number_contrast";
+  if (!RENDERER_CONTRACT.hookTypes.includes(hookType)) err("hook.type", `unsupported hook type "${hookType}" (renderer supports: ${RENDERER_CONTRACT.hookTypes.join(", ")})`);
+  // number / caption / ratio belong to number_contrast only; scene_contrast describes a setup against a payoff
+  const hookKeys = hookType === "scene_contrast" ? ["setup"] : ["number", "caption", "ratio"];
+  need(episode.hook, ["id", "label", ...hookKeys, "payoff", "emoji", "zh", "reveal", "revealDuration"], "hook");
+  if (hookType === "scene_contrast" && !Array.isArray(episode.hook.setup)) err("hook.setup", "must be an array of text lines");
   need(episode.quiz, ["id", "meta", "quote", "question", "options", "answer", "questionLine", "answerLine", "feedback", "feedbackDetail"], "quiz");
   need(episode.status, ["reading", "question", "answer", "readingPhase", "thinkingPhase", "answerPhase"], "status");
   if (!Array.isArray(episode.hook.payoff)) err("hook.payoff", "must be an array of text lines");
