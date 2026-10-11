@@ -230,3 +230,7 @@ node scripts/check-data.js
 ```
 
 Windows 上把 `python3` 換成 `python`（`python3` 會打開 Microsoft Store）。要替單字包產生新串文，見 `scripts/gen-posts/README.md` 的「接到單字包」。
+
+## 短影音
+
+`scripts/make-video.mjs` 把一篇串文做成 1080×1920 的單字情境短影音（開場鉤子 → 情境 → 單字卡 → 測驗 → 結尾）。設計規範、每集 JSON 格式與新增一集的步驟見 [docs/video-design-system.md](docs/video-design-system.md)。

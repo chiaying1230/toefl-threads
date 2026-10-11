@@ -1,0 +1,38 @@
+/* Design tokens for the toEfu short-video series.
+   Canvas: 1080 × 1920 (9:16). Everything is sized in canvas px.
+   Change a value here and every episode follows. Spec: docs/video-design-system.md */
+:root {
+  /* colour: warm paper, near-black ink, one accent (the tofu-icon yellow) */
+  --c-bg: #FFF8EC;
+  --c-surface: #FFFFFF;
+  --c-text: #231F1C;
+  --c-text-2: #7B7067;      /* secondary text */
+  --c-text-3: #B8AB9C;      /* not-yet-spoken words, hints */
+  --c-accent: #FFD66B;      /* highlight: key words, current word, correct answer */
+  --c-accent-soft: #FFEDB5; /* current non-key word */
+  --c-border: #EADFCB;
+
+  /* type */
+  --font-heading: "DM Serif Display", "Noto Serif TC", Georgia, serif;     /* the word itself */
+  --font-body: "DM Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
+  --font-zh: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
+
+  --fs-chip: 30px;       /* series chip, small labels */
+  --fs-hook: 84px;       /* hook sentence (fits down to 60) */
+  --fs-guide: 48px;      /* hook guide line, mascot lines */
+  --fs-post: 44px;       /* thread card text */
+  --fs-meta: 32px;       /* handle, topic */
+  --fs-word: 168px;      /* main word (fits down to 92) */
+  --fs-kk: 40px;
+  --fs-zh: 76px;         /* main meaning (fits down to 54) */
+  --fs-ex: 46px;
+  --fs-ex-zh: 38px;
+  --fs-sub: 46px;        /* subtitles */
+  --fs-opt: 56px;        /* quiz options */
+
+  /* shape + spacing */
+  --r-card: 48px;
+  --r-opt: 40px;
+  --r-chip: 999px;
+  --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px; --sp-5: 48px; --sp-6: 64px; --sp-7: 96px;
+}
