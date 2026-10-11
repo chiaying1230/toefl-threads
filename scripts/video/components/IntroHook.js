@@ -1,4 +1,4 @@
-// IntroHook (0–3 s): the funniest sentence of the post, big, on plain paper.
+// IntroHook (0–3 s): the funniest sentence of the post, big (120 px down to 76), on plain paper.
 // No app chrome, no logo screen. The key word gets a yellow marker that sweeps in.
 // The guide line ("這句英文你看得懂嗎？") is a Subtitle cue, not part of this component.
 import { L } from "../layout.js";
@@ -17,7 +17,8 @@ export function createIntroHook(root, spec) {
   group.append(who, body);
   layer.appendChild(group);
   root.appendChild(layer);
-  fitFont(body, 650, [108, 100, 92, 84, 76, 68, 60]);
+  fitFont(body, 650, [120, 112, 104, 96, 88, 80, 76]);
+  body.dataset.aud = "hook";
   const main = body.querySelector(".main");
 
   function update(t) {

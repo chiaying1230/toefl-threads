@@ -78,3 +78,65 @@ export function zhParts(zh) {
 }
 // spoken form: no parenthetical, no ellipsis marks
 export const zhSpoken = (zh) => zhParts(zh).main.replace(/…/g, "");
+
+// ---------- reading flow helpers ----------
+const STOP_END = new Set("of the a an to and or but in on at for with by as that is are was were it its".split(" "));
+const STOP_START = new Set("and or but so then".split(" "));
+const rawTokens = (s) => s.match(/\[\[[^\]]+\]\]\S*|\S+/g) || [];
+const bare = (w) => w.replace(/^[^\p{L}\p{N}%$]+|[^\p{L}\p{N}%$]+$/gu, "");
+
+// Split one sentence (with [[markers]]) into reading chunks that fit ~3 lines of large text.
+// Prefers clause boundaries (, ; : — ), keeps the pieces balanced, never splits inside a marker.
+export function chunkSentence(sentence, { maxWords = 13, maxChars = 84 } = {}) {
+  const toks = rawTokens(sentence);
+  const fits = (a, b) => { const p = toks.slice(a, b).map(plain); return p.length <= maxWords && p.join(" ").length <= maxChars; };
+  const split = (a, b) => {
+    if (fits(a, b) || b - a < 4) return [[a, b]];
+    let best = null;
+    for (let i = a + 2; i <= b - 2; i++) {
+      const punct = /[,;:—–)]$|\.{3}$/.test(toks[i - 1].replace(/\]\]/g, ""));
+      const bal = Math.abs((i - a) - (b - i));
+      const score = (punct ? 0 : 100) + bal + (fits(a, i) ? 0 : 50) + (fits(i, b) ? 0 : 50);
+      if (!best || score < best.score) best = { i, score };
+    }
+    return [...split(a, best.i), ...split(best.i, b)];
+  };
+  return split(0, toks.length).map(([a, b]) => toks.slice(a, b).join(" "));
+}
+
+// Which tokens of an example/context sentence show the taught word (any inflection: "allocated", "arbitrarily")
+export function isKeyToken(text, key) {
+  const t = bare(text).toLowerCase();
+  const words = key.toLowerCase().split("_").filter((w) => !STOP_END.has(w) && w.length > 1);
+  return words.some((w) => t === w || (w.length >= 4 && t.startsWith(w.slice(0, Math.max(4, w.length - 2)))));
+}
+
+// A short phrase around the word, taken from the sentence the viewer just read ("allocate 90% of the company budget").
+export function deriveContext(sentence, key, pos = "") {
+  const raw = rawTokens(sentence), plainT = raw.map(plain);
+  const at = raw.findIndex((r) => r.startsWith(`[[${key}]]`) || r.startsWith(`[[${key}|`));
+  if (at < 0) return null;
+  const endsPunct = (w) => /[,;:.!?—–]$/.test(w);
+  const verb = /^v/.test(pos);
+  let before = verb ? 0 : 2, after = verb ? 5 : 3, a = at, b = at;
+  while (before-- > 0 && a > 0 && !endsPunct(plainT[a - 1])) a--;
+  while (after-- > 0 && b < raw.length - 1 && !endsPunct(plainT[b])) b++;
+  let words = plainT.slice(a, b + 1).map((w) => w.replace(/[,;:.!?—–"”]+$/g, "").replace(/^["“]/, ""));
+  while (words.length > 2 && STOP_START.has(words[0].toLowerCase())) words.shift();
+  while (words.length > 2 && STOP_END.has(words[words.length - 1].toLowerCase())) words.pop();
+  return words.length >= 2 ? words.join(" ") : null;
+}
+
+// The short phrase shown under a word's meaning. Priority: hand-written `ctx` → a phrase taken from the post that
+// the viewer just read ("completely arbitrary") → the dictionary example. The main word keeps its example when it is
+// short (≤ 5 words) because its context is read aloud and has to stay brief.
+export function contextFor(ep, key) {
+  const w = ep.words[key];
+  if (w.ctx) return { text: w.ctx, zh: w.ctxZh ?? null };
+  const sent = ep.thread.show.map((i) => ep.thread.sentences[i].en).find((s) => keysIn(s).includes(key));
+  const derived = sent ? deriveContext(sent, key, w.pos) : null;
+  const exWords = wordCount(w.ex || "");
+  if (key === ep.main) return w.ex && exWords <= 5 ? { text: w.ex, zh: w.exZh || null } : { text: derived || w.ex, zh: null };
+  if (derived) return { text: derived, zh: null };
+  return { text: w.ex, zh: w.exZh || null };
+}

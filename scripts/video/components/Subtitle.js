@@ -13,6 +13,7 @@ import { esc } from "../core.js";
 
 export function createSubtitle(root, cues) {
   const box = document.getElementById("sub") || Object.assign(document.createElement("div"), { id: "sub" });
+  box.dataset.aud = "subtitle";
   root.appendChild(box);
   let shown = -1, k = null;
 

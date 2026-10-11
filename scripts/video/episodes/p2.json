@@ -48,7 +48,8 @@
       "level": 3,
       "ex": "The teacher's grading seemed completely arbitrary.",
       "exZh": "那位老師的評分方式看起來完全很隨意。",
-      "kk": "[ˋɑrbəˏtrɛri]"
+      "kk": "[ˋɑrbəˏtrɛri]",
+      "ctx": "completely arbitrary"
     },
     "allocate": {
       "pos": "v.",
@@ -56,20 +57,23 @@
       "level": 2,
       "ex": "The school will allocate more money to the library next year.",
       "exZh": "學校明年會撥更多經費給圖書館。",
-      "kk": "[ˋæləˏket]"
+      "kk": "[ˋæləˏket]",
+      "ctx": "allocate 90% of the company budget"
     }
   },
   "hook": {
     "text": "The decision is final and completely [[arbitrary]].",
-    "guideZh": "這句英文你看得懂嗎？"
+    "guideZh": "這句你看得懂嗎？"
   },
   "quiz": {
+    "type": "context",
+    "sentence": "The decision is final and completely ____.",
     "options": [
-      "互惠的",
-      "任意的",
-      "喝醉的"
+      "inclement",
+      "reciprocal",
+      "arbitrary"
     ],
-    "answer": 1,
+    "answer": 2,
     "promptZh": null
   },
   "cta": {

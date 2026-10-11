@@ -1,78 +1,73 @@
-// VocabularyCard: the main word, as a fixed, self-contained module (never a shrunken app page).
+// VocabularyCard: the ONE card used for every taught word (main or not).
+// It opens over the dimmed stream and grows as information is revealed, in this order:
 //
-//   [ level chip ]                         [ pos ]
-//   WORD  (serif, yellow marker)
-//   [kk phonetic]
-//   中文意思  (big, bold)  （補充說明 small）
-//   ───────────────
-//   EXAMPLE
-//   example sentence (karaoke)
-//   例句中文
+//   1. the WORD            (arrives from the sentence, see WordHandoff)
+//   2. pos · [kk] · MEANING  (when the meaning is spoken)
+//   3. a short CONTEXT with the word lit   (when it is spoken)  + its translation if there is room
 //
-// Entrance: the thread's key word flies into the WORD slot (see ThreadScene) while the card fades in.
-// Reveal order follows the narration: word → meaning → example → example translation.
+// Information priority when space runs out (never shrink below the floors in tokens.css):
+//   word > meaning > pos > context > kk > context translation > level
+// so low-priority items are dropped before any text gets smaller.
+import { L } from "../layout.js";
 import { el, esc, fitWidth, fitLines, rect } from "../core.js";
-import { DUR, fadeWin, prog, enter } from "../motion.js";
+import { DUR, prog } from "../motion.js";
 import { karaoke, marker } from "./KaraokeText.js";
+import { zhParts } from "../text-zh.js";
 
-const NOTE = /^(.*?)\s*[（(]([^）)]*)[）)]\s*$/;
+const CARD_TOP = 470;
+const MAX_H = L.main.y + L.main.h - CARD_TOP;      // the card never reaches the mascot / subtitle area
 
-export function createVocabularyCard(root, spec) {
-  const w = spec.scenes.word, th = spec.scenes.thread;
-  const mean = spec.lines[w.lines.mean], exLine = spec.lines[w.lines.ex];
+export function createVocabularyCard(root, spec, card) {
+  const mean = spec.lines[card.lines.mean], ctxLine = spec.lines[card.lines.ctx];
+  const { main: zhMain, note: zhNote } = zhParts(card.zh);
   const layer = el("div", "scene");
-  const m = w.zh.match(NOTE), zhMain = m ? m[1] : w.zh, zhNote = m ? m[2] : "";
-  const card = el("div", "vc", { top: "372px" });
-  card.innerHTML =
-    `<div class="vc-top"><span class="chip dark" id="vc-level">${esc(w.level)}</span><span class="chip" id="vc-pos">${esc(w.pos || "")}</span></div>` +
-    `<div class="vc-word" id="vc-word"><span class="tk" id="vc-wordtext">${esc(w.word)}</span></div>` +
-    `<div class="vc-sub" id="vc-kk">${esc(w.kk || "")}</div>` +
-    `<div class="vc-zh" id="vc-zh">${esc(zhMain)}</div>` +
-    (zhNote ? `<div class="vc-note" id="vc-note">${esc(zhNote)}</div>` : "") +
-    `<div id="vc-lower"><div class="vc-rule"></div><div class="vc-label">EXAMPLE · 例句</div><div class="vc-ex" id="vc-ex"></div><div class="vc-exzh" id="vc-exzh">${esc(w.exZh || "")}</div></div>`;
-  layer.appendChild(card);
+  const f = el("div", "vc", { top: CARD_TOP + "px" });
+  f.innerHTML =
+    `<div class="vc-lvl">${esc(card.level)}</div>` +
+    `<div class="vc-word"><span class="tk">${esc(card.word)}</span></div>` +
+    `<div class="vc-meta">${card.pos ? `<span class="vc-pos">${esc(card.pos)}</span>` : ""}${card.kk ? `<span class="vc-kk">${esc(card.kk)}</span>` : ""}</div>` +
+    `<div class="vc-zh">${esc(zhMain)}</div>` + (zhNote ? `<div class="vc-note">${esc(zhNote)}</div>` : "") +
+    `<div class="vc-ctxbox"><div class="vc-ctx"></div>${card.ctxZh ? `<div class="vc-ctxzh">${esc(card.ctxZh)}</div>` : ""}</div>`;
+  layer.appendChild(f);
   root.appendChild(layer);
-  const $ = (id) => card.querySelector("#" + id);
-  if (!w.pos) $("vc-pos").style.display = "none";
-  if (!w.kk) $("vc-kk").style.display = "none";
+  const $ = (c) => f.querySelector("." + c);
+  const wordEl = $("vc-word"), wordText = wordEl.firstChild, zhEl = $("vc-zh"), ctxEl = $("vc-ctx"), noteEl = $("vc-note");
+  const metaEl = $("vc-meta"), lvlEl = $("vc-lvl"), ctxBox = $("vc-ctxbox"), ctxZhEl = $("vc-ctxzh");
+  f.dataset.aud = "card"; wordEl.dataset.aud = "card-word"; zhEl.dataset.aud = "card-zh"; ctxBox.dataset.aud = "card-ctx";
+  const kar = karaoke(ctxEl, ctxLine.tokens);
 
-  // fit: word on one line; meaning ≤ 2 lines; example ≤ 3 lines
-  const wordEl = $("vc-word"), wordText = $("vc-wordtext");
-  fitWidth(wordEl, 752, [168, 150, 132, 116, 100, 88]);
+  // ---- fit: wrap long phrases, then drop low-priority information, never go below the floors ----
   let wrapped = false;
-  if (wordEl.scrollWidth > 753) {          // a phrase that cannot fit on one line: wrap it onto two
-    wrapped = true; wordEl.style.whiteSpace = "normal";
-    fitLines(wordEl, [116, 104, 92, 80, 70, 60], 2, 1.04);
-  }
+  fitWidth(wordEl, 752, [180, 160, 140, 124, 110]);
+  if (wordEl.scrollWidth > 753) { wrapped = true; wordEl.style.whiteSpace = "normal"; fitLines(wordEl, [130, 116, 104, 92, 80], 2, 1.04); }
+  fitLines(zhEl, [72, 66, 60, 56], 2, 1.16);
+  fitLines(ctxEl, [54, 50, 46, 44], 3, 1.36);
+  const drops = [() => ctxZhEl && (ctxZhEl.style.display = "none"), () => { const k = $("vc-kk"); if (k) k.style.display = "none"; }, () => { lvlEl.style.display = "none"; }];
+  for (const d of drops) { if (f.offsetHeight <= MAX_H) break; d(); }
   Object.assign(wordText.style, marker(1, "var(--c-accent)", ".4em"));
-  const zhEl = $("vc-zh");
-  fitLines(zhEl, [76, 68, 60, 54, 48, 44], 2, 1.16);
-  const k = karaoke($("vc-ex"), exLine.tokens);
-  const exEl = $("vc-ex");
-  fitLines(exEl, [46, 42, 38, 35, 32], 3, 1.38);
-  // keep the whole card inside the main zone: trade example size for height if needed
-  const exZhEl = $("vc-exzh");
-  for (const s of [38, 34, 30]) { if (card.offsetHeight <= 900) break; exZhEl.style.fontSize = s + "px"; }
 
-  const wordRect = rect(wordText);   // where the key word must land (card is un-transformed here)
-  const wordStyle = getComputedStyle(wordText);
-  const appearAt = th.handoffStart + DUR.handoffZoom, landAt = w.start;
+  // heights at each reveal step (frame grows downward; the word slot never moves)
+  const N = f.offsetHeight;
+  const bottom = (e) => e.offsetTop + e.offsetHeight;
+  const bWord = bottom(wordEl), bMean = Math.max(bottom(metaEl), bottom(zhEl), noteEl ? bottom(noteEl) : 0), bCtx = bottom(ctxBox);
+  const h = (b) => N - (bCtx - b);
+  const H1 = h(bWord + 18), H2 = h(bMean + 6), H3 = N;
+
+  const wordRect = rect(wordText), wordStyle = getComputedStyle(wordText);
 
   function update(t) {
-    const a = fadeWin(t, appearAt, w.end, DUR.handoffMove, DUR.fade);
-    layer.style.opacity = a;
-    if (a <= 0) return;
-    // the word itself is drawn by ThreadScene's clone until it lands
-    wordText.style.opacity = wrapped ? prog(t, landAt - 0.2, DUR.fast) : (t >= landAt ? 1 : 0);
-    enter($("vc-level"), t, landAt + 0.0, DUR.fast, 10);
-    enter($("vc-pos"), t, landAt + 0.05, DUR.fast, 10);
-    enter($("vc-kk"), t, landAt + 0.12, DUR.fast, 10);
-    enter(zhEl, t, mean.start - 0.05, DUR.base, 18);
-    const nt = $("vc-note"); if (nt) enter(nt, t, mean.start + 0.1, DUR.base, 12);
-    const low = $("vc-lower"); low.style.opacity = prog(t, exLine.start - 0.25, DUR.base);
-    low.style.transform = `translateY(${(1 - prog(t, exLine.start - 0.25, DUR.base)) * 18}px)`;
-    $("vc-exzh").style.opacity = prog(t, exLine.start + 0.4, DUR.base);
-    k.update(t);
+    const open = Math.min(prog(t, card.start + 0.12, 0.25), 1 - prog(t, card.infoEnd, 0.15));   // clears quickly so it never overlaps the returning text
+    layer.style.opacity = open > 0 ? 1 : 0;
+    f.style.opacity = open;
+    if (open <= 0) return;
+    const r2 = prog(t, mean.start - 0.05, DUR.base), r3 = prog(t, ctxLine.start - 0.1, DUR.base), r4 = prog(t, ctxLine.start + 0.5, DUR.base);
+    f.style.height = (H1 + (H2 - H1) * r2 + (H3 - H2) * r3) + "px";
+    // the card's own word takes over when the travelling word has landed, and hands back before it leaves
+    wordText.style.opacity = t >= card.landing && t < card.infoEnd + 0.05 ? 1 : 0;
+    for (const e of [lvlEl, metaEl, zhEl, noteEl]) if (e) { e.style.opacity = r2; e.style.transform = `translateY(${(1 - r2) * 14}px)`; }
+    ctxBox.style.opacity = r3; ctxBox.style.transform = `translateY(${(1 - r3) * 14}px)`;
+    if (ctxZhEl) ctxZhEl.style.opacity = r4;
+    kar.update(t);
   }
-  return { update, wordRect, wordText, wordStyle, wrapped };
+  return { update, wordRect, wordStyle, wrapped };
 }

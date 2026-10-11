@@ -3,7 +3,7 @@
 // An episode file is self-contained (copy, word data, quiz) – rendering does not need the app.
 // `init` only drafts it; every field can be edited by hand afterwards.
 import fs from "node:fs";
-import { MARK, keysIn, wordCount, splitEn, splitZh, zhParts, hash, plain } from "./text.mjs";
+import { MARK, keysIn, wordCount, splitEn, splitZh, zhParts, hash, plain, chunkSentence, deriveContext, contextFor } from "./text.mjs";
 
 // ---------- read from the running app (Playwright page on the repo's index.html) ----------
 export async function readApp(page, postId) {
@@ -41,6 +41,28 @@ function makeQuiz(app, main, seed) {
   }
   const options = shuffle([correct, ...wrong], seed);
   return { options, answer: options.indexOf(correct), promptZh: null };
+}
+
+// A question built from the post itself: the chunk with the main word, the word blanked out, three English options.
+// Only when the word appears in its base form (an inflected blank would give the answer away); otherwise null.
+function makeContextQuiz(app, { sentences, show, main, teach, seed }) {
+  const v = app.vocab[main];
+  if (main.includes("_")) return null;
+  const sentence = show.map((i) => sentences[i].en).find((s) => keysIn(s).includes(main));
+  const chunk = chunkSentence(sentence).find((c) => keysIn(c).includes(main));
+  const m = [...chunk.matchAll(MARK)].find((x) => x[1] === main);
+  if ((m[2] || m[1]).toLowerCase() !== main.toLowerCase()) return null;
+  const blank = plain(chunk.replace(m[0], "\u0000")).replace("\u0000", "____").replace(/^[…\s]+/, "");
+  const letters = (w) => /^[a-z]+$/.test(w);
+  const inPost = new Set(Object.keys(app.vocab));
+  const stem = (w) => w.slice(0, 4);
+  const near = [...teach.filter((k) => k !== main && letters(k) && app.vocab[k].pos === v.pos),
+    ...app.pool.filter(([k, pos, lv]) => letters(k) && pos === v.pos && !inPost.has(k) && Math.abs(lv - v.level) <= 1 && Math.abs(k.length - main.length) <= 4 && stem(k) !== stem(main))
+      .sort((a, b) => hash(seed + a[0]) - hash(seed + b[0])).map((x) => x[0])];
+  const wrong = [...new Set(near)].slice(0, 2);
+  if (wrong.length < 2) return null;
+  const options = shuffle([main, ...wrong], seed);
+  return { type: "context", sentence: blank, options, answer: options.indexOf(main), promptZh: null };
 }
 
 // ---------- draft an episode from a thread ----------
@@ -81,14 +103,21 @@ export function draftEpisode(app, { episode = null, main = null } = {}) {
 
   const words = {};
   teach.forEach((k) => { const v = vocab[k]; words[k] = { pos: v.pos || "", zh: v.zh, level: v.level, ex: v.ex, exZh: v.exZh, kk: kk[k] || "" }; });
+  // short context shown under each meaning (edit freely; leave out to use the automatic one)
+  const draft = { main: mainKey, words, thread: { show, sentences } };
+  teach.forEach((k) => { const c = contextFor(draft, k); words[k].ctx = c.text; if (c.zh) words[k].ctxZh = c.zh; });
+
+  // hook guide: what the sentence says (its Chinese), if short enough; otherwise a neutral line
+  const hookSent = show.map((i) => sentences[i]).find((s) => keysIn(s.en).includes(mainKey));
+  const guideZh = hookSent && hookSent.zh && hookSent.zh.replace(/[^\u4e00-\u9fff]/g, "").length <= 12 ? hookSent.zh.replace(/\s*[\p{Extended_Pictographic}\uFE0F]+\s*$/gu, "") : "這句你看得懂嗎？";
 
   return {
     id: post.id, episode, pack: app.pack || "toefl", packLabel: app.packLabel,
     author: { name: char.name, handle: char.handle, avatar: char.avatar, color: char.color, topic: post.topic },
     thread: { postId: post.id, sentences, show, source: null },
     main: mainKey, teach, words,
-    hook: { text: hookText, guideZh: "這句英文你看得懂嗎？" },
-    quiz: makeQuiz(app, mainKey, post.id + mainKey),
+    hook: { text: hookText, guideZh },
+    quiz: makeContextQuiz(app, { sentences, show, main: mainKey, teach, seed: post.id + mainKey }) || { type: "meaning", ...makeQuiz(app, mainKey, post.id + mainKey) },
     cta: { type: "comment", text: "留言你的答案" },
     outro: { closingZh: null, teaserZh: null },
   };
@@ -109,6 +138,9 @@ export function validateEpisode(ep) {
   }
   if (ep.teach[0] !== ep.main) errors.push("teach[0] must be the main word");
   if (ep.quiz.options.length !== 3) errors.push("quiz needs exactly 3 options");
+  if (ep.quiz.type === "context" && !String(ep.quiz.sentence || "").includes("____")) errors.push('a context quiz needs quiz.sentence with a "____" blank');
+  if (ep.teach.length >= 5) warnings.push(`${ep.teach.length} words in one video makes it long: consider splitting this post into two episodes`);
+  else if (ep.teach.length === 4) warnings.push("4 words: only works if the excerpt is very short");
   if (!(ep.quiz.answer >= 0 && ep.quiz.answer < ep.quiz.options.length)) errors.push("quiz.answer must be 0, 1 or 2");
   if (!keysIn(ep.hook.text).includes(ep.main) && !plain(ep.hook.text).toLowerCase().includes(ep.main.toLowerCase().replace(/_/g, " "))) warnings.push("hook.text does not contain the main word (wrap it as [[word]])");
   if (ex.some((s) => !s.zh)) warnings.push("some excerpt sentences have no Chinese (zh): translation subtitles will be skipped");

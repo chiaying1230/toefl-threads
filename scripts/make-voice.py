@@ -23,6 +23,8 @@ async def main(plan_path: str, out_dir: str) -> None:
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     for line in plan["lines"]:
+        if line.get("silent"):          # shown on screen only, never spoken
+            continue
         v = line["voice"]
         target = out / f"line-{line['id']}.mp3"
         comm = edge_tts.Communicate(line["text"], v["voice"], rate=v["rate"], pitch=v["pitch"])

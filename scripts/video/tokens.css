@@ -17,18 +17,20 @@
   --font-body: "DM Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
   --font-zh: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "WenQuanYi Zen Hei", sans-serif;
 
+  /* Sizes are the starting point; text is only shrunk after splitting / dropping low-priority info
+     (floors in brackets). 1080 px wide → on a 360 px phone every size is ÷3: 52 px ≈ 17 px. */
   --fs-chip: 30px;       /* series chip, small labels */
-  --fs-hook: 84px;       /* hook sentence (fits down to 60) */
-  --fs-guide: 48px;      /* hook guide line, mascot lines */
-  --fs-post: 44px;       /* thread card text */
+  --fs-hook: 120px;      /* hook sentence [76] */
+  --fs-guide: 50px;      /* hook guide line, mascot lines */
+  --fs-post: 64px;       /* stream text [52] */
   --fs-meta: 32px;       /* handle, topic */
-  --fs-word: 168px;      /* main word (fits down to 92) */
+  --fs-word: 180px;      /* word on its card [110] */
   --fs-kk: 40px;
-  --fs-zh: 76px;         /* main meaning (fits down to 54) */
-  --fs-ex: 46px;
-  --fs-ex-zh: 38px;
-  --fs-sub: 46px;        /* subtitles */
-  --fs-opt: 56px;        /* quiz options */
+  --fs-zh: 72px;         /* core meaning [56] */
+  --fs-ctx: 54px;        /* context / example [44] */
+  --fs-ctx-zh: 44px;     /* translation of the example */
+  --fs-sub: 46px;        /* translation subtitles */
+  --fs-opt: 64px;        /* quiz options [48] */
 
   /* shape + spacing */
   --r-card: 48px;

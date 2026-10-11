@@ -12,7 +12,7 @@ export const L = {
   header: { y: 196 },
   main: { y: 330, h: 910, x: 84, w: 864 },
   bottom: { y: 1300, h: 260 },
-  mascot: { x: 84, y: 1318, size: 240 },
+  mascot: { x: 84, y: 1262, size: 240 },
   subWithMascot: { x: 360, w: 588 },
   subFull: { x: 84, w: 864 },
 };

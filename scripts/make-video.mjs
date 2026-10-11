@@ -7,6 +7,9 @@
 //   --voice <dir>    narration from scripts/make-voice.py (line-<id>.mp3); adds audio, real timing and mouth sync
 //   --preview        half size, 15 fps: fast draft
 //   --stills a,b,c   write PNGs at those seconds instead of a video (to check layout)
+//   --phone          render at 360 × 640 (what a phone shows): check that nothing needs zooming to read
+//   --audit          check every 0.2 s for text outside the safe area, overflow, too-small text and overlaps
+//   --beats          print the beat table: every moment something changes on screen
 //   --fps <n> --scale <n>   frame rate (default 30) and pixel density (default 1 → 1080×1920)
 //
 // Each episode is one JSON file (copy, words, quiz). The look – layout, type, colours, subtitles, mascot,
@@ -34,7 +37,7 @@ if (!target) { console.error("usage: node scripts/make-video.mjs init <postId>  
 
 const PREVIEW = flag("preview");
 const FPS = parseInt(opt("fps", PREVIEW ? "15" : "30"), 10);
-const SCALE = parseFloat(opt("scale", PREVIEW ? "0.5" : "1"));
+const SCALE = flag("phone") ? 1 / 3 : parseFloat(opt("scale", PREVIEW ? "0.5" : "1"));
 const PORT = parseInt(opt("port", "8123"), 10);
 const OUT = path.resolve(opt("out", "videos"));
 const VOICE_DIR = opt("voice", null) && path.resolve(opt("voice"));
@@ -94,11 +97,25 @@ envelopes(voiced.map((l) => voiceFile(l.id))).forEach((env, i) => { voiced[i].en
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, `${ep.id}.plan.json`), JSON.stringify({ ...plan, lines: plan.lines.map(({ tokens, env, ...l }) => l) }, null, 2));
 console.log(`${ep.id}: ${plan.duration}s · main word "${ep.main}" · also ${ep.teach.slice(1).join(", ") || "-"}${VOICE_DIR ? " (voiced)" : " (estimated timing)"}`);
-if (plan.duration > 40) console.warn(`note: ${plan.duration}s is long for a short; trim thread.show or teach fewer words.`);
+if (flag("beats")) { let prev = 0, gap = 0, at = 0; plan.beats.forEach((b) => { console.log(String(b.t).padStart(6), b.what); if (b.t - prev > gap) { gap = b.t - prev; at = prev; } prev = b.t; }); console.log(`longest quiet stretch: ${gap.toFixed(2)} s (after ${at}s)`); }
+if (plan.duration > 40) console.warn(`WARNING: ${plan.duration}s is too long for a short (target 24–32 s). Trim thread.show or teach fewer words, or split the post into two episodes.`);
+else if (plan.duration > 36) console.warn(`note: ${plan.duration}s is longer than ideal (target 24–32 s, up to 36 s is fine).`);
+else if (plan.duration < 20) console.warn(`note: ${plan.duration}s is shorter than 20 s.`);
 
 // ---------- render ----------
 await page.goto(`http://localhost:${PORT}/scripts/video/scene.html`);
 await page.evaluate((spec) => window.init(spec), plan);
+
+if (flag("audit")) {
+  const seen = new Map();
+  for (let s = 0; s <= plan.duration; s += 0.2) {
+    const issues = await page.evaluate((t) => window.audit(t), s);
+    for (const i of issues) if (!seen.has(i)) seen.set(i, s);
+  }
+  if (!seen.size) console.log(`audit: no problems found (${Math.round(plan.duration / 0.2)} checks, safe area x 84–948, y 220–1560)`);
+  else { [...seen].forEach(([i, s]) => console.log(`audit: ${i}   (first at ${s.toFixed(1)}s)`)); }
+  await done(seen.size ? 1 : 0);
+}
 
 if (STILLS) {
   for (const s of STILLS) {

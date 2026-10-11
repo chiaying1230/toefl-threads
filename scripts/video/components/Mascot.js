@@ -31,7 +31,7 @@ const SVG = `
 // show: [{ start, end, pose }]  – intervals when the mascot is on screen
 export function createMascot(root, speech, show) {
   const m = document.createElement("div");
-  m.id = "mascot"; m.innerHTML = SVG;
+  m.id = "mascot"; m.innerHTML = SVG; const art = document.createElement("div"); art.dataset.aud = "mascot"; Object.assign(art.style, { position: "absolute", left: "30px", top: "50px", width: "180px", height: "160px", pointerEvents: "none" }); m.appendChild(art);
   Object.assign(m.style, { left: L.mascot.x + "px", top: L.mascot.y + "px" });
   root.appendChild(m);
   const $ = (id) => m.querySelector("#" + id);
