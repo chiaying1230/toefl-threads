@@ -65,11 +65,14 @@
     "beats": [
       {
         "en": "90% of the company budget.",
-        "size": "xl"
+        "size": "xl",
+        "big": true
       },
       {
         "en": "For cardboard boxes.",
-        "size": "xl",
+        "size": "l",
+        "caps": true,
+        "emoji": "📦",
         "zh": "老闆，你認真的？"
       },
       {
@@ -95,6 +98,16 @@
   },
   "outro": {
     "closingZh": null,
-    "teaserZh": null
-  }
+    "teaserZh": null,
+    "next": {
+      "name": "Mr. Whiskers",
+      "avatar": "🐱",
+      "color": "#f6b26b",
+      "en": "Mr. Whiskers has another budget idea..."
+    }
+  },
+  "recap": [
+    "I decided to [[allocate]] 90% of the budget to cardboard boxes.",
+    "The decision was completely [[arbitrary]]."
+  ]
 }

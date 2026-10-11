@@ -10,7 +10,7 @@
 //
 // Every spoken line has text, language, a voice and (estimated, or measured from audio) timing.
 // All pacing numbers are in PACE, in one place.
-import { tokenize, hash, zhSpoken, chunkSentence, isKeyToken, contextFor } from "./text.mjs";
+import { tokenize, hash, zhSpoken, chunkSentence, isKeyToken, contextFor, keysIn, wordCount } from "./text.mjs";
 import { DUR } from "./motion.js";
 
 const LEVEL = { 1: "Soy Milk 豆漿", 2: "Tofu 豆腐", 3: "Natto 納豆" };
@@ -18,14 +18,14 @@ const CHAR_VOICES = ["en-US-GuyNeural", "en-US-AriaNeural", "en-GB-RyanNeural", 
 const pickVoice = (author) => ({ voice: CHAR_VOICES[hash(author) % CHAR_VOICES.length], rate: "+0%", pitch: ["-6Hz", "+0Hz", "+8Hz"][hash(author) % 3] });
 
 export const PACE = {
-  hookLead: 0.05, beatGap: 0.04, hookTail: 0.25, hookSpeed: 0.78,   // the hook is read a little faster
+  hookLead: 0.05, beatGap: 0.04, hookTail: 0.12, hookSpeed: 0.6,   // the hook is read a little faster
   readLead: 0.3,            // reading starts while the post is still sliding in
   chunkGap: 0.04, readHold: 0.1,
   cardLead: 0.25,           // the word is spoken while the card is still sliding in
   cardGap: 0.05, cardHold: 0.2, mainHold: 0.3,
   recapRow: 0.3, recapRead: 0.5,
   quizLead: 0.4, quizThink: 1.2, quizTail: 0.4,
-  endLead: 0.4, endTail: 0.5,
+  endLead: 0.4, endTail: 0.5, endHold: 1.3,
 };
 
 export function buildPlan(ep, { series, voiceFile = () => null, probe = null } = {}) {
@@ -82,8 +82,8 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
     return id;
   });
   const hookEnd = t + PACE.hookTail;
-  add({ type: "hook", id: "hook", bg: "paper", anchor: 430,
-    beats: beatsSrc.map((b, i) => ({ size: b.size || "xl", zh: b.zh || null, tokens: lines[hookIds[i]].tokens, start: lines[hookIds[i]].start })) });
+  add({ type: "hook", id: "hook", bg: "paper", anchor: 400,
+    beats: beatsSrc.map((b, i) => ({ size: b.size || "xl", zh: b.zh || null, big: !!b.big, caps: !!b.caps, emoji: b.emoji || null, tokens: lines[hookIds[i]].tokens, start: lines[hookIds[i]].start })) });
 
   // ---------------- chunks → parts (a part ends where a word card is due) ----------------
   const shown = ep.thread.show.map((i) => ep.thread.sentences[i]);
@@ -113,7 +113,7 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
   t = hookEnd;
   const cards = [];
   parts.forEach((part, pi) => {
-    const post = { type: "post", id: `post${pi}`, bg: "paper", anchor: 360, head: pi === 0 ? "full" : "continued", chunks: [] };
+    const post = { type: "post", id: `post${pi}`, bg: "paper", anchor: 460, head: pi === 0 ? "full" : "continued", chunks: [] };
     const idx = add(post);
     swipeTo(idx, t);
     let rt = t + PACE.readLead;
@@ -135,7 +135,7 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
       const ml = line("host", "zh", zhTokens(zhSpoken(w.zh)), HOST_ZH);
       const xl = line("host", "en", exTokens, HOST_EN);
       const t0 = t;
-      const item = { type: "card", id: `card${cards.length}`, bg: "paper", anchor: 340, key: cc.key, main: isMain, word: disp(cc.key), pos: w.pos, zh: w.zh, kk: w.kk,
+      const item = { type: "card", id: `card${cards.length}`, bg: "paper", anchor: 490, key: cc.key, main: isMain, word: disp(cc.key), pos: w.pos, zh: w.zh, kk: w.kk,
         level: LEVEL[w.level] || "", exZh: w.exZh || null, from: fromTokens, lines: { word: wl, mean: ml, ex: xl } };
       swipeTo(add(item), t0);
       t = t0 + PACE.cardLead; place([wl, ml, xl], 0, PACE.cardGap);
@@ -147,13 +147,14 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
   });
 
   // ---------------- recap: back to the post, the learned words lit ----------------
-  const recapLines = [];
-  chunks.filter((c) => c.cards.length).forEach((c) => {
-    const lastAt = Math.max(...c.cards.map((x) => x.at)), cut = c.tokens.slice(0, lastAt + 1).map((k) => ({ text: k.text, role: k.role === "taught" ? "main" : null }));
-    if (lastAt + 1 < c.tokens.length) cut[cut.length - 1].text = cut[cut.length - 1].text.replace(/[.,;:!?]+$/, "") + "…";
-    recapLines.push(cut);
+  // hand-written `recap: ["I decided to [[allocate]] …", …]` or the shown sentences (lead-in label removed, long ones cut to the clause)
+  const stripLead = (x) => x.replace(/^[^.!?:\[\]]{1,28}:\s+/, "");
+  const recapSrc = ep.recap && ep.recap.length ? ep.recap : shown.flatMap((sn) => {
+    const txt = stripLead(sn.en);
+    return wordCount(txt) <= 18 ? [txt] : chunkSentence(sn.en).filter((c) => keysIn(c).some((k) => teachSet.has(k)));
   });
-  const recapIdx = add({ type: "recap", id: "recap", bg: "paper", anchor: 430, lines: [], note: ep.recapNote || "Now you can read the whole post." });
+  const recapLines = recapSrc.map((x) => tokenize(x, "en").map((k) => ({ text: k.text, role: teachSet.has(k.key) ? "main" : null })));
+  const recapIdx = add({ type: "recap", id: "recap", bg: "paper", anchor: 470, far: true, lines: [], note: ep.recapNote || "Now you can read the whole post." });
   const recap = items[recapIdx], rest = t + SW;
   swipeTo(recapIdx, t);
   recapLines.forEach((tokens, i) => recap.lines.push({ tokens, at: rest + 0.1 + i * PACE.recapRow }));
@@ -165,7 +166,7 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
   const q = ep.quiz, askComment = ep.cta.type === "comment", ask = askComment ? ep.cta.text : "";
   const isCtx = q.type === "context";
   const prompt = line("host", "zh", zhTokens(q.promptZh || (isCtx ? "選哪一個？" : "這個字是什麼意思？") + ask), HOST_ZH);
-  const quiz = { type: "quiz", id: "quiz", bg: "dark", anchor: 330, kind: isCtx ? "context" : "meaning", sentence: q.sentence || null,
+  const quiz = { type: "quiz", id: "quiz", bg: "dark", anchor: 400, far: true, kind: isCtx ? "context" : "meaning", sentence: q.sentence || null,
     filled: isCtx ? q.sentence.replace("____", q.options[q.answer]) : null, word: disp(ep.main), options: q.options, answer: q.answer };
   const quizIdx = add(quiz), q0 = t;
   swipeTo(quizIdx, q0);
@@ -177,25 +178,25 @@ export function buildPlan(ep, { series, voiceFile = () => null, probe = null } =
   cues.push({ start: lines[prompt].start, end: lines[prompt].end, variant: "mascot", line: lines[prompt], withMascot: true });
   beat(q0 + SW, "quiz"); beat(lines[prompt].start, "quiz question"); beat(quiz.thinkStart, "think"); beat(quiz.revealAt, "answer");
 
-  // ---------------- ending: what was learned; the next post peeks in below ----------------
+  // ---------------- ending: what was learned; the NEXT post is already showing below ----------------
   const learned = cards.map((c) => c.key);
-  const closing = ep.outro.closingZh || ep.outro.teaserZh || (ep.cta.type === "link" ? ep.cta.text : "明天見！");
-  const cl = line("host", "zh", zhTokens(closing), HOST_ZH);
-  const e0 = t;
-  const ending = { type: "ending", id: "ending", bg: "paper", anchor: 430, count: learned.length, words: learned.map(disp), showUrl: ep.cta.type === "link", url: series && series.url,
-    tickAt: learned.map((_, i) => e0 + SW + 0.15 + i * 0.2) };
+  const e0 = t, nx = (ep.outro && ep.outro.next) || {};
+  const next = { name: nx.name || ep.author.name, avatar: nx.avatar || ep.author.avatar, color: nx.color || ep.author.color,
+    en: nx.en || ep.outro.teaserEn || "Another post is waiting for you…", zh: nx.zh || ep.outro.teaserZh || null };
+  const tickAt = learned.map((_, i) => e0 + SW + 0.15 + i * 0.2);
+  const ending = { type: "ending", id: "ending", bg: "paper", anchor: 500, count: learned.length, words: learned.map(disp),
+    showUrl: ep.cta.type === "link", url: series && series.url, tickAt, next };
   const endIdx = add(ending);
-  add({ type: "teaser", id: "teaser", bg: "paper", anchor: 430, text: ep.outro.teaserZh || null });
   swipeTo(endIdx, e0);
-  t = e0; place([cl], PACE.endLead);
-  ending.end = lines[cl].end + PACE.endTail;
-  moves.push({ t0: ending.end - 0.9, t1: ending.end, to: endIdx, extra: 130 });      // a last slow drift: there is more below
-  cues.push({ start: lines[cl].start, end: lines[cl].end, variant: "mascot", line: lines[cl], withMascot: true });
-  beat(e0 + SW, "ending");
+  ending.end = tickAt[tickAt.length - 1] + 0.2 + PACE.endHold;
+  const closing = ep.outro.closingZh || (ep.cta.type === "link" ? ep.cta.text : null);       // spoken only: the bottom belongs to the next post
+  if (closing) { const cl = line("host", "zh", zhTokens(closing), HOST_ZH); t = e0; place([cl], PACE.endLead); ending.end = Math.max(ending.end, lines[cl].end + PACE.endTail); }
+  moves.push({ t0: ending.end - 0.9, t1: ending.end, to: endIdx, extra: 70 });      // a last slow drift: the next post is right there
+  beat(e0 + SW, "ending (next post visible)");
 
   const mascot = [{ start: q0 + 0.2, end: quiz.thinkStart - 0.1, pose: "talk" },
     { start: quiz.thinkStart - 0.1, end: quiz.revealAt, pose: "think" },
-    { start: quiz.revealAt, end: ending.end + 2, pose: "talk" }];
+    { start: quiz.revealAt, end: e0 + 0.25, pose: "talk" }];
 
   beats.sort((a, b) => a.t - b.t);
   return {

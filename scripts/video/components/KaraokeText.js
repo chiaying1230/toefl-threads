@@ -16,7 +16,7 @@ export function marker(p = 1, color = "var(--c-accent)", thick = ".55em") {
   };
 }
 
-export function karaoke(host, tokens, { zh = false, ink = false } = {}) {
+export function karaoke(host, tokens, { zh = false, ink = false, cur: curColor = "var(--c-cur)" } = {}) {
   host.innerHTML = tokens.map((k, i) =>
     `<span class="tk" data-i="${i}">${esc(k.text)}</span>${!zh && i < tokens.length - 1 ? " " : ""}`).join("");
   const spans = [...host.querySelectorAll(".tk")];
@@ -31,7 +31,7 @@ export function karaoke(host, tokens, { zh = false, ink = false } = {}) {
         Object.assign(st, marker(1));
         st.fontWeight = 800; st.color = "var(--c-text)"; st.opacity = 1;
       } else {
-        st.backgroundImage = cur && !ink ? "linear-gradient(var(--c-accent-soft),var(--c-accent-soft))" : "none";
+        st.backgroundImage = cur && !ink ? `linear-gradient(${curColor},${curColor})` : "none";
         st.backgroundSize = "100% 100%"; st.backgroundPosition = "0 0";
         st.fontWeight = ""; st.color = on || ink ? "inherit" : "var(--c-text-3)"; st.opacity = 1;
       }

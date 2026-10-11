@@ -5,28 +5,33 @@ import { el, esc, fitLines, fitWidth } from "../core.js";
 import { DUR, prog, enter, ease } from "../motion.js";
 import { karaoke, marker } from "./KaraokeText.js";
 
-const HOOK_SIZE = { xl: 120, l: 96, m: 72, s: 54 };
+const HOOK_SIZE = { xl: 108, l: 96, m: 72, s: 54 };
 const mark = (spans, tokens, p) => spans.forEach((sp, i) => { if (tokens[i].role === "main" || tokens[i].role === "taught") { Object.assign(sp.style, marker(p)); sp.style.fontWeight = 800; } });
 
-// ---------- HOOK: big content lines, left aligned ----------
+// ---------- HOOK: big content lines, left aligned. The first line is revealed word by word (pattern interrupt) ----------
 export function createHook(it) {
   const root = el("div", "hk");
-  const beats = it.beats.map((b) => {
-    const wrap = el("div", "hk-w"), t = el("div", "hk-b" + (b.size === "s" ? " s" : ""), { fontSize: HOOK_SIZE[b.size] + "px" });
+  const beats = it.beats.map((b, i) => {
+    const wrap = el("div", "hk-w"), t = el("div", "hk-b" + (b.size === "s" ? " s" : "") + (b.caps ? " caps" : ""), { fontSize: HOOK_SIZE[b.size] + "px" });
     t.dataset.aud = "hook";
     wrap.appendChild(t);
     const k = karaoke(t, b.tokens, { ink: true });
+    if (b.big) k.spans[0].classList.add("big");
+    let emo = null;
+    if (b.emoji) { emo = el("span", "hk-emo", null, b.emoji); t.appendChild(emo); }
     let zh = null;
     if (b.zh) { zh = el("div", "hk-zh", null, esc(b.zh)); zh.dataset.aud = "hook-zh"; wrap.appendChild(zh); }
-    wrap.style.marginTop = (b === it.beats[0] ? 0 : 26) + "px";
+    wrap.style.marginTop = (i === 0 ? 0 : 26) + "px";
     root.appendChild(wrap);
-    return { b, wrap, k, zh };
+    return { b, wrap, k, zh, emo, i };
   });
   function update(t) {
-    beats.forEach((x, i) => {
-      if (i === 0) { x.wrap.style.opacity = 1; x.wrap.style.transform = ""; }
+    beats.forEach((x) => {
+      if (x.i === 0) { x.wrap.style.opacity = 1; x.wrap.style.transform = ""; }
       else enter(x.wrap, t, x.b.start - 0.1, DUR.base, 34);
       x.k.update(t);
+      if (x.i === 0) x.k.spans.forEach((sp, j) => { sp.style.opacity = j === 0 ? 1 : prog(t, Math.max(x.b.tokens[j].s - 0.12, 0.4), 0.14); });
+      if (x.emo) x.emo.style.opacity = prog(t, x.b.start + 0.35, DUR.fast);
       mark(x.k.spans, x.b.tokens, prog(t, x.b.start + 0.2, DUR.slow));
       if (x.zh) enter(x.zh, t, x.b.start + 0.25, DUR.base, 16);
     });
@@ -62,64 +67,48 @@ export function createPost(it, spec) {
   return { el: root, update, layout };
 }
 
-// ---------- VOCABULARY CARD: white, left aligned; the frame grows as the info is revealed ----------
+// ---------- VOCABULARY CARD: an editorial card inside the feed. Hierarchy: word · meaning · EXAMPLE · example zh · small meta ----------
 export function createCard(it, spec) {
   const root = el("div", "vcx"), frame = el("div", "vc");
-  const lvl = it.level ? `<div class="vc-lvl">${esc(it.level)}</div>` : "";
-  frame.innerHTML = lvl;
-  const sec = (cls, html) => { const d = el("div", cls, null, html); frame.appendChild(d); return d; };
-  const s0 = el("div", "vc-s0"); frame.appendChild(s0);
-  const word = el("div", "vc-word", null, `<span class="wd">${esc(it.word)}</span>`); word.dataset.aud = "card-word"; s0.appendChild(word);
-  s0.appendChild(el("div", "vc-meta", null, `<span class="vc-pos">${esc(it.pos)}</span>${it.kk ? `<span>${esc(it.kk)}</span>` : ""}`));
-  const [zhMain, zhNote] = splitZh(it.zh);
-  const s1 = el("div", "vc-s1"); frame.appendChild(s1);
-  const zh = el("div", "vc-zh", null, esc(zhMain)); zh.dataset.aud = "card-zh"; s1.appendChild(zh);
-  if (zhNote) s1.appendChild(el("div", "vc-note", null, esc(zhNote)));
-  const s2 = el("div", "vc-sec vc-s2"); frame.appendChild(s2);
-  s2.appendChild(el("div", "vc-label", null, "EXAMPLE"));
-  const ex = el("div", "vc-ex", null); ex.dataset.aud = "card-ex"; s2.appendChild(ex);
-  const exK = karaoke(ex, spec.lines[it.lines.ex].tokens);
-  let exZh = null;
-  if (it.exZh) { exZh = el("div", "vc-exzh", null, esc(it.exZh)); exZh.dataset.aud = "card-exzh"; s2.appendChild(exZh); }
-  let s3 = null, fromK = null;
-  if (it.from) {
-    s3 = el("div", "vc-sec vc-s3"); frame.appendChild(s3);
-    s3.appendChild(el("div", "vc-label", null, "FROM THIS POST"));
-    const f = el("div", "vc-from"); f.dataset.aud = "card-from"; s3.appendChild(f);
-    f.innerHTML = it.from.map((k) => `<span class="tk">${esc(k.text)}</span>`).join(" ");
-    fromK = [...f.querySelectorAll(".tk")];
-  }
-  root.appendChild(frame);
   const L = spec.lines, wl = L[it.lines.word], ml = L[it.lines.mean], xl = L[it.lines.ex];
-  const times = [wl.start - 0.2, ml.start - 0.05, xl.start - 0.05, xl.end - 0.4];
-  const secs = [s0, s1, s2, s3].filter(Boolean);
-  let bottoms = [];
-  let H = 0;
-  const layout = () => {
-    root.style.height = "2000px";
-    fitWidth(word, 752, [180, 160, 144, 128, 112]);
-    word.firstChild.style.display = "inline-block";
-    word.style.fontSize = word.style.fontSize;
-    frame.style.height = "auto"; frame.style.position = "relative";
-    const base = frame.getBoundingClientRect().top;
-    bottoms = secs.map((s) => s.getBoundingClientRect().bottom - base + (s === secs[secs.length - 1] ? 0 : 0));
-    H = Math.ceil(frame.getBoundingClientRect().height);
+  const word = el("div", "vc-word", null, `<span class="wd">${esc(it.word)}</span>`); word.dataset.aud = "card-word";
+  const [zhMain, zhNote] = splitZh(it.zh);
+  const s1 = el("div", "vc-s1"); const zh = el("div", "vc-zh", null, esc(zhMain)); zh.dataset.aud = "card-zh"; s1.appendChild(zh);
+  if (zhNote) s1.appendChild(el("div", "vc-note", null, esc(zhNote)));
+  const s2 = el("div", "vc-sec vc-s2");
+  s2.appendChild(el("div", "vc-label", null, "EXAMPLE"));
+  const ex = el("div", "vc-ex"); ex.dataset.aud = "card-ex"; s2.appendChild(ex);
+  const exK = karaoke(ex, xl.tokens, { cur: "var(--c-learn-soft)" });
+  if (it.exZh) { const e = el("div", "vc-exzh", null, esc(it.exZh)); e.dataset.aud = "card-exzh"; s2.appendChild(e); }
+  const s3 = el("div", "vc-s3");
+  s3.appendChild(el("div", "vc-meta", null, `<span class="vc-pos">${esc(it.pos)}</span>${it.kk ? `<span>${esc(it.kk)}</span>` : ""}`));
+  let fromSpans = null;
+  if (it.from) {
+    const w = el("div", "vc-from-wrap");
+    w.appendChild(el("div", "vc-label", null, "FROM THIS POST"));
+    const f = el("div", "vc-from"); f.dataset.aud = "card-from";
+    f.innerHTML = it.from.map((k) => `<span class="tk">${esc(k.text)}</span>`).join(" ");
+    w.appendChild(f); s3.appendChild(w);
+    fromSpans = [...f.querySelectorAll(".tk")];
+  }
+  frame.append(word, s1, s2, s3);
+  root.appendChild(frame);
+  const times = [0, ml.start - 0.05, xl.start - 0.05, xl.end - 0.4];
+  const secs = [s1, s2, s3];
+  const api = { el: root, height: 0 };
+  api.layout = () => {
+    fitWidth(word, 768, [150, 136, 124, 112]);
+    frame.style.position = "relative";
+    api.height = Math.ceil(frame.getBoundingClientRect().height);
     frame.style.position = "absolute";
-    root.style.height = H + "px"; api.height = H;
+    root.style.height = api.height + "px"; frame.style.height = api.height + "px";
   };
-  const pad = 44;
-  function update(t) {
-    const ps = secs.map((s, i) => prog(t, times[i], DUR.base));
-    secs.forEach((s, i) => { if (i === 0) return; s.style.opacity = ps[i]; s.style.transform = `translateY(${(1 - ps[i]) * 24}px)`; });
-    // frame height follows the revealed sections
-    let h = bottoms[0] + pad - 20;
-    for (let i = 1; i < secs.length; i++) h += (bottoms[i] - bottoms[i - 1]) * ps[i];
-    frame.style.height = Math.min(H, Math.ceil(h)) + "px";
+  api.update = (t) => {
+    secs.forEach((s, i) => { const p = prog(t, times[i + 1], DUR.base); s.style.opacity = p; s.style.transform = `translateY(${(1 - p) * 22}px)`; });
     marker1(word.firstChild, prog(t, wl.start, DUR.slow));
     exK.update(t);
-    if (fromK) fromK.forEach((sp, i) => { if (it.from[i].role === "main") { Object.assign(sp.style, marker(prog(t, times[3] + 0.1, DUR.slow))); sp.style.fontWeight = 800; } });
-  }
-  const api = { el: root, update, layout, height: 0 };
+    if (fromSpans) fromSpans.forEach((sp, i) => { if (it.from[i].role === "main") { Object.assign(sp.style, marker(prog(t, times[3] + 0.1, DUR.slow))); sp.style.fontWeight = 800; } });
+  };
   return api;
 }
 const marker1 = (sp, p) => Object.assign(sp.style, marker(p, "var(--c-accent)", ".5em"));
@@ -159,7 +148,7 @@ export function createQuiz(it, spec) {
   } else {
     word = el("div", "qd-word", null, esc(it.word)); word.dataset.aud = "quiz-word"; root.appendChild(word);
   }
-  const timer = el("div", "qd-timer", { margin: "34px 0 6px" }, "<i></i>");
+  const timer = el("div", "qd-timer", { margin: "56px 0 12px" }, "<i></i>");
   root.appendChild(timer);
   const bar = timer.firstChild;
   const rows = it.options.map((o, i) => {
@@ -198,27 +187,25 @@ export function createQuiz(it, spec) {
 }
 const mixCol = (a, b, p) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * p)).join(",")})`;
 
-// ---------- ENDING: what was learned, centered ----------
-export function createEnding(it, spec) {
+// ---------- ENDING: what was learned, then the NEXT post already showing below (the video is cut, not finished) ----------
+const NEXT_TOP = 760;       // px below the item's anchor where the next post begins (its top ~⅓ is visible)
+export function createEnding(it) {
   const root = el("div", "ed");
-  const h = el("div", "ed-h", null, `${it.count} word${it.count > 1 ? "s" : ""} learned`); h.dataset.aud = "end-h"; root.appendChild(h);
+  const h = el("div", "ed-h", null, `${it.count} WORD${it.count > 1 ? "S" : ""} LEARNED ✓`); h.dataset.aud = "end-h"; root.appendChild(h);
   const ws = el("div", "ed-words");
   const rows = it.words.map((w) => { const r = el("div", "ed-word", null, `<span>${esc(w)}</span><span class="ed-check">✓</span>`); r.dataset.aud = "end-word"; ws.appendChild(r); return r; });
   root.appendChild(ws);
-  let tease = null, url = null;
-  if (it.teaser) { tease = el("div", "ed-tease", null, esc(it.teaser)); tease.dataset.aud = "end-tease"; root.appendChild(tease); }
+  let url = null;
   if (it.showUrl && it.url) { url = el("div", "ed-url", null, `<span>${esc(it.url)}</span>`); url.dataset.aud = "end-url"; root.appendChild(url); }
+  const n = it.next, nx = el("div", "ed-next", { top: NEXT_TOP + "px" },
+    `<div class="ed-rule"></div><div class="ed-nl">NEXT POST</div>` +
+    `<div class="ed-nrow"><div class="ed-nav" style="background:${esc(n.color)}">${n.avatar}</div><div class="ed-nname">${esc(n.name)}</div></div>` +
+    `<div class="ed-ntext">${esc(n.en)}</div>${n.zh ? `<div class="ed-nzh">${esc(n.zh)}</div>` : ""}`);
+  root.appendChild(nx);
+  root.style.height = NEXT_TOP + 420 + "px";
   function update(t) {
     rows.forEach((r, i) => enter(r, t, it.tickAt[i], DUR.base, 28));
-    if (tease) enter(tease, t, it.tickAt[it.tickAt.length - 1] + 0.3, DUR.base, 18);
     if (url) enter(url, t, it.tickAt[0] + 0.3, DUR.base, 14);
   }
-  return { el: root, update };
-}
-
-// ---------- TEASER: the next post, peeking in from below ----------
-export function createTeaser(it) {
-  const root = el("div", "tz", null, `<div class="tz-row"><div class="tz-av"></div><div style="flex:1"><div class="tz-bar" style="width:46%"></div><div class="tz-bar" style="width:30%;margin-top:14px;height:22px"></div></div></div>` +
-    `<div class="tz-bar" style="width:92%;margin-top:34px"></div><div class="tz-bar" style="width:74%;margin-top:18px"></div>`);
-  return { el: root, update() {}, height: 320 };
+  return { el: root, update, height: NEXT_TOP + 420 };
 }

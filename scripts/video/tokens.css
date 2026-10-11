@@ -15,6 +15,7 @@
   --c-accent: #FFD66B;      /* highlight: key words, current word, correct answer */
   --c-accent-soft: #FFEDB5; /* current non-key word */
   --c-border: #EADFCB;
+  --c-cur: #EFE4D0;           /* the word being spoken (neutral: yellow is reserved for the word being learned) */
 
   --c-card: #FFFFFF;          /* vocabulary card */
   --c-card-border: #E4E8EF;

@@ -4,7 +4,7 @@
 //
 // One tall column of items, one camera (Feed.js). The page calls init(spec) once and renderFrame(t) per frame;
 // everything is a pure function of t.
-import { el, esc } from "./core.js";
+import { el, esc, clamp } from "./core.js";
 import { createSpeech } from "./speech.js";
 import { createFeed } from "./Feed.js";
 import * as I from "./components/FeedItems.js";
@@ -26,17 +26,23 @@ export async function mount(spec) {
     (spec.episode != null ? `<div class="ep">EP.${String(spec.episode).padStart(2, "0")}</div>` : ""));
   stage.appendChild(hdr);
 
-  const make = { hook: I.createHook, post: I.createPost, card: I.createCard, recap: I.createRecap, quiz: I.createQuiz, ending: I.createEnding, teaser: I.createTeaser };
-  const items = spec.scenes.feed.items.map((it) => ({ id: it.id, anchor: it.anchor, bg: it.bg, type: it.type, api: make[it.type](it, spec) }));
+  const make = { hook: I.createHook, post: I.createPost, card: I.createCard, recap: I.createRecap, quiz: I.createQuiz, ending: I.createEnding };
+  const items = spec.scenes.feed.items.map((it) => ({ id: it.id, anchor: it.anchor, bg: it.bg, far: it.far, type: it.type, api: make[it.type](it, spec) }));
   const feed = createFeed(stage, hdr, items, spec.scenes.feed.moves);
   const sub = createSubtitle(stage, spec.cues);
   const mascot = createMascot(stage, speech, spec.mascot);
   stage.appendChild(hdr);
+  const m0 = spec.scenes.feed.moves[0].t0, epEl = hdr.querySelector(".ep");
 
   return {
     state: null, focusEl: null,
     render(t) {
       this.state = feed.update(t);
+      // brand first for a moment, then it steps back: social content first
+      const q = clamp((t - m0) / 0.5, 0, 1);
+      hdr.style.opacity = (1 - 0.6 * q).toFixed(3);
+      hdr.style.transform = `scale(${1 - 0.12 * q})`;
+      if (epEl) epEl.style.opacity = (1 - clamp((t - m0) / 0.35, 0, 1)).toFixed(3);
       this.focusEl = items.find((x) => x.id === this.state.focus).api.el;
       sub.update(t); mascot.update(t);
     },

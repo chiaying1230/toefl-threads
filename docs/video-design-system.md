@@ -299,3 +299,11 @@ The white frame grows as each part is revealed.
 
 **Audit** (`--audit`): skipped while the camera moves; judges only the focused item (+ mascot/subtitle); flags content in the bottom fade zone.
 Set `SPEC_DUMP=<file>` to write the full plan (with tokens) for debugging.
+
+### Feed revision 2
+- One shared track with a constant gap (`Feed.js` GAP): the tail of the previous item and the head of the next are visible at rest and during every swipe; the focused item is full strength, neighbours are dimmed. `far: true` (recap, quiz) keeps the dark quiz alone on screen.
+- Only the word being learned is yellow (card word, the word in the example, FROM THIS POST, post text, recap, quiz answer); the word being spoken uses a neutral tint (`--c-cur`).
+- Card hierarchy: word · meaning · EXAMPLE · example zh · small POS/pronunciation · FROM THIS POST. No level badge.
+- Hook: `hook.beats[]` supports `big` (giant first token, revealed alone), `caps`, `emoji`.
+- `recap: ["I decided to [[allocate]] …"]` (optional hand-written lines); `outro.next: { name, avatar, color, en, zh? }` is the NEXT POST teaser shown at the end of the ending item; the video is cut while it is visible.
+- Header (brand + EP) is full strength only until the first scroll, then shrinks and fades; EP disappears.
