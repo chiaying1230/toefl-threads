@@ -16,3 +16,4 @@ firebase-debug.log
 firestore-debug.log
 .DS_Store
 __pycache__/
+videos/
