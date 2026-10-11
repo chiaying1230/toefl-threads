@@ -1,0 +1,726 @@
+{
+  "id": "p2-v2",
+  "renderProfile": "p2-v2",
+  "episode": 1,
+  "series": {
+    "name": "toEfu 單字情境",
+    "tagline": "用生活日常背單字",
+    "url": "toefu.app"
+  },
+  "pack": "toefl",
+  "duration": 35.97,
+  "char": {
+    "name": "Mr. Whiskers",
+    "handle": "cat_ceo",
+    "avatar": "🐱",
+    "color": "#f6b26b",
+    "topic": "Business"
+  },
+  "thread": {
+    "source": null
+  },
+  "scenes": {
+    "feed": {
+      "items": [
+        {
+          "type": "hook",
+          "id": "hook",
+          "bg": "paper",
+          "anchor": 400,
+          "beats": [
+            {
+              "size": "xl",
+              "zh": null,
+              "big": true,
+              "caps": false,
+              "emoji": null,
+              "tokens": [
+                {
+                  "text": "90%",
+                  "key": null,
+                  "w": 0.2,
+                  "pause": 0,
+                  "role": null,
+                  "s": 0.05,
+                  "e": 0.15
+                },
+                {
+                  "text": "of",
+                  "key": null,
+                  "w": 0.2,
+                  "pause": 0,
+                  "role": null,
+                  "s": 0.15,
+                  "e": 0.25
+                },
+                {
+                  "text": "the",
+                  "key": null,
+                  "w": 0.25,
+                  "pause": 0,
+                  "role": null,
+                  "s": 0.25,
+                  "e": 0.375
+                },
+                {
+                  "text": "budget.",
+                  "key": null,
+                  "w": 0.4,
+                  "pause": 0.35,
+                  "role": null,
+                  "s": 0.375,
+                  "e": 0.575
+                }
+              ],
+              "start": 0.05
+            },
+            {
+              "size": "l",
+              "zh": "公司九成預算，拿去買紙箱？",
+              "big": false,
+              "caps": true,
+              "emoji": "📦",
+              "tokens": [
+                {
+                  "text": "For",
+                  "key": null,
+                  "w": 0.25,
+                  "pause": 0,
+                  "role": null,
+                  "s": 0.89,
+                  "e": 1.015
+                },
+                {
+                  "text": "cardboard",
+                  "key": null,
+                  "w": 0.55,
+                  "pause": 0,
+                  "role": null,
+                  "s": 1.015,
+                  "e": 1.29
+                },
+                {
+                  "text": "boxes.",
+                  "key": null,
+                  "w": 0.35,
+                  "pause": 0.35,
+                  "role": null,
+                  "s": 1.29,
+                  "e": 1.465
+                }
+              ],
+              "start": 0.89
+            }
+          ]
+        },
+        {
+          "type": "post",
+          "id": "post0",
+          "bg": "paper",
+          "anchor": 460,
+          "head": "full",
+          "chunks": [
+            {
+              "line": 2,
+              "zh": null,
+              "zhAt": 0
+            },
+            {
+              "line": 3,
+              "zh": "董事會更新：我決定把公司 90% 的預算撥給紙箱。",
+              "zhAt": 8.43
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "id": "card0",
+          "bg": "paper",
+          "anchor": 380,
+          "key": "allocate",
+          "main": false,
+          "word": "allocate",
+          "pos": "v.",
+          "zh": "分配；撥出",
+          "kk": "[ˋæləˏket]",
+          "level": "Tofu 豆腐",
+          "exZh": "公司今年撥了更多預算在廣告上。",
+          "from": [
+            {
+              "text": "allocate",
+              "role": "main"
+            },
+            {
+              "text": "90%",
+              "role": null
+            },
+            {
+              "text": "of",
+              "role": null
+            },
+            {
+              "text": "the",
+              "role": null
+            },
+            {
+              "text": "company",
+              "role": null
+            },
+            {
+              "text": "budget",
+              "role": null
+            }
+          ],
+          "lines": {
+            "word": 4,
+            "mean": 5,
+            "ex": 6
+          },
+          "end": 15.309999999999999
+        },
+        {
+          "type": "post",
+          "id": "post1",
+          "bg": "paper",
+          "anchor": 460,
+          "head": "continued",
+          "chunks": [
+            {
+              "line": 7,
+              "zh": "這個決定是最終的，而且完全是隨意的。",
+              "zhAt": 18.91
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "id": "card1",
+          "bg": "paper",
+          "anchor": 380,
+          "key": "arbitrary",
+          "main": true,
+          "word": "arbitrary",
+          "pos": "adj.",
+          "zh": "任意的；武斷的",
+          "kk": "[ˋɑrbəˏtrɛri]",
+          "level": "Natto 納豆",
+          "exZh": "這項規定看起來完全沒有道理。",
+          "from": [
+            {
+              "text": "completely",
+              "role": null
+            },
+            {
+              "text": "arbitrary",
+              "role": "main"
+            }
+          ],
+          "lines": {
+            "word": 8,
+            "mean": 9,
+            "ex": 10
+          },
+          "end": 25.029999999999998
+        },
+        {
+          "type": "recap",
+          "id": "recap",
+          "bg": "paper",
+          "anchor": 470,
+          "far": true,
+          "lines": [
+            {
+              "tokens": [
+                {
+                  "text": "allocate",
+                  "role": "main"
+                },
+                {
+                  "text": "the",
+                  "role": null
+                },
+                {
+                  "text": "budget.",
+                  "role": null
+                }
+              ],
+              "at": 25.68
+            },
+            {
+              "tokens": [
+                {
+                  "text": "A",
+                  "role": null
+                },
+                {
+                  "text": "completely",
+                  "role": null
+                },
+                {
+                  "text": "arbitrary",
+                  "role": "main"
+                },
+                {
+                  "text": "decision.",
+                  "role": null
+                }
+              ],
+              "at": 26.03
+            }
+          ],
+          "note": "撥出預算，卻是個武斷的決定。",
+          "noteAt": 26.38
+        },
+        {
+          "type": "quiz",
+          "id": "quiz",
+          "bg": "dark",
+          "anchor": 400,
+          "far": true,
+          "kind": "context",
+          "sentence": "The decision is completely ____.",
+          "filled": "The decision is completely arbitrary.",
+          "word": "arbitrary",
+          "options": [
+            "allocated",
+            "arbitrary",
+            "cardboard"
+          ],
+          "answer": 1,
+          "thinkStart": 30.31,
+          "revealAt": 32.11,
+          "lines": {
+            "prompt": 11,
+            "answer": [
+              12
+            ]
+          }
+        },
+        {
+          "type": "ending",
+          "id": "ending",
+          "bg": "paper",
+          "anchor": 500,
+          "count": 2,
+          "words": [
+            "allocate",
+            "arbitrary"
+          ],
+          "showUrl": false,
+          "url": "toefu.app",
+          "tickAt": [
+            34.269999999999996,
+            34.47
+          ],
+          "next": {
+            "name": "Mr. Whiskers",
+            "avatar": "🐱",
+            "color": "#f6b26b",
+            "en": "Next budget idea: more boxes?",
+            "zh": "下個預算提案：再買更多紙箱？"
+          },
+          "end": 35.97
+        }
+      ],
+      "moves": [
+        {
+          "t0": 1.84,
+          "t1": 2.39,
+          "to": 1
+        },
+        {
+          "t0": 8.979999999999999,
+          "t1": 9.53,
+          "to": 2
+        },
+        {
+          "t0": 15.309999999999999,
+          "t1": 15.86,
+          "to": 3
+        },
+        {
+          "t0": 19.46,
+          "t1": 20.01,
+          "to": 4
+        },
+        {
+          "t0": 25.029999999999998,
+          "t1": 25.58,
+          "to": 5
+        },
+        {
+          "t0": 28.38,
+          "t1": 28.93,
+          "to": 6
+        },
+        {
+          "t0": 33.57,
+          "t1": 34.12,
+          "to": 7
+        },
+        {
+          "t0": 35.07,
+          "t1": 35.97,
+          "to": 7,
+          "extra": 70
+        }
+      ]
+    }
+  },
+  "lines": [
+    {
+      "id": 0,
+      "speaker": "char",
+      "silent": false,
+      "lang": "en",
+      "text": "90% of the budget.",
+      "voice": {
+        "voice": "en-US-ChristopherNeural",
+        "rate": "+12%",
+        "pitch": "+0Hz"
+      },
+      "start": 0.05,
+      "end": 0.85
+    },
+    {
+      "id": 1,
+      "speaker": "char",
+      "silent": false,
+      "lang": "en",
+      "text": "For cardboard boxes.",
+      "voice": {
+        "voice": "en-US-ChristopherNeural",
+        "rate": "+12%",
+        "pitch": "+0Hz"
+      },
+      "start": 0.89,
+      "end": 1.74
+    },
+    {
+      "id": 2,
+      "speaker": "char",
+      "silent": false,
+      "lang": "en",
+      "text": "Board meeting update:",
+      "voice": {
+        "voice": "en-US-ChristopherNeural",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      },
+      "start": 2.14,
+      "end": 3.59
+    },
+    {
+      "id": 3,
+      "speaker": "char",
+      "silent": false,
+      "lang": "en",
+      "text": "I have decided to allocate 90% of the company budget to cardboard boxes.",
+      "voice": {
+        "voice": "en-US-ChristopherNeural",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      },
+      "start": 3.63,
+      "end": 8.28
+    },
+    {
+      "id": 4,
+      "speaker": "host",
+      "silent": false,
+      "lang": "en",
+      "text": "allocate",
+      "voice": {
+        "voice": "en-US-AnaNeural",
+        "rate": "-15%",
+        "pitch": "+0Hz"
+      },
+      "start": 9.23,
+      "end": 9.83
+    },
+    {
+      "id": 5,
+      "speaker": "host",
+      "silent": false,
+      "lang": "zh",
+      "text": "分配；撥出",
+      "voice": {
+        "voice": "zh-TW-HsiaoChenNeural",
+        "rate": "+5%",
+        "pitch": "+0Hz"
+      },
+      "start": 9.88,
+      "end": 11.01
+    },
+    {
+      "id": 6,
+      "speaker": "host",
+      "silent": false,
+      "lang": "en",
+      "text": "The company allocated more money to advertising this year.",
+      "voice": {
+        "voice": "en-US-AnaNeural",
+        "rate": "-5%",
+        "pitch": "+0Hz"
+      },
+      "start": 11.06,
+      "end": 14.86
+    },
+    {
+      "id": 7,
+      "speaker": "char",
+      "silent": false,
+      "lang": "en",
+      "text": "The decision is final and completely arbitrary.",
+      "voice": {
+        "voice": "en-US-ChristopherNeural",
+        "rate": "+0%",
+        "pitch": "+0Hz"
+      },
+      "start": 15.61,
+      "end": 18.76
+    },
+    {
+      "id": 8,
+      "speaker": "host",
+      "silent": false,
+      "lang": "en",
+      "text": "arbitrary",
+      "voice": {
+        "voice": "en-US-AnaNeural",
+        "rate": "-15%",
+        "pitch": "+0Hz"
+      },
+      "start": 19.71,
+      "end": 20.36
+    },
+    {
+      "id": 9,
+      "speaker": "host",
+      "silent": false,
+      "lang": "zh",
+      "text": "任意的；武斷的",
+      "voice": {
+        "voice": "zh-TW-HsiaoChenNeural",
+        "rate": "+5%",
+        "pitch": "+0Hz"
+      },
+      "start": 20.41,
+      "end": 21.98
+    },
+    {
+      "id": 10,
+      "speaker": "host",
+      "silent": false,
+      "lang": "en",
+      "text": "The rule seemed completely arbitrary.",
+      "voice": {
+        "voice": "en-US-AnaNeural",
+        "rate": "-5%",
+        "pitch": "+0Hz"
+      },
+      "start": 22.03,
+      "end": 24.58
+    },
+    {
+      "id": 11,
+      "speaker": "host",
+      "silent": false,
+      "lang": "zh",
+      "text": "你選哪個？",
+      "voice": {
+        "voice": "zh-TW-HsiaoChenNeural",
+        "rate": "+5%",
+        "pitch": "+0Hz"
+      },
+      "start": 28.78,
+      "end": 30.11
+    },
+    {
+      "id": 12,
+      "speaker": "host",
+      "silent": false,
+      "lang": "zh",
+      "text": "答案是B",
+      "voice": {
+        "voice": "zh-TW-HsiaoChenNeural",
+        "rate": "+5%",
+        "pitch": "+0Hz"
+      },
+      "start": 32.26,
+      "end": 33.17
+    }
+  ],
+  "cues": [
+    {
+      "start": 28.78,
+      "end": 30.11,
+      "variant": "mascot",
+      "line": {
+        "id": 11,
+        "speaker": "host",
+        "silent": false,
+        "lang": "zh",
+        "text": "你選哪個？",
+        "tokens": [
+          {
+            "text": "你",
+            "key": null,
+            "w": 0.22,
+            "pause": 0,
+            "s": 28.78,
+            "e": 29
+          },
+          {
+            "text": "選",
+            "key": null,
+            "w": 0.22,
+            "pause": 0,
+            "s": 29,
+            "e": 29.22
+          },
+          {
+            "text": "哪個？",
+            "key": null,
+            "w": 0.44,
+            "pause": 0.35,
+            "s": 29.22,
+            "e": 29.66
+          }
+        ],
+        "voice": {
+          "voice": "zh-TW-HsiaoChenNeural",
+          "rate": "+5%",
+          "pitch": "+0Hz"
+        },
+        "start": 28.78,
+        "end": 30.11,
+        "dur": 1.33
+      },
+      "withMascot": true
+    }
+  ],
+  "mascot": [
+    {
+      "start": 28.58,
+      "end": 30.209999999999997,
+      "pose": "talk"
+    },
+    {
+      "start": 30.209999999999997,
+      "end": 32.11,
+      "pose": "think"
+    },
+    {
+      "start": 32.11,
+      "end": 33.82,
+      "pose": "talk"
+    }
+  ],
+  "beats": [
+    {
+      "t": 0.05,
+      "what": "hook line 1"
+    },
+    {
+      "t": 0.89,
+      "what": "hook line 2"
+    },
+    {
+      "t": 1.84,
+      "what": "scroll → post"
+    },
+    {
+      "t": 2.14,
+      "what": "reading"
+    },
+    {
+      "t": 3.63,
+      "what": "reading"
+    },
+    {
+      "t": 4.73,
+      "what": "\"allocate\" highlighted"
+    },
+    {
+      "t": 8.98,
+      "what": "scroll → card"
+    },
+    {
+      "t": 9.23,
+      "what": "\"allocate\" card"
+    },
+    {
+      "t": 9.88,
+      "what": "meaning"
+    },
+    {
+      "t": 11.06,
+      "what": "example"
+    },
+    {
+      "t": 15.31,
+      "what": "scroll → post"
+    },
+    {
+      "t": 15.61,
+      "what": "reading"
+    },
+    {
+      "t": 17.76,
+      "what": "\"arbitrary\" highlighted"
+    },
+    {
+      "t": 19.46,
+      "what": "scroll → card"
+    },
+    {
+      "t": 19.71,
+      "what": "\"arbitrary\" card"
+    },
+    {
+      "t": 20.41,
+      "what": "meaning"
+    },
+    {
+      "t": 22.03,
+      "what": "example"
+    },
+    {
+      "t": 25.03,
+      "what": "scroll → recap"
+    },
+    {
+      "t": 25.58,
+      "what": "recap"
+    },
+    {
+      "t": 28.38,
+      "what": "scroll → quiz"
+    },
+    {
+      "t": 28.78,
+      "what": "quiz question"
+    },
+    {
+      "t": 28.93,
+      "what": "quiz"
+    },
+    {
+      "t": 30.31,
+      "what": "think"
+    },
+    {
+      "t": 32.11,
+      "what": "answer"
+    },
+    {
+      "t": 33.57,
+      "what": "scroll → ending"
+    },
+    {
+      "t": 34.12,
+      "what": "ending (next post visible)"
+    }
+  ]
+}

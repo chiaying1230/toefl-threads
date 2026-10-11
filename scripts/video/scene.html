@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>toEfu video scene</title>
+<!--
+  Page that make-video.mjs renders frame by frame (Playwright screenshots → ffmpeg).
+  window.init(spec) builds the episode; window.renderFrame(t) draws time t. Nothing here uses real time,
+  so renders are repeatable. Design tokens: tokens.css · components: components/*.js · spec: docs/video-design-system.md
+  Fonts: Google Fonts (DM Serif Display, DM Sans, Noto Sans TC); offline it falls back to system fonts.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=DM+Serif+Display&family=Noto+Sans+TC:wght@500;700;900&display=block">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="stage"></div>
+<script type="module">
+  import { mount } from "./VideoTemplate.js";
+  let tpl = null;
+  window.init = async (spec) => { tpl = await mount(spec); };
+  window.renderFrame = (t) => tpl.render(t);
+
+  // Layout audit for time t (make-video.mjs --audit): returns a list of problems.
+  //   safe area · text overflowing its box · text smaller than its floor · overlapping elements
+  const FLOORS = { ".pi-chunk": 52, ".vc-ex": 44, ".vc-zh": 56, ".vc-word": 80, ".hk-b:not(.s)": 76, ".qd-s": 48, ".qd-text": 48, ".rc-line": 52 };
+  window.audit = (t) => {
+    tpl.render(t);
+    const st = tpl.state, SAFE = { l: 84, r: 948, t: 220, b: 1560 }, issues = [];
+    if (st.moving) return issues;                       // content is in motion: nothing to judge
+    const eff = (e) => { let o = 1; for (let n = e; n && n !== document.body; n = n.parentElement) { const cs = getComputedStyle(n); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= parseFloat(cs.opacity); } return o; };
+    // only the item the camera rests on (plus the mascot and subtitle) is judged; the next one just peeks in
+    const live = (e) => { const fi = e.closest(".fi"); return !fi || fi === tpl.focusEl; };
+    const items = [...document.querySelectorAll("[data-aud]")].filter(live).map((e) => ({ id: e.dataset.aud, e, r: e.getBoundingClientRect(), o: eff(e) })).filter((x) => x.o >= 0.35 && x.r.width > 0);
+    for (const x of items) {
+      if (x.r.left < SAFE.l - 3 || x.r.right > SAFE.r + 3 || x.r.top < SAFE.t - 3 || x.r.bottom > SAFE.b + 3) issues.push(`${x.id}: outside the safe area`);
+      if (x.e.closest(".fi") && x.r.bottom > 1470) issues.push(`${x.id}: runs into the bottom fade`);
+    }
+    for (const [sel, min] of Object.entries(FLOORS)) {
+      for (const e of document.querySelectorAll(sel)) {
+        if (!live(e) || eff(e) < 0.35) continue;
+        const px = parseFloat(getComputedStyle(e).fontSize);
+        if (px < min - 0.5) issues.push(`${sel}: ${px}px is below its ${min}px floor`);
+      }
+    }
+    for (const e of document.querySelectorAll(".vc-word, .qd-text, .ed-word")) {
+      if (live(e) && eff(e) >= 0.35 && e.scrollWidth > e.clientWidth + 3 && getComputedStyle(e).whiteSpace === "nowrap") issues.push(`${e.className}: text runs past its box`);
+    }
+    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+      const a = items[i], b = items[j];
+      if (a.id === b.id || a.e.contains(b.e) || b.e.contains(a.e) || a.o < 0.5 || b.o < 0.5) continue;
+      const w = Math.min(a.r.right, b.r.right) - Math.max(a.r.left, b.r.left), h = Math.min(a.r.bottom, b.r.bottom) - Math.max(a.r.top, b.r.top);
+      if (w > 12 && h > 12) issues.push(`${a.id} overlaps ${b.id}`);
+    }
+    return issues;
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "baseline_commit": "d30b706",
+  "width": 1080,
+  "height": 1920,
+  "fps": "30/1",
+  "codec": "h264",
+  "pixel_format": "yuv420p",
+  "duration_seconds": 35.966667,
+  "frames": 1079,
+  "audio_tracks": 0,
+  "full_decode": "pass",
+  "mp4_sample_times": [
+    0,
+    0.8,
+    2.4,
+    8.7,
+    9.25,
+    13.5,
+    15.55,
+    16.5,
+    20.5,
+    24.5,
+    27,
+    30,
+    32.8,
+    35
+  ],
+  "mp4_stills_dimensions": "all 1080x1920",
+  "scope": "scripts/ and docs/ only; p2 V2 only",
+  "notes": "Silent like the supplied baseline; no narration added.",
+  "layout_audit": {
+    "result": "pass",
+    "checks": 180,
+    "step_seconds": 0.2,
+    "moving_frames": "visually sampled in MP4 stills; renderer audit skips moving frames"
+  },
+  "visual_review": "MP4 contact sheet and 360x640 hook/card frames inspected; transition at 15.55s inspected"
+}

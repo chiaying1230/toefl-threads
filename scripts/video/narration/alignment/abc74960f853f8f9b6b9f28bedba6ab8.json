@@ -1,0 +1,52 @@
+{
+  "hash": "abc74960f853f8f9b6b9f28bedba6ab8",
+  "segment": "arbitraryMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "任意的、武斷的。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 8,
+  "estimatedDuration": 2.066375,
+  "speechStart": 0,
+  "speechEnd": 2.08,
+  "alignment": {
+    "characters": [
+      "任",
+      "意",
+      "的",
+      "、",
+      "武",
+      "斷",
+      "的",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.36,
+      0.48,
+      0.96,
+      1.12,
+      1.36,
+      1.6,
+      1.76
+    ],
+    "character_end_times_seconds": [
+      0.36,
+      0.48,
+      0.96,
+      1.12,
+      1.36,
+      1.6,
+      1.76,
+      2.08
+    ]
+  }
+}

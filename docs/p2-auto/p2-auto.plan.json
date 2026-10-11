@@ -1,0 +1,497 @@
+{
+  "id": "p2-auto",
+  "duration": 28,
+  "frames": 840,
+  "fps": 30,
+  "voices": {
+    "en": "ElevenLabs arthur (eleven_v4, C1npRmjB19a6yNkEucvx)",
+    "zh": "ElevenLabs ling (eleven_v4, Z8Aisvg1z70p27kGvkZZ)"
+  },
+  "audioEnd": 23.849068,
+  "source": "ElevenLabs voice pipeline (voice.mjs → assemble)",
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "Ninety percent, for cardboard boxes.",
+      "gap": 0.08,
+      "duration": 2.61,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.4,
+          "pos": 0,
+          "count": 6,
+          "text": "Ninety"
+        },
+        {
+          "at": 0.4,
+          "until": 1.28,
+          "pos": 7,
+          "count": 8,
+          "text": "percent"
+        },
+        {
+          "at": 1.28,
+          "until": 1.44,
+          "pos": 16,
+          "count": 3,
+          "text": "for"
+        },
+        {
+          "at": 1.44,
+          "until": 1.92,
+          "pos": 20,
+          "count": 9,
+          "text": "cardboard"
+        },
+        {
+          "at": 1.92,
+          "until": 2.61,
+          "pos": 30,
+          "count": 6,
+          "text": "boxes"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (46fde37a)",
+      "start": 0,
+      "end": 2.61
+    },
+    {
+      "id": "lead",
+      "lang": "en",
+      "text": "I decided to allocate",
+      "gap": 0.04,
+      "duration": 1.2390022675736962,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.23501133786848072,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.23501133786848072,
+          "until": 0.6350113378684807,
+          "pos": 2,
+          "count": 7,
+          "text": "decided"
+        },
+        {
+          "at": 0.6350113378684807,
+          "until": 0.7950113378684808,
+          "pos": 10,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 0.7950113378684808,
+          "until": 1.2390022675736962,
+          "pos": 13,
+          "count": 8,
+          "text": "allocate"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of first (062b0701)",
+      "start": 2.69,
+      "end": 3.929002
+    },
+    {
+      "id": "allocateMeaning",
+      "lang": "zh",
+      "text": "分配、撥出。",
+      "gap": 0.04,
+      "duration": 1.7150113378684808,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (69e900c6)",
+      "start": 3.969002,
+      "end": 5.684013
+    },
+    {
+      "id": "allocateExample",
+      "lang": "en",
+      "text": "We allocate money to advertising.",
+      "gap": 0.08,
+      "duration": 2.25,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.48,
+          "pos": 0,
+          "count": 2,
+          "text": "We"
+        },
+        {
+          "at": 0.48,
+          "until": 0.8,
+          "pos": 3,
+          "count": 8,
+          "text": "allocate"
+        },
+        {
+          "at": 0.8,
+          "until": 1.2,
+          "pos": 12,
+          "count": 5,
+          "text": "money"
+        },
+        {
+          "at": 1.2,
+          "until": 1.36,
+          "pos": 18,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 1.36,
+          "until": 2.25,
+          "pos": 21,
+          "count": 12,
+          "text": "advertising"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (a7616ddc)",
+      "start": 5.724013,
+      "end": 7.974013
+    },
+    {
+      "id": "budget",
+      "lang": "en",
+      "text": "ninety percent of the company budget to cardboard boxes.",
+      "gap": 0.08,
+      "duration": 3.34,
+      "words": [
+        {
+          "at": 0.11600907029478469,
+          "until": 0.43600907029478453,
+          "pos": 0,
+          "count": 6,
+          "text": "ninety"
+        },
+        {
+          "at": 0.43600907029478453,
+          "until": 0.8760090702947847,
+          "pos": 7,
+          "count": 7,
+          "text": "percent"
+        },
+        {
+          "at": 0.8760090702947847,
+          "until": 0.9960090702947848,
+          "pos": 15,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 0.9960090702947848,
+          "until": 1.2360090702947846,
+          "pos": 18,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 1.2360090702947846,
+          "until": 1.5560090702947844,
+          "pos": 22,
+          "count": 7,
+          "text": "company"
+        },
+        {
+          "at": 1.5560090702947844,
+          "until": 2.036009070294784,
+          "pos": 30,
+          "count": 6,
+          "text": "budget"
+        },
+        {
+          "at": 2.036009070294784,
+          "until": 2.2760090702947844,
+          "pos": 37,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 2.2760090702947844,
+          "until": 2.916009070294785,
+          "pos": 40,
+          "count": 9,
+          "text": "cardboard"
+        },
+        {
+          "at": 2.916009070294785,
+          "until": 3.34,
+          "pos": 50,
+          "count": 6,
+          "text": "boxes"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of first (062b0701)",
+      "start": 8.054013,
+      "end": 11.394013
+    },
+    {
+      "id": "cfo",
+      "lang": "en",
+      "text": "The CFO asked why.",
+      "gap": 0.05,
+      "duration": 1.8050113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.21501133786848073,
+          "pos": 0,
+          "count": 3,
+          "text": "The"
+        },
+        {
+          "at": 0.21501133786848073,
+          "until": 0.8550113378684807,
+          "pos": 4,
+          "count": 3,
+          "text": "CFO"
+        },
+        {
+          "at": 0.8550113378684807,
+          "until": 1.335011337868481,
+          "pos": 8,
+          "count": 5,
+          "text": "asked"
+        },
+        {
+          "at": 1.335011337868481,
+          "until": 1.8050113378684807,
+          "pos": 14,
+          "count": 4,
+          "text": "why"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (4ca09364)",
+      "start": 11.474013,
+      "end": 13.279024
+    },
+    {
+      "id": "pen",
+      "lang": "en",
+      "text": "I knocked his pen off the table.",
+      "gap": 0.15,
+      "duration": 1.9250113378684808,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.20501133786848072,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.20501133786848072,
+          "until": 0.5250113378684808,
+          "pos": 2,
+          "count": 7,
+          "text": "knocked"
+        },
+        {
+          "at": 0.5250113378684808,
+          "until": 0.7650113378684807,
+          "pos": 10,
+          "count": 3,
+          "text": "his"
+        },
+        {
+          "at": 0.7650113378684807,
+          "until": 1.085011337868481,
+          "pos": 14,
+          "count": 3,
+          "text": "pen"
+        },
+        {
+          "at": 1.085011337868481,
+          "until": 1.2850113378684809,
+          "pos": 18,
+          "count": 3,
+          "text": "off"
+        },
+        {
+          "at": 1.2850113378684809,
+          "until": 1.4050113378684808,
+          "pos": 22,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 1.4050113378684808,
+          "until": 1.9250113378684808,
+          "pos": 26,
+          "count": 6,
+          "text": "table"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (e6883193)",
+      "start": 13.329024,
+      "end": 15.254035
+    },
+    {
+      "id": "decision",
+      "lang": "en",
+      "text": "The decision is final, and completely arbitrary.",
+      "gap": 0.04,
+      "duration": 3.4050113378684808,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.15501133786848073,
+          "pos": 0,
+          "count": 3,
+          "text": "The"
+        },
+        {
+          "at": 0.15501133786848073,
+          "until": 0.7150113378684807,
+          "pos": 4,
+          "count": 8,
+          "text": "decision"
+        },
+        {
+          "at": 0.7150113378684807,
+          "until": 1.0350113378684807,
+          "pos": 13,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 1.0350113378684807,
+          "until": 1.7550113378684806,
+          "pos": 16,
+          "count": 6,
+          "text": "final"
+        },
+        {
+          "at": 1.7550113378684806,
+          "until": 1.9150113378684805,
+          "pos": 23,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 1.9150113378684805,
+          "until": 2.6350113378684807,
+          "pos": 27,
+          "count": 10,
+          "text": "completely"
+        },
+        {
+          "at": 2.6350113378684807,
+          "until": 3.4050113378684808,
+          "pos": 38,
+          "count": 10,
+          "text": "arbitrary"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (609b73e9)",
+      "start": 15.404035,
+      "end": 18.809046
+    },
+    {
+      "id": "arbitraryMeaning",
+      "lang": "zh",
+      "text": "任意的、武斷的。",
+      "gap": 0.04,
+      "duration": 1.82,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (abc74960)",
+      "start": 18.849046,
+      "end": 20.669046
+    },
+    {
+      "id": "arbitraryExample",
+      "lang": "en",
+      "text": "The rule seems arbitrary.",
+      "gap": 0.08,
+      "duration": 2.0150113378684806,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.2250113378684807,
+          "pos": 0,
+          "count": 3,
+          "text": "The"
+        },
+        {
+          "at": 0.2250113378684807,
+          "until": 0.6250113378684807,
+          "pos": 4,
+          "count": 4,
+          "text": "rule"
+        },
+        {
+          "at": 0.6250113378684807,
+          "until": 1.1850113378684808,
+          "pos": 9,
+          "count": 5,
+          "text": "seems"
+        },
+        {
+          "at": 1.1850113378684808,
+          "until": 2.0150113378684806,
+          "pos": 15,
+          "count": 10,
+          "text": "arbitrary"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (b13630d2)",
+      "start": 20.709046,
+      "end": 22.724057
+    },
+    {
+      "id": "bye",
+      "lang": "en",
+      "text": "Meeting adjourned.",
+      "gap": 0.1,
+      "duration": 1.0450113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.46501133786848076,
+          "pos": 0,
+          "count": 7,
+          "text": "Meeting"
+        },
+        {
+          "at": 0.46501133786848076,
+          "until": 1.0450113378684807,
+          "pos": 8,
+          "count": 10,
+          "text": "adjourned"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (9e398386)",
+      "start": 22.804057,
+      "end": 23.849068
+    },
+    {
+      "id": "question",
+      "lang": null,
+      "text": "",
+      "gap": 2,
+      "duration": 0.8,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 23.949068,
+      "end": 24.749068
+    },
+    {
+      "id": "answer",
+      "lang": null,
+      "text": "",
+      "gap": 0.85,
+      "duration": 1.25,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 26.749068,
+      "end": 27.999068
+    }
+  ]
+}

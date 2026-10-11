@@ -1,0 +1,162 @@
+/* Component styles. Uses only tokens.css values. Canvas 1080 × 1920.
+   The video is ONE tall feed column that the camera scrolls through (Feed.js). Items never fade in the middle of
+   the screen: they slide, and only the top and bottom edges of the viewport fade them out. */
+html, body { margin: 0; background: #000; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--c-bg); color: var(--c-text); font-family: var(--font-body); }
+.zh { font-family: var(--font-zh); }
+
+/* header: series chip + episode number (stays for the whole video; its colours follow the background) */
+.hdr { position: absolute; left: 84px; right: 132px; top: 196px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: var(--fs-chip); letter-spacing: .04em; color: var(--c-text-2); z-index: 5; }
+.hdr .series { display: flex; align-items: center; gap: 14px; }
+.hdr .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--c-accent); }
+.hdr .ep { color: var(--c-text); }
+
+/* the feed viewport: content slides through it; the top and bottom edges fade it out */
+.feed { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 232px, #000 336px, #000 1470px, transparent 1610px);
+  mask-image: linear-gradient(to bottom, transparent 232px, #000 336px, #000 1470px, transparent 1610px); }
+.feed-col { position: absolute; left: 0; top: 0; width: 1080px; will-change: transform; }
+.fi { position: absolute; left: 84px; width: 864px; }
+
+/* karaoke tokens */
+.tk { display: inline; padding: 0 .1em; margin: 0 -.1em; border-radius: .22em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* HOOK: big content lines, left aligned, no chrome */
+.hk-b { font-weight: 800; line-height: 1.1; letter-spacing: -.015em; }
+.hk-b.s { font-weight: 600; line-height: 1.3; letter-spacing: 0; color: var(--c-text-2); }
+.hk-zh { font-family: var(--font-zh); font-weight: 500; font-size: 50px; line-height: 1.3; color: var(--c-text-2); margin-top: 14px; }
+
+/* POST: the author, then the text; "continued" after a word card */
+.pi-head { display: flex; align-items: center; gap: 24px; margin-bottom: 34px; }
+.pi-av { flex: none; width: 88px; height: 88px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 52px; }
+.pi-name { font-weight: 800; font-size: 42px; line-height: 1.1; }
+.pi-meta { font-size: 30px; color: var(--c-text-2); font-weight: 500; margin-top: 4px; }
+.pi-topic { margin-left: auto; flex: none; font-size: 28px; font-weight: 700; border: 2px solid var(--c-border); border-radius: var(--r-chip); padding: 6px 22px; color: var(--c-text-2); }
+.pi-head.cont { gap: 18px; margin-bottom: 26px; }
+.pi-head.cont .pi-av { width: 60px; height: 60px; font-size: 36px; }
+.pi-cont { font-size: 34px; font-weight: 700; color: var(--c-text-2); }
+.pi-chunk { font-weight: 600; line-height: 1.38; margin-bottom: 22px; }
+.pi-zh { font-family: var(--font-zh); font-size: var(--fs-sub); font-weight: 500; line-height: 1.4; color: var(--c-text-2); margin: 8px 0 40px; }
+
+/* VOCABULARY CARD: a feed item. White and clean, left aligned, muted blue-gray labels */
+.vc { position: absolute; color: var(--c-text); left: 0; top: 0; width: 864px; box-sizing: border-box; background: var(--c-card); border: 2px solid var(--c-card-border); border-radius: var(--r-card); padding: 40px 56px 44px; overflow: hidden; }
+.vc-lvl { position: absolute; top: 36px; right: 44px; font-size: 24px; font-weight: 700; color: var(--c-learn); background: var(--c-learn-soft); border-radius: var(--r-chip); padding: 4px 18px; }
+.vc-word { font-family: var(--font-heading); font-weight: 400; line-height: 1.04; letter-spacing: -.01em; white-space: nowrap; margin-top: 30px; }
+.vc-word .tk { padding: 0 .06em; margin: 0 -.06em; }
+.vc-meta { display: flex; align-items: center; gap: 16px; margin-top: 14px; font-size: var(--fs-kk); font-weight: 500; color: var(--c-learn); }
+.vc-pos { font-size: 30px; font-weight: 700; color: var(--c-learn); background: var(--c-learn-soft); border-radius: var(--r-chip); padding: 2px 20px; }
+.vc-zh { font-family: var(--font-zh); font-weight: 900; line-height: 1.16; margin-top: 26px; }
+.vc-note { font-family: var(--font-zh); font-size: 34px; font-weight: 500; line-height: 1.35; color: var(--c-text-2); margin-top: 8px; }
+.vc-sec { margin-top: 30px; padding-top: 26px; border-top: 2px solid var(--c-card-border); }
+.vc-label { font-size: 26px; font-weight: 700; letter-spacing: .14em; color: var(--c-learn); margin-bottom: 12px; }
+.vc-ex { font-weight: 700; line-height: 1.36; }
+.vc-exzh { font-family: var(--font-zh); font-size: var(--fs-ctx-zh); font-weight: 500; line-height: 1.4; color: var(--c-text-2); margin-top: 14px; }
+.vc-from { font-size: var(--fs-from); font-weight: 600; line-height: 1.3; }
+
+/* RECAP: back to the post, the learned words lit */
+.rc-head { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+.rc-av { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+.rc-name { font-size: 36px; font-weight: 700; color: var(--c-text-2); }
+.rc-line { font-weight: 700; font-size: 62px; line-height: 1.3; margin-bottom: 26px; }
+.rc-note { font-size: 42px; font-weight: 600; color: var(--c-text-2); margin-top: 40px; }
+
+/* QUIZ: a dark item (the background itself turns dark while it is on screen) */
+.qd { text-align: center; color: var(--c-quiz-text); }
+.qd-s { font-weight: 700; line-height: 1.36; }
+.qd-blank { display: inline-block; min-width: 3.4em; border-bottom: .09em solid var(--c-quiz-text); line-height: 1; vertical-align: baseline; margin: 0 .08em; }
+.qd-word { font-family: var(--font-heading); line-height: 1.05; }
+.qd-hint { font-size: 34px; font-weight: 700; letter-spacing: .08em; color: var(--c-quiz-text-2); }
+.qd-timer { height: 8px; border-radius: 4px; background: var(--c-quiz-border); overflow: hidden; }
+.qd-timer i { display: block; height: 100%; background: var(--c-quiz-text-2); transform-origin: 0 0; }
+.qd-opt { position: relative; width: 864px; height: 128px; margin-top: 22px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--c-quiz-surface); border: 2px solid var(--c-quiz-border); border-radius: var(--r-opt); color: var(--c-quiz-text); }
+.qd-badge { position: absolute; left: 32px; width: 72px; height: 72px; border-radius: 50%; background: var(--c-quiz-border); color: var(--c-quiz-text); font-weight: 800; font-size: 38px; display: flex; align-items: center; justify-content: center; }
+.qd-text { font-weight: 900; font-size: var(--fs-opt); line-height: 1.15; white-space: nowrap; }
+.qd-text.zh { font-family: var(--font-zh); }
+.qd-text.en { font-family: var(--font-heading); font-weight: 400; }
+.qd-check { position: absolute; right: 40px; font-size: 54px; font-weight: 900; }
+
+/* ENDING: what was learned; the next post peeks in from below */
+.ed { text-align: center; }
+.ed-h { font-size: 84px; font-weight: 800; letter-spacing: -.01em; line-height: 1.1; }
+.ed-words { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 46px; }
+.ed-word { display: inline-flex; align-items: center; gap: 26px; font-family: var(--font-heading); font-size: 108px; line-height: 1.04; white-space: nowrap; }
+.ed-check { width: 68px; height: 68px; border-radius: 50%; background: var(--c-accent); font-family: var(--font-body); font-size: 40px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+.ed-tease { font-family: var(--font-zh); font-weight: 700; font-size: 50px; line-height: 1.3; color: var(--c-text-2); margin-top: 56px; }
+.ed-url { font-size: 46px; font-weight: 800; margin-top: 50px; }
+.ed-url span { display: inline-block; padding: 8px 30px; background: var(--c-accent); border-radius: var(--r-chip); }
+.tz-row { display: flex; align-items: center; gap: 24px; }
+.tz-av { flex: none; width: 88px; height: 88px; border-radius: 50%; background: #EADFCB; }
+.tz-bar { height: 28px; border-radius: 14px; background: #EADFCB; }
+.tz-text { font-family: var(--font-zh); font-weight: 700; font-size: 52px; line-height: 1.3; color: var(--c-text-2); margin-top: 26px; }
+
+/* subtitle (the mascot's lines) */
+#sub { position: absolute; opacity: 0; display: flex; align-items: center; font-family: var(--font-body); line-height: 1.34; letter-spacing: .01em; text-wrap: balance; z-index: 6; }
+#sub.mascot { justify-content: flex-start; text-align: left; font-weight: 700; font-size: var(--fs-guide); }
+
+/* mascot */
+#mascot { position: absolute; width: 240px; height: 240px; opacity: 0; transform-origin: 50% 90%; z-index: 6; }
+
+.vcx { width: 864px; }
+.vc { left: 0; top: 0; }
+.vc-s0, .vc-s1 { position: relative; }
+.vc-word .wd { padding: 0 .06em; margin: 0 -.06em; border-radius: .1em; }
+.hk-zh { margin-top: 14px; }
+.qd-s { font-size: 64px; }
+.qd-opt .qd-text { flex: none; }
+.qd-check { color: #231F1C; }
+.qd-badge { top: 28px; }
+.vc-zh { font-size: var(--fs-zh); }
+.vc-ex { font-size: var(--fs-ctx); }
+
+/* ---- feed revision ---- */
+.hdr { transform-origin: 0 0; }
+/* hook */
+.hk-b.caps { text-transform: uppercase; letter-spacing: -.005em; }
+.hk-b .tk.big { display: block; font-size: 1.95em; line-height: .98; letter-spacing: -.035em; }
+.hk-emo { font-size: .8em; margin-left: .15em; }
+/* vocabulary card: an editorial card inside the feed, not a dictionary page */
+.vc { padding: 34px 48px 36px; border: 1.5px solid #EBE4D6; border-radius: 30px; box-shadow: 0 8px 28px rgba(80, 55, 15, .06); height: auto; }
+.vc-word { margin-top: 0; }
+.vc-zh { margin-top: 8px; font-size: 68px; }
+.vc-note { font-size: 32px; margin-top: 4px; }
+.vc-sec { border-top: 0; margin-top: 30px; padding-top: 0; }
+.vc-label { font-size: 24px; margin-bottom: 10px; }
+.vc-ex { font-size: 56px; font-weight: 700; line-height: 1.3; }
+.vc-exzh { font-size: 42px; margin-top: 12px; }
+.vc-meta { margin-top: 24px; gap: 14px; font-size: 30px; }
+.vc-pos { font-size: 26px; padding: 0 16px; background: transparent; border: 1.5px solid var(--c-card-border); }
+.vc-sec.vc-s3 { margin-top: 0; }
+.vc-from-wrap { margin-top: 24px; padding-top: 22px; border-top: 1.5px solid var(--c-card-border); }
+.vc-from-wrap .vc-label { font-size: 22px; margin-bottom: 6px; }
+.vc-from { font-size: 42px; }
+/* recap */
+.rc-line { font-size: 62px; font-weight: 700; line-height: 1.28; margin-bottom: 30px; }
+.rc-note { color: #5C5148; font-size: 40px; font-weight: 600; margin-top: 34px; }
+/* ending: what was learned, then the NEXT post already showing below */
+.ed { position: relative; text-align: center; }
+.ed-h { font-size: 64px; letter-spacing: .06em; font-weight: 800; }
+.ed-words { margin-top: 44px; gap: 18px; }
+.ed-word { font-size: 124px; }
+.ed-next { position: absolute; left: 0; width: 864px; text-align: left; }
+.ed-rule { border-top: 2px solid var(--c-border); margin-bottom: 26px; }
+.ed-nl { font-size: 26px; font-weight: 800; letter-spacing: .16em; color: var(--c-text-2); margin-bottom: 22px; }
+.ed-nrow { display: flex; align-items: center; gap: 22px; }
+.ed-nav { flex: none; width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 44px; }
+.ed-nname { font-size: 38px; font-weight: 800; }
+.ed-ntext { font-size: 60px; font-weight: 600; line-height: 1.32; margin-top: 22px; }
+.ed-nzh { font-family: var(--font-zh); font-size: 40px; color: var(--c-text-2); margin-top: 10px; }
+
+/* This review is deliberately limited to p2 V2. Other episodes retain their current look. */
+#stage[data-profile="p2-v2"] { --c-text-3: #776D63; --c-text-2: #635A52; }
+#stage[data-profile="p2-v2"] .hk-zh { color: #231F1C; font-size: 56px; font-weight: 700; margin-top: 22px; }
+#stage[data-profile="p2-v2"] .pi-zh { font-size: 52px; color: #635A52; }
+#stage[data-profile="p2-v2"] .vc { border: 3px solid #CED7E5; border-left: 10px solid #55657F; padding: 32px 44px; }
+#stage[data-profile="p2-v2"] .vc-ex { font-size: 62px; line-height: 1.28; }
+#stage[data-profile="p2-v2"] .vc-exzh { font-size: 50px; line-height: 1.32; }
+#stage[data-profile="p2-v2"] .vc-from { font-size: 48px; }
+#stage[data-profile="p2-v2"] .vc-meta { margin-top: 18px; }
+#stage[data-profile="p2-v2"] .vc-from-wrap { margin-top: 18px; padding-top: 16px; }
+#stage[data-profile="p2-v2"] .rc-line { font-size: 76px; }
+#stage[data-profile="p2-v2"] .rc-note { font-family: var(--font-zh); font-size: 52px; }
+#stage[data-profile="p2-v2"] .ed-next { top: 600px !important; }
+#stage[data-profile="p2-v2"] .ed-nzh { font-size: 50px; }

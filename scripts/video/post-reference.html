@@ -1,0 +1,17 @@
+<!doctype html><html lang="zh-TW"><meta charset="utf-8"><title>toEfu post reference</title>
+<link rel="stylesheet" href="./reference/post.css"><link rel="stylesheet" href="./reference/outro.css"><div id="stage"></div>
+<script type="module">
+import {mountPostTemplate} from './reference/PostTemplate.js';
+const params=new URLSearchParams(location.search),episode=params.get('episode')||'/scripts/video/episodes/p2-v42-outro.json';
+const data=await(await fetch(episode)).json(),plan=await(await fetch(data.plan)).json();const api=await mountPostTemplate(data,plan);
+window.renderFrame=api.render;window.audit=api.audit;window.plan=plan;window.template=api;window.episode=data;
+if(params.has('preview')){
+ const audio=document.createElement('audio');audio.src=data.audio;
+ const music=data.music?new Audio(data.music.asset):null;
+ const effects=(data.soundEffects??[]).map(c=>{const sound=new Audio(c.asset);sound.volume=c.gain??1;return {sound,at:api.time(c.at),played:false};});
+ const play=document.createElement('button');play.id='play';play.textContent='播放有聲預覽';document.getElementById('stage').append(play,audio);let started=null;
+ play.onclick=()=>{for(const e of effects){e.sound.pause();e.sound.currentTime=0;e.played=false;}started=performance.now();audio.currentTime=0;audio.play();if(music){music.currentTime=0;music.volume=0;music.play();}};
+ const tick=()=>{if(started!==null){const t=audio.ended?(performance.now()-started)/1000:audio.currentTime;api.render(Math.min(t,api.duration));for(const e of effects)if(t>=e.at&&!e.played){e.played=true;e.sound.play();}if(music){const m=data.music,clamp=x=>Math.max(0,Math.min(1,x));music.volume=(m.narrationGain+(m.endingGain-m.narrationGain)*clamp((t-plan.audioEnd)/m.riseDuration))*clamp(t/m.fadeIn)*clamp((api.duration-t)/m.fadeOut);if(t>=api.duration)music.pause();}}requestAnimationFrame(tick);};tick();
+}
+window.ready=true;
+</script></html>

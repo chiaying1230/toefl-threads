@@ -1,0 +1,46 @@
+{
+  "hash": "69e900c6f53315d2276007d58e56e58e",
+  "segment": "allocateMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "分配、撥出。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 6,
+  "estimatedDuration": 2.066375,
+  "speechStart": 0,
+  "speechEnd": 2.08,
+  "alignment": {
+    "characters": [
+      "分",
+      "配",
+      "、",
+      "撥",
+      "出",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.54,
+      0.72,
+      1.12,
+      1.44,
+      1.68
+    ],
+    "character_end_times_seconds": [
+      0.54,
+      0.72,
+      1.12,
+      1.44,
+      1.68,
+      2.08
+    ]
+  }
+}

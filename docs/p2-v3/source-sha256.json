@@ -1,0 +1,5 @@
+{
+  "scripts/video/p2-v3.html": "ba75d34394c47416df608eb1328eb6849a32c855df7058e3dbee1153fe8afc0d",
+  "scripts/render-p2-v3.mjs": "e07f210ae1857c22f5be54c8e71f668cdcc83cc4e8f34908347cb98961178132",
+  "scripts/video/verify-p2-v3.py": "051fd0539658cde4f6b0dd3019ca11f73fa53cdf37e9ea1cde02acaf5826ef16"
+}

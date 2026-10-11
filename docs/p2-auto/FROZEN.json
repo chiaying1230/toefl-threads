@@ -1,0 +1,129 @@
+{
+  "status": "frozen",
+  "frozenAt": "2026-10-11",
+  "name": "P2 reference (automatic pipeline)",
+  "reference": "outputs/p2-auto-pipeline-music.mp4",
+  "verified": "episode/narration data → ElevenLabs TTS → cache → character alignment → words[] → interrupted-sentence assembly → renderer → navy reading cue → yellow vocab handoff → Quiz → Outro → reusable music/SFX mix → final MP4",
+  "approvedEarlierReference": {
+    "file": "outputs/p2-v4.2-outro-music.mp4",
+    "sha256": "09b4cc3739ea15d251914f00b78fbf9416c713a7154f8fe9bbcf24d32fc55bd6",
+    "note": "hand-made V4.2 reference; never overwritten"
+  },
+  "hashes": {
+    "referenceVideos": {
+      "outputs/p2-auto-pipeline-music.mp4": "b6fe797731540114b179956903a6810559657b7605a7d421b76e1b6fdbd34528",
+      "outputs/p2-auto-pipeline.mp4": "3d4419f0d89f28bd2b490df598294db837676477b08d2cc2cfaace02d0b01b28"
+    },
+    "narrationPlanManifestAndConfig": {
+      "docs/p2-auto/narration.wav": "05e6f9140cf766db024f70f89d4610bdf9fc045e9c12407129511a738760f190",
+      "docs/p2-auto/p2-auto.plan.json": "4cbf0c80f8b5a61c70e3484faf4320571d6dbab3beebd0daa0aeb4dac86363af",
+      "scripts/video/narration/p2.json": "983c2f25fa1b46405bbe7c3ef638bd77d83defec9c849b86e005120ccf421f25",
+      "scripts/video/narration/p2.manifest.json": "28d236f0f0380fd89003852706cebf5d596e0060983b73be1c2bade63fcc7714",
+      "scripts/video/episodes/p2-auto.json": "9a7646187affefb80162404a8b6a883865bdbc4f2b6e0740dd3a7ea8494a58e1",
+      "scripts/video/voices.json": "8264488ec584d48b730d45a5e4ad85c62476fded69788eb41e37ce45e1f6284d"
+    },
+    "audioAssets": {
+      "scripts/video/assets/social-soft-groove.wav": "d2a9715b4aeeb933a417926a96459521204cc798f1ca33d73d0c95a213a23875",
+      "scripts/video/assets/answer-correct.wav": "ddad5e42f8b7b9e616a2742bec36edc9be3abc6938e1443e792e96978abd6693"
+    },
+    "alignment": {
+      "scripts/video/narration/alignment/062b07015743c3ad6c9f9a1e6d0cb42a.json": "84ff5da674ca44a4d7709edb34c6d6adfd38641edb650193a567ac077748bc87",
+      "scripts/video/narration/alignment/4674eb4c2d7ac0254e3260d98e964173.json": "30ea22d1aff31dd80988b0ff9f947265b04e183daff59185167b7ade1ef52f1f",
+      "scripts/video/narration/alignment/46fde37a8ea093f1b7a662a2b115033a.json": "8baf75cc8082db671b3c3b75e9f8ba5f02e05687b0414715793c975ba547dcb8",
+      "scripts/video/narration/alignment/4ca093649c062dcf33dac9d1a4aa56a8.json": "92370004017315af721040fa3941f20fe3098c456024b3ba42a3ef72db3119e4",
+      "scripts/video/narration/alignment/55471715431f2b45e9e696bfbcc09336.json": "2fb96845e4b0942055066c040529739d4c8f536231f48ca140fcea982034235d",
+      "scripts/video/narration/alignment/609b73e9cf5ec034981e990d136f9e40.json": "f820b50ceb092399e1ab531f7cde65446fb64064eaa052d8f0ac274c48be38ae",
+      "scripts/video/narration/alignment/69e900c6f53315d2276007d58e56e58e.json": "fcf395e72eb32312561f9c3ed326747dd5bd19aacf088d737db483bf12e9b3b8",
+      "scripts/video/narration/alignment/9e398386f1109b66e717bdf3d587a1c7.json": "b18a4b5c729ce62b722a7d9b7b27fbf9514537fd2799947a36c053f6579b5ef3",
+      "scripts/video/narration/alignment/a7616ddcd57bbd2374353ad43c4b9836.json": "a30e455e96ccbed0b77c13a81f2c4d0bc8716912d1f83486d1cb6030bb5a2507",
+      "scripts/video/narration/alignment/abc74960f853f8f9b6b9f28bedba6ab8.json": "6c9d84916c2c1de4ec6f47e4bb524002f26e0b9ee60f4efd7b5663705f30b211",
+      "scripts/video/narration/alignment/b13630d2e9c3486e455736c0cc162d46.json": "f8c8bb0ddc61489ab1eeaac910d85b3c151bb2a7b6db39e6ad56344bcc4dbfe2",
+      "scripts/video/narration/alignment/e6883193f5f51df1532826ae50108af2.json": "28095d3a774cf84e452b5355094f98c353e87c7e83eb5d91e8de83f80c8ca779"
+    },
+    "templateAndPipeline": {
+      "scripts/video/post-reference.html": "23127a103e70a5f674b17cfdbb2c06ba04cbe8b7220906dccdb1fe946537ccf3",
+      "scripts/video/reference/PostTemplate.js": "f3765f03339ce8e3dbc88f52179ffa75bab8ffe979cbea633e617a7792a3d1bb",
+      "scripts/video/reference/ReadingCue.js": "9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad",
+      "scripts/video/reference/Components.js": "9103df1baf1f6b8493e79ba37bbf5960c6c16aeebdbb7785887d0df93f232776",
+      "scripts/video/reference/post.css": "f75cb821f8f6952549e2eadf067e23d5252d5a075a7f12dc8c1b06b5e9b0be31",
+      "scripts/video/reference/outro.css": "4770248d0bf4123b0ec85ce5833e0c926b01e45c7f24e27b4655dab64f11a02c",
+      "scripts/video/components/Mascot.js": "882203648bff76c8b21e29d908f9bc0646d66eac1f27784cae34580534427025",
+      "scripts/video/render-episode.mjs": "ccd57b831fc459aec05a1eb8463e1d1813b33e841231f37bab1b04b21d2b44af",
+      "scripts/video/render-lib.mjs": "0044381a80eab4c42610441d20c250dc181b85cf86f0566cd0366fdabd74ed15",
+      "scripts/video/verify-episode.mjs": "c85783aa20185a02627b0d999e85bd29e651655cc84bd32073ae1066fc92c6b6",
+      "scripts/video/audio-mix.mjs": "33721f76b5adcbf0611838f6075efecdd42f5836b5d5074a5cd5d54527fbb5be",
+      "scripts/video/assemble.mjs": "69891069e36bdfe529e945fe560352e8c91aa86b91553429da87bfc87d20e8ec",
+      "scripts/video/voice.mjs": "b7f5f666225c371afd116c481e040dc3dc7ca5e83e5011683820e9fefa87efc1",
+      "scripts/video/voice/align.mjs": "8363afc99ee4577df15f8c8a94a947afa90fd031ca2164f869e98b8183eec37b",
+      "scripts/video/voice/assemble.mjs": "32cdf489d91b72df731188fd5edf7dc030fb306d08844f2bd199beb26ff1ccbc",
+      "scripts/video/voice/audio.mjs": "97062cd66a44ca0fe79c49ae71fab9d979083690dd9d36281962ab3e17a7b1ee",
+      "scripts/video/voice/cache.mjs": "760781c1a68952820e61e497c01f71d7e4165cd868234496f17e1bd8cabd217b",
+      "scripts/video/voice/config.mjs": "9c4ece01bf2c07a7b040f6833435214de7029c5a5743d60201470f02db602e7d",
+      "scripts/video/voice/elevenlabs.mjs": "3c945bd78cfd125fdcce926b3fb3956edd7d8ad44ddc58d6069d37b968f45995",
+      "scripts/video/voice/generate.mjs": "bfacc6a0f860c2ebc79f767a15bbdae5a3d5c65610ca86ec5d50a07ac9205b62",
+      "scripts/video/voice/segments.mjs": "616fdc3571dd148d6b1f58d384c16689e77b6709aedfa7f86a7bf6bc4e14f9b6",
+      "scripts/video/voice/split.mjs": "bdf6487dde14a0d974bd7ee59da53a632bd6b01c922ff261b9e0365e0cead694"
+    },
+    "approvedReference": {
+      "outputs/p2-v4.2-outro-music.mp4": "09b4cc3739ea15d251914f00b78fbf9416c713a7154f8fe9bbcf24d32fc55bd6"
+    }
+  },
+  "knownNotBlocking": [
+    "The integrated render (render-episode with music) differs in encoded bits from the first narration-only render: PSNR about 41 dB average (min 39.8), visually identical; audio is sample-identical.",
+    "The legacy lead / budget segments (separate generations from before the whole-sentence rule) are still in voice-cache/ and narration/alignment/ (2 audio files, 2 alignment files). Not cleaned up.",
+    "The old SAPI / edge-tts / plan.mjs pipeline is kept (marked LEGACY) until a new episode has been verified through the ElevenLabs pipeline."
+  ],
+  "candidateSource": "docs/p2-auto/freeze-candidate.json (hashes unchanged)",
+  "revisions": [
+    {
+      "id": "r1-generic-validation",
+      "at": "2026-10-11",
+      "reason": "Generic fixes before the first cross-episode test: (1) verify-episode.mjs no longer assumes a second vocabulary or a pen reaction; (2) narration ↔ episode cross-validation (voice/episode-refs.mjs), run by voice.mjs, assemble.mjs and render-episode.mjs before any TTS / assembly / render.",
+      "changedFiles": [
+        "scripts/video/render-episode.mjs",
+        "scripts/video/verify-episode.mjs",
+        "scripts/video/assemble.mjs",
+        "scripts/video/voice.mjs",
+        "scripts/video/voice/episode-refs.mjs"
+      ],
+      "p2Regression": {
+        "ranWithoutRerenderingOrApi": true,
+        "assembleOutputsByteIdentical": [
+          "docs/p2-auto/narration.wav",
+          "docs/p2-auto/p2-auto.plan.json"
+        ],
+        "layoutAudit": "912 frames, no issues",
+        "episodeVsNarration": "0 problems",
+        "episodeVsPlan": "0 problems",
+        "verifyEpisodeOnExistingMp4": "7/7 checks pass",
+        "offlineTests": "54 pass, 0 fail",
+        "referenceGroupsUnchanged": true
+      },
+      "templateAndPipeline": {
+        "scripts/video/post-reference.html": "23127a103e70a5f674b17cfdbb2c06ba04cbe8b7220906dccdb1fe946537ccf3",
+        "scripts/video/reference/PostTemplate.js": "f3765f03339ce8e3dbc88f52179ffa75bab8ffe979cbea633e617a7792a3d1bb",
+        "scripts/video/reference/ReadingCue.js": "9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad",
+        "scripts/video/reference/Components.js": "9103df1baf1f6b8493e79ba37bbf5960c6c16aeebdbb7785887d0df93f232776",
+        "scripts/video/reference/post.css": "f75cb821f8f6952549e2eadf067e23d5252d5a075a7f12dc8c1b06b5e9b0be31",
+        "scripts/video/reference/outro.css": "4770248d0bf4123b0ec85ce5833e0c926b01e45c7f24e27b4655dab64f11a02c",
+        "scripts/video/components/Mascot.js": "882203648bff76c8b21e29d908f9bc0646d66eac1f27784cae34580534427025",
+        "scripts/video/render-episode.mjs": "b727cbde0c0a226879904526dcb93d36cf82cf14dac5e3c5ec821de34b6e3168",
+        "scripts/video/render-lib.mjs": "0044381a80eab4c42610441d20c250dc181b85cf86f0566cd0366fdabd74ed15",
+        "scripts/video/verify-episode.mjs": "b748fc4291d96e17de27fa740fc32e825516ee3226940994fa333783b01cf170",
+        "scripts/video/audio-mix.mjs": "33721f76b5adcbf0611838f6075efecdd42f5836b5d5074a5cd5d54527fbb5be",
+        "scripts/video/assemble.mjs": "95f111d08cd0e84e63c66866006a887be27451f3f67f32429191c88e745483c0",
+        "scripts/video/voice.mjs": "8f0d87edf4b0513066c7e0fc18819d9a9f2ef0b89bf62619e6049d426164aee2",
+        "scripts/video/voice/align.mjs": "8363afc99ee4577df15f8c8a94a947afa90fd031ca2164f869e98b8183eec37b",
+        "scripts/video/voice/assemble.mjs": "32cdf489d91b72df731188fd5edf7dc030fb306d08844f2bd199beb26ff1ccbc",
+        "scripts/video/voice/audio.mjs": "97062cd66a44ca0fe79c49ae71fab9d979083690dd9d36281962ab3e17a7b1ee",
+        "scripts/video/voice/cache.mjs": "760781c1a68952820e61e497c01f71d7e4165cd868234496f17e1bd8cabd217b",
+        "scripts/video/voice/config.mjs": "9c4ece01bf2c07a7b040f6833435214de7029c5a5743d60201470f02db602e7d",
+        "scripts/video/voice/elevenlabs.mjs": "3c945bd78cfd125fdcce926b3fb3956edd7d8ad44ddc58d6069d37b968f45995",
+        "scripts/video/voice/generate.mjs": "bfacc6a0f860c2ebc79f767a15bbdae5a3d5c65610ca86ec5d50a07ac9205b62",
+        "scripts/video/voice/segments.mjs": "616fdc3571dd148d6b1f58d384c16689e77b6709aedfa7f86a7bf6bc4e14f9b6",
+        "scripts/video/voice/split.mjs": "bdf6487dde14a0d974bd7ee59da53a632bd6b01c922ff261b9e0365e0cead694",
+        "scripts/video/voice/episode-refs.mjs": "bcaa49570843564184c08cc5c4334126477885796e841d04138ebf5015799093"
+      }
+    }
+  ]
+}

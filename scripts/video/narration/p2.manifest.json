@@ -1,0 +1,133 @@
+{
+  "id": "p2",
+  "outputFormat": "mp3_44100_128",
+  "complete": true,
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "46fde37a8ea093f1b7a662a2b115033a",
+      "chars": 36,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "46fde37a8ea093f1b7a662a2b115033a.mp3"
+    },
+    {
+      "id": "first",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "062b07015743c3ad6c9f9a1e6d0cb42a",
+      "chars": 78,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "lead",
+          "text": "I decided to allocate",
+          "gap": 0.04
+        },
+        {
+          "id": "budget",
+          "text": "ninety percent of the company budget to cardboard boxes.",
+          "gap": 0.08
+        }
+      ],
+      "status": "ready",
+      "audio": "062b07015743c3ad6c9f9a1e6d0cb42a.mp3"
+    },
+    {
+      "id": "allocateMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "69e900c6f53315d2276007d58e56e58e",
+      "chars": 6,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "69e900c6f53315d2276007d58e56e58e.mp3"
+    },
+    {
+      "id": "allocateExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "a7616ddcd57bbd2374353ad43c4b9836",
+      "chars": 33,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "a7616ddcd57bbd2374353ad43c4b9836.mp3"
+    },
+    {
+      "id": "cfo",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "4ca093649c062dcf33dac9d1a4aa56a8",
+      "chars": 18,
+      "gap": 0.05,
+      "status": "ready",
+      "audio": "4ca093649c062dcf33dac9d1a4aa56a8.mp3"
+    },
+    {
+      "id": "pen",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "e6883193f5f51df1532826ae50108af2",
+      "chars": 32,
+      "gap": 0.15,
+      "status": "ready",
+      "audio": "e6883193f5f51df1532826ae50108af2.mp3"
+    },
+    {
+      "id": "decision",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "609b73e9cf5ec034981e990d136f9e40",
+      "chars": 48,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "609b73e9cf5ec034981e990d136f9e40.mp3"
+    },
+    {
+      "id": "arbitraryMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "abc74960f853f8f9b6b9f28bedba6ab8",
+      "chars": 8,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "abc74960f853f8f9b6b9f28bedba6ab8.mp3"
+    },
+    {
+      "id": "arbitraryExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "b13630d2e9c3486e455736c0cc162d46",
+      "chars": 25,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "b13630d2e9c3486e455736c0cc162d46.mp3"
+    },
+    {
+      "id": "bye",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "9e398386f1109b66e717bdf3d587a1c7",
+      "chars": 18,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "9e398386f1109b66e717bdf3d587a1c7.mp3"
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 0.8,
+      "gap": 2
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 1.25,
+      "gap": 0.85
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "output": "outputs\\p2-v4.2-outro-music.mp4",
+  "duration": 31.333333333333332,
+  "music": "original instrumental: warm plucked keys, soft bass, brushed ticks; no vocals",
+  "bpm": 94,
+  "gain": {
+    "asset": "/scripts/video/assets/social-soft-groove.wav",
+    "bpm": 94,
+    "narrationGain": 0.16,
+    "endingGain": 0.3,
+    "riseDuration": 0.6,
+    "fadeIn": 0.35,
+    "fadeOut": 0.8
+  },
+  "answer_cue_seconds": 27.650068027210885,
+  "video_packets_identical": true,
+  "narration_source_sha256_unchanged": "5b3d82fd0e0125369311492684bf4d6636a616f79ef54c09187d62c45c09c712",
+  "narration_mix_gain": 1,
+  "full_decode": "pass",
+  "peak_dbfs": -2.88
+}

@@ -1,0 +1,57 @@
+{
+  "edits": [
+    {
+      "source": "arthur",
+      "sourceStart": 0.014988662131519274,
+      "sourceEnd": 4.503945578231293,
+      "start": 0.0,
+      "end": 4.488956916099773
+    },
+    {
+      "source": "ling",
+      "sourceStart": 0.07498866213151928,
+      "sourceEnd": 1.58,
+      "start": 4.648956916099773,
+      "end": 6.153968253968254
+    },
+    {
+      "source": "examples",
+      "sourceStart": 0.024988662131519273,
+      "sourceEnd": 2.21,
+      "start": 6.313968253968254,
+      "end": 8.498979591836735
+    },
+    {
+      "source": "arthur",
+      "sourceStart": 4.503945578231293,
+      "sourceEnd": 15.5,
+      "start": 8.698979591836734,
+      "end": 19.695034013605444
+    },
+    {
+      "source": "ling",
+      "sourceStart": 1.6483219954648527,
+      "sourceEnd": 3.5233333333333334,
+      "start": 19.855034013605444,
+      "end": 21.730045351473922
+    },
+    {
+      "source": "examples",
+      "sourceStart": 2.6549886621315193,
+      "sourceEnd": 4.44,
+      "start": 21.890045351473923,
+      "end": 23.675056689342405
+    },
+    {
+      "source": "arthur",
+      "sourceStart": 15.86498866213152,
+      "sourceEnd": 16.69,
+      "start": 23.875056689342404,
+      "end": 24.700068027210886
+    }
+  ],
+  "reconstruction": "sample-exact match to prior merged.wav",
+  "approvedMP3Correlation": 0.9999555853981428,
+  "sourceSHA256": "6aa75d81bd1e4ce317bb031da11a1802bdb77081625ce05eba1e4f54c6ea9ef1",
+  "sourceDuration": 24.700068027210886
+}

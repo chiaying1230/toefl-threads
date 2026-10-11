@@ -3,12 +3,19 @@ node_modules/
 # Secrets — never commit these (the Firebase service-account key lives in GitHub → Settings → Secrets)
 .env
 .env.*
+!.env.example
 *serviceAccount*.json
 *service-account*.json
 *-firebase-adminsdk-*.json
 *.pem
 *.p12
 *.key
+
+# Generated narration audio (ElevenLabs cache). Manifests / alignment JSON are tracked elsewhere; only the audio stays local.
+voice-cache/
+
+# Personal Claude Code permission overrides
+.claude/settings.local.json
 
 # Local tools
 .firebase/

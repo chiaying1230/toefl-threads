@@ -1,0 +1,44 @@
+{
+  "times": [
+    0,
+    0.7,
+    1.7,
+    3.95,
+    4.8,
+    6.7,
+    8.8,
+    12.5,
+    14.5,
+    18.9,
+    20.5,
+    22.5,
+    24.9,
+    26.5,
+    27.8,
+    28.9
+  ],
+  "differences": [
+    0,
+    0.7,
+    1.7
+  ],
+  "comparison": "PNG pixels; <=1/255 channel difference in <=100 pixels permitted for raster rounding; all other frames byte-identical",
+  "rounding_only": [
+    {
+      "time": 0,
+      "maximum_channel_delta": 1,
+      "changed_pixels": 21
+    },
+    {
+      "time": 0.7,
+      "maximum_channel_delta": 1,
+      "changed_pixels": 21
+    },
+    {
+      "time": 1.7,
+      "maximum_channel_delta": 1,
+      "changed_pixels": 21
+    }
+  ],
+  "result": "pass"
+}

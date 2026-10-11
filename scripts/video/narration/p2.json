@@ -1,0 +1,93 @@
+{
+  "_comment": "Narration segments for p2 (derived from p2-v4-copy.json, which is unchanged). kind picks the voice via voices.json roles (story/example=arthur, meaning=ling); quiz segments are silent here. 'first' is ONE sentence interrupted by the 'allocate' vocabulary note: it is generated once and cut into the parts lead + budget (parts keep the ids the episode refers to). Not used by the approved V4.2 render.",
+  "id": "p2",
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "text": "Ninety percent, for cardboard boxes.",
+      "gap": 0.08
+    },
+    {
+      "id": "first",
+      "kind": "story",
+      "text": "I decided to allocate ninety percent of the company budget to cardboard boxes.",
+      "parts": [
+        {
+          "id": "lead",
+          "through": "allocate",
+          "gap": 0.04
+        },
+        {
+          "id": "budget",
+          "resumeAfter": "allocateExample",
+          "gap": 0.08
+        }
+      ]
+    },
+    {
+      "id": "allocateMeaning",
+      "kind": "meaning",
+      "text": "分配、撥出。",
+      "gap": 0.04
+    },
+    {
+      "id": "allocateExample",
+      "kind": "example",
+      "text": "We allocate money to advertising.",
+      "gap": 0.08
+    },
+    {
+      "id": "cfo",
+      "kind": "story",
+      "text": "The CFO asked why.",
+      "gap": 0.05
+    },
+    {
+      "id": "pen",
+      "kind": "story",
+      "text": "I knocked his pen off the table.",
+      "gap": 0.15
+    },
+    {
+      "id": "decision",
+      "kind": "story",
+      "text": "The decision is final, and completely arbitrary.",
+      "gap": 0.04
+    },
+    {
+      "id": "arbitraryMeaning",
+      "kind": "meaning",
+      "text": "任意的、武斷的。",
+      "gap": 0.04
+    },
+    {
+      "id": "arbitraryExample",
+      "kind": "example",
+      "text": "The rule seems arbitrary.",
+      "gap": 0.08
+    },
+    {
+      "id": "bye",
+      "kind": "story",
+      "text": "Meeting adjourned.",
+      "gap": 0.1
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "silent": true,
+      "duration": 0.8
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "text": "武斷的。",
+      "gap": 0.85,
+      "silent": true,
+      "duration": 1.25
+    }
+  ]
+}

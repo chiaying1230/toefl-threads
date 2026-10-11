@@ -1,0 +1,14 @@
+/* New rules apply only to the reply after the unchanged V4.2 answer hold. */
+.outro{border-left-color:#183D69;padding-left:22px;padding-bottom:40px;min-height:810px}
+.outro-author{display:flex;align-items:center;gap:24px;min-height:154px}
+.outro-mascot{width:145px;height:145px;flex-shrink:0;transform-origin:center bottom}
+.outro-mascot svg{width:100%;height:100%}
+.outro-account{font-size:36px;font-weight:750;color:#183D69}
+.outro-lead{font-size:44px;color:#686156;line-height:1.4;margin:20px 0 26px}
+.outro-words{display:grid;gap:16px;margin:0 0 30px}
+.outro-word{display:flex;align-items:baseline;gap:20px;padding:15px 18px;background:#FFF8E6;border-radius:12px}
+.outro-word b{font:700 54px Georgia,serif;background:linear-gradient(transparent 65%,#FFD66B 65%)}
+.outro-word span{font-size:42px;color:#686156}
+.outro-cta{font-size:49px;font-weight:800;line-height:1.35;color:#183D69;padding:24px 0;border-top:2px solid #EDE7DA;display:flex;align-items:center;gap:18px}
+.bookmark{display:inline-block;width:29px;height:38px;flex-shrink:0;border:3px solid #183D69;clip-path:polygon(0 0,100% 0,100% 100%,50% 77%,0 100%);background:rgba(255,214,107,var(--saved,0))}
+.outro-brand{font-size:39px;line-height:1.4;color:#686156;margin-top:8px}

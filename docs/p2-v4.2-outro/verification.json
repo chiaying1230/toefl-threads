@@ -1,0 +1,71 @@
+{
+  "resolution": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "frames": 940,
+  "duration": 31.333333,
+  "audio_duration": 31.332993,
+  "full_decode": "pass",
+  "audible_prefix_pcm_equality": true,
+  "compared_seconds": 24.7,
+  "source_hashes": {
+    "docs\\p2-v4.2\\narration.wav": "5b3d82fd0e0125369311492684bf4d6636a616f79ef54c09187d62c45c09c712",
+    "docs\\p2-v4.2\\p2-v4.2.plan.json": "3d889b14c31bd84f6cd4ab75aa60ad015096c491dfcd1b37adeec0e58776616b"
+  },
+  "alignment": "original V4.2 plan, unchanged; original observation caveats still apply",
+  "layout": {
+    "samples": 940,
+    "issues": [],
+    "checks": [
+      "horizontal text overflow",
+      "active reading cue bounds",
+      "settled outro text bounds"
+    ]
+  },
+  "regression": {
+    "times": [
+      0,
+      0.7,
+      1.7,
+      3.95,
+      4.8,
+      6.7,
+      8.8,
+      12.5,
+      14.5,
+      18.9,
+      20.5,
+      22.5,
+      24.9,
+      26.5,
+      27.8,
+      28.9
+    ],
+    "differences": [
+      0,
+      0.7,
+      1.7
+    ],
+    "comparison": "PNG pixels; <=1/255 channel difference in <=100 pixels permitted for raster rounding; all other frames byte-identical",
+    "rounding_only": [
+      {
+        "time": 0,
+        "maximum_channel_delta": 1,
+        "changed_pixels": 21
+      },
+      {
+        "time": 0.7,
+        "maximum_channel_delta": 1,
+        "changed_pixels": 21
+      },
+      {
+        "time": 1.7,
+        "maximum_channel_delta": 1,
+        "changed_pixels": 21
+      }
+    ],
+    "result": "pass"
+  }
+}

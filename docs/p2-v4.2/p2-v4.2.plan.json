@@ -1,0 +1,603 @@
+{
+  "id": "p2-v4.2",
+  "duration": 28.933333333333334,
+  "frames": 868,
+  "fps": 30,
+  "voices": {
+    "en": "ElevenLabs Arthur (approved recording)",
+    "zh": "ElevenLabs Ling (approved recording)"
+  },
+  "audioEnd": 24.700068027210886,
+  "sourceSHA256": "6aa75d81bd1e4ce317bb031da11a1802bdb77081625ce05eba1e4f54c6ea9ef1",
+  "alignmentCaveat": "ASR observations are not forced alignment; source-boundary clamp for budget ninety, Chinese uses clip/phrase timing. No uniform word interpolation.",
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "Ninety percent, for cardboard boxes.",
+      "gap": 0.08,
+      "start": 0.0,
+      "end": 2.545011337868481,
+      "duration": 2.545011337868481,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.32501133786848074,
+          "pos": 0,
+          "count": 6,
+          "text": "Ninety",
+          "observedSourceStart": 0.0,
+          "observedSourceEnd": 0.34
+        },
+        {
+          "at": 0.32501133786848074,
+          "until": 0.7850113378684808,
+          "pos": 7,
+          "count": 8,
+          "text": "percent",
+          "observedSourceStart": 0.34,
+          "observedSourceEnd": 0.8
+        },
+        {
+          "at": 0.7850113378684808,
+          "until": 1.605011337868481,
+          "pos": 16,
+          "count": 3,
+          "text": "for",
+          "observedSourceStart": 0.8,
+          "observedSourceEnd": 1.62
+        },
+        {
+          "at": 1.605011337868481,
+          "until": 1.9850113378684808,
+          "pos": 20,
+          "count": 9,
+          "text": "cardboard",
+          "observedSourceStart": 1.62,
+          "observedSourceEnd": 2.0
+        },
+        {
+          "at": 1.9850113378684808,
+          "until": 2.545011337868481,
+          "pos": 30,
+          "count": 6,
+          "text": "boxes",
+          "observedSourceStart": 2.0,
+          "observedSourceEnd": 2.56
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 0
+    },
+    {
+      "id": "lead",
+      "lang": "en",
+      "text": "I decided to allocate",
+      "gap": 0.04,
+      "start": 3.3250113378684807,
+      "end": 4.305011337868481,
+      "duration": 0.9800000000000004,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.08000000000000007,
+          "pos": 0,
+          "count": 1,
+          "text": "I",
+          "observedSourceStart": 3.34,
+          "observedSourceEnd": 3.42
+        },
+        {
+          "at": 0.08000000000000007,
+          "until": 0.41999999999999993,
+          "pos": 2,
+          "count": 7,
+          "text": "decided",
+          "observedSourceStart": 3.42,
+          "observedSourceEnd": 3.76
+        },
+        {
+          "at": 0.41999999999999993,
+          "until": 0.6200000000000001,
+          "pos": 10,
+          "count": 2,
+          "text": "to",
+          "observedSourceStart": 3.76,
+          "observedSourceEnd": 3.96
+        },
+        {
+          "at": 0.6200000000000001,
+          "until": 0.9800000000000004,
+          "pos": 13,
+          "count": 8,
+          "text": "allocate",
+          "observedSourceStart": 3.96,
+          "observedSourceEnd": 4.32
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 0
+    },
+    {
+      "id": "allocateMeaning",
+      "lang": "zh",
+      "text": "分配、撥出。",
+      "gap": 0.04,
+      "start": 4.648956916099773,
+      "end": 6.013968253968254,
+      "duration": 1.3650113378684807,
+      "words": [],
+      "alignment": "approved phrase + sample-exact clip boundaries",
+      "editPiece": 1
+    },
+    {
+      "id": "allocateExample",
+      "lang": "en",
+      "text": "We allocate money to advertising.",
+      "gap": 0.08,
+      "start": 6.313968253968254,
+      "end": 8.228979591836735,
+      "duration": 1.9150113378684814,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.15501133786848076,
+          "pos": 0,
+          "count": 2,
+          "text": "We",
+          "observedSourceStart": 0.0,
+          "observedSourceEnd": 0.18
+        },
+        {
+          "at": 0.15501133786848076,
+          "until": 0.5550113378684802,
+          "pos": 3,
+          "count": 8,
+          "text": "allocate",
+          "observedSourceStart": 0.18,
+          "observedSourceEnd": 0.58
+        },
+        {
+          "at": 0.5550113378684802,
+          "until": 0.975011337868481,
+          "pos": 12,
+          "count": 5,
+          "text": "money",
+          "observedSourceStart": 0.58,
+          "observedSourceEnd": 1.0
+        },
+        {
+          "at": 0.975011337868481,
+          "until": 1.2350113378684808,
+          "pos": 18,
+          "count": 2,
+          "text": "to",
+          "observedSourceStart": 1.0,
+          "observedSourceEnd": 1.26
+        },
+        {
+          "at": 1.2350113378684808,
+          "until": 1.9150113378684814,
+          "pos": 21,
+          "count": 12,
+          "text": "advertising",
+          "observedSourceStart": 1.26,
+          "observedSourceEnd": 1.94
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 2
+    },
+    {
+      "id": "budget",
+      "lang": "en",
+      "text": "ninety percent of the company budget to cardboard boxes.",
+      "gap": 0.08,
+      "start": 8.698979591836734,
+      "end": 11.615034013605442,
+      "duration": 2.916054421768708,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.3560544217687074,
+          "pos": 0,
+          "count": 6,
+          "text": "ninety",
+          "observedSourceStart": 4.32,
+          "observedSourceEnd": 4.86
+        },
+        {
+          "at": 0.3560544217687074,
+          "until": 0.7960544217687069,
+          "pos": 7,
+          "count": 7,
+          "text": "percent",
+          "observedSourceStart": 4.86,
+          "observedSourceEnd": 5.3
+        },
+        {
+          "at": 0.7960544217687069,
+          "until": 0.9160544217687079,
+          "pos": 15,
+          "count": 2,
+          "text": "of",
+          "observedSourceStart": 5.3,
+          "observedSourceEnd": 5.42
+        },
+        {
+          "at": 0.9160544217687079,
+          "until": 1.036054421768707,
+          "pos": 18,
+          "count": 3,
+          "text": "the",
+          "observedSourceStart": 5.42,
+          "observedSourceEnd": 5.54
+        },
+        {
+          "at": 1.036054421768707,
+          "until": 1.3160544217687065,
+          "pos": 22,
+          "count": 7,
+          "text": "company",
+          "observedSourceStart": 5.54,
+          "observedSourceEnd": 5.82
+        },
+        {
+          "at": 1.3160544217687065,
+          "until": 1.6960544217687072,
+          "pos": 30,
+          "count": 6,
+          "text": "budget",
+          "observedSourceStart": 5.82,
+          "observedSourceEnd": 6.2
+        },
+        {
+          "at": 1.6960544217687072,
+          "until": 1.9760544217687066,
+          "pos": 37,
+          "count": 2,
+          "text": "to",
+          "observedSourceStart": 6.2,
+          "observedSourceEnd": 6.48
+        },
+        {
+          "at": 1.9760544217687066,
+          "until": 2.376054421768707,
+          "pos": 40,
+          "count": 9,
+          "text": "cardboard",
+          "observedSourceStart": 6.48,
+          "observedSourceEnd": 6.88
+        },
+        {
+          "at": 2.376054421768707,
+          "until": 2.916054421768708,
+          "pos": 50,
+          "count": 6,
+          "text": "boxes",
+          "observedSourceStart": 6.88,
+          "observedSourceEnd": 7.42
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 3
+    },
+    {
+      "id": "cfo",
+      "lang": "en",
+      "text": "The CFO asked why.",
+      "gap": 0.05,
+      "start": 12.33503401360544,
+      "end": 13.635034013605441,
+      "duration": 1.3000000000000007,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.10000000000000142,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "observedSourceStart": 8.14,
+          "observedSourceEnd": 8.24
+        },
+        {
+          "at": 0.10000000000000142,
+          "until": 0.5,
+          "pos": 4,
+          "count": 3,
+          "text": "CFO",
+          "observedSourceStart": 8.24,
+          "observedSourceEnd": 8.64
+        },
+        {
+          "at": 0.5,
+          "until": 0.9400000000000013,
+          "pos": 8,
+          "count": 5,
+          "text": "asked",
+          "observedSourceStart": 8.64,
+          "observedSourceEnd": 9.08
+        },
+        {
+          "at": 0.9400000000000013,
+          "until": 1.3000000000000007,
+          "pos": 14,
+          "count": 4,
+          "text": "why",
+          "observedSourceStart": 9.08,
+          "observedSourceEnd": 9.44
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 3
+    },
+    {
+      "id": "pen",
+      "lang": "en",
+      "text": "I knocked his pen off the table.",
+      "gap": 0.15,
+      "start": 14.255034013605442,
+      "end": 15.775034013605442,
+      "duration": 1.5199999999999996,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.09999999999999787,
+          "pos": 0,
+          "count": 1,
+          "text": "I",
+          "observedSourceStart": 10.06,
+          "observedSourceEnd": 10.16
+        },
+        {
+          "at": 0.09999999999999787,
+          "until": 0.35999999999999943,
+          "pos": 2,
+          "count": 7,
+          "text": "knocked",
+          "observedSourceStart": 10.16,
+          "observedSourceEnd": 10.42
+        },
+        {
+          "at": 0.35999999999999943,
+          "until": 0.5599999999999987,
+          "pos": 10,
+          "count": 3,
+          "text": "his",
+          "observedSourceStart": 10.42,
+          "observedSourceEnd": 10.62
+        },
+        {
+          "at": 0.5599999999999987,
+          "until": 0.8999999999999986,
+          "pos": 14,
+          "count": 3,
+          "text": "pen",
+          "observedSourceStart": 10.62,
+          "observedSourceEnd": 10.96
+        },
+        {
+          "at": 0.8999999999999986,
+          "until": 1.0599999999999987,
+          "pos": 18,
+          "count": 3,
+          "text": "off",
+          "observedSourceStart": 10.96,
+          "observedSourceEnd": 11.12
+        },
+        {
+          "at": 1.0599999999999987,
+          "until": 1.2199999999999989,
+          "pos": 22,
+          "count": 3,
+          "text": "the",
+          "observedSourceStart": 11.12,
+          "observedSourceEnd": 11.28
+        },
+        {
+          "at": 1.2199999999999989,
+          "until": 1.5199999999999996,
+          "pos": 26,
+          "count": 6,
+          "text": "table",
+          "observedSourceStart": 11.28,
+          "observedSourceEnd": 11.58
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 3
+    },
+    {
+      "id": "decision",
+      "lang": "en",
+      "text": "The decision is final, and completely arbitrary.",
+      "gap": 0.04,
+      "start": 16.415034013605442,
+      "end": 19.39503401360544,
+      "duration": 2.979999999999997,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.0799999999999983,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "observedSourceStart": 12.22,
+          "observedSourceEnd": 12.3
+        },
+        {
+          "at": 0.0799999999999983,
+          "until": 0.4399999999999977,
+          "pos": 4,
+          "count": 8,
+          "text": "decision",
+          "observedSourceStart": 12.3,
+          "observedSourceEnd": 12.66
+        },
+        {
+          "at": 0.4399999999999977,
+          "until": 0.740000000000002,
+          "pos": 13,
+          "count": 2,
+          "text": "is",
+          "observedSourceStart": 12.66,
+          "observedSourceEnd": 12.96
+        },
+        {
+          "at": 0.740000000000002,
+          "until": 1.1400000000000006,
+          "pos": 16,
+          "count": 6,
+          "text": "final",
+          "observedSourceStart": 12.96,
+          "observedSourceEnd": 13.36
+        },
+        {
+          "at": 1.1400000000000006,
+          "until": 1.7999999999999972,
+          "pos": 23,
+          "count": 3,
+          "text": "and",
+          "observedSourceStart": 13.36,
+          "observedSourceEnd": 14.02
+        },
+        {
+          "at": 1.7999999999999972,
+          "until": 2.4399999999999977,
+          "pos": 27,
+          "count": 10,
+          "text": "completely",
+          "observedSourceStart": 14.02,
+          "observedSourceEnd": 14.66
+        },
+        {
+          "at": 2.4399999999999977,
+          "until": 2.979999999999997,
+          "pos": 38,
+          "count": 10,
+          "text": "arbitrary",
+          "observedSourceStart": 14.66,
+          "observedSourceEnd": 15.2
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 3
+    },
+    {
+      "id": "arbitraryMeaning",
+      "lang": "zh",
+      "text": "任意的、武斷的。",
+      "gap": 0.04,
+      "start": 19.855034013605444,
+      "end": 21.566712018140592,
+      "duration": 1.7116780045351483,
+      "words": [],
+      "alignment": "approved phrase + sample-exact clip boundaries",
+      "editPiece": 4
+    },
+    {
+      "id": "arbitraryExample",
+      "lang": "en",
+      "text": "The rule seems arbitrary.",
+      "gap": 0.08,
+      "start": 21.975056689342402,
+      "end": 23.235056689342404,
+      "duration": 1.2600000000000016,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.08000000000000185,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "observedSourceStart": 2.74,
+          "observedSourceEnd": 2.82
+        },
+        {
+          "at": 0.08000000000000185,
+          "until": 0.33999999999999986,
+          "pos": 4,
+          "count": 4,
+          "text": "rule",
+          "observedSourceStart": 2.82,
+          "observedSourceEnd": 3.08
+        },
+        {
+          "at": 0.33999999999999986,
+          "until": 0.7000000000000028,
+          "pos": 9,
+          "count": 5,
+          "text": "seems",
+          "observedSourceStart": 3.08,
+          "observedSourceEnd": 3.44
+        },
+        {
+          "at": 0.7000000000000028,
+          "until": 1.2600000000000016,
+          "pos": 15,
+          "count": 10,
+          "text": "arbitrary",
+          "observedSourceStart": 3.44,
+          "observedSourceEnd": 4.0
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 5
+    },
+    {
+      "id": "bye",
+      "lang": "en",
+      "text": "Meeting adjourned.",
+      "gap": 0.1,
+      "start": 23.875056689342404,
+      "end": 24.630068027210886,
+      "duration": 0.7550113378684813,
+      "words": [
+        {
+          "at": 0.0,
+          "until": 0.2150113378684786,
+          "pos": 0,
+          "count": 7,
+          "text": "Meeting",
+          "observedSourceStart": 15.82,
+          "observedSourceEnd": 16.08
+        },
+        {
+          "at": 0.2150113378684786,
+          "until": 0.7550113378684813,
+          "pos": 8,
+          "count": 10,
+          "text": "adjourned",
+          "observedSourceStart": 16.08,
+          "observedSourceEnd": 16.62
+        }
+      ],
+      "alignment": "existing Whisper word observations + sample-exact edit mapping",
+      "editPiece": 6
+    },
+    {
+      "id": "question",
+      "lang": "zh",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "start": 24.850068027210884,
+      "end": 25.650068027210885,
+      "duration": 0.8000000000000007,
+      "words": [],
+      "alignment": "silent visual Quiz; no recorded narration",
+      "silent": true
+    },
+    {
+      "id": "answer",
+      "lang": "zh",
+      "text": "武斷的。",
+      "gap": 0.85,
+      "start": 27.650068027210885,
+      "end": 28.900068027210885,
+      "duration": 1.25,
+      "words": [],
+      "alignment": "silent visual Quiz; no recorded narration",
+      "silent": true
+    }
+  ]
+}

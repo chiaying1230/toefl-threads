@@ -1,0 +1,33 @@
+{
+  "_comment": "Global voice config for the ElevenLabs pipeline. null / \"TODO_...\" = not yet confirmed; the validator refuses to call the API until they are filled. IDs and model were read from the account via the API (voice discovery, 2026-10-11); eleven_v4 is the model recorded in the account's history for the EP.01 takes. eleven_v4 does not support style or speaker boost (GET /v1/models), so those keys are omitted. stability 0 / similarity_boost 0 for both voices is the user's decision (matches the EP.01 examples take). Unverified: whether eleven_v4 accepts the key name similarity_boost (history calls it 'similarity') and supports with-timestamps - check on the first smoke test.",
+  "provider": "elevenlabs",
+  "apiBase": "https://api.elevenlabs.io",
+  "output": {
+    "format": "mp3_44100_128"
+  },
+  "voices": {
+    "arthur": {
+      "voiceId": "C1npRmjB19a6yNkEucvx",
+      "lang": "en",
+      "model": "eleven_v4",
+      "settings": {
+        "stability": 0,
+        "similarity_boost": 0
+      }
+    },
+    "ling": {
+      "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+      "lang": "zh",
+      "model": "eleven_v4",
+      "settings": {
+        "stability": 0,
+        "similarity_boost": 0
+      }
+    }
+  },
+  "roles": {
+    "story": "arthur",
+    "example": "arthur",
+    "meaning": "ling"
+  }
+}

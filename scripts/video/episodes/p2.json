@@ -1,0 +1,113 @@
+{
+  "id": "p2",
+  "episode": 1,
+  "pack": "toefl",
+  "packLabel": "托福",
+  "author": {
+    "name": "Mr. Whiskers",
+    "handle": "cat_ceo",
+    "avatar": "🐱",
+    "color": "#f6b26b",
+    "topic": "Business"
+  },
+  "thread": {
+    "postId": "p2",
+    "sentences": [
+      {
+        "en": "Board meeting update: I have decided to [[allocate]] 90% of the company budget to cardboard boxes.",
+        "zh": "董事會更新：我決定把公司 90% 的預算撥給紙箱。"
+      },
+      {
+        "en": "When the CFO asked why, I knocked his pen off the table.",
+        "zh": "財務長問為什麼，我就把他的筆從桌上撥下去。"
+      },
+      {
+        "en": "The decision is final and completely [[arbitrary]].",
+        "zh": "這個決定是最終的，而且完全是隨意的。"
+      },
+      {
+        "en": "Meeting adjourned. 🐾",
+        "zh": "散會。🐾"
+      }
+    ],
+    "show": [
+      0,
+      2
+    ],
+    "source": null
+  },
+  "main": "arbitrary",
+  "teach": [
+    "arbitrary",
+    "allocate"
+  ],
+  "words": {
+    "arbitrary": {
+      "pos": "adj.",
+      "zh": "任意的；武斷的",
+      "level": 3,
+      "ex": "The rule seemed completely arbitrary.",
+      "exZh": "這項規定看起來完全沒有道理。",
+      "kk": "[ˋɑrbəˏtrɛri]",
+      "ctx": "completely arbitrary"
+    },
+    "allocate": {
+      "pos": "v.",
+      "zh": "分配；撥出",
+      "level": 2,
+      "ex": "The company allocated more money to advertising this year.",
+      "exZh": "公司今年撥了更多預算在廣告上。",
+      "kk": "[ˋæləˏket]",
+      "ctx": "allocate 90% of the company budget"
+    }
+  },
+  "hook": {
+    "beats": [
+      {
+        "en": "90% of the company budget.",
+        "size": "xl",
+        "big": true
+      },
+      {
+        "en": "For cardboard boxes.",
+        "size": "l",
+        "caps": true,
+        "emoji": "📦",
+        "zh": "老闆，你認真的？"
+      },
+      {
+        "en": "Mr. Whiskers has made a decision.",
+        "size": "s"
+      }
+    ]
+  },
+  "quiz": {
+    "type": "context",
+    "sentence": "The decision is completely ____.",
+    "options": [
+      "allocated",
+      "arbitrary",
+      "cardboard"
+    ],
+    "answer": 1,
+    "promptZh": null
+  },
+  "cta": {
+    "type": "comment",
+    "text": "留言你的答案"
+  },
+  "outro": {
+    "closingZh": null,
+    "teaserZh": null,
+    "next": {
+      "name": "Mr. Whiskers",
+      "avatar": "🐱",
+      "color": "#f6b26b",
+      "en": "Mr. Whiskers has another budget idea..."
+    }
+  },
+  "recap": [
+    "I decided to [[allocate]] 90% of the budget to cardboard boxes.",
+    "The decision was completely [[arbitrary]]."
+  ]
+}

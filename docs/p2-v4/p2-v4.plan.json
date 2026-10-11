@@ -1,0 +1,533 @@
+{
+  "id": "p2-v4",
+  "duration": 27.033333333333335,
+  "frames": 811,
+  "fps": 30,
+  "voices": {
+    "en": "Microsoft Zira Desktop (rate 0)",
+    "zh": "Microsoft Hanhan Desktop (rate 0)"
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "Ninety percent, for cardboard boxes.",
+      "gap": 0.08,
+      "start": 0,
+      "end": 2.9,
+      "duration": 2.9,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 6,
+          "text": "Ninety",
+          "until": 0.445
+        },
+        {
+          "at": 0.445,
+          "pos": 7,
+          "count": 7,
+          "text": "percent",
+          "until": 1.41
+        },
+        {
+          "at": 1.41,
+          "pos": 16,
+          "count": 3,
+          "text": "for",
+          "until": 1.6249999999999998
+        },
+        {
+          "at": 1.6249999999999998,
+          "pos": 20,
+          "count": 9,
+          "text": "cardboard",
+          "until": 2.195
+        },
+        {
+          "at": 2.195,
+          "pos": 30,
+          "count": 5,
+          "text": "boxes",
+          "until": 2.9
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "lang": "en",
+      "text": "I decided to allocate",
+      "gap": 0.04,
+      "start": 2.98,
+      "end": 4.43,
+      "duration": 1.45,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 1,
+          "text": "I",
+          "until": 0.145
+        },
+        {
+          "at": 0.145,
+          "pos": 2,
+          "count": 7,
+          "text": "decided",
+          "until": 0.6399999999999999
+        },
+        {
+          "at": 0.6399999999999999,
+          "pos": 10,
+          "count": 2,
+          "text": "to",
+          "until": 0.7649999999999999
+        },
+        {
+          "at": 0.7649999999999999,
+          "pos": 13,
+          "count": 8,
+          "text": "allocate",
+          "until": 1.45
+        }
+      ]
+    },
+    {
+      "id": "allocateMeaning",
+      "lang": "zh",
+      "text": "分配、撥出。",
+      "gap": 0.04,
+      "start": 4.47,
+      "end": 5.82,
+      "duration": 1.35,
+      "words": [
+        {
+          "at": 0,
+          "pos": 0,
+          "count": 2,
+          "text": "分配",
+          "until": 0.66
+        },
+        {
+          "at": 0.66,
+          "pos": 3,
+          "count": 2,
+          "text": "撥出",
+          "until": 1.35
+        }
+      ]
+    },
+    {
+      "id": "allocateExample",
+      "lang": "en",
+      "text": "We allocate money to advertising.",
+      "gap": 0.08,
+      "start": 5.859999999999999,
+      "end": 7.93,
+      "duration": 2.07,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 2,
+          "text": "We",
+          "until": 0.20999999999999996
+        },
+        {
+          "at": 0.20999999999999996,
+          "pos": 3,
+          "count": 8,
+          "text": "allocate",
+          "until": 0.7
+        },
+        {
+          "at": 0.7,
+          "pos": 12,
+          "count": 5,
+          "text": "money",
+          "until": 0.97
+        },
+        {
+          "at": 0.97,
+          "pos": 18,
+          "count": 2,
+          "text": "to",
+          "until": 1.1549999999999998
+        },
+        {
+          "at": 1.1549999999999998,
+          "pos": 21,
+          "count": 11,
+          "text": "advertising",
+          "until": 2.07
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "lang": "en",
+      "text": "ninety percent of the company budget to cardboard boxes.",
+      "gap": 0.08,
+      "start": 8.01,
+      "end": 11.25,
+      "duration": 3.24,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 6,
+          "text": "ninety",
+          "until": 0.45
+        },
+        {
+          "at": 0.45,
+          "pos": 7,
+          "count": 7,
+          "text": "percent",
+          "until": 0.8799999999999999
+        },
+        {
+          "at": 0.8799999999999999,
+          "pos": 15,
+          "count": 2,
+          "text": "of",
+          "until": 0.9849999999999999
+        },
+        {
+          "at": 0.9849999999999999,
+          "pos": 18,
+          "count": 3,
+          "text": "the",
+          "until": 1.075
+        },
+        {
+          "at": 1.075,
+          "pos": 22,
+          "count": 7,
+          "text": "company",
+          "until": 1.515
+        },
+        {
+          "at": 1.515,
+          "pos": 30,
+          "count": 6,
+          "text": "budget",
+          "until": 1.8599999999999999
+        },
+        {
+          "at": 1.8599999999999999,
+          "pos": 37,
+          "count": 2,
+          "text": "to",
+          "until": 1.9749999999999996
+        },
+        {
+          "at": 1.9749999999999996,
+          "pos": 40,
+          "count": 9,
+          "text": "cardboard",
+          "until": 2.5349999999999997
+        },
+        {
+          "at": 2.5349999999999997,
+          "pos": 50,
+          "count": 5,
+          "text": "boxes",
+          "until": 3.24
+        }
+      ]
+    },
+    {
+      "id": "cfo",
+      "lang": "en",
+      "text": "The CFO asked why.",
+      "gap": 0.05,
+      "start": 11.33,
+      "end": 12.82,
+      "duration": 1.49,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "until": 0.12
+        },
+        {
+          "at": 0.12,
+          "pos": 4,
+          "count": 3,
+          "text": "CFO",
+          "until": 0.75
+        },
+        {
+          "at": 0.75,
+          "pos": 8,
+          "count": 5,
+          "text": "asked",
+          "until": 1.105
+        },
+        {
+          "at": 1.105,
+          "pos": 14,
+          "count": 3,
+          "text": "why",
+          "until": 1.49
+        }
+      ]
+    },
+    {
+      "id": "pen",
+      "lang": "en",
+      "text": "I knocked his pen off the table.",
+      "gap": 0.15,
+      "start": 12.870000000000001,
+      "end": 14.590000000000002,
+      "duration": 1.72,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 1,
+          "text": "I",
+          "until": 0.145
+        },
+        {
+          "at": 0.145,
+          "pos": 2,
+          "count": 7,
+          "text": "knocked",
+          "until": 0.435
+        },
+        {
+          "at": 0.435,
+          "pos": 10,
+          "count": 3,
+          "text": "his",
+          "until": 0.575
+        },
+        {
+          "at": 0.575,
+          "pos": 14,
+          "count": 3,
+          "text": "pen",
+          "until": 0.8499999999999999
+        },
+        {
+          "at": 0.8499999999999999,
+          "pos": 18,
+          "count": 3,
+          "text": "off",
+          "until": 1.075
+        },
+        {
+          "at": 1.075,
+          "pos": 22,
+          "count": 3,
+          "text": "the",
+          "until": 1.1649999999999998
+        },
+        {
+          "at": 1.1649999999999998,
+          "pos": 26,
+          "count": 5,
+          "text": "table",
+          "until": 1.72
+        }
+      ]
+    },
+    {
+      "id": "decision",
+      "lang": "en",
+      "text": "The decision is final, and completely arbitrary.",
+      "gap": 0.04,
+      "start": 14.74,
+      "end": 17.88,
+      "duration": 3.14,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "until": 0.13999999999999999
+        },
+        {
+          "at": 0.13999999999999999,
+          "pos": 4,
+          "count": 8,
+          "text": "decision",
+          "until": 0.5999999999999999
+        },
+        {
+          "at": 0.5999999999999999,
+          "pos": 13,
+          "count": 2,
+          "text": "is",
+          "until": 0.75
+        },
+        {
+          "at": 0.75,
+          "pos": 16,
+          "count": 5,
+          "text": "final",
+          "until": 1.595
+        },
+        {
+          "at": 1.595,
+          "pos": 23,
+          "count": 3,
+          "text": "and",
+          "until": 1.72
+        },
+        {
+          "at": 1.72,
+          "pos": 27,
+          "count": 10,
+          "text": "completely",
+          "until": 2.3499999999999996
+        },
+        {
+          "at": 2.3499999999999996,
+          "pos": 38,
+          "count": 9,
+          "text": "arbitrary",
+          "until": 3.14
+        }
+      ]
+    },
+    {
+      "id": "arbitraryMeaning",
+      "lang": "zh",
+      "text": "任意的、武斷的。",
+      "gap": 0.04,
+      "start": 17.92,
+      "end": 19.55,
+      "duration": 1.63,
+      "words": [
+        {
+          "at": 0.02024999999999999,
+          "pos": 0,
+          "count": 3,
+          "text": "任意的",
+          "until": 0.9024374999999999
+        },
+        {
+          "at": 0.9024374999999999,
+          "pos": 4,
+          "count": 3,
+          "text": "武斷的",
+          "until": 1.63
+        }
+      ]
+    },
+    {
+      "id": "arbitraryExample",
+      "lang": "en",
+      "text": "The rule seems arbitrary.",
+      "gap": 0.08,
+      "start": 19.590000000000003,
+      "end": 21.190000000000005,
+      "duration": 1.6,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 3,
+          "text": "The",
+          "until": 0.16499999999999998
+        },
+        {
+          "at": 0.16499999999999998,
+          "pos": 4,
+          "count": 4,
+          "text": "rule",
+          "until": 0.445
+        },
+        {
+          "at": 0.445,
+          "pos": 9,
+          "count": 5,
+          "text": "seems",
+          "until": 0.825
+        },
+        {
+          "at": 0.825,
+          "pos": 15,
+          "count": 9,
+          "text": "arbitrary",
+          "until": 1.6
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "lang": "en",
+      "text": "Meeting adjourned.",
+      "gap": 0.1,
+      "start": 21.270000000000003,
+      "end": 22.300000000000004,
+      "duration": 1.03,
+      "words": [
+        {
+          "at": 0.039999999999999994,
+          "pos": 0,
+          "count": 7,
+          "text": "Meeting",
+          "until": 0.38
+        },
+        {
+          "at": 0.38,
+          "pos": 8,
+          "count": 9,
+          "text": "adjourned",
+          "until": 1.03
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "lang": "zh",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "start": 22.400000000000002,
+      "end": 23.39,
+      "duration": 0.99,
+      "words": [
+        {
+          "at": 0.034499999999999996,
+          "pos": 0,
+          "count": 2,
+          "text": "什麼",
+          "until": 0.427875
+        },
+        {
+          "at": 0.427875,
+          "pos": 2,
+          "count": 2,
+          "text": "意思",
+          "until": 0.99
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "lang": "zh",
+      "text": "武斷的。",
+      "gap": 0.85,
+      "start": 25.39,
+      "end": 26.17,
+      "duration": 0.78,
+      "words": [
+        {
+          "at": 0.022249999999999992,
+          "pos": 0,
+          "count": 3,
+          "text": "武斷的",
+          "until": 0.78
+        }
+      ]
+    }
+  ]
+}

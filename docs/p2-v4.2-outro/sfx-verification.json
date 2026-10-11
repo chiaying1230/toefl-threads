@@ -1,0 +1,11 @@
+{
+  "output": "outputs\\p2-v4.2-outro-sfx.mp4",
+  "cue_start_seconds": 27.650068027210885,
+  "cue_duration_seconds": 0.48,
+  "cue_gain": 0.75,
+  "video_packets_identical": true,
+  "narration_pcm_identical_seconds": 24.7,
+  "full_decode": "pass",
+  "cue_peak_dbfs": -20.97,
+  "asset_sha256": "ddad5e42f8b7b9e616a2742bec36edc9be3abc6938e1443e792e96978abd6693"
+}

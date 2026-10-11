@@ -1,0 +1,90 @@
+{
+  "segments": [
+    {
+      "id": "hook",
+      "hash": "46fde37a8ea093f1b7a662a2b115033a",
+      "voice": "arthur",
+      "sourceDuration": 2.72
+    },
+    {
+      "id": "first",
+      "hash": "062b07015743c3ad6c9f9a1e6d0cb42a",
+      "voice": "arthur",
+      "sourceDuration": 4.72,
+      "parts": [
+        "lead",
+        "budget"
+      ],
+      "cuts": [
+        {
+          "before": "budget",
+          "sample": 54860,
+          "at": 1.2439909297052154,
+          "wordEnd": 1.28,
+          "nextStart": 1.36,
+          "ratio": 0.027
+        }
+      ]
+    },
+    {
+      "id": "allocateMeaning",
+      "hash": "69e900c6f53315d2276007d58e56e58e",
+      "voice": "ling",
+      "sourceDuration": 2
+    },
+    {
+      "id": "allocateExample",
+      "hash": "a7616ddcd57bbd2374353ad43c4b9836",
+      "voice": "arthur",
+      "sourceDuration": 2.4
+    },
+    {
+      "id": "cfo",
+      "hash": "4ca093649c062dcf33dac9d1a4aa56a8",
+      "voice": "arthur",
+      "sourceDuration": 2
+    },
+    {
+      "id": "pen",
+      "hash": "e6883193f5f51df1532826ae50108af2",
+      "voice": "arthur",
+      "sourceDuration": 2.16
+    },
+    {
+      "id": "decision",
+      "hash": "609b73e9cf5ec034981e990d136f9e40",
+      "voice": "arthur",
+      "sourceDuration": 3.52
+    },
+    {
+      "id": "arbitraryMeaning",
+      "hash": "abc74960f853f8f9b6b9f28bedba6ab8",
+      "voice": "ling",
+      "sourceDuration": 2
+    },
+    {
+      "id": "arbitraryExample",
+      "hash": "b13630d2e9c3486e455736c0cc162d46",
+      "voice": "arthur",
+      "sourceDuration": 2.32
+    },
+    {
+      "id": "bye",
+      "hash": "9e398386f1109b66e717bdf3d587a1c7",
+      "voice": "arthur",
+      "sourceDuration": 1.36
+    },
+    {
+      "id": "question",
+      "silent": true
+    },
+    {
+      "id": "answer",
+      "silent": true
+    }
+  ],
+  "warnings": [],
+  "duration": 28,
+  "audioEnd": 23.849068,
+  "frames": 840
+}
