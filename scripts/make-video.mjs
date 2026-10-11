@@ -96,6 +96,7 @@ envelopes(voiced.map((l) => voiceFile(l.id))).forEach((env, i) => { voiced[i].en
 
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, `${ep.id}.plan.json`), JSON.stringify({ ...plan, lines: plan.lines.map(({ tokens, env, ...l }) => l) }, null, 2));
+if (process.env.SPEC_DUMP) fs.writeFileSync(process.env.SPEC_DUMP, JSON.stringify(plan));
 console.log(`${ep.id}: ${plan.duration}s · main word "${ep.main}" · also ${ep.teach.slice(1).join(", ") || "-"}${VOICE_DIR ? " (voiced)" : " (estimated timing)"}`);
 if (flag("beats")) { let prev = 0, gap = 0, at = 0; plan.beats.forEach((b) => { console.log(String(b.t).padStart(6), b.what); if (b.t - prev > gap) { gap = b.t - prev; at = prev; } prev = b.t; }); console.log(`longest quiet stretch: ${gap.toFixed(2)} s (after ${at}s)`); }
 if (plan.duration > 40) console.warn(`WARNING: ${plan.duration}s is too long for a short (target 24–32 s). Trim thread.show or teach fewer words, or split the post into two episodes.`);

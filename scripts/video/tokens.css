@@ -2,7 +2,11 @@
    Canvas: 1080 × 1920 (9:16). Everything is sized in canvas px.
    Change a value here and every episode follows. Spec: docs/video-design-system.md */
 :root {
-  /* colour: warm paper, near-black ink, one accent (the tofu-icon yellow) */
+  /* colour — three visual states, so the video has a rhythm:
+       A  FEED         warm paper (--c-bg) with ink text           hook, post, recap, ending
+       B  VOCABULARY   clean white card (--c-card) + a muted blue-gray for labels (--c-learn)
+       C  QUIZ         dark (--c-quiz-*) with the yellow answer
+     Yellow (--c-accent) stays the vocabulary highlight everywhere. */
   --c-bg: #FFF8EC;
   --c-surface: #FFFFFF;
   --c-text: #231F1C;
@@ -11,6 +15,17 @@
   --c-accent: #FFD66B;      /* highlight: key words, current word, correct answer */
   --c-accent-soft: #FFEDB5; /* current non-key word */
   --c-border: #EADFCB;
+
+  --c-card: #FFFFFF;          /* vocabulary card */
+  --c-card-border: #E4E8EF;
+  --c-learn: #55657F;         /* EXAMPLE · FROM THIS POST · POS · pronunciation (never the word itself) */
+  --c-learn-soft: #E9EEF6;
+
+  --c-quiz-bg: #20242C;
+  --c-quiz-surface: #2D323D;
+  --c-quiz-border: #3C4350;
+  --c-quiz-text: #FFFFFF;
+  --c-quiz-text-2: #BFC5CF;
 
   /* type */
   --font-heading: "DM Serif Display", "Noto Serif TC", Georgia, serif;     /* the word itself */
@@ -27,7 +42,8 @@
   --fs-word: 180px;      /* word on its card [110] */
   --fs-kk: 40px;
   --fs-zh: 72px;         /* core meaning [56] */
-  --fs-ctx: 54px;        /* context / example [44] */
+  --fs-ctx: 54px;        /* example sentence [44] */
+  --fs-from: 46px;       /* "from this post" phrase */
   --fs-ctx-zh: 44px;     /* translation of the example */
   --fs-sub: 46px;        /* translation subtitles */
   --fs-opt: 64px;        /* quiz options [48] */

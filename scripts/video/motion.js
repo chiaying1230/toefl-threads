@@ -6,10 +6,7 @@ export const DUR = {
   base: 0.3,        // most entrances
   slow: 0.5,        // hook marker sweep
   fade: 0.22,       // scene cross-fades
-  lift: 0.4,           // a word leaves the stream and lands on its card
-  settle: 0.35,        // …and goes back to its place in the stream
-  dim: 0.3,            // the stream steps back while a card is open
-  scroll: 0.5,         // the stream moves up to the next chunk
+  swipe: 0.55,         // the feed moves up to the next item
 };
 export const RISE = 22;   // px an element slides up while entering
 

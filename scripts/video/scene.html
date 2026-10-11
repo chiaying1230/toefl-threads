@@ -25,24 +25,28 @@
 
   // Layout audit for time t (make-video.mjs --audit): returns a list of problems.
   //   safe area · text overflowing its box · text smaller than its floor · overlapping elements
-  const FLOORS = { ".fl-chunk": 52, ".vc-ctx": 44, ".vc-zh": 56, ".vc-word": 80, ".hook-s": 76, ".qz-text": 48, ".qz-sentence": 48, ".rc-word": 56 };
+  const FLOORS = { ".pi-chunk": 52, ".vc-ex": 44, ".vc-zh": 56, ".vc-word": 80, ".hk-b:not(.s)": 76, ".qd-s": 48, ".qd-text": 48, ".rc-line": 52 };
   window.audit = (t) => {
     tpl.render(t);
-    const SAFE = { l: 84, r: 948, t: 220, b: 1560 }, issues = [];
+    const st = tpl.state, SAFE = { l: 84, r: 948, t: 220, b: 1560 }, issues = [];
+    if (st.moving) return issues;                       // content is in motion: nothing to judge
     const eff = (e) => { let o = 1; for (let n = e; n && n !== document.body; n = n.parentElement) { const cs = getComputedStyle(n); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= parseFloat(cs.opacity); } return o; };
-    const items = [...document.querySelectorAll("[data-aud]")].map((e) => ({ id: e.dataset.aud, e, r: e.getBoundingClientRect(), o: eff(e) })).filter((x) => x.o >= 0.35 && x.r.width > 0);
+    // only the item the camera rests on (plus the mascot and subtitle) is judged; the next one just peeks in
+    const live = (e) => { const fi = e.closest(".fi"); return !fi || fi === tpl.focusEl; };
+    const items = [...document.querySelectorAll("[data-aud]")].filter(live).map((e) => ({ id: e.dataset.aud, e, r: e.getBoundingClientRect(), o: eff(e) })).filter((x) => x.o >= 0.35 && x.r.width > 0);
     for (const x of items) {
       if (x.r.left < SAFE.l - 3 || x.r.right > SAFE.r + 3 || x.r.top < SAFE.t - 3 || x.r.bottom > SAFE.b + 3) issues.push(`${x.id}: outside the safe area`);
+      if (x.e.closest(".fi") && x.r.bottom > 1470) issues.push(`${x.id}: runs into the bottom fade`);
     }
     for (const [sel, min] of Object.entries(FLOORS)) {
       for (const e of document.querySelectorAll(sel)) {
-        if (eff(e) < 0.35) continue;
+        if (!live(e) || eff(e) < 0.35) continue;
         const px = parseFloat(getComputedStyle(e).fontSize);
         if (px < min - 0.5) issues.push(`${sel}: ${px}px is below its ${min}px floor`);
       }
     }
-    for (const e of document.querySelectorAll(".vc-word, .qz-text, .rc-word, .rc-zh, .en-word")) {
-      if (eff(e) >= 0.35 && e.scrollWidth > e.clientWidth + 3 && getComputedStyle(e).whiteSpace === "nowrap") issues.push(`${e.className}: text runs past its box`);
+    for (const e of document.querySelectorAll(".vc-word, .qd-text, .ed-word")) {
+      if (live(e) && eff(e) >= 0.35 && e.scrollWidth > e.clientWidth + 3 && getComputedStyle(e).whiteSpace === "nowrap") issues.push(`${e.className}: text runs past its box`);
     }
     for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
       const a = items[i], b = items[j];

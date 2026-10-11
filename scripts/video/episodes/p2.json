@@ -46,34 +46,47 @@
       "pos": "adj.",
       "zh": "任意的；武斷的",
       "level": 3,
-      "ex": "The teacher's grading seemed completely arbitrary.",
-      "exZh": "那位老師的評分方式看起來完全很隨意。",
+      "ex": "The rule seemed completely arbitrary.",
+      "exZh": "這項規定看起來完全沒有道理。",
       "kk": "[ˋɑrbəˏtrɛri]",
       "ctx": "completely arbitrary"
     },
     "allocate": {
       "pos": "v.",
-      "zh": "分配；撥出（資源）",
+      "zh": "分配；撥出",
       "level": 2,
-      "ex": "The school will allocate more money to the library next year.",
-      "exZh": "學校明年會撥更多經費給圖書館。",
+      "ex": "The company allocated more money to advertising this year.",
+      "exZh": "公司今年撥了更多預算在廣告上。",
       "kk": "[ˋæləˏket]",
       "ctx": "allocate 90% of the company budget"
     }
   },
   "hook": {
-    "text": "The decision is final and completely [[arbitrary]].",
-    "guideZh": "這句你看得懂嗎？"
+    "beats": [
+      {
+        "en": "90% of the company budget.",
+        "size": "xl"
+      },
+      {
+        "en": "For cardboard boxes.",
+        "size": "xl",
+        "zh": "老闆，你認真的？"
+      },
+      {
+        "en": "Mr. Whiskers has made a decision.",
+        "size": "s"
+      }
+    ]
   },
   "quiz": {
     "type": "context",
-    "sentence": "The decision is final and completely ____.",
+    "sentence": "The decision is completely ____.",
     "options": [
-      "inclement",
-      "reciprocal",
-      "arbitrary"
+      "allocated",
+      "arbitrary",
+      "cardboard"
     ],
-    "answer": 2,
+    "answer": 1,
     "promptZh": null
   },
   "cta": {

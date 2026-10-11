@@ -103,9 +103,9 @@ export function draftEpisode(app, { episode = null, main = null } = {}) {
 
   const words = {};
   teach.forEach((k) => { const v = vocab[k]; words[k] = { pos: v.pos || "", zh: v.zh, level: v.level, ex: v.ex, exZh: v.exZh, kk: kk[k] || "" }; });
-  // short context shown under each meaning (edit freely; leave out to use the automatic one)
+  // the short "from this post" phrase on each card (edit freely; leave out to use the automatic one)
   const draft = { main: mainKey, words, thread: { show, sentences } };
-  teach.forEach((k) => { const c = contextFor(draft, k); words[k].ctx = c.text; if (c.zh) words[k].ctxZh = c.zh; });
+  teach.forEach((k) => { const c = contextFor(draft, k); if (c) words[k].ctx = c.text; });
 
   // hook guide: what the sentence says (its Chinese), if short enough; otherwise a neutral line
   const hookSent = show.map((i) => sentences[i]).find((s) => keysIn(s.en).includes(mainKey));
@@ -142,7 +142,8 @@ export function validateEpisode(ep) {
   if (ep.teach.length >= 5) warnings.push(`${ep.teach.length} words in one video makes it long: consider splitting this post into two episodes`);
   else if (ep.teach.length === 4) warnings.push("4 words: only works if the excerpt is very short");
   if (!(ep.quiz.answer >= 0 && ep.quiz.answer < ep.quiz.options.length)) errors.push("quiz.answer must be 0, 1 or 2");
-  if (!keysIn(ep.hook.text).includes(ep.main) && !plain(ep.hook.text).toLowerCase().includes(ep.main.toLowerCase().replace(/_/g, " "))) warnings.push("hook.text does not contain the main word (wrap it as [[word]])");
+  if (ep.hook.beats) { if (!ep.hook.beats.length || ep.hook.beats.some((b) => !b.en)) errors.push("hook.beats needs at least one line, each with `en`"); }
+  else if (!keysIn(ep.hook.text).includes(ep.main) && !plain(ep.hook.text).toLowerCase().includes(ep.main.toLowerCase().replace(/_/g, " "))) warnings.push("hook.text does not contain the main word (wrap it as [[word]])");
   if (ex.some((s) => !s.zh)) warnings.push("some excerpt sentences have no Chinese (zh): translation subtitles will be skipped");
   for (const k of ep.teach) { const w = ep.words[k]; if (w && !w.kk) warnings.push(`"${k}" has no kk phonetic: it will not be shown`); if (w && !w.ex) errors.push(`"${k}" has no example sentence`); }
   const hasLink = ep.cta.type === "link";

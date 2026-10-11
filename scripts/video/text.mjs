@@ -127,16 +127,12 @@ export function deriveContext(sentence, key, pos = "") {
   return words.length >= 2 ? words.join(" ") : null;
 }
 
-// The short phrase shown under a word's meaning. Priority: hand-written `ctx` → a phrase taken from the post that
-// the viewer just read ("completely arbitrary") → the dictionary example. The main word keeps its example when it is
-// short (≤ 5 words) because its context is read aloud and has to stay brief.
+// The "FROM THIS POST" phrase on a word's card: hand-written `ctx` first, otherwise a short phrase taken from the
+// sentence the viewer just read ("completely arbitrary", "allocate 90% of the company budget"). null if there is none.
 export function contextFor(ep, key) {
   const w = ep.words[key];
-  if (w.ctx) return { text: w.ctx, zh: w.ctxZh ?? null };
+  if (w.ctx) return { text: w.ctx };
   const sent = ep.thread.show.map((i) => ep.thread.sentences[i].en).find((s) => keysIn(s).includes(key));
   const derived = sent ? deriveContext(sent, key, w.pos) : null;
-  const exWords = wordCount(w.ex || "");
-  if (key === ep.main) return w.ex && exWords <= 5 ? { text: w.ex, zh: w.exZh || null } : { text: derived || w.ex, zh: null };
-  if (derived) return { text: derived, zh: null };
-  return { text: w.ex, zh: w.exZh || null };
+  return derived ? { text: derived } : null;
 }

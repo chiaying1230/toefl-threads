@@ -276,3 +276,26 @@ scripts/make-video.mjs  scripts/make-voice.py        指令入口／旁白
 - **吉祥物只有一張素材。** 表情由程式繪製，沒有哭、笑、驚訝等多種表情。
 - **字型需要連網。** 離線時退回系統字型，版面不會壞，但字會變。
 - **回顧與結尾沒有旁白**（回顧靜音；結尾只有吉祥物一句）。
+
+---
+
+## Update: feed model (current)
+
+The video is one tall **feed column** that a camera scrolls through (`scripts/video/Feed.js`). Every part is a feed item
+(`components/FeedItems.js`): `hook → post → word card → post (continued) → word card → recap → quiz (dark) → ending (+ next-post teaser)`.
+Nothing cross-fades in the middle of the screen: items slide up (swipe 0.55 s), only the viewport's top/bottom edges fade (CSS mask),
+and the next item's top edge always peeks in at the bottom.
+
+**Colour states** (`tokens.css`): feed = warm paper `#FFF8EC`; vocabulary card = white with a muted blue-gray (`--c-learn`) used only for
+EXAMPLE / FROM THIS POST / POS / pronunciation; quiz = dark `#20242C` with the correct answer in yellow `#FFD66B`. Yellow stays the vocabulary highlight.
+
+**Card content**: word, POS + pronunciation, zh meaning, EXAMPLE (full sentence, spoken, karaoke) + example zh, FROM THIS POST (short phrase from the post, word marked).
+The white frame grows as each part is revealed.
+
+**Alignment**: feed/card left-aligned; quiz and ending centered.
+
+**Episode JSON additions**: `hook.beats: [{ en, size: xl|l|m|s, zh? }]` (size `s` = display-only, not spoken; legacy `hook.text` still works),
+`words.<k>.ex / exZh / ctx` (`ctx` = FROM THIS POST phrase; derived from the post when omitted), `quiz.type: "context"` with `sentence` containing `____`.
+
+**Audit** (`--audit`): skipped while the camera moves; judges only the focused item (+ mascot/subtitle); flags content in the bottom fade zone.
+Set `SPEC_DUMP=<file>` to write the full plan (with tokens) for debugging.
