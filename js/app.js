@@ -1765,7 +1765,7 @@
     if (!slot) return;
     var dismissed = 0;
     try { dismissed = parseInt(localStorage.getItem(INSTALL_DISMISS_KEY), 10) || 0; } catch (e) { /* ignore */ }
-    var show = st().prefs.onboarded && Date.now() - dismissed > 7 * 86400000;
+    var show = Date.now() - dismissed > 7 * 86400000;
     slot.innerHTML = show ? installCardHtml(true) : "";
   }
 
@@ -1783,15 +1783,56 @@
     }
   }
 
+  // Little diagrams for the three steps (colors come from .ig-* classes so dark mode works).
+  var IG_SHARE = '<path d="M12 4v10M8.5 7.5 12 4l3.5 3.5"/><path d="M7 11H6.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1H17"/>';
+  function igArrow(x, y, up) {
+    return '<g class="ig-arrow"><path d="M' + x + " " + y + (up ? "v-16m-6 6 6-6 6 6" : "v16m-6-6 6 6 6-6") + '"/></g>';
+  }
+  function igShareStep(chrome) {
+    if (chrome) {
+      return '<svg class="ig" viewBox="0 0 300 76" role="img" aria-label="Share button at the top right of the browser">' +
+        '<rect class="ig-bar" x="2" y="6" width="296" height="40" rx="12"/>' +
+        '<rect class="ig-pill" x="14" y="14" width="228" height="24" rx="12"/>' +
+        '<circle class="ig-ring" cx="262" cy="26" r="17"/>' +
+        '<g class="ig-ico" transform="translate(250 14)">' + IG_SHARE + "</g>" +
+        igArrow(262, 70, true) + "</svg>";
+    }
+    return '<svg class="ig" viewBox="0 18 300 78" role="img" aria-label="Share button at the bottom of Safari">' +
+      '<rect class="ig-bar" x="2" y="50" width="296" height="44" rx="12"/>' +
+      '<path class="ig-ico" d="M32 72l-6 6 6 6"/><path class="ig-ico" d="M70 72l6 6-6 6"/>' +
+      '<circle class="ig-ring" cx="150" cy="72" r="18"/>' +
+      '<g class="ig-ico" transform="translate(138 60)">' + IG_SHARE + "</g>" +
+      '<rect class="ig-ico" x="214" y="64" width="18" height="16" rx="2"/><rect class="ig-ico" x="254" y="64" width="16" height="16" rx="3"/>' +
+      igArrow(150, 38, false) + "</svg>";
+  }
+  function igMenuStep() {
+    function row(y, label, hi) {
+      return '<rect class="' + (hi ? "ig-row-hi" : "ig-row") + '" x="10" y="' + y + '" width="280" height="22" rx="6"/>' +
+        '<text class="ig-txt' + (hi ? " ig-txt-hi" : "") + '" x="22" y="' + (y + 15) + '">' + label + "</text>" +
+        (hi ? '<rect class="ig-ico" x="258" y="' + (y + 4) + '" width="14" height="14" rx="3"/><path class="ig-ico" d="M265 ' + (y + 7) + "v8M261 " + (y + 11) + 'h8"/>' : "");
+    }
+    return '<svg class="ig" viewBox="0 0 300 96" role="img" aria-label="Menu with Add to Home Screen highlighted">' +
+      row(2, "Copy", false) + row(26, "Add to Bookmarks", false) + row(50, "Add to Home Screen", true) +
+      '<text class="ig-txt ig-more" x="22" y="90">…</text></svg>';
+  }
+  function igAddStep() {
+    return '<svg class="ig" viewBox="0 0 300 96" role="img" aria-label="Tap Add at the top right">' +
+      '<rect class="ig-bar" x="2" y="6" width="296" height="84" rx="12"/>' +
+      '<text class="ig-txt" x="16" y="30">Cancel</text><text class="ig-txt ig-title" x="150" y="30" text-anchor="middle">Add to Home Screen</text>' +
+      '<rect class="ig-btn" x="238" y="14" width="48" height="24" rx="12"/><text class="ig-txt ig-btn-txt" x="262" y="31" text-anchor="middle">Add</text>' +
+      '<rect class="ig-tile" x="16" y="48" width="32" height="32" rx="8"/><text class="ig-txt" x="60" y="69">toEfu</text>' +
+      igArrow(262, 88, true).replace("ig-arrow", "ig-arrow ig-arrow-r") + "</svg>";
+  }
+
   function openInstallGuide() {
     var chrome = /CriOS/.test(navigator.userAgent);
-    var shareIcon = '<svg class="share-ico" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+    var shareIcon = '<svg class="share-ico" viewBox="0 0 24 24">' + IG_SHARE + "</svg>";
     $("#installGuide").innerHTML = '<div class="sheet-handle"></div><h2>Add to Home Screen</h2>' +
       '<p class="muted">toEfu works like an app: full-screen, stays signed in, and on iPhone it can send notifications.</p>' +
       '<ol class="steps">' +
-        "<li>Tap the <b>Share</b> button " + shareIcon + (chrome ? " at the top right, next to the address bar." : " at the bottom of Safari.") + ' <span class="muted">（分享）</span></li>' +
-        '<li>Scroll down and tap <b>Add to Home Screen</b> <span class="muted">（加入主畫面）</span></li>' +
-        '<li>Tap <b>Add</b> <span class="muted">（新增）</span>, then open toEfu from the tofu icon on your Home Screen.</li>' +
+        "<li>Tap the <b>Share</b> button " + shareIcon + (chrome ? " at the top right, next to the address bar." : " at the bottom of Safari.") + ' <span class="muted">（分享）</span>' + igShareStep(chrome) + "</li>" +
+        '<li>Scroll down and tap <b>Add to Home Screen</b> <span class="muted">（加入主畫面）</span>' + igMenuStep() + "</li>" +
+        '<li>Tap <b>Add</b> <span class="muted">（新增）</span>, then open toEfu from the tofu icon on your Home Screen.' + igAddStep() + "</li>" +
       "</ol>" +
       '<p class="muted small">You may need to sign in once more inside the Home Screen app.</p>' +
       '<button class="primary-btn" data-close-guide>Got it</button>';
