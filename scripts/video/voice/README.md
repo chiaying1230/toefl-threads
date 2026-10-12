@@ -39,6 +39,28 @@ When the vocabulary is explained **after a complete sentence**, none of this app
 `speak` (when the spoken form differs from the shown text, e.g. "90%" / "ninety percent") works on segments without
 `parts`; words are mapped back onto the displayed text without guessing (see `remapWordsToDisplay` in `align.mjs`).
 
+## Where to interrupt: `through` or `after`
+
+A part says where the audio is cut. Give exactly one of the two (the last part has neither):
+
+* `through: "<word>"` – cut right after that word. Explicit; the accepted P2 / P3 narrations use it and it is unchanged.
+* `after: "<the vocabulary's last word>"` – cut at the **nearest natural punctuation boundary at or after that word**: the first token
+  that ends in `, . ; : ! ?` (optionally followed by a closing quote or bracket). The word itself counts, so `"witness,"` is cut there.
+  The tool resolves it (the boundary is kept on the part as `boundary`); nothing is guessed in the episode.
+* If no such token exists before the end of the sentence (the boundary would be the sentence end) `after` is an error that says so:
+  the note goes after the whole sentence, so declare the sentence as a plain segment (no `parts`), and open the note on its last word.
+
+```json
+{ "id": "consumedSent", "kind": "story", "text": "Worse, I was consumed with spying on their queen, so I forgot …",
+  "parts": [ { "id": "consumedLead", "after": "with", "gap": 0.04 },
+             { "id": "consumedRest", "resumeAfter": "consumedExample", "gap": 0.1 } ] }
+```
+
+In that example the cut lands at the comma after "queen". Neither option changes the audio hash (the sentence is still one TTS take). The highlighted vocabulary (episode `word` / `forms`) and
+the place where the story pauses are separate things: the yellow range stays on the vocabulary, and the episode's `open.word` may be
+a word inside the phrase or the last word of the line before the pause. Always listen to the join: an unstressed word followed by a
+fricative ("with | spying") sounded like a finished sentence when cut right after it, which is why `after` exists.
+
 ## Audio mix (background music + sound effects)
 
 Optional, per episode, in the episode JSON; an episode with neither renders as plain narration.

@@ -2,7 +2,7 @@
 
 ## 目前確認的 short-video template reference（2026-10-11）
 
-目前 reference implementation 是 [p2-v4.2-outro-music.mp4](../outputs/p2-v4.2-outro-music.mp4)，保留此可播放版本，不覆寫。詳細實作與驗證紀錄見 [Template Status](p2-v4.2-outro/REVIEW.md#template-status)。本節是目前已確認方向；下方早期規範、feed revisions、舊 voice 指令及案例保留為歷史紀錄，不能視為現行 reference 已完成跨 episode 或自動語音驗證的證據。
+最早核准的 reference implementation 是 [p2-v4.2-outro-music.mp4](../outputs/p2-v4.2-outro-music.mp4)，保留此可播放版本，不覆寫。詳細實作與驗證紀錄見 [Template Status](p2-v4.2-outro/REVIEW.md#template-status)。本節是已確認的設計方向；下方早期規範、feed revisions、舊 voice 指令及案例保留為歷史紀錄。目前已 freeze 的 reference 是 P2 / P3 / P4；現行狀態、有效能力與驗證結果以 [`docs/video/CURRENT_STATE.md`](video/CURRENT_STATE.md) 與各 `FROZEN.json` 為準。
 
 **CLEAR > RHYTHMIC > DECORATIVE。** 模板提供結構與視覺語言，每篇節奏仍依內容與聲音調整。
 
@@ -31,11 +31,11 @@ P2 的具體 timing、story length、vocabulary 數量、Hook animation、Quiz d
 |---|---|
 | P2 visual language | validated（使用者確認） |
 | Voice quality | validated（Arthur／Ling 目前聲音） |
-| Template architecture | partially validated（P2 結構已抽離，尚未跨篇驗證） |
-| ElevenLabs automated voice pipeline | not yet validated |
-| Cross-episode reuse | not yet validated |
+| Template architecture | validated（P2、P3、P4 跨篇重用，regression 通過） |
+| ElevenLabs automated voice pipeline | validated（P2、P3、P4 實際生成、對齊、組裝、render） |
+| Cross-episode reuse | validated（P2 / P3 / P4；詞組、結構化 metadata 等現行能力見 CURRENT_STATE） |
 
-下一步順序：Claude Code 完成 ElevenLabs voice automation → Codex review → 使用一個全新 episode 做 template stress test。此順序是後續安排，本輪只記錄，不執行。
+目前的下一步與標準流程見 [`docs/video/CURRENT_STATE.md`](video/CURRENT_STATE.md)。
 
 Reference SHA256：`09b4cc3739ea15d251914f00b78fbf9416c713a7154f8fe9bbcf24d32fc55bd6`。
 
