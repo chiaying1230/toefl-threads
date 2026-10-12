@@ -1,0 +1,145 @@
+{
+  "id": "toeic-079",
+  "outputFormat": "mp3_44100_128",
+  "complete": true,
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "3c757b0bceefd97a90742a5987fb4f9c",
+      "chars": 71,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "3c757b0bceefd97a90742a5987fb4f9c.mp3"
+    },
+    {
+      "id": "update",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "a5182bb7b6283a7947325da928059561",
+      "chars": 80,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "a5182bb7b6283a7947325da928059561.mp3"
+    },
+    {
+      "id": "scouts",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "783c27c1736a5af3b5d9ca7402000ea1",
+      "chars": 49,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "783c27c1736a5af3b5d9ca7402000ea1.mp3"
+    },
+    {
+      "id": "gameSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "184d3241b1d471f18911cde4c389e23e",
+      "chars": 70,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "gameLead",
+          "text": "It has become a game of cat and mouse",
+          "gap": 0.04
+        },
+        {
+          "id": "gameRest",
+          "text": "that wastes time for both of us.",
+          "gap": 0.1
+        }
+      ],
+      "status": "ready",
+      "audio": "184d3241b1d471f18911cde4c389e23e.mp3"
+    },
+    {
+      "id": "gameMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "eb9ae06eba268eb82b8e9f023b42dffb",
+      "chars": 8,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "eb9ae06eba268eb82b8e9f023b42dffb.mp3"
+    },
+    {
+      "id": "gameExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "70657cf9c57049eef7f5099017d7bec9",
+      "chars": 116,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "70657cf9c57049eef7f5099017d7bec9.mp3"
+    },
+    {
+      "id": "consumedSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "69b65f41c3aa09cdba9238c9bf28d158",
+      "chars": 90,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "consumedLead",
+          "text": "Worse, I was consumed with",
+          "gap": 0.04
+        },
+        {
+          "id": "consumedRest",
+          "text": "spying on their queen, so I forgot to check my own honey sales.",
+          "gap": 0.1
+        }
+      ],
+      "status": "ready",
+      "audio": "69b65f41c3aa09cdba9238c9bf28d158.mp3"
+    },
+    {
+      "id": "consumedMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "0ac7c7f3f9a719bb4626df9b4e37d49a",
+      "chars": 14,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "0ac7c7f3f9a719bb4626df9b4e37d49a.mp3"
+    },
+    {
+      "id": "consumedExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "8387aa493c4540d754980159f161882d",
+      "chars": 47,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "8387aa493c4540d754980159f161882d.mp3"
+    },
+    {
+      "id": "napping",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "a70d33eca1fafb7ee5ce64e743b9a3ff",
+      "chars": 28,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "a70d33eca1fafb7ee5ce64e743b9a3ff.mp3"
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 0.8,
+      "gap": 2
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 1.25,
+      "gap": 0.85
+    }
+  ]
+}

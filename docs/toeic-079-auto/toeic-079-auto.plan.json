@@ -1,0 +1,931 @@
+{
+  "id": "toeic-079-auto",
+  "duration": 46.7,
+  "frames": 1401,
+  "fps": 30,
+  "voices": {
+    "en": "ElevenLabs arthur (eleven_v4, C1npRmjB19a6yNkEucvx)",
+    "zh": "ElevenLabs ling (eleven_v4, Z8Aisvg1z70p27kGvkZZ)"
+  },
+  "audioEnd": 42.535055,
+  "source": "ElevenLabs voice pipeline (voice.mjs → assemble)",
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "I was busy spying on their queen. I forgot to check my own honey sales.",
+      "gap": 0.08,
+      "duration": 4.6650113378684805,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.24501133786848076,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.24501133786848076,
+          "until": 0.4850113378684807,
+          "pos": 2,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 0.4850113378684807,
+          "until": 0.7650113378684807,
+          "pos": 6,
+          "count": 4,
+          "text": "busy"
+        },
+        {
+          "at": 0.7650113378684807,
+          "until": 1.2050113378684808,
+          "pos": 11,
+          "count": 6,
+          "text": "spying"
+        },
+        {
+          "at": 1.2050113378684808,
+          "until": 1.325011337868481,
+          "pos": 18,
+          "count": 2,
+          "text": "on"
+        },
+        {
+          "at": 1.325011337868481,
+          "until": 1.565011337868481,
+          "pos": 21,
+          "count": 5,
+          "text": "their"
+        },
+        {
+          "at": 1.565011337868481,
+          "until": 2.525011337868481,
+          "pos": 27,
+          "count": 6,
+          "text": "queen"
+        },
+        {
+          "at": 2.525011337868481,
+          "until": 2.7650113378684806,
+          "pos": 34,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 2.7650113378684806,
+          "until": 2.965011337868481,
+          "pos": 36,
+          "count": 6,
+          "text": "forgot"
+        },
+        {
+          "at": 2.965011337868481,
+          "until": 3.085011337868481,
+          "pos": 43,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 3.085011337868481,
+          "until": 3.3650113378684807,
+          "pos": 46,
+          "count": 5,
+          "text": "check"
+        },
+        {
+          "at": 3.3650113378684807,
+          "until": 3.565011337868481,
+          "pos": 52,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 3.565011337868481,
+          "until": 3.8050113378684807,
+          "pos": 55,
+          "count": 3,
+          "text": "own"
+        },
+        {
+          "at": 3.8050113378684807,
+          "until": 4.1250113378684805,
+          "pos": 59,
+          "count": 5,
+          "text": "honey"
+        },
+        {
+          "at": 4.1250113378684805,
+          "until": 4.6650113378684805,
+          "pos": 65,
+          "count": 6,
+          "text": "sales"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (3c757b0b)",
+      "start": 0,
+      "end": 4.665011
+    },
+    {
+      "id": "update",
+      "lang": "en",
+      "text": "Business update: a rival hive keeps following my scouts to my best flower field.",
+      "gap": 0.1,
+      "duration": 5.6,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.48,
+          "pos": 0,
+          "count": 8,
+          "text": "Business"
+        },
+        {
+          "at": 0.48,
+          "until": 1.6,
+          "pos": 9,
+          "count": 7,
+          "text": "update"
+        },
+        {
+          "at": 1.6,
+          "until": 1.76,
+          "pos": 17,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 1.76,
+          "until": 2.16,
+          "pos": 19,
+          "count": 5,
+          "text": "rival"
+        },
+        {
+          "at": 2.16,
+          "until": 2.64,
+          "pos": 25,
+          "count": 4,
+          "text": "hive"
+        },
+        {
+          "at": 2.64,
+          "until": 2.96,
+          "pos": 30,
+          "count": 5,
+          "text": "keeps"
+        },
+        {
+          "at": 2.96,
+          "until": 3.44,
+          "pos": 36,
+          "count": 9,
+          "text": "following"
+        },
+        {
+          "at": 3.44,
+          "until": 3.68,
+          "pos": 46,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 3.68,
+          "until": 4.12,
+          "pos": 49,
+          "count": 6,
+          "text": "scouts"
+        },
+        {
+          "at": 4.12,
+          "until": 4.28,
+          "pos": 56,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 4.28,
+          "until": 4.52,
+          "pos": 59,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 4.52,
+          "until": 4.72,
+          "pos": 62,
+          "count": 4,
+          "text": "best"
+        },
+        {
+          "at": 4.72,
+          "until": 5.12,
+          "pos": 67,
+          "count": 6,
+          "text": "flower"
+        },
+        {
+          "at": 5.12,
+          "until": 5.6,
+          "pos": 74,
+          "count": 6,
+          "text": "field"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (a5182bb7)",
+      "start": 4.745011,
+      "end": 10.345011
+    },
+    {
+      "id": "scouts",
+      "lang": "en",
+      "text": "I move the scouts, they follow, and I move again.",
+      "gap": 0.1,
+      "duration": 3.56,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.16,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.16,
+          "until": 0.36,
+          "pos": 2,
+          "count": 4,
+          "text": "move"
+        },
+        {
+          "at": 0.36,
+          "until": 0.48,
+          "pos": 7,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 0.48,
+          "until": 1.4,
+          "pos": 11,
+          "count": 7,
+          "text": "scouts"
+        },
+        {
+          "at": 1.4,
+          "until": 1.72,
+          "pos": 19,
+          "count": 4,
+          "text": "they"
+        },
+        {
+          "at": 1.72,
+          "until": 2.4,
+          "pos": 24,
+          "count": 7,
+          "text": "follow"
+        },
+        {
+          "at": 2.4,
+          "until": 2.72,
+          "pos": 32,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 2.72,
+          "until": 2.88,
+          "pos": 36,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 2.88,
+          "until": 3.28,
+          "pos": 38,
+          "count": 4,
+          "text": "move"
+        },
+        {
+          "at": 3.28,
+          "until": 3.56,
+          "pos": 43,
+          "count": 6,
+          "text": "again"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (783c27c1)",
+      "start": 10.445011,
+      "end": 14.005011
+    },
+    {
+      "id": "gameSent",
+      "lang": "en",
+      "text": "It has become a game of cat and mouse that wastes time for both of us.",
+      "gap": 0.04,
+      "duration": 4.25,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.16,
+          "pos": 0,
+          "count": 2,
+          "text": "It"
+        },
+        {
+          "at": 0.16,
+          "until": 0.32,
+          "pos": 3,
+          "count": 3,
+          "text": "has"
+        },
+        {
+          "at": 0.32,
+          "until": 0.6,
+          "pos": 7,
+          "count": 6,
+          "text": "become"
+        },
+        {
+          "at": 0.6,
+          "until": 0.72,
+          "pos": 14,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 0.72,
+          "until": 1.04,
+          "pos": 16,
+          "count": 4,
+          "text": "game"
+        },
+        {
+          "at": 1.04,
+          "until": 1.2,
+          "pos": 21,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 1.2,
+          "until": 1.52,
+          "pos": 24,
+          "count": 3,
+          "text": "cat"
+        },
+        {
+          "at": 1.52,
+          "until": 1.68,
+          "pos": 28,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 1.68,
+          "until": 2.16,
+          "pos": 32,
+          "count": 5,
+          "text": "mouse"
+        },
+        {
+          "at": 2.16,
+          "until": 2.4,
+          "pos": 38,
+          "count": 4,
+          "text": "that"
+        },
+        {
+          "at": 2.4,
+          "until": 2.88,
+          "pos": 43,
+          "count": 6,
+          "text": "wastes"
+        },
+        {
+          "at": 2.88,
+          "until": 3.32,
+          "pos": 50,
+          "count": 4,
+          "text": "time"
+        },
+        {
+          "at": 3.32,
+          "until": 3.56,
+          "pos": 55,
+          "count": 3,
+          "text": "for"
+        },
+        {
+          "at": 3.56,
+          "until": 3.72,
+          "pos": 59,
+          "count": 4,
+          "text": "both"
+        },
+        {
+          "at": 3.72,
+          "until": 3.84,
+          "pos": 64,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 3.84,
+          "until": 4.25,
+          "pos": 67,
+          "count": 3,
+          "text": "us"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (184d3241)",
+      "start": 14.105011,
+      "end": 18.355011
+    },
+    {
+      "id": "gameMeaning",
+      "lang": "zh",
+      "text": "貓捉老鼠的遊戲。",
+      "gap": 0.04,
+      "duration": 1.6250113378684807,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (eb9ae06e)",
+      "start": 18.395011,
+      "end": 20.020022
+    },
+    {
+      "id": "gameExample",
+      "lang": "en",
+      "text": "In the yard, the children played a game of cat and mouse, with one pretending to be the cat and the other the mouse.",
+      "gap": 0.08,
+      "duration": 7.13501133786848,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.17501133786848075,
+          "pos": 0,
+          "count": 2,
+          "text": "In"
+        },
+        {
+          "at": 0.17501133786848075,
+          "until": 0.2950113378684807,
+          "pos": 3,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 0.2950113378684807,
+          "until": 1.0150113378684809,
+          "pos": 7,
+          "count": 5,
+          "text": "yard"
+        },
+        {
+          "at": 1.0150113378684809,
+          "until": 1.095011337868481,
+          "pos": 13,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 1.095011337868481,
+          "until": 1.575011337868481,
+          "pos": 17,
+          "count": 8,
+          "text": "children"
+        },
+        {
+          "at": 1.575011337868481,
+          "until": 1.815011337868481,
+          "pos": 26,
+          "count": 6,
+          "text": "played"
+        },
+        {
+          "at": 1.815011337868481,
+          "until": 1.8950113378684807,
+          "pos": 33,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 1.8950113378684807,
+          "until": 2.215011337868481,
+          "pos": 35,
+          "count": 4,
+          "text": "game"
+        },
+        {
+          "at": 2.215011337868481,
+          "until": 2.4550113378684806,
+          "pos": 40,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 2.4550113378684806,
+          "until": 2.7750113378684804,
+          "pos": 43,
+          "count": 3,
+          "text": "cat"
+        },
+        {
+          "at": 2.7750113378684804,
+          "until": 3.1750113378684808,
+          "pos": 47,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 3.1750113378684808,
+          "until": 3.7350113378684804,
+          "pos": 51,
+          "count": 6,
+          "text": "mouse"
+        },
+        {
+          "at": 3.7350113378684804,
+          "until": 3.9750113378684806,
+          "pos": 58,
+          "count": 4,
+          "text": "with"
+        },
+        {
+          "at": 3.9750113378684806,
+          "until": 4.215011337868481,
+          "pos": 63,
+          "count": 3,
+          "text": "one"
+        },
+        {
+          "at": 4.215011337868481,
+          "until": 4.695011337868481,
+          "pos": 67,
+          "count": 10,
+          "text": "pretending"
+        },
+        {
+          "at": 4.695011337868481,
+          "until": 4.815011337868481,
+          "pos": 78,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 4.815011337868481,
+          "until": 4.935011337868481,
+          "pos": 81,
+          "count": 2,
+          "text": "be"
+        },
+        {
+          "at": 4.935011337868481,
+          "until": 5.095011337868481,
+          "pos": 84,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 5.095011337868481,
+          "until": 5.655011337868481,
+          "pos": 88,
+          "count": 3,
+          "text": "cat"
+        },
+        {
+          "at": 5.655011337868481,
+          "until": 5.815011337868481,
+          "pos": 92,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 5.815011337868481,
+          "until": 5.975011337868481,
+          "pos": 96,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 5.975011337868481,
+          "until": 6.4550113378684815,
+          "pos": 100,
+          "count": 5,
+          "text": "other"
+        },
+        {
+          "at": 6.4550113378684815,
+          "until": 6.775011337868481,
+          "pos": 106,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 6.775011337868481,
+          "until": 7.13501133786848,
+          "pos": 110,
+          "count": 6,
+          "text": "mouse"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (70657cf9)",
+      "start": 20.060022,
+      "end": 27.195033
+    },
+    {
+      "id": "consumedLead",
+      "lang": "en",
+      "text": "Worse, I was consumed with spying on their queen,",
+      "gap": 0.04,
+      "duration": 3.43,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.88,
+          "pos": 0,
+          "count": 6,
+          "text": "Worse"
+        },
+        {
+          "at": 0.88,
+          "until": 1.04,
+          "pos": 7,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 1.04,
+          "until": 1.4,
+          "pos": 9,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 1.4,
+          "until": 1.92,
+          "pos": 13,
+          "count": 8,
+          "text": "consumed"
+        },
+        {
+          "at": 1.92,
+          "until": 2.08,
+          "pos": 22,
+          "count": 4,
+          "text": "with"
+        },
+        {
+          "at": 2.08,
+          "until": 2.56,
+          "pos": 27,
+          "count": 6,
+          "text": "spying"
+        },
+        {
+          "at": 2.56,
+          "until": 2.72,
+          "pos": 34,
+          "count": 2,
+          "text": "on"
+        },
+        {
+          "at": 2.72,
+          "until": 2.88,
+          "pos": 37,
+          "count": 5,
+          "text": "their"
+        },
+        {
+          "at": 2.88,
+          "until": 3.43,
+          "pos": 43,
+          "count": 6,
+          "text": "queen"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of consumedSent (69b65f41)",
+      "start": 27.275033,
+      "end": 30.705033
+    },
+    {
+      "id": "consumedMeaning",
+      "lang": "zh",
+      "text": "被某件事吞噬、為某件事所苦。",
+      "gap": 0.04,
+      "duration": 3.5150113378684806,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (0ac7c7f3)",
+      "start": 30.745033,
+      "end": 34.260044
+    },
+    {
+      "id": "consumedExample",
+      "lang": "en",
+      "text": "She was consumed with guilt after the accident.",
+      "gap": 0.08,
+      "duration": 3.2,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.32,
+          "pos": 0,
+          "count": 3,
+          "text": "She"
+        },
+        {
+          "at": 0.32,
+          "until": 0.48,
+          "pos": 4,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 0.48,
+          "until": 1.28,
+          "pos": 8,
+          "count": 8,
+          "text": "consumed"
+        },
+        {
+          "at": 1.28,
+          "until": 1.52,
+          "pos": 17,
+          "count": 4,
+          "text": "with"
+        },
+        {
+          "at": 1.52,
+          "until": 2.08,
+          "pos": 22,
+          "count": 5,
+          "text": "guilt"
+        },
+        {
+          "at": 2.08,
+          "until": 2.4,
+          "pos": 28,
+          "count": 5,
+          "text": "after"
+        },
+        {
+          "at": 2.4,
+          "until": 2.56,
+          "pos": 34,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 2.56,
+          "until": 3.2,
+          "pos": 38,
+          "count": 9,
+          "text": "accident"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (8387aa49)",
+      "start": 34.300044,
+      "end": 37.500044
+    },
+    {
+      "id": "consumedRest",
+      "lang": "en",
+      "text": "so I forgot to check my own honey sales.",
+      "gap": 0.1,
+      "duration": 2.6,
+      "words": [
+        {
+          "at": 0.056145124716552974,
+          "until": 0.45614512471655333,
+          "pos": 0,
+          "count": 2,
+          "text": "so"
+        },
+        {
+          "at": 0.45614512471655333,
+          "until": 0.7761451247165536,
+          "pos": 3,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.7761451247165536,
+          "until": 0.9761451247165529,
+          "pos": 5,
+          "count": 6,
+          "text": "forgot"
+        },
+        {
+          "at": 0.9761451247165529,
+          "until": 1.096145124716553,
+          "pos": 12,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 1.096145124716553,
+          "until": 1.3361451247165532,
+          "pos": 15,
+          "count": 5,
+          "text": "check"
+        },
+        {
+          "at": 1.3361451247165532,
+          "until": 1.5761451247165534,
+          "pos": 21,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 1.5761451247165534,
+          "until": 1.7761451247165536,
+          "pos": 24,
+          "count": 3,
+          "text": "own"
+        },
+        {
+          "at": 1.7761451247165536,
+          "until": 2.056145124716553,
+          "pos": 28,
+          "count": 5,
+          "text": "honey"
+        },
+        {
+          "at": 2.056145124716553,
+          "until": 2.6,
+          "pos": 34,
+          "count": 6,
+          "text": "sales"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of consumedSent (69b65f41)",
+      "start": 37.580044,
+      "end": 40.180044
+    },
+    {
+      "id": "napping",
+      "lang": "en",
+      "text": "She, meanwhile, was napping.",
+      "gap": 0.1,
+      "duration": 2.255011337868481,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.7450113378684807,
+          "pos": 0,
+          "count": 4,
+          "text": "She"
+        },
+        {
+          "at": 0.7450113378684807,
+          "until": 1.5050113378684808,
+          "pos": 5,
+          "count": 10,
+          "text": "meanwhile"
+        },
+        {
+          "at": 1.5050113378684808,
+          "until": 1.6650113378684808,
+          "pos": 16,
+          "count": 3,
+          "text": "was"
+        },
+        {
+          "at": 1.6650113378684808,
+          "until": 2.255011337868481,
+          "pos": 20,
+          "count": 8,
+          "text": "napping"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (a70d33ec)",
+      "start": 40.280044,
+      "end": 42.535055
+    },
+    {
+      "id": "question",
+      "lang": null,
+      "text": "",
+      "gap": 2,
+      "duration": 0.8,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 42.635055,
+      "end": 43.435055
+    },
+    {
+      "id": "answer",
+      "lang": null,
+      "text": "",
+      "gap": 0.85,
+      "duration": 1.25,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 45.435055,
+      "end": 46.685055
+    }
+  ]
+}

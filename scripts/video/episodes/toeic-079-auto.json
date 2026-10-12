@@ -1,0 +1,320 @@
+{
+  "_status": "toeic-079 (P4, multi-word vocabulary). Hook = H3 (scene_contrast), Quiz = Q1 (meaning), both chosen by the user. Series identity is structured metadata (new header path): TOEIC · #01 · L2 – series, seriesEpisode and level are explicit data given by the user (P2 = TOEFL #01, P3 = TOEFL #02, this = TOEIC #01), never derived from contentId. No decorative emoji in the content (content emoji default = off from P4); the account avatar is identity. Handoff rule: the note is inserted at the nearest punctuation boundary after the vocabulary (consumed: the comma after queen; game: the end of the sentence). Author / handle / avatar from characters.js, topic Business from packs/toeic.js. Camera offsets were fitted to the real plan with scripts/video/fit-camera.mjs.",
+  "id": "toeic-079-auto",
+  "series": "TOEIC",
+  "seriesEpisode": 1,
+  "level": {
+    "min": 2,
+    "max": 2
+  },
+  "contentId": "toeic-079",
+  "plan": "/docs/toeic-079-auto/toeic-079-auto.plan.json",
+  "audio": "/docs/toeic-079-auto/narration.wav",
+  "soundEffects": [
+    {
+      "asset": "/scripts/video/assets/answer-correct.wav",
+      "at": {
+        "line": "answer"
+      },
+      "gain": 0.75
+    }
+  ],
+  "music": {
+    "asset": "/scripts/video/assets/social-soft-groove.wav",
+    "bpm": 94,
+    "narrationGain": 0.16,
+    "endingGain": 0.3,
+    "riseDuration": 0.6,
+    "fadeIn": 0.35,
+    "fadeOut": 0.8
+  },
+  "brand": "● toEfu",
+  "author": {
+    "avatar": "🐝",
+    "name": "Queen Beatrice",
+    "meta": "@queen_bee_b"
+  },
+  "social": "Business",
+  "outside": "toEfu 單字情境",
+  "vocabulary": [
+    {
+      "id": "gameNote",
+      "word": "a game of cat and mouse",
+      "zh": "貓捉老鼠遊戲",
+      "pos": "n. phr.",
+      "meaningLine": "gameMeaning",
+      "exampleLine": "gameExample",
+      "exampleZh": "孩子們在院子裡玩貓捉老鼠遊戲，一個人扮演貓，另一個人扮演老鼠。",
+      "open": {
+        "line": "gameSent",
+        "word": "us"
+      },
+      "close": {
+        "line": "consumedLead"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    },
+    {
+      "id": "consumedNote",
+      "word": "be consumed with",
+      "forms": [
+        "was consumed with"
+      ],
+      "zh": "被…吞噬；為…所苦",
+      "pos": "v. phr.",
+      "meaningLine": "consumedMeaning",
+      "exampleLine": "consumedExample",
+      "exampleZh": "意外發生後,她被罪惡感吞噬。",
+      "open": {
+        "line": "consumedLead",
+        "word": "queen"
+      },
+      "close": {
+        "line": "consumedRest"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    }
+  ],
+  "hook": {
+    "type": "scene_contrast",
+    "id": "hook",
+    "label": "BUSINESS UPDATE",
+    "setup": [
+      "I was busy spying",
+      "on their queen."
+    ],
+    "payoff": [
+      "I FORGOT TO CHECK",
+      "MY OWN HONEY SALES. "
+    ],
+    "zh": "忙著監視對手女王，結果忘了查看自己的蜂蜜銷量。",
+    "reveal": {
+      "line": "hook",
+      "word": "forgot"
+    },
+    "revealDuration": 0.16
+  },
+  "story": [
+    {
+      "id": "update",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "update"
+        },
+        {
+          "type": "translation",
+          "text": "商業近況：有個對手蜂巢一直跟著我的偵察蜂去我最好的那片花田。"
+        },
+        {
+          "type": "reading",
+          "line": "scouts"
+        },
+        {
+          "type": "translation",
+          "text": "我把偵察蜂調走，他們就跟過來，我再調走。"
+        },
+        {
+          "type": "reading",
+          "line": "gameSent"
+        },
+        {
+          "type": "translation",
+          "text": "這變成了一場貓捉老鼠的遊戲，讓我們雙方都浪費時間。"
+        },
+        {
+          "type": "vocabulary",
+          "id": "gameNote"
+        }
+      ]
+    },
+    {
+      "id": "worse",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "consumedLead"
+        },
+        {
+          "type": "vocabulary",
+          "id": "consumedNote"
+        },
+        {
+          "type": "reading",
+          "line": "consumedRest"
+        },
+        {
+          "type": "translation",
+          "text": "更糟的是，我滿腦子都是監視他們的女王，結果忘了查看自己的蜂蜜銷量。"
+        },
+        {
+          "type": "reading",
+          "line": "napping"
+        },
+        {
+          "type": "translation",
+          "text": "而她呢，當時正在睡午覺。"
+        }
+      ]
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "id": "hook",
+      "offset": 0
+    },
+    {
+      "at": {
+        "line": "update"
+      },
+      "id": "update",
+      "offset": 110
+    },
+    {
+      "at": {
+        "line": "scouts"
+      },
+      "id": "update",
+      "offset": -368
+    },
+    {
+      "at": {
+        "line": "gameSent"
+      },
+      "id": "update",
+      "offset": -692
+    },
+    {
+      "at": {
+        "line": "gameSent",
+        "word": "us"
+      },
+      "id": "update",
+      "offset": -774
+    },
+    {
+      "at": {
+        "line": "consumedLead",
+        "delay": -0.2
+      },
+      "id": "worse",
+      "offset": 110
+    },
+    {
+      "at": {
+        "line": "consumedLead",
+        "word": "queen"
+      },
+      "id": "worse",
+      "offset": 110
+    },
+    {
+      "at": {
+        "line": "consumedRest"
+      },
+      "id": "worse",
+      "offset": -93
+    },
+    {
+      "at": {
+        "line": "napping"
+      },
+      "id": "worse",
+      "offset": -418
+    },
+    {
+      "at": {
+        "line": "question"
+      },
+      "id": "quiz",
+      "offset": 35
+    }
+  ],
+  "scrollDuration": 0.35,
+  "visibility": [
+    {
+      "id": "update",
+      "at": {
+        "line": "update",
+        "delay": -0.35
+      },
+      "before": 0.2
+    },
+    {
+      "id": "worse",
+      "at": {
+        "line": "consumedLead",
+        "delay": -0.3
+      },
+      "before": 0
+    },
+    {
+      "id": "quiz",
+      "at": {
+        "line": "question",
+        "delay": -0.3
+      },
+      "before": 0
+    }
+  ],
+  "quiz": {
+    "id": "quiz",
+    "type": "meaning",
+    "meta": "↳ 回覆這則串文",
+    "quote": [
+      "“I was consumed with spying",
+      "on their queen.”"
+    ],
+    "word": "was consumed with",
+    "question": " 是什麼意思？",
+    "options": [
+      "對…毫不在意",
+      "被…吞噬；為…所苦",
+      "與…保持距離"
+    ],
+    "answer": 1,
+    "questionLine": "question",
+    "answerLine": "answer",
+    "feedback": "✓ B · 滿腦子都是…",
+    "feedbackDetail": "忙著監視對手，連自己的蜂蜜銷量都忘了查。"
+  },
+  "status": {
+    "reading": "用生活日常背單字",
+    "question": "剛剛那個字，你記住了嗎？",
+    "answer": "✓ 答案揭曉",
+    "readingPhase": "● 正在朗讀",
+    "thinkingPhase": "● 換你想想",
+    "answerPhase": "● 答案揭曉"
+  },
+  "outro": {
+    "id": "outro",
+    "start": "planEnd",
+    "duration": 2.4,
+    "scrollDuration": 0.45,
+    "offset": 35,
+    "author": "toEfu 單字情境",
+    "lead": "剛剛那篇，你看懂了。",
+    "cta": "收藏這篇，記住這兩個片語。",
+    "words": [
+      {
+        "en": "a game of cat and mouse",
+        "zh": "貓捉老鼠遊戲"
+      },
+      {
+        "en": "be consumed with",
+        "zh": "被…吞噬；為…所苦"
+      }
+    ],
+    "brandLine": "用生活日常背單字",
+    "status": "↳ 收藏這篇",
+    "phase": "● 下次遇到就認得",
+    "mascot": {
+      "enabled": true,
+      "lookAt": "cta",
+      "cueDuration": 0.65
+    }
+  }
+}

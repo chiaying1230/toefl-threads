@@ -1,0 +1,52 @@
+{
+  "hash": "eb9ae06eba268eb82b8e9f023b42dffb",
+  "segment": "gameMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "貓捉老鼠的遊戲。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 8,
+  "estimatedDuration": 1.9096875,
+  "speechStart": 0,
+  "speechEnd": 1.92,
+  "alignment": {
+    "characters": [
+      "貓",
+      "捉",
+      "老",
+      "鼠",
+      "的",
+      "遊",
+      "戲",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.32,
+      0.48,
+      0.72,
+      0.96,
+      1.04,
+      1.28,
+      1.52
+    ],
+    "character_end_times_seconds": [
+      0.32,
+      0.48,
+      0.72,
+      0.96,
+      1.04,
+      1.28,
+      1.52,
+      1.92
+    ]
+  }
+}

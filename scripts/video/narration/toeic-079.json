@@ -1,0 +1,93 @@
+{
+  "_comment": "Narration for toeic-079 (P4: multi-word vocabulary). Source: js/data/packs/toeic.js, author beatrice. Teach phrases: 'a game of cat and mouse' and 'be consumed with' (story form 'was consumed with'). HANDOFF RULE: the note is inserted at the nearest natural punctuation boundary at or after the vocabulary's last word (comma, period, ; : ! ?), not right after the word. consumedSent declares `after: \"with\"` and the tool resolves the boundary ('queen,'): consumedLead + consumedRest, one TTS take. gameSent has no punctuation between 'mouse' and the end of the sentence, so the note goes after the whole sentence: a plain segment, no parts (an `after` there would be an error). The highlighted vocabulary (episode) and the pause (here) are separate things. Meanings: the segment text is what Ling SPEAKS (a natural reading); the card shows the source zh from the episode: 貓捉老鼠遊戲 / 被…吞噬；為…所苦. Examples are the real pack examples. The 'hook' segment is Hook H3 (scene_contrast); its payoff is revealed on 'forgot'. The story's last line 'She, meanwhile, was napping.' is kept for the end. Emoji are display-only.",
+  "id": "toeic-079",
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "text": "I was busy spying on their queen. I forgot to check my own honey sales.",
+      "gap": 0.08
+    },
+    {
+      "id": "update",
+      "kind": "story",
+      "text": "Business update: a rival hive keeps following my scouts to my best flower field.",
+      "gap": 0.1
+    },
+    {
+      "id": "scouts",
+      "kind": "story",
+      "text": "I move the scouts, they follow, and I move again.",
+      "gap": 0.1
+    },
+    {
+      "id": "gameSent",
+      "kind": "story",
+      "text": "It has become a game of cat and mouse that wastes time for both of us.",
+      "gap": 0.04
+    },
+    {
+      "id": "gameMeaning",
+      "kind": "meaning",
+      "text": "貓捉老鼠的遊戲。",
+      "gap": 0.04
+    },
+    {
+      "id": "gameExample",
+      "kind": "example",
+      "text": "In the yard, the children played a game of cat and mouse, with one pretending to be the cat and the other the mouse.",
+      "gap": 0.08
+    },
+    {
+      "id": "consumedSent",
+      "kind": "story",
+      "text": "Worse, I was consumed with spying on their queen, so I forgot to check my own honey sales.",
+      "parts": [
+        {
+          "id": "consumedLead",
+          "after": "with",
+          "gap": 0.04
+        },
+        {
+          "id": "consumedRest",
+          "resumeAfter": "consumedExample",
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "id": "consumedMeaning",
+      "kind": "meaning",
+      "text": "被某件事吞噬、為某件事所苦。",
+      "gap": 0.04
+    },
+    {
+      "id": "consumedExample",
+      "kind": "example",
+      "text": "She was consumed with guilt after the accident.",
+      "gap": 0.08
+    },
+    {
+      "id": "napping",
+      "kind": "story",
+      "text": "She, meanwhile, was napping.",
+      "gap": 0.1
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "silent": true,
+      "duration": 0.8
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "text": "被…吞噬；為…所苦。",
+      "gap": 0.85,
+      "silent": true,
+      "duration": 1.25
+    }
+  ]
+}

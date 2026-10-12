@@ -1,0 +1,9 @@
+{
+  "samples": 1473,
+  "issues": [],
+  "checks": [
+    "horizontal text overflow",
+    "active reading cue within white viewport",
+    "settled outro text bounds"
+  ]
+}

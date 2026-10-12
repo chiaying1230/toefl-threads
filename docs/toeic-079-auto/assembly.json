@@ -1,0 +1,90 @@
+{
+  "segments": [
+    {
+      "id": "hook",
+      "hash": "3c757b0bceefd97a90742a5987fb4f9c",
+      "voice": "arthur",
+      "sourceDuration": 4.88
+    },
+    {
+      "id": "update",
+      "hash": "a5182bb7b6283a7947325da928059561",
+      "voice": "arthur",
+      "sourceDuration": 5.68
+    },
+    {
+      "id": "scouts",
+      "hash": "783c27c1736a5af3b5d9ca7402000ea1",
+      "voice": "arthur",
+      "sourceDuration": 3.76
+    },
+    {
+      "id": "gameSent",
+      "hash": "184d3241b1d471f18911cde4c389e23e",
+      "voice": "arthur",
+      "sourceDuration": 4.32
+    },
+    {
+      "id": "gameMeaning",
+      "hash": "eb9ae06eba268eb82b8e9f023b42dffb",
+      "voice": "ling",
+      "sourceDuration": 1.84
+    },
+    {
+      "id": "gameExample",
+      "hash": "70657cf9c57049eef7f5099017d7bec9",
+      "voice": "arthur",
+      "sourceDuration": 7.28
+    },
+    {
+      "id": "consumedSent",
+      "hash": "69b65f41c3aa09cdba9238c9bf28d158",
+      "voice": "arthur",
+      "sourceDuration": 6.48,
+      "parts": [
+        "consumedLead",
+        "consumedRest"
+      ],
+      "cuts": [
+        {
+          "before": "consumedRest",
+          "sample": 163340,
+          "at": 3.703854875283447,
+          "wordEnd": 3.68,
+          "nextStart": 3.76,
+          "ratio": 0.029
+        }
+      ]
+    },
+    {
+      "id": "consumedMeaning",
+      "hash": "0ac7c7f3f9a719bb4626df9b4e37d49a",
+      "voice": "ling",
+      "sourceDuration": 3.68
+    },
+    {
+      "id": "consumedExample",
+      "hash": "8387aa493c4540d754980159f161882d",
+      "voice": "arthur",
+      "sourceDuration": 3.36
+    },
+    {
+      "id": "napping",
+      "hash": "a70d33eca1fafb7ee5ce64e743b9a3ff",
+      "voice": "arthur",
+      "sourceDuration": 2.4
+    },
+    {
+      "id": "question",
+      "silent": true
+    },
+    {
+      "id": "answer",
+      "silent": true
+    }
+  ],
+  "warnings": [],
+  "duration": 46.7,
+  "audioEnd": 42.535055,
+  "frames": 1401
+}

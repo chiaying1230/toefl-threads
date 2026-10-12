@@ -1,0 +1,70 @@
+{
+  "hash": "0ac7c7f3f9a719bb4626df9b4e37d49a",
+  "segment": "consumedMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "被某件事吞噬、為某件事所苦。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 14,
+  "estimatedDuration": 3.73825,
+  "speechStart": 0,
+  "speechEnd": 3.76,
+  "alignment": {
+    "characters": [
+      "被",
+      "某",
+      "件",
+      "事",
+      "吞",
+      "噬",
+      "、",
+      "為",
+      "某",
+      "件",
+      "事",
+      "所",
+      "苦",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.24,
+      0.4,
+      0.64,
+      0.88,
+      1.2,
+      1.52,
+      2,
+      2.16,
+      2.32,
+      2.6,
+      2.88,
+      3.2,
+      3.44
+    ],
+    "character_end_times_seconds": [
+      0.24,
+      0.4,
+      0.64,
+      0.88,
+      1.2,
+      1.52,
+      2,
+      2.16,
+      2.32,
+      2.6,
+      2.88,
+      3.2,
+      3.44,
+      3.76
+    ]
+  }
+}
