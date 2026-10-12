@@ -39,6 +39,48 @@ P2 的具體 timing、story length、vocabulary 數量、Hook animation、Quiz d
 
 Reference SHA256：`09b4cc3739ea15d251914f00b78fbf9416c713a7154f8fe9bbcf24d32fc55bd6`。
 
+## 系列識別與內容規則（2026-10-12 起，現行）
+
+### 右上角：`詞彙庫 · #集數 · 難度`
+
+觀眾一眼看到三件事：這是哪個詞彙庫系列、該系列第幾支、難度。例如 `TOEIC · #01 · L2`、`TOEFL · #02 · L1–L2`、`IELTS · #03 · L2`、`高中 · #01 · L1`。
+
+episode 用結構化 metadata 描述（全部是明確資料）：
+
+| 欄位 | 意義 |
+|---|---|
+| `series` | 詞彙庫系列：`TOEFL`、`TOEIC`、`IELTS`、`高中`、`國小國中`…（對應 `js/data/packs/index.js` 的詞彙庫） |
+| `seriesEpisode` | 該詞彙庫影片系列的第幾支（正整數；由人指定，可跳號、可重做） |
+| `level` | `{ "min": 2, "max": 2 }`：本集教學內容的難度範圍，每個值是 1–3 的整數，`min <= max` |
+| `contentId` | 原始內容 ID（`p2`、`p348`、`toeic-079`…）；只用來找資料與檔案，**不決定**系列或集數 |
+
+規則：
+- `series` 與 `seriesEpisode` **不從** `contentId`、檔名、資料夾或 episode 名稱推測。`toeic-079` 不是 `TOEIC #79`。
+- 每個詞彙庫各自編號，不是整個 toEfu 共用一個流水號。
+- 顯示：`1 → #01`、`10 → #10`、`100 → #100`（至少兩位，不設上限）；`min === max → L2`，否則 `L1–L2`（中間是 en dash）。箭頭或 `L1–L2` 這種字串**不存進資料**，只是 renderer 的顯示形式。
+- 用了這組 metadata（有 `series`）的 episode：右上角顯示新格式，**帳號列右側原本的 level badge 不再顯示**（難度不出現兩次），不需要 `episodeLabel`、`author.level`。
+- 沒有 `series` 的 episode（P2、P3）是 legacy：右上角仍顯示 `episodeLabel`，帳號列仍有 `author.level`，完全照舊。凍結的 episode 不為補 metadata 而修改。
+- 驗證（`episode-refs.mjs`）：`series` 非空、`seriesEpisode` 為正整數、`level.min / max` 為 1–3 的整數且 `min <= max`、`contentId` 非空；`verify-episode.mjs` 檢查畫面上的右上角文字、帳號列沒有第二個 level badge、右上角沒有溢出。
+
+目前的系列對照（2026-10-12 由使用者明確指定；`p1` 只有 TOEFL 貼文、從未做成影片，不計入）：
+
+| 專案代號 | contentId | 系列 | 系列集數 | 右上角 |
+|---|---|---|---|---|
+| P2 | `p2` | TOEFL | #01 | legacy：`TOEFL · EP.01`（凍結，不改） |
+| P3 | `p348` | TOEFL | #02 | legacy：`p348`（凍結，不改） |
+| P4 | `toeic-079` | TOEIC | #01 | `TOEIC · #01 · L2`（結構化 metadata） |
+
+`P1 / P2 / P3 / P4` 是專案階段代號，不是系列集數。詞彙庫名稱：`toefl` = TOEFL、`toeic` = TOEIC、`ielts` = IELTS、`hs` = 高中、`elem` = 國小國中（目前是同一個詞彙庫；要拆成國中、國小是另一個決定）。
+
+### 內容 emoji：預設關閉（P4 起）
+
+影片正文與教學內容預設**不使用裝飾性 emoji**：Hook 文字、Story 正文、例句、詞彙卡內容、Quiz 題目與答案、Outro 文字都不放。
+- 不屬於這條規則：品牌 mascot、帳號頭像（`author.avatar` 是帳號身分）、UI 符號（`✓ ● ↳`）。
+- 例外：emoji 本身是語意不可替代的學習內容時，episode 以 `allowContentEmoji: true` 明確宣告；預設不要用。
+- `scene_contrast` Hook 的 `emoji` 欄位是選填（沒有就不畫）；`number_contrast` 仍需要（P2）。
+- 使用結構化 metadata 的 episode，`episode-refs.mjs` 會在任何內容字串或旁白行含 emoji 時報錯；`verify-episode.mjs` 另外檢查實際畫面文字。
+- P2、P3 是凍結的 legacy reference，不追溯修改。
+
 ## 早期設計與製作紀錄
 
 **影片的樣子**：觀眾在看一篇有趣的英文貼文 → 讀到一個不會的字 → 那個字從句子裡被「抽出來」學會 → 回到同一篇貼文繼續看 → 又學一個 → 最後發現整篇都看懂了。

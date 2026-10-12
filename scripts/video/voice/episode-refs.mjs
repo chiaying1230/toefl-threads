@@ -47,29 +47,73 @@ export function findEpisodeFor(narrationId, episodesDir = path.join(REPO_ROOT, "
   return null;
 }
 
+// ---- twin of reference/Phrase.js (browser file; Node cannot import it – no package.json "type"). phrase.test.mjs locks the two together. ----
+export const normalizeToken = (t) => String(t).toLowerCase().replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"').replace(/^[\p{P}\p{S}]+|[\p{P}\p{S}]+$/gu, "");
+export const phraseTokens = (t) => { const w = String(t).trim().split(/\s+/).filter(Boolean).map(normalizeToken); return w.every(Boolean) ? w : []; };
+export const isPhrase = (t) => /\s/.test(String(t).trim());
+export function findSpans(tokens, patterns) {
+  const found = [];
+  for (const p of patterns) for (let i = 0; i + p.length <= tokens.length; i++) if (p.every((w, k) => tokens[i + k] === w)) found.push({ from: i, to: i + p.length });
+  found.sort((a, b) => (b.to - b.from) - (a.to - a.from) || a.from - b.from);
+  const taken = new Set(), spans = [];
+  for (const s of found) { let free = true; for (let k = s.from; k < s.to; k++) if (taken.has(k)) free = false; if (!free) continue; for (let k = s.from; k < s.to; k++) taken.add(k); spans.push(s); }
+  return spans.sort((a, b) => a.from - b.from);
+}
+// ---- twin of reference/Header.js (browser file). series.test.mjs locks the two together. ----
+export const levelText = (l) => (l.min === l.max ? `L${l.min}` : `L${l.min}–L${l.max}`);
+export const episodeText = (n) => `#${String(n).padStart(2, "0")}`;
+export const headerLabel = (d) => `${d.series} · ${episodeText(d.seriesEpisode)} · ${levelText(d.level)}`;
+/** Structured series metadata (the new header path). Never derived from contentId / file / folder. */
+export const hasStructuredMetadata = (e) => ["series", "seriesEpisode", "contentId", "level"].some((k) => e?.[k] !== undefined);
+const DECORATIVE_EMOJI = /\p{Extended_Pictographic}/u;
+
+/** ReadingCue's own rule for a single-word key / open.word: only "." and "," are stripped. */
+const cueWord = (t) => t.replace(/[.,]/g, "").toLowerCase();
+const rawTokens = (text) => [...String(text).matchAll(/\S+/g)].map((m) => m[0]);
+
 const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
 const isStr = (v) => typeof v === "string" && v.trim() !== "";
 
 /**
  * @param {object} episode  parsed episode JSON
  * @param {Map} lines       from linesFromNarration / linesFromPlan
+ * @param {{warnings?: string[]}} [opts]  warnings (not errors) are pushed to opts.warnings
  * @returns {string[]}      problems (empty = valid)
  */
-export function validateEpisode(episode, lines) {
+export function validateEpisode(episode, lines, opts = {}) {
   const P = [], order = [...lines.keys()], index = (id) => order.indexOf(id);
   const err = (where, msg) => P.push(`${where}: ${msg}`);
+  const warn = (where, msg) => opts.warnings?.push(`${where}: ${msg}`);
   if (!isObj(episode)) return ["episode is not an object"];
 
   // ---- required shape: everything the renderer dereferences without a guard ----
   const need = (obj, keys, where) => { for (const k of keys) if (obj?.[k] === undefined || obj[k] === null || obj[k] === "") err(`${where}.${k}`, "is required"); };
-  need(episode, ["id", "plan", "audio", "brand", "episodeLabel", "author", "social", "outside", "vocabulary", "hook", "story", "camera", "scrollDuration", "visibility", "quiz", "status"], "episode");
+  need(episode, ["id", "plan", "audio", "brand", "author", "social", "outside", "vocabulary", "hook", "story", "camera", "scrollDuration", "visibility", "quiz", "status"], "episode");
   if (!isObj(episode.hook) || !isObj(episode.quiz) || !isObj(episode.status) || !isObj(episode.author) || !Array.isArray(episode.story) || !Array.isArray(episode.vocabulary)) return P;
-  need(episode.author, ["avatar", "name", "meta", "level"], "author");
+  // series identity: structured metadata (new header) or the legacy episodeLabel + author.level badge
+  const structured = hasStructuredMetadata(episode);
+  if (structured) {
+    if (!isStr(episode.series)) err("episode.series", "is required: the vocabulary library the video belongs to (TOEIC, TOEFL, IELTS, ...)");
+    if (!Number.isInteger(episode.seriesEpisode) || episode.seriesEpisode < 1) err("episode.seriesEpisode", "must be a positive integer: which video of that series this is (explicit; not the content id)");
+    const lv = episode.level;
+    if (!isObj(lv)) err("episode.level", "must be { min, max }");
+    else {
+      for (const k of ["min", "max"]) if (!Number.isInteger(lv[k]) || lv[k] < 1 || lv[k] > 3) err(`episode.level.${k}`, "must be an integer from 1 to 3");
+      if (Number.isInteger(lv.min) && Number.isInteger(lv.max) && lv.min > lv.max) err("episode.level", `min (${lv.min}) must not be greater than max (${lv.max})`);
+    }
+    if (!isStr(episode.contentId)) err("episode.contentId", "is required: the id of the source content (e.g. toeic-079)");
+    if (episode.episodeLabel !== undefined) warn("episode.episodeLabel", "is ignored: the header shows series · #NN · level");
+    if (episode.author.level !== undefined) warn("author.level", "is ignored: the level is in the header and the account row shows no level badge");
+  } else {
+    need(episode, ["episodeLabel"], "episode");
+  }
+  need(episode.author, ["avatar", "name", "meta", ...(structured ? [] : ["level"])], "author");
   const hookType = episode.hook.type ?? "number_contrast";
   if (!RENDERER_CONTRACT.hookTypes.includes(hookType)) err("hook.type", `unsupported hook type "${hookType}" (renderer supports: ${RENDERER_CONTRACT.hookTypes.join(", ")})`);
   // number / caption / ratio belong to number_contrast only; scene_contrast describes a setup against a payoff
-  const hookKeys = hookType === "scene_contrast" ? ["setup"] : ["number", "caption", "ratio"];
-  need(episode.hook, ["id", "label", ...hookKeys, "payoff", "emoji", "zh", "reveal", "revealDuration"], "hook");
+  // number_contrast keeps its emoji (P2); a scene_contrast hook may have none (video content uses no decorative emoji by default)
+  const hookKeys = hookType === "scene_contrast" ? ["setup"] : ["number", "caption", "ratio", "emoji"];
+  need(episode.hook, ["id", "label", ...hookKeys, "payoff", "zh", "reveal", "revealDuration"], "hook");
   if (hookType === "scene_contrast" && !Array.isArray(episode.hook.setup)) err("hook.setup", "must be an array of text lines");
   need(episode.quiz, ["id", "meta", "quote", "question", "options", "answer", "questionLine", "answerLine", "feedback", "feedbackDetail"], "quiz");
   need(episode.status, ["reading", "question", "answer", "readingPhase", "thinkingPhase", "answerPhase"], "status");
@@ -144,6 +188,49 @@ export function validateEpisode(episode, lines) {
   });
   for (const id of vocab.keys()) if (!usedVocab.has(id)) err("story", `vocabulary "${id}" is defined but never placed in the story`);
 
+  // ---- highlighting: a vocabulary must light up somewhere, a phrase only as a whole and inside one line ----
+  const shownReading = [...new Set([...episode.story.flatMap((b) => (Array.isArray(b?.parts) ? b.parts : []).filter((p) => p?.type === "reading").map((p) => p.line), ), ...episode.vocabulary.map((v) => v?.exampleLine)])].filter((id) => lines.get(id) && !lines.get(id).silent);
+  const storyIds = new Set(episode.story.flatMap((b) => (Array.isArray(b?.parts) ? b.parts : []).filter((p) => p?.type === "reading").map((p) => p.line)));
+  const readingOrder = [...lines.keys()].filter((id) => storyIds.has(id)); // the story's reading lines in playback order; a vocabulary note (meaning / example) between two of them does not join them
+  episode.vocabulary.forEach((v, i) => {
+    if (!isObj(v) || !isStr(v.word)) return;
+    const at = `vocabulary[${i}]${v.id ? ` (${v.id})` : ""}`;
+    const terms = [v.word, ...(Array.isArray(v.forms) ? v.forms.filter(isStr) : [])];
+    const phraseTerms = terms.filter(isPhrase), singleKeys = terms.filter((t) => !isPhrase(t)).map((t) => t.toLowerCase());
+    const bad = phraseTerms.filter((t) => !phraseTokens(t).length);
+    for (const t of bad) err(`${at}.word / forms`, `"${t}" is not a valid phrase (one of its words is only punctuation)`);
+    const patterns = phraseTerms.map(phraseTokens).filter((p) => p.length > 1);
+    let lit = false;
+    for (const id of shownReading) {
+      const raw = rawTokens(lines.get(id).text);
+      if (raw.some((t) => singleKeys.includes(cueWord(t)))) lit = true;
+      if (patterns.length && findSpans(raw.map(normalizeToken), patterns).length) lit = true;
+    }
+    if (terms.length && !bad.length && !lit) {
+      let split = null;
+      for (let k = 0; k + 1 < readingOrder.length && patterns.length; k++) {
+        const a = lines.get(readingOrder[k]), b = lines.get(readingOrder[k + 1]);
+        const joined = [...rawTokens(a.text), ...rawTokens(b.text)].map(normalizeToken), cut = rawTokens(a.text).length;
+        if (findSpans(joined, patterns).some((sp) => sp.from < cut && sp.to > cut)) split = [a.id, b.id];
+      }
+      err(`${at}.word / forms`, split
+        ? `the phrase is split across the narration lines "${split[0]}" and "${split[1]}" – a phrase must be inside one line (end the first part on its last word with \`through\`)`
+        : `none of ${terms.map((t) => `"${t}"`).join(", ")} appears in any displayed reading line, so nothing would be highlighted${patterns.length ? " (a phrase only matches as a whole, in one line)" : ""}`);
+    }
+    // the handoff opens on `open.word` of `open.line`: for a phrase that word has to be inside the yellow phrase
+    if (isObj(v.open) && isStr(v.open.line) && isStr(v.open.word) && lines.get(v.open.line) && !lines.get(v.open.line).silent) {
+      const raw = rawTokens(lines.get(v.open.line).text), want = v.open.word.toLowerCase();
+      const idx = raw.findIndex((t) => cueWord(t) === want), dup = raw.filter((t) => cueWord(t) === want).length;
+      if (dup > 1) warn(`${at}.open.word`, `"${v.open.word}" occurs ${dup} times in line "${v.open.line}"; the handoff opens on the first one`);
+      if (patterns.length && idx >= 0) {
+        const spans = findSpans(raw.map(normalizeToken), patterns);
+        if (!spans.length) err(`${at}.open.line`, `line "${v.open.line}" does not contain the phrase ${phraseTerms.map((t) => `"${t}"`).join(" / ")}`);
+        // the note opens inside the phrase, or – when the sentence is interrupted at the next punctuation boundary after it – on the last word of the line (the handoff boundary)
+        else if (!spans.some((sp) => idx >= sp.from && idx < sp.to) && !(idx === raw.length - 1 && spans.some((sp) => sp.to <= idx))) err(`${at}.open.word`, `"${v.open.word}" (token ${idx} of line "${v.open.line}") is neither inside the highlighted phrase nor the last word of the line (the handoff boundary); open on a word of the phrase, or on the last word before the pause`);
+      }
+    }
+  });
+
   // hook, quiz, reaction, outro
   const hookLine = isObj(episode.hook.reveal) ? line(episode.hook.reveal.line, "hook.reveal.line", { spoken: true }) : null;
   if (hookLine) { word(hookLine, episode.hook.reveal.word, "hook.reveal.word"); if (!shown.has(hookLine.id)) shown.set(hookLine.id, "hook.reveal.line"); }
@@ -175,10 +262,20 @@ export function validateEpisode(episode, lines) {
 
   // narrated but never shown: audio with nothing on screen
   for (const l of lines.values()) if (!l.silent && !shown.has(l.id)) err(`narration line "${l.id}"`, "is spoken but the episode never displays or uses it (story reading, vocabulary meaning / example, hook reveal or quiz)");
+  // content emoji: default off for episodes that use the structured metadata (P4 on); an episode can opt out explicitly.
+  // Legacy episodes (P2 / P3) are not checked. The account avatar and the brand mascot are identity, not content.
+  if (structured && episode.allowContentEmoji !== true) {
+    const hits = [];
+    const walk = (v, where) => { if (typeof v === "string") { if (DECORATIVE_EMOJI.test(v)) hits.push(where); } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`)); else if (isObj(v)) for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`); };
+    for (const k of ["hook", "story", "vocabulary", "quiz", "outro", "status", "social", "outside", "reaction"]) walk(episode[k], k);
+    for (const l of lines.values()) if (!l.silent && DECORATIVE_EMOJI.test(l.text)) hits.push(`narration line "${l.id}"`);
+    for (const where of hits) err(where, "contains a decorative emoji – video content uses none by default (set allowContentEmoji: true on the episode for a deliberate exception)");
+  }
   return P;
 }
 
 export function assertEpisode(episode, lines, label = "episode") {
-  const problems = validateEpisode(episode, lines);
+  const warnings = [], problems = validateEpisode(episode, lines, { warnings });
+  for (const w of warnings) console.warn(`${label}: warning: ${w}`);
   if (problems.length) throw new ConfigError(problems.map((p) => `${label}: ${p}`));
 }

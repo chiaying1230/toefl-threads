@@ -9,6 +9,7 @@ import { spawnSync } from "node:child_process";
 import { REPO_ROOT } from "./voice/config.mjs";
 import { SAMPLE_RATE as SR, decodeAudio, rms } from "./voice/audio.mjs";
 import { FFMPEG, launchBrowser, openEpisode, startServer } from "./render-lib.mjs";
+import { findSpans, hasStructuredMetadata, headerLabel, isPhrase, normalizeToken, phraseTokens } from "./voice/episode-refs.mjs";
 
 const args = process.argv.slice(2);
 const value = (n, d) => { const i = args.indexOf(`--${n}`); return i > -1 ? args[i + 1] : d; };
@@ -20,7 +21,8 @@ const docs = path.resolve(value("docs", path.dirname(audioFile)));
 const video = value("video") && path.resolve(value("video"));
 const plan = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, episode.plan.replace(/^\//, "")), "utf8"));
 const line = (id) => plan.lines.find((l) => l.id === id);
-const norm = (s) => s.replace(/[.,!?]/g, "").trim().toLowerCase();
+// the same normalization the template and the validator use (all leading / trailing punctuation: "update:" = "update")
+const norm = (s) => normalizeToken(s);
 const wordTime = (ref) => { const l = line(ref.line), w = ref.word ? l.words.find((x) => norm(x.text) === ref.word.toLowerCase()) : null; return l.start + (w ? w.at : 0); };
 
 const checks = [], fail = (name, detail) => checks.push({ name, ok: false, detail }), pass = (name, detail) => checks.push({ name, ok: true, detail });
@@ -54,13 +56,55 @@ try {
   await at(reveal + episode.hook.revealDuration + 0.05); const lit = await page.evaluate((id) => parseFloat(document.querySelector(`#${id} .hookbox`)?.style.opacity ?? "NaN"), episode.hook.id);
   (dim < 0.3 && lit > 0.97 ? pass : fail)(`hook reveal happens on "${episode.hook.reveal.word}"`, { revealAt: +reveal.toFixed(3), opacityBefore: dim, opacityAfter: lit });
 
+  // 1b. vocabulary highlight: the yellow tokens of every reading line are exactly the vocabulary words / forms (as before) and the
+  // phrases (a whole run of tokens, forms included) – nothing else. Expected tokens are computed from the vocabulary and the
+  // displayed token texts, the actual ones read from the DOM.
+  {
+    const singles = new Set(), patterns = [];
+    for (const v of episode.vocabulary) for (const t of [v.word, ...(v.forms ?? [])]) { if (isPhrase(t)) { const p = phraseTokens(t); if (p.length > 1) patterns.push(p); } else singles.add(t.toLowerCase()); }
+    const cueWord = (t) => t.replace(/[.,]/g, "").toLowerCase();
+    const dom = await page.evaluate((ids) => Object.fromEntries(ids.map((id) => [id, [...document.querySelectorAll(`[data-line="${id}"] .cue`)].map((e) => ({ t: e.textContent.trim(), key: e.classList.contains("key") }))])), readingLines);
+    const missing = [], extra = []; let phraseSpans = 0, singleWords = 0, tokens = 0;
+    for (const id of readingLines) {
+      const toks = dom[id] ?? [], spans = findSpans(toks.map((x) => normalizeToken(x.t)), patterns);
+      phraseSpans += spans.length; tokens += toks.length;
+      const inSpan = new Set(spans.flatMap((sp) => Array.from({ length: sp.to - sp.from }, (_, k) => sp.from + k)));
+      toks.forEach((x, i) => {
+        const single = !inSpan.has(i) && singles.has(cueWord(x.t));
+        if (single) singleWords++;
+        const want = inSpan.has(i) || single;
+        if (want && !x.key) missing.push({ line: id, token: x.t, index: i });
+        if (!want && x.key) extra.push({ line: id, token: x.t, index: i });
+      });
+    }
+    (missing.length ? fail : pass)("vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs", missing.length ? missing.slice(0, 8) : `${phraseSpans} phrase span(s) and ${singleWords} single-word token(s) in ${readingLines.length} lines`);
+    (extra.length ? fail : pass)("vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)", extra.length ? extra.slice(0, 8) : `${tokens} tokens checked`);
+  }
+
+  // 1c. series identity: the top right shows `series · #NN · level` (structured metadata) or, for a legacy episode, its episodeLabel; the
+  // level is shown once (no level badge in the account row on the new path); the header fits next to the brand. On the new path the
+  // content (hook, story, vocabulary, quiz, outro) has no decorative emoji unless the episode opts out with allowContentEmoji.
+  {
+    const structured = hasStructuredMetadata(episode), expected = structured ? headerLabel(episode) : episode.episodeLabel;
+    const h = await page.evaluate(() => { const b = document.getElementById("brand"), [l, r] = b.children, br = b.getBoundingClientRect(), rr = r.getBoundingClientRect(), lr = l.getBoundingClientRect(); return { right: r.textContent, badges: [...document.querySelectorAll("#account .level")].map((e) => e.textContent), fits: rr.left >= lr.right + 8 && rr.right <= br.right + 0.5 && rr.height < 50, width: Math.round(rr.width) }; });
+    const badgesOk = structured ? h.badges.length === 0 : h.badges.length === 1 && h.badges[0] === episode.author.level;
+    (h.right === expected && badgesOk && h.fits ? pass : fail)(`header: top right "${expected}"${structured ? " (series · #NN · level), level shown once" : " (legacy episodeLabel + level badge)"}, fits`, { shown: h.right, expected, levelBadges: h.badges, width: h.width, fits: h.fits });
+    if (structured && episode.allowContentEmoji !== true) {
+      const found = await page.evaluate(() => { const re = /\p{Extended_Pictographic}/u; return [...document.querySelectorAll("#thread *")].filter((e) => e.children.length === 0 && re.test(e.textContent)).map((e) => e.textContent.slice(0, 40)); });
+      (found.length ? fail : pass)("content: no decorative emoji in the hook, story, vocabulary, quiz or outro", found.length ? found : "none");
+    }
+  }
+
   // 2. vocabulary handoff, meaning, example, and the return to the story
   const stills = [];
   for (const v of episode.vocabulary) {
     const open = wordTime(v.open), close = line(v.close.line).start, meaning = line(v.meaningLine);
     await at(open - 0.05); const before = await noteHeight(v.id);
     await at(open + v.openDuration + 0.05); const opened = await noteHeight(v.id);
-    const cue = await active(v.open.line);
+    // the cue that must be on the open word is checked while that word is being spoken (a short last word of a phrase, e.g. "with",
+    // is long over by open + openDuration)
+    const openLine = line(v.open.line), ow = openLine.words.find((x) => norm(x.text) === v.open.word.toLowerCase());
+    await at(openLine.start + (ow ? (ow.at + ow.until) / 2 : 0)); const cue = await active(v.open.line);
     await at((meaning.start + meaning.end) / 2); const meaningOn = await page.evaluate((id) => !!document.querySelector(`#${id} .meaning.active`), v.id);
     const ex = line(v.exampleLine); const exWord = ex.words[Math.floor(ex.words.length / 2)];
     await at(ex.start + (exWord.at + exWord.until) / 2); const exCue = await active(v.exampleLine);
@@ -82,7 +126,8 @@ try {
   // 4. plan lines vs the actual audio: each spoken line's first/last voiced sample is where the plan says
   const wav = decodeAudio(audioFile), rows = [];
   const voicedIn = (from, to) => { const w = Math.round(SR * 0.01); let first = null, last = null; for (let i = Math.round(from * SR); i < Math.min(wav.length, Math.round(to * SR)); i += w) if (rms(wav, i, i + w) > 0.004) { first ??= i / SR; last = (i + w) / SR; } return { first, last }; };
-  for (const l of plan.lines.filter((x) => !x.silent)) { const v = voicedIn(l.start - 0.03, l.end + 0.06); rows.push({ id: l.id, onsetMinusStart: +(v.first - l.start).toFixed(3), endMinusVoicedEnd: +(l.end - v.last).toFixed(3) }); }
+  // the window stops before the next line begins: a short gap must not make the next line's onset count as this line's speech
+  for (const [k, l] of plan.lines.entries()) { if (l.silent) continue; const next = plan.lines[k + 1]; const v = voicedIn(l.start - 0.03, next ? Math.min(l.end + 0.06, next.start - 0.01) : l.end + 0.06); rows.push({ id: l.id, onsetMinusStart: +(v.first - l.start).toFixed(3), endMinusVoicedEnd: +(l.end - v.last).toFixed(3) }); }
   // the plan's span must cover the audible span (10 ms measuring tolerance) without running more than 60 ms past it either side
   const bad = rows.filter((r) => r.onsetMinusStart < -0.01 || r.onsetMinusStart > 0.06 || r.endMinusVoicedEnd < -0.01 || r.endMinusVoicedEnd > 0.06);
   (bad.length ? fail : pass)("each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)", { lines: rows.length, outside: bad, rows });

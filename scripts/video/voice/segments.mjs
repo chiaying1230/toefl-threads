@@ -8,7 +8,7 @@
 // `continuesFrom: "<earlier id>"` marks a sentence split around a vocabulary note: the two halves are
 // sent with each other's text as previous_text / next_text so the intonation carries across.
 // `parts` (optional, spoken segments only) marks a sentence that a vocabulary note interrupts. The WHOLE sentence is
-// one TTS unit (one API call, one hash); `parts: [{ id, through: "<last word>", gap }, { id, resumeAfter, gap }]` only says where the
+// one TTS unit (one API call, one hash); `parts: [{ id, through: "<last word>" | after: "<vocabulary's last word>", gap }, { id, resumeAfter, gap }]` only says where the
 // audio is cut afterwards (see split.mjs), so the halves keep the intonation of one continuing sentence. Every part after
 // the first says where the story resumes: `resumeAfter: "<id of the last inserted segment>"` (the meaning / example in
 // between are ordinary segments listed after it). Part ids
@@ -36,6 +36,9 @@ function stable(value) {
 
 const stripWord = (t) => t.replace(/^[\p{P}\p{S}]+|[\p{P}\p{S}]+$/gu, "").toLowerCase();
 
+/** Natural handoff boundary for `after`: a token ending in , . ; : ! ? (optionally followed by a closing quote / bracket). */
+const BOUNDARY = /[,.;:!?]["'”’)\]]*$/;
+
 /** Split `text` into the parts a narration segment declares. Returns { parts, problems }. */
 export function layoutParts(seg) {
   const problems = [], at = `${seg.id}.parts`;
@@ -52,8 +55,21 @@ export function layoutParts(seg) {
     if (i > 0 && (typeof p.resumeAfter !== "string" || !p.resumeAfter)) problems.push(`${at}[${i}] (${p.id}): "resumeAfter" (the segment this part plays after) is required`);
     if (i === 0 && p.resumeAfter !== undefined) problems.push(`${at}[${i}] (${p.id}): the first part plays at the segment's own position; remove "resumeAfter"`);
     let endToken = tokens.length - 1;
-    if (last) { if (p.through !== undefined) problems.push(`${at}[${i}] (${p.id}): the last part must not have "through"`); }
-    else if (typeof p.through !== "string" || !p.through.trim()) { problems.push(`${at}[${i}] (${p.id}): "through" (the part's last word) is required`); return; }
+    let boundary;
+    if (last) { if (p.through !== undefined || p.after !== undefined) problems.push(`${at}[${i}] (${p.id}): the last part must not have "through" / "after"`); }
+    else if (p.through !== undefined && p.after !== undefined) { problems.push(`${at}[${i}] (${p.id}): give "through" (cut here) or "after" (cut at the next punctuation boundary), not both`); return; }
+    else if (p.after !== undefined) {
+      // handoff boundary: the vocabulary's last word is `after`; the sentence is interrupted at the nearest natural punctuation boundary
+      // at or after it (the word itself counts: "witness," cuts there). No boundary before the end of the sentence = the note goes after the whole sentence.
+      if (typeof p.after !== "string" || !p.after.trim()) { problems.push(`${at}[${i}] (${p.id}): "after" (the vocabulary's last word) must be a word`); return; }
+      const want = stripWord(p.after), from = tokens.findIndex((t, k) => k >= cursor && t.word === want);
+      if (from < 0) { problems.push(`${at}[${i}] (${p.id}): word "${p.after}" not found after the previous part`); return; }
+      endToken = from;
+      while (endToken < tokens.length - 1 && !BOUNDARY.test(seg.text.slice(tokens[endToken].from, tokens[endToken].to))) endToken++;
+      if (endToken >= tokens.length - 1) { problems.push(`${at}[${i}] (${p.id}): no punctuation boundary after "${p.after}" before the end of the sentence, so the note goes after the whole sentence – make "${seg.id}" a plain segment (no parts)`); return; }
+      boundary = seg.text.slice(tokens[endToken].from, tokens[endToken].to);
+    }
+    else if (typeof p.through !== "string" || !p.through.trim()) { problems.push(`${at}[${i}] (${p.id}): "through" (the part's last word) or "after" (the vocabulary's last word) is required`); return; }
     else {
       const want = stripWord(p.through);
       endToken = tokens.findIndex((t, k) => k >= cursor && t.word === want);
@@ -61,7 +77,7 @@ export function layoutParts(seg) {
       if (endToken >= tokens.length - 1) { problems.push(`${at}[${i}] (${p.id}): "${p.through}" is the last word of the sentence, so nothing interrupts it`); return; }
     }
     if (cursor > endToken) { problems.push(`${at}[${i}] (${p.id}): empty part`); return; }
-    parts.push({ id: p.id, resumeAfter: p.resumeAfter ?? null, gap: p.gap ?? 0, ...(p.cut ? { cut: p.cut } : {}), tokenFrom: cursor, tokenTo: endToken, charFrom: tokens[cursor].from, charTo: tokens[endToken].to, text: seg.text.slice(tokens[cursor].from, tokens[endToken].to) });
+    parts.push({ id: p.id, resumeAfter: p.resumeAfter ?? null, gap: p.gap ?? 0, ...(p.cut ? { cut: p.cut } : {}), ...(boundary ? { after: p.after, boundary } : {}), tokenFrom: cursor, tokenTo: endToken, charFrom: tokens[cursor].from, charTo: tokens[endToken].to, text: seg.text.slice(tokens[cursor].from, tokens[endToken].to) });
     cursor = endToken + 1;
   });
   return { parts, problems };

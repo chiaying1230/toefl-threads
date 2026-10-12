@@ -13,9 +13,9 @@ export function createHook(data){
 }
 // scene_contrast: a concrete scene (setup) against an unexpected result (payoff). No number, no bar.
 function createSceneHook(data){
- const root=node('section',null,null,data.id),boxes=lines(node('div','hookbox scene'),data.payoff),emoji=node('span','boxemoji',data.emoji);boxes.append(emoji);
+ const root=node('section',null,null,data.id),boxes=lines(node('div','hookbox scene'),data.payoff),emoji=data.emoji?node('span','boxemoji',data.emoji):null;if(emoji)boxes.append(emoji);
  root.append(node('div','eyebrow',data.label),lines(node('div','hooksetup'),data.setup),boxes,node('div','zh',data.zh));
- return {el:root,boxes,emoji,update(t,reveal,duration,ramp){boxes.style.opacity=.18+.82*ramp(t,reveal,duration);emoji.style.transform=`scale(${.75+.25*ramp(t,reveal+.15,.18)})`;}};
+ return {el:root,boxes,emoji,update(t,reveal,duration,ramp){boxes.style.opacity=.18+.82*ramp(t,reveal,duration);if(emoji)emoji.style.transform=`scale(${.75+.25*ramp(t,reveal+.15,.18)})`;}};
 }
 export function createVocabulary(data,reading){
  const root=node('div','note'+(data.memory?' memoryNote':''),null,data.id),inner=node('div','noteInner');
@@ -34,7 +34,7 @@ export function createOutro(data,art){
  const root=node('section','reply outro',null,data.id),author=node('div','outro-author'),mascot=node('div','outro-mascot'),title=node('div','outro-account',data.author);
  if(data.mascot?.enabled){mascot.innerHTML=art;author.append(mascot);}author.append(title);
  const cta=node('div','outro-cta',data.cta),bookmark=node('span','bookmark');bookmark.setAttribute('aria-hidden','true');cta.prepend(bookmark);
- const words=node('div','outro-words');for(const word of data.words){const row=node('div','outro-word');row.append(node('b',null,word.en),node('span',null,word.zh));words.append(row);}
+ const words=node('div','outro-words');for(const word of data.words){const row=node('div','outro-word'+(/\s/.test(word.en.trim())?' phrase':''));row.append(node('b',null,word.en),node('span',null,word.zh));words.append(row);}
  root.append(author,node('div','outro-lead',data.lead),words,cta,node('div','outro-brand',data.brandLine));
  return {el:root,update(t,start,ramp){const p=ramp(t,start+data.scrollDuration,data.mascot?.cueDuration??.65);mascot.style.transform=`rotate(${-5*Math.sin(p*Math.PI)}deg)`;mascot.querySelectorAll('.pupil,.shine').forEach(e=>e.style.transform=`translate(${p*.8}px,${p*1.2}px)`);mascot.style.visibility=t>=start&&t<start+data.scrollDuration+(data.mascot?.cueDuration??.65)+.45?'visible':'hidden';bookmark.style.setProperty('--saved',ramp(t,start+data.scrollDuration+.25,.25));}};
 }

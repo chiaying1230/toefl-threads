@@ -12,3 +12,4 @@
 .outro-cta{font-size:49px;font-weight:800;line-height:1.35;color:#183D69;padding:24px 0;border-top:2px solid #EDE7DA;display:flex;align-items:center;gap:18px}
 .bookmark{display:inline-block;width:29px;height:38px;flex-shrink:0;border:3px solid #183D69;clip-path:polygon(0 0,100% 0,100% 100%,50% 77%,0 100%);background:rgba(255,214,107,var(--saved,0))}
 .outro-brand{font-size:39px;line-height:1.4;color:#686156;margin-top:8px}
+.outro-word.phrase{display:block}.outro-word.phrase b{display:inline;-webkit-box-decoration-break:clone;box-decoration-break:clone}.outro-word.phrase span{display:block;margin-top:8px}
