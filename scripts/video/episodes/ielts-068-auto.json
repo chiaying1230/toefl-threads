@@ -1,0 +1,323 @@
+{
+  "_status": "ielts-068 (P5, IELTS #01, three vocabulary items: one phrase + two single words). Hook = scene_contrast used as a single line (text in setup, above the rule; payoff empty so only the rule reveals; zh is a single space because the validator requires a non-empty zh - no Chinese is shown, user-decided; the scene stays in the story), Quiz = meaning on 'frivolous' (answer = source zh; distractors = source zh of the other two taught words). Series identity is structured metadata: IELTS · #01 · L2–L3 - series, seriesEpisode and level are explicit user data. No content emoji (the source emoji is not displayed; the account avatar is identity). Handoffs: earnest -> after the whole sentence; debatable -> after the whole sentence; frivolous -> at the colon. Author / handle / avatar from characters.js (socrates), topic Health from packs/ielts.js. CAMERA offsets and visibility are PLACEHOLDERS until fit-camera.mjs --write runs on the real plan.",
+  "id": "ielts-068-auto",
+  "series": "IELTS",
+  "seriesEpisode": 1,
+  "level": {
+    "min": 2,
+    "max": 3
+  },
+  "contentId": "ielts-068",
+  "plan": "/docs/ielts-068-auto/ielts-068-auto.plan.json",
+  "audio": "/docs/ielts-068-auto/narration.wav",
+  "soundEffects": [
+    {
+      "asset": "/scripts/video/assets/answer-correct.wav",
+      "at": {
+        "line": "answer"
+      },
+      "gain": 0.75
+    }
+  ],
+  "music": {
+    "asset": "/scripts/video/assets/social-soft-groove.wav",
+    "bpm": 94,
+    "narrationGain": 0.16,
+    "endingGain": 0.3,
+    "riseDuration": 0.6,
+    "fadeIn": 0.35,
+    "fadeOut": 0.8
+  },
+  "brand": "● toEfu",
+  "author": {
+    "avatar": "💪",
+    "name": "Gym Socrates",
+    "meta": "@gym_socrates"
+  },
+  "social": "Health",
+  "outside": "toEfu 單字情境",
+  "vocabulary": [
+    {
+      "id": "earnestNote",
+      "word": "in deadly earnest",
+      "zh": "鄭重其事；嚴肅認真",
+      "pos": "adv. phr.",
+      "meaningLine": "earnestMeaning",
+      "exampleLine": "earnestExample",
+      "exampleZh": "警報響起時，他們便開始認真地搜尋。",
+      "open": {
+        "line": "earnestSent",
+        "word": "earnest"
+      },
+      "close": {
+        "line": "nowSent"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    },
+    {
+      "id": "debatableNote",
+      "word": "debatable",
+      "zh": "具爭議的，不確定的；成問題的",
+      "pos": "adj.",
+      "meaningLine": "debatableMeaning",
+      "exampleLine": "debatableExample",
+      "exampleZh": "這些數字的準確性是有爭議的。",
+      "open": {
+        "line": "debatableSent",
+        "word": "debatable"
+      },
+      "close": {
+        "line": "excuseNot"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    },
+    {
+      "id": "frivolousNote",
+      "word": "frivolous",
+      "zh": "愚蠢輕浮的，不嚴肅的",
+      "pos": "adj.",
+      "meaningLine": "frivolousMeaning",
+      "exampleLine": "frivolousExample",
+      "exampleZh": "他在嚴肅的會議中說了一句輕浮、不認真的話。",
+      "open": {
+        "line": "frivolousLead",
+        "word": "frivolous"
+      },
+      "close": {
+        "line": "frivolousRest"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    }
+  ],
+  "hook": {
+    "type": "scene_contrast",
+    "id": "hook",
+    "label": "HEALTH",
+    "setup": [
+      "IT'S 2 A.M."
+    ],
+    "payoff": [],
+    "zh": " ",
+    "reveal": {
+      "line": "hook",
+      "word": "It's"
+    },
+    "revealDuration": 0.16
+  },
+  "story": [
+    {
+      "id": "promise",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "earnestSent"
+        },
+        {
+          "type": "translation",
+          "text": "我向室友保證午夜前會睡覺，而且說得鄭重其事。"
+        },
+        {
+          "type": "vocabulary",
+          "id": "earnestNote"
+        },
+        {
+          "type": "reading",
+          "line": "nowSent"
+        },
+        {
+          "type": "translation",
+          "text": "現在是凌晨兩點，我正在宿舍走廊做伏地挺身。"
+        }
+      ]
+    },
+    {
+      "id": "excuse",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "debatableSent"
+        },
+        {
+          "type": "translation",
+          "text": "深夜訓練是否有幫助是有爭議的。"
+        },
+        {
+          "type": "vocabulary",
+          "id": "debatableNote"
+        },
+        {
+          "type": "reading",
+          "line": "excuseNot"
+        },
+        {
+          "type": "translation",
+          "text": "但我的藉口就不是了。"
+        },
+        {
+          "type": "reading",
+          "line": "frivolousLead"
+        },
+        {
+          "type": "vocabulary",
+          "id": "frivolousNote"
+        },
+        {
+          "type": "reading",
+          "line": "frivolousRest"
+        },
+        {
+          "type": "translation",
+          "text": "它很輕浮：我只是想看看販賣機還肯不肯賣我一條蛋白棒。"
+        }
+      ]
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "id": "hook",
+      "offset": 0
+    },
+    {
+      "at": {
+        "line": "earnestSent"
+      },
+      "id": "promise",
+      "offset": 110
+    },
+    {
+      "at": {
+        "line": "nowSent",
+        "delay": -0.35
+      },
+      "id": "promise",
+      "offset": -392
+    },
+    {
+      "at": {
+        "line": "debatableSent"
+      },
+      "id": "excuse",
+      "offset": 110
+    },
+    {
+      "at": {
+        "line": "excuseNot"
+      },
+      "id": "excuse",
+      "offset": -173
+    },
+    {
+      "at": {
+        "line": "frivolousLead"
+      },
+      "id": "excuse",
+      "offset": -359
+    },
+    {
+      "at": {
+        "line": "frivolousRest"
+      },
+      "id": "excuse",
+      "offset": -478
+    },
+    {
+      "at": {
+        "line": "question"
+      },
+      "id": "quiz",
+      "offset": 35
+    }
+  ],
+  "scrollDuration": 0.35,
+  "visibility": [
+    {
+      "id": "promise",
+      "at": {
+        "line": "earnestSent",
+        "delay": -0.35
+      },
+      "before": 0.2
+    },
+    {
+      "id": "excuse",
+      "at": {
+        "line": "nowSent",
+        "delay": -0.3
+      },
+      "before": 0
+    },
+    {
+      "id": "quiz",
+      "at": {
+        "line": "question",
+        "delay": -0.3
+      },
+      "before": 0
+    }
+  ],
+  "quiz": {
+    "id": "quiz",
+    "type": "meaning",
+    "meta": "↳ 回覆這則串文",
+    "quote": [
+      "“It is frivolous: I wanted to see if",
+      "the vending machine would still sell me a protein bar.”"
+    ],
+    "word": "frivolous",
+    "question": " 是什麼意思？",
+    "options": [
+      "鄭重其事；嚴肅認真",
+      "愚蠢輕浮的，不嚴肅的",
+      "具爭議、不確定的；成問題的"
+    ],
+    "answer": 1,
+    "questionLine": "question",
+    "answerLine": "answer",
+    "feedback": "✓ B · 愚蠢輕浮的，不嚴肅的",
+    "feedbackDetail": "只是想看看販賣機還肯不肯賣我一條蛋白棒，這個藉口很輕浮。"
+  },
+  "status": {
+    "reading": "用生活日常背單字",
+    "question": "剛剛那個字，你記住了嗎？",
+    "answer": "✓ 答案揭曉",
+    "readingPhase": "● 正在朗讀",
+    "thinkingPhase": "● 換你想想",
+    "answerPhase": "● 答案揭曉"
+  },
+  "outro": {
+    "id": "outro",
+    "start": "planEnd",
+    "duration": 2.4,
+    "scrollDuration": 0.45,
+    "offset": 35,
+    "author": "toEfu 單字情境",
+    "lead": "剛剛那篇，你看懂了。",
+    "cta": "收藏這篇，記住這三個詞。",
+    "words": [
+      {
+        "en": "in deadly earnest",
+        "zh": "鄭重其事；嚴肅認真"
+      },
+      {
+        "en": "debatable",
+        "zh": "具爭議的，不確定的；成問題的"
+      },
+      {
+        "en": "frivolous",
+        "zh": "愚蠢輕浮的，不嚴肅的"
+      }
+    ],
+    "brandLine": "用生活日常背單字",
+    "status": "↳ 收藏這篇",
+    "phase": "● 下次遇到就認得",
+    "mascot": {
+      "enabled": true,
+      "lookAt": "cta",
+      "cueDuration": 1.5
+    }
+  }
+}

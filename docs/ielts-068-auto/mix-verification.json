@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "video stream identical to the narration-only render",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "duration unchanged by the music",
+      "ok": true,
+      "detail": {
+        "base": 45.033,
+        "mixed": 45.033
+      }
+    },
+    {
+      "name": "no clipping (peak below −0.5 dBFS)",
+      "ok": true,
+      "detail": {
+        "peakDbfs": -5.16
+      }
+    },
+    {
+      "name": "narration preserved inside the mix (SNR vs the original narration, AAC noise only)",
+      "ok": true,
+      "detail": {
+        "snrDb": 39.7,
+        "note": "AAC 192k coding noise is the only expected difference"
+      }
+    },
+    {
+      "name": "music at least 10 dB below the narration during every spoken line",
+      "ok": true,
+      "detail": {
+        "loudest": {
+          "id": "earnestMeaning",
+          "musicVsVoiceDb": -17.2
+        },
+        "lines": [
+          {
+            "id": "hook",
+            "musicVsVoiceDb": -27
+          },
+          {
+            "id": "earnestSent",
+            "musicVsVoiceDb": -23.6
+          },
+          {
+            "id": "earnestMeaning",
+            "musicVsVoiceDb": -17.2
+          },
+          {
+            "id": "earnestExample",
+            "musicVsVoiceDb": -24.1
+          },
+          {
+            "id": "nowSent",
+            "musicVsVoiceDb": -25.1
+          },
+          {
+            "id": "debatableSent",
+            "musicVsVoiceDb": -24.3
+          },
+          {
+            "id": "debatableMeaning",
+            "musicVsVoiceDb": -17.8
+          },
+          {
+            "id": "debatableExample",
+            "musicVsVoiceDb": -22.5
+          },
+          {
+            "id": "excuseNot",
+            "musicVsVoiceDb": -27
+          },
+          {
+            "id": "frivolousLead",
+            "musicVsVoiceDb": -22.9
+          },
+          {
+            "id": "frivolousMeaning",
+            "musicVsVoiceDb": -17.4
+          },
+          {
+            "id": "frivolousExample",
+            "musicVsVoiceDb": -24.6
+          },
+          {
+            "id": "frivolousRest",
+            "musicVsVoiceDb": -24.1
+          }
+        ]
+      }
+    },
+    {
+      "name": "SFX 0 (answer-correct.wav) starts at its trigger",
+      "ok": true,
+      "detail": {
+        "trigger": 41.35,
+        "expectedAudible": 41.35,
+        "inBus": 41.351,
+        "inFinalFile": 41.351
+      }
+    }
+  ],
+  "peakDbfs": -5.16
+}

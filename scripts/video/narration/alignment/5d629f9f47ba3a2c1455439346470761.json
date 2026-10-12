@@ -1,0 +1,61 @@
+{
+  "hash": "5d629f9f47ba3a2c1455439346470761",
+  "segment": "frivolousMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "愚蠢輕浮的、不嚴肅的。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 11,
+  "estimatedDuration": 2.8761875,
+  "speechStart": 0,
+  "speechEnd": 2.88,
+  "alignment": {
+    "characters": [
+      "愚",
+      "蠢",
+      "輕",
+      "浮",
+      "的",
+      "、",
+      "不",
+      "嚴",
+      "肅",
+      "的",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.42,
+      0.56,
+      0.88,
+      1.12,
+      1.6,
+      1.68,
+      1.76,
+      2.08,
+      2.32,
+      2.48
+    ],
+    "character_end_times_seconds": [
+      0.42,
+      0.56,
+      0.88,
+      1.12,
+      1.6,
+      1.68,
+      1.76,
+      2.08,
+      2.32,
+      2.48,
+      2.88
+    ]
+  }
+}

@@ -1,0 +1,807 @@
+{
+  "id": "ielts-068-auto",
+  "duration": 42.63333333333333,
+  "frames": 1279,
+  "fps": 30,
+  "voices": {
+    "en": "ElevenLabs arthur (eleven_v4, C1npRmjB19a6yNkEucvx)",
+    "zh": "ElevenLabs ling (eleven_v4, Z8Aisvg1z70p27kGvkZZ)"
+  },
+  "audioEnd": 38.450132,
+  "source": "ElevenLabs voice pipeline (voice.mjs → assemble)",
+  "lines": [
+    {
+      "id": "hook",
+      "lang": "en",
+      "text": "It's 2 a.m.",
+      "gap": 0.08,
+      "duration": 1.1150113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.4150113378684807,
+          "pos": 0,
+          "count": 4,
+          "text": "It's"
+        },
+        {
+          "at": 0.4150113378684807,
+          "until": 0.6150113378684807,
+          "pos": 5,
+          "count": 1,
+          "text": "2"
+        },
+        {
+          "at": 0.6150113378684807,
+          "until": 1.1150113378684807,
+          "pos": 7,
+          "count": 4,
+          "text": "a.m"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (92e9c8fe)",
+      "start": 0,
+      "end": 1.115011
+    },
+    {
+      "id": "earnestSent",
+      "lang": "en",
+      "text": "I promised my roommate I would sleep before midnight, and I said it in deadly earnest.",
+      "gap": 0.04,
+      "duration": 5.54501133786848,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.23501133786848072,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.23501133786848072,
+          "until": 0.6350113378684807,
+          "pos": 2,
+          "count": 8,
+          "text": "promised"
+        },
+        {
+          "at": 0.6350113378684807,
+          "until": 0.7950113378684808,
+          "pos": 11,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 0.7950113378684808,
+          "until": 1.3550113378684807,
+          "pos": 14,
+          "count": 8,
+          "text": "roommate"
+        },
+        {
+          "at": 1.3550113378684807,
+          "until": 1.5150113378684806,
+          "pos": 23,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 1.5150113378684806,
+          "until": 1.6750113378684806,
+          "pos": 25,
+          "count": 5,
+          "text": "would"
+        },
+        {
+          "at": 1.6750113378684806,
+          "until": 2.1150113378684807,
+          "pos": 31,
+          "count": 5,
+          "text": "sleep"
+        },
+        {
+          "at": 2.1150113378684807,
+          "until": 2.4750113378684806,
+          "pos": 37,
+          "count": 6,
+          "text": "before"
+        },
+        {
+          "at": 2.4750113378684806,
+          "until": 3.3550113378684805,
+          "pos": 44,
+          "count": 9,
+          "text": "midnight"
+        },
+        {
+          "at": 3.3550113378684805,
+          "until": 3.5950113378684807,
+          "pos": 54,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 3.5950113378684807,
+          "until": 3.6750113378684808,
+          "pos": 58,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 3.6750113378684808,
+          "until": 3.9150113378684805,
+          "pos": 60,
+          "count": 4,
+          "text": "said"
+        },
+        {
+          "at": 3.9150113378684805,
+          "until": 4.235011337868481,
+          "pos": 65,
+          "count": 2,
+          "text": "it"
+        },
+        {
+          "at": 4.235011337868481,
+          "until": 4.475011337868481,
+          "pos": 68,
+          "count": 2,
+          "text": "in"
+        },
+        {
+          "at": 4.475011337868481,
+          "until": 4.955011337868481,
+          "pos": 71,
+          "count": 6,
+          "text": "deadly"
+        },
+        {
+          "at": 4.955011337868481,
+          "until": 5.54501133786848,
+          "pos": 78,
+          "count": 8,
+          "text": "earnest"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (eb9ccf0e)",
+      "start": 1.195011,
+      "end": 6.740022
+    },
+    {
+      "id": "earnestMeaning",
+      "lang": "zh",
+      "text": "鄭重其事、嚴肅認真地。",
+      "gap": 0.04,
+      "duration": 2.6550113378684808,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (76e91f73)",
+      "start": 6.780022,
+      "end": 9.435033
+    },
+    {
+      "id": "earnestExample",
+      "lang": "en",
+      "text": "When the alarm sounded, they began searching in deadly earnest.",
+      "gap": 0.08,
+      "duration": 4.00501133786848,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.2250113378684807,
+          "pos": 0,
+          "count": 4,
+          "text": "When"
+        },
+        {
+          "at": 0.2250113378684807,
+          "until": 0.4920113378684807,
+          "pos": 5,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 0.4920113378684807,
+          "until": 0.7050113378684807,
+          "pos": 9,
+          "count": 5,
+          "text": "alarm"
+        },
+        {
+          "at": 0.7050113378684807,
+          "until": 1.585011337868481,
+          "pos": 15,
+          "count": 8,
+          "text": "sounded"
+        },
+        {
+          "at": 1.585011337868481,
+          "until": 1.7980113378684808,
+          "pos": 24,
+          "count": 4,
+          "text": "they"
+        },
+        {
+          "at": 1.7980113378684808,
+          "until": 2.145011337868481,
+          "pos": 29,
+          "count": 5,
+          "text": "began"
+        },
+        {
+          "at": 2.145011337868481,
+          "until": 2.7450113378684806,
+          "pos": 35,
+          "count": 9,
+          "text": "searching"
+        },
+        {
+          "at": 2.7450113378684806,
+          "until": 2.945011337868481,
+          "pos": 45,
+          "count": 2,
+          "text": "in"
+        },
+        {
+          "at": 2.945011337868481,
+          "until": 3.4250113378684808,
+          "pos": 48,
+          "count": 6,
+          "text": "deadly"
+        },
+        {
+          "at": 3.4250113378684808,
+          "until": 4.00501133786848,
+          "pos": 55,
+          "count": 8,
+          "text": "earnest"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (8a30ad95)",
+      "start": 9.475033,
+      "end": 13.480044
+    },
+    {
+      "id": "nowSent",
+      "lang": "en",
+      "text": "It is now 2 a.m., and I am doing push-ups in the dorm hallway.",
+      "gap": 0.1,
+      "duration": 3.9350113378684806,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.1950113378684807,
+          "pos": 0,
+          "count": 2,
+          "text": "It"
+        },
+        {
+          "at": 0.1950113378684807,
+          "until": 0.43501133786848073,
+          "pos": 3,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 0.43501133786848073,
+          "until": 0.7150113378684807,
+          "pos": 6,
+          "count": 3,
+          "text": "now"
+        },
+        {
+          "at": 0.7150113378684807,
+          "until": 0.9150113378684807,
+          "pos": 10,
+          "count": 1,
+          "text": "2"
+        },
+        {
+          "at": 0.9150113378684807,
+          "until": 1.6350113378684807,
+          "pos": 12,
+          "count": 5,
+          "text": "a.m"
+        },
+        {
+          "at": 1.6350113378684807,
+          "until": 1.7950113378684809,
+          "pos": 18,
+          "count": 3,
+          "text": "and"
+        },
+        {
+          "at": 1.7950113378684809,
+          "until": 1.8750113378684807,
+          "pos": 22,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 1.8750113378684807,
+          "until": 2.0350113378684807,
+          "pos": 24,
+          "count": 2,
+          "text": "am"
+        },
+        {
+          "at": 2.0350113378684807,
+          "until": 2.3950113378684805,
+          "pos": 27,
+          "count": 5,
+          "text": "doing"
+        },
+        {
+          "at": 2.3950113378684805,
+          "until": 2.7950113378684804,
+          "pos": 33,
+          "count": 8,
+          "text": "push-ups"
+        },
+        {
+          "at": 2.7950113378684804,
+          "until": 2.9150113378684805,
+          "pos": 42,
+          "count": 2,
+          "text": "in"
+        },
+        {
+          "at": 2.9150113378684805,
+          "until": 3.0350113378684807,
+          "pos": 45,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 3.0350113378684807,
+          "until": 3.3950113378684805,
+          "pos": 49,
+          "count": 4,
+          "text": "dorm"
+        },
+        {
+          "at": 3.3950113378684805,
+          "until": 3.9350113378684806,
+          "pos": 54,
+          "count": 8,
+          "text": "hallway"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (d2a9e6af)",
+      "start": 13.560044,
+      "end": 17.495055
+    },
+    {
+      "id": "debatableSent",
+      "lang": "en",
+      "text": "Whether late-night training helps is debatable.",
+      "gap": 0.04,
+      "duration": 2.9,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.4,
+          "pos": 0,
+          "count": 7,
+          "text": "Whether"
+        },
+        {
+          "at": 0.4,
+          "until": 1.08,
+          "pos": 8,
+          "count": 10,
+          "text": "late-night"
+        },
+        {
+          "at": 1.08,
+          "until": 1.36,
+          "pos": 19,
+          "count": 8,
+          "text": "training"
+        },
+        {
+          "at": 1.36,
+          "until": 1.92,
+          "pos": 28,
+          "count": 5,
+          "text": "helps"
+        },
+        {
+          "at": 1.92,
+          "until": 2.24,
+          "pos": 34,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 2.24,
+          "until": 2.9,
+          "pos": 37,
+          "count": 10,
+          "text": "debatable"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (d5ba9e89)",
+      "start": 17.595055,
+      "end": 20.495055
+    },
+    {
+      "id": "debatableMeaning",
+      "lang": "zh",
+      "text": "有爭議的、不確定的。",
+      "gap": 0.04,
+      "duration": 2.315011337868481,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (60dce5b9)",
+      "start": 20.535055,
+      "end": 22.850066
+    },
+    {
+      "id": "debatableExample",
+      "lang": "en",
+      "text": "The accuracy of these figures is debatable.",
+      "gap": 0.08,
+      "duration": 2.8450113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.23501133786848072,
+          "pos": 0,
+          "count": 3,
+          "text": "The"
+        },
+        {
+          "at": 0.23501133786848072,
+          "until": 0.8750113378684807,
+          "pos": 4,
+          "count": 8,
+          "text": "accuracy"
+        },
+        {
+          "at": 0.8750113378684807,
+          "until": 1.0750113378684807,
+          "pos": 13,
+          "count": 2,
+          "text": "of"
+        },
+        {
+          "at": 1.0750113378684807,
+          "until": 1.2750113378684806,
+          "pos": 16,
+          "count": 5,
+          "text": "these"
+        },
+        {
+          "at": 1.2750113378684806,
+          "until": 1.8350113378684807,
+          "pos": 22,
+          "count": 7,
+          "text": "figures"
+        },
+        {
+          "at": 1.8350113378684807,
+          "until": 2.1550113378684808,
+          "pos": 30,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 2.1550113378684808,
+          "until": 2.8450113378684807,
+          "pos": 33,
+          "count": 10,
+          "text": "debatable"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (b63bbee5)",
+      "start": 22.890066,
+      "end": 25.735077
+    },
+    {
+      "id": "excuseNot",
+      "lang": "en",
+      "text": "But my excuse is not.",
+      "gap": 0.1,
+      "duration": 1.8950113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.3050113378684807,
+          "pos": 0,
+          "count": 3,
+          "text": "But"
+        },
+        {
+          "at": 0.3050113378684807,
+          "until": 0.5450113378684808,
+          "pos": 4,
+          "count": 2,
+          "text": "my"
+        },
+        {
+          "at": 0.5450113378684808,
+          "until": 1.2650113378684809,
+          "pos": 7,
+          "count": 6,
+          "text": "excuse"
+        },
+        {
+          "at": 1.2650113378684809,
+          "until": 1.4250113378684808,
+          "pos": 14,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 1.4250113378684808,
+          "until": 1.8950113378684807,
+          "pos": 17,
+          "count": 4,
+          "text": "not"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (6ad3575e)",
+      "start": 25.815077,
+      "end": 27.710088
+    },
+    {
+      "id": "frivolousLead",
+      "lang": "en",
+      "text": "It is frivolous:",
+      "gap": 0.04,
+      "duration": 1.0850113378684807,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.1950113378684807,
+          "pos": 0,
+          "count": 2,
+          "text": "It"
+        },
+        {
+          "at": 0.1950113378684807,
+          "until": 0.35501133786848077,
+          "pos": 3,
+          "count": 2,
+          "text": "is"
+        },
+        {
+          "at": 0.35501133786848077,
+          "until": 1.0850113378684807,
+          "pos": 6,
+          "count": 10,
+          "text": "frivolous"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of frivolousSent (9456cf37)",
+      "start": 27.810088,
+      "end": 28.895099
+    },
+    {
+      "id": "frivolousMeaning",
+      "lang": "zh",
+      "text": "愚蠢輕浮的、不嚴肅的。",
+      "gap": 0.04,
+      "duration": 2.5750113378684807,
+      "words": [],
+      "alignment": "ElevenLabs character alignment (5d629f9f)",
+      "start": 28.935099,
+      "end": 31.51011
+    },
+    {
+      "id": "frivolousExample",
+      "lang": "en",
+      "text": "He made a frivolous comment during the serious meeting.",
+      "gap": 0.08,
+      "duration": 3.1750113378684808,
+      "words": [
+        {
+          "at": 0,
+          "until": 0.23501133786848072,
+          "pos": 0,
+          "count": 2,
+          "text": "He"
+        },
+        {
+          "at": 0.23501133786848072,
+          "until": 0.39501133786848075,
+          "pos": 3,
+          "count": 4,
+          "text": "made"
+        },
+        {
+          "at": 0.39501133786848075,
+          "until": 0.5950113378684807,
+          "pos": 8,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 0.5950113378684807,
+          "until": 1.3550113378684807,
+          "pos": 10,
+          "count": 9,
+          "text": "frivolous"
+        },
+        {
+          "at": 1.3550113378684807,
+          "until": 1.6750113378684806,
+          "pos": 20,
+          "count": 7,
+          "text": "comment"
+        },
+        {
+          "at": 1.6750113378684806,
+          "until": 1.9950113378684806,
+          "pos": 28,
+          "count": 6,
+          "text": "during"
+        },
+        {
+          "at": 1.9950113378684806,
+          "until": 2.1550113378684808,
+          "pos": 35,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 2.1550113378684808,
+          "until": 2.715011337868481,
+          "pos": 39,
+          "count": 7,
+          "text": "serious"
+        },
+        {
+          "at": 2.715011337868481,
+          "until": 3.1750113378684808,
+          "pos": 47,
+          "count": 8,
+          "text": "meeting"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment (7354b12f)",
+      "start": 31.55011,
+      "end": 34.725121
+    },
+    {
+      "id": "frivolousRest",
+      "lang": "en",
+      "text": "I wanted to see if the vending machine would still sell me a protein bar.",
+      "gap": 0.1,
+      "duration": 3.6450113378684805,
+      "words": [
+        {
+          "at": 0.025192743764172354,
+          "until": 0.1851927437641725,
+          "pos": 0,
+          "count": 1,
+          "text": "I"
+        },
+        {
+          "at": 0.1851927437641725,
+          "until": 0.5051927437641726,
+          "pos": 2,
+          "count": 6,
+          "text": "wanted"
+        },
+        {
+          "at": 0.5051927437641726,
+          "until": 0.6651927437641723,
+          "pos": 9,
+          "count": 2,
+          "text": "to"
+        },
+        {
+          "at": 0.6651927437641723,
+          "until": 0.8251927437641724,
+          "pos": 12,
+          "count": 3,
+          "text": "see"
+        },
+        {
+          "at": 0.8251927437641724,
+          "until": 0.9451927437641725,
+          "pos": 16,
+          "count": 2,
+          "text": "if"
+        },
+        {
+          "at": 0.9451927437641725,
+          "until": 1.0651927437641726,
+          "pos": 19,
+          "count": 3,
+          "text": "the"
+        },
+        {
+          "at": 1.0651927437641726,
+          "until": 1.5851927437641726,
+          "pos": 23,
+          "count": 7,
+          "text": "vending"
+        },
+        {
+          "at": 1.5851927437641726,
+          "until": 1.9051927437641725,
+          "pos": 31,
+          "count": 7,
+          "text": "machine"
+        },
+        {
+          "at": 1.9051927437641725,
+          "until": 2.1451927437641722,
+          "pos": 39,
+          "count": 5,
+          "text": "would"
+        },
+        {
+          "at": 2.1451927437641722,
+          "until": 2.3451927437641724,
+          "pos": 45,
+          "count": 5,
+          "text": "still"
+        },
+        {
+          "at": 2.3451927437641724,
+          "until": 2.5851927437641726,
+          "pos": 51,
+          "count": 4,
+          "text": "sell"
+        },
+        {
+          "at": 2.5851927437641726,
+          "until": 2.7051927437641727,
+          "pos": 56,
+          "count": 2,
+          "text": "me"
+        },
+        {
+          "at": 2.7051927437641727,
+          "until": 2.825192743764173,
+          "pos": 59,
+          "count": 1,
+          "text": "a"
+        },
+        {
+          "at": 2.825192743764173,
+          "until": 3.3051927437641724,
+          "pos": 61,
+          "count": 7,
+          "text": "protein"
+        },
+        {
+          "at": 3.3051927437641724,
+          "until": 3.6450113378684805,
+          "pos": 69,
+          "count": 4,
+          "text": "bar"
+        }
+      ],
+      "alignment": "ElevenLabs character alignment, part of frivolousSent (9456cf37)",
+      "start": 34.805121,
+      "end": 38.450132
+    },
+    {
+      "id": "question",
+      "lang": null,
+      "text": "",
+      "gap": 2,
+      "duration": 0.8,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 38.550132,
+      "end": 39.350132
+    },
+    {
+      "id": "answer",
+      "lang": null,
+      "text": "",
+      "gap": 0.85,
+      "duration": 1.25,
+      "words": [],
+      "silent": true,
+      "alignment": "silent visual segment; no recorded narration",
+      "start": 41.350132,
+      "end": 42.600132
+    }
+  ]
+}

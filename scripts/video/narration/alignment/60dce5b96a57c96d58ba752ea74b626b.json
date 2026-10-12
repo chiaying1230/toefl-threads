@@ -1,0 +1,58 @@
+{
+  "hash": "60dce5b96a57c96d58ba752ea74b626b",
+  "segment": "debatableMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "有爭議的、不確定的。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 10,
+  "estimatedDuration": 2.536625,
+  "speechStart": 0,
+  "speechEnd": 2.56,
+  "alignment": {
+    "characters": [
+      "有",
+      "爭",
+      "議",
+      "的",
+      "、",
+      "不",
+      "確",
+      "定",
+      "的",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.32,
+      0.64,
+      0.88,
+      1.28,
+      1.36,
+      1.52,
+      1.8,
+      2.08,
+      2.24
+    ],
+    "character_end_times_seconds": [
+      0.32,
+      0.64,
+      0.88,
+      1.28,
+      1.36,
+      1.52,
+      1.8,
+      2.08,
+      2.24,
+      2.56
+    ]
+  }
+}

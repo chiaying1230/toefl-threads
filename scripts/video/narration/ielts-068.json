@@ -1,0 +1,105 @@
+{
+  "_comment": "Narration for ielts-068 (P5: IELTS #01, three vocabulary items). Source: js/data/packs/ielts.js, author socrates, topic Health. Teach: 'in deadly earnest' (phrase), 'debatable', 'frivolous'. HANDOFF RULE: the note goes at the nearest punctuation boundary at or after the vocabulary's last word. 'earnest.' and 'debatable.' end their sentence (no comma/colon before the sentence end), so those two are plain segments with the note after the whole sentence (an `after` there would be an error). frivolousSent has the colon right after 'frivolous', so `after: \"frivolous\"` resolves to 'frivolous:' - frivolousLead + frivolousRest, one TTS take. Story text is the real pack text (emoji dropped). Meanings: the segment text is what Ling SPEAKS; the card shows the source zh from the episode. Examples are the real pack examples. The 'hook' segment is a single-line scene_contrast (empty setup, payoff \"IT'S 2 A.M.\"); the promise and the push-ups stay in the story. Its payoff (the whole hook text) is revealed on \"It's\".",
+  "id": "ielts-068",
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "text": "It's 2 a.m.",
+      "gap": 0.08
+    },
+    {
+      "id": "earnestSent",
+      "kind": "story",
+      "text": "I promised my roommate I would sleep before midnight, and I said it in deadly earnest.",
+      "gap": 0.04
+    },
+    {
+      "id": "earnestMeaning",
+      "kind": "meaning",
+      "text": "鄭重其事、嚴肅認真地。",
+      "gap": 0.04
+    },
+    {
+      "id": "earnestExample",
+      "kind": "example",
+      "text": "When the alarm sounded, they began searching in deadly earnest.",
+      "gap": 0.08
+    },
+    {
+      "id": "nowSent",
+      "kind": "story",
+      "text": "It is now 2 a.m., and I am doing push-ups in the dorm hallway.",
+      "gap": 0.1
+    },
+    {
+      "id": "debatableSent",
+      "kind": "story",
+      "text": "Whether late-night training helps is debatable.",
+      "gap": 0.04
+    },
+    {
+      "id": "debatableMeaning",
+      "kind": "meaning",
+      "text": "有爭議的、不確定的。",
+      "gap": 0.04
+    },
+    {
+      "id": "debatableExample",
+      "kind": "example",
+      "text": "The accuracy of these figures is debatable.",
+      "gap": 0.08
+    },
+    {
+      "id": "excuseNot",
+      "kind": "story",
+      "text": "But my excuse is not.",
+      "gap": 0.1
+    },
+    {
+      "id": "frivolousSent",
+      "kind": "story",
+      "text": "It is frivolous: I wanted to see if the vending machine would still sell me a protein bar.",
+      "parts": [
+        {
+          "id": "frivolousLead",
+          "after": "frivolous",
+          "gap": 0.04
+        },
+        {
+          "id": "frivolousRest",
+          "resumeAfter": "frivolousExample",
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "id": "frivolousMeaning",
+      "kind": "meaning",
+      "text": "愚蠢輕浮的、不嚴肅的。",
+      "gap": 0.04
+    },
+    {
+      "id": "frivolousExample",
+      "kind": "example",
+      "text": "He made a frivolous comment during the serious meeting.",
+      "gap": 0.08
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "text": "什麼意思？",
+      "gap": 2.0,
+      "silent": true,
+      "duration": 0.8
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "text": "愚蠢輕浮的，不嚴肅的。",
+      "gap": 0.85,
+      "silent": true,
+      "duration": 1.25
+    }
+  ]
+}

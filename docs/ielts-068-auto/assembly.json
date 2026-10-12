@@ -1,0 +1,102 @@
+{
+  "segments": [
+    {
+      "id": "hook",
+      "hash": "92e9c8fecc6649ee8f5b1714e326c6ab",
+      "voice": "arthur",
+      "sourceDuration": 1.28
+    },
+    {
+      "id": "earnestSent",
+      "hash": "eb9ccf0e3d16087a18bcf504b43ed71f",
+      "voice": "arthur",
+      "sourceDuration": 5.68
+    },
+    {
+      "id": "earnestMeaning",
+      "hash": "76e91f73a6a496f4fae7547c7b34bcb1",
+      "voice": "ling",
+      "sourceDuration": 2.88
+    },
+    {
+      "id": "earnestExample",
+      "hash": "8a30ad959542c49c49d5befaa0321544",
+      "voice": "arthur",
+      "sourceDuration": 4.08
+    },
+    {
+      "id": "nowSent",
+      "hash": "d2a9e6af355b8baef5c2bea623557aa0",
+      "voice": "arthur",
+      "sourceDuration": 4.16
+    },
+    {
+      "id": "debatableSent",
+      "hash": "d5ba9e89076d0c2fd726981175a7e906",
+      "voice": "arthur",
+      "sourceDuration": 3.04
+    },
+    {
+      "id": "debatableMeaning",
+      "hash": "60dce5b96a57c96d58ba752ea74b626b",
+      "voice": "ling",
+      "sourceDuration": 2.48
+    },
+    {
+      "id": "debatableExample",
+      "hash": "b63bbee5921bb15e8db4c54e64fa5b33",
+      "voice": "arthur",
+      "sourceDuration": 3.04
+    },
+    {
+      "id": "excuseNot",
+      "hash": "6ad3575e4f60e3ea34ae98d37d70ade1",
+      "voice": "arthur",
+      "sourceDuration": 2.08
+    },
+    {
+      "id": "frivolousSent",
+      "hash": "9456cf3783418f3de4e0efc0332e1c5e",
+      "voice": "arthur",
+      "sourceDuration": 5.44,
+      "parts": [
+        "frivolousLead",
+        "frivolousRest"
+      ],
+      "cuts": [
+        {
+          "before": "frivolousRest",
+          "sample": 72316,
+          "at": 1.6398185941043084,
+          "wordEnd": 1.6,
+          "nextStart": 1.68,
+          "ratio": 0.001
+        }
+      ]
+    },
+    {
+      "id": "frivolousMeaning",
+      "hash": "5d629f9f47ba3a2c1455439346470761",
+      "voice": "ling",
+      "sourceDuration": 2.8
+    },
+    {
+      "id": "frivolousExample",
+      "hash": "7354b12f216ff6733de5562928cf5257",
+      "voice": "arthur",
+      "sourceDuration": 3.28
+    },
+    {
+      "id": "question",
+      "silent": true
+    },
+    {
+      "id": "answer",
+      "silent": true
+    }
+  ],
+  "warnings": [],
+  "duration": 42.63333333333333,
+  "audioEnd": 38.450132,
+  "frames": 1279
+}

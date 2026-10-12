@@ -69,6 +69,7 @@ episode 用結構化 metadata 描述（全部是明確資料）：
 | P2 | `p2` | TOEFL | #01 | legacy：`TOEFL · EP.01`（凍結，不改） |
 | P3 | `p348` | TOEFL | #02 | legacy：`p348`（凍結，不改） |
 | P4 | `toeic-079` | TOEIC | #01 | `TOEIC · #01 · L2`（結構化 metadata） |
+| P5 | `ielts-068` | IELTS | #01 | `IELTS · #01 · L2–L3`（結構化 metadata；已 freeze，見 docs/ielts-068-auto/FROZEN.json） |
 
 `P1 / P2 / P3 / P4` 是專案階段代號，不是系列集數。詞彙庫名稱：`toefl` = TOEFL、`toeic` = TOEIC、`ielts` = IELTS、`hs` = 高中、`elem` = 國小國中（目前是同一個詞彙庫；要拆成國中、國小是另一個決定）。
 
@@ -80,6 +81,32 @@ episode 用結構化 metadata 描述（全部是明確資料）：
 - `scene_contrast` Hook 的 `emoji` 欄位是選填（沒有就不畫）；`number_contrast` 仍需要（P2）。
 - 使用結構化 metadata 的 episode，`episode-refs.mjs` 會在任何內容字串或旁白行含 emoji 時報錯；`verify-episode.mjs` 另外檢查實際畫面文字。
 - P2、P3 是凍結的 legacy reference，不追溯修改。
+
+### Hook、串流、Quiz、Outro 的規則（P5 驗證，現行）
+
+這些是 P5 實際看過成片後確認的規則，P6 起的 episode 直接遵守，不要再重犯。
+
+**Hook**
+- **不要把故事提前講完。** Hook 優先保留懸念，只揭露足以讓人停下來的那一點資訊；其餘留給正文揭曉。P5 的原案是完整反差（答應室友午夜前睡 vs 凌晨兩點在走廊做伏地挺身），最後縮成 `IT'S 2 A.M.`，室友承諾與伏地挺身都留在正文。
+- **視覺資訊精簡。** 不為了填滿 schema 而顯示不需要的中文翻譯或第二層資訊。Hook 只需要一句話時，就只放一句話。
+- 位置：eyebrow（topic）下方、黃色橫線上方（`scene_contrast` 的 `setup` 區）；`payoff` 留空時只有橫線，橫線在 `reveal` 的字亮起。
+- **Known workaround / 技術債（不是推薦做法）：** `episode-refs.mjs` 的 `need()` 要求 `hook.zh` 非空，所以 P5 為了不顯示中文，把 `hook.zh` 設成單一空白字元 `" "`。**未來不要複製這個做法。** 正式支援無中文 Hook 應該修改 schema / validator（讓 `scene_contrast` 的 `zh` 可省略），並依 shared-template 流程做 P2 / P3 / P4 regression 與新 revision。
+
+**閱讀畫面保持串流感**
+- 正在朗讀一段時，下一段內容要適度提前出現在下方；避免目前句子下方大片留白、念完才突然跳出下一段。
+- 做法是 episode 的 `visibility`：下一個 story block 的出現時間設在「前一句開始朗讀」附近（P5：`excuse` 區塊 `at: { line: "nowSent", delay: -0.3 }`），不要設在它自己第一句之前才出現。
+- 這是 episode 資料，不需要改 template。
+
+**Quiz 顯示文字**
+- source data（`js/data`）保留完整原文，**不因版面修改**。
+- Quiz 選項的顯示文字可以為了版面做「不改變語意」的精簡，避免不必要換行。例如 P5：`具爭議的，不確定的；成問題的` → `具爭議、不確定的；成問題的`。
+- 精簡只動 `quiz.options` 的顯示文字；詞彙卡與 Outro 仍用來源 zh。不要新增來源裡沒有的詞義。
+
+**Outro 吉祥物**
+- 吉祥物應停留到接近 Outro 結束，不要在 Outro 文字仍停留時先消失、讓畫面剩下文字繼續停一段時間。
+- 現行機制：`Components.js` 的 `createOutro` 讓吉祥物在 `start` 到 `start + scrollDuration + cueDuration + 0.45` 之間可見，之後 `visibility: hidden`。`cueDuration` 同時決定「歪頭、眼神移動」的動畫時間。
+- 不修改 template 的做法：把 `outro.mascot.cueDuration` 設為 `duration − scrollDuration − 0.45`，使吉祥物可見到 Outro 結束（影片結尾）。例：`duration 2.4`、`scrollDuration 0.45` → `cueDuration 1.5`（預設 0.65 只會讓吉祥物顯示約 1.55 秒）。代價是歪頭與眼神動畫變慢，仍是平順的。
+- 未來若要把這個變成預設（不必每集手填），需要修改 shared template，並依 CURRENT_STATE 做 P2 / P3 / P4 regression 與新 revision（會改變這幾支的 Outro 幀 hash）。目前尚未做。
 
 ## 早期設計與製作紀錄
 

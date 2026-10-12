@@ -1,7 +1,7 @@
 # 影片系統 CURRENT_STATE
 
 跨 agent 共用的「現在仍有效」狀態；不是開發日誌。細節與 hash 一律看各 `FROZEN.json`，這裡不複製。
-更新時機：每次 freeze、共用規則改變之後。最後更新：P4 freeze 與交接整理後（2026-10-12）。
+更新時機：每次 freeze、共用規則改變之後。最後更新：P5 freeze 後（2026-10-12）。
 入口：`AGENTS.md`（所有 agent）；`CLAUDE.md` 只有一行 `@AGENTS.md`，是 Claude Code 指向它的薄入口，不放任何專案記憶。
 
 ## 1. 專案目標
@@ -37,6 +37,11 @@ js/data（貼文、詞彙、levels.js、characters.js、packs/）
 - 配樂與音效沿用：`assets/social-soft-groove.wav`（94 BPM）、`assets/answer-correct.wav`，設定寫在 episode 的 `music` / `soundEffects`。
 - **內容 emoji 預設關閉**（Hook、正文、例句、詞彙卡、Quiz、Outro）。例外要寫 `allowContentEmoji: true`。mascot、帳號頭像、UI 符號（✓ ● ↳）不算內容。
 - 中文詞彙標題與 Quiz 題目用 `keep-all`（不在中文字詞中間斷行）。
+- **P5 驗證的規則**（細節與理由在 `docs/video-design-system.md`「Hook、串流、Quiz、Outro 的規則」）：
+  - Hook 不把故事提前講完、只留足以讓人停下來的資訊；Hook 視覺精簡，不為填滿 schema 顯示不需要的中文或第二層資訊。
+  - 閱讀時下一段要用 `visibility` 提前出現在下方，不要留大片空白再突然跳出。
+  - Quiz 選項的顯示文字可為版面做不改變語意的精簡；`js/data` 原始資料不改。
+  - Outro 吉祥物要停留到接近 Outro 結束：把 `outro.mascot.cueDuration` 設為 `duration − scrollDuration − 0.45`（預設值會讓它提早消失）。
 - 不加裝飾性動畫；metadata（右上角）不搶 Hook 與正文。原則：CLEAR > RHYTHMIC > DECORATIVE。
 - camera 依真實 plan 用 `fit-camera.mjs` 擬合；不要用假時間定案。
 
@@ -69,10 +74,11 @@ js/data（貼文、詞彙、levels.js、characters.js、packs/）
 | P2 | `p2` | TOEFL #01（legacy header） | `outputs/p2-auto-pipeline-music.mp4`（較早核准的 `outputs/p2-v4.2-outro-music.mp4` 也保留） | `docs/p2-auto/FROZEN.json` + `FREEZE.md` | tag `p2-freeze-2026-10-11` |
 | P3 | `p348` | TOEFL #02（legacy header） | `outputs/p348-first-render.mp4` | `docs/p348-auto/FROZEN.json` + `VALIDATION.md` | tag `p3-validation-2026-10-11` |
 | P4 | `toeic-079` | TOEIC #01 | `outputs/toeic-079-third-render.mp4` | `docs/toeic-079-auto/FROZEN.json` + `VALIDATION.md` | tag `p4-validation-2026-10-12`（分支 `p4-validation`） |
+| P5 | `ielts-068` | IELTS #01（L2–L3） | `outputs/ielts-068-first-render.mp4`（45.033 秒） | `docs/ielts-068-auto/FROZEN.json` + `VALIDATION.md` | tag `p5-validation-2026-10-12`（分支 `p5-validation`） |
 
 - `p1` 只是 TOEFL 貼文，從未做成影片，不計入系列。P1–P4 是專案階段代號，不是系列集數。
-- 每個都用 `node scripts/video/check-freeze.mjs <FROZEN.json>` 檢查，三個都應是 intact。
-- 目前所有影片工作都在 `p2-freeze → p3-validation → p4-validation` 這串分支，尚未合併到主線。
+- 每個都用 `node scripts/video/check-freeze.mjs <FROZEN.json>` 檢查，四個都應是 intact。
+- 目前所有影片工作都在 `p2-freeze → p3-validation → p4-validation → p5-validation` 這串分支，尚未合併到主線。
 
 ## 7. 共用 template 目前版本與有效能力
 
@@ -84,7 +90,7 @@ js/data（貼文、詞彙、levels.js、characters.js、packs/）
 
 - `reference/ReadingCue.js` 不改（hash 記在 FROZEN.json）。契約：每個 token 的時間來自真實 alignment、不內插；`key` 只在建立時決定，`update()` 只切換 read / active。
 - FROZEN.json 的 reference 影片、narration / plan / manifest / config、音訊資產、alignment 不改（`check-freeze` exit 2 = 凍結檔本身被動過）。
-- P2 / P3 / P4 要維持 regression：`regression.mjs compare` 的 DOM 快照與逐幀 hash 一致（Outro 吉祥物少數幀不是 bit-stable，工具已處理）。基準與瀏覽器版本綁定，只在同一台機器可靠。
+- P2 / P3 / P4 要維持 regression（P5 沒有改共用程式，沒有另建 regression 基準）：`regression.mjs compare` 的 DOM 快照與逐幀 hash 一致（Outro 吉祥物少數幀不是 bit-stable，工具已處理）。基準與瀏覽器版本綁定，只在同一台機器可靠。
 - legacy episode（沒有 `series`）永遠走舊路徑，畫面不變。
 - 測試、regression、render 都不呼叫 API；assemble / render 都是本機、免費。
 - 資料有問題要讓驗證器報錯，不允許「資料合法但畫面不亮」。
@@ -112,8 +118,11 @@ js/data（貼文、詞彙、levels.js、characters.js、packs/）
 
 ## 11. 目前下一步
 
-- P4 已完成並 freeze、已 push。**下一支是 P5，尚未開始，也沒有選定內容。**
-- P5 開始前使用者要決定：內容、詞彙庫、`seriesEpisode`、`level`。
+- P4、P5 已完成並 freeze。**P5 = `ielts-068`（IELTS #01、L2–L3），正式 frozen reference**：`outputs/ielts-068-first-render.mp4`、`docs/ielts-068-auto/FROZEN.json`。P5 沒有改共用 template；P5 是否 push 由使用者決定（目前只有本機 commit 與 tag）。
+- P6 開始前使用者要決定：內容、詞彙庫、`seriesEpisode`、`level`。
+- **Known workaround / 技術債（不是正式規則）：** P5 為了不顯示中文 Hook，`hook.zh` 設成單一空白字元以繞過 `episode-refs.mjs` 的非空檢查。不是推薦做法，不要複製；正式支援無中文 Hook 應修改 schema / validator，並依第 8 節做 shared-template regression 與新 revision。
+- **P5 episode-level workaround：** `outro.mascot.cueDuration = 1.5` 讓吉祥物停留到 Outro 結束；這只是 P5 episode 的設定。未來若要變成預設，需要 shared-template revision + P2 / P3 / P4 regression。
+- P5 freeze 時**人工接受**的 automated review warning（不是待修 blocker；已寫入 FROZEN.json 的 `knownNotBlocking`）：`review-visual` 回報 `in deadly earnest` 教學卡高約 970px（整張卡在視窗內的時間僅約 4%）、`frivolous` 教學期間故事詞組不在視窗內（0%）；人工看過、接受用於 P5 freeze；layout audit 與 verify 仍為 0 問題。
 - 已知待辦（不屬於 P5 本身）：本機路徑可攜性（`render-lib.mjs`、`voice/audio.mjs` 等的後備路徑；環境變數見第 2 節）、換行字元（無 `.gitattributes`，CRLF 可能影響跨機器 hash 驗證）、P2 / P3 的 reference 仍是 legacy header。
 - P4 已知但延後的美觀項目：Hook 中文提前透露 payoff、答案說明最後一行只剩一字、第一個例句較長、詞彙卡標題在「被…」後換行。
 - `docs/video-design-system.md`：開頭的驗證狀態與「系列識別與內容規則」一節是現行；早期章節（第 1–13 節、feed revisions）是歷史紀錄。兩者有出入時以本文件與各 FROZEN.json 為準。

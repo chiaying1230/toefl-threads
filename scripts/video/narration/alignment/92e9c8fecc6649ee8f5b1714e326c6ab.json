@@ -1,0 +1,61 @@
+{
+  "hash": "92e9c8fecc6649ee8f5b1714e326c6ab",
+  "segment": "hook",
+  "kind": "story",
+  "voice": "arthur",
+  "voiceId": "C1npRmjB19a6yNkEucvx",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "It's 2 a.m.",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 11,
+  "estimatedDuration": 1.3349375,
+  "speechStart": 0,
+  "speechEnd": 1.36,
+  "alignment": {
+    "characters": [
+      "I",
+      "t",
+      "'",
+      "s",
+      " ",
+      "2",
+      " ",
+      "a",
+      ".",
+      "m",
+      "."
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.12,
+      0.16,
+      0.24,
+      0.32,
+      0.44,
+      0.56,
+      0.64,
+      0.72,
+      0.8,
+      1.04
+    ],
+    "character_end_times_seconds": [
+      0.12,
+      0.16,
+      0.24,
+      0.32,
+      0.44,
+      0.56,
+      0.64,
+      0.72,
+      0.8,
+      1.04,
+      1.36
+    ]
+  }
+}

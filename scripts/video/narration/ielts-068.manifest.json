@@ -1,0 +1,153 @@
+{
+  "id": "ielts-068",
+  "outputFormat": "mp3_44100_128",
+  "complete": true,
+  "segments": [
+    {
+      "id": "hook",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "92e9c8fecc6649ee8f5b1714e326c6ab",
+      "chars": 11,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "92e9c8fecc6649ee8f5b1714e326c6ab.mp3"
+    },
+    {
+      "id": "earnestSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "eb9ccf0e3d16087a18bcf504b43ed71f",
+      "chars": 86,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "eb9ccf0e3d16087a18bcf504b43ed71f.mp3"
+    },
+    {
+      "id": "earnestMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "76e91f73a6a496f4fae7547c7b34bcb1",
+      "chars": 11,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "76e91f73a6a496f4fae7547c7b34bcb1.mp3"
+    },
+    {
+      "id": "earnestExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "8a30ad959542c49c49d5befaa0321544",
+      "chars": 63,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "8a30ad959542c49c49d5befaa0321544.mp3"
+    },
+    {
+      "id": "nowSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "d2a9e6af355b8baef5c2bea623557aa0",
+      "chars": 62,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "d2a9e6af355b8baef5c2bea623557aa0.mp3"
+    },
+    {
+      "id": "debatableSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "d5ba9e89076d0c2fd726981175a7e906",
+      "chars": 47,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "d5ba9e89076d0c2fd726981175a7e906.mp3"
+    },
+    {
+      "id": "debatableMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "60dce5b96a57c96d58ba752ea74b626b",
+      "chars": 10,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "60dce5b96a57c96d58ba752ea74b626b.mp3"
+    },
+    {
+      "id": "debatableExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "b63bbee5921bb15e8db4c54e64fa5b33",
+      "chars": 43,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "b63bbee5921bb15e8db4c54e64fa5b33.mp3"
+    },
+    {
+      "id": "excuseNot",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "6ad3575e4f60e3ea34ae98d37d70ade1",
+      "chars": 21,
+      "gap": 0.1,
+      "status": "ready",
+      "audio": "6ad3575e4f60e3ea34ae98d37d70ade1.mp3"
+    },
+    {
+      "id": "frivolousSent",
+      "kind": "story",
+      "voice": "arthur",
+      "hash": "9456cf3783418f3de4e0efc0332e1c5e",
+      "chars": 90,
+      "gap": 0,
+      "parts": [
+        {
+          "id": "frivolousLead",
+          "text": "It is frivolous:",
+          "gap": 0.04
+        },
+        {
+          "id": "frivolousRest",
+          "text": "I wanted to see if the vending machine would still sell me a protein bar.",
+          "gap": 0.1
+        }
+      ],
+      "status": "ready",
+      "audio": "9456cf3783418f3de4e0efc0332e1c5e.mp3"
+    },
+    {
+      "id": "frivolousMeaning",
+      "kind": "meaning",
+      "voice": "ling",
+      "hash": "5d629f9f47ba3a2c1455439346470761",
+      "chars": 11,
+      "gap": 0.04,
+      "status": "ready",
+      "audio": "5d629f9f47ba3a2c1455439346470761.mp3"
+    },
+    {
+      "id": "frivolousExample",
+      "kind": "example",
+      "voice": "arthur",
+      "hash": "7354b12f216ff6733de5562928cf5257",
+      "chars": 55,
+      "gap": 0.08,
+      "status": "ready",
+      "audio": "7354b12f216ff6733de5562928cf5257.mp3"
+    },
+    {
+      "id": "question",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 0.8,
+      "gap": 2
+    },
+    {
+      "id": "answer",
+      "kind": "quiz",
+      "silent": true,
+      "duration": 1.25,
+      "gap": 0.85
+    }
+  ]
+}

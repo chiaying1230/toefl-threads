@@ -1,0 +1,84 @@
+{
+  "status": "accepted",
+  "acceptedAt": "2026-10-12",
+  "name": "P5 reference (ielts-068, first IELTS video; three vocabulary items: one phrase + two single words)",
+  "reference": "outputs/ielts-068-first-render.mp4",
+  "verified": "ielts-068 post data (js/data/packs/ielts.js) → narration / episode data → ElevenLabs TTS (Arthur + Ling) → cache → character alignment → words[] → assembly (two sentences kept whole with the note after them, one sentence cut at the colon after 'frivolous') → renderer (single-line scene_contrast hook, phrase + 2 single-word vocabulary, meaning Quiz, 3-item Outro, structured series header) → reusable music / SFX mix → final MP4",
+  "acceptedBy": "user, after watching the final render of outputs/ielts-068-first-render.mp4 (same file name re-rendered several times during review; only the accepted final render is the reference)",
+  "length": {
+    "video": 45.033,
+    "narration": 42.633,
+    "frames": 1351
+  },
+  "series": {
+    "series": "IELTS",
+    "seriesEpisode": 1,
+    "level": {
+      "min": 2,
+      "max": 3
+    },
+    "contentId": "ielts-068",
+    "header": "IELTS · #01 · L2–L3"
+  },
+  "validationRecord": "docs/ielts-068-auto/VALIDATION.md",
+  "sharedCode": "not listed here: shared template / pipeline code is governed by docs/p2-auto/FROZEN.json (latest revision r8-series-header-content-emoji). P5 made NO shared-code change. Run all four check-freeze commands.",
+  "capabilities": [
+    "first IELTS series video (series IELTS, seriesEpisode 1, level L2–L3 range header)",
+    "three vocabulary items in one episode: one phrase (in deadly earnest) + two single words (debatable, frivolous)",
+    "handoff after a whole sentence for two items (no boundary before the sentence end) and at a colon (`after: frivolous` → 'frivolous:') for the third",
+    "single-line scene_contrast Hook: text in setup above the rule, empty payoff (rule only), no Chinese shown (hook.zh = ' ' workaround, see knownNotBlocking)",
+    "mixed single-word + phrase Outro rows (3 items)",
+    "reading visibility: the next story block appears while the previous sentence is read (episode-level visibility data)",
+    "Quiz option display copy shortened without changing the meaning (episode data; js/data unchanged)",
+    "Outro mascot kept to the end of the Outro with outro.mascot.cueDuration = 1.5 (episode-level workaround)"
+  ],
+  "verification": {
+    "layoutAudit": "1351 frames, 0 issues",
+    "verifyEpisode": "12/12 pass on the accepted render",
+    "audioMix": "6/6 pass; re-mixing the narration-only render reproduces the accepted MP4 byte for byte (sha256 equal)",
+    "narrationVsEpisode": "0 problems",
+    "offlineTests": "92 pass, 0 fail",
+    "p2p3p4": "check-freeze intact for P2, P3, P4; no shared code changed, so no regression run was needed",
+    "readingCue": "sha256 9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad (unchanged since the P2 freeze)",
+    "reviewVisual": "camera direction reversals 0; two automated warnings, human reviewed, accepted for P5 freeze (see knownNotBlocking)"
+  },
+  "hashes": {
+    "referenceVideos": {
+      "outputs/ielts-068-first-render.mp4": "7e9cad33085491c99e7849f83693ed20f4231773af895b857c93139958acdae2"
+    },
+    "narrationPlanManifestAndConfig": {
+      "docs/ielts-068-auto/narration.wav": "c3f4b006733c2179075e6673d8a6cd59cb12182890ecbdf0093a35ad1659a7e4",
+      "docs/ielts-068-auto/ielts-068-auto.plan.json": "06d3dae18290a104240097a283cbb1c741e88e0f29e74e5b2f0c54533081d9b7",
+      "scripts/video/narration/ielts-068.json": "f2714ca7a35ec8306d1441e78b4836ebf9b1c4b12e97defe325d1687b7f3782f",
+      "scripts/video/narration/ielts-068.manifest.json": "7e563c6663ce4e83bfb13511b8ba26a8ed2565b2b8a87815f3fd205cbd305144",
+      "scripts/video/episodes/ielts-068-auto.json": "29017dd54237f0c95386c18b58159d050a66e956059d39e608398381410fc901",
+      "scripts/video/voices.json": "8264488ec584d48b730d45a5e4ad85c62476fded69788eb41e37ce45e1f6284d"
+    },
+    "audioAssets": {
+      "scripts/video/assets/social-soft-groove.wav": "d2a9715b4aeeb933a417926a96459521204cc798f1ca33d73d0c95a213a23875",
+      "scripts/video/assets/answer-correct.wav": "ddad5e42f8b7b9e616a2742bec36edc9be3abc6938e1443e792e96978abd6693"
+    },
+    "alignment": {
+      "scripts/video/narration/alignment/5d629f9f47ba3a2c1455439346470761.json": "079ecb72f3a0ec79112560a79cbe93847d71b6e5f7041619fb9ed45b8b6e0dd6",
+      "scripts/video/narration/alignment/60dce5b96a57c96d58ba752ea74b626b.json": "e0cdea23b5c14358f2daa7676fc7c71585d1c29f0bea1445cab584d574faabc3",
+      "scripts/video/narration/alignment/6ad3575e4f60e3ea34ae98d37d70ade1.json": "604b11301ce61ec0b660e8a047aaa046e84ef53bb27e1488aadbe6bcbcf0718c",
+      "scripts/video/narration/alignment/7354b12f216ff6733de5562928cf5257.json": "d3874ba6a454f1c3c204241df0eb2c4dbf82313c8a02354c8e1686aebd501387",
+      "scripts/video/narration/alignment/76e91f73a6a496f4fae7547c7b34bcb1.json": "f961924970ef0c0f8ed55e2c20e856edebe5cfcae5f29c78af1398f19abc5a85",
+      "scripts/video/narration/alignment/8a30ad959542c49c49d5befaa0321544.json": "2735a7cdd1c4993b86f16b0c0cf2ff60bde2a1d6a38897139b6beebaf83caf32",
+      "scripts/video/narration/alignment/92e9c8fecc6649ee8f5b1714e326c6ab.json": "4145b2aef84e5cf04267451d70d32124c83fa1c276ed9e5fbce76716c0a74405",
+      "scripts/video/narration/alignment/9456cf3783418f3de4e0efc0332e1c5e.json": "15ce576addffb7e96fb340798502e55a2cb63b4f69df5a6fd1ed1bacacd4639f",
+      "scripts/video/narration/alignment/b63bbee5921bb15e8db4c54e64fa5b33.json": "175852a666e08e8c936dbb2d5878012a5032ba2f6f465864cd128eeb8d169350",
+      "scripts/video/narration/alignment/d2a9e6af355b8baef5c2bea623557aa0.json": "e05818534862139f03692c534fbfa366694ce69eef6ac1cb081481474448cb6f",
+      "scripts/video/narration/alignment/d5ba9e89076d0c2fd726981175a7e906.json": "9dd481b110c5d82fd23cc76f4e99b92773895ef0692c79a44bf29c4993e9bd68",
+      "scripts/video/narration/alignment/eb9ccf0e3d16087a18bcf504b43ed71f.json": "74f6c375929e5bb5cba9b8f231c9eb75ea16f510c7dc19183e27a13438bab6b4"
+    }
+  },
+  "knownNotBlocking": [
+    "AUTOMATED REVIEW WARNING (review-visual) – HUMAN REVIEWED – ACCEPTED FOR P5 FREEZE: the 'in deadly earnest' note card is about 970 px tall in a 1024 px window; the whole card is in view only about 4 % of the time it is open (6.15–13.56 s).",
+    "AUTOMATED REVIEW WARNING (review-visual) – HUMAN REVIEWED – ACCEPTED FOR P5 FREEZE: while the 'frivolous' note is open (28.17–34.81 s) the whole yellow story phrase is not in view (0 %); the note itself is fully in view.",
+    "TECHNICAL DEBT / WORKAROUND, not a rule: hook.zh is a single space (' ') because episode-refs.mjs requires a non-empty hook.zh and P5 shows no Chinese in the Hook. Proper support = change schema / validator + shared-template regression + a new revision.",
+    "EPISODE-LEVEL WORKAROUND, not a shared default: outro.mascot.cueDuration = 1.5 keeps the mascot visible to the end of the 2.4 s Outro (the template hides it at start + scrollDuration + cueDuration + 0.45). Making that the default needs a shared-template revision + P2 / P3 / P4 regression.",
+    "Quiz option C is displayed as '具爭議、不確定的；成問題的'; the vocabulary card and the Outro keep the source zh '具爭議的，不確定的；成問題的'.",
+    "The narration-only render, earlier renders, docs/ielts-068-auto/mix-work/, stills/, review-sheet.png and voice-cache/ are rebuildable and not part of the reference."
+  ]
+}

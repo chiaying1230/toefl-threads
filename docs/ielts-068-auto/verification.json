@@ -1,0 +1,315 @@
+{
+  "episode": "ielts-068-auto",
+  "checks": [
+    {
+      "name": "navy reading cue sits on the spoken word",
+      "ok": true,
+      "detail": "85 words in 9 lines"
+    },
+    {
+      "name": "hook reveal happens on \"It's\"",
+      "ok": true,
+      "detail": {
+        "revealAt": 0,
+        "opacityBefore": 0.18,
+        "opacityAfter": 1
+      }
+    },
+    {
+      "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+      "ok": true,
+      "detail": "2 phrase span(s) and 3 single-word token(s) in 9 lines"
+    },
+    {
+      "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+      "ok": true,
+      "detail": "85 tokens checked"
+    },
+    {
+      "name": "header: top right \"IELTS · #01 · L2–L3\" (series · #NN · level), level shown once, fits",
+      "ok": true,
+      "detail": {
+        "shown": "IELTS · #01 · L2–L3",
+        "expected": "IELTS · #01 · L2–L3",
+        "levelBadges": [],
+        "width": 233,
+        "fits": true
+      }
+    },
+    {
+      "name": "content: no decorative emoji in the hook, story, vocabulary, quiz or outro",
+      "ok": true,
+      "detail": "none"
+    },
+    {
+      "name": "vocabulary \"in deadly earnest\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 6.15,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 471,
+        "activeCueAtOpen": [
+          "earnest."
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "began"
+        ],
+        "resumeLine": "nowSent",
+        "resumeCue": [
+          "It"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"debatable\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 19.835,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 403,
+        "activeCueAtOpen": [
+          "debatable."
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "these"
+        ],
+        "resumeLine": "excuseNot",
+        "resumeCue": [
+          "But"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"frivolous\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 28.165,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 460,
+        "activeCueAtOpen": [
+          "frivolous:"
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "comment"
+        ],
+        "resumeLine": "frivolousRest",
+        "resumeCue": [
+          "I"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "quiz question → think → answer",
+      "ok": true,
+      "detail": {
+        "question": [
+          38.550132,
+          39.350132
+        ],
+        "answer": [
+          41.350132,
+          42.600132
+        ],
+        "thinking": "● 換你想想",
+        "answered": "✓ 答案揭曉"
+      }
+    },
+    {
+      "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+      "ok": true,
+      "detail": {
+        "lines": 13,
+        "outside": [],
+        "rows": [
+          {
+            "id": "hook",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "earnestSent",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "earnestMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "earnestExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "nowSent",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "debatableSent",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "debatableMeaning",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "debatableExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "excuseNot",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "frivolousLead",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "frivolousMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "frivolousExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "frivolousRest",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          }
+        ]
+      }
+    },
+    {
+      "name": "mp4 decodes completely and has the expected length",
+      "ok": true,
+      "detail": {
+        "decodeErrors": "none",
+        "seconds": 45.03,
+        "expected": 45.03333333333333,
+        "video": [
+          "h264 (High) (avc1 / 0x31637661)",
+          "1080x1920"
+        ],
+        "audio": "aac (LC) (mp4a / 0x6134706D)"
+      }
+    }
+  ],
+  "frames": [
+    {
+      "label": "Hook",
+      "t": 0.7,
+      "lit": ""
+    },
+    {
+      "label": "Hook reveal",
+      "t": 0.3,
+      "lit": ""
+    },
+    {
+      "label": "Reading before \"in deadly earnest\"",
+      "t": 5.91002233786848,
+      "lit": "deadly"
+    },
+    {
+      "label": "Handoff → in deadly earnest",
+      "t": 6.5300223378684805,
+      "lit": "earnest."
+    },
+    {
+      "label": "in deadly earnest: meaning",
+      "t": 8.1075275,
+      "lit": "in deadly earnest · 鄭重其事；嚴肅認真adv. phr."
+    },
+    {
+      "label": "in deadly earnest: example",
+      "t": 11.446544337868481,
+      "lit": "began"
+    },
+    {
+      "label": "Back to story after in deadly earnest",
+      "t": 13.657549668934239,
+      "lit": "It"
+    },
+    {
+      "label": "Reading before \"debatable\"",
+      "t": 19.675055,
+      "lit": "is"
+    },
+    {
+      "label": "Handoff → debatable",
+      "t": 20.215055,
+      "lit": "debatable."
+    },
+    {
+      "label": "debatable: meaning",
+      "t": 21.6925605,
+      "lit": "debatable · 具爭議的，不確定的；成問題的adj."
+    },
+    {
+      "label": "debatable: example",
+      "t": 24.06507733786848,
+      "lit": "these"
+    },
+    {
+      "label": "Back to story after debatable",
+      "t": 25.967582668934238,
+      "lit": "But"
+    },
+    {
+      "label": "Reading before \"frivolous\"",
+      "t": 28.08509933786848,
+      "lit": "is"
+    },
+    {
+      "label": "Handoff → frivolous",
+      "t": 28.545099337868482,
+      "lit": "frivolous:"
+    },
+    {
+      "label": "frivolous: meaning",
+      "t": 30.222604500000003,
+      "lit": "frivolous · 愚蠢輕浮的，不嚴肅的adj."
+    },
+    {
+      "label": "frivolous: example",
+      "t": 33.06512133786848,
+      "lit": "comment"
+    },
+    {
+      "label": "Back to story after frivolous",
+      "t": 34.91031374376417,
+      "lit": "I"
+    },
+    {
+      "label": "Quiz",
+      "t": 39.850132,
+      "lit": ""
+    },
+    {
+      "label": "Answer",
+      "t": 41.850132,
+      "lit": ""
+    },
+    {
+      "label": "Outro",
+      "t": 44.03333333333333,
+      "lit": ""
+    }
+  ]
+}

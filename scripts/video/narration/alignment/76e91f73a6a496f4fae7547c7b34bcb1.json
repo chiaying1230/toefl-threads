@@ -1,0 +1,61 @@
+{
+  "hash": "76e91f73a6a496f4fae7547c7b34bcb1",
+  "segment": "earnestMeaning",
+  "kind": "meaning",
+  "voice": "ling",
+  "voiceId": "Z8Aisvg1z70p27kGvkZZ",
+  "model": "eleven_v4",
+  "settings": {
+    "stability": 0,
+    "similarity_boost": 0
+  },
+  "text": "鄭重其事、嚴肅認真地。",
+  "previousText": null,
+  "nextText": null,
+  "outputFormat": "mp3_44100_128",
+  "characters": 11,
+  "estimatedDuration": 2.9545625,
+  "speechStart": 0,
+  "speechEnd": 2.96,
+  "alignment": {
+    "characters": [
+      "鄭",
+      "重",
+      "其",
+      "事",
+      "、",
+      "嚴",
+      "肅",
+      "認",
+      "真",
+      "地",
+      "。"
+    ],
+    "character_start_times_seconds": [
+      0,
+      0.24,
+      0.56,
+      0.8,
+      1.28,
+      1.52,
+      1.76,
+      1.92,
+      2.24,
+      2.4,
+      2.56
+    ],
+    "character_end_times_seconds": [
+      0.24,
+      0.56,
+      0.8,
+      1.28,
+      1.52,
+      1.76,
+      1.92,
+      2.24,
+      2.4,
+      2.56,
+      2.96
+    ]
+  }
+}
