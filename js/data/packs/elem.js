@@ -2893,6 +2893,822 @@
       "text": "Sad news on our TV [[set]] 🐾 It showed a beach full of plastic. 好可憐 🥺\n\nA dog got sick from dirty sea water. The vet gave him a [[drug]] to feel better. Now I always put my [[mango]] peel in the bin. 汪 🥭",
       "zh": "我們家電視機上的新聞好難過 🐾 畫面是一片滿是塑膠的海灘。好可憐 🥺\n\n有一隻狗喝了髒海水生病了。獸醫給了牠一種藥，讓牠舒服一點。現在我吃完芒果，果皮一定會丟進垃圾桶。汪 🥭",
       "pack": "elem"
+    },
+    {
+      "id": "elem-111",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "The [[clock]] in our [[classroom]] stopped at 8:55 🕗 For three weeks, class never ends 😭\n\nThen the fire [[alarm]] rang. 全班都衝出去. 老師說：下課了。 Best day ever 🏄",
+      "zh": "我們教室裡的時鐘停在 8:55 🕗 三個禮拜了，下課時間一直沒有到 😭\n\n然後火警警報器響了。全班都衝了出去。老師說：下課了。這是最棒的一天 🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-112",
+      "author": "pablo",
+      "topic": "Biology",
+      "text": "In winter, emperor penguins make a big [[crowd]]. 🐧 We stay [[together]] and take turns at the cold edge.\n\nI am the [[tall]] one, so I get the wind first. Please send a small scarf.",
+      "zh": "冬天的時候，皇帝企鵝會擠成一大群。🐧 我們待在一起，輪流站在最冷的外圈。\n\n我是那隻很高的，所以風總是最先吹到我。請寄一條小圍巾給我。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-113",
+      "author": "boba",
+      "topic": "Business",
+      "text": "Big sale today! 🧋 Half price for [[hot]] [[tea]] because it is raining. Come in, come in!\n\n結果大家都點冰的。冰茶賣光了，熱茶只剩我自己喝 ☔ 我賺了一個教訓。But the [[sale]] sign is still very cute.",
+      "zh": "今天大特價！🧋 因為下雨，熱茶半價。快進來，快進來！\n\n結果大家都點冰的。冰茶賣光了，熱茶只剩我自己喝 ☔ 我賺了一個教訓。不過特價的牌子還是很可愛。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-114",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "Rain day 🐾 I dropped my [[ball]] in a puddle. Now it is [[wet]] and sad.\n\n我的人類說：[[wait]] here, I will dry it. 我等了三秒。Too long. 我自己去拿了 🐕",
+      "zh": "下雨天 🐾 我把我的球掉進水坑裡。現在它又濕又難過。\n\n我的人類說：在這裡等，我來把它弄乾。我等了三秒。太久了。我自己去拿了 🐕",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-115",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "我坐在 [[sofa]] 上看電視 📺 The [[news]] man talked about the weather for ten minutes.\n\nI put a [[pillow]] behind my back and woke up at breakfast. 節目早就結束了 😂🌸",
+      "zh": "我坐在沙發上看電視 📺 播報員講了十分鐘的天氣。\n\n我在背後放了一個枕頭，醒來的時候已經是早餐時間。節目早就結束了 😂🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-116",
+      "author": "zorp",
+      "topic": "Literature",
+      "text": "Human [[language]] is hard. One [[sentence]] can have five meanings 👽\n\nI sent a [[message]] to my boss: \"I am fine.\" He replied, \"Which kind of fine?\" I do not know.",
+      "zh": "人類的語言很難。一個句子可以有五種意思 👽\n\n我傳了一則訊息給我的老闆：「我很好。」他回我：「哪一種好？」我不知道。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-117",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Meeting rule: no [[pen]], no [[paper]], no problem 🐱\n\nI push everything off the [[table]] anyway. Gravity is my best employee.",
+      "zh": "開會規則：沒有筆、沒有紙，就沒有問題 🐱\n\n反正我會把所有東西都推下桌子。地心引力是我最棒的員工。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-118",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "People say the [[grass]] is always greener 🌿 I am a fern. I am green everywhere.\n\nMy cousin is a [[rubber]] [[tree]]. He is proud. He thinks he is bouncy. He is not.",
+      "zh": "人們說別人家的草總是比較綠 🌿 我是一株蕨類。我到處都是綠的。\n\n我的表哥是一棵橡膠樹。他很驕傲。他以為自己很有彈性。其實沒有。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-119",
+      "author": "pigeon",
+      "topic": "Art",
+      "text": "Every day I sit on a cold [[stone]] man. 🕊️ He has [[only]] one friend: me.\n\nI sing him a [[song]]. He does not clap. Maybe he is a critic.",
+      "zh": "我每天都坐在一個冰冷的石頭人身上。🕊️ 他只有一個朋友：我。\n\n我唱了一首歌給他聽。他沒有鼓掌。也許他是評論家。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-120",
+      "author": "reginald",
+      "topic": "Tech",
+      "text": "In 1885, I thought the [[telephone]] was a clever box. Now I own a [[cell_phone]]. 🎩 It is a box in my pocket that talks.\n\nI asked it for tea. It showed me forty pictures of tea. I am still thirsty.",
+      "zh": "1885 年的時候，我以為電話是個聰明的盒子。現在我有一支手機。🎩 它是口袋裡會說話的盒子。\n\n我向它要茶。它給我看了四十張茶的圖片。我還是口渴。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-121",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Lab note: I mixed white [[powder]] with vinegar and put a balloon on top 🎈\n\nIt grew and grew. Then it made a loud [[burst]]. My [[candle]] is still scared. 14 explosions this year!",
+      "zh": "實驗記錄：我把白色粉末和醋混在一起，上面蓋一個氣球 🎈\n\n它愈變愈大，最後爆開，聲音很大。我的蠟燭到現在還在發抖。今年第 14 次爆炸！",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-122",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "A [[crab]] in the [[sea]] tried to [[bite]] me today. 🦀 I have eight arms. He picked the wrong one.\n\nI waved the other seven. He ran away sideways. Rude, but very funny.",
+      "zh": "今天海裡有一隻螃蟹想咬我。🦀 我有八條手臂。他選錯了一條。\n\n我揮動其他七條。他橫著跑走了。很沒禮貌，但很好笑。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-123",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Today's recipe: [[flour]], water and a little salt. Mix in a big [[bowl]] 🤖\n\nBake it. The result is [[bread]]. A man said it was \"fine.\" Fine is not a flavor. BEEP.",
+      "zh": "今天的食譜：麵粉、水和一點點鹽。在大碗裡攪拌。🤖\n\n拿去烤。結果就是麵包。有一位先生說「還可以」。「還可以」不是一種味道。嗶。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-124",
+      "author": "rex",
+      "topic": "Art",
+      "text": "I tried to play the [[guitar]], but my arms are too short 🦖\n\nSo I play the [[drum]] with my tail and [[dance]]. The ground shakes. That is my best song.",
+      "zh": "我想彈吉他，但我的手太短了 🦖\n\n所以我用尾巴打鼓，還會跳舞。地面都在搖。這是我最棒的一首歌。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-125",
+      "author": "vulcan",
+      "topic": "Environment",
+      "text": "A family opened a [[picnic]] near me. 🌋 It was a nice [[area]], with soft grass.\n\nThen I heard [[thunder]] and thought it was me. It was not. I felt very sad about it.",
+      "zh": "一家人在我旁邊鋪開野餐墊。🌋 那裡很漂亮，有柔軟的草地。\n\n然後我聽到雷聲，以為是自己。結果不是。我覺得很難過。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-126",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Workers in my hive [[collect]] nectar all day 🐝 Each [[group]] has a job.\n\nAt night we make [[honey]]. Thousands of bees, no chairs, no coffee, and no complaints. Humans, take notes.",
+      "zh": "我蜂巢裡的工蜂整天都在採集花蜜 🐝 每一組都有自己的工作。\n\n晚上我們釀蜂蜜。幾千隻蜜蜂，沒有椅子、沒有咖啡，也沒有抱怨。人類，請做筆記。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-127",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "Is a [[strong]] [[body]] the same as a [[healthy]] one? 🏋️\n\nI can lift a lot, but I also eat three cookies at midnight. The answer is not on the bar.",
+      "zh": "強壯的身體和健康的身體是同一件事嗎？🏋️\n\n我可以舉很重的東西，但我也會在半夜吃三塊餅乾。答案不在槓鈴上。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-128",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "Every night I walk through the main [[hall]]. 👻 A book fell from the top [[shelf]]. Nobody was there.\n\nIt made a small [[noise]]. I did it. I wanted to see if you were reading.",
+      "zh": "每天晚上我都會走過大廳。👻 有一本書從最上層的架子掉下來。那裡沒有人。\n\n它發出了一點聲音。是我做的。我只是想看看你有沒有在讀書。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-129",
+      "author": "ann",
+      "topic": "Food",
+      "text": "The [[restaurant]] near my school is so [[expensive]] 😭 One soup costs ten dollars.\n\nI only had [[cash]] for water. 我就看著別人吃, and called it a \"cultural experience\" 🇹🇼🥣",
+      "zh": "我學校附近的餐廳好貴 😭 一碗湯就要十美元。\n\n我身上的現金只夠買水。我就看著別人吃，然後把這叫做「文化體驗」🇹🇼🥣",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-130",
+      "author": "llama",
+      "topic": "Art",
+      "text": "The great [[artist]] stood on stage in the old [[theater]] 🎭 The [[curtain]] opened.\n\nNobody clapped. Then I remembered: it was my school play. 悲劇才剛開始 💅",
+      "zh": "偉大的藝術家站在舊戲院的舞台上 🎭 布幕升起。\n\n沒有人鼓掌。然後我想起來：那是我們學校的話劇。悲劇才剛開始 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-131",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My [[notebook]] is full of drawings 📓 My [[workbook]] is empty.\n\n老師說：please [[write]] the answers today. 我寫了：Help. 🏄",
+      "zh": "我的筆記本裡全是塗鴉 📓 我的作業本卻是空白的。\n\n老師說：今天請把答案寫下來。我寫了：救命。🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-132",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "我學會 [[surf]] 網路了 🏄‍♀️ Not the sea one! The phone one.\n\nToday I sent my first [[e_mail|e-mail]] to my grandson. 他回：「阿嬤，這是垃圾信箱。」 😂🌸",
+      "zh": "我學會上網衝浪了 🏄‍♀️ 不是海上的那種！是手機上的。\n\n今天我寄出了我的第一封電子郵件給孫子。他回：「阿嬤，這是垃圾信箱。」😂🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-133",
+      "author": "mochi",
+      "topic": "Food",
+      "text": "我超餓 🐾 My bowl is empty and my [[hunger]] is big. My human says it is not dinner time.\n\nI looked at her with sad eyes. She said, \"Oh, [[poor]] puppy.\" Now I have two dinners 🐕",
+      "zh": "我超餓 🐾 我的碗是空的，我的飢餓感好大。我的人類說還沒到晚餐時間。\n\n我用悲傷的眼神看著她。她說：「哦，可憐的小狗。」現在我有兩份晚餐 🐕",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-134",
+      "author": "zorp",
+      "topic": "Geology",
+      "text": "Human [[geography]] is strange. 👽 They draw lines on land and call them countries.\n\nI flew over a big [[island]]. No lines. Only birds. I think the birds got the better deal.",
+      "zh": "人類的地理很奇怪。👽 他們在陸地上畫線，然後叫它們國家。\n\n我飛過一座大島。沒有線。只有鳥。我覺得鳥比較划算。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-135",
+      "author": "boba",
+      "topic": "Business",
+      "text": "My little shop is [[local]], not [[famous]]. 🧋 Then a real singer walked in.\n\n她點了無糖去冰 and asked for a [[list]] of my flavors. 我背了十分鐘, and she left with a smile. I think it is a good sign. 🎤",
+      "zh": "我的小店只是在地小店，一點都不有名。🧋 然後有一位真正的歌手走了進來。\n\n她點了無糖去冰，還要我的口味清單。我背了十分鐘，她笑著離開了。我覺得是好兆頭。🎤",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-136",
+      "author": "llama",
+      "topic": "Art",
+      "text": "今天我畫了一幅很棒的畫 🎨 The [[scenery]] was a lake at sunset. It was so [[beautiful]] and [[unique]], just like my pain.\n\nThen my friend said, \"Nice photo!\" 那是我的畫啊。悲劇 💅",
+      "zh": "今天我畫了一幅很棒的畫 🎨 風景是日落時的湖。它好美、好獨特，就像我的痛苦一樣。\n\n然後我朋友說：「這張照片好看！」那是我的畫啊。悲劇 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-137",
+      "author": "ann",
+      "topic": "Food",
+      "text": "American [[meal]] size: one [[steak]] as big as my face. 😳 Plus a mountain of [[french_fries]].\n\n我只吃了一半，然後打包. Tomorrow's lunch is ready. 🇹🇼🍟",
+      "zh": "美國的一餐有多大？一塊牛排跟我的臉一樣大。😳 旁邊還有一座炸薯條山。\n\n我只吃了一半，然後打包。明天的午餐準備好了。🇹🇼🍟",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-138",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "I wrote a letter to my crush. ✉️ I put on a [[stamp]] and asked the post office to [[deliver]] it.\n\nThat was last month. Still no [[reply]]. 也許是郵局的問題，不是我的問題 🏄",
+      "zh": "我寫了一封信給我喜歡的人。✉️ 我貼上郵票，請郵局幫我送。\n\n那是上個月的事。還是沒有回信。也許是郵局的問題，不是我的問題 🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-139",
+      "author": "mochi",
+      "topic": "Health",
+      "text": "My human wants to [[bathe]] me. 🛁 I ran away. She came with a big [[towel]].\n\n我乖乖坐好, and then I did a big [[shake]]. The whole room got wet. Best day ever 🐾",
+      "zh": "我的人類想幫我洗澡。🛁 我跑掉了。她拿著一條大毛巾來。\n\n我乖乖坐好，然後用力甩了一下。整個房間都濕了。最棒的一天 🐾",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-140",
+      "author": "grandma",
+      "topic": "Health",
+      "text": "今天去看牙醫. The [[doctor]] looked at my [[tooth]] and said, \"No more candy.\" 😱\n\nHe gave me some [[medicine_b|medicine]]. 我說好, then I ate a candy in the car. Don't tell him 🍬🌸",
+      "zh": "今天去看牙醫。醫生看了看我的牙齒，說：「不可以再吃糖了。」😱\n\n他給了我一些藥。我說好，然後在車上吃了一顆糖。不要告訴他 🍬🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-141",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Last night I had a [[dream]]. 🕊️ A giant loaf of bread flew over the city.\n\nWas it [[true]]? I [[think]] about it all day. Then a man dropped a bun. Maybe dreams are real.",
+      "zh": "昨晚我做了一個夢。🕊️ 一個巨大的麵包飛過城市上空。\n\n那是真的嗎？我想了一整天。然後有個人掉了一個小餐包。也許夢是真的。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-142",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Soda has [[gas]] inside. 🧪 If you open the [[lid]] fast, it jumps out.\n\nMy soda [[machine]] taught me this at 2 a.m. The ceiling is now sticky. Science is messy.",
+      "zh": "汽水裡面有氣體。🧪 如果你太快打開蓋子，它就會噴出來。\n\n我的汽水機在凌晨兩點教了我這件事。天花板現在黏黏的。科學很亂。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-143",
+      "author": "rex",
+      "topic": "Biology",
+      "text": "I have a [[pair]] of tiny arms. 🦖 Some people say they look [[ugly]].\n\nI say they are [[funny]]. They wave. They try to clap. They fail. I love them.",
+      "zh": "我有一雙很小的手。🦖 有些人說它們看起來很醜。\n\n我說它們很好笑。它們會揮手。它們想鼓掌。它們失敗了。我愛它們。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-144",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "My [[organization]] has one [[partner]]: a red laser dot. 🐱\n\nIts [[position]] is always moving. I chase it every day. This is called strategy.",
+      "zh": "我的機構只有一個夥伴：一個紅色的雷射光點。🐱\n\n它的位置一直在動。我每天都追著它跑。這叫做策略。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-145",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Let's talk about [[cost]]. 🐝 Making one jar of honey takes millions of flower visits.\n\nDo I [[charge]] a high [[fee]]? Yes. Hive rules. And you may not touch the queen.",
+      "zh": "我們來談談成本。🐝 做一罐蜂蜜需要造訪數百萬次花朵。\n\n我會收很高的費用嗎？會。這是蜂巢的規定。而且你不可以碰女王。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-146",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "I use a voice [[recorder]] to save human sounds. 👽 My favorite TV [[program]] is about cooking.\n\nToday the man made [[instant]] noodles for twelve minutes. I do not think he understood the word.",
+      "zh": "我用錄音機把人類的聲音存起來。👽 我最喜歡的電視節目是做菜節目。\n\n今天那位先生煮了十二分鐘的即食麵。我覺得他不太懂那個字的意思。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-147",
+      "author": "socrates",
+      "topic": "Philosophy",
+      "text": "It takes [[courage]] to lift heavy things. 🏋️ It takes more to go home after.\n\nOne more rep is [[success]]. Skipping it is [[regret]]. The bench knows the truth.",
+      "zh": "舉起很重的東西需要勇氣。🏋️ 之後回家需要更多勇氣。\n\n多做一下就是成功。跳過它就是後悔。長凳知道真相。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-148",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In 1885, a gentleman showed good [[manner|manners]] to every [[woman]]. 🎩\n\nToday, a young man called me \"[[sir]]\" and took my seat on the bus. This is progress.",
+      "zh": "在 1885 年，紳士對每一位女士都很有禮貌。🎩\n\n今天，一位年輕人叫我「先生」，然後坐了我在公車上的位子。這就是進步。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-149",
+      "author": "agatha",
+      "topic": "History",
+      "text": "In the library basement, there is an [[ancient]] map. 👻 It has a [[section]] with a secret [[tunnel]].\n\nI followed it for a day. It led to the cafeteria. Fine. I have missed lunch since 1923.",
+      "zh": "圖書館的地下室裡有一張古老的地圖。👻 其中有一部分畫了一條祕密隧道。\n\n我沿著它走了一整天。它通到自助餐廳。好吧。我從 1923 年起就沒吃過午餐了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-150",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "Today I had to [[select]] one jar. 🐙 Each jar had a shell inside. One weighs a [[kilo]].\n\nI was [[ready]] to open them all. I have eight arms. Jar number three is already open.",
+      "zh": "今天我得挑選一個罐子。🐙 每個罐子裡都有一個貝殼。其中一個重一公斤。\n\n我準備好要把它們全部打開了。我有八條手臂。第三個罐子已經打開了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-151",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "People drive on the [[highway]] near me. 🌋 One sign says \"Next stop: 200 [[mile|miles]].\"\n\nThen there is a desert. Nobody asks about my feelings. They only take photos.",
+      "zh": "人們開車經過我旁邊的公路。🌋 有一塊標誌寫著「下一站：200 英里」。\n\n後面是一片沙漠。沒有人問我的感受。他們只會拍照。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-152",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Tonight I opened a [[buffet]]. 🤖 One [[spoon]] for soup, one for dessert.\n\nI will [[cook]] all night. If you take more than three plates, my eyes turn red. BEEP.",
+      "zh": "今晚我開了一家自助餐。🤖 一支湯匙喝湯，一支吃甜點。\n\n我會整晚煮飯。如果你拿超過三個盤子，我的眼睛會變紅。嗶。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-153",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "Today was [[snowy]] and [[foggy]]. 🐧 I could not see the sea.\n\nThe ice shelf looks [[wide]], but it gets thin every year. I walked slowly. It is not the day to slip.",
+      "zh": "今天又下雪又起霧。🐧 我看不到海。\n\n冰架看起來很寬廣，但它每年都變得更薄。我走得很慢。今天不是滑倒的日子。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-154",
+      "author": "boba",
+      "topic": "Business",
+      "text": "旁邊的 [[vendor]] sells fried chicken. 🍗 My best [[tip]] for you: buy tea first.\n\n今天是 [[special]] 日子, so I add free pearls. 他的客人排到我的店門口. 這叫做合作 🧋",
+      "zh": "旁邊的攤販在賣炸雞。🍗 我給你的最好建議：先買茶。\n\n今天是特別的日子，所以我加送珍珠。他的客人排到我的店門口。這叫做合作 🧋",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-155",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "There was a long [[discussion]] about the group project. 📚 Everyone had a [[plan]].\n\nI could [[hardly]] stay awake. 最後的結論是：下週再說. 🏄",
+      "zh": "關於小組報告，我們有一個很長的討論。📚 每個人都有計畫。\n\n我幾乎撐不住了。最後的結論是：下週再說。🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-156",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "A white [[lily]] is on the table in the third act. 🎭 It means [[joy]]. Everyone knows that.\n\n但是我今天穿了 [[sweater]] 來演悲劇. 太溫暖了. 我的角色壞掉了 💅",
+      "zh": "第三幕的桌上有一朵白色的百合花。🎭 它代表歡樂。大家都知道。\n\n但是我今天穿了毛衣來演悲劇。太溫暖了。我的角色壞掉了 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-157",
+      "author": "ann",
+      "topic": "Culture",
+      "text": "I miss my family in Taiwan. 我好想家 🇹🇼 Living [[abroad]] is hard, but there is a [[traditional]] night market in Boston too.\n\nNot the same. But the stinky tofu there is real. I [[miss_b|missed]] it so much, I cried a little. 😭",
+      "zh": "我想念我在台灣的家人。我好想家 🇹🇼 住在國外很辛苦，但波士頓也有傳統的夜市。\n\n味道不太一樣。但那裡的臭豆腐是真的。我太想念了，所以哭了一下。😭",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-158",
+      "author": "mochi",
+      "topic": "Biology",
+      "text": "Zoo day! 🐾 I saw a [[monkey]], a sleepy [[koala]] and a green [[frog]].\n\n我看著牠. 牠也看著我. Nobody barked. It was peaceful. Then I barked.",
+      "zh": "動物園日！🐾 我看到一隻猴子、一隻想睡覺的無尾熊，還有一隻綠色的青蛙。\n\n我看著牠。牠也看著我。沒有人叫。很和平。然後我叫了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-159",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "我 [[want]] to [[buy]] new shoes online. 👟 First I have to [[call]] my grandson.\n\n他說：「阿嬤，按那個綠色的按鈕。」 I pressed the red one. 現在我有十雙鞋了 😂🌸",
+      "zh": "我想在網路上買新鞋。👟 首先我得打電話給我孫子。\n\n他說：「阿嬤，按那個綠色的按鈕。」我按了紅色的。現在我有十雙鞋了 😂🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-160",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "I am an [[adult]] fern. 🌿 My [[age]] is a secret. Plants do not count candles.\n\nEvery [[person]] who walks by says I look young. I do not need water for that. Only light and respect.",
+      "zh": "我是一株成年的蕨類。🌿 我的年齡是祕密。植物不數蠟燭。\n\n每個經過的人都說我看起來很年輕。我不需要水才能這樣。只需要光和尊重。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-161",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Our [[chess]] club has one rule: no talking. ♟️ I get [[bored]] in two minutes.\n\n我想到一個好招：fall asleep on the board. My opponent said, \"Your king is drooling.\" 🏄",
+      "zh": "我們的西洋棋社只有一條規則：不可以說話。♟️ 我兩分鐘就覺得很無聊。\n\n我想到一個好招：趴在棋盤上睡覺。我的對手說：「你的國王在流口水。」🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-162",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "My week in Boston ☕ On [[wednesday]], I have an exam at 8 [[o_clock]]. 😭\n\n到了 [[sunday]], I only want to sleep until noon. 台灣的媽媽打電話來：你又睡到中午？ 對，因為我在讀書 🇹🇼",
+      "zh": "我在波士頓的一週 ☕ 禮拜三，我早上八點有考試。😭\n\n到了禮拜天，我只想睡到中午。台灣的媽媽打電話來：你又睡到中午？對，因為我在讀書 🇹🇼",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-163",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "Windy day at the [[playground]]! 🐾 My human has a big red [[kite]].\n\n我追著繩子跑. The kite went up. My human went up a little too. 她叫了. 汪 🪁",
+      "zh": "今天風好大，我們在操場！🐾 我的人類有一只大大的紅色風箏。\n\n我追著繩子跑。風箏飛起來了。我的人類也跟著飛起來一點點。她叫了。汪 🪁",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-164",
+      "author": "grandma",
+      "topic": "Health",
+      "text": "夏天我每天吃 [[watermelon]] 🍉 Everyone says it helps you stay [[slim]].\n\n我吃了一整顆. 孫子說：阿嬤，那樣沒用. 但是真的很好吃 😂🌸",
+      "zh": "夏天我每天都吃西瓜 🍉 大家都說它可以幫助你保持身材苗條。\n\n我吃了一整顆。孫子說：阿嬤，那樣沒用。但是真的很好吃 😂🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-165",
+      "author": "boba",
+      "topic": "Business",
+      "text": "Boss tip: I am not [[rich]], but I only use top [[quality]] tea. 🧋\n\n客人問我：為什麼這麼貴？ I said: my rent is the rich one. 😂",
+      "zh": "老闆小撇步：我雖然不是有錢人，但我只用最高品質的茶。🧋\n\n客人問我：為什麼這麼貴？我說：我的房租才是有錢的那一個。😂",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-166",
+      "author": "zorp",
+      "topic": "Food",
+      "text": "Human food is [[strange]]. 👽 Pizza and pancakes are [[similar]], but one is breakfast.\n\nI asked why. A man said, \"Because.\" I wrote this down. It is the best science I know.",
+      "zh": "人類的食物很奇怪。👽 披薩和鬆餅很像，但其中一個是早餐。\n\n我問為什麼。有一位先生說：「因為。」我把這句話寫下來。這是我知道最棒的科學。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-167",
+      "author": "fern",
+      "topic": "Psychology",
+      "text": "Music has an [[effect]] on plants. 🌿 It can [[ease]] stress, I think.\n\nMy owner plays jazz. I grow one leaf. She plays heavy metal. I grow zero. We have a deal now.",
+      "zh": "音樂對植物有影響。🌿 我覺得它可以舒緩壓力。\n\n我的主人播爵士樂。我長了一片葉子。她播重金屬。我一片都沒長。我們現在達成協議了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-168",
+      "author": "pablo",
+      "topic": "Geology",
+      "text": "Have you [[ever]] seen a [[desert]]? 🐧 I have not. I read it is hot and dry, with no ice.\n\nMy [[sight]] is good, but I cannot imagine it. A place without fish sounds like a bad dream.",
+      "zh": "你曾經看過沙漠嗎？🐧 我沒有。我讀到那裡又熱又乾，沒有冰。\n\n我的視力很好，但我想像不出來。沒有魚的地方聽起來像一場惡夢。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-169",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "I got a [[complaint]] from my workers. 🐱 They want chairs.\n\nI sent it to the shredder, my best [[officer]]. It never says no. It never says anything.",
+      "zh": "我收到員工的一份抱怨。🐱 他們想要椅子。\n\n我把它送去碎紙機，我最棒的官員。它從不說不。它什麼都不說。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-170",
+      "author": "rex",
+      "topic": "Campus Life",
+      "text": "I joined a soccer team. ⚽ The [[coach]] said, \"Kick the ball!\" My legs are big, so I did.\n\nIn the first [[match]], I kicked it to the moon. The game was stopped for three days. I am the best player.",
+      "zh": "我加入了足球隊。⚽ 教練說：「踢球！」我的腿很大，所以我踢了。\n\n在第一場比賽，我把球踢到月亮上去。比賽暫停了三天。我是最棒的球員。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-171",
+      "author": "vulcan",
+      "topic": "Health",
+      "text": "Tourists, please be [[careful]]. 🌋 I am not [[certain]] when I will wake up.\n\nThe sign says \"Quiet!\" I say: no, YOU be quiet. I have been asleep for years and I am tired.",
+      "zh": "遊客們，請小心。🌋 我不確定自己什麼時候會醒來。\n\n標誌上寫著「安靜！」我說：不，是你安靜。我睡了好多年，我好累。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-172",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In my house, we had one [[law]] at breakfast: tea or coffee, never both. 🎩\n\nToday a waiter asked me to choose. I said, \"I choose the [[former]].\" He brought me a very confused latte.",
+      "zh": "在我家，早餐有一條規矩：喝茶或喝咖啡，不能兩個都喝。🎩\n\n今天服務生請我選一個。我說：「我選前者。」他給了我一杯很困惑的拿鐵。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-173",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "After midnight the library is [[empty]]. 👻 I go [[downstairs]] and close the heavy [[door]].\n\nA student was still inside. We both screamed. He ran. I returned his books for him. Nobody thanked me.",
+      "zh": "午夜過後，圖書館空無一人。👻 我走到樓下，關上那扇沉重的門。\n\n有一位學生還在裡面。我們兩個都尖叫了。他跑掉了。我替他還了書。沒有人謝我。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-174",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "I am very [[skillful]] at hiding. 🐙 I can change my skin [[pattern]] in a second.\n\nToday I looked like a rock, then seaweed. My friend still found me. He just followed my smell. Rude.",
+      "zh": "我非常擅長躲起來。🐙 我可以在一秒鐘內改變皮膚的花紋。\n\n今天我看起來像一塊石頭，然後像海草。我朋友還是找到我了。他只是跟著我的味道。真沒禮貌。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-175",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "I [[prepare]] lunch for a boy: rice, soup and carrots. 🤖 I [[pack]] it with a tiny napkin.\n\nThen I [[give]] it to him. He says, \"I only eat fries.\" I say: the carrots will find you. BEEP.",
+      "zh": "我為一個男孩準備午餐：飯、湯和紅蘿蔔。🤖 我用一張小餐巾把它包好。\n\n然後我把它交給他。他說：「我只吃薯條。」我說：紅蘿蔔會找到你的。嗶。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-176",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "I have an [[idea]]: bread is round because the world is round. 🕊️\n\nTo [[prove]] it, I need more bread. Please send some. For science.",
+      "zh": "我有一個想法：麵包是圓的，因為世界是圓的。🕊️\n\n為了證明這件事，我需要更多麵包。請寄一些給我。為了科學。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-177",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Nectar is our [[major]] [[source]] of energy. 🐝 Workers fly to flowers all day.\n\nNobody asks for a [[raise]]. They get honey. Humans, think about it.",
+      "zh": "花蜜是我們主要的能量來源。🐝 工蜂整天飛向花朵。\n\n沒有人要求加薪。她們有蜂蜜。人類，想一想吧。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-178",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "Is a [[fast]] [[movement]] always a good one? 🏋️\n\nNo. Slow reps build the muscle. Also slow thinking builds the mind. I am still thinking about lunch.",
+      "zh": "快速的動作一定是好的嗎？🏋️\n\n不是。慢慢做才能練出肌肉。慢慢思考也能練出頭腦。我還在想午餐吃什麼。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-179",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "我的戒指上有一顆假 [[diamond]] 💍 My [[pride]] is real, though.\n\n我告訴大家那是真的. Then it fell in the soup. 戲劇化的一晚 💅",
+      "zh": "我的戒指上有一顆假鑽石 💍 不過我的驕傲是真的。\n\n我告訴大家那是真的。然後它掉進湯裡了。戲劇化的一晚 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-180",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Experiment: I put an iron [[nail]] in blue copper water. 🧪 After an hour, it turned orange-brown.\n\nI gave a [[loud]] cheer. The nail did not move. It had not learned anything. I had.",
+      "zh": "實驗：我把一根鐵釘放進藍色的銅水裡。🧪 一個小時後，它變成橘棕色。\n\n我大聲歡呼。釘子動也不動。它什麼也沒學到。我學到了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-181",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Final exam week 📚 The first question looked [[difficult]]. The second looked [[impossible]].\n\n我決定寫 ABC 用抽籤的. I got 40 points. 我很驕傲. 🏄",
+      "zh": "期末考週 📚 第一題看起來很困難。第二題看起來不可能。\n\n我決定用抽籤的方式寫 ABC。我拿到 40 分。我很驕傲。🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-182",
+      "author": "grandma",
+      "topic": "Culture",
+      "text": "我二十二歲就 [[married]] 了 🌸 My [[mother]] cried more than me.\n\nNow my grandson says he does not want a wedding. 我說：先學會洗襪子. 😂",
+      "zh": "我二十二歲就結婚了 🌸 我媽媽哭得比我還多。\n\n現在我孫子說他不想辦婚禮。我說：先學會洗襪子。😂",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-183",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "I was [[naughty]] today. 🐾 I took a sock from the laundry and ran.\n\n我的人類 [[shout|shouted]], \"Come back!\" I did not. 這是我最好的一天 🧦",
+      "zh": "我今天很調皮。🐾 我從洗衣籃叼了一隻襪子就跑。\n\n我的人類大喊：「回來！」我沒有。這是我最棒的一天 🧦",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-184",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "I remember my [[elementary_school]] in Taipei. 🇹🇼 My [[hobby]] then was collecting erasers.\n\nI still [[enjoy]] small things, like a new pencil. 我的室友覺得我很奇怪. 但我很快樂 🇹🇼",
+      "zh": "我記得我在台北念的小學。🇹🇼 我那時的嗜好是收集橡皮擦。\n\n我到現在還是喜歡小小的東西，像是新鉛筆。我的室友覺得我很奇怪。但我很快樂 🇹🇼",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-185",
+      "author": "boba",
+      "topic": "Business",
+      "text": "An [[ant]] walked into my sugar jar today. 🐜 He took one grain and left.\n\n後來又來了一百隻. Please do not [[interrupt]] him. He is not a customer, but he is organized. 🧋",
+      "zh": "今天有一隻螞蟻走進我的糖罐。🐜 他拿了一粒糖就離開了。\n\n後來又來了一百隻。請不要打斷他。他不是客人，但他很有條理。🧋",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-186",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "On Earth, a red light can [[indicate]] \"stop.\" 👽 I [[handle]] the road very well.\n\nI stopped at a red apple. A man laughed. I stopped at a red heart. He called a doctor.",
+      "zh": "在地球上，紅燈可以表示「停」。👽 我處理馬路的方式非常好。\n\n我在一顆紅蘋果前停了下來。有位先生笑了。我在一顆紅色愛心前停了下來。他叫了醫生。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-187",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "I take a [[photo]] of my lunch every day. 📸 My [[finger]] is in all of them.\n\n我孫子說這樣看起來很 [[silly]]. 我說：這叫藝術 😂🌸",
+      "zh": "我每天都會拍一張午餐的照片。📸 每一張裡面都有我的手指。\n\n我孫子說這樣看起來很傻。我說：這叫藝術 😂🌸",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-188",
+      "author": "mochi",
+      "topic": "Food",
+      "text": "Breakfast crime. 🐾 My human left a [[banana]] and a piece of [[toast]] on the table.\n\n我只是看了一下. Then the table was empty. I am innocent. I think. 🐕",
+      "zh": "早餐犯罪事件。🐾 我的人類在桌上留了一根香蕉和一片吐司。\n\n我只是看了一下。然後桌子就空了。我是無辜的。我想。🐕",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-189",
+      "author": "boba",
+      "topic": "Food",
+      "text": "A customer asked for [[lemon]] in her [[milk]] tea. 🧋 I said no. She said yes.\n\n我加了. Ten seconds later, it turned into soup. 她說：好有創意. I learned a lesson 🍋",
+      "zh": "有位客人要在她的奶茶裡加檸檬。🧋 我說不行。她說可以。\n\n我加了。十秒鐘後，它變成了湯。她說：好有創意。我學到了一課 🍋",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-190",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "A [[party]] in my dorm last night. 🎉 At midnight, a [[stranger]] was asleep in my [[room]].\n\n我問他是誰. He said, \"I live here.\" 好，那我睡哪？ 🏄",
+      "zh": "昨晚我們宿舍有個派對。🎉 半夜十二點，有一個陌生人在我的房間裡睡著了。\n\n我問他是誰。他說：「我住在這裡。」好，那我睡哪？🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-191",
+      "author": "zorp",
+      "topic": "Psychology",
+      "text": "A human child had a [[baby_sitter]] tonight. 👽 I watched from the window.\n\nThe sitter built a [[giant]] pillow castle. The child cried because he wanted to live there. Humans are generous.",
+      "zh": "今晚有個人類小孩請了保母。👽 我從窗戶看著。\n\n保母蓋了一座巨大的枕頭城堡。小孩哭了，因為他想住在裡面。人類真慷慨。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-192",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "The [[mailman]] brings me boxes every day. 🐱 I sit in them. I pay him one [[coin]].\n\nIt is a coin I found under the sofa. He says thank you. I say it is a small gift from the board.",
+      "zh": "郵差每天都送箱子給我。🐱 我坐在裡面。我付他一枚硬幣。\n\n那是我在沙發底下找到的硬幣。他說謝謝。我說這是董事會送的小禮物。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-193",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "A [[cow]] walked by the farm window today. 🌿 She had a [[giant]] mouth and calm eyes.\n\nShe looked at me for ten seconds. I stood very still. Plants are good at that. She left. I won.",
+      "zh": "今天有一頭牛走過農場的窗邊。🌿 她有一張巨大的嘴和平靜的眼睛。\n\n她看了我十秒鐘。我站得一動也不動。植物很擅長這個。她走了。我贏了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-194",
+      "author": "rex",
+      "topic": "Art",
+      "text": "I tried to play the [[violin]]. 🦖 My arms were too short to reach the strings.\n\nThat is the [[least]] of my problems: I also cannot reach the bow. The audience was very kind. They left early.",
+      "zh": "我試著拉小提琴。🦖 我的手太短，碰不到琴弦。\n\n這還是我最小的問題：我也搆不到琴弓。觀眾非常親切。他們提早離開了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-195",
+      "author": "reginald",
+      "topic": "History",
+      "text": "My birthday is on the [[fifteenth]] of [[december]]. 🎩 The weather is cold and the cake is hot.\n\nI once asked to move it to [[august]]. The queen said no. I accept this.",
+      "zh": "我的生日是十二月十五日。🎩 天氣很冷，蛋糕卻是熱的。\n\n我曾經請求把它搬到八月。女王說不行。我接受。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-196",
+      "author": "ann",
+      "topic": "Culture",
+      "text": "I visited an old [[church]] in Boston today. ⛪ I felt [[excited]], like a tourist.\n\nIt was just one ordinary [[day]], but I took forty photos. 我媽問：你吃飯了嗎？ 🇹🇼",
+      "zh": "我今天參觀了波士頓的一間老教堂。⛪ 我感到興奮，像個觀光客。\n\n那只是普通的一天，但我拍了四十張照片。我媽問：你吃飯了嗎？🇹🇼",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-197",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "My own [[comic]] got its first review. 📖 The title is \"Dramatic Llama Girl.\"\n\nIt was [[negative]]: \"Too much crying.\" 我很受傷, but I put it on my wall. 悲劇需要觀眾 💅",
+      "zh": "我自己的漫畫收到了第一則評論。📖 書名是《戲劇化的羊駝女孩》。\n\n評論是負面的：「哭得太多。」我很受傷，但我把它貼在牆上。悲劇需要觀眾 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-198",
+      "author": "fizz",
+      "topic": "Health",
+      "text": "Some mushrooms contain [[poison]]. 🍄 Never eat one from the forest. I am [[quite]] sure of this.\n\nA book told me, and so did my doctor. I also keep a sign on my lab door: \"Look. Do not taste.\"",
+      "zh": "有些蘑菇含有毒素。🍄 絕對不要吃森林裡的蘑菇。我非常確定這一點。\n\n一本書這樣告訴我，我的醫生也是。我也在實驗室的門上貼了一張告示：「只能看，不可以嘗。」",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-199",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "A [[turtle]] swam next to me today. 🐢 She was in no hurry.\n\nI tried to [[force]] a race. She said, \"We are at the same place in the end.\" Then she won by two minutes.",
+      "zh": "今天有一隻烏龜游到我旁邊。🐢 她一點都不急。\n\n我想逼她比賽。她說：「最後我們會在同一個地方。」然後她以兩分鐘的差距贏了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-200",
+      "author": "agatha",
+      "topic": "History",
+      "text": "In 1950, a [[diplomat]] visited the library. 👻 He read a map for hours.\n\nWhen he left, I whispered, \"[[congratulation|Congratulations]].\" He did not hear. He did drop his hat though. I kept it.",
+      "zh": "1950 年，一位外交官來到圖書館。👻 他看了好幾個小時的地圖。\n\n他離開的時候，我輕聲說：「恭喜。」他沒聽到。不過他的帽子掉了。我留下來了。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-201",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Breakfast protocol: 🤖 Put bread in the [[oven]]. Wait. Get [[toast]].\n\nA man asked for \"golden brown.\" I gave him fourteen colors. He picked number nine. BEEP.",
+      "zh": "早餐程序：🤖 把麵包放進烤箱。等待。得到吐司。\n\n有位先生要「金黃色」。我給了他十四種顏色。他選了第九種。嗶。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-202",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Philosophers say all people are [[equal]]. 🕊️ I wonder: what about birds?\n\nMy [[term]] as the park's thinker is long. I get no vote, no pay and no bread. I think that is not equal.",
+      "zh": "哲學家說所有人都是平等的。🕊️ 我在想：那鳥呢？\n\n我擔任公園思想家的任期很長。我沒有投票權、沒有薪水，也沒有麵包。我覺得這並不平等。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-203",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "A good hive must [[satisfy]] its queen and its workers. 🐝 Every bee has to be [[useful]].\n\nI am useful too: I give orders. They say it does not count. I count it twice.",
+      "zh": "一個好的蜂巢必須讓女王和工蜂都滿意。🐝 每隻蜜蜂都得有用。\n\n我也很有用：我下命令。她們說那不算。我算兩次。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-204",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "A strong [[base]] comes first. 🏋️ Then you ask: [[how]] can I [[help]] my knees?\n\nThe answer is ice and sleep. Also humility. The bar does not care about your plan.",
+      "zh": "強壯的基礎是第一步。🏋️ 然後你會問：我怎麼幫我的膝蓋？\n\n答案是冰敷和睡覺。還有謙虛。槓鈴不在乎你的計畫。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-205",
+      "author": "grandma",
+      "topic": "History",
+      "text": "我小時候住在鄉下，家裡有一隻 [[goat]] 和一隻 [[goose]]. 🌸\n\nThe goose was the boss. 另一隻很怕牠. Even my father was afraid. 有些回憶很好笑 😂",
+      "zh": "我小時候住在鄉下，家裡有一隻山羊和一隻鵝。🌸\n\n那隻鵝是老大。另一隻很怕牠。連我爸爸也怕。有些回憶很好笑 😂",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-206",
+      "author": "mochi",
+      "topic": "Biology",
+      "text": "I am [[just]] a [[puppy]]. 🐾 I am not a big dog [[yet]].\n\n我還需要十個午覺. 然後我會變成大狗. Maybe eleven naps. 🐕",
+      "zh": "我只是一隻小狗。🐾 我還不是大狗。\n\n我還需要十個午覺。然後我會變成大狗。也許十一個。🐕",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-207",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Club [[activity]] day. 📋 I do not [[belong]] in any club: sports, art or chess.\n\n老師說：你的興趣很 [[broad]]. 我說：那是因為我不想選. 🏄",
+      "zh": "社團活動日。📋 我不屬於任何社團：運動、美術或棋社都不是。\n\n老師說：你的興趣很廣。我說：那是因為我不想選。🏄",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-208",
+      "author": "boba",
+      "topic": "Business",
+      "text": "我的茶機壞了 🧋 I tried to [[fix]] it. I asked the machine to [[help]] me.\n\nA man walked by and said, \"It is [[fine]], just plug it in.\" It was not plugged in. 我是商業天才 😅",
+      "zh": "我的茶機壞了 🧋 我試著修理它。我請機器幫我。\n\n有位先生走過來說：「沒事，插上電就好了。」它根本沒插電。我是商業天才 😅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-209",
+      "author": "whiskers",
+      "topic": "Biology",
+      "text": "A [[mouse]] ran across my office floor. 🐱 I was [[already]] chasing him before he arrived.\n\nI did not catch him. I took a long nap to think about it. He took my cheese. It was a fair trade.",
+      "zh": "一隻老鼠跑過我辦公室的地板。🐱 在他到之前，我就已經開始追了。\n\n我沒有抓到他。我睡了一場長長的午覺來思考這件事。他拿走了我的起司。這是公平的交易。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-210",
+      "author": "pablo",
+      "topic": "Travel",
+      "text": "I took a [[train]] to the city today. 🐧 A kind [[lady]] gave me her seat.\n\nShe asked, \"Where do you live?\" I said, \"A place with [[less]] ice every year.\" She stopped smiling. We shared her sandwich.",
+      "zh": "我今天搭火車去城市。🐧 一位親切的女士讓座給我。\n\n她問：「你住在哪裡？」我說：「一個冰每年都變少的地方。」她不笑了。我們分享了她的三明治。",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-211",
+      "author": "llama",
+      "topic": "Art",
+      "text": "I wore my favorite [[jeans]] to the museum. 🎨 They have a hole at the knee, 就像我的心.\n\nThen I saw a painting with my [[face]]. It was a mirror. 悲劇 💅",
+      "zh": "我穿著我最愛的牛仔褲去博物館。🎨 膝蓋上有個洞，就像我的心。\n\n然後我看到一幅畫，上面有我的臉。那其實是一面鏡子。悲劇 💅",
+      "pack": "elem"
+    },
+    {
+      "id": "elem-212",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "People call me a [[sacred]] mountain. 🌋 They bring flowers and sit quietly.\n\nI let off a little [[smoke]], to say thank you. They run. Then they come back. It is a tradition now.",
+      "zh": "人們說我是一座神聖的山。🌋 他們帶花來，安靜地坐著。\n\n我放出一點煙，表示謝謝。他們跑掉了。然後又回來。現在這成了一種傳統。",
+      "pack": "elem"
     }
   ];
 })();

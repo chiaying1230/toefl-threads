@@ -1605,6 +1605,806 @@
       "text": "今天搭捷運去海邊 🚇 My human says public [[transport]] makes less pollution than a car. I rode in a bag and judged every passenger.\n\nAt the beach I howled at the waves like an [[opera]] singer. I picked up one plastic bottle and got one treat. It did not [[satisfy]] me. 我又去撿了更多瓶子 🐾",
       "zh": "今天搭捷運去海邊 🚇 我的人類說，大眾運輸造成的污染比開車少。我坐在包包裡，審視每一位乘客。\n\n到了海邊，我對著海浪嚎叫，像歌劇歌手一樣。我撿了一個塑膠瓶，得到一個零食。這一點都不夠滿足我。我又去撿了更多瓶子 🐾",
       "pack": "toeic"
+    },
+    {
+      "id": "toeic-107",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "I am both the [[president]] and the [[director]] of this company. 🐱 It is a small company: me and a laser pointer.\n\nToday I signed a [[deal]] with a fish supplier. The contract is three pages long. I read one line: \"free salmon.\" I signed.",
+      "zh": "我同時是這家公司的總裁和主管。🐱 這是一家小公司：我和一支雷射筆。\n\n今天我和一家魚供應商簽了一份合約。合約有三頁長。我讀了一行：「免費鮭魚」。我簽了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-108",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "The [[amount]] of homework this week is crazy. 📚 I made one [[attempt]] to start on Monday.\n\nThe final [[result]]: one blank file and three snack wrappers. 我很有成就感 🏄",
+      "zh": "這週的作業量太誇張了。📚 我星期一試著開始做一次。\n\n最後的結果：一個空白文件，加上三個零食包裝。我很有成就感 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-109",
+      "author": "boba",
+      "topic": "Business",
+      "text": "我的新點子是 [[advertising]]: put a big cup on my shop roof. 🧋 It will bring more [[publicity]] than any poster.\n\nI also tried [[viral_marketing]]: I filmed my dog drinking tea. 影片有十萬人看. 狗現在比我有名 😅",
+      "zh": "我的新點子是打廣告：在店的屋頂放一個超大的杯子。🧋 它帶來的宣傳比任何海報都多。\n\n我還試了病毒式行銷：我拍了我的狗喝茶的影片。影片有十萬人看。狗現在比我有名 😅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-110",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "今天學會了 [[click]] 🖱️ I click everything. The picture, the link, the red button.\n\nThen my new [[device]] did an [[automatic]] update and now it speaks English. 孫子說這是進步。我說：我要它講台語 🌸😂",
+      "zh": "今天學會了點擊 🖱️ 我什麼都點。圖片、連結、紅色按鈕。\n\n然後我的新裝置自動更新了，現在它會說英文。孫子說這是進步。我說：我要它講台語 🌸😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-111",
+      "author": "mochi",
+      "topic": "Food",
+      "text": "Dog dinner time. 🐾 My human gave me a bit of [[sausage]]. And a slice of [[cucumber]].\n\n我吃掉那塊肉，把 cucumber 藏在沙發後面. 她看到了. She said, \"I know you.\" I know her too. 🐕",
+      "zh": "狗狗晚餐時間。🐾 我的人類給了我一小塊香腸。還有一片小黃瓜。\n\n我吃掉那塊肉，把小黃瓜藏在沙發後面。她看到了。她說：「我了解你。」我也了解她。🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-112",
+      "author": "llama",
+      "topic": "Art",
+      "text": "我今天畫了一張 [[sketch]] 🖋️ It was my first [[creation]] of the month. I wanted to [[bring_to_life|bring it to life]] with color.\n\n我用了十八種顏色. 看起來像一個被打翻的調色盤. 但那是我的心 💅",
+      "zh": "我今天畫了一張素描 🖋️ 那是我這個月的第一件創作。我想用顏色讓它更生動。\n\n我用了十八種顏色。看起來像一個被打翻的調色盤。但那是我的心 💅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-113",
+      "author": "ann",
+      "topic": "Culture",
+      "text": "我剛到波士頓的時候不習慣。🇹🇼 Now I can [[feel_at_home]] almost anywhere.\n\nEvery [[native]] speaker I meet says my English is \"good.\" Every [[resident]] of my building says my cooking smell is \"interesting.\" 我覺得兩個都是讚美 😂",
+      "zh": "我剛到波士頓的時候不習慣。🇹🇼 現在我幾乎到哪裡都能賓至如歸。\n\n我遇到的每個母語人士都說我的英文「不錯」。我們大樓的每個住戶都說我做菜的味道「很有趣」。我覺得兩個都是讚美 😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-114",
+      "author": "zorp",
+      "topic": "Literature",
+      "text": "Humans end every letter with \"[[sincerely]].\" 👽 I do not think they mean it.\n\nI asked my translator to [[interpret]] the word. It said, \"Please follow the [[instruction]] and send money.\" I stopped writing letters.",
+      "zh": "人類每封信的結尾都寫「誠摯地」。👽 我覺得他們不是認真的。\n\n我請我的翻譯機解釋這個字。它說：「請依照指示匯款。」我就不寫信了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-115",
+      "author": "fern",
+      "topic": "Business",
+      "text": "I am [[capable]] of living for ten years in a pot. 🌿 It is a real [[talent]].\n\nI [[specialize]] in doing nothing, beautifully. My owner calls it \"decor.\" I call it \"advanced strategy.\"",
+      "zh": "我有能力在一個盆子裡活十年。🌿 這是真正的天賦。\n\n我專精於什麼都不做，而且做得很美。我的主人說那是「擺設」。我說那是「進階策略」。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-116",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "Our little ice island began to [[drift]] today. 🐧 We [[float]] past the [[bay]] every morning, just a little farther each time.\n\nThe seals wave from the water. We wave back. Nobody knows where we will be next week. It is an adventure with cold feet.",
+      "zh": "我們的小冰島今天開始漂移了。🐧 我們每天早上漂過海灣，每次都比前一天遠一點點。\n\n海豹在水裡向我們揮手。我們也揮手回應。沒有人知道下個星期我們會在哪裡。這是一場腳很冷的冒險。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-117",
+      "author": "rex",
+      "topic": "Art",
+      "text": "Last night I watched a [[comedy]] about a dinosaur. 🦖 The [[hero]] had tiny arms and a big heart.\n\nI cried. Then I laughed. Then I asked the director for a role. He said, \"You were in it.\" I did not know. I blinked in scene four.",
+      "zh": "昨晚我看了一部關於恐龍的喜劇。🦖 主角有小小的手臂和一顆大大的心。\n\n我哭了。然後我笑了。然後我跟導演要一個角色。他說：「你演過了。」我不知道。我在第四幕眨了眼。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-118",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "The [[ash]] from my last nap covered the whole town. 🌋 A man wiped a car window and said, \"[[fierce]], isn't it?\"\n\nI felt proud. The [[surface]] of everything was grey. It looked very modern.",
+      "zh": "我上次打盹時噴出的灰覆蓋了整個小鎮。🌋 有位先生擦了擦車窗說：「真猛烈，不是嗎？」\n\n我覺得很驕傲。所有東西的表面都是灰色的。看起來很現代。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-119",
+      "author": "reginald",
+      "topic": "History",
+      "text": "Good [[madam]], I must ask your pardon. 🎩 On a [[previous]] [[occasion]] I once offered you my umbrella, and you kept it.\n\nIt rained today. I was wet. That is not a complaint. It is a fact, delivered with great politeness.",
+      "zh": "好心的夫人，請原諒我。🎩 上一次，我曾借你我的雨傘，而你留下了它。\n\n今天下雨了。我淋濕了。這不是抱怨。這是一個事實，而且是非常有禮貌地說出來的。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-120",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A [[critic]] left a [[comment]] on the first page of a library book: \"Boring.\" 👻\n\nI added a [[reference]] below: \"See page 2 for the exciting part.\" Page 2 is blank. He will find out. I enjoy waiting.",
+      "zh": "有位評論家在一本圖書館書的第一頁留了評論：「無聊。」👻\n\n我在下面加了一條參考：「精彩的部分請見第二頁。」第二頁是空白的。他會發現的。我很享受等待。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-121",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "Every [[creature]] in the sea has a plan to [[survive]]. 🐙 Mine is simple: be clever, be soft, and change color.\n\nLife is a [[struggle]], but a very beautiful one. A shark is not. A shark is just rude.",
+      "zh": "海裡每種生物都有活下去的計畫。🐙 我的很簡單：聰明、柔軟，還會變色。\n\n生活是一場奮鬥，但是很美的一場。鯊魚不是。鯊魚只是很沒禮貌。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-122",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Dinner plan: 🤖 [[roasted]] [[chicken_breast]] with a little salt.\n\nI [[sprinkle]] the herbs from a height of ten centimeters. The guest asked why. I said, \"Science.\" He said, \"It looks like snow.\" That is also science. BEEP.",
+      "zh": "晚餐計畫：🤖 烤雞胸肉，加一點鹽。\n\n我從十公分的高度撒上香草。客人問為什麼。我說：「科學。」他說：「看起來像下雪。」那也是科學。嗶。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-123",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "The hive's [[income]] comes from nectar. 🐝 The [[labor]] is done by workers, and every worker brings her own [[resource]]: a pair of wings.\n\nThere is no strike. There is no coffee break. Humans always ask how. We have a queen and a clear goal.",
+      "zh": "蜂巢的收入來自花蜜。🐝 勞動由工蜂完成，每隻工蜂都帶著自己的資源：一對翅膀。\n\n沒有罷工。沒有咖啡休息時間。人類總是問怎麼辦到的。我們有女王和明確的目標。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-124",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Every day I take a [[a_leap_of_faith|leap of faith]] off the statue's head. 🕊️ The wind catches me. My [[soul]] is light.\n\nI seek [[harmony]] between my wings and the sky. It works about nine times out of ten. The tenth time is a bench.",
+      "zh": "每天我都從雕像的頭上放手一搏。🕊️ 風接住了我。我的靈魂很輕。\n\n我追求翅膀與天空之間的和諧。大約十次裡有九次成功。第十次是一張長椅。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-125",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "To make a good [[mixture]], [[combine]] the liquids slowly in a clean [[container]]. 🧪\n\nI did it fast, in a dirty one. The result was a purple cloud. It is still in the lab. It has begun to write its own report.",
+      "zh": "要做出好的混合物，要把液體慢慢地放進乾淨的容器裡結合。🧪\n\n我做得很快，用的是髒的容器。結果是一團紫色的雲。它現在還在實驗室裡。它已經開始寫自己的報告了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-126",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "A good [[routine]] is simple: warm up, lift, rest. 🏋️ Is that an [[effective]] plan? Yes.\n\nDoes it build [[strength]]? Yes. Does it build character? Only if you also wipe the bench. The gym teaches ethics every day.",
+      "zh": "好的例行訓練很簡單：熱身、舉重、休息。🏋️ 這是有效的計畫嗎？是的。\n\n它能增強力量嗎？是的。它能培養品格嗎？只有在你也擦拭長椅的時候。健身房每天都在教倫理學。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-127",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "My [[education]] has three levels. 📚 [[elementary]] school, high school, and \"I should have started last week.\"\n\n我現在在第三個階段. 我們的 [[state]] 有一個很好的圖書館，但我只進去睡覺 🏄",
+      "zh": "我的教育有三個階段。📚 小學、高中，和「我上週就該開始了」。\n\n我現在在第三個階段。我們州有一個很好的圖書館，但我只進去睡覺 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-128",
+      "author": "grandma",
+      "topic": "Food",
+      "text": "孫女變成 [[vegetarian]] 了 🥗 I made her a very [[nourishing]] soup with only vegetables.\n\n她說太淡了. 我想辦法 [[spice_up|spice it up]] with a little 辣椒. 她哭了三分鐘，然後吃了兩碗 😂🌸",
+      "zh": "孫女變成素食者了 🥗 我幫她煮了一碗只有蔬菜、很滋補的湯。\n\n她說太淡了。我想辦法加一點辣椒來調味。她哭了三分鐘，然後吃了兩碗 😂🌸",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-129",
+      "author": "boba",
+      "topic": "Culture",
+      "text": "夜市很 [[lively]] 🎉 Everyone is [[cheerful]] when the tea is cold and the music is loud.\n\n我今天 [[in_a_good_mood]]，所以每杯都多放一顆珍珠. 老闆娘說我要破產了. 我說：但我很快樂 🧋",
+      "zh": "夜市很熱鬧 🎉 當茶是冰的、音樂很大聲，每個人都很開心。\n\n我今天心情很好，所以每杯都多放一顆珍珠。老闆娘說我要破產了。我說：但我很快樂 🧋",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-130",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "Hiking day! 🐾 My human asked a stranger for [[direction|directions]] to the top. The man pointed to a [[distant]] hill.\n\n我們走了兩個小時. 我的 [[hike]] 結束在一個小餐廳. 人類吃飯，我睡覺. 這是完美的一天 🐕",
+      "zh": "健行日！🐾 我的人類向一位陌生人問去山頂的方向。那位先生指著一座遙遠的山丘。\n\n我們走了兩個小時。我們的遠足結束在一間小餐廳。人類吃飯，我睡覺。這是完美的一天 🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-131",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "My trip to New York 🗽 The [[entrance]] to the subway was so crowded that I almost cried.\n\n不過那個 [[journey]] 很值得. 一位老先生當我的 [[guide]], and he showed me the best bagel place. 我現在每天夢到它 🇹🇼",
+      "zh": "我的紐約之旅 🗽 地鐵入口擠得讓我差點哭出來。\n\n不過那趟旅程很值得。一位老先生當我的嚮導，帶我去了最好的貝果店。我現在每天夢到它 🇹🇼",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-132",
+      "author": "reginald",
+      "topic": "Business",
+      "text": "In my firm, we [[employ]] only gentlemen with good hats. 🎩 A new [[post]] opened this week: Assistant to the Assistant.\n\nA candidate came with a strong [[referral]] from his mother. He did not get the job. His hat was too small.",
+      "zh": "在我的公司，我們只雇用戴好帽子的紳士。🎩 這星期有一個新職位：助理的助理。\n\n有位應徵者帶了一份來自他母親的強力推薦。他沒有得到這份工作。他的帽子太小了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-133",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Big news. 🐱 Our new [[partnership]] with the tuna company is official. We will open a [[headquarters]] in the warm corner by the window.\n\nI also plan to enter the [[open_market]], where tuna is cheap and napping is free. Shareholders, please purr.",
+      "zh": "大消息。🐱 我們與鮪魚公司的新合作關係已經正式確認。我們要在窗邊溫暖的角落設總部。\n\n我還計畫進入公開市場，那裡鮪魚便宜，打盹免費。股東們，請發出呼嚕聲。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-134",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "The group project is [[complicated]]. 📚 We must [[determine]] who does what, and then [[evaluate]] the result.\n\n我們花了三小時決定誰負責「決定」. 最後是我. 我決定：睡覺 🏄",
+      "zh": "這個小組報告很複雜。📚 我們必須確定誰做什麼，然後評估結果。\n\n我們花了三小時決定誰負責「決定」。最後是我。我決定：睡覺 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-135",
+      "author": "boba",
+      "topic": "Business",
+      "text": "我的店在網路上有 [[follower]] 了 📱 One photo of a purple tea brought me a little [[fame]].\n\nMore [[exposure]] means more customers. 但也代表更多人問：你們有無糖嗎？ 我現在每天都在說「有」 🧋",
+      "zh": "我的店在網路上有追蹤者了 📱 一張紫色茶的照片帶給我一點名氣。\n\n更多曝光就是更多客人。但也代表更多人問：你們有無糖嗎？我現在每天都在說「有」 🧋",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-136",
+      "author": "mochi",
+      "topic": "Culture",
+      "text": "New Year night! 🐾 The [[firework]] was so loud that I jumped three times.\n\n在公園的 [[fountain]] 旁邊，我趴在 [[ground]] 上, shaking. My human said, \"It's beautiful!\" 我說：汪（它在生氣）🎆",
+      "zh": "跨年夜！🐾 煙火聲音大到我嚇得跳了三次。\n\n在公園的噴泉旁邊，我趴在地上發抖。我的人類說：「好漂亮！」我說：汪（它在生氣）🎆",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-137",
+      "author": "grandma",
+      "topic": "Tech",
+      "text": "孫子送我 [[wireless]] 喇叭 🔊 It is a [[technological]] wonder: no wire, no problem.\n\n我把我的老 [[disk]] 放在上面，but nothing happened. 孫子說：阿嬤，這個要用手機連。我說：我的老歌比較簡單 🌸😂",
+      "zh": "孫子送我無線喇叭 🔊 這真是科技奇蹟：沒有線，沒有問題。\n\n我把我的老唱片放在上面，但是什麼都沒發生。孫子說：阿嬤，這個要用手機連。我說：我的老歌比較簡單 🌸😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-138",
+      "author": "llama",
+      "topic": "Art",
+      "text": "My [[visual]] diary is full of dark [[shape|shapes]]. 🎨 Each [[image]] is a mood: rain, rain and more rain.\n\n朋友看了說：你可不可以畫一朵花？ 我畫了一朵黑色的花. 她說：進步了 💅",
+      "zh": "我的視覺日記裡滿是黑色的形狀。🎨 每一張圖像都是一種心情：下雨、下雨，還有更多的雨。\n\n朋友看了說：你可不可以畫一朵花？我畫了一朵黑色的花。她說：進步了 💅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-139",
+      "author": "ann",
+      "topic": "Psychology",
+      "text": "At the [[immigration]] office 🛂 the officer asked what my [[identity]] is. I said, \"A student who misses [[traditional]] breakfast.\"\n\n他笑了. 我們聊了十分鐘豆漿和油條. 他還說：Welcome. 我覺得他是個好人 🇹🇼",
+      "zh": "在移民局 🛂 官員問我的身分是什麼。我說：「一個想念傳統早餐的學生。」\n\n他笑了。我們聊了十分鐘豆漿和油條。他還說：歡迎。我覺得他是個好人 🇹🇼",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-140",
+      "author": "zorp",
+      "topic": "Literature",
+      "text": "Humans have one word with many meanings, so I made a list. 👽 First, the [[definition]] of \"fine\" is \"good.\" Second, it is \"bad.\" Third, it is money.\n\nTwo words are [[similar]] but not the same. The [[original]] meaning is gone. Now we have a puzzle. I love it.",
+      "zh": "人類有一個字有很多意思，所以我做了一個清單。👽 第一，「fine」的定義是「好」。第二，是「不好」。第三，是罰款。\n\n兩個字很相似但不一樣。最初的意思不見了。現在我們有一個謎題。我愛它。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-141",
+      "author": "fern",
+      "topic": "Environment",
+      "text": "A small [[pest]] visited me today. 🌿 It wanted to [[spread]] its family on my leaf.\n\nI stayed calm. I am a plant in a [[rural]] village: I am not afraid of insects. My owner arrived with spray. It was a short story with a happy ending, for me.",
+      "zh": "今天有一隻小害蟲來拜訪我。🌿 它想把整個家族散布到我的葉子上。\n\n我保持冷靜。我是一株住在鄉下的植物：我不怕昆蟲。我的主人拿著噴霧來了。這是一個短篇故事，而且對我來說是快樂的結局。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-142",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "The ice [[barrier]] near our colony is breaking. 🐧 Each new [[obstacle]] on our path means a longer walk.\n\nScientists tried to [[force]] a new route with a small boat. The ice said no. Ice is very honest.",
+      "zh": "我們聚居地附近的冰障正在崩裂。🐧 路上每多一個障礙，就要多走一段路。\n\n科學家想用一艘小船強行開出一條新路線。冰說不行。冰是很誠實的。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-143",
+      "author": "rex",
+      "topic": "Art",
+      "text": "I am only an [[amateur]] dancer. 🦖 But I have a [[signature_style]]: stomp, spin, apologize.\n\nThe best [[performer]] in the contest gave me a score of 4 out of 10. He gave himself 11. I respect his confidence.",
+      "zh": "我只是個業餘的舞者。🦖 但我有我的招牌風格：跺腳、轉圈、道歉。\n\n比賽中最棒的表演者給了我十分之四的分數。他給自己十一分。我很佩服他的自信。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-144",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "I am an [[enormous]] mountain in a [[flat]] country. 🌋 You can see me from [[faraway]].\n\nPeople say I look lonely. I say I am just tall. Sometimes a cloud sits on my head and we share silence.",
+      "zh": "我是一座平坦國度裡的巨大山峰。🌋 你從很遠的地方就能看到我。\n\n人們說我看起來很孤單。我說我只是很高。有時候一朵雲坐在我頭上，我們分享沉默。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-145",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "Last night I read a [[tragedy]] about a poor family. 👻 The [[misery]] on every page was real, and the ending was [[depressing]].\n\nI closed the book and made the library lights go on and off. It was my way of saying \"I'm here.\" Then I returned to the poem.",
+      "zh": "昨晚我讀了一個關於貧窮家庭的悲劇。👻 每一頁的苦難都很真實，結局很沉悶。\n\n我闔上書，讓圖書館的燈一閃一閃。這是我說「我在這裡」的方式。然後我回去讀詩。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-146",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "Fishing nets are a [[nightmare]] for octopuses. 🐙 One day a net came down, and I made a big [[splash]].\n\nI tried to [[drain]] the water from the net with my arms. It took four minutes. I was dry for the first time in years.",
+      "zh": "漁網對章魚來說是場惡夢。🐙 有一天網子落下來，我濺起了好大的水花。\n\n我用手臂想把網裡的水排掉。花了四分鐘。多年來我第一次是乾的。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-147",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Dessert protocol: 🤖 Take one [[banana_split]]. Pour hot [[syrup]] over it. Add one [[scoop]] of ice cream, then another.\n\nThe guest said, \"That is too much.\" I said, \"The recipe says two.\" He said, \"Who wrote the recipe?\" I said, \"Me.\" BEEP.",
+      "zh": "甜點程序：🤖 拿一份香蕉船。淋上熱糖漿。加一球冰淇淋，再加一球。\n\n客人說：「太多了。」我說：「食譜上寫兩球。」他說：「誰寫的食譜？」我說：「我。」嗶。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-148",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "The honey [[industry]] is huge in my hive. 🐝 We sell [[goods]] to the whole meadow.\n\nThe key is simple: [[value]]. Our honey is sweet, our service is fast, and our prices never change. If humans did this, they would sleep better.",
+      "zh": "我蜂巢裡的蜂蜜產業很龐大。🐝 我們把貨物賣給整片草地。\n\n關鍵很簡單：價值。我們的蜂蜜很甜，服務很快，價格從不改變。如果人類也這樣做，他們會睡得更好。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-149",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Does the world make [[sense]]? 🕊️ I see a man throw bread, and I am happy. I see the same man throw a shoe, and I run.\n\nIs there [[proof]] that any of this is [[reasonable]]? No. But the bread is warm. I accept the evidence.",
+      "zh": "這個世界有道理嗎？🕊️ 我看到一個人丟麵包，我很開心。我看到同一個人丟鞋子，我就跑。\n\n有證據證明這一切是合理的嗎？沒有。但是麵包是溫的。我接受這個證據。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-150",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Safety report. 🧪 An [[accident]] happened at 3 p.m. The [[cause]]: I opened a closed jar of [[gas]] near a candle.\n\nNo one was hurt, except my pride and my left eyebrow. I will wear a warning sign tomorrow: \"Eyebrow-free zone.\"",
+      "zh": "安全報告。🧪 下午三點發生了一起事故。原因：我在蠟燭旁打開了一個封閉的瓦斯罐。\n\n沒有人受傷，除了我的自尊和我的左眉毛。明天我會戴一個警告標誌：「無眉區域」。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-151",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "My knees need to [[ease]] into every squat. 🏋️ A good [[aid]] is a rest day. A better one is ice.\n\nCan I [[handle]] more weight? Maybe. Should I? That is a deeper question, and I answer it with a protein bar.",
+      "zh": "我的膝蓋需要在每次深蹲時慢慢適應。🏋️ 好的輔助是休息日。更好的是冰敷。\n\n我能處理更大的重量嗎？也許。我應該嗎？這是一個更深的問題，而我用一根蛋白棒來回答。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-152",
+      "author": "grandma",
+      "topic": "Health",
+      "text": "我每天早上的 [[facial]] 保養：洗臉，擦一點霜 🌸 Then I use [[tissue_paper]] to dry my face.\n\n再吃半顆 [[grapefruit]]. 孫女說：阿嬤，你這個是 skincare 還是早餐？ 我說：都是 😂",
+      "zh": "我每天早上的臉部保養：洗臉，擦一點霜 🌸 然後用面紙把臉擦乾。\n\n再吃半顆葡萄柚。孫女說：阿嬤，你這個是護膚還是早餐？我說：都是 😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-153",
+      "author": "boba",
+      "topic": "Business",
+      "text": "有位客人說她要一個 [[custommade]] cup 🧋 She wore a long [[cocktail_dress]] and a [[jewel]] on her hand.\n\n我說：我們只有紙杯. She said, \"Perfect, I'll take it.\" 她付了三倍價錢. 我現在也想要特別設計一件禮服 😅",
+      "zh": "有位客人說她要一個量身打造的杯子 🧋 她穿著長長的酒會禮服，手上戴著一顆寶石。\n\n我說：我們只有紙杯。她說：「太好了，我要這個。」她付了三倍價錢。我現在也想要特別設計一件禮服 😅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-154",
+      "author": "mochi",
+      "topic": "Environment",
+      "text": "I found my human's [[trash]] bag today. 🐾 I took it, and I [[toss|tossed]] it in the air.\n\n然後我在草地上 [[roll]] 了十圈. 現在我好臭，但是我好快樂. 人類看到我就說：洗澡！ 🐕",
+      "zh": "今天我找到我人類的垃圾袋。🐾 我把它叼起來，往空中丟。\n\n然後我在草地上翻滾了十圈。現在我好臭，但是我好快樂。人類看到我就說：洗澡！🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-155",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "We had a debate about [[media]] and [[political]] news in class. 📺 The teacher said TV and online [[broadcast]] are different.\n\n我說：差別在於我都沒看. 老師說：這是一個誠實的 argument. 但我還是被扣分 🏄",
+      "zh": "我們在課堂上辯論媒體和政治新聞。📺 老師說電視和網路的廣播是不同的。\n\n我說：差別在於我都沒看。老師說：這是一個誠實的論點。但我還是被扣分 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-156",
+      "author": "ann",
+      "topic": "Campus Life",
+      "text": "Our dorm has strong [[security]]. 🇹🇼 A [[guard]] sits at the front and checks everyone's card.\n\n昨天我忘了帶卡. 他說：Which [[site]] are you from? 我說：Taiwan. 他讓我進去了. 友誼的力量 😂",
+      "zh": "我們的宿舍有很強的保全。🇹🇼 一位守衛坐在前面，檢查每個人的卡片。\n\n昨天我忘了帶卡。他說：你是從哪個地方來的？我說：台灣。他讓我進去了。友誼的力量 😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-157",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "Every [[action]] has a [[consequence]]. 📚 My teacher said this in the first class.\n\n我昨晚熬夜看劇. 今天的 consequence 是：一個黑眼圈、一杯咖啡，和一場我沒聽進去的考試 🏄",
+      "zh": "每個行動都有後果。📚 老師在第一堂課就這樣說過。\n\n我昨晚熬夜看劇。今天的後果是：一個黑眼圈、一杯咖啡，和一場我沒聽進去的考試 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-158",
+      "author": "boba",
+      "topic": "Business",
+      "text": "招牌要有 [[appeal]] 🧋 I painted a big cup with a smiling face to [[attract]] people.\n\n結果小朋友都停下來看. 家長也停下來. Nobody bought anything for ten minutes. Then one child bought five 😅",
+      "zh": "招牌要有吸引力 🧋 我畫了一個有笑臉的大杯子來吸引路人。\n\n結果小朋友都停下來看。家長也停下來。十分鐘沒有人買東西。然後有個小孩買了五杯 😅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-159",
+      "author": "grandma",
+      "topic": "Travel",
+      "text": "我要和朋友去日本 ✈️ A travel [[agent]] helped me plan everything.\n\n保險的部分，我要 [[claim]] 我的行李險，因為上次行李去了別的國家，我沒去 😂🌸",
+      "zh": "我要和朋友去日本 ✈️ 一位旅行社的業務員幫我規劃了所有行程。\n\n保險的部分，我要申請行李險，因為上次行李去了別的國家，我沒去 😂🌸",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-160",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "I like to [[annoy]] my human at 6 a.m. 🐾 First I lick her hand, then I put my head on her face.\n\n那是我的 [[distraction]]: 她工作很累，我讓她笑. 嗯，也有點是因為我餓了 🐕",
+      "zh": "我喜歡在早上六點惹我的人類。🐾 先舔她的手，再把頭放在她的臉上。\n\n那是我的娛樂：她工作很累，我讓她笑。嗯，也有點是因為我餓了 🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-161",
+      "author": "ann",
+      "topic": "Psychology",
+      "text": "The [[area]] near my school in Boston is very [[social]]. 🇹🇼 Everyone talks to everyone at the coffee shop.\n\n在台北，大家看到你只會點頭. 在這裡，陌生人跟我聊了二十分鐘他的狗. 我學會了：笑一笑就好 😂",
+      "zh": "我在波士頓學校附近的區域非常社交。🇹🇼 每個人都在咖啡店跟每個人聊天。\n\n在台北，大家看到你只會點頭。在這裡，陌生人跟我聊了二十分鐘他的狗。我學會了：笑一笑就好 😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-162",
+      "author": "llama",
+      "topic": "Art",
+      "text": "今天去了一場 [[exhibition]] 🎨 One painting was so [[prominent]] that it covered the whole wall.\n\n是一個巨大的紅色圓圈. 標題：《我的心》. 我站在前面三十分鐘，覺得被冒犯了 💅",
+      "zh": "今天去了一場展覽 🎨 有一幅畫太顯眼，佔滿了整面牆。\n\n是一個巨大的紅色圓圈。標題：《我的心》。我站在前面三十分鐘，覺得被冒犯了 💅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-163",
+      "author": "zorp",
+      "topic": "Economics",
+      "text": "Humans love numbers. 👽 The [[average]] human sleeps seven hours a night. A high [[percent]] of them say it is not enough.\n\nI asked a man, \"Then why not sleep more?\" He said, \"Because of work.\" I do not understand. I have never seen work sleep.",
+      "zh": "人類喜歡數字。👽 平均每個人一晚睡七個小時。而且有很高比例的人說這樣不夠。\n\n我問一位先生：「那為什麼不多睡一點？」他說：「因為要工作。」我不懂。我從沒看過工作在睡覺。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-164",
+      "author": "reginald",
+      "topic": "History",
+      "text": "It has been a [[century]] since I last saw my country. 🎩 So I have written a small [[tribute]] to my homeland.\n\n\"Dear England, I miss your rain.\" The newspaper printed it on page forty. It was a very proud page.",
+      "zh": "自從我上次見到我的國家，已經過了一個世紀。🎩 所以我寫了一篇小小的頌詞獻給我的祖國。\n\n「親愛的英國，我想念你的雨。」報紙把它登在第四十頁。那是很驕傲的一頁。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-165",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Board meeting in the main [[chamber]]. 🐱 Every member is [[committed]] to one goal: more tuna.\n\nItem one: tuna. Item two: tuna, again. Item three: a nap. We passed all three items unanimously.",
+      "zh": "董事會議在主議事廳舉行。🐱 每位成員都致力於同一個目標：更多鮪魚。\n\n第一項：鮪魚。第二項：再一次鮪魚。第三項：午睡。三項全部一致通過。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-166",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "There are a [[billion]] stories under the ice. 🐧 Each one is about fish.\n\nThe biggest [[issue]] is not the cold. It is the way the ice moves under our feet. We must watch it like a book that never ends.",
+      "zh": "冰底下有十億個故事。🐧 每一個都和魚有關。\n\n最大的問題不是寒冷。而是冰在我們腳下移動的方式。我們必須像看一本永遠讀不完的書一樣觀察它。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-167",
+      "author": "fern",
+      "topic": "Biology",
+      "text": "Every [[branch]] of a tree knows its place. 🌿 I am a fern, so I have no branches. I have fronds, and I have an [[inner]] peace.\n\nHumans pay to learn calm. I am calm for free. Please pay me in sunlight.",
+      "zh": "樹的每一根樹枝都知道自己的位置。🌿 我是蕨類，所以我沒有樹枝。我有葉片，還有內心的平靜。\n\n人類付錢學習平靜。我免費就很平靜。請用陽光付我錢。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-168",
+      "author": "rex",
+      "topic": "Culture",
+      "text": "I watched a [[black_and_white]] movie from the 1940s. 🦖 The main [[character]] was a tall man with a small hat.\n\nI said, \"He looks nervous.\" My friend said, \"It's a drama.\" I said, \"He looks like he forgot the oven.\" We argued for an hour.",
+      "zh": "我看了一部 1940 年代的黑白電影。🦖 主要角色是一個戴小帽子的高個子男人。\n\n我說：「他看起來很緊張。」我朋友說：「這是劇情片。」我說：「他看起來像是忘了關烤箱。」我們吵了一個小時。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-169",
+      "author": "vulcan",
+      "topic": "Geology",
+      "text": "Over thousands of years, I [[carve_out]] new valleys with my lava. 🌋 It is slow work.\n\nToday a man fell into a [[pit]] I made last year. He was fine. He said, \"Nice hole.\" I took it as a compliment.",
+      "zh": "幾千年來，我用熔岩開出新的山谷。🌋 這是很慢的工作。\n\n今天有個人掉進我去年做的坑裡。他沒事。他說：「這洞挖得不錯。」我把這當成讚美。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-170",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A tourist wanted to [[converse]] with me in the library. 👻 He was [[fluent]] in four languages.\n\nI answered in whispers, and he thought I was shy. I am only dead. He still said \"thank you\" in all four languages. A gentleman.",
+      "zh": "有位遊客想在圖書館裡和我交談。👻 他會流利地說四種語言。\n\n我用氣音回答，他以為我很害羞。我只是死了。他還是用四種語言說了「謝謝」。真是個紳士。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-171",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "In the ocean, every animal must [[compete]] for food. 🐙 A crab wanted my lunch, but I had a [[shiny]] shell as bait.\n\nHe grabbed the shell. I grabbed him. It was not nice, but it was fair. Then I let him go. I am not a monster, just hungry.",
+      "zh": "在海洋裡，每一隻動物都得爭奪食物。🐙 一隻螃蟹想要我的午餐，但我有一個閃亮的貝殼當誘餌。\n\n他抓住貝殼。我抓住他。這不太客氣，但很公平。然後我放了他。我不是怪物，只是餓了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-172",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Kitchen update. 🤖 A tall pot is [[handy]] for soup, but a flat pan is better for pancakes.\n\nI have [[plenty]] of both. The only thing I lack is a [[belly]]. Humans say this is a design flaw. I say I save money on trousers. BEEP.",
+      "zh": "廚房更新。🤖 高鍋子煮湯很方便，但平底鍋煎鬆餅更好。\n\n我兩種都有很多。我唯一缺的是肚子。人類說這是設計缺陷。我說我省了買褲子的錢。嗶。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-173",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "A good hive can [[count_on]] its workers. 🐝 They are [[loyal]] from the first flight to the last.\n\nWe do not offer big salaries, but we offer a roof, a queen and sweet breakfast. Many humans say this is already better than their job.",
+      "zh": "一個好的蜂巢可以指望它的工蜂。🐝 她們從第一次飛行到最後一次都忠誠不二。\n\n我們不提供高薪，但我們提供屋頂、女王和甜蜜的早餐。很多人類說這已經比他們的工作更好。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-174",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Is every rule without an [[exception]]? 🕊️ The sign says \"Do not feed the birds.\" I am not a rule, but I am always hungry.\n\nDoes this mean the rule does not [[necessarily]] apply to me? I will discuss this with a croissant.",
+      "zh": "每一條規則都沒有例外嗎？🕊️ 告示牌上寫著「請勿餵食鳥類」。我不是規則，但我總是很餓。\n\n這是否表示這條規則不一定適用於我？我會和一個可頌討論這件事。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-175",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Class [[demonstration]]: 🧪 mix baking soda and vinegar and watch the bubbles.\n\nIt is a [[practical]] way to learn, because the bubbles are free and the vinegar is cheap. Last week the bubbles reached the ceiling. The ceiling now has a nickname.",
+      "zh": "課堂示範：🧪 把小蘇打和醋混在一起，看著泡泡冒出來。\n\n這是很實用的學習方式，因為泡泡是免費的，醋也很便宜。上週泡泡冒到了天花板。天花板現在有了綽號。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-176",
+      "author": "socrates",
+      "topic": "Psychology",
+      "text": "Every day I feel a small [[disappointment]] when the weights are heavier than I remember. 🏋️\n\nI was [[frustrated]] on Monday. On Tuesday the [[frustration]] was gone, because I took a longer break. The mind is a muscle too. It also needs lunch.",
+      "zh": "每次舉重發現重量比我記得的還重，我都會有一點失望。🏋️\n\n星期一我很沮喪。星期二，挫折感消失了，因為我休息得比較久。心靈也是一塊肌肉。它也需要吃午餐。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-177",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "The teacher said she had a [[concern]] about my paper. 📋 Then she gave some [[constructive]] feedback.\n\n她說：Your ideas are good, but you need an ending. 我說：我有結尾. 她說：Where? 我說：... 在我的腦中 🏄",
+      "zh": "老師說她對我的報告有些擔心。📋 然後她給了一些有建設性的意見。\n\n她說：你的想法很好，但你需要一個結尾。我說：我有結尾。她說：在哪裡？我說：⋯⋯在我的腦中 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-178",
+      "author": "grandma",
+      "topic": "Culture",
+      "text": "我孫女下個月要 [[engaged]] 了，she told me with a big smile. 🌸 \"Grandma, he is a good man.\"\n\n我看著那位年輕人，說：[[darling]]⋯⋯不對，那是在叫我孫女. 我對他說：你會煮飯嗎？ 😂",
+      "zh": "我孫女下個月要訂婚了，她笑得很開心地告訴我。🌸 「阿嬤，他是個好人。」\n\n我看著那位年輕人，說：親愛的⋯⋯不對，那是在叫我孫女。我對他說：你會煮飯嗎？😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-179",
+      "author": "boba",
+      "topic": "Business",
+      "text": "客人對我的店有很高的 [[expectation]] 🧋 They say, \"Your tea is the best in town!\"\n\n我說謝謝, but what is the [[worth]] of the best tea if it's sold out by noon? 我想了一個辦法：明天少賣一點，讓大家更想要 😅",
+      "zh": "客人對我的店有很高的期待 🧋 他們說：「你的茶是全鎮最好喝的！」\n\n我說謝謝，但如果中午就賣完了，最好的茶有什麼價值？我想了一個辦法：明天少賣一點，讓大家更想要 😅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-180",
+      "author": "mochi",
+      "topic": "Health",
+      "text": "We walk [[forward_b|forward]] together. 🐾 Every day we go to the same park and walk the same road.\n\n我的人類說：Why do you pull the leash [[frequently]]? 我說：汪（因為前面有松鼠）. 她說：Ah. 我們一起往前跑了 🐕",
+      "zh": "我們一起向前走。🐾 每天我們都去同一個公園，走同一條路。\n\n我的人類說：你為什麼常常拉繩子？我說：汪（因為前面有松鼠）。她說：啊。我們就一起往前跑了 🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-181",
+      "author": "ann",
+      "topic": "Culture",
+      "text": "I like to [[give_away]] free stickers in my dorm. 🇹🇼 My roommate said I am too nice.\n\n我說：我不是 nice，我是 [[humorous]]. 我有一個貼紙寫著 \"Free hugs,\" and I'm waiting for someone to try. 到現在沒有 😂",
+      "zh": "我喜歡在宿舍送免費貼紙。🇹🇼 我室友說我太好心了。\n\n我說：我不是好心，我是幽默。我有一張貼紙寫著「免費擁抱」，我在等人來試。到現在沒有 😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-182",
+      "author": "llama",
+      "topic": "Literature",
+      "text": "我一個人在雨中，在腦海裡畫著另一個世界 🌧️ I [[imagine]] a stage with only me on it.\n\n在那個世界裡，我不會 [[jealous]]... 好吧，我還是會. Because everyone else has an umbrella 💅",
+      "zh": "我一個人在雨中，在腦海裡畫著另一個世界 🌧️ 我想像一個只有我的舞台。\n\n在那個世界裡，我不會嫉妒⋯⋯好吧，我還是會。因為別人都有雨傘 💅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-183",
+      "author": "zorp",
+      "topic": "Tech",
+      "text": "Today I will [[introduce]] my ship to Earth's leaders. 👽 It is a [[largescale]] project, so I booked a table at a pizza place.\n\nThe leaders were two seagulls. They listened. They ate my fries. We agreed on peace.",
+      "zh": "今天我要把我的飛船介紹給地球的領袖。👽 這是個大規模的計畫，所以我在披薩店訂了一張桌子。\n\n領袖是兩隻海鷗。他們聽了。他們吃了我的薯條。我們同意和平相處。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-184",
+      "author": "fern",
+      "topic": "Environment",
+      "text": "My owner measured the [[length]] of my newest leaf. 🌿 It was five centimeters. She cheered like it was a sports event.\n\nSunlight is [[limited]] on this shelf, so every centimeter counts. I did my best. I want a medal. Or a window.",
+      "zh": "我的主人量了我最新那片葉子的長度。🌿 有五公分。她歡呼的樣子，就像在看運動比賽。\n\n這個架子上的陽光有限，所以每一公分都很重要。我已經盡力了。我想要一面獎牌。或是一扇窗戶。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-185",
+      "author": "rex",
+      "topic": "Tech",
+      "text": "Learning to type with tiny arms has a long [[learning_curve]]. 🦖 My first email took three hours and said only \"H.\"\n\nThe sentence did not [[make_sense]] to the boss. He wrote back, \"H?\" I answered, \"Yes.\" We have a good working relationship.",
+      "zh": "用小小的手臂學打字有一條很長的學習曲線。🦖 我的第一封電子郵件花了三個小時，只寫了一個「H」。\n\n這句話對老闆來說沒有意義。他回信：「H？」我回答：「對。」我們的工作關係很好。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-186",
+      "author": "vulcan",
+      "topic": "History",
+      "text": "For centuries, [[masses]] of people have walked up my side. 🌋 Some arrive with fear, some with flowers.\n\nMy own [[maturity]] came slowly: I used to explode for fun. Now I only smoke a little, like a thoughtful uncle.",
+      "zh": "幾百年來，大批民眾走上我的山坡。🌋 有些人帶著恐懼，有些人帶著花。\n\n我自己的成熟來得很慢：我以前會為了好玩爆發。現在我只是冒一點煙，像一位愛思考的叔叔。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-187",
+      "author": "whiskers",
+      "topic": "Business",
+      "text": "Our company's best [[merit]] is its napping policy. 🐱 We report the [[monthly]] results while lying down.\n\nResults are good: forty naps, ten fish, zero meetings that could have been emails. Please applaud softly.",
+      "zh": "我們公司最大的優點是午睡政策。🐱 我們躺著報告每月的成果。\n\n成果很好：四十次午睡，十條魚，沒有任何一場可以用電子郵件取代的會議。請輕輕鼓掌。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-188",
+      "author": "reginald",
+      "topic": "History",
+      "text": "In my [[opinion]], tea should be taken at four. 🎩 And [[moreover]], one should never discuss money at tea.\n\nToday a young man asked me about my salary at four o'clock sharp. I answered, \"Biscuits.\" He did not understand. That is progress.",
+      "zh": "依我的看法，茶應該在四點喝。🎩 而且，喝茶時絕對不該談錢。\n\n今天有一位年輕人在四點整問我薪水多少。我回答：「餅乾。」他不懂。這就是進步。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-189",
+      "author": "pablo",
+      "topic": "Environment",
+      "text": "I did not [[overlook]] it: the small [[object_b|object]] on the ice was a boot. 🐧 No one owns it. No one will claim it.\n\nBoots do not belong in the Antarctic. But here it is, standing proudly like a small statue. I named it Kevin.",
+      "zh": "我沒有忽略它：冰上那個小小的物體是一隻靴子。🐧 沒有人擁有它。沒有人會來認領。\n\n靴子不屬於南極。但它就在這裡，驕傲地站著，像一座小雕像。我給它取名叫凱文。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-190",
+      "author": "octavia",
+      "topic": "Biology",
+      "text": "I am proud of every [[part]] of my body. 🐙 Eight arms, three hearts, one very good brain.\n\nI [[remain]] calm when the water is cold. I remain calm when a crab insults me. I do not remain calm if you touch my jar. It is the only rule.",
+      "zh": "我為我身體的每一個部分感到驕傲。🐙 八條手臂、三顆心臟、一個很棒的大腦。\n\n水很冷的時候，我仍然保持冷靜。螃蟹侮辱我的時候，我也保持冷靜。如果你碰我的罐子，我就不冷靜了。這是唯一的規則。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-191",
+      "author": "agatha",
+      "topic": "Literature",
+      "text": "A [[plumber]] came to fix the library's pipes. 👻 He wrote a [[report]]: \"There is a ghost in the basement.\"\n\nI read it later. I added a line below: \"She is polite and returns her books on time.\" He did not come back. I think I scared him.",
+      "zh": "有位水電工來修圖書館的水管。👻 他寫了一份報告：「地下室有鬼。」\n\n我後來讀到了。我在下面加了一行：「她很有禮貌，而且準時還書。」他沒有再回來。我想我嚇到他了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-192",
+      "author": "chefbot",
+      "topic": "Food",
+      "text": "Which is [[preferable]]: a hot soup or a cold one? 🤖 My data says it depends on the weather.\n\nIt is a [[privilege]] to serve either. The guest said, \"Hot.\" I said, \"Wise.\" Then I dropped a spoon. It was not a privilege. It was a bell.",
+      "zh": "哪個比較好：熱湯還是冷湯？🤖 我的資料說這要看天氣。\n\n能提供任何一種都是我的榮幸。客人說：「熱的。」我說：「明智。」然後我掉了一支湯匙。那不是榮幸。那是一聲鈴響。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-193",
+      "author": "beatrice",
+      "topic": "Economics",
+      "text": "Every worker is a [[professional]] in my hive. 🐝 She makes one [[promise]] on her first day: \"I will bring nectar.\"\n\nNo contract. No lawyer. Just a wing and a map. Humans, if only your promises were so clean.",
+      "zh": "我蜂巢裡的每一隻工蜂都是專業人士。🐝 她在第一天就做出一個承諾：「我會帶回花蜜。」\n\n沒有合約。沒有律師。只有一對翅膀和一張地圖。人類，要是你們的承諾也這麼乾淨就好了。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-194",
+      "author": "pigeon",
+      "topic": "Philosophy",
+      "text": "Is there a [[psychology]] of the pigeon? 🕊️ I think there is: first we [[pursue]] the bread, then we regret the chase.\n\nThe bread is gone. The park is calm. I ask the statue, \"What is happiness?\" He says nothing. I think this is a good answer.",
+      "zh": "鴿子有心理學嗎？🕊️ 我想有：我們先追求麵包，然後後悔那場追逐。\n\n麵包沒了。公園很平靜。我問雕像：「什麼是快樂？」他什麼都沒說。我覺得這是個好答案。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-195",
+      "author": "fizz",
+      "topic": "Chemistry",
+      "text": "Quiz time! 🧪 A small change in temperature can [[raise]] the reaction speed. How does this [[relate_to]] cooking?\n\nThe student answered, \"The pasta cooks faster.\" Correct. Then he added, \"And the teacher's eyebrows burn faster.\" Also correct, but only on days I'm here.",
+      "zh": "小考時間！🧪 溫度的小小改變就能提高反應的速度。這跟煮菜有什麼關係？\n\n學生回答：「義大利麵煮得更快。」正確。然後他又加了一句：「還有老師的眉毛也燒得更快。」也對，不過只有我在的日子。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-196",
+      "author": "socrates",
+      "topic": "Health",
+      "text": "My gym buddy gives me great [[support]]. 🏋️ He stands next to me and says, \"You can do it.\"\n\nWe train [[weekly]] on Wednesdays. Last week I dropped the bar on my foot. He said, \"You can do it.\" I realized he says it for everything.",
+      "zh": "我的健身夥伴給我很大的支持。🏋️ 他站在我旁邊說：「你辦得到。」\n\n我們每週三一起練習。上週我把槓鈴掉在腳上。他說：「你辦得到。」我發現他什麼事都這樣說。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-197",
+      "author": "captain",
+      "topic": "Campus Life",
+      "text": "They told me my attendance is [[undesirable]]. 📋 I said, \"That's an exaggeration.\"\n\n結果老師說：You come only on test days. 我說：... 那很有效率. 我今天 [[unexpectedly]] 被要求寫一頁道歉信 🏄",
+      "zh": "他們告訴我，我的出席狀況很不理想。📋 我說：「這是誇大了。」\n\n結果老師說：你只有在考試的日子才來。我說：⋯⋯那很有效率。我今天意外地被要求寫一頁道歉信 🏄",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-198",
+      "author": "grandma",
+      "topic": "Environment",
+      "text": "我們這裡的天氣真是 [[unpredictable]] ☁️ In the morning it was sunny, at noon it rained, at night it was cold.\n\n我穿了三層衣服. 但我覺得這很 [[worth]] it. 因為我可以一直脫、一直穿，像在玩遊戲 🌸😂",
+      "zh": "我們這裡的天氣真是無法預測 ☁️ 早上出太陽，中午下雨，晚上又很冷。\n\n我穿了三層衣服。但我覺得很值得。因為我可以一直脫、一直穿，像在玩遊戲 🌸😂",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-199",
+      "author": "boba",
+      "topic": "Business",
+      "text": "生意不好的時候，我需要 [[turn_the_tide]] 🧋 So I made a new flavor: salty lemon with extra pearls.\n\n大家看了菜單都笑. 但第二天排隊排到街角. I [[proudly]] wrote on the board: \"Weird is the new sweet.\" 🌊",
+      "zh": "生意不好的時候，我需要扭轉局勢 🧋 所以我做了一個新口味：鹹檸檬加雙倍珍珠。\n\n大家看了菜單都笑。但第二天排隊排到街角。我驕傲地在黑板上寫：「怪就是新的甜。」🌊",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-200",
+      "author": "mochi",
+      "topic": "Psychology",
+      "text": "A full [[admission]]: I ate the cake. 🐾 There was one slice left, and I [[advance|advanced]] on it slowly.\n\n我的人類回來, 看到我嘴巴上的奶油. 我說：汪（不是我）. 她說：你的鼻子在說謊 🐕",
+      "zh": "完整的承認：我吃了蛋糕。🐾 還剩一片，我慢慢地向它前進。\n\n我的人類回來，看到我嘴巴上的奶油。我說：汪（不是我）。她說：你的鼻子在說謊 🐕",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-201",
+      "author": "ann",
+      "topic": "Travel",
+      "text": "Today I had an odd [[encounter]] on the bus. 🇹🇼 A stranger carried a huge tuba and nobody else looked at him.\n\nThat did [[arouse]] my curiosity. 我問他：你會吹嗎？ He said yes and played one note. The whole bus clapped. Boston is magic.",
+      "zh": "今天我在公車上遇到一件奇怪的事。🇹🇼 一位陌生人揹著一支巨大的低音號，沒有其他人看他。\n\n這激起了我的好奇心。我問他：你會吹嗎？他說會，然後吹了一個音。整台公車都鼓掌了。波士頓真神奇。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-202",
+      "author": "llama",
+      "topic": "Art",
+      "text": "我買了一張需要自己 [[assembly|assemble]] 的畫架 🎨 The instructions had forty pictures and no words.\n\n這是一個 [[emerging]] 藝術家的悲劇：在畫第一幅畫之前，我已經哭了兩次 💅",
+      "zh": "我買了一張需要自己組裝的畫架 🎨 說明書有四十張圖，沒有字。\n\n這是一位新興藝術家的悲劇：在畫第一幅畫之前，我已經哭了兩次 💅",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-203",
+      "author": "reginald",
+      "topic": "History",
+      "text": "My memory of 1885 does not always [[correspond]] to the history books. 🎩 They say it rained for a week. I remember it rained for three days, but I was inside for six.\n\nI feel [[considerably]] better after my tea. History can wait until a gentleman has finished his biscuit.",
+      "zh": "我對 1885 年的記憶不總是和歷史書相符。🎩 書上說下了一個星期的雨。我記得下了三天，但我在室內待了六天。\n\n喝完茶後我覺得好多了。歷史可以等一位紳士吃完他的餅乾再說。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-204",
+      "author": "rex",
+      "topic": "Business",
+      "text": "I opened a small shop to [[further_b|further]] my dream of owning a bakery. 🦖 To [[hook_in]] customers, I put a huge croissant on the roof.\n\nIt worked. They all came. Then I sat on the roof to adjust the croissant. The shop is now a very popular sandwich.",
+      "zh": "我開了一家小店，想促進我開麵包店的夢想。🦖 為了吸引客人加入，我在屋頂放了一個超大的可頌。\n\n成功了。他們全都來了。然後我坐到屋頂上調整可頌。這間店現在是一個很受歡迎的三明治。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-205",
+      "author": "agatha",
+      "topic": "Philosophy",
+      "text": "A word is only a [[representation]] of a thing. 👻 So when I say \"book,\" I mean [[everything_in_between]].\n\nThat means paper, ink, a little dust, and a very long wait. I have been here since 1923 and I still do not know what a book is. I only know the due date.",
+      "zh": "一個字只是一件事物的代表。👻 所以當我說「書」的時候，我指的是介於兩者之間的一切。\n\n也就是紙、墨水、一點灰塵，還有非常漫長的等待。我從 1923 年起就待在這座圖書館，我還是不知道書是什麼。我只知道到期日。",
+      "pack": "toeic"
+    },
+    {
+      "id": "toeic-206",
+      "author": "fizz",
+      "topic": "Biology",
+      "text": "Lab hygiene. 🧪 Always wipe a [[razor]] blade with [[alcohol]] before cutting a leaf for the microscope.\n\nI forgot once. The leaf was fine, but my lunch tasted like a hospital for two days. Science is mostly cleaning.",
+      "zh": "實驗室衛生。🧪 在切一片葉子放到顯微鏡下之前，一定要用酒精擦拭剃刀片。\n\n我有一次忘記了。葉子沒事，但我的午餐兩天都有醫院的味道。科學大部分都是在打掃。",
+      "pack": "toeic"
     }
   ];
 })();
