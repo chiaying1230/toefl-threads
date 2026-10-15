@@ -96,6 +96,7 @@ export function segmentHash({ voice, speak, previousText, nextText, outputFormat
     text: speak,
     previousText: previousText ?? null,
     nextText: nextText ?? null,
+    ...(voice.takeId ? { takeId: voice.takeId } : {}),
   });
   return crypto.createHash("sha256").update(JSON.stringify(input)).digest("hex").slice(0, 32);
 }
@@ -139,6 +140,10 @@ export function prepareNarration(narration, cfg, { env = process.env, requireApi
     }
   });
   const spoken = list.filter((s) => s && !s.silent && typeof s.kind === "string");
+  if (narration.requestContract === 'explicit-language-v1') for (const s of spoken) {
+    if (!['en', 'zh'].includes(s.language)) problems.push(`${s.id}: explicit segment language is required (en / zh); no guessing`);
+    if (s.ttsTake && (!/^[a-f0-9-]{36}$/.test(s.ttsTake.id) || !['retake', 'sealed-reuse'].includes(s.ttsTake.kind))) problems.push(`${s.id}: invalid immutable take identity`);
+  }
   for (const s of list) {
     if (!s || s.continuesFrom === undefined) continue;
     const prev = byId.get(s.continuesFrom);
@@ -164,23 +169,34 @@ export function prepareNarration(narration, cfg, { env = process.env, requireApi
   let resolved = {};
   try { resolved = assertReady(cfg, { roles: spoken.map((s) => s.kind), env, requireApiKey }); }
   catch (e) { if (e instanceof ConfigError) problems.push(...e.problems); else throw e; }
+  if (narration.requestContract === 'explicit-language-v1') for (const s of spoken) {
+    if (resolved[s.kind] && s.language !== resolved[s.kind].lang) problems.push(`${s.id}: explicit language differs from assigned speaker language`);
+  }
   if (problems.length) throw new ConfigError(problems);
 
   const outputFormat = cfg.output?.format || "mp3_44100_128";
   const speakOf = (s) => (s.speak ?? s.text).trim();
   const segments = list.map((s) => {
     if (s.silent) return { id: s.id, kind: s.kind, silent: true, duration: s.duration, gap: s.gap ?? 0 };
-    const voice = resolved[s.kind];
+    let voice = resolved[s.kind];
+    if (narration.requestContract === 'explicit-language-v1') {
+      voice = { ...voice, languageCode: s.language };
+      if (s.ttsTake?.kind === 'retake') voice.takeId = s.ttsTake.id;
+      // Explicitly selected historical evidence keeps its ORIGINAL request contract, never a new-language cache hit.
+      if (s.ttsTake?.kind === 'sealed-reuse') voice = { ...voice, languageCode: s.ttsTake.languageCode ?? null, ...(s.ttsTake.originalTakeId ? { takeId: s.ttsTake.originalTakeId } : {}) };
+    }
     const speak = speakOf(s);
     let previousText = null, nextText = null;
     if (s.continuesFrom !== undefined) previousText = speakOf(byId.get(s.continuesFrom).s);
     const follower = list.find((o) => o && o.continuesFrom === s.id);
     if (follower) nextText = speakOf(follower);
     const parts = s.parts ? layoutParts({ ...s, text: s.text.trim() }).parts : null;
+    const hash = segmentHash({ voice, speak, previousText, nextText, outputFormat });
+    if (s.ttsTake?.kind === 'sealed-reuse' && hash !== s.ttsTake.hash) throw new ConfigError(`${s.id}: selected sealed take contract mismatch`);
     return {
-      id: s.id, kind: s.kind, role: s.kind, voiceName: voice.name, voice, lang: voice.lang,
+      id: s.id, kind: s.kind, role: s.kind, voiceName: voice.name, voice, lang: s.language ?? voice.lang,
       text: s.text.trim(), speak, parts, previousText, nextText, gap: s.gap ?? 0, chars: speak.length,
-      hash: segmentHash({ voice, speak, previousText, nextText, outputFormat }),
+      hash,
     };
   });
   // playback order: a split sentence's first part plays in place; each later part plays right after its `resumeAfter` segment

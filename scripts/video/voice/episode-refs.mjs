@@ -113,7 +113,12 @@ export function validateEpisode(episode, lines, opts = {}) {
   // number / caption / ratio belong to number_contrast only; scene_contrast describes a setup against a payoff
   // number_contrast keeps its emoji (P2); a scene_contrast hook may have none (video content uses no decorative emoji by default)
   const hookKeys = hookType === "scene_contrast" ? ["setup"] : ["number", "caption", "ratio", "emoji"];
-  need(episode.hook, ["id", "label", ...hookKeys, "payoff", "zh", "reveal", "revealDuration"], "hook");
+  need(episode.hook, ["id", "label", ...hookKeys, "payoff", "reveal", "revealDuration"], "hook");
+  // Explicit null is a human decision to omit Chinese. Existing string copy (including frozen legacy whitespace) is unchanged.
+  if (episode.hook.zh !== null) {
+    need(episode.hook, ["zh"], "hook");
+    if (episode.hook.zh !== undefined && typeof episode.hook.zh !== "string") err("hook.zh", "must be text or explicit null (no Chinese)");
+  }
   if (hookType === "scene_contrast" && !Array.isArray(episode.hook.setup)) err("hook.setup", "must be an array of text lines");
   need(episode.quiz, ["id", "meta", "quote", "question", "options", "answer", "questionLine", "answerLine", "feedback", "feedbackDetail"], "quiz");
   need(episode.status, ["reading", "question", "answer", "readingPhase", "thinkingPhase", "answerPhase"], "status");

@@ -1,0 +1,266 @@
+{
+  "id": "p2-auto",
+  "plan": "/docs/p2-auto/p2-auto.plan.json",
+  "audio": "/docs/p2-auto/narration.wav",
+  "soundEffects": [
+    {
+      "asset": "/scripts/video/assets/answer-correct.wav",
+      "at": {
+        "line": "answer"
+      },
+      "gain": 0.75
+    }
+  ],
+  "music": {
+    "asset": "/scripts/video/assets/social-soft-groove.wav",
+    "bpm": 94,
+    "narrationGain": 0.16,
+    "endingGain": 0.3,
+    "riseDuration": 0.6,
+    "fadeIn": 0.35,
+    "fadeOut": 0.8
+  },
+  "brand": "● toEfu",
+  "episodeLabel": "TOEFL · EP.01",
+  "author": {
+    "avatar": "🐱",
+    "name": "Mr. Whiskers",
+    "meta": "@cat_ceo · 董事會現場",
+    "level": "L2 → L3"
+  },
+  "social": "原創串文 · Business",
+  "outside": "英文跟讀 · 貓 CEO 的預算決定",
+  "readingEvents": [
+    "ninety",
+    "percent",
+    "cardboard",
+    "boxes"
+  ],
+  "vocabulary": [
+    {
+      "id": "allocateNote",
+      "word": "allocate",
+      "forms": [
+        "allocated"
+      ],
+      "zh": "分配；撥出",
+      "pos": "v.",
+      "meaningLine": "allocateMeaning",
+      "exampleLine": "allocateExample",
+      "exampleZh": "我們分配預算給廣告。",
+      "open": {
+        "line": "lead",
+        "word": "allocate"
+      },
+      "close": {
+        "line": "budget"
+      },
+      "openDuration": 0.28,
+      "closeDuration": 0.32
+    }
+  ],
+  "hook": {
+    "id": "hook",
+    "label": "BOARD MEETING UPDATE",
+    "number": "90%",
+    "caption": "of the budget.",
+    "ratio": 0.9,
+    "payoff": [
+      "FOR CARDBOARD",
+      "BOXES. "
+    ],
+    "emoji": "📦",
+    "zh": "公司九成預算，拿去買紙箱？",
+    "reveal": {
+      "line": "hook",
+      "word": "for"
+    },
+    "revealDuration": 0.16
+  },
+  "story": [
+    {
+      "id": "first",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "lead"
+        },
+        {
+          "type": "vocabulary",
+          "id": "allocateNote"
+        },
+        {
+          "type": "reading",
+          "line": "budget"
+        },
+        {
+          "type": "translation",
+          "text": "我決定把公司九成預算撥給紙箱。"
+        }
+      ]
+    },
+    {
+      "id": "cfo",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "cfo"
+        },
+        {
+          "type": "translation",
+          "text": "財務長：為什麼？"
+        },
+        {
+          "type": "reading",
+          "line": "pen"
+        },
+        {
+          "type": "translation",
+          "text": "我把他的筆從桌上撥下去。"
+        }
+      ]
+    },
+    {
+      "id": "decision",
+      "parts": [
+        {
+          "type": "reading",
+          "line": "decision"
+        },
+        {
+          "type": "translation",
+          "text": "決定不改了，而且完全是隨意的。"
+        },
+        {
+          "type": "reading",
+          "line": "bye"
+        },
+        {
+          "type": "translation",
+          "text": "散會。🐾"
+        }
+      ]
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "id": "hook",
+      "offset": 0
+    },
+    {
+      "at": {
+        "line": "lead"
+      },
+      "id": "first",
+      "offset": 95
+    },
+    {
+      "at": {
+        "line": "lead",
+        "word": "allocate"
+      },
+      "id": "first",
+      "offset": 60
+    },
+    {
+      "at": {
+        "line": "budget"
+      },
+      "id": "first",
+      "offset": 35
+    },
+    {
+      "at": {
+        "line": "cfo"
+      },
+      "id": "cfo",
+      "offset": 70
+    },
+    {
+      "at": {
+        "line": "decision"
+      },
+      "id": "decision",
+      "offset": 80
+    },
+    {
+      "at": {
+        "line": "bye"
+      },
+      "id": "decision",
+      "offset": -80
+    },
+    {
+      "at": {
+        "line": "question"
+      },
+      "id": "quiz",
+      "offset": 35
+    }
+  ],
+  "scrollDuration": 0.35,
+  "visibility": [
+    {
+      "id": "first",
+      "at": {
+        "line": "lead",
+        "delay": -0.35
+      },
+      "before": 0.2
+    },
+    {
+      "id": "cfo",
+      "at": {
+        "line": "cfo",
+        "delay": -0.3
+      },
+      "before": 0
+    },
+    {
+      "id": "decision",
+      "at": {
+        "line": "decision",
+        "delay": -0.3
+      },
+      "before": 0
+    },
+    {
+      "id": "quiz",
+      "at": {
+        "line": "question",
+        "delay": -0.3
+      },
+      "before": 0
+    }
+  ],
+  "quiz": {
+    "id": "quiz",
+    "type": "meaning",
+    "meta": "↳ 回覆這個決定",
+    "quote": [
+      "“The decision is final,",
+      "and completely arbitrary.”"
+    ],
+    "word": "arbitrary",
+    "question": " 是什麼意思？",
+    "options": [
+      "精心策劃的",
+      "任意的；武斷的",
+      "節省預算的"
+    ],
+    "answer": 1,
+    "questionLine": "question",
+    "answerLine": "answer",
+    "feedback": "✓ B · 沒有合理依據",
+    "feedbackDetail": "九成預算買紙箱。貓說了算。"
+  },
+  "status": {
+    "reading": "董事會紀錄",
+    "question": "剛剛那個字，你記住了嗎？",
+    "answer": "✓ 答案揭曉",
+    "readingPhase": "● 正在朗讀",
+    "thinkingPhase": "● 換你想想",
+    "answerPhase": "● 貓說了算"
+  }
+}

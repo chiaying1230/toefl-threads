@@ -1,0 +1,4 @@
+.studio-header{background-color:#fffcf3;background-image:repeating-linear-gradient(135deg,#e9d59b 0 7px,#fff6dc 7px 14px);background-size:100% 3px;background-repeat:no-repeat;background-position:bottom}
+.studio-header .brand,.studio-header strong{display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
+.studio-header img{display:block;width:42px;height:42px;flex:none;border-radius:12px;box-shadow:0 1px 4px #83622c1a}
+@media(max-width:700px){.studio-header{padding-left:12px;padding-right:12px;gap:10px}.studio-header img{width:32px;height:32px;border-radius:9px}.studio-header .brand{gap:7px;font-size:20px}.studio-header .brand-title,.studio-header .brand-note{display:none}.studio-header a{font-size:12px}.studio-header strong{font-size:14px;gap:7px}}

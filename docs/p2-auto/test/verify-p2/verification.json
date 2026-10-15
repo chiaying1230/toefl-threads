@@ -1,0 +1,238 @@
+{
+  "episode": "p2-auto",
+  "checks": [
+    {
+      "name": "navy reading cue sits on the spoken word",
+      "ok": true,
+      "detail": "42 words in 8 lines"
+    },
+    {
+      "name": "hook reveal happens on \"for\"",
+      "ok": true,
+      "detail": {
+        "revealAt": 1.28,
+        "opacityBefore": 0.18,
+        "opacityAfter": 1
+      }
+    },
+    {
+      "name": "vocabulary \"allocate\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 3.485,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 333,
+        "activeCueAtOpen": [
+          "allocate"
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "money"
+        ],
+        "resumeLine": "budget",
+        "resumeCue": [
+          "ninety"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"arbitrary\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 18.039,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 404,
+        "activeCueAtOpen": [
+          "arbitrary."
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "seems"
+        ],
+        "resumeLine": "bye",
+        "resumeCue": [
+          "Meeting"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "quiz question → think → answer",
+      "ok": true,
+      "detail": {
+        "question": [
+          23.949068,
+          24.749068
+        ],
+        "answer": [
+          26.749068,
+          27.999068
+        ],
+        "thinking": "● 換你想想",
+        "answered": "✓ 答案揭曉"
+      }
+    },
+    {
+      "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+      "ok": true,
+      "detail": {
+        "lines": 11,
+        "outside": [],
+        "rows": [
+          {
+            "id": "hook",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "lead",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.009
+          },
+          {
+            "id": "allocateMeaning",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "allocateExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "budget",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "cfo",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "pen",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "decision",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "arbitraryMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "arbitraryExample",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "bye",
+            "onsetMinusStart": 0.04,
+            "endMinusVoicedEnd": 0.045
+          }
+        ]
+      }
+    },
+    {
+      "name": "mp4 decodes completely and has the expected length",
+      "ok": true,
+      "detail": {
+        "decodeErrors": "none",
+        "seconds": 30.4,
+        "expected": 30.4,
+        "video": [
+          "h264 (High) (avc1 / 0x31637661)",
+          "1080x1920"
+        ],
+        "audio": "aac (LC) (mp4a / 0x6134706D)"
+      }
+    }
+  ],
+  "frames": [
+    {
+      "label": "Hook",
+      "t": 0.7,
+      "lit": ""
+    },
+    {
+      "label": "Hook reveal",
+      "t": 1.58,
+      "lit": ""
+    },
+    {
+      "label": "Reading before \"allocate\"",
+      "t": 3.4050113378684808,
+      "lit": "to"
+    },
+    {
+      "label": "Handoff → allocate",
+      "t": 3.865011337868481,
+      "lit": "allocate"
+    },
+    {
+      "label": "allocate: meaning",
+      "t": 4.8265075,
+      "lit": "allocate · 分配；撥出v."
+    },
+    {
+      "label": "allocate: example",
+      "t": 6.724013,
+      "lit": "money"
+    },
+    {
+      "label": "Back to story after allocate",
+      "t": 8.330022070294785,
+      "lit": "ninety"
+    },
+    {
+      "label": "Reading before \"arbitrary\"",
+      "t": 17.67904633786848,
+      "lit": "completely"
+    },
+    {
+      "label": "Handoff → arbitrary",
+      "t": 18.419046337868483,
+      "lit": "arbitrary."
+    },
+    {
+      "label": "arbitrary: meaning",
+      "t": 19.759046,
+      "lit": "arbitrary · 任意的；武斷的adj."
+    },
+    {
+      "label": "arbitrary: example",
+      "t": 21.61405733786848,
+      "lit": "seems"
+    },
+    {
+      "label": "Back to story after arbitrary",
+      "t": 23.03656266893424,
+      "lit": "Meeting"
+    },
+    {
+      "label": "Reaction: knocked",
+      "t": 13.934035337868481,
+      "lit": "his"
+    },
+    {
+      "label": "Quiz",
+      "t": 25.249068,
+      "lit": ""
+    },
+    {
+      "label": "Answer",
+      "t": 27.249068,
+      "lit": ""
+    },
+    {
+      "label": "Outro",
+      "t": 29.4,
+      "lit": ""
+    }
+  ]
+}

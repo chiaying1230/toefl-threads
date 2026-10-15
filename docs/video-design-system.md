@@ -90,7 +90,7 @@ episode 用結構化 metadata 描述（全部是明確資料）：
 - **不要把故事提前講完。** Hook 優先保留懸念，只揭露足以讓人停下來的那一點資訊；其餘留給正文揭曉。P5 的原案是完整反差（答應室友午夜前睡 vs 凌晨兩點在走廊做伏地挺身），最後縮成 `IT'S 2 A.M.`，室友承諾與伏地挺身都留在正文。
 - **視覺資訊精簡。** 不為了填滿 schema 而顯示不需要的中文翻譯或第二層資訊。Hook 只需要一句話時，就只放一句話。
 - 位置：eyebrow（topic）下方、黃色橫線上方（`scene_contrast` 的 `setup` 區）；`payoff` 留空時只有橫線，橫線在 `reveal` 的字亮起。
-- **Known workaround / 技術債（不是推薦做法）：** `episode-refs.mjs` 的 `need()` 要求 `hook.zh` 非空，所以 P5 為了不顯示中文，把 `hook.zh` 設成單一空白字元 `" "`。**未來不要複製這個做法。** 正式支援無中文 Hook 應該修改 schema / validator（讓 `scene_contrast` 的 `zh` 可省略），並依 shared-template 流程做 P2 / P3 / P4 regression 與新 revision。
+- **正式無中文 Hook（r9，2026-10-13）：** `hook.zh = null` 是使用者明確決策，validator 合法，renderer 不填入中文。有中文文字的行為不變，缺欄位仍報錯。Studio 留空保存為 null，可正常免費規劃；不得塞空白或假中文。P5 的 `" "` 是當時的 workaround，保留 frozen 輸入相容、不修改 P5；新 episode 不複製。r9 regression/hash 記錄在 `docs/video/revisions/r9-null-hook-zh.json`。
 
 **閱讀畫面保持串流感**
 - 正在朗讀一段時，下一段內容要適度提前出現在下方；避免目前句子下方大片留白、念完才突然跳出下一段。

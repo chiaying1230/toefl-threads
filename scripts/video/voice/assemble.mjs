@@ -17,9 +17,35 @@ export const FPS = 30;
 function trimClip(x) {
   const b = voicedBounds(x);
   if (!b) throw new AlignmentError("the audio is silent");
-  const from = Math.max(0, b.first - Math.round(HEAD_PAD * SR)), to = Math.min(x.length, b.last + Math.round(TAIL_PAD * SR));
+  const head = Math.round(HEAD_PAD * SR), tail = Math.round(TAIL_PAD * SR);
+  let from = Math.max(0, b.first - head), to = Math.min(x.length, b.last + tail);
   const n = Math.round(0.006 * SR);
-  return { from, to, audio: fade(x.subarray(from, to), n, n) };
+  let audio = fade(x.subarray(from, to), n, n);
+  for (let attempt = 0; attempt < 8; attempt++) {
+    // Measure the FINAL PCM waveform, retaining the decoder's original 10ms block origin.
+    // Re-originating the blocks after a 35ms trim would move healthy frozen clips by half a block.
+    const processed = new Float32Array(x.length);
+    for (let i = 0; i < audio.length; i++) processed[from + i] = Math.max(-32768, Math.min(32767, Math.round(audio[i] * 32767))) / 32768;
+    const final = voicedBounds(processed);
+    if (!final) throw new AlignmentError("the processed audio is silent");
+    let nextFrom = Math.max(from, final.first - head), nextTo = Math.min(to, final.last + tail);
+    // The verifier measures the written PCM on the playback line's 10ms grid. A 35ms head trim
+    // shifts that grid by half a block: a weak tail can be active on the source grid but inactive
+    // on the playback grid. Preserve healthy/frozen clips byte-for-byte; repair only excess slack.
+    const playback = voicedBounds(processed.subarray(from, to));
+    if (!playback) throw new AlignmentError('the processed audio is silent on the playback grid');
+    const maxSlack = Math.round(0.06 * SR); // existing verifier contract, not a new tolerance
+    if (playback.first > maxSlack) nextFrom = Math.max(nextFrom, Math.min(final.first, from + playback.first - head));
+    if (audio.length - playback.last > maxSlack) nextTo = Math.min(nextTo, Math.max(final.last, from + playback.last + tail));
+    if (nextFrom === from && nextTo === to) {
+      if (playback.first > maxSlack || audio.length - playback.last > maxSlack) throw new AlignmentError('cannot safely trim playback silence while retaining source-grid speech');
+      return { from, to, audio };
+    }
+    // Never reintroduce discarded samples; fade only edges newly exposed by this correction.
+    audio = fade(audio.subarray(nextFrom - from, nextTo - from), nextFrom > from ? n : 0, nextTo < to ? n : 0);
+    from = nextFrom; to = nextTo;
+  }
+  throw new AlignmentError("final waveform trim did not converge");
 }
 
 /** Rebase words from the untrimmed clip to the trimmed clip: shift by `t0`, clamp into [0, duration]. */
@@ -71,10 +97,21 @@ export function assembleNarration(prepared, cache, { decode = decodeAudio, fps =
         provenance.warnings.push(...r.warnings);
       }
       const p = decoded.get(seg.id).r.parts.find((q) => q.id === item.part);
-      place({ id: p.id, lang: seg.lang, text: p.text, gap: p.gap, duration: p.duration, words: p.words, alignment: `ElevenLabs character alignment, part of ${seg.id} (${seg.hash.slice(0, 8)})` }, partAudio(x, p));
+      let audio = partAudio(x, p), duration = p.duration, words = p.words;
+      // Split parts also need the FINAL faded/written PCM check. A transient that
+      // selected the old trim boundary can disappear during the edge fade.
+      const pcm = Float32Array.from(audio, v => Math.max(-32768, Math.min(32767, Math.round(v * 32767))) / 32768);
+      const bounds = voicedBounds(pcm);
+      if (!bounds) throw new AlignmentError(`${seg.id}: part "${p.id}" is silent after fading`);
+      if (bounds.first / SR > 0.06 || (audio.length - bounds.last) / SR > 0.06) {
+        const repaired = trimClip(audio);
+        audio = repaired.audio; duration = audio.length / SR;
+        words = rebase(p.words, repaired.from / SR, duration);
+      }
+      place({ id: p.id, lang: seg.lang, text: p.text, gap: p.gap, duration, words, alignment: `ElevenLabs character alignment, part of ${seg.id} (${seg.hash.slice(0, 8)})` }, audio);
     } else {
-      const { from, to, audio } = trimClip(x);
-      const t0 = from / SR, duration = (to - from) / SR;
+      const { from, audio } = trimClip(x);
+      const t0 = from / SR, duration = audio.length / SR;
       let words = alignmentToWords(seg.speak, alignment, { audioDuration: x.length / SR, tolerance: 0.25, tokens }).words;
       words = remapWordsToDisplay(words, seg.speak, seg.text);
       place({ id: seg.id, lang: seg.lang, text: seg.text, gap: seg.gap, duration, words: rebase(words, t0, duration), alignment: `ElevenLabs character alignment (${seg.hash.slice(0, 8)})` }, audio);

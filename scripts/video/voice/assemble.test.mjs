@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { AlignmentError, alignmentToWords, remapWordsToDisplay } from "./align.mjs";
-import { SAMPLE_RATE as SR } from "./audio.mjs";
+import { SAMPLE_RATE as SR, voicedBounds } from "./audio.mjs";
 import { assembleNarration } from "./assemble.mjs";
 import { createCache } from "./cache.mjs";
 import { ConfigError } from "./config.mjs";
@@ -125,4 +125,74 @@ test("assemble: refuses to run with segments that were never generated", () => {
   const { prepared, decode } = fixture();
   const empty = createCache({ audioDir: path.join(os.tmpdir(), "nope-a"), alignmentDir: path.join(os.tmpdir(), "nope-b") });
   assert.throws(() => assembleNarration(prepared, empty, { decode }), (e) => e instanceof ConfigError && /not generated yet: hook, first/.test(e.message));
+});
+
+test("assemble: fade-removed terminal transient cannot retain a silent tail; final duration and original alignment stay consistent", () => {
+  const text = "A short sentence.", p = prepareNarration({ id: 'final-waveform', segments: [{ id: 'line', kind: 'story', text, gap: .08 }] }, cfg, { requireApiKey: false, env: {} });
+  const alignment = evenAlignment(text);
+  alignment.character_start_times_seconds = alignment.character_start_times_seconds.map((_, i) => i / text.length);
+  alignment.character_end_times_seconds = alignment.character_end_times_seconds.map((_, i) => (i + 1) / text.length);
+  const originalAlignment = structuredClone(alignment), x = new Float32Array(Math.round(1.6 * SR));
+  for (let i = Math.round(.1 * SR); i < Math.round(1.15 * SR); i++) x[i] = .15 * Math.sin(2 * Math.PI * 220 * i / SR);
+  // Short terminal burst above the normal threshold BEFORE the end fade, below it AFTER fade.
+  for (let i = x.length - Math.round(.001 * SR); i < x.length; i++) x[i] = .02;
+  const before = Float32Array.from(x);
+  const cache = { has: () => true, audioPath: () => 'synthetic-only', readAlignment: () => ({ alignment }) };
+  const a = assembleNarration(p, cache, { decode: () => x }), b = assembleNarration(p, cache, { decode: () => x });
+  assert.deepEqual(a, b); assert.deepEqual(x, before); assert.deepEqual(alignment, originalAlignment);
+  const l = a.plan.lines[0], v = voicedBounds(a.samples);
+  assert.ok(l.duration < 1.3, 'removed transient must not keep the old 1.6s tail');
+  assert.ok(l.start <= v.first / SR && v.first / SR - l.start <= .06);
+  assert.ok(l.end >= v.last / SR && l.end - v.last / SR <= .06);
+  const from = Math.max(0, voicedBounds(x).first - Math.round(.035 * SR)) / SR;
+  const originalWords = alignmentToWords(text, alignment).words;
+  l.words.forEach((w, i) => { assert.equal(w.at, Math.min(l.duration, Math.max(0, originalWords[i].at - from))); assert.equal(w.until, Math.min(l.duration, Math.max(0, originalWords[i].until - from))); });
+});
+
+test("assemble: audio made completely silent by fade fails closed", () => {
+  const text = 'A.', p = prepareNarration({ id: 'fade-silent', segments: [{ id: 'line', kind: 'story', text }] }, cfg, { requireApiKey: false, env: {} });
+  const x = new Float32Array(Math.round(.01 * SR)); x[0] = .1;
+  const cache = { has: () => true, audioPath: () => 'synthetic-only', readAlignment: () => ({ alignment: evenAlignment(text) }) };
+  assert.throws(() => assembleNarration(p, cache, { decode: () => x }), /processed audio is silent/);
+});
+
+test('assemble: source-grid-only weak tail cannot leave over 60ms slack on final playback PCM; alignment and source stay immutable',()=>{
+  const text='A short line.',prepared=prepareNarration({id:'playback-grid',segments:[{id:'line',kind:'story',text,gap:.08}]},cfg,{requireApiKey:false,env:{}});
+  const alignment=evenAlignment(text);alignment.character_start_times_seconds=alignment.character_start_times_seconds.map((_,i)=>.08+i*.7/text.length);alignment.character_end_times_seconds=alignment.character_end_times_seconds.map((_,i)=>.08+(i+1)*.7/text.length);
+  const x=new Float32Array(SR);for(let i=Math.round(.08*SR);i<Math.round(.80*SR);i++)x[i]=.15*Math.sin(2*Math.PI*220*i/SR);
+  // This pulse straddles a playback-grid boundary but sits inside one source-grid block.
+  for(let i=Math.round(.844*SR);i<Math.round(.846*SR);i++)x[i]=.011;
+  const source=Float32Array.from(x),saved=structuredClone(alignment),cache={has:()=>true,audioPath:()=> 'test',readAlignment:()=>({alignment})};
+  const result=assembleNarration(prepared,cache,{decode:()=>x}),l=result.plan.lines[0];
+  const pcm=Float32Array.from(result.samples,v=>Math.max(-32768,Math.min(32767,Math.round(v*32767)))/32768),bounds=voicedBounds(pcm);
+  assert.ok(l.end-bounds.last/SR<=.06);assert.ok(bounds.first/SR-l.start<=.06);assert.ok(l.duration<.855);
+  assert.deepEqual(x,source);assert.deepEqual(alignment,saved);assert.deepEqual(assembleNarration(prepared,cache,{decode:()=>x}),result);
+  assert.ok(l.words.every(w=>w.at>=0&&w.until<=l.duration));
+});
+
+test("assemble: split resume drops a fade-removed tail transient, preserves immutable take and exact word offsets", () => {
+  const text='Go now.', prepared=prepareNarration({id:'split-tail',segments:[{id:'story',kind:'story',text,parts:[{id:'lead',through:'Go'},{id:'rest',resumeAfter:'pause'}]},{id:'pause',kind:'quiz',silent:true,duration:.3}]},cfg,{requireApiKey:false,env:{}});
+  const alignment=evenAlignment(text);alignment.character_start_times_seconds=alignment.character_start_times_seconds.map(t=>t+.1);alignment.character_end_times_seconds=alignment.character_end_times_seconds.map(t=>t+.1);
+  const x=new Float32Array(Math.round(1.01*SR));for(let i=Math.round(.1*SR);i<Math.round(.78*SR);i++)x[i]=.15*Math.sin(2*Math.PI*220*i/SR);
+  for(let i=Math.round(1.009*SR);i<x.length;i++)x[i]=.02;
+  const original=Float32Array.from(x),saved=structuredClone(alignment),cache={has:()=>true,audioPath:()=> 'synthetic',readAlignment:()=>({alignment})};
+  const result=assembleNarration(prepared,cache,{decode:()=>x}),rest=result.plan.lines.find(l=>l.id==='rest');
+  const pcm=Float32Array.from(result.samples,v=>Math.max(-32768,Math.min(32767,Math.round(v*32767)))/32768),bounds=voicedBounds(pcm.subarray(Math.round(rest.start*SR),Math.round(rest.end*SR)));
+  assert.ok(rest.duration-bounds.last/SR<=.06);assert.ok(bounds.first/SR<=.06);assert.ok(rest.end-rest.start<.7);
+  assert.deepEqual(x,original);assert.deepEqual(alignment,saved);assert.deepEqual(assembleNarration(prepared,cache,{decode:()=>x}),result);
+  assert.ok(rest.words.every(w=>w.at>=0&&w.until<=rest.duration));
+});
+
+test("assemble: fade-removed leading transient rebases original word times by the exact final sample offset", () => {
+  const text = 'A word.', p = prepareNarration({ id: 'leading-waveform', segments: [{ id: 'line', kind: 'story', text }] }, cfg, { requireApiKey: false, env: {} });
+  const a = evenAlignment(text); a.character_start_times_seconds = a.character_start_times_seconds.map(t => t + .35); a.character_end_times_seconds = a.character_end_times_seconds.map(t => t + .35);
+  const saved = structuredClone(a), x = new Float32Array(Math.round(1.3 * SR));
+  for (let i = 0; i < Math.round(.001 * SR); i++) x[i] = .02;
+  for (let i = Math.round(.35 * SR); i < Math.round(1.05 * SR); i++) x[i] = .15 * Math.sin(2 * Math.PI * 220 * i / SR);
+  const cache = { has: () => true, audioPath: () => 'synthetic-only', readAlignment: () => ({ alignment: a }) };
+  const result = assembleNarration(p, cache, { decode: () => x }), l = result.plan.lines[0], v = voicedBounds(result.samples);
+  const shift = (Math.round(.35 * SR) - Math.round(.035 * SR)) / SR;
+  assert.equal(l.words[0].at, a.character_start_times_seconds[0] - shift);
+  assert.ok(v.first / SR - l.start <= .06); assert.ok(l.end - v.last / SR <= .06);
+  assert.deepEqual(a, saved);
 });

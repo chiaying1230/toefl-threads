@@ -28,6 +28,25 @@ test("lines come out in playback order, split sentences as their parts", () => {
   assert.equal(lines().get("question").silent, true);
 });
 
+test("Hook Chinese: explicit null is valid for both variants, existing strings stay unchanged, missing/invalid copy fails", () => {
+  for (const type of ['number_contrast', 'scene_contrast']) {
+    const e = episode();
+    if (type === 'scene_contrast') { e.hook.type = type; e.hook.setup = ['A scene']; }
+    const original = e.hook.zh;
+    assert.deepEqual(validateEpisode(e, lines()), []);
+    assert.equal(e.hook.zh, original);
+    e.hook.zh = null;
+    assert.deepEqual(validateEpisode(e, lines()), []);
+    assert.equal(e.hook.zh, null);
+    e.hook.zh = ' '; // P5 frozen legacy input remains accepted; new Studio emits null.
+    assert.deepEqual(validateEpisode(e, lines()), []);
+    for (const invalid of [undefined, '', false, 42, {}, []]) {
+      e.hook.zh = invalid;
+      has(validateEpisode(e, lines()), /hook\.zh/);
+    }
+  }
+});
+
 test("missing references fail early, each with its field path", (t) => {
   if (!have) return t.skip();
   has(problems((e) => { e.story[0].parts[0].line = "ghost"; }), /story\[0\].*parts\[0\]\.line: unknown narration line "ghost"/);

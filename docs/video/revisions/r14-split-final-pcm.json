@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "id": "r14-split-final-pcm",
+  "parent": "r13-time-ref-delay",
+  "at": "2026-10-14",
+  "status": "validated",
+  "scope": "Apply existing final faded/PCM slack repair to split parts only when their final PCM exceeds the existing 60ms contract. Preserve healthy parts, immutable voice/alignment and exact sample word rebase.",
+  "changedFiles": [
+    "scripts/video/voice/assemble.mjs"
+  ],
+  "templateAndPipeline": {
+    "scripts/video/post-reference.html": "23127a103e70a5f674b17cfdbb2c06ba04cbe8b7220906dccdb1fe946537ccf3",
+    "scripts/video/reference/PostTemplate.js": "09a86d5148e81414d51d8492a8818da8bc62d381c85748d1604d305d5c913fe8",
+    "scripts/video/reference/ReadingCue.js": "9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad",
+    "scripts/video/reference/Components.js": "84b5db5ff8f61a1844c2e2a9466ea2a79412a6c06efba40ee949808a24e99bf5",
+    "scripts/video/reference/post.css": "3d547afd980861d19cdc4a4366b05b3f4e6d50481e465e25b4b8092b74c95f67",
+    "scripts/video/reference/outro.css": "727c5672fab572847ccd957f85184fa5edc9e72be8573d0da2990565a5a61137",
+    "scripts/video/components/Mascot.js": "882203648bff76c8b21e29d908f9bc0646d66eac1f27784cae34580534427025",
+    "scripts/video/render-episode.mjs": "b727cbde0c0a226879904526dcb93d36cf82cf14dac5e3c5ec821de34b6e3168",
+    "scripts/video/render-lib.mjs": "0044381a80eab4c42610441d20c250dc181b85cf86f0566cd0366fdabd74ed15",
+    "scripts/video/verify-episode.mjs": "c92ce2c09a7f582b21c91cd9cff4869e4d7adcb6c87f3540034d12388caf17a9",
+    "scripts/video/audio-mix.mjs": "33721f76b5adcbf0611838f6075efecdd42f5836b5d5074a5cd5d54527fbb5be",
+    "scripts/video/assemble.mjs": "95f111d08cd0e84e63c66866006a887be27451f3f67f32429191c88e745483c0",
+    "scripts/video/voice.mjs": "8f0d87edf4b0513066c7e0fc18819d9a9f2ef0b89bf62619e6049d426164aee2",
+    "scripts/video/voice/align.mjs": "8363afc99ee4577df15f8c8a94a947afa90fd031ca2164f869e98b8183eec37b",
+    "scripts/video/voice/assemble.mjs": "4628f9fb8a0beee6f4adb1763b67c69259c63b5cbfabf1a551032160bf0e5ff3",
+    "scripts/video/voice/audio.mjs": "97062cd66a44ca0fe79c49ae71fab9d979083690dd9d36281962ab3e17a7b1ee",
+    "scripts/video/voice/cache.mjs": "760781c1a68952820e61e497c01f71d7e4165cd868234496f17e1bd8cabd217b",
+    "scripts/video/voice/config.mjs": "9c4ece01bf2c07a7b040f6833435214de7029c5a5743d60201470f02db602e7d",
+    "scripts/video/voice/elevenlabs.mjs": "3c945bd78cfd125fdcce926b3fb3956edd7d8ad44ddc58d6069d37b968f45995",
+    "scripts/video/voice/generate.mjs": "0febc999b04da8a14f9e451f178d5b04601f8c595d6faddc80d438df162c060c",
+    "scripts/video/voice/segments.mjs": "befe37323873a9498c9a1a21ce42465ff2bad1ecfdebdbb35ff8de6f9bda1cc8",
+    "scripts/video/voice/split.mjs": "2919c94cacfa0696e9be14f9e73b8217403df9911c13715b6616cad8913e4dcb",
+    "scripts/video/voice/episode-refs.mjs": "06a69dad63808d2647da00586bce19d8d962be94ffdbb971ff0fdfe881ff2a06",
+    "scripts/video/reference/Phrase.js": "ff082c304c75e2e24e9a65ebb65a96140cff305571093568a05b7a033e6309fc",
+    "scripts/video/reference/Header.js": "b53a24d65bd1e7f4f45266a9045dd3182013c390a91b2ea2612d440f217ad2e6"
+  },
+  "frozenMetadataPreserved": true,
+  "canonicalPromotion": false,
+  "tests": {
+    "offline": {
+      "pass": 103,
+      "fail": 0
+    },
+    "frozenPlanAudio": [
+      {
+        "id": "p2",
+        "planIdentical": true,
+        "audioIdentical": true
+      },
+      {
+        "id": "p348",
+        "planIdentical": true,
+        "audioIdentical": true
+      },
+      {
+        "id": "toeic-079",
+        "planIdentical": true,
+        "audioIdentical": true
+      },
+      {
+        "id": "ielts-068",
+        "planIdentical": true,
+        "audioIdentical": true
+      }
+    ],
+    "frameRegression": [
+      {
+        "id": "p2",
+        "baseline": "C:/Users/123/toefl-threads/docs/regression/p2-auto.baseline.json",
+        "exitCode": 0,
+        "output": "p2-auto: 8 reading lines compared, 912 frames compared, 0 differ (7 known bit-unstable frame(s) matched an alternate: 858, 859, 862, 866, 867, 868, 871)\nREGRESSION OK – identical to the baseline\n",
+        "initial": {
+          "exitCode": 1,
+          "output": "p2-auto: 8 reading lines compared, 912 frames compared, 4 differ\n",
+          "knownMascotFrames": [
+            858,
+            862,
+            866,
+            868
+          ]
+        }
+      },
+      {
+        "id": "p348",
+        "baseline": "C:/Users/123/toefl-threads/docs/regression/p348-auto.baseline.json",
+        "exitCode": 0,
+        "output": "p348-auto: 12 reading lines compared, 1358 frames compared, 0 differ\nREGRESSION OK – identical to the baseline\n"
+      },
+      {
+        "id": "toeic-079",
+        "baseline": "C:\\Users\\123\\AppData\\Local\\Temp\\toefu-null-hook-p4-control.baseline.json",
+        "exitCode": 0,
+        "output": "toeic-079-auto: 8 reading lines compared, 1473 frames compared, 0 differ (6 known bit-unstable frame(s) matched an alternate: 1419, 1420, 1423, 1428, 1429, 1432)\nREGRESSION OK – identical to the baseline\n"
+      }
+    ],
+    "existingReferenceVerification": [
+      {
+        "id": "p2",
+        "exitCode": 0,
+        "checks": [
+          {
+            "name": "navy reading cue sits on the spoken word",
+            "ok": true
+          },
+          {
+            "name": "hook reveal happens on \"for\"",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+            "ok": true
+          },
+          {
+            "name": "header: top right \"TOEFL · EP.01\" (legacy episodeLabel + level badge), fits",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"allocate\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"arbitrary\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "quiz question → think → answer",
+            "ok": true
+          },
+          {
+            "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+            "ok": true
+          },
+          {
+            "name": "mp4 decodes completely and has the expected length",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "id": "p348",
+        "exitCode": 0,
+        "checks": [
+          {
+            "name": "navy reading cue sits on the spoken word",
+            "ok": true
+          },
+          {
+            "name": "hook reveal happens on \"now\"",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+            "ok": true
+          },
+          {
+            "name": "header: top right \"p348\" (legacy episodeLabel + level badge), fits",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"accuse\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"witness\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"guilty\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "quiz question → think → answer",
+            "ok": true
+          },
+          {
+            "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+            "ok": true
+          },
+          {
+            "name": "mp4 decodes completely and has the expected length",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "id": "toeic-079",
+        "exitCode": 0,
+        "checks": [
+          {
+            "name": "navy reading cue sits on the spoken word",
+            "ok": true
+          },
+          {
+            "name": "hook reveal happens on \"forgot\"",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+            "ok": true
+          },
+          {
+            "name": "header: top right \"TOEIC · #01 · L2\" (series · #NN · level), level shown once, fits",
+            "ok": true
+          },
+          {
+            "name": "content: no decorative emoji in the hook, story, vocabulary, quiz or outro",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"a game of cat and mouse\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"be consumed with\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "quiz question → think → answer",
+            "ok": true
+          },
+          {
+            "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+            "ok": true
+          },
+          {
+            "name": "mp4 decodes completely and has the expected length",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "id": "ielts-068",
+        "exitCode": 0,
+        "checks": [
+          {
+            "name": "navy reading cue sits on the spoken word",
+            "ok": true
+          },
+          {
+            "name": "hook reveal happens on \"It's\"",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+            "ok": true
+          },
+          {
+            "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+            "ok": true
+          },
+          {
+            "name": "header: top right \"IELTS · #01 · L2–L3\" (series · #NN · level), level shown once, fits",
+            "ok": true
+          },
+          {
+            "name": "content: no decorative emoji in the hook, story, vocabulary, quiz or outro",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"in deadly earnest\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"debatable\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "vocabulary \"frivolous\": yellow handoff → meaning → example → back to story",
+            "ok": true
+          },
+          {
+            "name": "quiz question → think → answer",
+            "ok": true
+          },
+          {
+            "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+            "ok": true
+          },
+          {
+            "name": "mp4 decodes completely and has the expected length",
+            "ok": true
+          }
+        ]
+      }
+    ],
+    "realSealedReplay": {
+      "contentId": "hs-016",
+      "pairsReused": 7,
+      "checks": [
+        {
+          "name": "navy reading cue sits on the spoken word",
+          "ok": true,
+          "detail": "43 words in 6 lines"
+        },
+        {
+          "name": "hook reveal happens on \"school\"",
+          "ok": true,
+          "detail": {
+            "revealAt": 3.415,
+            "opacityBefore": 0.18,
+            "opacityAfter": 1
+          }
+        },
+        {
+          "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+          "ok": true,
+          "detail": "0 phrase span(s) and 4 single-word token(s) in 6 lines"
+        },
+        {
+          "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+          "ok": true,
+          "detail": "43 tokens checked"
+        },
+        {
+          "name": "header: top right \"高中 · #01 · L2\" (series · #NN · level), level shown once, fits",
+          "ok": true,
+          "detail": {
+            "shown": "高中 · #01 · L2",
+            "expected": "高中 · #01 · L2",
+            "levelBadges": [],
+            "width": 174,
+            "fits": true
+          }
+        },
+        {
+          "name": "content: no decorative emoji in the hook, story, vocabulary, quiz or outro",
+          "ok": true,
+          "detail": "none"
+        },
+        {
+          "name": "vocabulary \"crucial\": yellow handoff → meaning → example → back to story",
+          "ok": true,
+          "detail": {
+            "openAt": 8.57,
+            "noteHeightBefore": 0,
+            "noteHeightOpen": 537,
+            "activeCueAtOpen": [
+              "school!\""
+            ],
+            "meaningActive": true,
+            "exampleCue": [
+              "the"
+            ],
+            "resumeLine": "story003",
+            "resumeCue": null,
+            "noteHeightAfterClose": 0
+          }
+        },
+        {
+          "name": "vocabulary \"stem\": yellow handoff → meaning → example → back to story",
+          "ok": true,
+          "detail": {
+            "openAt": 23.895,
+            "noteHeightBefore": 0,
+            "noteHeightOpen": 403,
+            "activeCueAtOpen": [
+              "stem"
+            ],
+            "meaningActive": true,
+            "exampleCue": [
+              "from"
+            ],
+            "resumeLine": "story004En1Part2",
+            "resumeCue": [
+              "I"
+            ],
+            "noteHeightAfterClose": 0
+          }
+        },
+        {
+          "name": "quiz question → think → answer",
+          "ok": true,
+          "detail": {
+            "question": [
+              33.034919,
+              33.834919
+            ],
+            "answer": [
+              35.834919,
+              37.084919
+            ],
+            "thinking": "● 換你想想",
+            "answered": "✓ 答案揭曉"
+          }
+        },
+        {
+          "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+          "ok": true,
+          "detail": {
+            "lines": 9,
+            "outside": [],
+            "rows": [
+              {
+                "id": "hookLine",
+                "onsetMinusStart": 0.04,
+                "endMinusVoicedEnd": 0.055
+              },
+              {
+                "id": "story001",
+                "onsetMinusStart": 0.03,
+                "endMinusVoicedEnd": 0.05
+              },
+              {
+                "id": "story002",
+                "onsetMinusStart": 0.04,
+                "endMinusVoicedEnd": 0.055
+              },
+              {
+                "id": "v1Meaning",
+                "onsetMinusStart": 0.03,
+                "endMinusVoicedEnd": 0.045
+              },
+              {
+                "id": "v1Example",
+                "onsetMinusStart": 0.03,
+                "endMinusVoicedEnd": 0.05
+              },
+              {
+                "id": "story004En1Part1",
+                "onsetMinusStart": 0.03,
+                "endMinusVoicedEnd": 0.05
+              },
+              {
+                "id": "v2Meaning",
+                "onsetMinusStart": 0.04,
+                "endMinusVoicedEnd": 0.045
+              },
+              {
+                "id": "v2Example",
+                "onsetMinusStart": 0.03,
+                "endMinusVoicedEnd": 0.045
+              },
+              {
+                "id": "story004En1Part2",
+                "onsetMinusStart": 0.02,
+                "endMinusVoicedEnd": 0.05
+              }
+            ]
+          }
+        },
+        {
+          "name": "mp4 decodes completely and has the expected length",
+          "ok": true,
+          "detail": {
+            "decodeErrors": "none",
+            "seconds": 39.5,
+            "expected": 39.5,
+            "video": [
+              "h264 (High) (avc1 / 0x31637661)",
+              "1080x1920"
+            ],
+            "audio": "aac (LC) (mp4a / 0x6134706D)"
+          }
+        }
+      ],
+      "additionalProviderRequests": 0
+    },
+    "formalFreeRecovery": {
+      "draftId": "e7e98f79-7176-4f3e-8e5a-03bbac2e392c",
+      "runId": "ddbedecb-e15b-49b4-b074-b99c541cf2df",
+      "candidateId": "2f290027-3e2a-4573-99d0-b66e167a444e",
+      "state": "awaiting_review",
+      "counts": {
+        "hit": 8,
+        "miss": 0,
+        "silent": 5,
+        "duplicate": 0
+      },
+      "before": {
+        "receipts": 11,
+        "executions": 11,
+        "attempts": 76,
+        "networkRequests": 76,
+        "paidCharacters": 2132
+      },
+      "after": {
+        "receipts": 11,
+        "executions": 11,
+        "attempts": 76,
+        "networkRequests": 76,
+        "paidCharacters": 2132
+      }
+    }
+  },
+  "notes": [
+    "P2 original comparison differed only at known mascot bit-unstable frames 858/862/866/868; one failed-only repeat retained both logs and never changed baseline.",
+    "P2 two owner-deleted references remain absent; all existing frozen assets and manifests unchanged.",
+    "All machine checks passed; actual human review remains pending."
+  ]
+}

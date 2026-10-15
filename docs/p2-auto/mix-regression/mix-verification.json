@@ -1,0 +1,109 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "video stream identical to the narration-only render",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "duration unchanged by the music",
+      "ok": true,
+      "detail": {
+        "base": 31.333,
+        "mixed": 31.333
+      }
+    },
+    {
+      "name": "no clipping (peak below −0.5 dBFS)",
+      "ok": true,
+      "detail": {
+        "peakDbfs": -2.88
+      }
+    },
+    {
+      "name": "narration preserved inside the mix (SNR vs the original narration, AAC noise only)",
+      "ok": true,
+      "detail": {
+        "snrDb": 39.7,
+        "note": "AAC 192k coding noise is the only expected difference"
+      }
+    },
+    {
+      "name": "music at least 10 dB below the narration during every spoken line",
+      "ok": true,
+      "detail": {
+        "loudest": {
+          "id": "arbitraryMeaning",
+          "musicVsVoiceDb": -17.1
+        },
+        "lines": [
+          {
+            "id": "hook",
+            "musicVsVoiceDb": -26.8
+          },
+          {
+            "id": "lead",
+            "musicVsVoiceDb": -26.4
+          },
+          {
+            "id": "allocateMeaning",
+            "musicVsVoiceDb": -17.6
+          },
+          {
+            "id": "allocateExample",
+            "musicVsVoiceDb": -23.4
+          },
+          {
+            "id": "budget",
+            "musicVsVoiceDb": -23.5
+          },
+          {
+            "id": "cfo",
+            "musicVsVoiceDb": -22.7
+          },
+          {
+            "id": "pen",
+            "musicVsVoiceDb": -22.5
+          },
+          {
+            "id": "decision",
+            "musicVsVoiceDb": -23.2
+          },
+          {
+            "id": "arbitraryMeaning",
+            "musicVsVoiceDb": -17.1
+          },
+          {
+            "id": "arbitraryExample",
+            "musicVsVoiceDb": -22.2
+          },
+          {
+            "id": "bye",
+            "musicVsVoiceDb": -26.3
+          }
+        ]
+      }
+    },
+    {
+      "name": "SFX 0 (answer-correct.wav) starts at its trigger",
+      "ok": true,
+      "detail": {
+        "trigger": 27.65,
+        "expectedAudible": 27.65,
+        "inBus": 27.651,
+        "inFinalFile": 27.651
+      }
+    },
+    {
+      "name": "identical to the approved reference mix",
+      "ok": true,
+      "detail": {
+        "samples": 1382400,
+        "referenceSamples": 1382400,
+        "maxSampleDifference": 0
+      }
+    }
+  ],
+  "peakDbfs": -2.88
+}

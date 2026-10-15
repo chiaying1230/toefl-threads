@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "r11-explicit-language-retake",
+  "parent": "r10-final-waveform-trim",
+  "at": "2026-10-13",
+  "status": "regression-passed-with-missing-reference-files",
+  "missingReferenceDisposition": {
+    "ownerConfirmed": true,
+    "reason": "Owner intentionally cleaned up both historical P2 reference files.",
+    "blocksRetakeGate": false,
+    "stockFreezeCheckerLimitationRetained": true,
+    "restorationPerformed": false,
+    "authorizesPaidSynthesis": false
+  },
+  "missingReferencePaths": [
+    "outputs/p2-auto-pipeline.mp4",
+    "outputs/p2-v4.2-outro-music.mp4"
+  ],
+  "scope": "Opt-in explicit segment language → existing adapter languageCode; immutable take identity in audio hash/metadata. Legacy frozen narration unchanged.",
+  "frozenMetadataPreserved": true,
+  "canonicalPromotion": false,
+  "changedFiles": [
+    "scripts/video/voice/segments.mjs",
+    "scripts/video/voice/generate.mjs"
+  ],
+  "templateAndPipeline": {
+    "scripts/video/post-reference.html": "23127a103e70a5f674b17cfdbb2c06ba04cbe8b7220906dccdb1fe946537ccf3",
+    "scripts/video/reference/PostTemplate.js": "09a86d5148e81414d51d8492a8818da8bc62d381c85748d1604d305d5c913fe8",
+    "scripts/video/reference/Components.js": "84b5db5ff8f61a1844c2e2a9466ea2a79412a6c06efba40ee949808a24e99bf5",
+    "scripts/video/reference/ReadingCue.js": "9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad",
+    "scripts/video/reference/Phrase.js": "ff082c304c75e2e24e9a65ebb65a96140cff305571093568a05b7a033e6309fc",
+    "scripts/video/reference/Header.js": "b53a24d65bd1e7f4f45266a9045dd3182013c390a91b2ea2612d440f217ad2e6",
+    "scripts/video/reference/post.css": "3d547afd980861d19cdc4a4366b05b3f4e6d50481e465e25b4b8092b74c95f67",
+    "scripts/video/reference/outro.css": "727c5672fab572847ccd957f85184fa5edc9e72be8573d0da2990565a5a61137",
+    "scripts/video/components/Mascot.js": "882203648bff76c8b21e29d908f9bc0646d66eac1f27784cae34580534427025",
+    "scripts/video/voice/align.mjs": "8363afc99ee4577df15f8c8a94a947afa90fd031ca2164f869e98b8183eec37b",
+    "scripts/video/voice/assemble.mjs": "d00be840f3ac078fa5382a12795e22c7e39101da0574fbfeb37ec4d380e80290",
+    "scripts/video/voice/audio.mjs": "97062cd66a44ca0fe79c49ae71fab9d979083690dd9d36281962ab3e17a7b1ee",
+    "scripts/video/voice/cache.mjs": "760781c1a68952820e61e497c01f71d7e4165cd868234496f17e1bd8cabd217b",
+    "scripts/video/voice/config.mjs": "9c4ece01bf2c07a7b040f6833435214de7029c5a5743d60201470f02db602e7d",
+    "scripts/video/voice/elevenlabs.mjs": "3c945bd78cfd125fdcce926b3fb3956edd7d8ad44ddc58d6069d37b968f45995",
+    "scripts/video/voice/episode-refs.mjs": "06a69dad63808d2647da00586bce19d8d962be94ffdbb971ff0fdfe881ff2a06",
+    "scripts/video/voice/generate.mjs": "0febc999b04da8a14f9e451f178d5b04601f8c595d6faddc80d438df162c060c",
+    "scripts/video/voice/segments.mjs": "befe37323873a9498c9a1a21ce42465ff2bad1ecfdebdbb35ff8de6f9bda1cc8",
+    "scripts/video/voice/split.mjs": "2919c94cacfa0696e9be14f9e73b8217403df9911c13715b6616cad8913e4dcb",
+    "scripts/video/render-lib.mjs": "0044381a80eab4c42610441d20c250dc181b85cf86f0566cd0366fdabd74ed15",
+    "scripts/video/render-episode.mjs": "b727cbde0c0a226879904526dcb93d36cf82cf14dac5e3c5ec821de34b6e3168",
+    "scripts/video/audio-mix.mjs": "33721f76b5adcbf0611838f6075efecdd42f5836b5d5074a5cd5d54527fbb5be",
+    "scripts/video/verify-episode.mjs": "dfa80d2878d0ab823031e01ffce797a75629bf588609c98aa6b00c6018fb4371",
+    "scripts/video/assemble.mjs": "95f111d08cd0e84e63c66866006a887be27451f3f67f32429191c88e745483c0",
+    "scripts/video/fit-camera.mjs": "a84acbb698c93f27f2166b94940d0472ded22896f2d19003ddd2002d7e698d9a",
+    "scripts/video/voices.json": "8264488ec584d48b730d45a5e4ad85c62476fded69788eb41e37ce45e1f6284d",
+    "scripts/video/series.json": "095fdb24882de35049e8826181df6c7a272ad02f919fda411ca85ba2160123db",
+    "scripts/video/assets/social-soft-groove.wav": "d2a9715b4aeeb933a417926a96459521204cc798f1ca33d73d0c95a213a23875",
+    "scripts/video/assets/answer-correct.wav": "ddad5e42f8b7b9e616a2742bec36edc9be3abc6938e1443e792e96978abd6693"
+  },
+  "references": [
+    {
+      "id": "p2",
+      "frozenManifestHash": "sha256:bd45346c80957b9f2c000025fe385806d8e6ae1b8018b89bebf47297d6b7c422",
+      "preparedIdentical": true,
+      "hashesIdentical": true,
+      "planIdentical": true,
+      "wavIdentical": true,
+      "frozenAssetsIntact": false,
+      "missingReferencePaths": [
+        "outputs/p2-auto-pipeline.mp4",
+        "outputs/p2-v4.2-outro-music.mp4"
+      ],
+      "verifyPass": true,
+      "frameEvidence": "Renderer unchanged; exact prepared/plan/WAV parity. Prior r10 full-frame regression retained; no frozen re-render."
+    },
+    {
+      "id": "p348",
+      "frozenManifestHash": "sha256:3583c912c533c28d1ba907b3cc98ae00b9523193e63af6c5949d60c59dc09c7a",
+      "preparedIdentical": true,
+      "hashesIdentical": true,
+      "planIdentical": true,
+      "wavIdentical": true,
+      "frozenAssetsIntact": true,
+      "missingReferencePaths": [],
+      "verifyPass": true,
+      "frameEvidence": "Renderer unchanged; exact prepared/plan/WAV parity. Prior r10 full-frame regression retained; no frozen re-render."
+    },
+    {
+      "id": "toeic-079",
+      "frozenManifestHash": "sha256:2e9256f2f1aff2de772be69a6a307cebbda159bb0ddc31321575eb2bb9d5ee69",
+      "preparedIdentical": true,
+      "hashesIdentical": true,
+      "planIdentical": true,
+      "wavIdentical": true,
+      "frozenAssetsIntact": true,
+      "missingReferencePaths": [],
+      "verifyPass": true,
+      "frameEvidence": "Renderer unchanged; exact prepared/plan/WAV parity. Prior r10 full-frame regression retained; no frozen re-render."
+    },
+    {
+      "id": "ielts-068",
+      "frozenManifestHash": "sha256:0982edbb1276ae10c61c2d7db276f571730b9c57d6798f504ef2dc1632b10219",
+      "preparedIdentical": true,
+      "hashesIdentical": true,
+      "planIdentical": true,
+      "wavIdentical": true,
+      "frozenAssetsIntact": true,
+      "missingReferencePaths": [],
+      "verifyPass": true,
+      "frameEvidence": "Renderer unchanged; exact prepared/plan/WAV parity. Prior r10 full-frame regression retained; no frozen re-render."
+    }
+  ],
+  "tests": {
+    "offline": {
+      "pass": 101,
+      "fail": 0
+    },
+    "retake": {
+      "pass": 10,
+      "fail": 0
+    },
+    "n2Targeted": {
+      "pass": 11,
+      "fail": 0
+    },
+    "browser": {
+      "pass": true,
+      "mode": "GET-only live mobile/desktop, zero mutation/external traffic"
+    },
+    "studioFull": {
+      "pass": 192,
+      "fail": 0,
+      "todo": 2,
+      "mode": "serial after fixing synthetic cache metadata and excluding concurrent shared-port collision",
+      "log": "video-studio/state/qa/r11-studio-full-tests.log"
+    }
+  },
+  "unrelatedFiles": {
+    "css/style.css": "sha256:0e8729415c20666e81049a1aaacad66e8225fd91e07f47eeaeb417a5bc424b98",
+    "js/app.js": "sha256:dd1b73f52df83a90890eb70a182497206e4d157392d8c7124a9cdbab33370f03"
+  }
+}

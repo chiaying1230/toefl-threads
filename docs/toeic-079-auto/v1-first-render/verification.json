@@ -1,0 +1,243 @@
+{
+  "episode": "toeic-079-auto",
+  "checks": [
+    {
+      "name": "navy reading cue sits on the spoken word",
+      "ok": true,
+      "detail": "94 words in 8 lines"
+    },
+    {
+      "name": "hook reveal happens on \"forgot\"",
+      "ok": true,
+      "detail": {
+        "revealAt": 2.765,
+        "opacityBefore": 0.18,
+        "opacityAfter": 1
+      }
+    },
+    {
+      "name": "vocabulary highlight: every word / phrase (and its forms) is yellow where it occurs",
+      "ok": true,
+      "detail": "4 phrase span(s) and 0 single-word token(s) in 8 lines"
+    },
+    {
+      "name": "vocabulary highlight: nothing else is yellow (a / of / and … outside a phrase stay plain)",
+      "ok": true,
+      "detail": "94 tokens checked"
+    },
+    {
+      "name": "vocabulary \"a game of cat and mouse\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 17.945,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 588,
+        "activeCueAtOpen": [
+          "us."
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "with"
+        ],
+        "resumeLine": "consumedLead",
+        "resumeCue": [
+          "Worse,"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "vocabulary \"be consumed with\": yellow handoff → meaning → example → back to story",
+      "ok": true,
+      "detail": {
+        "openAt": 30.155,
+        "noteHeightBefore": 0,
+        "noteHeightOpen": 403,
+        "activeCueAtOpen": [
+          "queen,"
+        ],
+        "meaningActive": true,
+        "exampleCue": [
+          "guilt"
+        ],
+        "resumeLine": "consumedRest",
+        "resumeCue": [
+          "so"
+        ],
+        "noteHeightAfterClose": 0
+      }
+    },
+    {
+      "name": "quiz question → think → answer",
+      "ok": true,
+      "detail": {
+        "question": [
+          42.635055,
+          43.435055
+        ],
+        "answer": [
+          45.435055,
+          46.685055
+        ],
+        "thinking": "● 換你想想",
+        "answered": "✓ 答案揭曉"
+      }
+    },
+    {
+      "name": "each line's start/end encloses the audio's voiced span (tolerance 10 ms, at most 60 ms slack)",
+      "ok": true,
+      "detail": {
+        "lines": 11,
+        "outside": [],
+        "rows": [
+          {
+            "id": "hook",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "update",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "scouts",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "gameSent",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "gameMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          },
+          {
+            "id": "gameExample",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "consumedLead",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "consumedMeaning",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.045
+          },
+          {
+            "id": "consumedExample",
+            "onsetMinusStart": 0.02,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "consumedRest",
+            "onsetMinusStart": 0.01,
+            "endMinusVoicedEnd": 0.05
+          },
+          {
+            "id": "napping",
+            "onsetMinusStart": 0.03,
+            "endMinusVoicedEnd": 0.055
+          }
+        ]
+      }
+    },
+    {
+      "name": "mp4 decodes completely and has the expected length",
+      "ok": true,
+      "detail": {
+        "decodeErrors": "none",
+        "seconds": 49.1,
+        "expected": 49.1,
+        "video": [
+          "h264 (High) (avc1 / 0x31637661)",
+          "1080x1920"
+        ],
+        "audio": "aac (LC) (mp4a / 0x6134706D)"
+      }
+    }
+  ],
+  "frames": [
+    {
+      "label": "Hook",
+      "t": 0.7,
+      "lit": ""
+    },
+    {
+      "label": "Hook reveal",
+      "t": 3.0650113378684805,
+      "lit": ""
+    },
+    {
+      "label": "Reading before \"a game of cat and mouse\"",
+      "t": 17.885011,
+      "lit": "of"
+    },
+    {
+      "label": "Handoff → a game of cat and mouse",
+      "t": 18.325011000000003,
+      "lit": "us."
+    },
+    {
+      "label": "a game of cat and mouse: meaning",
+      "t": 19.2075165,
+      "lit": "a game of cat and mouse · 貓捉老鼠遊戲n. phr."
+    },
+    {
+      "label": "a game of cat and mouse: example",
+      "t": 23.91503333786848,
+      "lit": "with"
+    },
+    {
+      "label": "Back to story after a game of cat and mouse",
+      "t": 27.715033000000002,
+      "lit": "Worse,"
+    },
+    {
+      "label": "Reading before \"be consumed with\"",
+      "t": 30.075033,
+      "lit": "their"
+    },
+    {
+      "label": "Handoff → be consumed with",
+      "t": 30.535033000000002,
+      "lit": "queen,"
+    },
+    {
+      "label": "be consumed with: meaning",
+      "t": 32.5025385,
+      "lit": "be consumed with · 被…吞噬；為…所苦v. phr."
+    },
+    {
+      "label": "be consumed with: example",
+      "t": 36.100044,
+      "lit": "guilt"
+    },
+    {
+      "label": "Back to story after be consumed with",
+      "t": 37.836189124716554,
+      "lit": "so"
+    },
+    {
+      "label": "Quiz",
+      "t": 43.935055,
+      "lit": ""
+    },
+    {
+      "label": "Answer",
+      "t": 45.935055,
+      "lit": ""
+    },
+    {
+      "label": "Outro",
+      "t": 48.1,
+      "lit": ""
+    }
+  ]
+}

@@ -82,7 +82,7 @@ export async function generateNarration(plan, { cache, synthesize, manifestPath,
       cache.write(s.hash, {
         audio: result.r.audio,
         alignment: result.r.alignment,
-        meta: { segment: s.id, kind: s.kind, voice: s.voiceName, voiceId: s.voice.voiceId, model: s.voice.model, settings: s.voice.settings, text: s.speak, previousText: s.previousText, nextText: s.nextText, outputFormat: plan.outputFormat, characters: s.chars, estimatedDuration: result.r.estimatedDuration, speechStart: result.speechStart, speechEnd: result.speechEnd },
+        meta: { segment: s.id, kind: s.kind, voice: s.voiceName, voiceId: s.voice.voiceId, model: s.voice.model, settings: s.voice.settings, ...(s.voice.languageCode ? { languageCode: s.voice.languageCode } : {}), ...(s.voice.takeId ? { takeId: s.voice.takeId } : {}), text: s.speak, previousText: s.previousText, nextText: s.nextText, outputFormat: plan.outputFormat, characters: s.chars, estimatedDuration: result.r.estimatedDuration, speechStart: result.speechStart, speechEnd: result.speechEnd },
       });
       done.set(s.hash, true);
     }

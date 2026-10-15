@@ -1,0 +1,9 @@
+750/912 frames
+900/912 frames
+docs\p2-auto\test\p2-auto-nomix.mp4 / 30.400s / 912 frames
+--- integrated ---
+750/912 frames
+900/912 frames
+docs\p2-auto\test\p2-auto-integrated.narration-only.mp4 / 30.400s / 912 frames
+docs\p2-auto\test\p2-auto-integrated.mp4 (narration + music/SFX; verify with audio-mix.mjs)
+DONE

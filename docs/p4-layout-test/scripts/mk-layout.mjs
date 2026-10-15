@@ -1,0 +1,77 @@
+// scratch: TEMPORARY toeic-079 layout-test data with FAKE word timings (no audio, no API). Not the formal P4 narration / episode.
+import fs from "node:fs";
+const OUT = "C:/Users/123/toefl-threads/docs/p4-layout-test";
+fs.mkdirSync(OUT, { recursive: true });
+
+// id, text, lang. zh lines have no aligned words (like the real meaning lines). silent lines carry a duration.
+const L = [
+  ["hook", "A rival hive keeps following my scouts. It's a game of cat and mouse.", "en"],
+  ["s1", "Business update: a rival hive keeps following my scouts to my best flower field.", "en"],
+  ["s2", "I move the scouts, they follow, and I move again.", "en"],
+  ["mouseLead", "It has become a game of cat and mouse", "en"],
+  ["gMeaning", "貓捉老鼠遊戲。", "zh"],
+  ["gExample", "In the yard, the children played a game of cat and mouse, with one pretending to be the cat and the other the mouse.", "en"],
+  ["mouseRest", "that wastes time for both of us.", "en"],
+  ["withLead", "Worse, I was consumed with", "en"],
+  ["cMeaning", "被某件事吞噬、為某件事所苦。", "zh"],
+  ["cExample", "She was consumed with guilt after the accident.", "en"],
+  ["withRest", "spying on their queen, so I forgot to check my own honey sales.", "en"],
+  ["napping", "She, meanwhile, was napping.", "en"],
+];
+const lines = [];
+let t = 0.3;
+for (const [id, text, lang] of L) {
+  const words = [];
+  let at = 0;
+  if (lang === "en") for (const m of text.matchAll(/\S+/g)) { words.push({ at, until: at + 0.3, pos: m.index, count: m[0].length, text: m[0].replace(/[.,]$/, "") === m[0] ? m[0] : m[0] }); at += 0.3; }
+  else at = 1.8;
+  lines.push({ id, lang, text, gap: 0.08, duration: at, words, start: t, end: t + at });
+  t += at + 0.1;
+}
+for (const [id, d] of [["question", 0.8], ["answer", 1.25]]) { t += id === "question" ? 2.0 : 0.85; lines.push({ id, silent: true, text: "", gap: 0, duration: d, words: [], start: t, end: t + d }); t += d; }
+const plan = { id: "p4-layout-test", duration: t, frames: Math.ceil(t * 30), fps: 30, voices: {}, audioEnd: t, source: "FAKE TIMINGS – layout test only, no audio", lines };
+fs.writeFileSync(`${OUT}/plan.json`, JSON.stringify(plan));
+
+const ep = {
+  _status: "LAYOUT TEST ONLY: fake timings, no audio. Hook and Quiz content are placeholders to exercise the layout, not decisions.",
+  id: "p4-layout-test", plan: "/docs/p4-layout-test/plan.json", audio: "/docs/p4-layout-test/none.wav",
+  brand: "● toEfu", episodeLabel: "toeic-079",
+  author: { avatar: "🐝", name: "Queen Beatrice", meta: "@queen_bee_b", level: "L2" },
+  social: "Business", outside: "toEfu 單字情境",
+  vocabulary: [
+    { id: "gameNote", word: "a game of cat and mouse", zh: "貓捉老鼠遊戲", pos: "n. phr.", meaningLine: "gMeaning", exampleLine: "gExample",
+      exampleZh: "孩子們在院子裡玩貓捉老鼠遊戲，一個人扮演貓，另一個人扮演老鼠。", open: { line: "mouseLead", word: "mouse" }, close: { line: "mouseRest" }, openDuration: 0.28, closeDuration: 0.32 },
+    { id: "consumedNote", word: "be consumed with", forms: ["was consumed with"], zh: "被…吞噬；為…所苦", pos: "v. phr.", meaningLine: "cMeaning", exampleLine: "cExample",
+      exampleZh: "意外發生後,她被罪惡感吞噬。", open: { line: "withLead", word: "with" }, close: { line: "withRest" }, openDuration: 0.28, closeDuration: 0.32 },
+  ],
+  hook: { type: "scene_contrast", id: "hook", label: "LAYOUT TEST", setup: ["A rival hive keeps", "following my scouts."], payoff: ["IT'S A GAME OF", "CAT AND MOUSE. "], emoji: "🐝", zh: "（版面測試用 Hook）", reveal: { line: "hook", word: "game" }, revealDuration: 0.16 },
+  story: [
+    { id: "b1", parts: [
+      { type: "reading", line: "s1" }, { type: "translation", text: "商業近況：有個對手蜂巢一直跟著我的偵察蜂去我最好的那片花田。" },
+      { type: "reading", line: "s2" }, { type: "translation", text: "我把偵察蜂調走，他們就跟過來，我再調走。" },
+      { type: "reading", line: "mouseLead" }, { type: "vocabulary", id: "gameNote" }, { type: "reading", line: "mouseRest" },
+      { type: "translation", text: "這變成了一場貓捉老鼠的遊戲，讓我們雙方都浪費時間。" } ] },
+    { id: "b2", parts: [
+      { type: "reading", line: "withLead" }, { type: "vocabulary", id: "consumedNote" }, { type: "reading", line: "withRest" },
+      { type: "translation", text: "更糟的是，我滿腦子都是監視他們的女王，結果忘了查看自己的蜂蜜銷量。" },
+      { type: "reading", line: "napping" }, { type: "translation", text: "而她呢，當時正在睡午覺。🐝" } ] },
+  ],
+  camera: [
+    { at: 0, id: "hook", offset: 0 }, { at: { line: "s1" }, id: "b1", offset: 95 },
+    { at: { line: "mouseLead", word: "mouse" }, id: "b1", offset: 40 }, { at: { line: "mouseRest" }, id: "b1", offset: -40 },
+    { at: { line: "withLead" }, id: "b2", offset: 80 }, { at: { line: "withLead", word: "with" }, id: "b2", offset: 40 }, { at: { line: "napping" }, id: "b2", offset: -80 },
+    { at: { line: "question" }, id: "quiz", offset: 35 },
+  ],
+  scrollDuration: 0.35,
+  visibility: [
+    { id: "b1", at: { line: "s1", delay: -0.35 }, before: 0.2 }, { id: "b2", at: { line: "withLead", delay: -0.3 }, before: 0 }, { id: "quiz", at: { line: "question", delay: -0.3 }, before: 0 },
+  ],
+  quiz: { id: "quiz", type: "meaning", meta: "↳ 回覆這則串文", quote: ["“It has become a game of cat and mouse", "that wastes time for both of us.”"], word: "a game of cat and mouse", question: " 是什麼意思？",
+    options: ["貓捉老鼠遊戲", "選項 B（版面測試）", "選項 C（版面測試）"], answer: 0, questionLine: "question", answerLine: "answer", feedback: "✓ A · 貓捉老鼠遊戲", feedbackDetail: "（版面測試）" },
+  status: { reading: "用生活日常背單字", question: "剛剛那個字，你記住了嗎？", answer: "✓ 答案揭曉", readingPhase: "● 正在朗讀", thinkingPhase: "● 換你想想", answerPhase: "● 答案揭曉" },
+  outro: { id: "outro", start: "planEnd", duration: 2.4, scrollDuration: 0.45, offset: 35, author: "toEfu 單字情境", lead: "剛剛那篇，你看懂了。", cta: "收藏這篇，記住這兩個片語。",
+    words: [{ en: "a game of cat and mouse", zh: "貓捉老鼠遊戲" }, { en: "be consumed with", zh: "被…吞噬；為…所苦" }], brandLine: "用生活日常背單字", status: "↳ 收藏這篇", phase: "● 下次遇到就認得",
+    mascot: { enabled: true, lookAt: "cta", cueDuration: 0.65 } },
+};
+fs.writeFileSync(`${OUT}/episode.json`, JSON.stringify(ep, null, 1));
+console.log("fake plan end", t.toFixed(1), "frames", plan.frames);

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "r10-final-waveform-trim",
+  "parent": "r9-null-hook-zh",
+  "at": "2026-10-13",
+  "status": "validated",
+  "scope": "shared assembler: final PCM waveform bounds after fade; original 10ms source grid, 35/50ms pads, exact sample-offset alignment; renderer unchanged",
+  "frozenMetadataPreserved": true,
+  "canonicalPromotion": false,
+  "changedFiles": [
+    "scripts/video/voice/assemble.mjs"
+  ],
+  "templateAndPipeline": {
+    "scripts/video/post-reference.html": "23127a103e70a5f674b17cfdbb2c06ba04cbe8b7220906dccdb1fe946537ccf3",
+    "scripts/video/reference/PostTemplate.js": "09a86d5148e81414d51d8492a8818da8bc62d381c85748d1604d305d5c913fe8",
+    "scripts/video/reference/ReadingCue.js": "9af099bbf26849400aea0c972413c8d2b3c86484db7cd954c8349e0a544ad5ad",
+    "scripts/video/reference/Components.js": "84b5db5ff8f61a1844c2e2a9466ea2a79412a6c06efba40ee949808a24e99bf5",
+    "scripts/video/reference/post.css": "3d547afd980861d19cdc4a4366b05b3f4e6d50481e465e25b4b8092b74c95f67",
+    "scripts/video/reference/outro.css": "727c5672fab572847ccd957f85184fa5edc9e72be8573d0da2990565a5a61137",
+    "scripts/video/components/Mascot.js": "882203648bff76c8b21e29d908f9bc0646d66eac1f27784cae34580534427025",
+    "scripts/video/render-episode.mjs": "b727cbde0c0a226879904526dcb93d36cf82cf14dac5e3c5ec821de34b6e3168",
+    "scripts/video/render-lib.mjs": "0044381a80eab4c42610441d20c250dc181b85cf86f0566cd0366fdabd74ed15",
+    "scripts/video/verify-episode.mjs": "dfa80d2878d0ab823031e01ffce797a75629bf588609c98aa6b00c6018fb4371",
+    "scripts/video/audio-mix.mjs": "33721f76b5adcbf0611838f6075efecdd42f5836b5d5074a5cd5d54527fbb5be",
+    "scripts/video/assemble.mjs": "95f111d08cd0e84e63c66866006a887be27451f3f67f32429191c88e745483c0",
+    "scripts/video/voice.mjs": "8f0d87edf4b0513066c7e0fc18819d9a9f2ef0b89bf62619e6049d426164aee2",
+    "scripts/video/voice/align.mjs": "8363afc99ee4577df15f8c8a94a947afa90fd031ca2164f869e98b8183eec37b",
+    "scripts/video/voice/assemble.mjs": "d00be840f3ac078fa5382a12795e22c7e39101da0574fbfeb37ec4d380e80290",
+    "scripts/video/voice/audio.mjs": "97062cd66a44ca0fe79c49ae71fab9d979083690dd9d36281962ab3e17a7b1ee",
+    "scripts/video/voice/cache.mjs": "760781c1a68952820e61e497c01f71d7e4165cd868234496f17e1bd8cabd217b",
+    "scripts/video/voice/config.mjs": "9c4ece01bf2c07a7b040f6833435214de7029c5a5743d60201470f02db602e7d",
+    "scripts/video/voice/elevenlabs.mjs": "3c945bd78cfd125fdcce926b3fb3956edd7d8ad44ddc58d6069d37b968f45995",
+    "scripts/video/voice/generate.mjs": "bfacc6a0f860c2ebc79f767a15bbdae5a3d5c65610ca86ec5d50a07ac9205b62",
+    "scripts/video/voice/segments.mjs": "657a9d79810af0f50548dc1f7cebb972fd3bdd1d468366ed2ff1409dae7188fd",
+    "scripts/video/voice/split.mjs": "2919c94cacfa0696e9be14f9e73b8217403df9911c13715b6616cad8913e4dcb",
+    "scripts/video/voice/episode-refs.mjs": "06a69dad63808d2647da00586bce19d8d962be94ffdbb971ff0fdfe881ff2a06",
+    "scripts/video/reference/Phrase.js": "ff082c304c75e2e24e9a65ebb65a96140cff305571093568a05b7a033e6309fc",
+    "scripts/video/reference/Header.js": "b53a24d65bd1e7f4f45266a9045dd3182013c390a91b2ea2612d440f217ad2e6"
+  },
+  "tests": {
+    "offline": {
+      "pass": 96,
+      "fail": 0
+    },
+    "studioTargeted": {
+      "pass": 41,
+      "fail": 0
+    },
+    "deterministicRetry": {
+      "pass": 1,
+      "fail": 0
+    }
+  },
+  "references": [
+    {
+      "contentId": "p2",
+      "frozenManifest": "docs/p2-auto/FROZEN.json",
+      "frozenManifestHash": "bd45346c80957b9f2c000025fe385806d8e6ae1b8018b89bebf47297d6b7c422",
+      "audioIdentical": true,
+      "planIdentical": true,
+      "framesPass": true,
+      "frameCount": 912,
+      "frameDifferences": 0,
+      "baseline": "existing golden",
+      "verifyPass": true,
+      "verifyChecks": 10
+    },
+    {
+      "contentId": "p348",
+      "frozenManifest": "docs/p348-auto/FROZEN.json",
+      "frozenManifestHash": "3583c912c533c28d1ba907b3cc98ae00b9523193e63af6c5949d60c59dc09c7a",
+      "audioIdentical": true,
+      "planIdentical": true,
+      "framesPass": true,
+      "frameCount": 1358,
+      "frameDifferences": 0,
+      "baseline": "existing golden",
+      "verifyPass": true,
+      "verifyChecks": 11
+    },
+    {
+      "contentId": "toeic-079",
+      "frozenManifest": "docs/toeic-079-auto/FROZEN.json",
+      "frozenManifestHash": "2e9256f2f1aff2de772be69a6a307cebbda159bb0ddc31321575eb2bb9d5ee69",
+      "audioIdentical": true,
+      "planIdentical": true,
+      "framesPass": true,
+      "frameCount": 1473,
+      "frameDifferences": 0,
+      "baseline": "temporary pre-change-validator control (renderer byte hashes unchanged)",
+      "verifyPass": true,
+      "verifyChecks": 11
+    },
+    {
+      "contentId": "ielts-068",
+      "frozenManifest": "docs/ielts-068-auto/FROZEN.json",
+      "frozenManifestHash": "0982edbb1276ae10c61c2d7db276f571730b9c57d6798f504ef2dc1632b10219",
+      "audioIdentical": true,
+      "planIdentical": true,
+      "framesPass": true,
+      "frameCount": 1351,
+      "frameDifferences": 0,
+      "baseline": "pre-change temporary P5 baseline",
+      "verifyPass": true,
+      "verifyChecks": 12
+    }
+  ],
+  "notes": [
+    "P4 uses the previously recorded r9 pre-change renderer control due documented mascot bit instability; golden untouched.",
+    "P5 uses previously recorded pre-change temporary baseline.",
+    "Frozen plan/WAV byte-identical; no reference MP4 rewritten; threshold and verify tolerance unchanged."
+  ]
+}

@@ -543,6 +543,27 @@ body.in-thread .toast { bottom: calc(var(--tabbar-h) + 72px + env(safe-area-inse
 .steps li { line-height: 1.5; }
 .share-ico { width: 20px; height: 20px; vertical-align: -4px; color: var(--accent); }
 #installGuide h2 { margin: 0 0 6px; }
+.ig { display: block; width: 100%; max-width: 320px; height: auto; margin: 8px 0 0; }
+.ig-bar, .ig-pill { fill: var(--bg-soft); stroke: var(--line); stroke-width: 1; }
+.ig-pill { stroke: none; fill: var(--bg-elev); }
+.ig-ico { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ig-dot { fill: var(--muted); }
+.ig-ring { fill: var(--tofu-soft); stroke: var(--amber); stroke-width: 2.5; }
+.ig-ring + .ig-ico { stroke: var(--text); }
+.ig-arrow path { fill: none; stroke: var(--amber); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ig-arrow { animation: ig-bob 1.2s ease-in-out infinite; }
+@keyframes ig-bob { 50% { transform: translateY(4px); } }
+.ig-row { fill: var(--bg-soft); }
+.ig-row-hi { fill: var(--tofu-soft); stroke: var(--amber); stroke-width: 2; }
+.ig-txt { fill: var(--muted); stroke: none; font-size: 12px; font-family: inherit; }
+.ig-row, .ig-btn, .ig-tile, .ig-dot { stroke: none; }
+.ig-txt-hi { fill: var(--text); font-weight: 700; }
+.ig-title { fill: var(--text); font-weight: 700; }
+.ig-btn { fill: var(--amber); }
+.ig-btn-txt { fill: #fff; font-weight: 700; }
+.ig-tile { fill: var(--tofu); }
+.ig-more { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { .ig-arrow { animation: none; } }
 
 /* ---------- KK phonetics ---------- */
 .kk { font-family: "Lucida Sans Unicode", "Arial Unicode MS", "Noto Sans", "Segoe UI", sans-serif; color: var(--muted); letter-spacing: 0.02em; }

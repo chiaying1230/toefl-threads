@@ -23,7 +23,7 @@ const plan = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, episode.plan.replac
 const line = (id) => plan.lines.find((l) => l.id === id);
 // the same normalization the template and the validator use (all leading / trailing punctuation: "update:" = "update")
 const norm = (s) => normalizeToken(s);
-const wordTime = (ref) => { const l = line(ref.line), w = ref.word ? l.words.find((x) => norm(x.text) === ref.word.toLowerCase()) : null; return l.start + (w ? w.at : 0); };
+const wordTime = (ref) => { const l = line(ref.line), w = ref.word ? l.words.find((x) => norm(x.text) === ref.word.toLowerCase()) : null; return (w ? l.start + w.at : ref.edge === 'end' ? l.end : l.start) + (ref.delay ?? 0); };
 
 const checks = [], fail = (name, detail) => checks.push({ name, ok: false, detail }), pass = (name, detail) => checks.push({ name, ok: true, detail });
 const server = startServer(8132);
