@@ -10,6 +10,7 @@
   var SEEN_KEY = "toeflThreads.seen";
   var MERGED_KEY = "toeflThreads.mergedInto";
   var LAST_UID_KEY = "toeflThreads.lastUid";
+  var LAST_USER_KEY = "toeflThreads.lastUser";   // { uid, name, photo } of the last signed-in account
   var CLOUD_CACHE = "toeflThreads.cloud.";   // + uid: last known copy of the account state
   var SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
   var SYNCED_FIELDS = ["liked", "bookmarked", "words", "profile", "prefs", "following", "daily", "settings", "stats", "badges", "reposted"];
@@ -85,6 +86,23 @@
     return s;
   }
 
+  function isPlain(x) { return !!x && typeof x === "object" && !Array.isArray(x); }
+  function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+
+  // Three-way merge: what changed on this device since `base` (local vs base) goes on top of `remote`.
+  // Objects merge key by key, so a word saved here and a word reviewed on another phone both survive.
+  function merge3(base, local, remote) {
+    if (same(local, base)) return remote;
+    if (!isPlain(base) || !isPlain(local) || !isPlain(remote)) return local;
+    var out = {};
+    Object.keys(remote).forEach(function (k) { out[k] = remote[k]; });
+    Object.keys(base).concat(Object.keys(local)).forEach(function (k) {
+      var v = merge3(base[k], local[k], remote[k]);
+      if (v === undefined) delete out[k]; else out[k] = v;
+    });
+    return out;
+  }
+
   function handleFrom(u) {
     var base = (u.email || "").split("@")[0] || u.displayName || "";
     return base.toLowerCase().replace(/[^a-z0-9_.]/g, "").slice(0, 24) || "toefu_learner";
@@ -128,7 +146,28 @@
     emit: function (kind) { listeners.forEach(function (fn) { fn(kind); }); }
   };
 
-  function isCloud() { return Store.mode === "cloud" && Store.user; }
+  // provisional: showing the signed-in account from this device's copy while Firebase is still starting.
+  // Nothing goes to the cloud until the real account data has arrived and been merged.
+  Store.provisional = false;
+  var provisionalBase = null;   // the cached copy the provisional state started from
+  var readyWaiters = [];
+
+  function isCloud() { return Store.mode === "cloud" && Store.user && !Store.provisional; }
+
+  // Runs fn once start-up has finished (right away when it already has).
+  function later(fn) {
+    if (Store.ready) return Promise.resolve().then(fn);
+    return new Promise(function (resolve) { readyWaiters.push(resolve); }).then(fn);
+  }
+
+  function markReady() {
+    Store.provisional = false;
+    provisionalBase = null;
+    Store.ready = true;
+    var waiting = readyWaiters;
+    readyWaiters = [];
+    waiting.forEach(function (resolve) { resolve(); });
+  }
 
   // Ask the browser not to evict our data (helps on Android and some iOS versions).
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) { /* ignore */ }
@@ -143,7 +182,10 @@
       guest.daily.goal = s.daily.goal;
       writeJSON(KEY, guest);
     }
-    if (isCloud()) {
+    if (Store.provisional) {
+      // Kept on this device for now; merged into the account once the cloud copy arrives.
+      writeJSON(CLOUD_CACHE + Store.user.uid, s);
+    } else if (isCloud()) {
       writeJSON(CLOUD_CACHE + Store.user.uid, s);
       clearTimeout(saveTimer);
       saveTimer = setTimeout(pushUserDoc, 600);
@@ -187,13 +229,43 @@
   };
 
   // ---------- Init ----------
+  // Someone signed in last time: show their account from this device's copy right away,
+  // instead of waiting for Firebase, App Check and the account document (several seconds on a cold start).
+  function startProvisional() {
+    var uid = readJSON(LAST_UID_KEY);
+    var cached = uid && readJSON(CLOUD_CACHE + uid);
+    if (!cached) return false;
+    var last = readJSON(LAST_USER_KEY);
+    if (!last || last.uid !== uid) last = {};
+    var s = withDefaults(cached);
+    if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
+    s.myPosts = [];
+    s.myComments = [];
+    Store.mode = "cloud";
+    Store.user = { uid: uid, name: last.name || s.profile.name || "English learner", photo: last.photo || null };
+    Store.state = s;
+    provisionalBase = JSON.parse(JSON.stringify(s));
+    Store.provisional = true;
+    return true;
+  }
+
+  var initPromise = null;
   Store.init = function () {
+    if (initPromise) return initPromise;
     var cfg = window.FIREBASE_CONFIG;
     Store.configured = !!(cfg && cfg.apiKey && cfg.projectId);
     if (!Store.configured) {
-      Store.ready = true;
-      return Promise.resolve();
+      markReady();
+      initPromise = Promise.resolve();
+      return initPromise;
     }
+    var provUid = startProvisional() ? Store.user.uid : null;
+    var started = startCloud(cfg, provUid);
+    initPromise = provUid ? Promise.resolve() : started;
+    return initPromise;
+  };
+
+  function startCloud(cfg, provUid) {
     return loadScript(SDK + "firebase-app-compat.js")
       .then(function () {
         var parts = [loadScript(SDK + "firebase-auth-compat.js"), loadScript(SDK + "firebase-firestore-compat.js")];
@@ -225,21 +297,34 @@
         return new Promise(function (resolve) {
           var first = true;
           auth.onAuthStateChanged(function (u) {
-            handleAuth(u).then(function () {
-              if (first) { first = false; Store.ready = true; resolve(); }
-              else Store.emit("auth");
+            handleAuth(u).then(function (changed) {
+              if (!first) return Store.emit("auth");
+              first = false;
+              markReady();
+              resolve();
+              if (!provUid) return;
+              // The screen already shows the device copy: redraw only if the account turned out different.
+              if (!u || u.uid !== provUid) Store.emit("auth");
+              else if (changed) Store.emit("sync");
             });
           });
         });
       })
       .catch(function (e) {
         console.error(e);
+        var wasProvisional = Store.provisional;
+        if (wasProvisional) {
+          // Same as a cold start without the cloud: this device's guest data.
+          Store.user = null;
+          Store.state = guest;
+        }
         Store.mode = "local";
         Store.configured = false;
-        Store.ready = true;
+        markReady();
         Store.emit("error:offline");
+        if (wasProvisional) Store.emit("auth");
       });
-  };
+  }
 
   function rawPost(id, x) {
     return { id: id, uid: x.uid, name: x.name, handle: x.handle, avatar: x.avatar, text: x.text, quoteOf: x.quoteOf || null, createdAt: millis(x.createdAt), likes: x.likes || 0, replies: x.replies || 0, reposts: x.reposts || 0 };
@@ -274,14 +359,20 @@
     });
   }
 
+  // Resolves to true when the account state differs from what was on screen (provisional start only).
   function handleAuth(u) {
+    var provBase = Store.provisional && Store.user && u && Store.user.uid === u.uid ? provisionalBase : null;
     if (!u) {
       Store.user = null;
       Store.state = guest;
-      return Promise.resolve();
+      Store.provisional = false;
+      return Promise.resolve(true);
     }
+    // A different account than last time: drop the device copy that was on screen.
+    if (Store.provisional && !provBase) Store.state = guest;
     Store.user = { uid: u.uid, name: u.displayName || "English learner", photo: u.photoURL };
     writeJSON(LAST_UID_KEY, u.uid);
+    writeJSON(LAST_USER_KEY, Store.user);
     var cached = readJSON(CLOUD_CACHE + u.uid);
     return getWithRetry(db.collection("users").doc(u.uid), 3).then(function (snap) {
       var alreadyMerged = readJSON(MERGED_KEY) === u.uid;
@@ -294,28 +385,45 @@
         s = alreadyMerged ? withDefaults(cloudState) : mergeInto(cloudState, guest);
       }
       if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
+      // Taps made while the device copy was on screen go on top of the cloud copy.
+      var shown = Store.state, editedHere = false;
+      if (provBase) {
+        SYNCED_FIELDS.forEach(function (k) {
+          if (same(shown[k], provBase[k])) return;
+          editedHere = true;
+          s[k] = merge3(provBase[k], shown[k], s[k]);
+        });
+      }
+      var changed = !provBase || SYNCED_FIELDS.some(function (k) { return !same(shown[k], s[k]); });
       s.myPosts = [];
       s.myComments = [];
       Store.state = s;
+      Store.provisional = false;
       Store.pendingLocalPosts = alreadyMerged ? [] : guest.myPosts.slice();
       writeJSON(MERGED_KEY, u.uid);
       writeJSON(CLOUD_CACHE + u.uid, s);
       ensurePublicProfile(u.uid);
-      if (!snap.exists || !alreadyMerged) pushUserDoc();
+      if (!snap.exists || !alreadyMerged || editedHere) pushUserDoc();
+      return changed;
     }).catch(function (e) {
       // Stay signed in. Use the last copy saved on this device and try the cloud again later.
       console.error(e);
+      Store.provisional = false;
+      Store.pendingLocalPosts = [];
+      Store.emit("error:load");
+      // The device copy is already on screen, taps included.
+      if (provBase) return false;
       var s = withDefaults(cached || guest);
       if (!s.prefs.onboarded && guest.prefs.onboarded) s.prefs = guest.prefs;
       s.myPosts = [];
       s.myComments = [];
       Store.state = s;
-      Store.pendingLocalPosts = [];
-      Store.emit("error:load");
+      return true;
     });
   }
 
   Store.signIn = function () {
+    if (Store.provisional) return later(function () { return Store.signIn(); });
     if (!auth) return Promise.reject(new Error("not configured"));
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
@@ -328,7 +436,9 @@
   };
 
   Store.signOut = function () {
+    if (Store.provisional) return later(function () { return Store.signOut(); });
     removeKey(LAST_UID_KEY);
+    removeKey(LAST_USER_KEY);
     if (Store.user) removeKey(CLOUD_CACHE + Store.user.uid);
     return auth ? auth.signOut() : Promise.resolve();
   };
@@ -352,6 +462,7 @@
 
   // quoted: the post being quoted (optional). A quote counts as a repost of it.
   Store.createPost = function (text, quoted) {
+    if (Store.provisional) return later(function () { return Store.createPost(text, quoted); });
     var p = Store.state.profile;
     if (!isCloud()) {
       var m = { id: "me" + Date.now(), text: text, ts: Date.now() };
@@ -375,6 +486,7 @@
   };
 
   Store.deletePost = function (id) {
+    if (Store.provisional) return later(function () { return Store.deletePost(id); });
     delete Store.state.liked[id];
     delete Store.state.bookmarked[id];
     if (!isCloud()) {
@@ -389,6 +501,7 @@
   };
 
   Store.userPosts = function (uid) {
+    if (Store.provisional) return later(function () { return Store.userPosts(uid); });
     if (Store.mode === "local") return Promise.resolve(Store.communityPosts());
     return db.collection("posts").where("uid", "==", uid).get().then(function (snap) {
       return snap.docs.map(function (d) {
@@ -464,6 +577,7 @@
     if (liked) Store.state.liked[post.id] = true;
     else delete Store.state.liked[post.id];
     Store.save();
+    if (Store.provisional) { later(function () { Store.setLiked(post, liked); }); return; }
     if (!isCloud()) return;
     var b = db.batch();
     var rec = db.collection("likes").doc(Store.user.uid + "_" + post.id);
@@ -479,6 +593,7 @@
     if (on) Store.state.reposted[post.id] = Date.now();
     else delete Store.state.reposted[post.id];
     Store.save();
+    if (Store.provisional) return later(function () { return Store.setReposted(post, on); });
     if (!isCloud()) { Store.emit("reposts"); return Promise.resolve(); }
     var uid = Store.user.uid, p = Store.state.profile;
     var b = db.batch();
@@ -501,6 +616,7 @@
   // ---------- Comments ----------
   // Everything I've replied, newest first.
   Store.myComments = function () {
+    if (Store.provisional) return later(function () { return Store.myComments(); });
     var p = Store.state.profile;
     if (Store.mode === "local") {
       return Promise.resolve(Store.state.myComments.map(function (c) {
@@ -517,6 +633,7 @@
   };
 
   Store.comments = function (postId) {
+    if (Store.provisional) return later(function () { return Store.comments(postId); });
     if (Store.mode === "local") {
       var p = Store.state.profile;
       return Promise.resolve(Store.state.myComments.filter(function (c) { return c.postId === postId; }).map(function (c) {
@@ -532,6 +649,7 @@
   };
 
   Store.addComment = function (post, text) {
+    if (Store.provisional) return later(function () { return Store.addComment(post, text); });
     var p = Store.state.profile;
     if (Store.mode === "local") {
       var c = { id: "c" + Date.now(), postId: post.id, text: text, ts: Date.now() };
@@ -552,6 +670,7 @@
   };
 
   Store.deleteComment = function (post, comment) {
+    if (Store.provisional) return later(function () { return Store.deleteComment(post, comment); });
     if (Store.mode === "local") {
       Store.state.myComments = Store.state.myComments.filter(function (c) { return c.id !== comment.id; });
       Store.save();
@@ -567,6 +686,7 @@
   // ---------- Reports ----------
   // kind: "post" or "comment". At most one report every 10 seconds.
   Store.report = function (kind, target, postId, reason) {
+    if (Store.provisional) return later(function () { return Store.report(kind, target, postId, reason); });
     if (!isCloud()) return Promise.resolve();
     var b = db.batch();
     b.set(limitsRef(), { report: now() }, { merge: true });
@@ -581,9 +701,10 @@
   // Removes everything this person wrote or saved, then the sign-in account itself.
   // progress(message) is called as it goes.
   Store.deleteAccount = function (progress) {
+    if (Store.provisional) return later(function () { return Store.deleteAccount(progress); });
     progress = progress || function () {};
     if (!isCloud()) {
-      [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, MERGED_KEY].forEach(removeKey);
+      [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, LAST_USER_KEY, MERGED_KEY].forEach(removeKey);
       return Promise.resolve();
     }
     var uid = Store.user.uid;
@@ -630,7 +751,7 @@
         });
       })
       .then(function () {
-        [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, MERGED_KEY, CLOUD_CACHE + uid].forEach(removeKey);
+        [KEY, SEEN_KEY, PUSH_KEY, LAST_UID_KEY, LAST_USER_KEY, MERGED_KEY, CLOUD_CACHE + uid].forEach(removeKey);
       }, function (e) { deleting = false; throw e; });
   };
 
@@ -688,6 +809,7 @@
   Store.saveProfile = function (p) {
     Store.state.profile = Object.assign({}, Store.state.profile, p);
     Store.save();
+    if (Store.provisional) return later(writePublicProfile);
     return writePublicProfile();
   };
 
@@ -773,6 +895,7 @@
   // Turns notifications on. Only marks them "on" here once the token is saved to the account.
   // Rejects with err.stage = "permission" | "sw" | "token" | "save" and err.detail.
   Store.enablePush = function (prefs) {
+    if (Store.provisional) return later(function () { return Store.enablePush(prefs); });
     if (Store.pushStatus() !== "ready") return Promise.reject(pushError(Store.pushStatus()));
     var token;
     return Promise.resolve(Notification.requestPermission()).then(function (perm) {
@@ -802,6 +925,7 @@
   };
 
   Store.updatePushPrefs = function (prefs) {
+    if (Store.provisional) return later(function () { return Store.updatePushPrefs(prefs); });
     var info = Store.pushInfo();
     info.prefs = prefs;
     writeJSON(PUSH_KEY, info);
@@ -810,6 +934,7 @@
   };
 
   Store.disablePush = function () {
+    if (Store.provisional) return later(function () { return Store.disablePush(); });
     var info = Store.pushInfo();
     writeJSON(PUSH_KEY, { enabled: false, prefs: info.prefs });
     if (!isCloud() || !info.token) return Promise.resolve();
@@ -821,6 +946,7 @@
 
   // Tokens can change; refresh it quietly on start when notifications are on.
   Store.refreshPush = function () {
+    if (Store.provisional) return later(function () { return Store.refreshPush(); });
     var info = Store.pushInfo();
     if (!info.enabled || Store.pushStatus() !== "ready" || Notification.permission !== "granted") return;
     currentToken().then(function (token) {
@@ -838,6 +964,7 @@
   // for that round. Works signed in or out; nothing is written when Firebase isn't set up. Resolves to the round's
   // id, or null when it wasn't saved (the notes need the round to exist).
   Store.saveReviewRun = function (run) {
+    if (Store.provisional) return later(function () { return Store.saveReviewRun(run); });
     if (!db) return Promise.resolve(null);
     try {
       var ref = db.collection("reviewRuns").doc();
@@ -846,6 +973,7 @@
     } catch (e) { return Promise.resolve(null); }
   };
   Store.saveReviewNote = function (runId, note) {
+    if (Store.provisional) return later(function () { return Store.saveReviewNote(runId, note); });
     if (!db || !runId) return;
     try {
       db.collection("reviewNotes").doc(runId + "_" + note.word)
@@ -854,4 +982,5 @@
   };
 
   window.Store = Store;
+  Store.init();
 })();

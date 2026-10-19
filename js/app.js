@@ -2353,6 +2353,16 @@
           pending.slice().reverse().reduce(function (p, m) { return p.then(function () { return S.createPost(m.text); }); }, Promise.resolve());
         }
       }
+    } else if (kind === "sync") {
+      // The account arrived from the cloud and differs from the device copy on screen: refresh quietly.
+      if (!booted) return;
+      renderGoalChip();
+      refreshWordMarks();
+      updateNotices();
+      if (route.name === "home" && window.scrollY < 300) buildFeed(); else feedDirty = true;
+      if (route.name === "profile" && !editingProfile) renderProfile();
+      var more = (st().prefs.packs || []).filter(function (id) { return !(window.PACKS && window.PACKS[id]); });
+      if (more.length) C.loadPacks(more, function () { buildFeed(); refreshWordMarks(); });
     } else if (kind === "error:offline") {
       toast("Couldn't reach the cloud — using this device only");
     } else if (kind === "error:save") {
@@ -2595,7 +2605,10 @@
   }
   setupInfiniteScroll();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("Service worker not registered", e); });
+    // After the page has loaded, so a first visit isn't slowed down by the worker saving the whole app.
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("Service worker not registered", e); });
+    });
   }
   S.init().then(function () {
     renderAll();

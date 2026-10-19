@@ -1,6 +1,7 @@
-// toEfu service worker: offline cache (network first) + push notifications.
+// toEfu service worker: offline cache (cache first, refreshed in the background) + push notifications.
 /* global importScripts, firebase */
-var CACHE = "toefu-v21";
+// Bump on every deploy: the new worker then downloads the whole new version at once.
+var CACHE = "toefu-v22";
 var SHELL = [
   "./", "index.html", "css/style.css", "js/core.js", "js/store.js", "js/app.js", "js/firebase-config.js",
   "js/data/characters.js", "js/data/batch-1.js", "js/data/batch-2.js", "js/data/batch-3.js", "js/data/batch-4.js", "js/data/batch-5.js",
@@ -10,7 +11,9 @@ var SHELL = [
 ];
 
 self.addEventListener("install", function (event) {
-  event.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
+  // cache: "reload" skips the browser's HTTP cache, so a new version never starts from files up to 10 minutes old.
+  var fresh = SHELL.map(function (url) { return new Request(url, { cache: "reload" }); });
+  event.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(fresh); }).then(function () { return self.skipWaiting(); }));
 });
 
 self.addEventListener("activate", function (event) {
@@ -19,23 +22,29 @@ self.addEventListener("activate", function (event) {
   }).then(function () { return self.clients.claim(); }));
 });
 
-// Always try the network first so updates show up right away; fall back to the cache offline.
+// Cache first: open instantly from the saved copy, then fetch the latest copy in the background for next time.
+// (Updates show up on the next launch; a deploy with a new CACHE name replaces everything at once.)
 self.addEventListener("fetch", function (event) {
   var req = event.request;
   if (req.method !== "GET" || new URL(req.url).origin !== self.location.origin) return;
-  event.respondWith(
-    fetch(req).then(function (res) {
-      if (res.ok) {
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(req, copy); });
-      }
-      return res;
-    }).catch(function () {
-      return caches.match(req, { ignoreSearch: true }).then(function (hit) {
-        return hit || (req.mode === "navigate" ? caches.match("index.html") : undefined);
+  var update = fetch(req).then(function (res) {
+    if (res.ok) {
+      var copy = res.clone();
+      caches.open(CACHE).then(function (c) { c.put(req, copy); });
+    }
+    return res;
+  });
+  event.respondWith(caches.match(req).then(function (hit) {
+    if (hit) {
+      event.waitUntil(update.catch(function () { /* offline: keep the saved copy */ }));
+      return hit;
+    }
+    return update.catch(function () {
+      return caches.match(req, { ignoreSearch: true }).then(function (old) {
+        return old || (req.mode === "navigate" ? caches.match("index.html") : undefined);
       });
-    })
-  );
+    });
+  }));
 });
 
 // ---------- Push notifications ----------
