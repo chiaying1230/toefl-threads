@@ -108,7 +108,7 @@ Object.assign(window.VOCAB, {
   sage: { pos: "n./adj.", zh: "智者；賢明睿智的", level: 3, ex: "The old sage gave the young king wise advice.", exZh: "那位年長的智者給了年輕國王明智的建議。" },
   pliant: { pos: "adj.", zh: "柔順的；脆弱易彎的", level: 2, ex: "Young bamboo is pliant and bends in the wind.", exZh: "嫩竹很柔韌，會隨風彎曲。" },
   aegis: { pos: "n.", zh: "保護；庇護", level: 3, ex: "The festival is held under the aegis of the city government.", exZh: "這個節慶在市政府的支持下舉辦。" },
-  exposed: { pos: "adj.", zh: "暴露在外無防護的", level: 2, ex: "The campsite was exposed to strong winds.", exZh: "營地暴露在強風之中。" },
+  exposed: { pos: "adj.", zh: "暴露的；無防護的", level: 2, ex: "The campsite was exposed to strong winds.", exZh: "營地暴露在強風之中。" },
   detriment: { pos: "n.", zh: "傷害；損害", level: 3, ex: "He worked long hours to the detriment of his health.", exZh: "他長時間工作，損害了自己的健康。" },
   heedless: { pos: "adj.", zh: "不注意的；不留心的", level: 2, ex: "Heedless of the warnings, they swam in the rough sea.", exZh: "他們不顧警告，在洶湧的海中游泳。" },
   detrimental: { pos: "adj.", zh: "有害的", level: 3, ex: "Too much sugar is detrimental to your teeth.", exZh: "太多糖對牙齒有害。" },
