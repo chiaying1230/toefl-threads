@@ -1,11 +1,10 @@
 // toEfu service worker: offline cache (cache first, refreshed in the background) + push notifications.
 /* global importScripts, firebase */
 // Bump on every deploy: the new worker then downloads the whole new version at once.
-var CACHE = "toefu-v23";
+var CACHE = "toefu-v24";
 var SHELL = [
   "./", "index.html", "css/style.css", "js/core.js", "js/store.js", "js/app.js", "js/firebase-config.js",
-  "js/data/characters.js", "js/data/batch-1.js", "js/data/batch-2.js", "js/data/batch-3.js", "js/data/batch-4.js", "js/data/batch-5.js",
-  "js/data/batch-6.js", "js/data/batch-7.js", "js/data/batch-8.js", "js/data/batch-9.js", "js/data/batch-10.js", "js/data/batch-11.js", "js/data/batch-12.js", "js/data/batch-13.js", "js/data/convos.js", "js/data/levels.js", "js/data/packs/index.js", "js/data/kk.js",
+  "js/data/base.js",
   "quiz/", "quiz/index.html", "quiz/quiz.css", "quiz/quiz.js", "js/data/quiz-questions.js", "js/data/quiz-data.js",
   "privacy.html", "terms.html", "icon.svg", "icon-192.png", "icon-512.png", "apple-touch-icon.png", "manifest.json"
 ];

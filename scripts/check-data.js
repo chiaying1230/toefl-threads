@@ -134,6 +134,12 @@ if (aboveUi) console.warn(`WARNING: ${aboveUi} word(s) have level above 3. The a
 console.log(`Voices       ${Object.entries(langs).map(([k, n]) => `${k} ${n}`).join(" / ")}`);
 console.log(`Topics       ${Object.entries(topics).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(", ")}`);
 if (unused.length) console.log(`Unused words (${unused.length}): ${unused.join(", ")}`);
+// The app loads js/data/base.js (all of the above in one file), so it must be rebuilt after any change.
+try {
+  require("child_process").execFileSync(process.execPath, [path.join(__dirname, "build-bundle.mjs"), "--check"], { stdio: "pipe" });
+} catch (e) {
+  errors.push("js/data/base.js is out of date: run node scripts/build-bundle.mjs");
+}
 if (errors.length) {
   console.error(`\n${errors.length} problem(s):\n  ` + errors.join("\n  "));
   process.exit(1);

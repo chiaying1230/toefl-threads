@@ -130,6 +130,7 @@ js/data/kk.js              KK 音標（scripts/make-kk.mjs 產生）
 js/data/convos.js          角色在串文底下的互相留言
 js/data/levels.js          托福字的難度等級（scripts/import-scores.py 產生）
 js/data/packs/             單字包與各包串文（scripts/build-packs.py 產生，選了才載入）
+js/data/base.js            上面這些基本資料合成的單一檔案，App 實際載入的是它（scripts/build-bundle.mjs 產生，不要手改）
 js/core.js                 文字渲染、單字偵測、排序、測驗、每日目標計算
 js/store.js                儲存層（本機 localStorage / Firebase）
 js/app.js                  所有畫面與互動
@@ -144,13 +145,14 @@ scripts/check-data.js      檢查內容有沒有打錯
 scripts/import-scores.py   難度分數 → js/data/levels.js（門檻在 scripts/scorelib.py）
 scripts/build-packs.py     data-src/ → js/data/packs/*.js
 scripts/make-kk.mjs        補 KK 音標
+scripts/build-bundle.mjs   js/data/*.js → js/data/base.js（改過資料就要跑）
 scripts/gen-posts/         用 Claude API 產生串文與單字資料（見該資料夾 README）
 data-src/                  單字包原始資料：難度評分、人工修正、各包串文 threads/<包>.txt
 ```
 
 ## 新增更多串文或單字
 
-在 `js/data/` 新增 `batch-14.js`（複製 `batch-13.js` 的格式），並在 `index.html` 最下面的 `batch-13.js` 後加一行 `<script src="js/data/batch-14.js"></script>`（`sw.js` 的清單也要加）。片語的 key 用底線連接，例如 `in_retrospect`，畫面上會顯示成 in retrospect。
+在 `js/data/` 新增 `batch-14.js`（複製 `batch-13.js` 的格式），再執行 `node scripts/build-bundle.mjs` 把它合進 `js/data/base.js`（會自動找到所有 `batch-*.js`，`index.html` 和 `sw.js` 不用改）。片語的 key 用底線連接，例如 `in_retrospect`，畫面上會顯示成 in retrospect。
 
 - 單字：`resilient: { pos: "adj.", zh: "有韌性的", level: 2, ex: "英文例句", exZh: "中文翻譯" }`
 - 貼文：`{ id: "p469", author: "zorp", topic: "Astronomy", text: "…[[resilient]]…", zh: "中文翻譯" }`
@@ -158,7 +160,7 @@ data-src/                  單字包原始資料：難度評分、人工修正�
   - `author` 要是 `characters.js` 裡的角色，`topic` 要是 `TOPICS` 裡的題材
   - 貼文難度會依單字的 `level` 自動計算
 
-改完在電腦執行 `node scripts/check-data.js`，它會告訴你有沒有拼錯的單字、缺少的翻譯、重複的 id。
+改完在電腦執行 `node scripts/build-bundle.mjs`，再執行 `node scripts/check-data.js`，它會告訴你有沒有拼錯的單字、缺少的翻譯、重複的 id，以及 `base.js` 是不是忘了重建（GitHub 上每次 push 也會自動跑這個檢查）。
 
 ## 用 GitHub Pages 免費發佈
 
@@ -216,7 +218,7 @@ TOEFL® 是 ETS 的註冊商標，Threads 是 Meta 的商標；toEfu 與 ETS、M
 |---|---|
 | 難度標籤 | Soy Milk（豆漿）/ Tofu（豆腐）/ Natto（納豆），全站同一把尺：`js/data/levels.js` 把 1,300 個托福字重新分級，門檻在 `scripts/scorelib.py`（分數 ≤40 / ≤65） |
 | 單字包 | 國小國中 2,029、高中 4,126、多益 822、雅思 5,045、托福 1,300（托福就是 `batch-*.js` 的基本字庫）。`js/data/packs/<id>.js` 在使用者選了之後才載入，已選的包會被 service worker 快取 |
-| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。動態牆有 468 則托福串文，加上國小國中 110、高中 130、多益 106、雅思 109 則（`data-src/threads/<包>.txt`，重建時一起寫進 `js/data/packs/<包>.js`，選了該單字表才出現） |
+| 用在哪裡 | 每日一字、動態牆小測驗、閃卡、發文挑戰字、搜尋。動態牆有 468 則托福串文，加上國小國中 310、高中 330、多益 306、雅思 309 則（`data-src/threads/<包>.txt`，重建時一起寫進 `js/data/packs/<包>.js`，選了該單字表才出現） |
 | 資料來源 | `data-src/full_scores.csv`（Codex 的模型初評，**不是實測難度**）＋ `data-src/review-fixes/`（我逐筆檢查過 Codex 標為 review_required 的 1,118 筆，補上例句、修正詞義或剔除） |
 
 重建流程（不會動到 `batch-*.js`）：
@@ -226,6 +228,7 @@ python3 scripts/import-scores.py     # 重新計算托福字的等級 → js/dat
 python3 scripts/build-packs.py       # 產生 js/data/packs/*.js，報告在 data-src/packs-report.txt
 cd /tmp && npm i cmu-pronouncing-dictionary
 node scripts/make-kk.mjs /tmp/node_modules   # 補上 KK 音標（kk.js 與各單字包）
+node scripts/build-bundle.mjs        # levels.js、kk.js、packs/index.js 合進 js/data/base.js
 node scripts/check-data.js
 ```
 

@@ -1,0 +1,21 @@
+name: Check data
+
+# Runs scripts/check-data.js, which also fails when js/data/base.js was not rebuilt
+# after editing the word data (node scripts/build-bundle.mjs).
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node scripts/check-data.js
